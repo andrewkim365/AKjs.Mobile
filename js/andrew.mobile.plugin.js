@@ -22,7 +22,7 @@ function ak_include(setting,css){
     var scripts = document.getElementsByTagName("script");
     var lastScript = scripts[scripts.length-1];
     var src = lastScript.src;
-    if(src.indexOf("http://")!=0 && src.indexOf("/") !=0){
+    if(src.indexOf("://")!=0 && src.indexOf("/") !=0){
         //a.js使用相对路径,先替换成绝对路径
         var url = location.href;
         var index = url.indexOf("?");
