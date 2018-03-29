@@ -46,7 +46,7 @@ function ak_include(setting,css){
     }
     if (css) {
         for(var i=0;i<jssrcs.length;i++){
-            $("head").append("<style type='text/css'>@import url('"+Andrew_GetPath("plugin/css/"+setting,src)+".css"+"');</style>");
+            $("head").append("<style type='text/css'>@import url('"+setting+".css"+"');</style>");
         }
     }
 }
