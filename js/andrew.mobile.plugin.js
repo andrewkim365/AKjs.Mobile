@@ -3,54 +3,6 @@
 
 if ("undefined" == typeof jQuery) throw new Error("Andrew Mobile Plugin's JavaScript requires jQuery");
 
-/*-----------------------------------------------Andrew_GetPath------------------------------------------*/
-function Andrew_GetPath(relativePath,absolutePath){
-    var reg = new RegExp("\\.\\./","g");
-    var uplayCount = 0;
-    //相对路径中返回上层的次数。
-    var m = relativePath.match(reg);
-    if(m) uplayCount = m.length;
-    var lastIndex = absolutePath.length-1;
-    for(var i=0;i<=uplayCount;i++){
-        lastIndex = absolutePath.lastIndexOf("/",lastIndex);
-    }
-    return absolutePath.substr(0,lastIndex+1) + relativePath.replace(reg,"");
-}
-
-function ak_include(setting,css){
-    //先获取当前a.js的src。a.js中调用ak_include,直接获取最后1个script标签就是a.js的引用。
-    var scripts = document.getElementsByTagName("script");
-    var lastScript = scripts[scripts.length-1];
-    var src = lastScript.src;
-    if(src.indexOf("http://")!=0 && src.indexOf("/") !=0){
-        //a.js使用相对路径,先替换成绝对路径
-        var url = location.href;
-        var index = url.indexOf("?");
-        if(index != -1){
-            url = url.substring(0, index-1);
-        }
-        src = Andrew_GetPath(src,url);
-    }
-    var jssrcs = setting.split("|");
-    //可以ak_include多个js，用|隔开
-    for(var i=0;i<jssrcs.length;i++){
-        //使用juqery的同步ajax加载js.
-        //使用document.write 动态添加的js会在当前js的后面，可能会有js引用问题
-        //动态创建script脚本，是非阻塞下载，也会出现引用问题
-        $.ajax({
-            type:'GET',
-            url: Andrew_GetPath("plugin/"+setting,src)+".js",
-            async:false,
-            dataType:'script'
-        });
-    }
-    if (css) {
-        for(var i=0;i<jssrcs.length;i++){
-            $("head").append("<style type='text/css'>@import url('"+Andrew_GetPath("plugin/css/"+setting,src)+".css"+"');</style>");
-        }
-    }
-}
-
 /*-----------------------------------------------Andrew_Config------------------------------------------*/
 function Andrew_Config(setting){
     var option = $.extend({
@@ -705,5 +657,53 @@ function Andrew_RouterResize(option) {
     } else {
         $("footer").removeClass("dis_opa_0");
         Andrew_mainHeight();
+    }
+}
+
+/*-----------------------------------------------Andrew_GetPath------------------------------------------*/
+function Andrew_GetPath(relativePath,absolutePath){
+    var reg = new RegExp("\\.\\./","g");
+    var uplayCount = 0;
+    //相对路径中返回上层的次数。
+    var m = relativePath.match(reg);
+    if(m) uplayCount = m.length;
+    var lastIndex = absolutePath.length-1;
+    for(var i=0;i<=uplayCount;i++){
+        lastIndex = absolutePath.lastIndexOf("/",lastIndex);
+    }
+    return absolutePath.substr(0,lastIndex+1) + relativePath.replace(reg,"");
+}
+
+function ak_include(setting,css){
+    //先获取当前a.js的src。a.js中调用ak_include,直接获取最后1个script标签就是a.js的引用。
+    var scripts = document.getElementsByTagName("script");
+    var lastScript = scripts[scripts.length-1];
+    var src = lastScript.src;
+    if(src.indexOf("http://")!=0 && src.indexOf("/") !=0){
+        //a.js使用相对路径,先替换成绝对路径
+        var url = location.href;
+        var index = url.indexOf("?");
+        if(index != -1){
+            url = url.substring(0, index-1);
+        }
+        src = Andrew_GetPath(src,url);
+    }
+    var jssrcs = setting.split("|");
+    //可以ak_include多个js，用|隔开
+    for(var i=0;i<jssrcs.length;i++){
+        //使用juqery的同步ajax加载js.
+        //使用document.write 动态添加的js会在当前js的后面，可能会有js引用问题
+        //动态创建script脚本，是非阻塞下载，也会出现引用问题
+        $.ajax({
+            type:'GET',
+            url: Andrew_GetPath("plugin/"+setting,src)+".js",
+            async:false,
+            dataType:'script'
+        });
+    }
+    if (css) {
+        for(var i=0;i<jssrcs.length;i++){
+            $("head").append("<style type='text/css'>@import url('"+Andrew_GetPath("plugin/css/"+setting,src)+".css"+"');</style>");
+        }
     }
 }
