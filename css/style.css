@@ -1,0 +1,314 @@
+﻿/******基本样式配置******/
+@import url("./andrew.mobile.style.css"); /*公共样式引入*/
+@import url("./andrew.animate.css"); /*动画库样式引入*/
+@import url("./iconfont/iconfont.css"); /*Iconfont图标库样式引入 （http://www.iconfont.cn/collections/detail?cid=8740）*/
+
+/*********************常用颜色相关样式*********************/
+.c_pink {
+    color: #f63d8b !important;
+}
+.c_red {
+    color: #d71b1c !important;
+}
+.c_red-orange {
+    color: #fc3403 !important;
+}
+.c_orange {
+    color: #fd6404 !important;
+}
+.c_orange-yellow {
+    color: #fccd05 !important;
+}
+.c_yellow {
+    color: #f9fc19 !important;
+}
+.c_yellow-green {
+    color: #94fc05 !important;
+}
+.c_green {
+    color: #349d05 !important;
+}
+.c_green-blue {
+    color: #22d2ae !important;
+}
+.c_blue {
+    color: #1495e9 !important;
+}
+.c_blue-violet {
+    color: #3504fd !important;
+}
+.c_violet {
+    color: #6404fc !important;
+}
+
+.bg_pink {
+     background-color: #f63d8b !important;
+ }
+.bg_red {
+    background-color: #d71b1c !important;
+}
+.bg_red-orange {
+    background-color: #fc3403 !important;
+}
+.bg_orange {
+    background-color: #fd6404 !important;
+}
+.bg_orange-yellow {
+    background-color: #fccd05 !important;
+}
+.bg_yellow {
+    background-color: #f9fc19 !important;
+}
+.bg_yellow-green {
+    background-color: #94fc05 !important;
+}
+.bg_green {
+    background-color: #349d05 !important;
+}
+.bg_green-blue {
+    background-color: #22d2ae !important;
+}
+.bg_blue {
+    background-color: #1495e9 !important;
+}
+.bg_blue-violet {
+    background-color: #3504fd !important;
+}
+.bg_violet {
+    background-color: #6404fc !important;
+}
+
+.bor_pink {
+    border-color: #f63d8b !important;
+}
+.bor_red {
+    border-color: #d71b1c !important;
+}
+.bor_red-orange {
+    border-color: #fc3403 !important;
+}
+.bor_orange {
+    border-color: #fd6404 !important;
+}
+.bor_orange-yellow {
+    border-color: #fccd05 !important;
+}
+.bor_yellow {
+    border-color: #f9fc19 !important;
+}
+.bor_yellow-green {
+    border-color: #94fc05 !important;
+}
+.bor_green {
+    border-color: #349d05 !important;
+}
+.bor_green-blue {
+    border-color: #22d2ae !important;
+}
+.bor_blue {
+    border-color: #1495e9 !important;
+}
+.bor_blue-violet {
+    border-color: #3504fd !important;
+}
+.bor_violet {
+    border-color: #6404fc !important;
+}
+
+/*********************常用第三方平台主色调*********************/
+.c_wechat {
+    color: #19d100 !important;
+}
+.c_weibo {
+    color: #d94945 !important;
+}
+.c_qq {
+    color: #4cafe9 !important;
+}
+.c_taobao {
+    color: #ff7e00 !important;
+}
+.c_alipay {
+    color: #0398e1 !important;
+}
+.c_jd {
+    color: #f10215 !important;
+}
+.bg_wechat {
+    background-color: #19d100 !important;
+}
+.bg_weibo {
+    background-color: #d94945 !important;
+}
+.bg_qq {
+    background-color: #4cafe9 !important;
+}
+.bg_taobao {
+    background-color: #ff7e00 !important;
+}
+.bg_alipay {
+    background-color: #0398e1 !important;
+}
+.bg_jd {
+    background-color: #f10215 !important;
+}
+.bor_wechat {
+    border-color: #19d100 !important;
+}
+.bor_weibo {
+    border-color: #d94945 !important;
+}
+.bor_qq {
+    border-color: #4cafe9 !important;
+}
+.bor_taobao {
+    border-color: #ff7e00 !important;
+}
+.bor_alipay {
+    border-color: #0398e1 !important;
+}
+.bor_jd {
+    border-color: #f10215 !important;
+}
+
+/*********************关闭和删除颜色样式*********************/
+.c_close {
+    color:#f16a6a !important;
+}
+.bg_close {
+    background-color:#f16a6a !important;
+}
+.bor_close {
+    border-color:#f16a6a !important;
+}
+.c_delete {
+    color:#e93234 !important;
+}
+.bg_delete {
+    background-color:#e93234 !important;
+}
+.bor_delete {
+    border-color:#e93234 !important;
+}
+
+/*********************按钮点击颜色变化效果*********************/
+button.bg_close:active {
+    background-color: #f13a3a !important;
+}
+button.c_close.bor_close:active {
+    background-color: #f16a6a !important;
+}
+button.bg_delete:active {
+    background-color: #b73138 !important;
+}
+button.c_delete.bor_delete:active {
+    background-color: #e93234 !important;
+}
+
+/*********************body区域颜色样式*********************/
+body {
+    background-color:#eeeeee;
+    color:#333333;
+}
+
+/*********************头部区域*********************/
+header {
+    width:100%;
+    height:3.2em;
+    line-height:3.2em;
+    position:fixed;
+    z-index:6;
+    top:0;
+}
+header>* {
+    height:100%;
+}
+header h1 {
+    width: 100%;
+    font-size:1.36em !important;
+    font-weight: 600;
+}
+header button {
+    cursor: pointer;
+    position: absolute;
+    top:0;
+}
+header button, header>* i {
+    vertical-align: middle;
+}
+
+/******内容区域样式******/
+main { /*container 容器*/
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*********************模块布局结构*********************/
+.module {
+    display: block;
+    overflow:hidden;
+    position:relative;
+}
+.module li {
+    position:relative;
+}
+.module li i {
+    line-height: inherit;
+}
+.module li input {
+    background-color: transparent !important;
+}
+.module li input.fr {
+    width: inherit;
+    height: inherit;
+    line-height: 100%;
+    text-align: right;
+    padding: 0;
+}
+.module li input.fl {
+    width: inherit;
+    height: inherit;
+    line-height: 100%;
+    text-align: left;
+}
+.module li input.fr + label {
+    text-align: right;
+    right: 0;
+}
+.module li input.fl + label {
+    text-align: left;
+    left: 0;
+}
+.list li:last-child , .list dl:last-child { /*列表中最后一个线条隐藏*/
+    border-bottom: none !important;
+}
+
+/*********************最新消息图标*********************/
+.new_icon::after {
+    content:'●';
+    color:red;
+    margin:0 0.5em;
+}
+
+/*********************底部固定菜单*********************/
+footer, .tail {
+    position:fixed;
+    overflow: hidden;
+    padding: 0;
+    bottom:0;
+    width:100%;
+}
+footer menu {
+    display:block;
+    height:3.2em;
+    overflow:hidden;
+}
+footer menu i, footer menu em {
+    display:block;
+}
+footer {
+    z-index:6;
+}
+.tail {
+    z-index:7;
+}

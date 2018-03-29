@@ -1,0 +1,119 @@
+<ak-header data-display="true">
+    <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
+    <h1 class="text_al_c">加载效果</h1>
+</ak-header>
+
+<div class="module list press plug_DropLoad">
+    <ul class="plug_dropbutton">
+    </ul>
+</div>
+
+<ak-footer data-display="true">
+</ak-footer>
+
+<script type="text/javascript">
+    //引入Andrew插件的区域
+
+    /*-----------------------------------------------Andrew_DropLoad 使用方法-------------------------------------------*/
+    $(function(){
+        // 页数
+        var page = 0;
+        // 每页展示5个
+        var size = 5;
+        $('.plug_DropLoad').Andrew_DropLoad({
+            scrollArea : window, // 滑动区域
+            domUp : { // 上方DOM
+                domRefresh : '↓ 下拉刷新',
+                domUpdate  : '↑ 释放更新',
+                domLoad    : '刷新中...'
+            },
+            domDown : { // 下方DOM
+                domRefresh : '↑ 上拉加载更多',
+                domLoad    : '加载中...',
+                domNoData  : '暂无数据'
+            },
+            autoLoad : true,// 自动加载
+            distance : 20,// 拉动距离
+            loadUpFn : function(me){ //上方function
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://ons.me/tools/dropload/json.php',
+                    dataType: 'json',
+                    success: function(data){
+                        // 为了测试，延迟3秒加载
+                        setTimeout(function(){
+                            // 每次数据加载完，必须重置
+                            me.resetload();
+                        },3000);
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            },
+            loadDownFn : function(me){ //下方function
+                page++;
+                // 拼接HTML
+                var result = '';
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
+                    dataType: 'json',
+                    success: function(data){
+                        var arrLen = data.length;
+                        if(arrLen > 0){
+                            for(var i=0; i<arrLen; i++){
+                                result
+                                    +='     <li class="bg_white ovh mb_5">'
+                                    + '        <article class="rel w_100 ovh line_h_18em">'
+                                    + '            <aside class="ovh wp_94 mt_1em mb_05em pb_05em">'
+                                    + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32em bg_title bor_rad_50" />'
+                                    + '                <h3 class="fl ovh w_80 ml_05em">'+data[i].title+'</h3>'
+                                    + '            </aside>'
+                                    + '            <ol class="w_100 ovh bor_top_dashed bor_gray_ddd length2 list_h_3em">'
+                                    + '                <li class="fl text_al_c">订单价格：<em class="c_orange text_12em">待定</em></li>'
+                                    + '                <li class="fr text_al_c">上市日期：<em class="c_jd">'+data[i].date+'</em></li>'
+                                    + '            </ol>'
+                                    + '        </article>'
+                                    + '     </li>';
+                            }
+                            // 如果没有数据
+                        }else{
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }
+                        // 为了测试，延迟3秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('.plug_DropLoad').children("ul").append(result);
+                            // 每次数据插入，必须重置
+                            me.resetload();
+                        },3000);
+                        /*-----------------------------------------------Andrew_DropUpDown 使用方法-------------------------------------------*/
+                        $(function () {
+                            $(".plug_dropbutton").Andrew_DropUpDown({
+                                curDisplay: 0, //当前显示哪个(不展开设置为0)
+                                active_toggle: "bor_bottom bor_gray_ddd", //展开后的线条切换（实线切换虚线）
+                                up_ico: "iconfont icon-shang", //展开后的图标（上箭头）
+                                down_ico: "iconfont icon-xia", //展开前的图标（下箭头）
+                                callback:function(ele){ //回调获取展开后的元素
+                                    console.log(ele);
+                                }
+                            });
+                        });
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            }
+        });
+    });
+
+</script>

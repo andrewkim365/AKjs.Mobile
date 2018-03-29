@@ -1,0 +1,123 @@
+﻿/*********************主题颜色定义(默认风格)*********************/
+.c_title {
+    color: #79c34a !important;
+}
+.c_title09 {
+    color: rgba(121,195,74,0.9);
+}
+.c_title08 {
+    color: rgba(121,195,74,0.8);
+}
+.c_title07 {
+    color: rgba(121,195,74,0.7);
+}
+.c_title06 {
+    color: rgba(121,195,74,0.6);
+}
+.c_title05 {
+    color: rgba(121,195,74,0.5);
+}
+.c_title04 {
+    color: rgba(121,195,74,0.4);
+}
+.c_title03 {
+    color: rgba(121,195,74,0.3);
+}
+.c_title02 {
+    color: rgba(121,195,74,0.2);
+}
+.c_title01 {
+    color: rgba(121,195,74,0.1);
+}
+.bg_title {
+    background-color: #79c34a !important;
+}
+.bg_title09 {
+    background-color: rgba(121,195,74,0.9);
+}
+.bg_title08 {
+    background-color: rgba(121,195,74,0.8);
+}
+.bg_title07 {
+    background-color: rgba(121,195,74,0.7);
+}
+.bg_title06 {
+    background-color: rgba(121,195,74,0.6);
+}
+.bg_title05 {
+    background-color: rgba(121,195,74,0.5);
+}
+.bg_title04 {
+    background-color: rgba(121,195,74,0.4);
+}
+.bg_title03 {
+    background-color: rgba(121,195,74,0.3);
+}
+.bg_title02 {
+    background-color: rgba(121,195,74,0.2);
+}
+.bg_title01 {
+    background-color: rgba(121,195,74,0.1);
+}
+.bor_title {
+    border-color: #79c34a !important;
+}
+.bor_title09 {
+    border-color: #85c75a;
+}
+.bor_title08 {
+    border-color: #91cc6b;
+}
+.bor_title07 {
+    border-color: #9cd07c;
+}
+.bor_title06 {
+    border-color: #a9d58c;
+}
+.bor_title05 {
+    border-color: #b4d99d;
+}
+.bor_title04 {
+    border-color: #c0deae;
+}
+.bor_title03 {
+    border-color: #cce2be;
+}
+.bor_title02 {
+    border-color: #d8e7cf;
+}
+.bor_title01 {
+    border-color: #e4ebdf;
+}
+
+a:active {
+    color: #5aa42c !important;
+}
+button.bg_white:active {
+    background-color: #f5f5f5 !important;
+}
+button.bg_title:active {
+    background-color: #5aa42c !important;
+}
+button.bor_title.c_title:active {
+    background-color: #79c34a !important;
+    color: #ffffff !important;
+}
+button.bg_title[disabled] {
+    border-color: #9cd07c;
+}
+button.bg_title[disabled]:active {
+    background-color: #79c34a !important;
+}
+
+button.bg_title01:active,
+button.bg_title02:active,
+button.bg_title03:active,
+button.bg_title04:active,
+button.bg_title05:active,
+button.bg_title06:active,
+button.bg_title07:active,
+button.bg_title08:active,
+button.bg_title09:active {
+    background-color: #79c34a !important;
+}
