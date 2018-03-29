@@ -3,30 +3,6 @@
 
 if ("undefined" == typeof jQuery) throw new Error("Andrew Mobile Plugin's JavaScript requires jQuery");
 
-/*-----------------------------------------------Andrew_GetPath------------------------------------------*/
-
-function ak_include(setting,css){
-    //先获取当前a.js的src。a.js中调用ak_include,直接获取最后1个script标签就是a.js的引用
-    var jssrcs = setting.split("|");
-    //可以ak_include多个js，用|隔开
-    for(var i=0;i<jssrcs.length;i++){
-        //使用juqery的同步ajax加载js.
-        //使用document.write 动态添加的js会在当前js的后面，可能会有js引用问题
-        //动态创建script脚本，是非阻塞下载，也会出现引用问题
-        $.ajax({
-            type:'GET',
-            url: "js/plugin/"+setting+".js",
-            async:false,
-            dataType:'script'
-        });
-    }
-    if (css) {
-        for(var i=0;i<jssrcs.length;i++){
-            $("head").append("<style type='text/css'>@import url('js/plugin/css/"+setting+".css');</style>");
-        }
-    }
-}
-
 /*-----------------------------------------------Andrew_Config------------------------------------------*/
 function Andrew_Config(setting){
     var option = $.extend({
@@ -504,6 +480,24 @@ function Andrew_mainHeight() {
         "right": "0",
         "position": "relative"
     });
+}
+
+/*-----------------------------------------------Andrew_Include------------------------------------------*/
+function ak_include(setting,css){
+    var jssrcs = setting.split("|");
+    for(var i=0;i<jssrcs.length;i++){
+        $.ajax({
+            type:'GET',
+            url: "js/plugin/"+setting+".js",
+            async:false,
+            dataType:'script'
+        });
+    }
+    if (css) {
+        for(var i=0;i<jssrcs.length;i++){
+            $("head").append("<style type='text/css'>@import url('js/plugin/css/"+setting+".css');</style>");
+        }
+    }
 }
 
 /*-----------------------------------------------Andrew_Ajax--------------------------------------------*/
