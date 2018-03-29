@@ -39,14 +39,14 @@ function ak_include(setting,css){
         //动态创建script脚本，是非阻塞下载，也会出现引用问题
         $.ajax({
             type:'GET',
-            url: "plugin/"+setting+".js",
+            url: "js/plugin/"+setting+".js",
             async:false,
             dataType:'script'
         });
     }
     if (css) {
         for(var i=0;i<jssrcs.length;i++){
-            $("head").append("<style type='text/css'>@import url('plugin/css/"+setting+".css');</style>");
+            $("head").append("<style type='text/css'>@import url('js/plugin/css/"+setting+".css');</style>");
         }
     }
 }
