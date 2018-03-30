@@ -1,4 +1,4 @@
-﻿/*-----------------------------------------------Andrew_DropLoad-------------------------------------------*/
+/*-----------------------------------------------Andrew_DropLoad-------------------------------------------*/
 (function($){
     var win = window;
     var doc = document;
@@ -63,19 +63,31 @@
         }else{
             me._threshold = me.opts.threshold;
         }
-
+        //console.log("me.$domDown.height()*1/3-->"+me.$domDown.height()*1/3);
+        //console.log("me.opts.threshold-->"+me.opts.threshold);
+        //console.log(me.$element);
         // 判断滚动区域
+        //console.log("-=-=-=-=-=me._scrollContentHeight--> "+me._scrollContentHeight);
         if(me.opts.scrollArea == win){
             me.$scrollArea = $win;
             // 获取文档高度
-            me._scrollContentHeight = $doc.height();
+            // me._scrollContentHeight = $doc.height();
+            me._scrollContentHeight = me.$element[0].scrollHeight;
             // 获取win显示区高度  —— 这里有坑
             me._scrollWindowHeight = doc.documentElement.clientHeight;
+
         }else{
             me.$scrollArea = me.opts.scrollArea;
             me._scrollContentHeight = me.$element[0].scrollHeight;
             me._scrollWindowHeight = me.$element.height();
+
         }
+        //console.log("123212132121321me._scrollContentHeight--> "+me._scrollContentHeight);
+        //console.log("123212132121321me._scrollWindowHeight--> "+me._scrollWindowHeight);
+        //console.log("me.opts.scrollArea--> "+me.opts.scrollArea);
+        //console.log(me.opts.scrollArea);
+        //console.log("win--> "+win);
+        //console.log(win);
         fnAutoLoad(me);
 
         // 窗口调整
@@ -108,9 +120,12 @@
         });
 
         // 加载下方
-        me.$scrollArea.on('scroll',function(){
+        me.$element.on('scroll',function(){
             me._scrollTop = me.$scrollArea.scrollTop();
-
+            //console.log("me.opts.loadDownFn-->"+me.opts.loadDownFn)
+            //console.log("me.loading-->"+me.loading)
+            //console.log("me.isLockDown-->"+me.isLockDown)
+            //console.log((me._scrollContentHeight - me._threshold) <= (me._scrollWindowHeight + me._scrollTop))
             // 滚动页面触发加载数据
             if(me.opts.loadDownFn != '' && !me.loading && !me.isLockDown && (me._scrollContentHeight - me._threshold) <= (me._scrollWindowHeight + me._scrollTop)){
                 loadDown(me);
@@ -193,13 +208,19 @@
                     me.upInsertDOM = false;
                     $(this).remove();
                 });
+
             }
             me._moveY = 0;
+        }else{
+            me.opts.loadDownFn(me);
         }
     }
 
     // 如果文档高度不大于窗口高度，数据较少，自动加载下方数据
     function fnAutoLoad(me){
+        //console.log("me.opts.autoLoad:"+me.opts.autoLoad)
+        //console.log("me._scrollWindowHeight:"+me._scrollWindowHeight)
+        //console.log("me._scrollContentHeight - me._threshold"+(me._scrollContentHeight - me._threshold))
         if(me.opts.autoLoad){
             if((me._scrollContentHeight - me._threshold) <= me._scrollWindowHeight){
                 loadDown(me);
@@ -209,11 +230,13 @@
 
     // 重新获取文档高度
     function fnRecoverContentHeight(me){
-        if(me.opts.scrollArea == win){
-            me._scrollContentHeight = $doc.height();
-        }else{
-            me._scrollContentHeight = me.$element[0].scrollHeight;
-        }
+        //console.log("start:me._scrollContentHeight:"+me._scrollContentHeight)
+        //if(me.opts.scrollArea == win){
+        //    me._scrollContentHeight = $doc.height();
+        // }else{
+        me._scrollContentHeight = me.$element[0].scrollHeight;
+        // }
+        //console.log("end:me._scrollContentHeight:"+me._scrollContentHeight)
     }
 
     // 加载下方
@@ -223,7 +246,6 @@
         me.loading = true;
         me.opts.loadDownFn(me);
     }
-
     // 锁定
     ak_DropLoad.prototype.lock = function(direction){
         var me = this;
@@ -249,7 +271,6 @@
             me.direction = 'up';
         }
     };
-
     // 解锁
     ak_DropLoad.prototype.unlock = function(){
         var me = this;
@@ -259,7 +280,6 @@
         // 为了解决DEMO5中tab效果bug，因为滑动到下面，再滑上去点tab，direction=down，所以有bug
         me.direction = 'up';
     };
-
     // 无数据
     ak_DropLoad.prototype.noData = function(flag){
         var me = this;
@@ -269,7 +289,6 @@
             me.isData = true;
         }
     };
-
     // 重置
     ak_DropLoad.prototype.resetload = function(){
         var me = this;
@@ -295,7 +314,6 @@
             }
         }
     };
-
     // css过渡
     function fnTransition(dom,num){
         dom.css({
