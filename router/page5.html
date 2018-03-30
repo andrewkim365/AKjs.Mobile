@@ -17,7 +17,7 @@
     /*-----------------------------------------------Andrew_DropLoad 使用方法-------------------------------------------*/
     $(function(){
         // 页数
-        var page = 1;
+        var page = 0;
         // 每页展示5个
         var size = 5;
         $('.plug_DropLoad').Andrew_DropLoad({
@@ -37,7 +37,7 @@
             loadUpFn : function(me){ //上方function
                 $.ajax({
                     type: 'GET',
-                    url: 'http://ons.me/tools/dropload/json.php',
+                    url: 'https://ons.me/tools/dropload/json.php',
                     dataType: 'json',
                     success: function(data){
                         // 为了测试，延迟3秒加载
@@ -61,7 +61,7 @@
                 var result = '';
                 $.ajax({
                     type: 'GET',
-                    url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
+                    url: 'https://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
                     dataType: 'json',
                     success: function(data){
                         var arrLen = data.length;
