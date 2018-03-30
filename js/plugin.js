@@ -4,6 +4,11 @@
 * 做项目时不必要的插件可以注释处理。
 * 注：调用插件的地方在router目录里的相关html文件中的最底部。
 */
+var scripts = document.getElementsByTagName("script")
+var script = scripts[scripts.length - 1];
+strJsPath = document.querySelector ? script.src : script.getAttribute("src", 4)//IE8直接.src
+console.log(strJsPath);//显示当前正在执行js文件的地址
+
 ak_include("Andrew_AllChecked"); //全选功能
 ak_include("Andrew_ChangeIcon"); //图标切换功能
 ak_include("Andrew_ChangeInput"); //输入框值互换功能
