@@ -263,6 +263,15 @@ function Andrew_Menu(setting){
             ak_menu_btn.eq(0).children().eq(1).addClass(option.active_color);
         }
     });
+    $(window).bind('hashchange', function () {
+        ak_menu_btn.each(function () {
+            var index = $(this).index();
+            if (location.hash.substring(1).split("?")[0] != $(this).attr("data-href")) {
+                $(this).children().eq(0).removeClass(option.menu_icon_active[index]);
+                $(this).children().eq(1).removeClass(option.active_color);
+            }
+        });
+    });
 }
 
 /*-----------------------------------------------Andrew_sUserAgent------------------------------------------*/
