@@ -21,9 +21,9 @@
 */
 /*-----------------------------------------------Andrew_Router (路由全局设置）使用方法-------------------------------------------*/
 $(document).ready(function(){
-  "use strict";
     Andrew_Router({ //路由配置管理
         Router: true, //是否开启路由（开启路由URL中带#的路径访问页面不刷新页面形式跳转 (开启 true, 停用 false）
+        RouterPath:["router","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
         tailClass: ".tail", //内页的底部区域通过设置Class名固定到底部（内页的底部固定区域建议不要使用footer元素）
         changePage: function (hash) { //路由初始化调用和页面变化时的回调
             Andrew_Menu({ //底部菜单的图标以及文字样式变化设置
@@ -43,26 +43,25 @@ $(document).ready(function(){
                     "icon-mn_kongjian_fill" //第5个按钮的图标
                 )
             });
+            /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
+            $(function () {
+                Andrew_Config({ //环境配置管理
+                    MaskStyle: ["style3","opacity07"], //1.所有弹窗背景图案选择（样式style1~6）、2.遮挡层背景的透明度（opacity01~09）
+                    touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
+                    ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
+                    WechatHeader: false, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
+                    Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
+                    fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
+                    Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
+                    Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
+                });
+            });
             if (!hash) { //首次访问的页面您要跳转到哪个URL？（前面必须加#符号）
                 location.replace("#/start.html");
             }
         },
         success:function (hash) { //请求加载页面成功后的回调
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况（公共插件引入的区域）
-                /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
-                $(function () {
-                    Andrew_Config({ //环境配置管理
-                        MaskStyle: ["style3","opacity07"], //1.所有弹窗背景图案选择（样式style1~6）、2.遮挡层背景的透明度（opacity01~09）
-                        touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
-                        ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
-                        WechatHeader: false, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
-                        Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
-                        fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
-                        Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
-                        Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-                    });
-                });
-
                 /*-----------------------------------------------Andrew_Form (全局设置）使用方法-------------------------------------------*/
                 $(function(){
                     $("form").Andrew_Form({ //输入框右侧加删除文字按钮
@@ -125,12 +124,6 @@ $(document).ready(function(){
                     });
                 });
             }
-        },
-        error:function (hash) { //请求加载页面失败后的回调
-            webToast("请求URL:"+hash+" 加载页面失败！","middle",3000);
-            setTimeout(function () { //请求加载页面失败时3秒跳转到上一个页面
-                window.history.go(-1);
-            }, 3000);
         }
     });
 });
