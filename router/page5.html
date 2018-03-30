@@ -43,13 +43,15 @@
                         // 为了测试，延迟3秒加载
                         setTimeout(function(){
                             // 每次数据加载完，必须重置
-                            me.resetload();
-                        },3000);
+                            me.resetload(); //重新初始化控件以及标识量
+                            me.unlock(); //解除锁定允许数据继续加载
+                            me.noData(false); //是否有数据（false代表有数据）
+                        },1000);
                     },
                     error: function(xhr, type){
                         alert('Ajax error!');
                         // 即使加载出错，也得重置
-                        me.resetload();
+                        me.resetload(); //重新初始化控件以及标识量
                     }
                 });
             },
@@ -81,7 +83,7 @@
                             }
                             // 如果没有数据
                         }else{
-                            // 锁定
+                            // 数据锁定
                             me.lock();
                             // 无数据
                             me.noData();
@@ -91,8 +93,8 @@
                             // 插入数据到页面，放到最后面
                             $('.plug_DropLoad').children("ul").append(result);
                             // 每次数据插入，必须重置
-                            me.resetload();
-                        },3000);
+                            me.resetload(); //重新初始化控件以及标识量
+                        },1000);
                         /*-----------------------------------------------Andrew_DropUpDown 使用方法-------------------------------------------*/
                         $(function () {
                             $(".plug_dropbutton").Andrew_DropUpDown({
@@ -109,7 +111,7 @@
                     error: function(xhr, type){
                         alert('Ajax error!');
                         // 即使加载出错，也得重置
-                        me.resetload();
+                        me.resetload(); //重新初始化控件以及标识量
                     }
                 });
             }
