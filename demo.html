@@ -19,7 +19,7 @@
   <script type="text/javascript" src="js/plugin.js"></script><!--功能插件按需引入-->
   <script type="text/javascript">
     //用本插件的时候删除以下的脚本代码。
-      if (document.location.protocol != "http:" || document.location.protocol != "https:") {
+      if (document.location.protocol != "http:" && document.location.protocol != "https:") {
           alert("本插件不支持本地文件访问！意思是您访问的URL中file://开头的不能正常访问(URL必须是http或https开头的才能正常显示)。请在本地搭建服务器后访问效果吧。")
       }
   </script>
