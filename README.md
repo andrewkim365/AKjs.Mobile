@@ -15,6 +15,7 @@ QQ技术交流群：724501394
 Andrew_PreviewImage的插件调用部分的参数修改成以下的方式；
 
 webToast: "成功删除!", //删除图片后提示的文字
+
 Del_icon:"icon-bt_quxiao_a", //图片删除图标样式
 
 
