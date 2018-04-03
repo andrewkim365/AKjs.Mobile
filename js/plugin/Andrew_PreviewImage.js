@@ -39,12 +39,12 @@
         });
         pimg.bind('change', function() {
             if(option.uploadNum == op.length){
-                webToast(op.length_title +""+ op.length+"","middle","mask",10000);
+                ak_webToast(op.length_title +""+ op.length+"","middle","mask",10000);
                 return false;
             }
             var tempData = $(this).children('input')[0];
             if((option.uploadNum + tempData.files.length) > op.length){
-                webToast(op.length_title +""+ op.length+"","middle","mask",10000);
+                ak_webToast(op.length_title +""+ op.length+"","middle","mask",10000);
             }
             var tempFiles = [];
             for(var i=0;i<(op.length-option.uploadNum);i++){
@@ -147,7 +147,7 @@
                         if (option.uploadNum < 1) {
                             $(option.delbtnClass).hide(); //隐藏删除按钮
                         }
-                        webToast(option.webToast,"bottom",1000); //(提示文字，显示位置，耗时)
+                        ak_webToast(option.webToast,"bottom",1000); //(提示文字，显示位置，耗时)
                     }
                 });
             });
