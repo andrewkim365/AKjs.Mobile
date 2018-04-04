@@ -9,7 +9,7 @@
                 btn_password_ico_show: "",
                 placeholder: true,
                 keyboard: true,
-                passchek: "",
+                PassCheck: "",
                 passCallback: function() {},
                 butCallback: function() {}
             },
@@ -17,7 +17,7 @@
         var mbf = $(this);
 
         //对比两次输入的密码
-        var password = mbf.find(option.passchek);
+        var password = mbf.find(option.PassCheck);
         mbf.find(":submit").addClass("mb_5");
         mbf.find(":submit").unbind("click");
         mbf.keyup(function (event) {
@@ -28,10 +28,10 @@
             }
         });
         mbf.find(":submit").click(function () {
-            if (option.passchek) {
+            if (option.PassCheck) {
                 if(password.length > 1){
                     if (password[0].value != password[1].value){
-                        if ($(this).parents("form").find(option.passchek).length > 0) {
+                        if ($(this).parents("form").find(option.PassCheck).length > 0) {
                             option.passCallback();
                             return false;
                         }
