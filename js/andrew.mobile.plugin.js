@@ -163,6 +163,11 @@ function Andrew_Router(setting){
         Andrew_RouterResize(option);
         Andrew_HashSharp(true);
     }
+    function ak_error403() {
+        if ($("main").find("title").length > 0) {
+            location.replace("./");
+        }
+    }
     layout = $.ajax({
         url: option.RouterPath[1],
         async: false
@@ -188,10 +193,12 @@ function Andrew_Router(setting){
                 $("main").html(htmlobj.responseText);
                 ak_router();
                 Andrew_InputFocus();
+                ak_error403();
             }
             $(window).resize(function(){
                 Andrew_RouterResize(option);
                 Andrew_InputFocus();
+                ak_error403();
             });
             option.changePage(location.hash.substring(1));
         });
