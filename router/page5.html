@@ -37,7 +37,7 @@
             loadUpFn : function(me){ //上方function
                 $.ajax({
                     type: 'GET',
-                    url: 'https://ons.me/tools/dropload/json.php',
+                    url: 'http://ons.me/tools/dropload/json.php',
                     dataType: 'json',
                     success: function(data){
                         // 为了测试，延迟3秒加载
@@ -61,7 +61,7 @@
                 var result = '';
                 $.ajax({
                     type: 'GET',
-                    url: 'https://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
+                    url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
                     dataType: 'json',
                     success: function(data){
                         var arrLen = data.length;
