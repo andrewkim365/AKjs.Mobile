@@ -73,8 +73,8 @@ $(document).ready(function(){
                         btn_password_ico_show: "icon-in_zhengyan_fill", //输入的密码可显示和隐藏功能的按钮(显示按钮图标)
                         placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
                         keyboard: true, //是否输入框内设置的maxlength自定的限制字数后手机键盘自动消失或者input元素加readonly属性不显示键盘，建议开启 (开启 true, 停用 false）
-                        passchek: ".plug_PassCheck", //两次输入密码确认时需要加的class名
-                        passCallback: function() { //通过回调进入两次输入的密码不一致状态 （passchek的参数空值时不走当前的回调）
+                        PassCheck: ".plug_PassCheck", //两次输入密码确认时需要加的class名
+                        passCallback: function() { //通过回调进入两次输入的密码不一致状态 （PassCheck的参数空值时不走当前的回调）
                             console.log("两次输入的密码不一致");
                             $ak.alert("两次输入的密码必须一致！", {
                                 icon: "error", //图标类型（warning，error，info，question，success）
