@@ -599,7 +599,7 @@
                     $slide.on('touchend', function () {
                         if (w < elSize) {
                             if (w !== 0) {
-                                return false;
+                                /*return false;*/
                             }
                         }
                         var distance;
