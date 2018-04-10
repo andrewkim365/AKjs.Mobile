@@ -18,6 +18,8 @@ js目录和css目中 andrew.mobile.plugin.js 和 andrew.mobile.style.css 发布 
 
 js/plugin.js中请加上Andrew_NavScroll的功能插件；
 
+css/style.css文件需要替换（new_icon和footer区域样式有修改）；
+
 底部菜单中增加最新消息图标（添加class名 new_icon）；
 
 引导页切换页面的过程中有闪屏的情况时，请替换jQuery3.2.1的版本；
