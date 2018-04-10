@@ -1,4 +1,4 @@
-/*! Andrew.Mobile.Style MobileWebApp Css v1.0.1 Stable --- Copyright Andrew.Kim | (c) 20170504 ~ 20180330 andrew.mobile.style.css license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180410 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 /*-----------Base Style-----------*/
@@ -902,6 +902,63 @@ legend {
 .text_line {
   text-decoration: underline;
 }
+.text_40em {
+  font-size:40em !important;
+}
+.text_38_em {
+  font-size:38em !important;
+}
+.text_36_em {
+  font-size:36em !important;
+}
+.text_34_em {
+  font-size:34em !important;
+}
+.text_32_em {
+  font-size:32em !important;
+}
+.text_30em {
+  font-size:30em !important;
+}
+.text_28_em {
+  font-size:28em !important;
+}
+.text_26_em {
+  font-size:26em !important;
+}
+.text_24_em {
+  font-size:24em !important;
+}
+.text_22_em {
+  font-size:22em !important;
+}
+.text_20em {
+  font-size:20em !important;
+}
+.text_18_em {
+  font-size:18em !important;
+}
+.text_16_em {
+  font-size:16em !important;
+}
+.text_14_em {
+  font-size:14em !important;
+}
+.text_12_em {
+  font-size:12em !important;
+}
+.text_10em {
+  font-size:10em !important;
+}
+.text_9em {
+  font-size:9em !important;
+}
+.text_8em {
+  font-size:8em !important;
+}
+.text_7em {
+  font-size:7em !important;
+}
 .text_6em {
   font-size:6em !important;
 }
@@ -1152,6 +1209,9 @@ legend {
 .dis_content {
   display: contents;
 }
+.dis_flex {
+  display: flex;
+}
 .dis_none_im {
   display:none !important;
 }
@@ -1326,11 +1386,77 @@ legend {
 .w_400 {
   width:400% !important;
 }
+.w_360 {
+  width:360% !important;
+}
+.w_320 {
+  width:320% !important;
+}
 .w_300 {
   width:300% !important;
 }
+.w_240 {
+  width:240% !important;
+}
 .w_200 {
   width:200% !important;
+}
+.w_195 {
+  width:195% !important;
+}
+.w_190 {
+  width:190% !important;
+}
+.w_185 {
+  width:185% !important;
+}
+.w_180 {
+  width:180% !important;
+}
+.w_175 {
+  width:175% !important;
+}
+.w_170 {
+  width:170% !important;
+}
+.w_165 {
+  width:165% !important;
+}
+.w_160 {
+  width:160% !important;
+}
+.w_155 {
+  width:155% !important;
+}
+.w_150 {
+  width:150% !important;
+}
+.w_145 {
+  width:145% !important;
+}
+.w_140 {
+  width:140% !important;
+}
+.w_135 {
+  width:135% !important;
+}
+.w_130 {
+  width:130% !important;
+}
+.w_125 {
+  width:125% !important;
+}
+.w_120 {
+  width:120% !important;
+}
+.w_115 {
+  width:115% !important;
+}
+.w_110 {
+  width:110% !important;
+}
+.w_105 {
+  width:105% !important;
 }
 .w_100 {
   width:100% !important;
