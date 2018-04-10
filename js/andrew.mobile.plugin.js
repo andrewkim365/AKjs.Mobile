@@ -1,7 +1,7 @@
-/*! Andrew.Mobile.Plugin by jQuery MobileWebApp Script v1.0.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180330 andrew.mobile.plugin.js license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180410 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
-if ("undefined" == typeof jQuery) throw new Error("Andrew Mobile Plugin's JavaScript requires jQuery");
+if ("undefined" == typeof jQuery) throw new Error("AKjs Plugin's JavaScript requires jQuery");
 
 /*-----------------------------------------------Andrew_Config------------------------------------------*/
 function Andrew_Config(setting){
