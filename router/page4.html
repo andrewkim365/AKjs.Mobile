@@ -3,8 +3,23 @@
     <h1 class="text_al_c">布局展示</h1>
     <button type="button" class="right_0 w_25 pr_3 text_al_r text_12em" id="plug_Share">分享</button>
 </ak-header>
-
-<div class="module list press">
+<div class="module bg_white press">
+    <div class="plug_tabs_find rel wm_94 h_3em">
+        <ul class="abs mt_2 pb_3 text_hidden">
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">头条</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">体育</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">娱乐</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">要闻</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">财经</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">科技</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">汽车</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">时尚</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">房产</li>
+            <li class="dis_inbl mr_1em list_h_36em text_12em text_al_c">本地</li>
+        </ul>
+    </div>
+</div>
+<div class="module mt_5 list press">
     <ul>
         <li class="bg_white rel ovh"><!--可循环-->
             <dl class="rel h_in ovh list_h_36em wp_94 bor_bottom bor_gray_ddd touchstart" data-href="ajax/page3.html">
@@ -235,4 +250,16 @@
             })
         })
     });
+
+    /*-----------------------------------------------Andrew_NavScroll 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_tabs_find").Andrew_NavScroll({
+            line_style: "dis_block abs h_25 bor_bottom2 bor_title",
+            active_corlor: "c_title",
+            ClickCallback: function(ele,index) { //回调获取点击后的元素和元素的index
+                console.log(ele);
+            }
+        });
+    });
+
 </script>
