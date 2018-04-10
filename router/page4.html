@@ -1,6 +1,7 @@
 <ak-header data-display="true">
     <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
     <h1 class="text_al_c">布局展示</h1>
+    <button type="button" class="right_0 w_25 pr_3 text_al_r text_12em" id="plug_Share">分享</button>
 </ak-header>
 
 <div class="module list press">
@@ -182,10 +183,56 @@
     </ul>
 </div>
 
+<div id="plug_ShareWin" class="dis_none bg_white pa_3 w_100 zindex_8"> <!--顶部位置显示的弹窗-->
+    <ul class="ovh list_h_8em verline_list length3">
+        <li class="fl rel text_al_c touchstart">
+            <button type="button" class="dis_block ovh w_100" data-href="ajax/page3.html">
+                <label class="bg_wechat bor_rad_50 c_white wh_4em mt_05em center">
+                    <i class="text_al_c text_al_t line_h_16em text_24em icon-sr_weixin"></i>
+                </label>
+                <span class="dis_block text_al_c line_h_2em">分享至微信</span>
+            </button>
+        </li>
+        <li class="fl rel text_al_c touchstart">
+            <button type="button" class="dis_block ovh w_100" data-href="ajax/page3.html">
+                <label class="bg_jd bor_rad_50 c_white wh_4em mt_05em center">
+                    <i class="text_al_c text_al_t line_h_16em text_24em icon-sr_pengyouquan"></i>
+                </label>
+                <span class="dis_block text_al_c line_h_2em">分享至朋友圈</span>
+            </button>
+        </li>
+        <li class="fl rel text_al_c touchstart">
+            <button type="button" class="dis_block ovh w_100" data-href="ajax/page3.html">
+                <label class="bg_qq bor_rad_50 c_white wh_4em mt_05em center">
+                    <i class="text_al_c text_al_t line_h_16em text_24em icon-sr_qq"></i>
+                </label>
+                <span class="dis_block text_al_c line_h_2em">分享至QQ</span>
+            </button>
+        </li>
+    </ul>
+</div>
+
 <ak-footer data-display="true">
 </ak-footer>
 
 <script type="text/javascript">
     //引入Andrew插件的区域
-
+    /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
+    $(function(){
+        $("#plug_Share").on("click", function (e) {
+            Andrew_Popupwin({
+                dom: "#plug_ShareWin", //弹窗内容的布局
+                position: "bottom", //位置类型(top，bottom，left，right，middle)
+                effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                maskPosition:"4", //Mask的z-index数值
+                closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                }
+            })
+        })
+    });
 </script>
