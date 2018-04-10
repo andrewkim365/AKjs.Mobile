@@ -6,6 +6,18 @@ AKjs移动端插件是一个基于JQuery的的一套构建用户界面的前端�
 
 AKjs前端技术交流QQ群：724501394
 
+# 更新时间：2018/4/10 下午16:10
+
+# 更新说明：
+
+增加Andrew_NavScroll功能插件；
+演示版的布局界面中使用Andrew_NavScroll插件和分享功能的展示；
+js目录和css目中 andrew.mobile.plugin.js 和 andrew.mobile.style.css 发布 1.0.2版本；
+js/plugin.js中请加上Andrew_NavScroll的功能插件；
+底部菜单中增加最新消息图标（添加class名 new_icon）；
+引导页切换页面的过程中有闪屏的情况时，请替换jQuery3.2.1的版本；
+
+
 # 更新时间：2018/4/03 下午16:50
 
 # 更新说明：
