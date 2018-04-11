@@ -1,4 +1,4 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180410 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180411 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs Plugin's JavaScript requires jQuery");
@@ -7,6 +7,7 @@ if ("undefined" == typeof jQuery) throw new Error("AKjs Plugin's JavaScript requ
 function Andrew_Config(setting){
     var option = $.extend({
             MaskStyle: [],
+            Responsive: true,
             touchstart: true,
             ButtonLink: true,
             fixedBar: true,
@@ -19,6 +20,9 @@ function Andrew_Config(setting){
     Andrew_sUserAgent();
     if(option.MaskStyle) {
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
+    }
+    if(option.Responsive) {
+        $("body").addClass("screen");
     }
     if(option.Topdblclick== true) {
         $("header h1").bind("touchstart", function() {
