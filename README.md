@@ -22,6 +22,8 @@ css/style.css文件需要替换（new_icon和footer区域样式有修改）；
 
 底部菜单中增加最新消息图标（添加class名 new_icon）；
 
+js/plugin/Andrew_StepOrder.js 需要替换；
+
 引导页切换页面的过程中有闪屏的情况时，请替换jQuery3.2.1的版本；
 
 
