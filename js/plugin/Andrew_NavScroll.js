@@ -1,8 +1,8 @@
-﻿/*-----------------------------------------------Andrew_NavScroll--------------------------------------------*/
+/*-----------------------------------------------Andrew_NavScroll--------------------------------------------*/
 (function($){
     $.fn.Andrew_NavScroll = function(setting) {
         var option = $.extend({
-                line_style: "dis_block abs h_1 bor_bottom2 bor_title",
+                line_style: "slider01 dis_block abs h_1 bor_bottom2 bor_title",
                 active_corlor: "c_title",
                 ClickCallback: function() {}
             },
