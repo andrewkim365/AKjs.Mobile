@@ -2,7 +2,7 @@
 (function($){
     $.fn.Andrew_NavScroll = function(setting) {
         var option = $.extend({
-                line_style: "dis_block abs h_1 bor_bottom2 bor_title",
+                line_style: "dis_block abs bor_top2 bor_title",
                 active_corlor: "c_title",
                 ClickCallback: function() {}
             },
@@ -18,10 +18,10 @@
             ele_list_line.addClass(option.line_style).css({left:0});
             ele_list.children().eq(0).addClass(option.active_corlor).siblings().removeClass(option.active_corlor);
         });
-        var nav_w = ele_list.children().eq(0).outerWidth();
+        var nav_w = ele_list.children().eq(0).width();
         ele_list_line.css({
             "width": nav_w,
-            "top": ele_list.height()
+            "top": ele_list.outerHeight()-3
         });
         ele_list.find("li").on('click', function(){
             nav_w=$(this).width();
