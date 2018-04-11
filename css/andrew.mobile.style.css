@@ -1,4 +1,4 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180410 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180411 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 /*-----------Base Style-----------*/
@@ -4079,6 +4079,52 @@ legend {
 }
 .img_h_in img {
   height: inherit !important;
+}
+/*slider effect setting*/
+.slider01 {
+  transition-property: all;
+  transition-duration: 0.1s;
+  transition-timing-function: cubic-bezier(0, 1, 0.1, 1);
+}
+.slider02 {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0, 1, 0.2, 1);
+}
+.slider03 {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0, 1, 0.3, 1);
+}
+.slider04 {
+  transition-property: all;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0, 1, 0.4, 1);
+}
+.slider05 {
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.slider06 {
+  transition-property: all;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0, 1, 0.6, 1);
+}
+.slider07 {
+  transition-property: all;
+  transition-duration: 0.7s;
+  transition-timing-function: cubic-bezier(0, 1, 0.7, 1);
+}
+.slider08 {
+  transition-property: all;
+  transition-duration: 0.8s;
+  transition-timing-function: cubic-bezier(0, 1, 0.8, 1);
+}
+.slider09 {
+  transition-property: all;
+  transition-duration: 0.9s;
+  transition-timing-function: cubic-bezier(0, 1, 0.9, 1);
 }
 /*element rotate setting*/
 .rotate_5 {
