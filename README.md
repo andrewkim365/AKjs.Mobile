@@ -6,6 +6,18 @@ AKjs移动端插件是一个基于JQuery的的一套构建用户界面的前端�
 
 AKjs前端技术交流QQ群：724501394
 
+# 更新时间：2018/4/11 下午17:05
+
+# 更新说明：
+
+js目录和css目中 andrew.mobile.plugin.js 和 andrew.mobile.style.css 发布 1.0.3版本；
+
+Andrew_Config 功能插件增加了 Responsive参数（该参数能设置按屏幕尺寸字体大小自适应变化；开启 true, 停用 false）
+
+js/andrew.router.js 文件中找Andrew_Config功能增加Responsive参数即可。
+
+
+
 # 更新时间：2018/4/10 下午16:10
 
 # 更新说明：
