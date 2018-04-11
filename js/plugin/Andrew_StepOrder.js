@@ -37,7 +37,7 @@
                 "top": num_box.outerHeight()/2+step_line_h
             });
             step.children("cite").eq(1).css({
-                "top": num_box.outerHeight()/2-step_line_h-2,
+                "top": num_box.outerHeight()/2-step_line_h+step_line_h,
                 "width": 0
             }).animate({
                 "width": step.find(".ak-is_active").last().children().eq(0).offset().left
