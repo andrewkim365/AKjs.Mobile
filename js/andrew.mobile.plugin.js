@@ -22,7 +22,7 @@ function Andrew_Config(setting){
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
     }
     if(option.Responsive) {
-        $("body").addClass("screen");
+        $("body").addClass("ak-screen");
     }
     if(option.Topdblclick== true) {
         $("header h1").bind("touchstart", function() {
