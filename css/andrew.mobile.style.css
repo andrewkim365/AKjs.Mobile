@@ -1,35 +1,33 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180410 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180411 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 /*-----------Base Style-----------*/
-html,html * {
+html, html * {
   font-family: "PingFangSC-Regular", "Source Han Sans SC", "Microsoft YaHei", "Segoe UI", Helvetica, Arial, "Lucida Grande", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
   -webkit-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
   margin: 0;
   padding: 0;
   border:0;
-}
-html {
   font-size:12px;
 }
 @media screen and (min-width:320px) and (max-width:369px) {
-  *{
+  .screen, .screen * {
     font-size:13px;
   }
 }
 @media screen and (min-width:370px) and (max-width:639px) {
-  *{
+  .screen, .screen * {
     font-size:14px;
   }
 }
 @media screen and (min-width:640px) and (max-width:1024px) {
-  *{
+  .screen, .screen * {
     font-size:20px;
   }
 }
 @media screen and (min-width:1025px) {
-  *{
+  .screen, .screen * {
     font-size:24px;
   }
 }
@@ -4085,46 +4083,62 @@ legend {
   transition-property: all;
   transition-duration: 0.1s;
   transition-timing-function: cubic-bezier(0, 1, 0.1, 1);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
 }
 .slider02 {
   transition-property: all;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0, 1, 0.2, 1);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
 }
 .slider03 {
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0, 1, 0.3, 1);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
 }
 .slider04 {
   transition-property: all;
   transition-duration: 0.4s;
   transition-timing-function: cubic-bezier(0, 1, 0.4, 1);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
 }
 .slider05 {
   transition-property: all;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
 }
 .slider06 {
   transition-property: all;
   transition-duration: 0.6s;
   transition-timing-function: cubic-bezier(0, 1, 0.6, 1);
+  -webkit-overflow-scrolling: touch;
 }
 .slider07 {
   transition-property: all;
   transition-duration: 0.7s;
   transition-timing-function: cubic-bezier(0, 1, 0.7, 1);
+  -webkit-overflow-scrolling: touch;
 }
 .slider08 {
   transition-property: all;
   transition-duration: 0.8s;
   transition-timing-function: cubic-bezier(0, 1, 0.8, 1);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
 }
 .slider09 {
   transition-property: all;
   transition-duration: 0.9s;
   transition-timing-function: cubic-bezier(0, 1, 0.9, 1);
+  -webkit-overflow-scrolling: touch;
+  -webkit-touch-callout: none;
 }
 /*element rotate setting*/
 .rotate_5 {
