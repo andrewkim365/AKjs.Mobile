@@ -205,6 +205,18 @@ button.c_delete.bor_delete:active {
     background-color: #e93234 !important;
 }
 
+/*********************渐变背景颜色设置*********************/
+.gradient_blue-green {
+    background: -moz-linear-gradient(left top, #3f419c, #2ab0a7);
+    background: -webkit-linear-gradient(left top, #3f419c, #2ab0a7);
+    background: -o-linear-gradient(left top, #3f419c, #2ab0a7);
+}
+.gradient_red-orange {
+    background: -moz-linear-gradient(left top, #bd032f, #e67b48);
+    background: -webkit-linear-gradient(left top, #bd032f, #e67b48);
+    background: -o-linear-gradient(left top, #bd032f, #e67b48);
+}
+
 /*********************body区域颜色样式*********************/
 body {
     background-color:#eeeeee;

@@ -1,4 +1,4 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180411 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180413 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 /*-----------Base Style-----------*/
@@ -250,6 +250,10 @@ legend {
 }
 .scrolling {
   -webkit-overflow-scrolling: touch;
+}
+.shadow_none {
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 .press {
   -webkit-user-select: none; /* Chrome all, Safari all, opera15+ */
@@ -2917,6 +2921,9 @@ legend {
 }
 .h_au {
   height: auto !important;
+}
+.h_fill {
+  height: -webkit-fill-available;
 }
 .max_h_100 {
   max-height: 100% !important;
