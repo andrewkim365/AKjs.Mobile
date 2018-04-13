@@ -23,7 +23,7 @@
 $(document).ready(function(){
     Andrew_Router({ //路由配置管理
         Router: true, //是否开启路由（开启路由URL中带#的路径访问页面不刷新页面形式跳转 (开启 true, 停用 false）
-        RouterPath:["router","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
+        RouterPath:["","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
         tailClass: ".tail", //内页的底部区域通过设置Class名固定到底部（内页的底部固定区域建议不要使用footer元素）
         changePage: function (hash) { //路由初始化调用和页面变化时的回调
            /*-----------------------------------------------Andrew_Menu (底部菜单图标设置）使用方法-------------------------------------------*/
@@ -115,6 +115,7 @@ $(document).ready(function(){
                 /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
                 $(function () {
                     Andrew_Loader({
+                        //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
                         autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
                         timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
                         iconColor:"#ffffff", //图标颜色设置

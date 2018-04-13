@@ -1,4 +1,4 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180411 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180413 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs Plugin's JavaScript requires jQuery");
@@ -523,6 +523,9 @@ function Andrew_mainHeight() {
         "left": "0",
         "right": "0",
         "position": "relative"
+    });
+    $(".h_fill").css({
+        "height": $(window).height()
     });
 }
 
