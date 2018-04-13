@@ -1,6 +1,7 @@
 ﻿/*-----------------------------------------------Andrew_Loader------------------------------------------*/
 function Andrew_Loader(setting){
     var option = $.extend({
+            ele:"",
             autoMode: true,
             maskBG: true,
             iconColor:"#ffffff",
@@ -55,7 +56,11 @@ function Andrew_Loader(setting){
         '<div class="ak-Loader-circ4" style="background-color:'+option.iconColor+'"></div>' +
         '</div>';
     $(".ak-Loader").remove();
-    $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 h_100 zindex_22'></div>");
+    if (option.ele) {
+        $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 h_100 zindex_22'></div>");
+    } else {
+        $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 h_100 zindex_22'></div>");
+    }
     var load_ele = $(".ak-Loader");
     if (option.maskBG == true) {
         load_ele.addClass("ak-mask");
@@ -88,8 +93,13 @@ function Andrew_Loader(setting){
         }
     });
     var loading = load_ele.find(".ak-loading");
-    var ww = $(window).width();
-    var wh = $(window).height();
+    if (option.ele) {
+        var ww = $(option.ele).width();
+        var wh = $(option.ele).height();
+    } else {
+        var ww = $(window).width();
+        var wh = $(window).height();
+    }
     var lw = loading.outerWidth();
     var lh = loading.outerHeight();
     var yy = {
