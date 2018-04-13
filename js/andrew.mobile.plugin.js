@@ -110,7 +110,7 @@ function Andrew_Plugin(setting,css){
     if (css) {
         for(var i=0;i<jssrcs.length;i++){
             var css_url = "'" + Path + "plugin/css/" + setting + ".css'";
-            $("head").append("<style type=\"text/css\">@import url(" + css_url + ");</style>");
+            $("head").find("link:first").before("<link rel='stylesheet' type='text/css' href=" + css_url + " />");
         }
     }
 }
@@ -178,18 +178,22 @@ function Andrew_Router(setting){
     });
     $("body").html(layout.responseText);
     if(option.Router== true) {
+        var Router_path = "./";
+        if (option.RouterPath[0]) {
+            Router_path = option.RouterPath[0]+"/";
+        }
         $(window).each(function () {
             if (location.hash.substring(1) != "") {
                 htmlobj = $.ajax({
-                    url: option.RouterPath[0]+"/"+location.hash.substring(1),
+                    url: Router_path+location.hash.substring(1),
                     async: false,
                     success:function () {
-                        hash = option.RouterPath[0]+"/"+location.hash.substring(1);
+                        hash = Router_path+location.hash.substring(1);
                         option.success(hash);
                         $("main").show();
                     },
                     error:function () {
-                        hash = option.RouterPath[0]+"/"+location.hash.substring(1);
+                        hash = Router_path+location.hash.substring(1);
                         option.error(hash);
                         $("main").hide();
                     }
@@ -216,7 +220,7 @@ function Andrew_Router(setting){
             });
             if (location.hash.substring(1) != "") {
                 htmlobj = $.ajax({
-                    url: option.RouterPath[0]+"/"+location.hash.substring(1),
+                    url: Router_path+location.hash.substring(1),
                     async: false,
                     success:function () {
                         hash = location.hash.substring(1);
