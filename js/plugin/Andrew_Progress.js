@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
+﻿/*
+Modification Date: 2018-04-13
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
 (function($){
     $.fn.extend({
         Andrew_Progress: function(options) {
@@ -10,7 +14,7 @@
                 textBefore: '',
                 textAfter: '',
                 milestoneNumber: 70,
-                milestoneClass: 'ak-almostfull',
+                milestoneClass: '',
                 callback: function() {}
             };
             var options = $.extend(defaults, options);
@@ -35,7 +39,7 @@
                 var rendered = obj.children("ol").children("li")
                 // Remove Spaces
                 rendered.each(function() {
-                    $(".ak-progressBar").addClass(defaults.ColorStyle);
+                    obj.find(".ak-progressBar").addClass(defaults.ColorStyle);
                     $(this).html($(this).html().replace(/\s/g, ' '));
                     rendered.find('span').css({
                         "line-height": rendered.height()+"px"

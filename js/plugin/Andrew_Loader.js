@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Loader------------------------------------------*/
+﻿/*
+Modification Date: 2018-04-13
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Loader------------------------------------------*/
 function Andrew_Loader(setting){
     var option = $.extend({
             ele:"",
