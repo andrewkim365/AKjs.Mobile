@@ -6,22 +6,6 @@ AKjs移动端插件是一个基于JQuery的的一套构建用户界面的前端�
 
 AKjs前端技术交流QQ群：724501394
 
-# 更新时间：2018/4/13 下午16:46
-
-# 更新说明：
-
-Andrew_Progress功能插件修改bug；
-
-Andrew_Loader功能插件增加局部遮参数；
-
-andrew.mobile.plugin.js需要替换（修改路由路径设置的bug）；
-
-andrew.mobile.style.css需要替换 （增加阴影去掉的class属性，.shadow_none）；
-
-style.css样式中增加渐变效果样式 （可参考以下 .gradient_blue-green 和 .gradient_red-orange）；
-
-
-
 # 更新时间：2018/4/11 下午17:05
 
 # 更新说明：
