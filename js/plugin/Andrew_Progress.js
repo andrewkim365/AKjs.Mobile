@@ -1,4 +1,4 @@
-﻿/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
+/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
 (function($){
     $.fn.extend({
         Andrew_Progress: function(options) {
@@ -69,6 +69,11 @@
                         rendered.find("em").text(parseInt(fx.now));
                     }
                 });
+                if (rendered.length > 1) {
+                    setTimeout(function() {
+                        rendered.find("em").text(percentage);
+                    }, defaults.speed+500);
+                }
                 setTimeout(function() {
                     $(rendered).parent().addClass(milestoneNumberClass);
                 }, defaults.speed);
