@@ -1,8 +1,4 @@
-﻿/*
-Modification Date: 2018-04-13
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
+﻿/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
 (function($){
     $.fn.extend({
         Andrew_Progress: function(options) {
@@ -22,7 +18,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var obj = $(this);
                 // Collect and sanitize user input
                 var goalAmountParsed = parseInt(defaults.goalAmount);
-                var currentAmountParsed = parseInt(defaults.currentAmount);
+                if (obj.attr("data-to")) {
+                    var currentAmountParsed = parseInt(obj.attr("data-to"));
+                } else {
+                    var currentAmountParsed = parseInt(defaults.currentAmount);
+                }
+
                 // Calculate size of the Andrew_Progress bar
                 var percentage = (currentAmountParsed / goalAmountParsed) * 100;
                 var milestoneNumberClass = (percentage > defaults.milestoneNumber) ? ' ' + defaults.milestoneClass : ''
@@ -32,31 +33,46 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 } else {
                     var progressBar = '<li class="ak-progressBar"><span>' + defaults.textBefore + '</span></li>';
                 }
-                var progressBarWrapped = '<ol class="bg_in h_in dis_block_im ovh ' + milestoneNumberClass + '">' + progressBar + '</ol>';
+                var progressBarWrapped = '<ol class="bg_in h_in dis_block_im ovh">' + progressBar + '</ol>';
                 // Append to the target
-                obj.append(progressBarWrapped);
+                obj.html(progressBarWrapped);
                 // Ready
-                var rendered = obj.children("ol").children("li")
+                var rendered = obj.children("ol").children("li");
                 // Remove Spaces
                 rendered.each(function() {
                     obj.find(".ak-progressBar").addClass(defaults.ColorStyle);
                     $(this).html($(this).html().replace(/\s/g, ' '));
                     rendered.find('span').css({
-                        "line-height": rendered.height()+"px"
+                        "line-height": rendered.height()+4+"px"
                     });
-                    obj.css("margin-top", (obj.parent().height() - obj.height()) / 2);
+                    obj.css("margin-top", (obj.parent().height() - obj.height()) / 2+3);
                     $(window).resize(function(){
                         rendered.find('span').css({
-                            "line-height": rendered.height()+"px"
+                            "line-height": rendered.height()+4+"px"
                         });
-                        obj.css("margin-top", (obj.parent().height() - obj.height()) / 2);
+                        obj.css("margin-top", (obj.parent().height() - obj.height()) / 2+3);
                     });
                 });
                 // Animate!
-                rendered.animate({width: percentage +'%'}, defaults.speed, defaults.callback);
-                if(typeof callback == 'function') {
-                    callback.call(this)
-                }
+                /*rendered.animate({
+                    width: percentage +'%',
+                }, defaults.speed, defaults.callback);*/
+                rendered.animate({
+                    width: percentage +'%',
+                },{
+                    duration:defaults.speed,
+                    step:function(now,fx){
+                        /*console.log("返回的CSS属性是："+fx.prop);
+                        console.log("属性初始值："+fx.start);
+                        console.log("属性结束值："+fx.end);
+                        console.log("属性当前值："+fx.now);*/
+                        rendered.find("em").text(parseInt(fx.now));
+                    }
+                });
+                setTimeout(function() {
+                    $(rendered).parent().addClass(milestoneNumberClass);
+                }, defaults.speed);
+                defaults.callback.call($(this));
             });
         }
     });
