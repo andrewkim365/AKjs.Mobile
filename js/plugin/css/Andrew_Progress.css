@@ -6,6 +6,7 @@
     height: inherit;
     line-height: inherit;
     position: relative;
+    white-space: nowrap;
 }
 .ak-progressBar:after {
     content: '';
