@@ -1,4 +1,4 @@
-﻿﻿//引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
+﻿//引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
 
 /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
@@ -126,28 +126,29 @@ $(function () {
         touchmode : true, //是否开启触屏滑动切换功能 (true/false)
         changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
         callback: function(ele) { //通过回调获取当前显示的元素
-            console.log(ele);
+            //console.log(ele);
         }
     });
 });
 
-$(function () {
-    $(".plug_tabs_sub").Andrew_Tabs({
-        curDisplay: 1, //当前显示哪张
-        autoPlay: false, //自动播放 (true/false)
-        playDelay: 2000, //自动播放延迟时间 （必选 autoPlay: true）
-        boxheight: false, //切换内容区域的高度设置px；建议vertical方式时使用 （不使用高度：false）
-        navlength: 0, //切换导航的数量设置（文字屏幕对齐）
-        fullclass: "bor_bottom2 bor_title c_title minus_mt_1px", //被选中状态的class
-        emptyclass: "bor_bottom bor_gray_ddd", //未选中状态的class
-        mouse: "click", //鼠标事件 (click/hover)
-        touchmode : false, //是否开启触屏滑动切换功能 (true/false)
-        changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
-        callback: function(ele) { //通过回调获取当前显示的元素
-            console.log(ele);
-        }
+/*---------------------------------------------Andrew_Tabs (仿京东商品分类) 使用方法-----------------------------------------*/
+    $(function () {
+        $(".plug_tabs_ud").Andrew_Tabs({
+            curDisplay: 1, //当前显示哪张
+            autoPlay: false, //自动播放 (true/false)
+            playDelay: 2000, //自动播放延迟时间 （必选 autoPlay: true）
+            boxheight: "12em", //切换内容区域的高度设置px （不使用高度：false）
+            navlength: 1, //切换导航的数量设置（文字屏幕对齐）
+            fullclass: "bg_white c_title bor_right_none", //被选中状态的class
+            emptyclass: "bg_gray_f5f", //未选中状态的class
+            mouse: "click", //鼠标事件 (click/hover)
+            touchmode : false, //是否开启触屏滑动切换功能 (true/false)
+            changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
+            callback: function(ele) { //通过回调获取当前显示的元素
+                //console.log(ele);
+            }
+        });
     });
-});
 
 /*-----------------------------------------------Andrew_Ajax 使用方法-------------------------------------------*/
 $(function () {
