@@ -8,6 +8,21 @@ AKjs移动端插件是一个基于JQuery的的一套构建用户界面的前端�
 
 AKjs前端技术交流QQ群：724501394
 
+
+
+# 更新时间：2018/4/18 下午12:30
+
+# 更新说明：
+
+演示版增加仿京东产品分类Tabs演示版；
+
+修改 Andrew_CountDown和Andrew_Progress功能插件的bug（在js/plugin/目录下找相关文件进行替换即可）；
+
+css目中 andrew.mobile.style.css 发布 1.0.4版本 （增加 class名h_fill 可以把元素高度设定为屏幕高度）；
+
+Andrew_Config功能中MaskStyle的参数可设置到 style8;
+
+
 # 更新时间：2018/4/17 下午09:18
 
 # 更新说明：
