@@ -3,13 +3,14 @@
     $.fn.Andrew_CountTo = function (options) {
         options = options || {};
         return $(this).each(function () {
-            var settings = $.extend({}, $.fn.Andrew_CountTo.defaults, {
-                from:            $(this).data('from'),
-                to:              $(this).data('to'),
-                speed:           $(this).data('speed'),
-                refreshInterval: $(this).data('refresh-interval'),
-                decimals:        $(this).data('decimals')
-            }, options);
+            var settings = $.extend({},
+                $.fn.Andrew_CountTo.defaults, {
+                    from:            $(this).data('from'),
+                    to:              $(this).data('to'),
+                    speed:           $(this).data('speed'),
+                    refreshInterval: $(this).data('refresh-interval'),
+                    decimals:        $(this).data('decimals')
+                }, options);
 
             // how many times to update the value, and how much to increment the value on each update
             var loops = Math.ceil(settings.speed / settings.refreshInterval),
