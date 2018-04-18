@@ -66,6 +66,49 @@
     </article>
 </div>
 
+<div class="plug_tabs_ud mt_5 module bg_white">
+    <nav class="fl ovh press list bg_white w_25">
+        <ul class="ovh list_h_3em">
+            <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-1</li>
+            <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-2</li>
+            <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-3</li>
+            <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-4</li>
+        </ul>
+    </nav>
+    <article class="fr rel ovh w_75">
+        <div class="rel">
+            <section class="rel ovh">
+                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax1" 可使用Ajax请求-->
+                    欢迎使用Andrew移动端jQuery插件。<br>
+                    请左右滑动该区域切换Tabs的内容。<br>
+                    当前内容是Tabs的第一个页面1。
+                </div>
+            </section>
+            <section class="rel ovh">
+                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax2" 可使用Ajax请求-->
+                    欢迎使用Andrew移动端jQuery插件。<br>
+                    请左右滑动该区域切换Tabs的内容。<br>
+                    当前内容是Tabs的第二个页面2。
+                </div>
+            </section>
+            <section class="rel ovh">
+                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax3" 可使用Ajax请求-->
+                    欢迎使用Andrew移动端jQuery插件。<br>
+                    请左右滑动该区域切换Tabs的内容。<br>
+                    当前内容是Tabs的第三个页面3。
+                </div>
+            </section>
+            <section class="rel ovh">
+                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax4" 可使用Ajax请求-->
+                    欢迎使用Andrew移动端jQuery插件。<br>
+                    请左右滑动该区域切换Tabs的内容。<br>
+                    当前内容是Tabs的第四个页面4。
+                </div>
+            </section>
+        </div>
+    </article>
+</div>
+
 <!----------Andrew_StepOrder---------->
 <div class="module list press mt_5">
     <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">步骤效果</h3>
@@ -358,7 +401,7 @@
         </li>
         <li class="bor_bottom bor_gray_ddd bg_white touchstart">
             <span class="fl ml_3 mr_03em">点击开始：</span>
-            <em class="plug_count c_title" data-from="0.00" data-to="999.00" data-speed="1500" data-decimals="2"></em>
+            <em class="plug_count c_title" data-from="0" data-to="999.00" data-speed="1500" data-decimals="2"></em>
         </li>
         <li class="bor_bottom bor_gray_ddd bg_white touchstart">
             <span class="fl ml_3 mr_03em">点击倒计时：</span>
@@ -813,7 +856,7 @@
     /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_tabs nav").Andrew_ScrollFixed({
-            ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
+            ScrollFixed: false, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
             zPosition: "4", //浮动元素的z-index数值
             animated: "slideInDown ani_05s", //滚动后的显示的动画效果 (css动画库：andrew.animate.css)
             top: 0 //屏幕上方和滑动后的元素固定的上下间距
@@ -832,7 +875,26 @@
             emptyclass: "bor_bottom bor_gray_ddd", //未选中状态的class
             mouse: "click", //鼠标事件 (click/hover)
             touchmode : true, //是否开启触屏滑动切换功能 (true/false)
-            changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
+            changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
+            callback: function(ele) { //通过回调获取当前显示的元素
+                //console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------Andrew_Tabs (仿京东商品分类) 使用方法-------------------------------------------*/
+    $(function () {
+        $(".plug_tabs_ud").Andrew_Tabs({
+            curDisplay: 1, //当前显示哪张
+            autoPlay: false, //自动播放 (true/false)
+            playDelay: 2000, //自动播放延迟时间 （必选 autoPlay: true）
+            boxheight: "12em", //切换内容区域的高度设置px （不使用高度：false）
+            navlength: 1, //切换导航的数量设置（文字屏幕对齐）
+            fullclass: "bg_white c_title bor_right_none", //被选中状态的class
+            emptyclass: "bg_gray_f5f", //未选中状态的class
+            mouse: "click", //鼠标事件 (click/hover)
+            touchmode : false, //是否开启触屏滑动切换功能 (true/false)
+            changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
             callback: function(ele) { //通过回调获取当前显示的元素
                 //console.log(ele);
             }
