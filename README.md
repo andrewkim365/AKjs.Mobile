@@ -14,7 +14,7 @@ AKjs前端技术交流QQ群：724501394
 
 # 更新说明：
 
-演示版增加仿京东产品分类Tabs演示版；
+演示版增加仿京东产品分类Tabs功能；
 
 修改 Andrew_CountDown和Andrew_Progress功能插件的bug（在js/plugin/目录下找相关文件进行替换即可）；
 
