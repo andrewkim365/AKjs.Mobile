@@ -66,8 +66,8 @@
                         console.log("属性初始值："+fx.start);
                         console.log("属性结束值："+fx.end);
                         console.log("属性当前值："+fx.now);*/
-                        if (obj.attr("data-form")) {
-                            fx.start = parseInt(obj.attr("data-form"));
+                        if (obj.attr("data-from")) {
+                            fx.start = parseInt(obj.attr("data-from"));
                         } else {
                             fx.start = 0;
                         }
