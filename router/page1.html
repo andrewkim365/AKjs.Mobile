@@ -340,7 +340,7 @@
             <dl class="ovh h_in">
                 <dt class="fl ovh ml_3 mr_03em">当前进度：</dt>
                 <dd class="fl ovh w_70 h_in">
-                    <div class="plug_progress h_2em bg_gray_ddd" data-to="70"></div>
+                    <div class="plug_progress h_2em bg_gray_ddd" data-form="0" data-to="70"></div>
                 </dd>
             </dl>
         </li>
@@ -1479,7 +1479,7 @@
     $(function () {
         $(".plug_progress").Andrew_Progress({
             goalAmount: 100, //总进度数值
-            currentAmount: 60, //当前进度数值 （也可以元素里加data-to参数设置）
+            currentAmount: 60, //当前进度数值 （也可以元素里加data-to参数设置, 初始化开始参数设置属性为元素里加data-form即可）
             milestoneNumber: 90, //数字达到当前设置的参数后进度条的颜色变化
             milestoneClass:"bg_orange", //milestoneNumber参数背景颜色
             ColorStyle: "bg_title c_white", //进度条样式设置
