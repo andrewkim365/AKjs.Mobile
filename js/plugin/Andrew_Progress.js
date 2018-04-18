@@ -1,4 +1,4 @@
-/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
+﻿/*-----------------------------------------------Andrew_Progress-------------------------------------------*/
 (function($){
     $.fn.extend({
         Andrew_Progress: function(options) {
@@ -66,14 +66,19 @@
                         console.log("属性初始值："+fx.start);
                         console.log("属性结束值："+fx.end);
                         console.log("属性当前值："+fx.now);*/
+                        if (obj.attr("data-form")) {
+                            fx.start = parseInt(obj.attr("data-form"));
+                        } else {
+                            fx.start = 0;
+                        }
                         rendered.find("em").text(parseInt(fx.now));
                     }
                 });
-                if (rendered.length > 1) {
+                /*if (rendered.length > 1) {
                     setTimeout(function() {
                         rendered.find("em").text(percentage);
                     }, defaults.speed+500);
-                }
+                }*/
                 setTimeout(function() {
                     $(rendered).parent().addClass(milestoneNumberClass);
                 }, defaults.speed);
