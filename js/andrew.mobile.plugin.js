@@ -1,4 +1,4 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180413 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180419 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs Plugin's JavaScript requires jQuery");
@@ -14,7 +14,8 @@ function Andrew_Config(setting){
             WechatHeader: false,
             Orientation: true,
             Prompt: "",
-            Topdblclick: true
+            Topdblclick: true,
+            animation: true
         },
         setting);
     Andrew_sUserAgent();
@@ -86,6 +87,39 @@ function Andrew_Config(setting){
         Andrew_HashSharp(false);
     } else {
         $("*").removeAttr("data-href");
+    }
+    if(option.animation) {
+        $("*[data-animation]").each(function () {
+            $(this).addClass("animated");
+            var animated = $(this).attr("data-animation");
+            var ani_s = new RegExp("s");
+            aniJson = eval("(" + animated + ")");
+            if (aniJson.name) {
+                $(this).addClass(aniJson.name);
+            }
+            if (aniJson.duration) {
+                if (ani_s.test(aniJson.duration)) {
+                    $(this).css({
+                        "animation-duration" : aniJson.duration
+                    });
+                } else {
+                    $(this).css({
+                        "animation-duration" : aniJson.duration+"s"
+                    });
+                }
+            }
+            if (aniJson.delay) {
+                if (ani_s.test(aniJson.delay)) {
+                    $(this).css({
+                        "animation-delay" : aniJson.delay
+                    });
+                } else {
+                    $(this).css({
+                        "animation-delay" : aniJson.delay+"s"
+                    });
+                }
+            }
+        });
     }
 }
 

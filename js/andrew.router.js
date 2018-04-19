@@ -54,6 +54,7 @@ $(document).ready(function(){
                     WechatHeader: false, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
                     Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
                     fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
+                    animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：andrew.animate.css
                     Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
                     Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
                 });
