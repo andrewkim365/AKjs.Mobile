@@ -1,5 +1,5 @@
-/*! Andrew.animate Css v1.0.0 Stable --- Copyright Andrew.Kim | (c) 20160815 ~ 20180320 andrew.animate.css license */
-/*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) */
+/*! jquery.AKjs by Andrew.animate Css v1.0.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180419 AKjs license */
+/*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 /*----------------------------------------------------------
 bounce
 flash
@@ -108,6 +108,7 @@ animation-iteration-count 	规定动画应该播放的次数。
 animation-direction 	规定是否应该轮流反向播放动画。
 ----------------------------------------------------------
 */
+
 .animated {
 	-webkit-animation-duration:1s;
 	animation-duration:1s;
@@ -118,6 +119,89 @@ animation-direction 	规定是否应该轮流反向播放动画。
 	-webkit-animation-iteration-count:infinite;
 	animation-iteration-count:infinite;
 }
+
+/*---------------------animation-delay----------------------*/
+.animated.ani_delay_0s {
+	-webkit-animation-delay:0s !important;
+	animation-delay:0s !important;
+}
+.animated.ani_delay_01s {
+	-webkit-animation-delay:01s !important;
+	animation-delay:01s !important;
+}
+.animated.ani_delay_02s {
+	-webkit-animation-delay:02s !important;
+	animation-delay:02s !important;
+}
+.animated.ani_delay_03s {
+	-webkit-animation-delay:03s !important;
+	animation-delay:03s !important;
+}
+.animated.ani_delay_04s {
+	-webkit-animation-delay:04s !important;
+	animation-delay:04s !important;
+}
+.animated.ani_delay_05s {
+	-webkit-animation-delay:05s !important;
+	animation-delay:05s !important;
+}
+.animated.ani_delay_06s {
+	-webkit-animation-delay:06s !important;
+	animation-delay:06s !important;
+}
+.animated.ani_delay_07s {
+	-webkit-animation-delay:07s !important;
+	animation-delay:07s !important;
+}
+.animated.ani_delay_08s {
+	-webkit-animation-delay:08s !important;
+	animation-delay:08s !important;
+}
+.animated.ani_delay_09s {
+	-webkit-animation-delay:09s !important;
+	animation-delay:09s !important;
+}
+.animated.ani_delay_1s {
+	-webkit-animation-delay:1s !important;
+	animation-delay:1s !important;
+}
+.animated.ani_delay_2s {
+	-webkit-animation-delay:2s !important;
+	animation-delay:2s !important;
+}
+.animated.ani_delay_3s {
+	-webkit-animation-delay:3s !important;
+	animation-delay:3s !important;
+}
+.animated.ani_delay_4s {
+	-webkit-animation-delay:4s !important;
+	animation-delay:4s !important;
+}
+.animated.ani_delay_5s {
+	-webkit-animation-delay:5s !important;
+	animation-delay:5s !important;
+}
+.animated.ani_delay_6s {
+	-webkit-animation-delay:6s !important;
+	animation-delay:6s !important;
+}
+.animated.ani_delay_7s {
+	-webkit-animation-delay:7s !important;
+	animation-delay:7s !important;
+}
+.animated.ani_delay_8s {
+	-webkit-animation-delay:8s !important;
+	animation-delay:8s !important;
+}
+.animated.ani_delay_9s {
+	-webkit-animation-delay:9s !important;
+	animation-delay:9s !important;
+}
+.animated.ani_delay_10s {
+	-webkit-animation-delay:10s !important;
+	animation-delay:10s !important;
+}
+/*---------------------animation-duration----------------------*/
 .animated.ani_01s {
 	-webkit-animation-duration:0.1s;
 	animation-duration:0.1s;
