@@ -1,4 +1,4 @@
-1.动画使用方法介绍：
+﻿1.动画使用方法介绍：
 
 
 01.打开js/andrew.router.js文件找到Andrew_Config的animation参数设置为true；并且css目录中必须要有andrew.animate.css文件。
@@ -142,7 +142,7 @@ rotateUp
 rotateLeft
 rotateRight
 slideDownIn
-slideUp
+slideUpIn
 slideLeft
 slideRight
 slideDownRetourn
