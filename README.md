@@ -8,6 +8,16 @@ AKjs移动端插件是一个基于JQuery的的一套构建用户界面的前端�
 
 AKjs前端技术交流QQ群：724501394
 
+# 更新时间：2018/4/20 下午09:03
+
+# 更新说明：
+
+js目录和css目中 andrew.mobile.plugin.js 和 andrew.mobile.style.css 发布 1.0.5版本；
+
+修改data-href=值带参数的时候无法识别被选中的状态bug；
+
+增加animation参数跟数据结合的调用方式（数据请求的时候直接写Andrew_Animation();可以使用data-animation属性）；
+
 
 # 更新时间：2018/4/19 下午13:00
 
