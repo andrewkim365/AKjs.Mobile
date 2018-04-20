@@ -1,4 +1,4 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180419 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180420 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs Plugin's JavaScript requires jQuery");
@@ -89,37 +89,9 @@ function Andrew_Config(setting){
         $("*").removeAttr("data-href");
     }
     if(option.animation) {
-        $("*[data-animation]").each(function () {
-            $(this).addClass("animated");
-            var animated = $(this).attr("data-animation");
-            var ani_s = new RegExp("s");
-            aniJson = eval("(" + animated + ")");
-            if (aniJson.name) {
-                $(this).addClass(aniJson.name);
-            }
-            if (aniJson.duration) {
-                if (ani_s.test(aniJson.duration)) {
-                    $(this).css({
-                        "animation-duration" : aniJson.duration
-                    });
-                } else {
-                    $(this).css({
-                        "animation-duration" : aniJson.duration+"s"
-                    });
-                }
-            }
-            if (aniJson.delay) {
-                if (ani_s.test(aniJson.delay)) {
-                    $(this).css({
-                        "animation-delay" : aniJson.delay
-                    });
-                } else {
-                    $(this).css({
-                        "animation-delay" : aniJson.delay+"s"
-                    });
-                }
-            }
-        });
+        Andrew_Animation();
+    } else {
+        $("*").removeAttr("data-animation");
     }
 }
 
@@ -200,6 +172,7 @@ function Andrew_Router(setting){
         }
         Andrew_RouterResize(option);
         Andrew_HashSharp(true);
+        Andrew_Animation();
     }
     function ak_error403() {
         if ($("main").find("title").length > 0) {
@@ -300,9 +273,10 @@ function Andrew_Menu(setting){
     }
     ak_menu_btn.each(function () {
         var index = $(this).index();
+        var data_href = $(this).attr("data-href").split("?")[0];
         $(this).children().eq(0).addClass(option.menu_icon[index]);
         $(this).children().removeClass(option.active_color);
-        if (location.hash == $(this).attr("data-href") || location.hash.substring(1).split("?")[0] == $(this).attr("data-href")) {
+        if (location.hash == data_href || location.hash.substring(1).split("?")[0] == data_href) {
             ak_menu_btn.children().eq(1).removeClass(option.active_color);
             $(this).children().eq(0).removeClass(option.menu_icon[index]);
             $(this).children().eq(0).addClass(option.menu_icon_active[index]).addClass(option.active_color);
@@ -315,7 +289,8 @@ function Andrew_Menu(setting){
     $(window).bind('hashchange', function () {
         ak_menu_btn.each(function () {
             var index = $(this).index();
-            if (location.hash.substring(1).split("?")[0] != $(this).attr("data-href")) {
+            var data_href = $(this).attr("data-href").split("?")[0];
+            if (location.hash.substring(1).split("?")[0] != data_href) {
                 $(this).children().eq(0).removeClass(option.menu_icon_active[index]);
                 $(this).children().eq(1).removeClass(option.active_color);
             }
@@ -588,12 +563,48 @@ function Andrew_Ajax(setting){
                 $(option.to).html(htmlobj.responseText);
             }
             Andrew_HashSharp(true);
+            Andrew_Animation();
         },
         error:function (error) {
             if($(option.to)){
                 $(option.to).html(htmlobj.responseText);
             }
             option.error(error);
+        }
+    });
+}
+
+/*-----------------------------------------------Andrew_Animation------------------------------------------*/
+function Andrew_Animation() {
+    $("*[data-animation]").each(function () {
+        $(this).addClass("animated");
+        var animated = $(this).attr("data-animation");
+        var ani_s = new RegExp("s");
+        aniJson = eval("(" + animated + ")");
+        if (aniJson.name) {
+            $(this).addClass(aniJson.name);
+        }
+        if (aniJson.duration) {
+            if (ani_s.test(aniJson.duration)) {
+                $(this).css({
+                    "animation-duration" : aniJson.duration
+                });
+            } else {
+                $(this).css({
+                    "animation-duration" : aniJson.duration+"s"
+                });
+            }
+        }
+        if (aniJson.delay) {
+            if (ani_s.test(aniJson.delay)) {
+                $(this).css({
+                    "animation-delay" : aniJson.delay
+                });
+            } else {
+                $(this).css({
+                    "animation-delay" : aniJson.delay+"s"
+                });
+            }
         }
     });
 }
