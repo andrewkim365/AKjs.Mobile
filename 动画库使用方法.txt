@@ -1,14 +1,14 @@
-1.¶¯»­Ê¹ÓÃ·½·¨½éÉÜ£º
+1.åŠ¨ç”»ä½¿ç”¨æ–¹æ³•ä»‹ç»ï¼š
 
 
-01.´ò¿ªjs/andrew.router.jsÎÄ¼şÕÒµ½Andrew_ConfigµÄanimation²ÎÊıÉèÖÃÎªtrue£»²¢ÇÒcssÄ¿Â¼ÖĞ±ØĞëÒªÓĞandrew.animate.cssÎÄ¼ş¡£
+01.æ‰“å¼€js/andrew.router.jsæ–‡ä»¶æ‰¾åˆ°Andrew_Configçš„animationå‚æ•°è®¾ç½®ä¸ºtrueï¼›å¹¶ä¸”cssç›®å½•ä¸­å¿…é¡»è¦æœ‰andrew.animate.cssæ–‡ä»¶ã€‚
 
-02.ÊµÏÖ¶¯»­Ğ§¹ûÔÚÔªËØÖĞ¼Ódata-animationÊôĞÔ£¬ÀïÃæÓĞÈı¸ö²ÎÊıname£¨¶¯»­Ãû³Æ£©£¬duration£¨¶¯»­ºÁÃë£©£¬delay£¨¶¯»­ÑÓ³ÙÊ±¼ä£©¡£
+02.å®ç°åŠ¨ç”»æ•ˆæœåœ¨å…ƒç´ ä¸­åŠ data-animationå±æ€§ï¼Œé‡Œé¢æœ‰ä¸‰ä¸ªå‚æ•°nameï¼ˆåŠ¨ç”»åç§°ï¼‰ï¼Œdurationï¼ˆåŠ¨ç”»æ¯«ç§’ï¼‰ï¼Œdelayï¼ˆåŠ¨ç”»å»¶è¿Ÿæ—¶é—´ï¼‰ã€‚
 
-03.Àı£º<div data-animation="{name: 'zoomIn', duration:1, delay: 0}">ÄÚÈİ</div> ----¡·ÕâÀïĞ´µÄnameÖµ´ú±í¶¯»­Ãû³Æ£¬ºóÃæÁ©²ÎÊıÖµ1ºÍ0´ú±í1ÃëºÍ0Ãë¡£
+03.ä¾‹ï¼š<div data-animation="{name: 'zoomIn', duration:1, delay: 0}">å†…å®¹</div> ----ã€‹è¿™é‡Œå†™çš„nameå€¼ä»£è¡¨åŠ¨ç”»åç§°ï¼Œåé¢ä¿©å‚æ•°å€¼1å’Œ0ä»£è¡¨1ç§’å’Œ0ç§’ã€‚
 
 
------------------------------------------¶¯»­Ãû³ÆÁĞ±í£¨ÔÚdata-animationÊôĞÔÀïµÄnameÖµ£©------------------------------------------------------
+-----------------------------------------åŠ¨ç”»åç§°åˆ—è¡¨ï¼ˆåœ¨data-animationå±æ€§é‡Œçš„nameå€¼ï¼‰------------------------------------------------------
 bounce
 flash
 pulse
@@ -87,6 +87,7 @@ hinge
 jackInTheBox
 rollIn
 rollOut
+--------------------
 niceIn
 boomerang
 swivelChair
@@ -107,14 +108,80 @@ gettinLifted
 glaucoma
 chameleon
 backdrop
+--------------------
+magic
+twisterInDown
+twisterInUp
+swap
+puffIn
+puffOut
+vanishIn
+vanishOut
+openDownLeft
+openDownRight
+openUpLeft
+openUpRight
+openDownLeftRetourn
+openDownRightRetourn
+openUpLeftRetourn
+openUpRightRetourn
+openDownLeftOut
+openDownRightOut
+openUpLeftOut
+openUpRightOut
+perspectiveDown
+perspectiveUp
+perspectiveLeft
+perspectiveRight
+perspectiveDownRetourn
+perspectiveUpRetourn
+perspectiveLeftRetourn
+perspectiveRightRetourn
+rotateDown
+rotateUp
+rotateLeft
+rotateRight
+slideDownIn
+slideUp
+slideLeft
+slideRight
+slideDownRetourn
+slideUpRetourn
+slideLeftRetourn
+slideRightRetourn
+swashOut
+swashIn
+foolishOut
+foolishIn
+holeOut
+tinRightOut
+tinLeftOut
+tinUpOut
+tinDownOut
+tinRightIn
+tinLeftIn
+tinUpIn
+tinDownIn
+bombRightOut
+bombLeftOut
+boingInUp
+boingOutDown
+spaceOutUp
+spaceOutRight
+spaceOutDown
+spaceOutLeft
+spaceInUp
+spaceInRight
+spaceInDown
+spaceInLeft
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
-2.°´Å¥»¬¶¯¶¯»­Ğ§¹ûÊ¹ÓÃ·½·¨½éÉÜ£º
+2.æŒ‰é’®æ»‘åŠ¨åŠ¨ç”»æ•ˆæœä½¿ç”¨æ–¹æ³•ä»‹ç»ï¼š
 
-# °´Å¥»¬¶¯¶¯»­ÊÇ¸úÉÏÃæµÄ¶¯»­Ê¹ÓÃ·½·¨²»Ò»Ñù£¬ÔÚ<button>ÔªËØÖĞÖ±½Ó²åÈëÒÔÏÂµÄclassÃû³Æ¼´¿ÉÓÃ¡£
+# æŒ‰é’®æ»‘åŠ¨åŠ¨ç”»æ˜¯è·Ÿä¸Šé¢çš„åŠ¨ç”»ä½¿ç”¨æ–¹æ³•ä¸ä¸€æ ·ï¼Œåœ¨<button>å…ƒç´ ä¸­ç›´æ¥æ’å…¥ä»¥ä¸‹çš„classåç§°å³å¯ç”¨ã€‚
 
-------------°´Å¥»¬¶¯¶¯»­Ğ§¹ûclassÃû³ÆÁĞ±í------------------
+------------æŒ‰é’®æ»‘åŠ¨åŠ¨ç”»æ•ˆæœclassåç§°åˆ—è¡¨------------------
 
 btn_hover-sweep-to-right
 btn_hover-sweep-to-left
