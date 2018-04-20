@@ -1,4 +1,4 @@
-/*! jquery.AKjs by MobileWebApp Plugin v1.0.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180418 AKjs license */
+/*! jquery.AKjs by MobileWebApp Plugin v1.0.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180420 AKjs license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/andrew.mobile.plugin */
 
 /*-----------Base Style-----------*/
@@ -263,6 +263,15 @@ legend {
 }
 .pointer {
   cursor: pointer;
+}
+.help {
+  cursor: help;
+}
+.move {
+  cursor: move;
+}
+.default {
+  cursor: default !important;
 }
 .touchstart:active {
   -webkit-transition-duration: 0.2s;
@@ -900,6 +909,9 @@ legend {
 }
 .text_normal {
   font-weight:normal !important;
+}
+.text_italic {
+  font-style: italic !important;
 }
 .text_line {
   text-decoration: underline;
