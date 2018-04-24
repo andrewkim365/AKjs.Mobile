@@ -1,0 +1,218 @@
+﻿# 快速了解AKjs框架的CSS样式库：（整理文档时间：2018-04-22）
+----------------------------------------------------------
+
+
+1.文字相关样式说明：
+
+
+	1-1.全局文字大小说明
+
+	全局文字大小是12px;根据屏幕尺寸全局文字大小也是自适应的。以下是按屏幕尺寸设置的文字大小说明。
+
+	下面几个CSS设置中我们按照第一个来说明吧。第一个是自适应的是屏幕最小尺寸是320px，最大尺寸是369px的情况下文字大小设置为12px；在这个尺寸中访问界面时相当于1em就是12px。
+
+	min-width:320px and max-width:369px = 12px; //当前的屏幕尺寸访问时所有的1em相当于12px
+
+	min-width:370px and max-width:639px = 14px; //当前的屏幕尺寸访问时所有的1em相当于14px
+
+	min-width:640px and max-width:1024px = 20px; //当前的屏幕尺寸访问时所有的1em相当于20px
+
+	min-width:1025px = 24px; //当前的屏幕尺寸访问时所有的1em相当于24px
+
+
+	1-2.文字大小设置；
+
+	.text_05em ~ .text_09em //该class名称是font-size:0.5em 到 0.9em的意思；
+
+	.text_1em ，.text_11em ，.text_12em ... //这个是font-size:1em , 1.1em , 1.2em 的意思；
+
+	大于10em的表现方式为 .text_10em, .text_12_em, .text_20em ... //这三个属性是 font-size:10em, 12em, 20em 的意思；
+
+	还有一种属性是.text_in 该class名称是font-size:inherit; //继承于上一个元素的文字大小；
+
+
+	1-2. 文字对齐属性
+
+
+	//文字水平对齐设置
+
+	.text_al_l  = text-align:left 
+
+	.text_al_c = text-align:center
+
+	.text_al_r = text-align:right
+
+
+	//文字垂直对齐设置
+
+	.text_al_t = vertical-align: top
+
+	.text_al_tt = vertical-align: text-top
+
+	.text_al_m = vertical-align: middle
+
+	.text_al_b = vertical-align: bottom
+
+	.text_al_tb = vertical-align: text-bottom
+
+	.text_al_s = vertical-align: sub
+
+	.text_al_sp = vertical-align: super
+
+	.text_al_i = vertical-align: inherit
+
+
+	1-3. 文字加粗斜样式设置
+
+	.text_bold = font-weight:bold //文字加粗
+
+	.text_normal = font-weight:normal //文字变细
+
+	.text_italic = font-style: italic //斜体文字
+
+	.text_line = text-decoration: underline //带下划线
+	
+	1-4. 文字阴影样式清除方法
+	
+	.shadow_none //该class不仅是清除文字阴影，还可以清除元素阴影（适合用覆盖阴影效果）
+		
+		
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.布局位置以及浮动设置方法
+
+	2-1. 浮动相关设置
+
+	.center = margin:0 auto //布局居中设置
+	
+	.fl = float:left //左浮动
+	
+	.fr = float:right //右浮动
+	
+	.fn = float:none //清除浮动
+	
+	.fi = float: inherit //继承与上一个元素浮动
+	
+	.clear //不允许出现浮动元素
+	
+	
+	2-2. 定位方法
+	
+	.rel = position: relative //相对定位
+
+	.abs = position: absolute //绝对定位
+
+	.fix = position: fixed //固定定位
+
+	.sta = position: static //静态定位
+
+	.pos = position: inherit //继承与上一个元素定位
+	
+	
+	2-3. z-index属性 (某元素的显示在前面的优先级参数)
+	
+	.zindex_0 ~ .zindex_30 之间任意使用
+	
+	.zindex_show = z-index: 999 //优先级参数最高
+
+	.zindex_hide = z-index: -1 //通过优先级参数也可以隐藏到后面
+
+	
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.鼠标相关样式属性
+
+	3-1. 光标的类型设置
+	
+	.pointer = cursor: pointer //光标呈现为指示链接的指针（一只手）
+
+	.help  = cursor: help //此光标指示可用的帮助
+
+	.move = cursor: move //此光标指示某对象可被移动
+
+	.default = cursor: default //默认光标
+	
+	3-2. 通过鼠标滑动时禁止文本被选择
+	
+	.press //元素里加该class文本不能被选择
+	
+	.touchstart //列表元素中加该class，区域有灰色的active效果（列表点击事件专用class）
+	
+	
+--------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+4.元素display属性设置以及元素透明度设置方法
+
+	4-1. display属性
+	
+	.dis_none = display:none //此元素不会被显示。
+
+	.dis_block = display: block //此元素将显示为块级元素，此元素前后会带有换行符。
+
+	.dis_inbl = display: inline-block //行内块元素。
+	
+	.dis_inline = display: inline //默认。此元素会被显示为内联元素，元素前后没有换行符。
+
+	.dis_table = display: table //此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。
+
+	.dis_content = display: contents //它就会从DOM中消失，但是其子元素会保留并且占据空间 (仅兼容火狐浏览器)
+
+	.dis_flex  = display: flex //引入flexbox布局模块或CSS弹性框
+	
+	---后面增加_im 提升样式规则的应用优先权---
+
+	.dis_none_im = display:none !important
+
+	.dis_block_im = display: block !important
+
+	.dis_inbl_im = display: inline-block !important
+
+	.dis_inline_im  = display: inline !important
+
+	.dis_table_im  = display: table !important
+
+	.dis_content_im  = display: contents !important
+	
+	.dis_flex_im  = display: flex !important
+
+	
+	4-2. 元素透明度设置opacity属性
+	
+	.dis_opa_0 ，.dis_opa_01. .dis_opa_02 ... ... .dis_opa_1 //该class名称是opacity:0 到 opacity:1的意思；.dis_opa_01. .dis_opa_02 0.1或0.2的意思。
+	
+
+5.宽高以及间距的设置方法
+
+	5-1. 宽度和高度
+	
+	百分比的宽度使用 .w_0 ~ .w_900 (该属性是相当于样式中的width属性，中间不常用的百分比宽度已过滤)
+	
+	em单位的宽度使用 .w_1em ~ w_100em (w_1em = width:1em , w_12em = width：1.2em , 10em 以上的表现方式是  w_12_em ... w_24_em 等等)
+	
+	
+	高度（height）的使用方法是跟宽度使用方法一样，把w替换为h即可。
+	
+	5-2. 内间距和外间距的使用方法
+	
+	内间距（padding）的class名称分别有 pa, pt, pr, pb, pl。（数字参数是跟上面的宽度和高度一样,有百分比和em的表现方式）
+	
+	pa = padding, 
+	pt = padding-top, 
+	pr = padding-right, 
+	pb = padding-bottom, 
+	pl = padding-left
+	
+	外间距（margin）的class名称使用方法是跟内间距的使用方法一样，把前面p替换为m即可。
+	
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+后续接着写剩余的class使用方法，敬请期待。。。。。。。。。。。
+	
+
+
+
+
+
+
