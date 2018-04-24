@@ -41,6 +41,7 @@ Andrew_Plugin("Andrew_StepOrder"); //步骤插件
 Andrew_Plugin("Andrew_Substring"); //输入框里输入的数字强行转换为人民币格式的插件
 Andrew_Plugin("Andrew_Switch","css"); //开关按钮美化
 Andrew_Plugin("Andrew_Tabs"); //TABS切换内容功能
+Andrew_Plugin("Andrew_Template"); //模板引擎插件
 Andrew_Plugin("Andrew_Textarea"); //多行输入框实时查询字符数的功能
 Andrew_Plugin("Andrew_TouchDelete","css"); //列表滑动删除功能
 Andrew_Plugin("Andrew_TouchSwipe"); //引导页专用联播图功能
