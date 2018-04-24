@@ -52,7 +52,7 @@
 <div class="module list press mt_5">
     <h3 class="wp_94 bg_white line_h_36em text_bold bor_bottom_dashed bor_gray_ddd c_title"><i class="icon-yk_xinxi_fill text_al_s text_14em mr_02em"></i> 详情描述展示</h3>
     <p class="wp_94 bg_white pb_3 pt_3 line_h_2em c_gray_777">
-        欢迎使用Andrew移动端jQuery插件。当前内容是详情内容的展示。
+        欢迎使用AKjs移动端jQuery插件。当前内容是详情内容的展示。
     </p>
 </div>
 
@@ -120,29 +120,17 @@
 
 <div class="module list mt_5 ovh rel">
     <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片列表展示</h3>
-    <ul>
+    <ul class="plug_for">
         <li class="rel ovh bg_white pa_3 bor_bottom bor_gray_ddd touchstart" data-href="/page3.html">
             <figure class="fl bg_gray_f5f border bor_gray_ddd wh_6em img_auto">
-                <img src="./img/tibet-1.jpg">
+                {{html Image}}
             </figure>
             <div class="fl list_h_18em ml_1em ovh w_65">
-                <h3 class="text_12em">产品名称</h3>
+                <h3 class="text_12em">${Title}</h3>
                 <p class="c_gray_777">
-                    <del class="text_al_t">价格</del>
+                    <del class="text_al_t">${Price}</del>
                 </p>
-                <p class="c_gray_999 text_hidden">该产品的简介和描述</p>
-            </div>
-        </li>
-        <li class="rel ovh bg_white pa_3 bor_bottom bor_gray_ddd touchstart" data-href="/page3.html">
-            <figure class="fl bg_gray_f5f border bor_gray_ddd wh_6em img_auto">
-                <img src="./img/tibet-2.jpg">
-            </figure>
-            <div class="fl list_h_18em ml_1em ovh w_65">
-                <h3 class="text_12em">产品名称</h3>
-                <p class="c_gray_777">
-                    <del class="text_al_t">价格</del>
-                </p>
-                <p class="c_gray_999 text_hidden">该产品的简介和描述该产品的简介和描述该产品的简介和描述</p>
+                <p class="c_gray_999 text_hidden">{{html Content}}</p>
             </div>
         </li>
     </ul>
@@ -232,6 +220,33 @@
 
 <script type="text/javascript">
     //引入Andrew插件的区域
+
+    /*-----------------------------------------------Andrew_DateFormat 使用方法-------------------------------------------*/
+    console.log(Andrew_DateFormat("2018/03/30 17:50","yyyy-MM-dd HH:mm"));
+    console.log(Andrew_DateFormat(new Date(),"yyyy-MM-dd HH:mm"));
+
+    /*-----------------------------------------------Andrew_Template 使用方法-------------------------------------------*/
+    var list_data = [
+        {
+            Image: "<img src=\"./img/tibet-1.jpg\">",
+            Title: "产品名称001",
+            Price: "￥400.00",
+            Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+        },
+        {
+            Image: "<img src=\"./img/tibet-2.jpg\">",
+            Title: "产品名称002",
+            Price: "￥500.00",
+            Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+        },
+        {
+            Image: "<img src=\"./img/tibet-3.jpg\">",
+            Title: "产品名称003",
+            Price: "￥250.00",
+            Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+        }
+    ];
+    $(".plug_for").Andrew_Template(list_data);
     /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
     $(function(){
         $("#plug_Share").on("click", function (e) {
