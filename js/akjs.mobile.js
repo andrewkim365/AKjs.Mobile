@@ -248,7 +248,7 @@ function Andrew_Router(setting){
                 $('body').children("div").remove();
                 $('body').find(".ak-mask").remove();
             } else {
-                window.location.reload();
+                document.location.reload();
             }
             option.changePage(location.hash.substring(1));
         });
@@ -477,7 +477,7 @@ function Andrew_mainHeight() {
             });
         } else {
             $("main").css({
-                "height": $(window).height() - $("footer").outerHeight()
+                "height": $(document).height() - $("footer").outerHeight()
             });
         }
     }
@@ -492,7 +492,7 @@ function Andrew_mainHeight() {
             });
         } else {
             $("main").css({
-                "height": $(window).height() - $("header").outerHeight()
+                "height": $(document).height() - $("header").outerHeight()
             });
         }
     }
@@ -507,7 +507,7 @@ function Andrew_mainHeight() {
             });
         } else {
             $("main").css({
-                "height": $(window).height()
+                "height": $(document).height()
             });
         }
     }
@@ -522,7 +522,7 @@ function Andrew_mainHeight() {
             });
         } else {
             $("main").css({
-                "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
+                "height": $(document).height() - ($("header").outerHeight() + $("footer").outerHeight())
             });
         }
     }
@@ -534,7 +534,7 @@ function Andrew_mainHeight() {
         "position": "relative"
     });
     $(".h_fill").css({
-        "height": $(window).height()
+        "height": $(document).height()
     });
 }
 
@@ -622,12 +622,12 @@ function Andrew_HashSharp(form) {
             //首先判断该URL是否包含“?”，若包含则在尾部追加随机串,否则更新随机串
             if(question_mark.test($(this).attr("data-href"))){
                 if(akTime.test($(this).attr("data-href"))){
-                    window.location.href=changeURLArg($(this).attr("data-href"),"ak",new Date().getTime());
+                    document.location.href=changeURLArg($(this).attr("data-href"),"ak",new Date().getTime());
                 }else{
-                    window.location.href=$(this).attr("data-href") + '&ak=' + new Date().getTime();
+                    document.location.href=$(this).attr("data-href") + '&ak=' + new Date().getTime();
                 }
             }else{
-                window.location.href=$(this).attr("data-href") + '?ak=' + new Date().getTime();
+                document.location.href=$(this).attr("data-href") + '?ak=' + new Date().getTime();
             }
         } else if (hash_script.test($(this).attr("data-href"))){
             location.replace($(this).attr("data-href"));
@@ -635,12 +635,12 @@ function Andrew_HashSharp(form) {
             //首先判断该URL是否包含“?”，若包含则在尾部追加随机串,否则更新随机串
             if(question_mark.test($(this).attr("data-href"))){
                 if(akTime.test($(this).attr("data-href"))){
-                    window.location.href=changeURLArg("#"+$(this).attr("data-href"),"ak",new Date().getTime());
+                    document.location.href=changeURLArg("#"+$(this).attr("data-href"),"ak",new Date().getTime());
                 }else{
-                    window.location.href="#"+$(this).attr("data-href") + '&ak=' + new Date().getTime();
+                    document.location.href="#"+$(this).attr("data-href") + '&ak=' + new Date().getTime();
                 }
             }else{
-                window.location.href="#"+$(this).attr("data-href") + '?ak=' + new Date().getTime();
+                document.location.href="#"+$(this).attr("data-href") + '?ak=' + new Date().getTime();
             }
         }
     });
@@ -670,8 +670,8 @@ function Andrew_HashSharp(form) {
         return url + '\n' + arg + '\n' + arg_val;
     }
     var hash_sharps = new RegExp("\\?#");
-    if (hash_sharps.test(window.location.href)) {
-        location.replace(window.location.href.replace("?#","#"));
+    if (hash_sharps.test(document.location.href)) {
+        location.replace(document.location.href.replace("?#","#"));
     }
 }
 
@@ -705,12 +705,12 @@ function Andrew_RouterResize(option) {
             if ($("header").hasClass("dis_none_im")) {
                 $("main").css({
                     "margin-top": 0,
-                    "height": $(window).height() - $(option.tailClass).outerHeight()
+                    "height": $(document).height() - $(option.tailClass).outerHeight()
                 });
             } else {
                 $("main").css({
                     "margin-top": $("header").outerHeight(),
-                    "height": $(window).height() - $("header").outerHeight() - $(option.tailClass).outerHeight()
+                    "height": $(document).height() - $("header").outerHeight() - $(option.tailClass).outerHeight()
                 });
             }
         }
