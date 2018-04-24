@@ -28,8 +28,13 @@
     }
     $.fn.extend({
         Andrew_Template: function(D, C, A) {
-            $(this[0]).addClass("ak-for");
+            var ele = $(this[0]);
+            ele.addClass("ak-for");
             var B = $.Andrew_Template(this[0], D, C, A).appendTo($(this[0]));
+            setTimeout(function() {
+                ele.removeClass("ak-for");
+                $(B).eq(0).prev().remove();
+            },100);
             return B
         },
         Template_Item: function() {
