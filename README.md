@@ -11,6 +11,15 @@ AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里�
 AKjs前端技术支持QQ群：724501394
 
 
+# 更新时间：2018/4/25 下午13:00
+
+# 更新说明：
+
+增加 js/plugin/Andrew_Circliful.js 圆形统计插件。
+
+打开 js/plugin.js 文件 插入 Andrew_Plugin("Andrew_Circliful"); 即可用。调用方法在page4.html文件中的最底部。
+
+
 # 更新时间：2018/4/24 下午15:20
 
 # 更新说明：
@@ -34,7 +43,6 @@ akjs.mobile.js 里新增了Andrew_DateFormat的功能函数；
 这次新版还新增了 js/plugin/Andrew_Template.js 模板引擎功能插件；
 
 --- 使用方法：$("元素").Andrew_Template(list_data); //该插件的使用方法在router/page4.html中展示了效果，可参考该文件。
-
 
 
 # 更新时间：2018/4/20 下午17:05
@@ -94,7 +102,6 @@ Andrew_Config 功能插件增加了 Responsive参数（该参数能设置按屏�
 js/andrew.router.js 文件中找Andrew_Config功能增加Responsive参数即可。
 
 
-
 # 更新时间：2018/4/10 下午16:10
 
 # 更新说明：
@@ -114,7 +121,6 @@ css/style.css文件需要替换（new_icon和footer区域样式有修改）；
 js/plugin/Andrew_StepOrder.js 需要替换；
 
 引导页切换页面的过程中有闪屏的情况时，请替换jQuery3.2.1的版本；
-
 
 
 # 更新时间：2018/4/03 下午16:50
