@@ -9,6 +9,7 @@ Andrew_Plugin("Andrew_ChangeIcon"); //图标切换功能
 Andrew_Plugin("Andrew_ChangeInput"); //输入框值互换功能
 Andrew_Plugin("Andrew_Checkbox","css"); //复选框美化
 Andrew_Plugin("Andrew_ChooseList"); //按钮模式复选和单选功能
+Andrew_Plugin("Andrew_Circliful"); //圆形统计插件
 Andrew_Plugin("Andrew_Codeval","css"); //图片验证功能
 Andrew_Plugin("Andrew_CountDown"); //倒计时功能
 Andrew_Plugin("Andrew_CountTo"); //数字动画效果
