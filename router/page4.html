@@ -19,6 +19,11 @@
         </ul>
     </div>
 </div>
+<div class="module mt_5 pt_2 list press bg_white">
+    <div class="plug_circliful fl" data-dimension="120" data-text="35%" data-info="当前进度" data-width="10" data-font_size="1.2em" data-percent="35" data-prog_color="#4cafe9" data-bg_color="#dddddd" data-font_color="#ffffff" data-fill_color="#999999"></div>
+    <div class="plug_circliful fl" data-dimension="120" data-text="65%" data-info="当前进度" data-width="10" data-font_size="1.2em" data-percent="65" data-prog_color="#19d100" data-bg_color="#dddddd"></div>
+    <div class="plug_circliful fl" data-dimension="120" data-text="85%" data-info="当前进度" data-width="10" data-font_size="1.2em" data-percent="85" data-prog_color="#d94945" data-bg_color="#dddddd" data-type="spacing" data-font_color="#ffffff" data-spacing_color="#ff7e00"></div>
+</div>
 <div class="module mt_5 list press">
     <ul>
         <li class="bg_white rel ovh"><!--可循环-->
@@ -277,4 +282,24 @@
         });
     });
 
+    /*-----------------------------------------------Andrew_Circliful 使用方法-------------------------------------------*/
+    $(function(){
+        $('.plug_circliful').Andrew_Circliful({
+            animationStep: 0.2 //动画毫秒设置
+        });
+        /*
+        data-dimension === 整个圆形的宽高
+        data-text === 圆形里的大标题
+        data-info === 圆形里的小标题
+        data-width="30" === 当前参数进度条边框宽度设置
+        data-prog_color === 当前参数进度条边框颜色设置
+        data-font_size  === 圆形里的大标题文字大小（px）
+        data-percent  === 当前参数设置（百分比）
+        data-font_color === 大标题和小标题文字颜色设置
+        data-bg_color === 整个圆形的边框颜色
+        data-fill_color === 里面填充颜色设置
+        data-spacing_color === 整个圆形的边框颜色
+        data-type="spacing" === 饼图类型设置 （half, spacing）；空值代表默认类型
+        */
+    });
 </script>
