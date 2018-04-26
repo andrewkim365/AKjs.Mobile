@@ -123,7 +123,7 @@
                         touchStartY = e.originalEvent.clientY;
                         touchStartX = e.originalEvent.clientX;
                     },
-                    mouseup: function (e) {
+                    /*mouseup: function (e) {
                         var touchEndY = e.originalEvent.screenY,
                             touchEndX = e.originalEvent.screenX,
                             yDiff = touchStartY - touchEndY,
@@ -149,7 +149,7 @@
                         }
                         touchStartY = null;
                         touchStartX = null
-                    },
+                    },*/
                     mousemove: function (e) {
                         e.preventDefault();
                     }
