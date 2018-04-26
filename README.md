@@ -21,7 +21,7 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.0.7版本；
 
 --还有为了后台开发方便封装了Andrew_getUrlParam 获取URL中的参数值的方法和Andrew_changeURLArg更改URL中的参数值的方法。
 
-以上三个功能的使用方法请router.js文件中的第63行代码部分即可。
+以上三个功能的使用方法在打开router.js文件中的第63行代码部分即可。
 
 
 # 更新时间：2018/4/25 下午13:00
