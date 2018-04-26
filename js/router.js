@@ -59,7 +59,7 @@ $(document).ready(function(){
                     Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
                 });
             });
-            if (!hash) { //首次访问的页面您要跳转到哪个URL？（前面必须加#符号）
+            if (!hash) { //首次访问的页面您要跳转到哪个URL？
                 Andrew_Location("/start.html"); //location.replace 跳转模式
                 /*
                 Andrew_Location的使用方法：
