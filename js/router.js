@@ -60,7 +60,17 @@ $(document).ready(function(){
                 });
             });
             if (!hash) { //首次访问的页面您要跳转到哪个URL？（前面必须加#符号）
-                location.replace("#/start.html");
+                Andrew_Location("/start.html"); //location.replace 跳转模式
+                /*
+                Andrew_Location的使用方法：
+                Andrew_Location("/start.html","href"); //location.href 跳转模式
+                Andrew_Location("/","reload") //location.reload() 刷新当前页
+                Andrew_Location(-1,"history") //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
+                */
+                /*
+                console.log("GET_ak: "+Andrew_getUrlParam('ak')); //获取URL中的参数值
+                console.log(Andrew_changeURLArg(location.hash,"ak","change"+Andrew_getUrlParam('ak'))); //更改URL中的参数值
+                */
             }
         },
         success:function (hash) { //请求加载页面成功后的回调
