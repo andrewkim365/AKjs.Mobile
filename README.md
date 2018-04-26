@@ -23,6 +23,14 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.0.7版本；
 
 以上三个功能的使用方法在打开router.js文件中的第63行代码部分即可。
 
+1.0.7版本中增加了Andrew_Include功能；是js文件中引入另一个js文件的功能。也可以在js文件中引入css样式。
+
+Andrew_Include使用方法： 
+
+js引入 - Andrew_Include("file.js","js"); 或者 Andrew_Include("file.js");
+
+css引入 - Andrew_Include("style.css","css");
+
 
 # 更新时间：2018/4/25 下午13:00
 
