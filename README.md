@@ -31,6 +31,8 @@ js引入 - Andrew_Include("file.js","js"); 或者 Andrew_Include("file.js");
 
 css引入 - Andrew_Include("file.css","css");
 
+原先data.js文件在router.js文件中通过Andrew_Include的方法引入到演示版项目中。
+
 
 # 更新时间：2018/4/25 下午13:00
 
