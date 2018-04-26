@@ -794,6 +794,31 @@ function Andrew_changeURLArg(url, arg, arg_val) {
     return url + '\n' + arg + '\n' + arg_val;
 }
 
+/*-----------------------------------------------Andrew_Include------------------------------------------*/
+function Andrew_Include(url,type){
+    if(type == "js" || type != "css"){
+        var fileref = document.createElement('script');
+        fileref.setAttribute("type","text/javascript");
+        fileref.setAttribute("src",url);
+    }else {
+        var fileref = document.createElement('link');
+        fileref.setAttribute("rel","stylesheet");
+        fileref.setAttribute("type","text/css");
+        fileref.setAttribute("href",url);
+    }
+    if(typeof fileref != "undefined"){
+        $("head").find("script").each(function(){
+            if ($(this).attr("src")==url) {
+                $(this).remove();
+            }
+            $(fileref).appendTo($("head"));
+        });
+    }else{
+        alert("load include file method error!");
+    }
+    //Andrew_Include("file.js","js");
+}
+
 /*-----------------------------------------------Andrew_DateFormat------------------------------------------*/
 function Andrew_DateFormat(date,format) {
     if (date.constructor === Date) {
