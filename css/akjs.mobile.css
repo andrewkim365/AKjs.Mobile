@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180424 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180426 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -879,6 +879,9 @@ legend {
 }
 .text_al_r {
   text-align:right !important;
+}
+.text_al_j {
+  text-align:justify !important;
 }
 .text_al_t {
   vertical-align: top !important;
