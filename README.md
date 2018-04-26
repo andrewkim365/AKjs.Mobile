@@ -25,7 +25,7 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.0.7版本；
 
 1.0.7版本中增加了Andrew_Include功能；是js文件中引入另一个js文件的功能。也可以在js文件中引入css样式。
 
-Andrew_Include使用方法： 
+Andrew_Include使用方法(在js代码中使用)： 
 
 js引入 - Andrew_Include("file.js","js"); 或者 Andrew_Include("file.js");
 
