@@ -841,7 +841,6 @@
 
 </body>
 <script type="text/javascript">
-
     $("footer button").click(function(){
         alert("当前访问的界面没开启路由模式，所以要预览页面切换效果，请访问index.html！");
     });
@@ -859,7 +858,6 @@
             Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
         });
     });
-
     /*-----------------------------------------------Andrew_Menu 使用方法-------------------------------------------*/
     $(function() {
         Andrew_Menu({ //底部菜单的图标以及文字样式变化设置
@@ -906,7 +904,6 @@
             top: 0 //屏幕上方和滑动后的元素固定的上下间距
         });
     });
-
     /*-----------------------------------------------Andrew_Tabs 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_tabs").Andrew_Tabs({
@@ -925,7 +922,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_Ajax 使用方法-------------------------------------------*/
     $(function () {
         $("#plug_tab1").each(function(){ //默认显示Ajax请求后的页面
@@ -946,7 +942,6 @@
             });
         });
     });
-
     $(function () {
         $("#plug_tab1").click(function(){ //通过点击事件后请求加载Ajax页面
             Andrew_Ajax({
@@ -966,7 +961,6 @@
             });
         });
     });
-
     $(function () {
         $("#plug_tab2").click(function(){ //通过点击事件后请求加载Ajax页面
             Andrew_Ajax({
@@ -986,7 +980,6 @@
             });
         });
     });
-
     $(function () {
         $("#plug_tab3").click(function(){ //通过点击事件后请求加载Ajax页面
             Andrew_Ajax({
@@ -1006,7 +999,6 @@
             });
         });
     });
-
     $(function () {
         $("#plug_tab4").click(function(){ //通过点击事件后请求加载Ajax页面
             Andrew_Ajax({
@@ -1026,14 +1018,12 @@
             });
         });
     });
-
     /*-----------------------------------------------Andrew_Dialog 使用方法-------------------------------------------*/
     $(function(){
         $("#plug_webToast").click(function(){
             ak_webToast("恭喜您，修改成功!","middle","mask",9999); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
         });
     });
-
     $(function(){
         $("#plug_alert").click(function(){
             $ak.alert("请输入密码！", { //(标准的H5使用方法 $ak.alert)
@@ -1048,7 +1038,6 @@
             });
         });
     });
-
     $(function(){
         $("#plug_confirm").click(function(){
             $ak.confirm("确认要删除当前的信息吗？", { //(标准的H5使用方法 $ak.confirm)
@@ -1069,7 +1058,6 @@
             });
         });
     });
-
     $(function(){
         $("#plug_prompt_input").click(function(){
             var input = $(this); //获取当前的输入框
@@ -1100,7 +1088,6 @@
             });
         });
     });
-
     $(function(){
         $("#plug_prompt_textarea").click(function(){
             $ak.prompt("内容", "", { //(标准的H5使用方法 $ak.prompt)
@@ -1126,7 +1113,6 @@
             });
         });
     });
-
     /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
     $(function(){
         $("#plug_menu").on("click", function (e) {
@@ -1145,7 +1131,6 @@
             })
         })
     });
-
     $(function(){
         $("#plug_popup").click(function(){
             Andrew_Popupwin({
@@ -1175,7 +1160,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_ChangeInput 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_change_btn").Andrew_ChangeInput({
@@ -1189,7 +1173,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_ChangeIcon 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_sort_btn1").Andrew_ChangeIcon({
@@ -1308,7 +1291,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_Radio&Andrew_Checkbox&Andrew_Switch 使用方法-------------------------------------------*/
     $(function(){
         //单选按钮样式
@@ -1319,7 +1301,6 @@
             }
         });
     });
-
     $(function(){
         //多选按钮样式
         $(".plug_Checkbox").Andrew_Checkbox({
@@ -1330,7 +1311,6 @@
             }
         });
     });
-
     $(function(){
         //开关按钮样式
         $(".plug_Switch").Andrew_Switch({
@@ -1341,7 +1321,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_GetVerifyCode 使用方法-------------------------------------------*/
     $(function (){
         Andrew_GetVerifyCode.verify("#plug_getVerifyCode", {
@@ -1397,7 +1376,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_Validate 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_validate").Andrew_Validate({ //提交验证设置
@@ -1407,7 +1385,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_Codeval 使用方法-------------------------------------------*/
     $(function () {
         $("#plug_codeInput").each(function(){ //默认显示Ajax请求后的页面
@@ -1422,7 +1399,6 @@
             console.log(flag); //flag的值true可以通过，false是输入的验证码有误
         });
     });
-
     /*-----------------------------------------------Andrew_AllChecked 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_allchk").Andrew_AllChecked({
@@ -1436,7 +1412,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_DropUpDown 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_dropbutton").Andrew_DropUpDown({
@@ -1449,7 +1424,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_TouchDelete 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_touchdel").Andrew_TouchDelete({
@@ -1484,7 +1458,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_intlTelInput 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_mobileNum").Andrew_IntlTelInput({
@@ -1505,19 +1478,16 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_NowTime 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_nowtime").Andrew_NowTime({
             dateStyle: "yyyy年MM月dd日 hh:mm:ss" //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
         });
     });
-
     /*-----------------------------------------------Andrew_Substring 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_RMBoutput").Andrew_Substring(); //数字RMB格式
     });
-
     /*-----------------------------------------------Andrew_Spinner 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_spinner").Andrew_Spinner({//数量加减功能
@@ -1531,7 +1501,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_CountTo 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_count").Andrew_CountTo(); //数字加动画变化效果
@@ -1546,7 +1515,6 @@
             });
         });
     });
-
     /*-----------------------------------------------Andrew_CountDown 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_Countdown").click(function () {
@@ -1561,7 +1529,6 @@
             });
         });
     });
-
     /*-----------------------------------------------Andrew_Progress 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_progress").Andrew_Progress({
@@ -1576,7 +1543,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_StepOrder 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_step").Andrew_StepOrder({
@@ -1592,7 +1558,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_Ratyli 使用方法-------------------------------------------*/
     $(function() {
         $("#plug_ratyli1").Andrew_Ratyli({
@@ -1607,7 +1572,6 @@
             }
         });
     });
-
     $(function(){
         $("#plug_ratyli2").Andrew_Ratyli({
             rate:4, //当前被选中的数量
@@ -1620,9 +1584,7 @@
                 if(!init) console.log(this); //这里的this指向对象
             }
         });
-
     });
-
     /*-----------------------------------------------Andrew_Favorite 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_like").Andrew_Favorite({
@@ -1642,7 +1604,6 @@
             }
         });
     });
-
     $(function(){
         $(".plug_collect").Andrew_Favorite({
             likeMode: false, //是否开启点赞模式 （设置false为收藏模式）
@@ -1657,7 +1618,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_SnInput 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_sn_input").Andrew_SnInput({
@@ -1668,7 +1628,6 @@
             }
         })
     });
-
     /*-----------------------------------------------Andrew_Typeahead 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_Typeahead").Andrew_Typeahead({
@@ -1701,7 +1660,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_lightSlider 使用方法-------------------------------------------*/
     $(function(){
         $("#plug_photo_slider").Andrew_lightSlider({
@@ -1725,7 +1683,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_PreviewImage 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_previewImage").Andrew_PreviewImage({ //删除图片提示设置
@@ -1752,7 +1709,6 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_PortraitImage 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_PortraitImage").Andrew_PortraitImage({
@@ -1764,14 +1720,12 @@
             }
         });
     });
-
     /*-----------------------------------------------Andrew_Viewer 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_viewer").Andrew_Viewer({
             url: "data-original" //图片放大后高清图片URL设置
         });
     });
-
     /*-----------------------------------------------Andrew_DateTime 使用方法-------------------------------------------*/
     $(function () {
         $("#plug_datetime").Andrew_DateTime({
@@ -1800,7 +1754,6 @@
             }
         })
     });
-
     /*-----------------------------------------------Andrew_MultiDate 使用方法-------------------------------------------*/
     $(function(){
         $("#plug_multidate").Andrew_MultiDate({
@@ -1813,11 +1766,9 @@
             okfun: function(obj){//点击确定后的回调,obj包含{ elem当前输入框ID, val当前选择的值, date当前的日期值}
                 console.log(obj.elem);     //得到当前输入框的ID
                 console.log(obj.val);      //得到日期生成的值，如：2017-06-16
-
                 //得到日期时间对象，range为false
                 console.log(obj.date);    //这里是对象
                 obj.date = {YYYY: 2017, MM: 08, DD: 18}
-
                 //开启区域选择，range为字符串 时才会返回一个日期时间数组对象。
                 console.log(obj.date);    //这里是数组
                 obj.date = [
@@ -1828,7 +1779,6 @@
             success:function(elem) {}//层弹出后的成功回调方法, elem当前输入框ID
         });
     });
-
     /*-----------------------------------------------Andrew_Select 使用方法-------------------------------------------*/
     $(function () {
         new Andrew_Select({
@@ -1846,7 +1796,6 @@
             }
         });
     });
-
     $(function () {
         new Andrew_Select({
             trigger: "#plug_trigger2",  //需要绑定的元素
@@ -1862,6 +1811,5 @@
             }
         });
     });
-
 </script>
 </html>
