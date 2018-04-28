@@ -8079,7 +8079,12 @@ button.bg_gray_444[disabled] {
   left: -0.5em;
   top: -0.6em;
 }
-
+/*Mask Background setting*/
+animate {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
 /*Mask Background setting*/
 .ak-mask {
   display:block;
