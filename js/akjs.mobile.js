@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180426 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180428 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -109,6 +109,7 @@ function Andrew_Plugin(setting,css){
             type:'GET',
             url: Path+"plugin/"+setting+".js",
             async:false,
+            cache: false,
             dataType:'script'
         });
     }
@@ -136,7 +137,8 @@ function Andrew_Router(setting){
         setting);
     layout = $.ajax({
         url: option.RouterPath[1],
-        async: false
+        async: false,
+        cache: false
     });
     $("body").html(layout.responseText);
     if(option.Router== true) {
@@ -149,6 +151,7 @@ function Andrew_Router(setting){
                 htmlobj = $.ajax({
                     url: Router_path+document.location.hash.substring(1),
                     async: false,
+                    cache: false,
                     success:function () {
                         hash = Router_path+document.location.hash.substring(1);
                         option.success(hash);
@@ -183,6 +186,7 @@ function Andrew_Router(setting){
                 htmlobj = $.ajax({
                     url: Router_path+document.location.hash.substring(1),
                     async: false,
+                    cache: false,
                     success:function () {
                         hash = document.location.hash.substring(1);
                         option.success(hash);
@@ -258,7 +262,9 @@ function Andrew_Menu(setting){
     var option = $.extend({
             active_color: "",
             menu_icon: new Array(),
-            menu_icon_active: new Array()
+            menu_icon_active: new Array(),
+            Callback: function() {
+            }
         },
         setting);
     var ak_menu = $("footer").find("menu");
@@ -274,12 +280,13 @@ function Andrew_Menu(setting){
         var data_href = $(this).attr("data-href").split("?")[0];
         $(this).children().eq(0).addClass(option.menu_icon[index]);
         $(this).children().removeClass(option.active_color);
-        if (document.location.hash == data_href || document.location.hash.substring(1).split("?")[0] == data_href) {
+        if (document.location.hash.indexOf(data_href) != -1 || document.location.hash.substring(1).split("?")[0].indexOf(data_href) != -1) {
             ak_menu_btn.children().eq(1).removeClass(option.active_color);
             $(this).children().eq(0).removeClass(option.menu_icon[index]);
             $(this).children().eq(0).addClass(option.menu_icon_active[index]).addClass(option.active_color);
             $(this).children().eq(1).addClass(option.active_color);
-        } else if (document.location.hash.substring(1).split("?ak")[0] == "") {
+            option.Callback($(this),index+1);
+        } else if (document.location.hash.substring(1).split("?")[0] == "") {
             ak_menu_btn.eq(0).children().eq(0).removeClass(option.menu_icon[0]).addClass(option.menu_icon_active[0]).addClass(option.active_color);
             ak_menu_btn.eq(0).children().eq(1).addClass(option.active_color);
         }
@@ -540,6 +547,7 @@ function Andrew_Ajax(setting){
             url: "",
             data:{},
             async:false,
+            cache: false,
             success:function () {
             },
             error:function () {
@@ -551,6 +559,7 @@ function Andrew_Ajax(setting){
         url: option.url,
         data: option.data,
         async: option.async,
+        cache: option.cache,
         success:function (result) {
             option.success(result);
             if($(option.to)){
@@ -728,8 +737,8 @@ function Andrew_RouterResize(option) {
 
 /*-----------------------------------------------Andrew_Location-------------------------------------------*/
 function Andrew_Location(url,option) {
-    var u = navigator.userAgent;
-    if (u.indexOf('iPhone') > -1 || u.indexOf('iPad') > -1) {
+    Andrew_sUserAgent();
+    if (IsIphone || IsIpad) {
         switch (option) {
             case 'href':
                 document.location.href="#"+url;

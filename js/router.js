@@ -43,7 +43,10 @@ $(document).ready(function(){
                     "icon-mn_huodong_fill", //第3个按钮的图标
                     "icon-mn_kuangjia_fill", //第4个按钮的图标
                     "icon-mn_kongjian_fill" //第5个按钮的图标
-                )
+                ),
+                Callback: function(ele,index) { //回调入口
+                    console.log(ele, index);
+                }
             });
             /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
             $(function () {
@@ -52,7 +55,7 @@ $(document).ready(function(){
                     Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
                     touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
                     ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
-                    WechatHeader: false, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
+                    WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
                     Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
                     fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
                     animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：andrew.animate.css
