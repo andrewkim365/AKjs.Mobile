@@ -20,6 +20,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.0.8版本；
 
 演示版的引导页增加动画效果；请替换router/start.html 即可。
 
+修改js/plugin/Andrew_Slider.js功能插件，增加循环设置参数（loopPlay）。
+
 
 # 更新时间：2018/4/26 下午 13:20
 
