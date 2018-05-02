@@ -1,40 +1,42 @@
 <ak-header data-display="false">
 </ak-header>
-
-<article class="plug_swipe abs h_100 top_0">
-    <section class="fl rel wh_100 bg_taobao">
-        <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white"></i>
-        <h1 class="c_white text_al_c line_h_8em">你好，我是1号屏幕，第一屏,请右侧滑动切换界面</h1>
-    </section>
-    <section class="fl rel wh_100 bg_alipay">
-        <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white"></i>
-        <h1 class="c_white text_al_c line_h_8em">你好，我是2号屏幕，左右滑动切换界面</h1>
-    </section>
-    <section class="fl rel wh_100 bg_wechat">
-        <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white"></i>
-        <h1 class="c_white text_al_c line_h_8em">你好，我是3号屏幕，左右滑动切换界面</h1>
-    </section>
-    <section class="fl rel wh_100 bg_pink">
-        <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white"></i>
-        <h1 class="c_white text_al_c line_h_8em">你好，我是4号屏幕，左右滑动切换界面</h1>
-    </section>
-    <section class="fl rel wh_100 bg_orange-yellow">
-        <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white"></i>
-        <h1 class="c_white text_al_c line_h_8em">你好，我是5号屏幕，到底了，请左侧滑动切换界面</h1>
-        <fieldset class="abs bottom_10 w_100 ovh">
-            <button type="button" class="w_30 center mb_10 line_h_24em bg_white bor_rad_03em c_title text_14em" data-href="/page1.html">点击进入</button>
-        </fieldset>
-    </section>
-</article>
-<nav class="fix left_0 bottom_3 w_100 zindex_3">
-    <ol class="ovh w_25 center">
-        <li class="fl ma_02em wh_08em bor_rad_50 bg_black04 bg_white"></li>
-        <li class="fl ma_02em wh_08em bor_rad_50 bg_black04"></li>
-        <li class="fl ma_02em wh_08em bor_rad_50 bg_black04"></li>
-        <li class="fl ma_02em wh_08em bor_rad_50 bg_black04"></li>
-        <li class="fl ma_02em wh_08em bor_rad_50 bg_black04"></li>
-    </ol>
-</nav>
+<div class="plug_slider w_100 h_fill ovh rel">
+    <ul>
+        <li>
+            <section class="wh_100 bg_taobao">
+                <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white" data-animation="{name:'zoomInLeft', duration:1, delay:0}"></i>
+                <h1 class="c_white text_al_c line_h_8em" data-animation="{name:'swashIn', duration:1, delay:0.5}">你好，我是1号屏幕，第一屏,请右侧滑动切换界面</h1>
+            </section>
+        </li>
+        <li>
+            <section class="wh_100 bg_alipay">
+                <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white" data-animation="{name:'zoomInRight', duration:1, delay:0}"></i>
+                <h1 class="c_white text_al_c line_h_8em" data-animation="{name:'swashIn', duration:1, delay:0.5}">你好，我是2号屏幕，左右滑动切换界面</h1>
+            </section>
+        </li>
+        <li>
+            <section class="wh_100 bg_wechat">
+                <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white" data-animation="{name:'zoomInLeft', duration:1, delay:0}"></i>
+                <h1 class="c_white text_al_c line_h_8em" data-animation="{name:'swashIn', duration:1, delay:0.5}">你好，我是3号屏幕，左右滑动切换界面</h1>
+            </section>
+        </li>
+        <li>
+            <section class="wh_100 bg_pink">
+                <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white" data-animation="{name:'zoomInRight', duration:1, delay:0}"></i>
+                <h1 class="c_white text_al_c line_h_8em" data-animation="{name:'swashIn', duration:1, delay:0.5}">你好，我是4号屏幕，左右滑动切换界面</h1>
+            </section>
+        </li>
+        <li>
+            <section class="wh_100 bg_orange-yellow">
+                <i class="icon-im_andrew text_6em w_100 mt_30 text_al_c c_white" data-animation="{name:'zoomInLeft', duration:1, delay:0}"></i>
+                <h1 class="c_white text_al_c line_h_8em" data-animation="{name:'swashIn', duration:1, delay:0.5}">你好，我是5号屏幕，到底了，请左侧滑动切换界面</h1>
+                <fieldset class="fix bottom_30 w_100" data-animation="{name:'tinDownIn', duration:1, delay:1}">
+                    <button type="button" class="rel w_30 center h_24em bg_white bor_rad_03em c_title text_14em" data-href="/page1.html">点击进入</button>
+                </fieldset>
+            </section>
+        </li>
+    </ul>
+</div>
 
 
 <ak-footer data-display="false">
@@ -42,30 +44,19 @@
 
 <script type="text/javascript">
     //引入Andrew插件的区域
-
-    /*-----------------------------------------------Andrew_TouchSwipe 使用方法-------------------------------------------*/
-    $(function () {
-        var nowpage = 0; //默认数字
-        var total = 5; //总数量
-        $(".plug_swipe").next("nav").find("li").eq(nowpage).addClass("bg_white");
-        $(".plug_swipe").css({
-            "width": total * 100 + "%"
-        }).addClass("length"+total);
-        $(".plug_swipe").Andrew_TouchSwipe({
-            swipe:function(event, direction) {
-                if(direction == "left"){
-                    nowpage = nowpage + 1;
-                }else if(direction == "right"){
-                    nowpage = nowpage - 1;
-                }
-                if(nowpage > total-1){
-                    nowpage = total-1;
-                }
-                if(nowpage < 0){
-                    nowpage = 0;
-                }
-                $(this).animate({"left":nowpage * -100 + "%"},400);
-                $(this).next("nav").find("li").eq(nowpage).addClass("bg_white").siblings().removeClass("bg_white");
+    /*-----------------------------------------------Andrew_Slider 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_slider").Andrew_Slider({
+            start: 1, //默认显示的图片排号
+            speed: 500, //图片切换的速度
+            interval: 5000, //图片切换间隔毫秒
+            autoPlay: false, //幻灯片是否自动播放（true，false）
+            dotShow: true, //是否显示幻灯片位置按钮（true，false）
+            arrShow: false, //是否显示左右切换按钮（true，false）
+            dotClass: "fl wh_08em bg_black04 mb_2em mr_05em bor_rad_50 pointer", //底部图片位置的样式设置
+            ActiveClass: "bg_white", //底部图片位置的当前样式
+            afterSlider: function(num) { //回调获取当前的数
+                //console.log(num);
             }
         });
     });
