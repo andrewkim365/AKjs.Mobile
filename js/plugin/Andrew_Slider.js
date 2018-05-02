@@ -175,6 +175,13 @@
                             }
                         }
                     }
+                    if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                        if (yDiff > 5) {
+                            e.preventDefault();
+                        } else {
+                            e.preventDefault();
+                        }
+                    }
                     touchStartY = null;
                     touchStartX = null
                 },
@@ -183,8 +190,14 @@
                         touchEndX = e.originalEvent.changedTouches[0].clientX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
-                    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                        e.preventDefault()
+                    if (self.options.loopPlay) {
+                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                            e.preventDefault()
+                        }
+                    } else {
+                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                            e.preventDefault()
+                        }
                     }
                 },
                 mousedown: function(e) {
