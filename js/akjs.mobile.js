@@ -480,6 +480,19 @@ function Andrew_mainHeight() {
             "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
         });
     }
+    if ($("header").length === 0 && $("footer").length > 0) {
+        $("main").css({
+            "height": $(window).height() - $("footer").outerHeight()
+        });
+    } else if ($("header").length > 0 && $("footer").length === 0) {
+        $("main").css({
+            "height": $(window).height() - $("header").outerHeight()
+        });
+    } else if ($("header").length === 0 && $("footer").length === 0) {
+        $("main").css({
+            "height": $(window).height()
+        });
+    }
     $("main").css({
         "top": "0",
         "bottom": "0",
