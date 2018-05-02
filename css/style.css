@@ -231,6 +231,7 @@ header {
     position:fixed;
     z-index:6;
     top:0;
+    display: none;
 }
 header>* {
     height:100%;
@@ -311,6 +312,7 @@ footer, .tail {
     padding: 0;
     bottom:0;
     width:100%;
+    display: none;
 }
 footer menu {
     display:block;
