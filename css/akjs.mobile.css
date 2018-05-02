@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180426 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180502 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -33,7 +33,7 @@ html, html * {
 }
 body {
   -webkit-overflow-scrolling: auto !important;
-  height:100% !important;
+  overflow: hidden !important;
 }
 body,input,span,p,a {
   font-size:100%;
