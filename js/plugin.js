@@ -35,7 +35,7 @@ Andrew_Plugin("Andrew_Radio","css"); //单选框美化
 Andrew_Plugin("Andrew_Ratyli"); //星级评价功能
 Andrew_Plugin("Andrew_ScrollFixed"); //当屏幕滑动时把指定元素固定到页面顶部的功能
 Andrew_Plugin("Andrew_Select","css"); //下拉菜单功能
-Andrew_Plugin("Andrew_Slider","css"); //联播图功能
+Andrew_Plugin("Andrew_Slider","css"); //引导页和联播图功能
 Andrew_Plugin("Andrew_SnInput"); //输入支付密码功能
 Andrew_Plugin("Andrew_Spinner"); //数量控制功能
 Andrew_Plugin("Andrew_StepOrder"); //步骤插件
@@ -45,7 +45,6 @@ Andrew_Plugin("Andrew_Tabs"); //TABS切换内容功能
 Andrew_Plugin("Andrew_Template"); //模板引擎插件
 Andrew_Plugin("Andrew_Textarea"); //多行输入框实时查询字符数的功能
 Andrew_Plugin("Andrew_TouchDelete","css"); //列表滑动删除功能
-Andrew_Plugin("Andrew_TouchSwipe"); //引导页专用联播图功能
 Andrew_Plugin("Andrew_Typeahead","css"); //模糊搜索功能
 Andrew_Plugin("Andrew_Validate"); //表单验证功能
 Andrew_Plugin("Andrew_Viewer","css"); //图片放大预览功能
