@@ -58,24 +58,11 @@ function Andrew_Config(setting){
     }
     if(option.WechatHeader== true) {
         if(IsWechat) {
-            $("header").hide().remove();
-            $("main").css({
-                "position": "relative",
-                "margin-top": 0
-            });
-            if ($("footer").hasClass("dis_none_im")) {
-                $("main").css({
-                    "margin-bottom":0,
-                    "height": $(window).height()
-                });
-            } else {
-                $("main").css({
-                    "margin-bottom":  $("footer").outerHeight(),
-                    "height": $(window).height() -  $("footer").outerHeight()
-                });
-            }
-        } else {
+            $("header").addClass("dis_none_im").removeClass("dis_block_im");
             Andrew_mainHeight();
+            $("main").addClass("mt_0");
+        } else {
+            $("main").removeClass("mt_0");
         }
     } else {
         Andrew_mainHeight();
@@ -147,6 +134,11 @@ function Andrew_Router(setting){
         if (option.RouterPath[0]) {
             Router_path = option.RouterPath[0]+"/";
         }
+        $(window).resize(function(){
+            Andrew_RouterResize(option);
+            Andrew_InputFocus();
+            ErrorPage_403();
+        });
         $(window).each(function () {
             if (document.location.hash.substring(1) != "") {
                 htmlobj = $.ajax({
@@ -169,11 +161,6 @@ function Andrew_Router(setting){
                 Andrew_InputFocus();
                 ErrorPage_403();
             }
-            $(window).resize(function(){
-                Andrew_RouterResize(option);
-                Andrew_InputFocus();
-                ErrorPage_403();
-            });
             option.changePage(document.location.hash.substring(1));
         });
         $(window).bind('hashchange', function () {
@@ -214,37 +201,37 @@ function Andrew_Router(setting){
         function Router_Settings() {
             if ($("footer").find("dfn").length == 0) {
                 $("footer").children().before("<dfn />");
-                $("footer").children("dfn").addClass("dis_none_im");
+                $("footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im");
             }
             if ($("ak-header").length > 0) {
                 if ($("ak-header").attr("data-display") == "false") {
-                    $("header").addClass("dis_none_im");
+                    $("header").addClass("dis_none_im").removeClass("dis_block_im");
                 } else {
                     if ($("ak-header").children().length > 0) {
                         $("header").html($("ak-header").children().clone());
                     }
-                    $("header").removeClass("dis_none_im");
+                    $("header").removeClass("dis_none_im").addClass("dis_block_im");
                 }
                 $("ak-header").remove();
             } else {
-                $("header").addClass("dis_none_im");
+                $("header").addClass("dis_none_im").removeClass("dis_block_im");
             }
             if ($("ak-footer").length > 0) {
                 if ($("ak-footer").attr("data-display") == "false") {
-                    $("footer").addClass("dis_none_im");
+                    $("footer").addClass("dis_none_im").removeClass("dis_block_im");
                 } else {
                     if ($("ak-footer").children().length > 0) {
                         $("footer").children("dfn").html($("ak-footer").children().clone());
-                        $("footer").children("dfn").removeClass("dis_none_im");
+                        $("footer").children("dfn").removeClass("dis_none_im").addClass("dis_block_im");
                     } else {
-                        $("footer").children("dfn").addClass("dis_none_im");
+                        $("footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im");
                     }
-                    $("footer").removeClass("dis_none_im");
+                    $("footer").removeClass("dis_none_im").addClass("dis_block_im");
                 }
                 $("ak-footer").remove();
             } else {
                 $("footer").children("dfn").addClass("dis_none_im");
-                $("footer").addClass("dis_none_im");
+                $("footer").addClass("dis_none_im").removeClass("dis_block_im");
             }
             Andrew_RouterResize(option);
             Andrew_HashSharp(true);
@@ -468,28 +455,25 @@ function Andrew_GetScrollTop(){
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_sUserAgent();
-    if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": 0,
-            "margin-bottom": $("footer").outerHeight(),
-            "height": $(window).height() - $("footer").outerHeight()
-        });
-    }
-    if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": $("header").outerHeight(),
-            "margin-bottom": 0,
-            "height": $(window).height() - $("header").outerHeight()
-        });
-    }
     if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
         $("main").css({
             "margin-top": 0,
             "margin-bottom": 0,
             "height": $(window).height()
         });
-    }
-    if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+    } else if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+        $("main").css({
+            "margin-top": 0,
+            "margin-bottom": $("footer").outerHeight(),
+            "height": $(window).height() - $("footer").outerHeight()
+        });
+    } else if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
+        $("main").css({
+            "margin-top": $("header").outerHeight(),
+            "margin-bottom": 0,
+            "height": $(window).height() - $("header").outerHeight()
+        });
+    } else if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
         $("main").css({
             "margin-top": $("header").outerHeight(),
             "margin-bottom": $("footer").outerHeight(),
