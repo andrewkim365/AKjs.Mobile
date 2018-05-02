@@ -8,6 +8,7 @@
                 speed: 500,
                 interval: 5000,
                 autoPlay: false,
+                loopPlay: true,
                 dotShow: true,
                 arrShow: true,
                 dotClass:"",
@@ -84,11 +85,11 @@
                         event.preventDefault();
                         if (self.clickable) {
                             if (index >= SliderSize) {
-                                index = 1
+                                index = 1;
                             } else {
-                                index += 1
+                                index += 1;
                             }
-                            self.moveTo(index, "ak-arr_next")
+                            self.moveTo(index, "ak-arr_next");
                         }
                     });
                 ele.find(".ak-arr_prev").unbind("click");
@@ -97,11 +98,11 @@
                         event.preventDefault();
                         if (self.clickable) {
                             if (index == 1) {
-                                index = SliderSize
+                                index = SliderSize;
                             } else {
-                                index -= 1
+                                index -= 1;
                             }
-                            self.moveTo(index, "ak-arr_prev")
+                            self.moveTo(index, "ak-arr_prev");
                         }
                     })
             }
@@ -131,7 +132,7 @@
                     if (index > SliderSize) {
                         index = 1
                     }
-                    self.moveTo(index, "ak-arr_next")
+                    self.moveTo(index, "ak-arr_next");
                 };
                 timer = setInterval(play, self.options.interval);
                 ele.hover(function() {
@@ -152,20 +153,26 @@
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                        if (xDiff > 5) {
+                        if (xDiff > 10) {
                             if (index >= SliderSize) {
-                                index = 1
+                                if (self.options.loopPlay) {
+                                    index = 1;
+                                    self.moveTo(index, "ak-arr_next");
+                                }
                             } else {
-                                index += 1
+                                index += 1;
+                                self.moveTo(index, "ak-arr_next");
                             }
-                            self.moveTo(index, "ak-arr_next");
                         } else {
                             if (index == 1) {
-                                index = SliderSize
+                                if (self.options.loopPlay) {
+                                    index = SliderSize;
+                                    self.moveTo(index, "ak-arr_prev");
+                                }
                             } else {
-                                index -= 1
+                                index -= 1;
+                                self.moveTo(index, "ak-arr_prev");
                             }
-                            self.moveTo(index, "ak-arr_prev");
                         }
                     }
                     touchStartY = null;
@@ -190,20 +197,26 @@
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                        if (xDiff > 5) {
+                        if (xDiff > 10) {
                             if (index >= SliderSize) {
-                                index = 1
+                                if (self.options.loopPlay) {
+                                    index = 1;
+                                    self.moveTo(index, "ak-arr_next");
+                                }
                             } else {
-                                index += 1
+                                index += 1;
+                                self.moveTo(index, "ak-arr_next");
                             }
-                            self.moveTo(index, "ak-arr_next");
                         } else {
                             if (index == 1) {
-                                index = SliderSize
+                                if (self.options.loopPlay) {
+                                    index = SliderSize;
+                                    self.moveTo(index, "ak-arr_prev");
+                                }
                             } else {
-                                index -= 1
+                                index -= 1;
+                                self.moveTo(index, "ak-arr_prev");
                             }
-                            self.moveTo(index, "ak-arr_prev");
                         }
                     }
                     touchStartY = null;
