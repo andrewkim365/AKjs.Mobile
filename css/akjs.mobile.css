@@ -7528,6 +7528,33 @@ legend {
 .c_black {
   color:#000000 !important;
 }
+.c_black09 {
+  color: rgba(0,0,0,0.9);
+}
+.c_black08 {
+  color: rgba(0,0,0,0.8);
+}
+.c_black07 {
+  color: rgba(0,0,0,0.7);
+}
+.c_black06 {
+  color: rgba(0,0,0,0.6);
+}
+.c_black05 {
+  color: rgba(0,0,0,0.5);
+}
+.c_black04 {
+  color: rgba(0,0,0,0.4);
+}
+.c_black03 {
+  color: rgba(0,0,0,0.3);
+}
+.c_black02 {
+  color: rgba(0,0,0,0.2);
+}
+.c_black01 {
+  color: rgba(0,0,0,0.1);
+}
 .c_gray_111 {
   color:#111111 !important;
 }
@@ -7599,6 +7626,33 @@ legend {
 }
 .c_white {
   color:#ffffff !important;
+}
+.c_white09 {
+  color: rgba(255,255,255,0.9);
+}
+.c_white08 {
+  color: rgba(255,255,255,0.8);
+}
+.c_white07 {
+  color: rgba(255,255,255,0.7);
+}
+.c_white06 {
+  color: rgba(255,255,255,0.6);
+}
+.c_white05 {
+  color: rgba(255,255,255,0.5);
+}
+.c_white04 {
+  color: rgba(255,255,255,0.4);
+}
+.c_white03 {
+  color: rgba(255,255,255,0.3);
+}
+.c_white02 {
+  color: rgba(255,255,255,0.2);
+}
+.c_white01 {
+  color: rgba(255,255,255,0.1);
 }
 .c_in {
   color:inherit !important;
