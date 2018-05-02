@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180428 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180502 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -60,17 +60,18 @@ function Andrew_Config(setting){
         if(IsWechat) {
             $("header").hide().remove();
             $("main").css({
-                "height": "auto",
                 "position": "relative",
                 "margin-top": 0
             });
             if ($("footer").hasClass("dis_none_im")) {
                 $("main").css({
-                    "padding-bottom": 0
+                    "margin-bottom":0,
+                    "height": $(window).height()
                 });
             } else {
                 $("main").css({
-                    "padding-bottom": $("footer").outerHeight()
+                    "margin-bottom":  $("footer").outerHeight(),
+                    "height": $(window).height() -  $("footer").outerHeight()
                 });
             }
         } else {
@@ -470,62 +471,30 @@ function Andrew_mainHeight() {
     if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
         $("main").css({
             "margin-top": 0,
-            "margin-bottom": $("footer").outerHeight()
+            "margin-bottom": $("footer").outerHeight(),
+            "height": $(window).height() - $("footer").outerHeight()
         });
-        if (IsWechat && IsAndroid) {
-            $("main").css({
-                "height": "inherit"
-            });
-        } else {
-            $("main").css({
-                "height": $(window).height() - $("footer").outerHeight()
-            });
-        }
     }
     if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
         $("main").css({
             "margin-top": $("header").outerHeight(),
-            "margin-bottom": 0
+            "margin-bottom": 0,
+            "height": $(window).height() - $("header").outerHeight()
         });
-        if (IsWechat && IsAndroid) {
-            $("main").css({
-                "height": "inherit"
-            });
-        } else {
-            $("main").css({
-                "height": $(window).height() - $("header").outerHeight()
-            });
-        }
     }
     if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
         $("main").css({
             "margin-top": 0,
-            "margin-bottom": 0
+            "margin-bottom": 0,
+            "height": $(window).height()
         });
-        if (IsWechat && IsAndroid) {
-            $("main").css({
-                "height": "inherit"
-            });
-        } else {
-            $("main").css({
-                "height": $(window).height()
-            });
-        }
     }
     if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
         $("main").css({
             "margin-top": $("header").outerHeight(),
-            "margin-bottom": $("footer").outerHeight()
+            "margin-bottom": $("footer").outerHeight(),
+            "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
         });
-        if (IsWechat && IsAndroid) {
-            $("main").css({
-                "height": "inherit"
-            });
-        } else {
-            $("main").css({
-                "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
-            });
-        }
     }
     $("main").css({
         "top": "0",
@@ -666,36 +635,19 @@ function Andrew_RouterResize(option) {
             "margin-bottom": $(option.tailClass).outerHeight() + $(option.tailClass).outerHeight()/2
         });
         $("footer").addClass("dis_opa_0");
-        if(IsWechat) {
-            $("body").removeClass("ovh");
+        $("main").css({
+            "padding-bottom": $(option.tailClass).outerHeight()
+        });
+        if ($("header").hasClass("dis_none_im")) {
             $("main").css({
-                "padding-bottom": $(option.tailClass).outerHeight()
+                "margin-top": 0,
+                "height": $(window).height() - $(option.tailClass).outerHeight()
             });
-            if ($("header").hasClass("dis_none_im")) {
-                $("main").css({
-                    "margin-top": 0
-                });
-            } else {
-                $("main").css({
-                    "margin-top": $("header").outerHeight()
-                });
-            }
         } else {
-            $("body").addClass("ovh");
             $("main").css({
-                "padding-bottom": $(option.tailClass).outerHeight()
+                "margin-top": $("header").outerHeight(),
+                "height": $(window).height() - $("header").outerHeight() - $(option.tailClass).outerHeight()
             });
-            if ($("header").hasClass("dis_none_im")) {
-                $("main").css({
-                    "margin-top": 0,
-                    "height": $(window).height() - $(option.tailClass).outerHeight()
-                });
-            } else {
-                $("main").css({
-                    "margin-top": $("header").outerHeight(),
-                    "height": $(window).height() - $("header").outerHeight() - $(option.tailClass).outerHeight()
-                });
-            }
         }
         $(option.tailClass).on({
             touchmove: function (e) {
