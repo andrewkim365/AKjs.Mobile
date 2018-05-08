@@ -918,20 +918,29 @@
             touchmode : true, //是否开启触屏滑动切换功能 (true/false)
             changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
             callback: function(ele,index) { //通过回调获取当前显示的元素
-                //console.log(ele);
+                if (index == 0) {
+                    var ajax_url = './router/tab_test1.html';
+                } else if (index == 1) {
+                    var ajax_url = './router/tab_test2.html';
+                } else if (index == 2) {
+                    var ajax_url = './router/tab_test3.html';
+                } else if (index == 3) {
+                    var ajax_url = './router/tab_test4.html';
+                }
+                //console.log(ajax_url);
                 /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
                 Andrew_Ajax({
                     to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
                     type: "GET", //GET或POST
-                    url: "./router/tab_test"+parseInt(index+1)+".html", //需要加载的URL
+                    url: ajax_url, //需要加载的URL
                     data:{}, //传入参数
                     async: true, //异步方式：true，同步方式：false
                     success:function (result) { //ajax请求加载成功后的回调
-                        console.log(result);
+                        //console.log(result);
                         //ak_webToast("请求加载数据成功！","middle",2000);
                     },
                     error:function (error) { //ajax请求加载失败后的回调
-                        console.log(error);
+                        //console.log(error);
                         //ak_webToast("请求加载数据失败！","middle",2000);
                     }
                 });
