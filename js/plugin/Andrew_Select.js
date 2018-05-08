@@ -38,7 +38,6 @@
                 _this.wheel = getClass(_this.Andrew_Select, 'wheel'); //wheel 数组
                 _this.slider = getClass(_this.Andrew_Select, 'selectContainer'); // slider 数组
                 _this.wheels = _this.Andrew_Select.querySelector('.wheels'); //wheels
-                _this.liHeight = _this.Andrew_Select.querySelector('li').offsetHeight;
                 _this.ensureBtn = _this.Andrew_Select.querySelector('.ensure');
                 _this.closeBtn = _this.Andrew_Select.querySelector('.cancel');
                 _this.grayLayer = _this.Andrew_Select.querySelector('.ak-mask');
@@ -48,6 +47,11 @@
                 _this.transitionEnd = config.transitionEnd ? config.transitionEnd : function () {
                 };
                 _this.initPosition = config.position ? config.position : [];
+
+                setTimeout(function() {
+                    _this.liHeight = _this.Andrew_Select.querySelector('li').offsetHeight;
+                    _this.setCurDistance(_this.initPosition);
+                },100);
                 $(window).resize(function(){
                     _this.liHeight = _this.Andrew_Select.querySelector('li').offsetHeight;
                     _this.setCurDistance(_this.initPosition);

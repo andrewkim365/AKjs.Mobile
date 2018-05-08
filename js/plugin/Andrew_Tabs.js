@@ -36,7 +36,7 @@
                 self.setData();
             });
             if (this.opts.mouse === 'click') {
-                this.$tab_list.unbind("click");
+                //this.$tab_list.unbind("click");
                 this.$tab_list.click(function() {
                     self.changeTab($(this).index());
                     self.iNow = $(this).index();
@@ -55,7 +55,7 @@
                         clearTimeout(self.timer);
                     });
             } else {
-                this.$tab_list.unbind("click");
+                //this.$tab_list.unbind("click");
                 this.$tab_list.click(function() {
                     self.changeTab($(this).index());
                     self.iNow = $(this).index();
@@ -215,7 +215,7 @@
             var curNum = this.opts.curDisplay - 1;
             this.$tab_list.removeClass(this.opts.fullclass);
             this.$tab_list.eq(curNum).addClass(this.opts.fullclass);
-            this.opts.callback(this.$tab_cont.eq(curNum));
+            this.opts.callback(this.$tab_cont.eq(curNum),curNum);
             if (this.opts.changeMethod != 'vertical') {
                 this.$tab_cont.css({
                     "height": "0",
@@ -254,7 +254,7 @@
             //console.log(this.$tab_list.length)
             this.$tab_list.removeClass(this.opts.fullclass).addClass(this.opts.emptyclass).removeAttr("style");
             this.$tab_list.eq(index).removeClass(this.opts.emptyclass).addClass(this.opts.fullclass);
-            this.opts.callback(this.$tab_cont.eq(index));
+            this.opts.callback(this.$tab_cont.eq(index),index);
             if (this.opts.changeMethod != 'vertical') {
                 var that = this;
                 setTimeout(function () {

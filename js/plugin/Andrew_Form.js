@@ -116,12 +116,14 @@
                 if ($(this).attr("placeholder") && $(this).val()=='') {
                     $(this).parent().append("<label class='top_0  abs c_gray_ccc'></label>");
                     $(this).next("label").html($(this).attr('placeholder'));
-                    $(this).next("label").css({
-                        "width":$(this).outerWidth(),
-                        "min-width": "100%",
-                        "height": $(this).outerHeight(),
-                        "line-height": $(this).outerHeight()+"px"
-                    });
+                    setTimeout(function() {
+                        place.next("label").css({
+                            "width":place.outerWidth(),
+                            "min-width": "100%",
+                            "height": place.outerHeight(),
+                            "line-height": place.outerHeight()+"px"
+                        });
+                    }, 100);
                     $(window).resize(function(){
                         place.next("label").css({
                             "width":place.outerWidth(),
