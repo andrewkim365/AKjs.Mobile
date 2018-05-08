@@ -1,4 +1,4 @@
-//选择星期Json数据
+﻿//选择星期Json数据
 var json_weekData = [
     {
         id:'1',

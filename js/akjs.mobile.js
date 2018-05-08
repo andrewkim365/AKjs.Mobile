@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180502 AKjs.Mobile license */
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180508 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -96,7 +96,7 @@ function Andrew_Plugin(setting,css){
         $.ajax({
             type:'GET',
             url: Path+"plugin/"+setting+".js",
-            async:false,
+            async: false,
             cache: false,
             dataType:'script'
         });
@@ -123,13 +123,15 @@ function Andrew_Router(setting){
             }
         },
         setting);
-    layout = $.ajax({
-        url: option.RouterPath[1],
-        async: false,
-        cache: false
-    });
-    $("body").html(layout.responseText);
     if(option.Router== true) {
+        layout = $.ajax({
+            url: option.RouterPath[1],
+            async: false,
+            cache: false
+        });
+
+        $("body").html(layout.responseText);
+
         var Router_path = "./";
         if (option.RouterPath[0]) {
             Router_path = option.RouterPath[0]+"/";
@@ -455,54 +457,56 @@ function Andrew_GetScrollTop(){
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_sUserAgent();
-    if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
+    setTimeout(function() {
+        if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": 0,
+                "margin-bottom": 0,
+                "height": $(window).height()
+            });
+        } else if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": 0,
+                "margin-bottom": $("footer").outerHeight(),
+                "height": $(window).height() - $("footer").outerHeight()
+            });
+        } else if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": $("header").outerHeight(),
+                "margin-bottom": 0,
+                "height": $(window).height() - $("header").outerHeight()
+            });
+        } else if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": $("header").outerHeight(),
+                "margin-bottom": $("footer").outerHeight(),
+                "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
+            });
+        }
+        if ($("header").length === 0 && $("footer").length > 0) {
+            $("main").css({
+                "height": $(window).height() - $("footer").outerHeight()
+            });
+        } else if ($("header").length > 0 && $("footer").length === 0) {
+            $("main").css({
+                "height": $(window).height() - $("header").outerHeight()
+            });
+        } else if ($("header").length === 0 && $("footer").length === 0) {
+            $("main").css({
+                "height": $(window).height()
+            });
+        }
         $("main").css({
-            "margin-top": 0,
-            "margin-bottom": 0,
+            "top": "0",
+            "bottom": "0",
+            "left": "0",
+            "right": "0",
+            "position": "relative"
+        });
+        $(".h_fill").css({
             "height": $(window).height()
         });
-    } else if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": 0,
-            "margin-bottom": $("footer").outerHeight(),
-            "height": $(window).height() - $("footer").outerHeight()
-        });
-    } else if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": $("header").outerHeight(),
-            "margin-bottom": 0,
-            "height": $(window).height() - $("header").outerHeight()
-        });
-    } else if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": $("header").outerHeight(),
-            "margin-bottom": $("footer").outerHeight(),
-            "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
-        });
-    }
-    if ($("header").length === 0 && $("footer").length > 0) {
-        $("main").css({
-            "height": $(window).height() - $("footer").outerHeight()
-        });
-    } else if ($("header").length > 0 && $("footer").length === 0) {
-        $("main").css({
-            "height": $(window).height() - $("header").outerHeight()
-        });
-    } else if ($("header").length === 0 && $("footer").length === 0) {
-        $("main").css({
-            "height": $(window).height()
-        });
-    }
-    $("main").css({
-        "top": "0",
-        "bottom": "0",
-        "left": "0",
-        "right": "0",
-        "position": "relative"
-    });
-    $(".h_fill").css({
-        "height": $(window).height()
-    });
+    }, 100);
 }
 
 /*-----------------------------------------------Andrew_Ajax--------------------------------------------*/
@@ -775,6 +779,27 @@ function Andrew_Include(url,type){
         alert("load include file method error!");
     }
     //Andrew_Include("file.js","js");
+}
+
+/*-----------------------------------------------Andrew_Unicode------------------------------------------*/
+function Andrew_Unicode(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for(i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if ((c >= 0x0001) && (c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if (c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+        }
+    }
+    return out;
 }
 
 /*-----------------------------------------------Andrew_DateFormat------------------------------------------*/

@@ -1,4 +1,4 @@
-/******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
+﻿/******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
 /*
 参数说明：Andrew_Plugin("插件名称或插件的js文件名","该插件是否存在相关css文件？存在写css，不存在设为空。");
 * 做项目时不必要的插件可以注释处理。
@@ -24,6 +24,7 @@ Andrew_Plugin("Andrew_IntlTelInput","css"); //国际区号选择功能
 Andrew_Plugin("Andrew_Lazyload"); //图片加载时有动画效果
 Andrew_Plugin("Andrew_lightSlider","css"); //图片列表左右滑动功能
 Andrew_Plugin("Andrew_Loader","css"); //Loading效果功能
+Andrew_Plugin("Andrew_Marquee","css"); //上下左右滚动插件
 Andrew_Plugin("Andrew_MultiDate","css"); //多功能日期和时间插件
 Andrew_Plugin("Andrew_NavScroll"); //导航滑动功能（今日头条）
 Andrew_Plugin("Andrew_NowTime"); //获取当前时间的功能
@@ -31,6 +32,7 @@ Andrew_Plugin("Andrew_Popupwin"); //弹窗功能
 Andrew_Plugin("Andrew_PortraitImage","css"); //头像上传功能
 Andrew_Plugin("Andrew_PreviewImage","css"); //同时上传多个图片的功能
 Andrew_Plugin("Andrew_Progress","css"); //进度条插件
+Andrew_Plugin("Andrew_QRcode"); //二维码生成插件
 Andrew_Plugin("Andrew_Radio","css"); //单选框美化
 Andrew_Plugin("Andrew_Ratyli"); //星级评价功能
 Andrew_Plugin("Andrew_ScrollFixed"); //当屏幕滑动时把指定元素固定到页面顶部的功能
@@ -46,6 +48,8 @@ Andrew_Plugin("Andrew_Template"); //模板引擎插件
 Andrew_Plugin("Andrew_Textarea"); //多行输入框实时查询字符数的功能
 Andrew_Plugin("Andrew_TouchDelete","css"); //列表滑动删除功能
 Andrew_Plugin("Andrew_Typeahead","css"); //模糊搜索功能
+Andrew_Plugin("Andrew_TypeIt","css"); //文字打字效果
 Andrew_Plugin("Andrew_Validate"); //表单验证功能
 Andrew_Plugin("Andrew_Viewer","css"); //图片放大预览功能
+Andrew_Plugin("Andrew_Vticker"); //列表垂直滚动插件
 Andrew_Plugin("Andrew_WebToast","css"); //提示框效果
