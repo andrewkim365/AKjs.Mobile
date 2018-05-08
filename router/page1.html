@@ -26,37 +26,37 @@
 <div class="plug_tabs mt_5">
     <nav class="ovh press bg_white">
         <ul class="ovh list_h_3em nav_line_c length4 ">
-            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-1</li> <!--增加id="plug_tab1" 可使用Ajax请求-->
-            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-2</li> <!--增加id="plug_tab2" 可使用Ajax请求-->
-            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-3</li> <!--增加id="plug_tab3" 可使用Ajax请求-->
-            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-4</li> <!--增加id="plug_tab4" 可使用Ajax请求-->
+            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-1</li>
+            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-2</li>
+            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-3</li>
+            <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-4</li>
         </ul>
     </nav>
     <article class="rel ovh h_8em">
         <div class="rel ovh bg_white">
             <section class="rel ovh">
-                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax1" 可使用Ajax请求-->
+                <div class="ma_3 c_gray_777 line_h_18em">
                     欢迎使用AKjs移动端前端UI框架。<br>
                     请左右滑动该区域切换Tabs的内容。<br>
                     当前内容是Tabs的第一个页面1。
                 </div>
             </section>
             <section class="rel ovh">
-                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax2" 可使用Ajax请求-->
+                <div class="ma_3 c_gray_777 line_h_18em">
                     欢迎使用AKjs移动端前端UI框架。<br>
                     请左右滑动该区域切换Tabs的内容。<br>
                     当前内容是Tabs的第二个页面2。
                 </div>
             </section>
             <section class="rel ovh">
-                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax3" 可使用Ajax请求-->
+                <div class="ma_3 c_gray_777 line_h_18em">
                     欢迎使用AKjs移动端前端UI框架。<br>
                     请左右滑动该区域切换Tabs的内容。<br>
                     当前内容是Tabs的第三个页面3。
                 </div>
             </section>
             <section class="rel ovh">
-                <div class="ma_3 c_gray_777 line_h_18em"> <!--增加id="plug_ajax4" 可使用Ajax请求-->
+                <div class="ma_3 c_gray_777 line_h_18em">
                     欢迎使用AKjs移动端前端UI框架。<br>
                     请左右滑动该区域切换Tabs的内容。<br>
                     当前内容是Tabs的第四个页面4。
@@ -67,7 +67,7 @@
 </div>
 
 <div class="plug_tabs_ud mt_5 module bg_white">
-    <nav class="abs left_0 h_12_em ovo press list bg_white w_25">
+    <nav class="abs left_0 h_12_em ova press list bg_white w_25">
         <ul class="bg_gray_f5f list_h_3em">
             <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-1</li>
             <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-2</li>
@@ -79,7 +79,7 @@
     </nav>
     <article class="fr rel ovh w_75">
         <div class="rel">
-            <section class="rel ovo">
+            <section class="rel ova">
                 <div class="ma_3 c_gray_777 line_h_18em h_in"> <!--增加id="plug_ajax1" 可使用Ajax请求-->
                     欢迎使用AKjs移动端前端UI框架。<br>
                     请点击左侧菜单列表进行切换Tabs的内容。<br>
@@ -917,8 +917,24 @@
             mouse: "click", //鼠标事件 (click/hover)
             touchmode : true, //是否开启触屏滑动切换功能 (true/false)
             changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
-            callback: function(ele) { //通过回调获取当前显示的元素
+            callback: function(ele,index) { //通过回调获取当前显示的元素
                 //console.log(ele);
+                /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
+                Andrew_Ajax({
+                    to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
+                    type: "GET", //GET或POST
+                    url: "./router/tab_test"+parseInt(index+1)+".html", //需要加载的URL
+                    data:{}, //传入参数
+                    async: true, //异步方式：true，同步方式：false
+                    success:function (result) { //ajax请求加载成功后的回调
+                        console.log(result);
+                        //ak_webToast("请求加载数据成功！","middle",2000);
+                    },
+                    error:function (error) { //ajax请求加载失败后的回调
+                        console.log(error);
+                        //ak_webToast("请求加载数据失败！","middle",2000);
+                    }
+                });
             }
         });
     });
@@ -939,107 +955,6 @@
             callback: function(ele) { //通过回调获取当前显示的元素
                 //console.log(ele);
             }
-        });
-    });
-
-    /*-----------------------------------------------Andrew_Ajax 使用方法-------------------------------------------*/
-    $(function () {
-        $("#plug_tab1").each(function(){ //默认显示Ajax请求后的页面
-            Andrew_Ajax({
-                to: "#plug_ajax1", //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-                type: "POST", //GET或POST
-                url: "./ajax/tab_test1.html", //需要加载的URL
-                data:{}, //传入参数
-                async: false, //异步方式：true，同步方式：false
-                success:function (flag) { //ajax请求加载成功后的回调 （状态：flag=true）
-                    console.log(flag);
-                    ak_webToast("请求加载数据成功！","middle",2000);
-                },
-                error:function (flag) { //ajax请求加载失败后的回调 （状态：flag=false）
-                    console.log(flag);
-                    ak_webToast("请求加载数据失败！","middle",2000);
-                }
-            });
-        });
-    });
-
-    $(function () {
-        $("#plug_tab1").click(function(){ //通过点击事件后请求加载Ajax页面
-            Andrew_Ajax({
-                to: "#plug_ajax1", //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-                type: "POST", //GET或POST
-                url: "./ajax/tab_test1.html", //需要加载的URL
-                data:{}, //传入参数
-                async: false, //异步方式：true，同步方式：false
-                success:function (flag) { //ajax请求加载成功后的回调 （状态：flag=true）
-                    console.log(flag);
-                    ak_webToast("请求加载数据成功！","middle",2000);
-                },
-                error:function (flag) { //ajax请求加载失败后的回调 （状态：flag=false）
-                    console.log(flag);
-                    ak_webToast("请求加载数据失败！","middle",2000);
-                }
-            });
-        });
-    });
-
-    $(function () {
-        $("#plug_tab2").click(function(){ //通过点击事件后请求加载Ajax页面
-            Andrew_Ajax({
-                to: "#plug_ajax2", //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-                type: "POST", //GET或POST
-                url: "./ajax/tab_test2.html", //需要加载的URL
-                data:{}, //传入参数
-                async: false, //异步方式：true，同步方式：false
-                success:function (flag) { //ajax请求加载成功后的回调 （状态：flag=true）
-                    console.log(flag);
-                    ak_webToast("请求加载数据成功！","middle",2000);
-                },
-                error:function (flag) { //ajax请求加载失败后的回调 （状态：flag=false）
-                    console.log(flag);
-                    ak_webToast("请求加载数据失败！","middle",2000);
-                }
-            });
-        });
-    });
-
-    $(function () {
-        $("#plug_tab3").click(function(){ //通过点击事件后请求加载Ajax页面
-            Andrew_Ajax({
-                to: "#plug_ajax3", //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-                type: "POST", //GET或POST
-                url: "./ajax/tab_test3.html", //需要加载的URL
-                data:{}, //传入参数
-                async: false, //异步方式：true，同步方式：false
-                success:function (flag) { //ajax请求加载成功后的回调 （状态：flag=true）
-                    console.log(flag);
-                    ak_webToast("请求加载数据成功！","middle",2000);
-                },
-                error:function (flag) { //ajax请求加载失败后的回调 （状态：flag=false）
-                    console.log(flag);
-                    ak_webToast("请求加载数据失败！","middle",2000);
-                }
-            });
-        });
-    });
-
-    $(function () {
-        $("#plug_tab4").click(function(){ //通过点击事件后请求加载Ajax页面
-            Andrew_Ajax({
-                to: "#plug_ajax4", //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-                type: "POST", //GET或POST
-                url: "./ajax/tab_test4.html", //需要加载的URL
-                data:{}, //传入参数
-                async: false, //异步方式：true，同步方式：false
-                success:function (flag) { //ajax请求加载成功后的回调 （状态：flag=true）
-                    console.log(flag);
-                    ak_webToast("请求加载数据成功！","middle",2000);
-                },
-                error:function (flag) { //ajax请求加载失败后的回调 （状态：flag=false）
-                    console.log(flag);
-                    ak_webToast("请求加载数据失败！","middle",2000);
-                }
-            });
         });
     });
 
@@ -1145,7 +1060,7 @@
 
     /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
     $(function(){
-        $("#plug_menu").on("click", function (e) {
+        $("#plug_menu").bind("click", function (e) {
             Andrew_Popupwin({
                 dom: "#plug_MenuWin", //弹窗内容的布局
                 position: "top", //位置类型(top，bottom，left，right，middle)
