@@ -1,5 +1,5 @@
-/*-----------------------------------------------Andrew_DropLoad-------------------------------------------*/
 (function($){
+    var _absMoveY = 0;
     var win = window;
     var doc = document;
     var $win = $(win);
@@ -65,9 +65,7 @@
         }
         //console.log("me.$domDown.height()*1/3-->"+me.$domDown.height()*1/3);
         //console.log("me.opts.threshold-->"+me.opts.threshold);
-        //console.log(me.$element);
         // 判断滚动区域
-        //console.log("-=-=-=-=-=me._scrollContentHeight--> "+me._scrollContentHeight);
         if(me.opts.scrollArea == win){
             me.$scrollArea = $win;
             // 获取文档高度
@@ -84,10 +82,6 @@
         }
         //console.log("123212132121321me._scrollContentHeight--> "+me._scrollContentHeight);
         //console.log("123212132121321me._scrollWindowHeight--> "+me._scrollWindowHeight);
-        //console.log("me.opts.scrollArea--> "+me.opts.scrollArea);
-        //console.log(me.opts.scrollArea);
-        //console.log("win--> "+win);
-        //console.log(win);
         fnAutoLoad(me);
 
         // 窗口调整
@@ -122,7 +116,6 @@
         // 加载下方
         me.$element.on('scroll',function(){
             me._scrollTop = me.$scrollArea.scrollTop();
-            //console.log("me.opts.loadDownFn-->"+me.opts.loadDownFn)
             //console.log("me.loading-->"+me.loading)
             //console.log("me.isLockDown-->"+me.isLockDown)
             //console.log((me._scrollContentHeight - me._threshold) <= (me._scrollWindowHeight + me._scrollTop))
@@ -158,61 +151,83 @@
             me.direction = 'up';
         }
 
-        var _absMoveY = Math.abs(me._moveY);
+        _absMoveY =  Math.abs(me._moveY);
+        if(me.$element.offset().top >=0){
+            // 加载上方
+            if(me.opts.loadUpFn != '' && me.touchScrollTop <= 0 && me.direction == 'down' && !me.isLockUp){
+                e.preventDefault();
 
-        // 加载上方
-        if(me.opts.loadUpFn != '' && me.touchScrollTop <= 0 && me.direction == 'down' && !me.isLockUp){
-            e.preventDefault();
+                me.$domUp = $('.'+me.opts.domUp.domClass);
+                // 如果加载区没有DOM
+                if(!me.upInsertDOM){
+                    $("."+me.opts.domUp.domClass).remove();
+                    me.$element.prepend('<div class="'+me.opts.domUp.domClass+'"></div>');
+                    me.upInsertDOM = true;
+                }
 
-            me.$domUp = $('.'+me.opts.domUp.domClass);
-            // 如果加载区没有DOM
-            if(!me.upInsertDOM){
-                $("."+me.opts.domUp.domClass).remove();
-                me.$element.prepend('<div class="'+me.opts.domUp.domClass+'"></div>');
-                me.upInsertDOM = true;
+                fnTransition(me.$domUp,0);
+
+
+                // 下拉
+                if(_absMoveY <= me.opts.distance){
+                    me._offsetY = _absMoveY;
+                    //todo：move时会不断清空、增加dom，有可能影响性能，下同
+                    me.$domUp.html('<div class="ak-dropload-refresh">'+me.opts.domUp.domRefresh+'</div>');
+                    // 指定距离 < 下拉距离 < 指定距离*2
+                }else if(_absMoveY > me.opts.distance && _absMoveY <= me.opts.distance*2){
+                    me._offsetY = me.opts.distance+(_absMoveY-me.opts.distance)*0.5;
+                    me.$domUp.html('<div class="ak-dropload-update">'+me.opts.domUp.domUpdate+'</div>');
+                    // 下拉距离 > 指定距离*2
+                }else{
+                    me._offsetY = me.opts.distance+me.opts.distance*0.5+(_absMoveY-me.opts.distance*2)*0.2;
+                }
+
+                me.$domUp.css({'height': me._offsetY});
             }
-
-            fnTransition(me.$domUp,0);
-
-            // 下拉
-            if(_absMoveY <= me.opts.distance){
-                me._offsetY = _absMoveY;
-                //todo：move时会不断清空、增加dom，有可能影响性能，下同
-                me.$domUp.html('<div class="ak-dropload-refresh">'+me.opts.domUp.domRefresh+'</div>');
-                // 指定距离 < 下拉距离 < 指定距离*2
-            }else if(_absMoveY > me.opts.distance && _absMoveY <= me.opts.distance*2){
-                me._offsetY = me.opts.distance+(_absMoveY-me.opts.distance)*0.5;
-                me.$domUp.html('<div class="ak-dropload-update">'+me.opts.domUp.domUpdate+'</div>');
-                // 下拉距离 > 指定距离*2
-            }else{
-                me._offsetY = me.opts.distance+me.opts.distance*0.5+(_absMoveY-me.opts.distance*2)*0.2;
-            }
-
-            me.$domUp.css({'height': me._offsetY});
         }
     }
 
     // touchend
     function fnTouchend(me){
         var _absMoveY = Math.abs(me._moveY);
+
         if(me.opts.loadUpFn != '' && me.touchScrollTop <= 0 && me.direction == 'down' && !me.isLockUp){
-            fnTransition(me.$domUp,300);
+            if(me.$element.offset().top >=0){
+                fnTransition(me.$domUp,300);
+                if(_absMoveY > me.opts.distance){
+                    me.$domUp.css({'height':me.$domUp.children().height()});
+                    me.$domUp.html('<div class="ak-dropload-load"><span class="loading"></span>'+me.opts.domUp.domLoad+'</div>');
+                    me.loading = true;
+                    me.opts.loadUpFn(me);
+                }else{
+                    me.$domUp.css({'height':'0'}).on('webkitTransitionEnd mozTransitionEnd transitionend',function(){
+                        me.upInsertDOM = false;
+                        $(this).remove();
+                    });
 
-            if(_absMoveY > me.opts.distance){
-                me.$domUp.css({'height':me.$domUp.children().height()});
-                me.$domUp.html('<div class="ak-dropload-load"><span class="loading"></span>'+me.opts.domUp.domLoad+'</div>');
-                me.loading = true;
-                me.opts.loadUpFn(me);
-            }else{
-                me.$domUp.css({'height':'0'}).on('webkitTransitionEnd mozTransitionEnd transitionend',function(){
-                    me.upInsertDOM = false;
-                    $(this).remove();
-                });
-
+                }
+                me._moveY = 0;
             }
-            me._moveY = 0;
+
         }else{
-            me.opts.loadDownFn(me);
+            //me.opts.loadDownFn(me);
+            me._scrollTop = me.$scrollArea.scrollTop();
+            //console.log("me.loading-->"+me.loading)
+            //console.log("me.isLockDown-->"+me.isLockDown)
+            //console.log("me.$element.offset().top-->"+me.$element.offset().top)
+            //console.log("me._scrollContentHeight---->>>++++"+me._scrollContentHeight);
+            //console.log("me._threshold---->>>****"+(me._threshold));
+            //console.log("---->>>++++"+(me._scrollContentHeight + me.$element.offset().top - me._threshold));
+            //console.log("---->>>****"+(me._scrollWindowHeight + me._scrollTop));
+
+            //当窗口高度大于（滚动区域减去窗口上部）的区域时，加载新一页数据
+            if(me.opts.loadDownFn != '' && !me.loading && !me.isLockDown && (me._scrollWindowHeight + me._scrollTop) >= (me._scrollContentHeight + me.$element.offset().top - me._threshold)){
+                loadDown(me);
+            }
+            // 滚动页面触发加载数据
+//            if(me.opts.loadDownFn != '' && !me.loading && !me.isLockDown && (me._scrollContentHeight - me._threshold) <= (me._scrollWindowHeight + me._scrollTop)){
+//                loadDown(me);
+//            }
         }
     }
 
@@ -223,6 +238,7 @@
         //console.log("me._scrollContentHeight - me._threshold"+(me._scrollContentHeight - me._threshold))
         if(me.opts.autoLoad){
             if((me._scrollContentHeight - me._threshold) <= me._scrollWindowHeight){
+
                 loadDown(me);
             }
         }
@@ -230,13 +246,9 @@
 
     // 重新获取文档高度
     function fnRecoverContentHeight(me){
-        //console.log("start:me._scrollContentHeight:"+me._scrollContentHeight)
-        //if(me.opts.scrollArea == win){
-        //    me._scrollContentHeight = $doc.height();
-        // }else{
-        me._scrollContentHeight = me.$element[0].scrollHeight;
-        // }
-        //console.log("end:me._scrollContentHeight:"+me._scrollContentHeight)
+        me._scrollContentHeight = me.$element[0].scrollHeight - _absMoveY;
+        //console.log("-----end me.$element.offset().top:"+me.$element.offset().top);
+        //console.log("end:me._scrollContentHeight:---->>>>"+me._scrollContentHeight);
     }
 
     // 加载下方
@@ -246,6 +258,7 @@
         me.loading = true;
         me.opts.loadDownFn(me);
     }
+
     // 锁定
     ak_DropLoad.prototype.lock = function(direction){
         var me = this;
@@ -271,6 +284,7 @@
             me.direction = 'up';
         }
     };
+
     // 解锁
     ak_DropLoad.prototype.unlock = function(){
         var me = this;
@@ -280,6 +294,7 @@
         // 为了解决DEMO5中tab效果bug，因为滑动到下面，再滑上去点tab，direction=down，所以有bug
         me.direction = 'up';
     };
+
     // 无数据
     ak_DropLoad.prototype.noData = function(flag){
         var me = this;
@@ -289,6 +304,7 @@
             me.isData = true;
         }
     };
+
     // 重置
     ak_DropLoad.prototype.resetload = function(){
         var me = this;
@@ -299,6 +315,7 @@
                 $(this).remove();
             });
             fnRecoverContentHeight(me);
+
             fnAutoLoad(me);
         }else if(me.direction == 'up'){
             me.loading = false;
@@ -314,6 +331,7 @@
             }
         }
     };
+
     // css过渡
     function fnTransition(dom,num){
         dom.css({
