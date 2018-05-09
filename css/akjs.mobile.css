@@ -1,4 +1,4 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180508 AKjs.Mobile license */
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180509 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -8141,12 +8141,6 @@ button.bg_gray_444[disabled] {
     position: absolute;
     left: -0.5em;
     top: -0.6em;
-}
-/*Mask Background setting*/
-animate {
-    position: relative;
-    display: block;
-    overflow: hidden;
 }
 /*Mask Background setting*/
 .ak-mask {
