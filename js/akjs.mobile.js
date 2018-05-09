@@ -370,7 +370,7 @@ function Andrew_InputFocus() {
                 setTimeout(function () {
                     if ($("body").scrollTop() > 0) {
                         $("header").animate({
-                            "margin-top": $("body").scrollTop() - ($("header").height()/3)
+                            "margin-top": $("body").scrollTop()
                         });
                     } else {
                         $("header").css({
