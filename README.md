@@ -36,6 +36,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.0.9版本；
 
 修改 js/plugin/Andrew_DropLoad.js //解决有些设备下拉滑动时卡顿的问题
 
+修改 js/plugin/Andrew_NavScroll.js //导航滑动时增加弹性效果
+
 最后请把js目录中的plugin.js文件进行替换。
 
 
