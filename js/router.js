@@ -27,7 +27,8 @@ $(document).ready(function(){
         RouterPath:["router","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
         tailClass: ".tail", //内页的底部区域通过设置Class名固定到底部（内页的底部固定区域建议不要使用footer元素）
         changePage: function (hash) { //路由初始化调用和页面变化时的回调
-           /*-----------------------------------------------Andrew_Menu (底部菜单图标设置）使用方法-------------------------------------------*/
+
+            /*-----------------------------------------------Andrew_Menu (底部菜单图标设置）使用方法-------------------------------------------*/
             Andrew_Menu({ //底部菜单的图标以及文字样式变化设置
                 active_color: "c_title", //被选中的文字和图标的颜色
                 menu_icon: new Array( //每个菜单的默认显示图标设置 （为了正常的显示布局最多设置5个）
@@ -81,6 +82,15 @@ $(document).ready(function(){
 
                     Andrew_Unicode 使用方法：
                     console.log(Andrew_Unicode("中文字符"));
+
+                    Andrew_setCookie & Andrew_getCookie & Andrew_delCookie 使用方法：
+                    Andrew_setCookie("username", user, 365); //设置cookie
+                    var user = Andrew_getCookie("username"); //获取cookie
+                    Andrew_delCookie(name) //删除cookie
+
+                    Andrew_htmlEncode & Andrew_htmlDecode 使用方法：
+                    Andrew_htmlEncode(str); //把TEXT转换HTML
+                    Andrew_htmlDecode(str); //把HTML转换TEXT
                 */
             }
         },

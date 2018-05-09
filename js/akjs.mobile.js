@@ -1,7 +1,8 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.0.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180508 AKjs.Mobile license */
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180509 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
+if (window.location.protocol == "file:") throw new Error("AKjs.Mobile Plugin's Local Ajax requests are not supported");
 
 /*-----------------------------------------------Andrew_Config------------------------------------------*/
 function Andrew_Config(setting){
@@ -59,11 +60,11 @@ function Andrew_Config(setting){
     if(option.WechatHeader== true) {
         if(IsWechat) {
             $("header").addClass("dis_none_im").removeClass("dis_block_im");
-            Andrew_mainHeight();
             $("main").addClass("mt_0");
         } else {
             $("main").removeClass("mt_0");
         }
+        Andrew_mainHeight();
     } else {
         Andrew_mainHeight();
     }
@@ -91,15 +92,21 @@ function Andrew_Plugin(setting,css){
     Path = strJsPath .substring(0, index + 1);
 
     var jssrcs = setting.split("|");
-
-    for(var i=0;i<jssrcs.length;i++){
-        $.ajax({
-            type:'GET',
-            url: Path+"plugin/"+setting+".js",
-            async: false,
-            cache: false,
-            dataType:'script'
-        });
+    if (window.location.protocol != "file:") {
+        for(var i=0;i<jssrcs.length;i++){
+            $.ajax({
+                type:'GET',
+                url: Path+"plugin/"+setting+".js",
+                async: false,
+                cache: false,
+                dataType:'script'
+            });
+        }
+    } else {
+        for(var i=0;i<jssrcs.length;i++){
+            var js_url = "'" + Path + "plugin/" + setting + ".js'";
+            $("head").find("script:first").after("<script type='text/javascript' language='javascript' src=" + js_url + "></script>");
+        }
     }
     if (css) {
         for(var i=0;i<jssrcs.length;i++){
@@ -107,6 +114,7 @@ function Andrew_Plugin(setting,css){
             $("head").find("link:first").before("<link rel='stylesheet' type='text/css' href=" + css_url + " />");
         }
     }
+
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
@@ -124,13 +132,14 @@ function Andrew_Router(setting){
         },
         setting);
     if(option.Router== true) {
-        layout = $.ajax({
-            url: option.RouterPath[1],
-            async: false,
-            cache: false
-        });
-
-        $("body").html(layout.responseText);
+        if (window.location.protocol != "file:") {
+            layout = $.ajax({
+                url: option.RouterPath[1],
+                async: false,
+                cache: false
+            });
+            $("body").html(layout.responseText);
+        }
 
         var Router_path = "./";
         if (option.RouterPath[0]) {
@@ -143,22 +152,24 @@ function Andrew_Router(setting){
         });
         $(window).each(function () {
             if (document.location.hash.substring(1) != "") {
-                htmlobj = $.ajax({
-                    url: Router_path+document.location.hash.substring(1),
-                    async: false,
-                    cache: false,
-                    success:function () {
-                        hash = Router_path+document.location.hash.substring(1);
-                        option.success(hash);
-                        $("main").show();
-                    },
-                    error:function () {
-                        hash = Router_path+document.location.hash.substring(1);
-                        option.error(hash);
-                        $("main").hide();
-                    }
-                });
-                $("main").html(htmlobj.responseText);
+                if (window.location.protocol != "file:") {
+                    htmlobj = $.ajax({
+                        url: Router_path + document.location.hash.substring(1),
+                        async: false,
+                        cache: false,
+                        success: function () {
+                            hash = Router_path + document.location.hash.substring(1);
+                            option.success(hash);
+                            $("main").show();
+                        },
+                        error: function () {
+                            hash = Router_path + document.location.hash.substring(1);
+                            option.error(hash);
+                            $("main").hide();
+                        }
+                    });
+                    $("main").html(htmlobj.responseText);
+                }
                 Router_Settings();
                 Andrew_InputFocus();
                 ErrorPage_403();
@@ -173,23 +184,25 @@ function Andrew_Router(setting){
                 }
             });
             if (document.location.hash.substring(1) != "") {
-                htmlobj = $.ajax({
-                    url: Router_path+document.location.hash.substring(1),
-                    async: false,
-                    cache: false,
-                    success:function () {
-                        hash = document.location.hash.substring(1);
-                        option.success(hash);
-                        $("main").show();
-                        Andrew_InputFocus();
-                    },
-                    error:function () {
-                        hash = document.location.hash.substring(1);
-                        option.error(hash);
-                        $("main").hide();
-                    }
-                });
-                $("main").html(htmlobj.responseText);
+                if (window.location.protocol != "file:") {
+                    htmlobj = $.ajax({
+                        url: Router_path + document.location.hash.substring(1),
+                        async: false,
+                        cache: false,
+                        success: function () {
+                            hash = document.location.hash.substring(1);
+                            option.success(hash);
+                            $("main").show();
+                            Andrew_InputFocus();
+                        },
+                        error: function () {
+                            hash = document.location.hash.substring(1);
+                            option.error(hash);
+                            $("main").hide();
+                        }
+                    });
+                    $("main").html(htmlobj.responseText);
+                }
                 Router_Settings();
                 Andrew_InputFocus();
                 $('main').animate({"scrollTop":0},100);
@@ -296,6 +309,7 @@ function Andrew_Menu(setting){
 /*-----------------------------------------------Andrew_sUserAgent------------------------------------------*/
 function Andrew_sUserAgent() {
     var sUserAgent = navigator.userAgent.toLowerCase();
+    IsMobile = sUserAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
     IsIpad = sUserAgent.match(/ipad/i) == "ipad";
     IsIphone = sUserAgent.match(/iphone os/i) == "iphone os";
     IsAndroid = sUserAgent.match(/android/i) == "android";
@@ -524,27 +538,29 @@ function Andrew_Ajax(setting){
             }
         },
         setting);
-    htmlobj=$.ajax({
-        type : option.type,
-        url: option.url,
-        data: option.data,
-        async: option.async,
-        cache: option.cache,
-        success:function (result) {
-            option.success(result);
-            if($(option.to)){
-                $(option.to).html(htmlobj.responseText);
+    if (window.location.protocol != "file:") {
+        htmlobj = $.ajax({
+            type: option.type,
+            url: option.url,
+            data: option.data,
+            async: option.async,
+            cache: option.cache,
+            success: function (result) {
+                option.success(result);
+                if ($(option.to)) {
+                    $(option.to).html(htmlobj.responseText);
+                }
+                Andrew_HashSharp(true);
+                Andrew_Animation();
+            },
+            error: function (error) {
+                if ($(option.to)) {
+                    $(option.to).html(htmlobj.responseText);
+                }
+                option.error(error);
             }
-            Andrew_HashSharp(true);
-            Andrew_Animation();
-        },
-        error:function (error) {
-            if($(option.to)){
-                $(option.to).html(htmlobj.responseText);
-            }
-            option.error(error);
-        }
-    });
+        });
+    }
 }
 
 /*-----------------------------------------------Andrew_Animation------------------------------------------*/
@@ -758,25 +774,27 @@ function Andrew_changeURLArg(url, arg, arg_val) {
 
 /*-----------------------------------------------Andrew_Include------------------------------------------*/
 function Andrew_Include(url,type){
-    if(type == "js" || type != "css"){
-        var fileref = document.createElement('script');
-        fileref.setAttribute("type","text/javascript");
-        fileref.setAttribute("src",url);
-    }else {
-        var fileref = document.createElement('link');
-        fileref.setAttribute("rel","stylesheet");
-        fileref.setAttribute("type","text/css");
-        fileref.setAttribute("href",url);
-    }
-    if(typeof fileref != "undefined"){
-        $("head").find("script").each(function(){
-            if ($(this).attr("src")==url) {
-                $(this).remove();
-            }
-            $(fileref).appendTo($("head"));
-        });
-    }else{
-        alert("load include file method error!");
+    if (window.location.protocol != "file:") {
+        if(type == "js" || type != "css"){
+            var fileref = document.createElement('script');
+            fileref.setAttribute("type","text/javascript");
+            fileref.setAttribute("src",url);
+        }else {
+            var fileref = document.createElement('link');
+            fileref.setAttribute("rel","stylesheet");
+            fileref.setAttribute("type","text/css");
+            fileref.setAttribute("href",url);
+        }
+        if(typeof fileref != "undefined"){
+            $("head").find("script").each(function(){
+                if ($(this).attr("src")==url) {
+                    $(this).remove();
+                }
+                $(fileref).appendTo($("head"));
+            });
+        }else{
+            alert("load include file method error!");
+        }
     }
     //Andrew_Include("file.js","js");
 }
@@ -800,6 +818,61 @@ function Andrew_Unicode(str) {
         }
     }
     return out;
+}
+
+/*-----------------------------------------------Andrew_setCookie------------------------------------------*/
+function Andrew_setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+    //Andrew_setCookie("username", user, 365);
+}
+
+/*-----------------------------------------------Andrew_getCookie------------------------------------------*/
+function Andrew_getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+    //var user = Andrew_getCookie("username");
+}
+
+/*-----------------------------------------------Andrew_delCookie------------------------------------------*/
+function Andrew_delCookie(name) {
+    Andrew_setCookie(name, "", -1);
+}
+
+/*-----------------------------------------------Andrew_htmlEncode------------------------------------------*/
+function Andrew_htmlEncode(str) {
+    var s = "";
+    if (str.length == 0) return "";
+    s = str.replace(/&/g, ">");
+    s = s.replace(/</g, "<");
+    s = s.replace(/>/g, ">");
+    s = s.replace(/ /g, " ");
+    s = s.replace(/\'/g, "'");
+    s = s.replace(/\"/g, '"');
+    s = s.replace(/\n/g, "<br>");
+    return s;
+}
+
+/*-----------------------------------------------Andrew_htmlDecode------------------------------------------*/
+function Andrew_htmlDecode(str) {
+    var s = "";
+    if (str.length == 0) return "";
+    s = str.replace(/>/g, "&");
+    s = s.replace(/</g, "<");
+    s = s.replace(/>/g, ">");
+    s = s.replace(/ /g, " ");
+    s = s.replace(/'/g, "\'");
+    s = s.replace(/"/g, '\"');
+    s = s.replace(/<br>/g, "\n");
+    return s;
 }
 
 /*-----------------------------------------------Andrew_DateFormat------------------------------------------*/
