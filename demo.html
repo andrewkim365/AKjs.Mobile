@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
-  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
+  <script type="text/javascript" language="javascript" src="js/akjs.mobile.js"></script><!--AKjs引入-->
   <script type="text/javascript" language="javascript" src="js/plugin.js"></script><!--功能插件按需引入-->
 </head>
 <body>
@@ -926,6 +926,10 @@
 </body>
 <script type="text/javascript">
     //引入Andrew插件的区域
+    if (window.location.protocol == "file:") {
+        alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
+        throw new Error();
+    }
     $("footer button").click(function(){
         alert("当前访问的界面没开启路由模式，所以要预览页面切换效果，请访问index.html！");
     });
