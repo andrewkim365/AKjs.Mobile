@@ -1,4 +1,4 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180509 AKjs.Mobile license */
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180510 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -102,19 +102,13 @@ function Andrew_Plugin(setting,css){
                 dataType:'script'
             });
         }
-    } else {
-        for(var i=0;i<jssrcs.length;i++){
-            var js_url = "'" + Path + "plugin/" + setting + ".js'";
-            $("head").find("script:first").after("<script type='text/javascript' language='javascript' src=" + js_url + "></script>");
+        if (css) {
+            for(var i=0;i<jssrcs.length;i++){
+                var css_url = "'" + Path + "plugin/css/" + setting + ".css'";
+                $("head").find("link:first").before("<link rel='stylesheet' type='text/css' href=" + css_url + " />");
+            }
         }
     }
-    if (css) {
-        for(var i=0;i<jssrcs.length;i++){
-            var css_url = "'" + Path + "plugin/css/" + setting + ".css'";
-            $("head").find("link:first").before("<link rel='stylesheet' type='text/css' href=" + css_url + " />");
-        }
-    }
-
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
