@@ -1,4 +1,4 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180509 AKjs.Mobile license */
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180512 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -12,25 +12,29 @@ html, html * {
     font-size:12px;
 }
 @media screen and (min-width:320px) and (max-width:369px) {
-    .ak-screen, .ak-screen * {
+    html, html * {
         font-size:13px;
     }
 }
 @media screen and (min-width:370px) and (max-width:639px) {
-    .ak-screen, .ak-screen * {
+    html, html * {
         font-size:14px;
     }
 }
 @media screen and (min-width:640px) and (max-width:1024px) {
-    .ak-screen, .ak-screen * {
+    html, html * {
         font-size:20px;
     }
 }
 @media screen and (min-width:1025px) {
-    .ak-screen, .ak-screen * {
+    html, html * {
         font-size:24px;
     }
 }
+.ak-screen, .ak-screen * {
+    font-size:12px;
+}
+
 body {
     -webkit-overflow-scrolling: auto !important;
     overflow: hidden !important;
