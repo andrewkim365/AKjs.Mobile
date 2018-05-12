@@ -13,9 +13,9 @@
   <title>AKjs移动端框架</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" /><!--公共样式以及布局相关样式-->
   <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
-  <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
-  <script type="text/javascript" language="javascript" src="js/akjs.mobile.js"></script><!--AKjs引入-->
+  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
   <script type="text/javascript" language="javascript" src="js/plugin.js"></script><!--功能插件按需引入-->
 </head>
 <body>
@@ -29,7 +29,7 @@
 <main>
 
   <!----------Andrew_Typeahead---------->
-  <form action="#" method="get" onsubmit="return false;">
+  <form action="page2.html" method="get" onsubmit="return false;">
     <div class="module press ovh bg_white bor_bottom bor_gray_ddd">
       <fieldset class="ml_3 mr_3 pl_2em rel h_24em mt_05em mb_05em ovh bor_rad_05em border bor_gray_ddd bg_gray_f9f">
         <i class="abs left_0 ml_03em text_14em c_gray_999 line_h_18em icon-im_sousuo_b"></i>
@@ -37,7 +37,6 @@
       </fieldset>
     </div>
   </form>
-
   <!----------Andrew_Slider---------->
   <div class="plug_slider w_100 h_12_em ovh rel">
     <ul>
@@ -542,7 +541,8 @@
   <!----------Andrew_GetVerifyCode---------->
   <!----------Andrew_intlTelInput---------->
   <!----------Andrew_Codeval---------->
-  <form action="demo.html" method="get">
+  <form action="page2.html" method="get">
+    <input type="hidden" name="id" value="mobile" />
     <div class="module list mt_5 plug_validate">
       <ul class="wp_94 press bg_white list_h_36em">
         <li class="rel bor_bottom bor_gray_ddd">
@@ -900,23 +900,23 @@
 
 <footer class="press bg_gray_f9f dis_block">
   <menu class="bor_gray_ddd bor_top length5">
-    <button type="button" class="fl">
+    <button type="button" class="fl" data-href="demo.html">
       <i class="text_18em c_gray_777 icon-mn_gongneng_fill c_title"></i>
       <em class="text_08em c_gray_777 c_title">功能</em>
     </button>
-    <button type="button" class="fl">
+    <button type="button" class="fl" data-href="demo2.html">
       <i class="text_18em c_gray_777 icon-mn_hudong"></i>
       <em class="text_08em c_gray_777">聊天</em>
     </button>
-    <button type="button" class="fl">
+    <button type="button" class="fl" data-href="demo3.html">
       <i class="text_18em c_gray_777 icon-mn_huodong"></i>
       <em class="text_08em c_gray_777">时间轴</em>
     </button>
-    <button type="button" class="fl">
+    <button type="button" class="fl" data-href="demo4.html">
       <i class="text_18em c_gray_777 icon-mn_kuangjia"></i>
       <em class="text_08em c_gray_777">布局</em>
     </button>
-    <button type="button" class="fl new_icon">
+    <button type="button" class="fl new_icon" data-href="demo5.html">
       <i class="text_18em c_gray_777 icon-mn_kongjian"></i>
       <em class="text_08em c_gray_777">加载</em>
     </button>
@@ -930,9 +930,6 @@
         alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
         throw new Error();
     }
-    $("footer button").click(function(){
-        alert("当前访问的界面是没开启路由模式不能预览页面切换效果，请访问index.html可看完整的页面切换效果！");
-    });
     /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
     $(function () {
         Andrew_Config({ //环境配置管理
@@ -948,7 +945,7 @@
             Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
         });
     });
-    /*-----------------------------------------------Andrew_Form (全局设置）使用方法-------------------------------------------*/
+    /*-----------------------------------------------Andrew_Form  使用方法-------------------------------------------*/
     $(function(){
         $("form").Andrew_Form({ //输入框右侧加删除文字按钮
             btn_delete: ".plug_Delete", //输入文字的删除按钮class名
@@ -973,7 +970,7 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Textarea (全局设置）使用方法-------------------------------------------*/
+    /*-----------------------------------------------Andrew_Textarea 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_textarea").Andrew_Textarea({ //多行输入框设置
             maxlength:200, //文字最多输入限制
@@ -989,7 +986,7 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Lazyload (全局设置）使用方法-------------------------------------------*/
+    /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
     $(function() {
         $("img").Andrew_Lazyload({
             effect: "fadeIn" //图片延迟加载效果
@@ -1010,6 +1007,7 @@
             Andrew_Loader("destroy"); //关闭loading窗
         });
     });
+
     /*-----------------------------------------------Andrew_Slider 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_slider").Andrew_Slider({
@@ -1027,6 +1025,55 @@
             }
         });
     });
+
+    /*-----------------------------------------------Andrew_Form 使用方法-------------------------------------------*/
+    $(function(){
+        $("form").Andrew_Form({ //输入框右侧加删除文字按钮
+            btn_delete: ".plug_Delete", //输入文字的删除按钮class名
+            btn_delete_ico: "icon-ln_quxiao", //输入文字的删除按钮的图标
+            btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
+            btn_password_ico_hide: "icon-in_biyan_fill", //输入的密码可显示和隐藏功能的按钮(隐藏按钮图标)
+            btn_password_ico_show: "icon-in_zhengyan_fill", //输入的密码可显示和隐藏功能的按钮(显示按钮图标)
+            placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
+            keyboard: true, //是否输入框内设置的maxlength自定的限制字数后手机键盘自动消失或者input元素加readonly属性不显示键盘，建议开启 (开启 true, 停用 false）
+            PassCheck: ".plug_PassCheck", //两次输入密码确认时需要加的class名
+            passCallback: function() { //通过回调进入两次输入的密码不一致状态 （PassCheck的参数空值时不走当前的回调）
+                console.log("两次输入的密码不一致");
+                $ak.alert("两次输入的密码必须一致！", {
+                    icon: "error", //图标类型（warning，error，info，question，success）
+                    button_ok: "确定", //弹窗的确定按钮文字
+                    title: "提示" //弹窗的标题文字
+                });
+            },
+            butCallback: function(form) { //点击提交按钮后的回调，获取当前表单的元素
+                console.log(form);
+            }
+        });
+    });
+
+    /*-----------------------------------------------Andrew_Textarea 使用方法-------------------------------------------*/
+    $(function () {
+        $(".plug_textarea").Andrew_Textarea({ //多行输入框设置
+            maxlength:200, //文字最多输入限制
+            rows:"6", //输入框的行高
+            topButton: "c_title", //提交按钮在头部显示后的样式 （设置为空，代表不使用该功能）
+            onTextVal:function(val){ //通过回调获取实时输入的值
+                console.log(val);
+            },
+            TopbtnOK:function(val){ //通过回调获取点击头部的提交按钮后的最终值
+                console.log(val);
+                webToast("提交成功！","middle",2000);
+            }
+        });
+    });
+
+    /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
+    $(function() {
+        $("img").Andrew_Lazyload({
+            effect: "fadeIn" //图片延迟加载效果
+        });
+    });
+
     /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_tabs nav").Andrew_ScrollFixed({
@@ -1051,20 +1098,29 @@
             touchmode : true, //是否开启触屏滑动切换功能 (true/false)
             changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
             callback: function(ele,index) { //通过回调获取当前显示的元素
-                //console.log(ele);
+                if (index == 0) {
+                    var ajax_url = './router/tab_test1.html';
+                } else if (index == 1) {
+                    var ajax_url = './router/tab_test2.html';
+                } else if (index == 2) {
+                    var ajax_url = './router/tab_test3.html';
+                } else if (index == 3) {
+                    var ajax_url = './router/tab_test4.html';
+                }
+                //console.log(ajax_url);
                 /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
                 Andrew_Ajax({
                     to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
                     type: "GET", //GET或POST
-                    url: "./router/tab_test"+parseInt(index+1)+".html", //需要加载的URL
+                    url: ajax_url, //需要加载的URL
                     data:{}, //传入参数
                     async: true, //异步方式：true，同步方式：false
                     success:function (result) { //ajax请求加载成功后的回调
-                        console.log(result);
+                        //console.log(result);
                         //ak_webToast("请求加载数据成功！","middle",2000);
                     },
                     error:function (error) { //ajax请求加载失败后的回调
-                        console.log(error);
+                        //console.log(error);
                         //ak_webToast("请求加载数据失败！","middle",2000);
                     }
                 });
@@ -1193,44 +1249,50 @@
 
     /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
     $(function(){
-        $("#plug_menu").on("click", function (e) {
-            Andrew_Popupwin({
-                dom: "#plug_MenuWin", //弹窗内容的布局
-                position: "top", //位置类型(top，bottom，left，right，middle)
-                effectIn: "slideInDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
-                effectOut: "slideOutUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
-                maskPosition:"4", //Mask的z-index数值
-                closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
-                OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-                    console.log($(ele[0].dom)); //获取当前的弹窗元素
-                }
-            })
-        })
+        setTimeout(function() { //为了兼容所有的jQuery版本该功能延迟执行
+            $("#plug_menu").bind("click", function (e) {
+                Andrew_Popupwin({
+                    dom: "#plug_MenuWin", //弹窗内容的布局
+                    position: "top", //位置类型(top，bottom，left，right，middle)
+                    effectIn: "slideInDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                    effectOut: "slideOutUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                    maskPosition:"4", //Mask的z-index数值
+                    closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                    OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                    toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                    callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                        console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    }
+                });
+            });
+        },100);
     });
 
     $(function(){
-        $("#plug_popup").click(function(){
-            Andrew_Popupwin({
-                dom: "#plug_PopupWin", //弹窗内容的布局
-                position: "middle", //位置类型(top，bottom，left，right，middle)
-                effectIn: "bounceInDown ani_1s", //弹窗显示效果
-                effectOut: "bounceOutDown ani_1s", //弹窗消失效果
-                maskPosition:"11", //Mask的z-index数值
-                closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
-                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-                    console.log($(ele[0].dom)); //获取当前的弹窗元素
-                }
-            })
-        })
+        setTimeout(function() { //为了兼容所有的jQuery版本该功能延迟执行
+            $("#plug_popup").click(function(){
+                Andrew_Popupwin({
+                    dom: "#plug_PopupWin", //弹窗内容的布局
+                    position: "middle", //位置类型(top，bottom，left，right，middle)
+                    effectIn: "bounceInDown ani_1s", //弹窗显示效果
+                    effectOut: "bounceOutDown ani_1s", //弹窗消失效果
+                    maskPosition:"11", //Mask的z-index数值
+                    closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                    callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                        console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    }
+                });
+            });
+        },100);
     });
     /*-----------------------------------------------Andrew_ChooseList 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_choose").Andrew_ChooseList({
+            itemWidth: "", //自定义设置按钮宽度
             active: "bg_title c_white bor_title", //选中后的样式
             multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
             full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
+            dataKey: '', //实例化后的data键值，方便后续通过data('dataKey')取出；
             click: function(index, item) { //Choose元素点击时的回调，diabled时不发生。
                 console.log("click", index, item.text());
             },
@@ -1555,7 +1617,7 @@
             Title_Text: "选择国家和地区", //头部的标题文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
             Close_btn: "left_0 w_25 pl_3 text_al_l text_12em", //关闭按钮的样式设置
             Close_Text: "关闭", //头部的关闭按钮文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
-            Close_Icon:"text_14em icon-bt_quxiao_a mr_03em", //头部的关闭按钮图标  （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
+            Close_Icon:"text_12em icon-bt_quxiao_a", //头部的关闭按钮图标  （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
             list_Class: "bg_white bor_bottom bor_gray_ddd c_gray_777 touchstart", //数据列表的Class样式
             Nav_active: "c_title text_bold", //右侧固定字母菜单的选中样式
             show_color: "c_title text_bold text_4em", //右侧固定字母点击后中间淡入字母效果的样式

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="renderer" content="webkit" />
+  <meta name="full-screen" content="yes" />
+  <meta name="x5-fullscreen" content="true" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>AKjs移动端框架</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" /><!--公共样式以及布局相关样式-->
+  <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
+  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
+  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
+  <script type="text/javascript" language="javascript" src="js/plugin.js"></script><!--功能插件按需引入-->
+</head>
+<body>
+
+<!----------Andrew_PopupWin---------->
+<header class="press bor_bottom bor_gray_ddd bg_gray_f9f dis_block">
+  <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
+  <h1 class="text_al_c">加载效果</h1>
+</header>
+
+<main>
+
+  <div class="module list press plug_DropLoad">
+    <ul>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="press bg_gray_f9f dis_block">
+  <menu class="bor_gray_ddd bor_top length5">
+    <button type="button" class="fl" data-href="demo.html">
+      <i class="text_18em c_gray_777 icon-mn_gongneng"></i>
+      <em class="text_08em c_gray_777">功能</em>
+    </button>
+    <button type="button" class="fl" data-href="demo2.html">
+      <i class="text_18em c_gray_777 icon-mn_hudong"></i>
+      <em class="text_08em c_gray_777">聊天</em>
+    </button>
+    <button type="button" class="fl" data-href="demo3.html">
+      <i class="text_18em c_gray_777 icon-mn_huodong"></i>
+      <em class="text_08em c_gray_777">时间轴</em>
+    </button>
+    <button type="button" class="fl" data-href="demo4.html">
+      <i class="text_18em c_gray_777 icon-mn_kuangjia"></i>
+      <em class="text_08em c_gray_777">布局</em>
+    </button>
+    <button type="button" class="fl new_icon" data-href="demo5.html">
+      <i class="text_18em c_gray_777 icon-mn_kongjian_fill c_title"></i>
+      <em class="text_08em c_gray_777 c_title">加载</em>
+    </button>
+  </menu>
+</footer>
+
+</body>
+<script type="text/javascript">
+    //引入Andrew插件的区域
+    if (window.location.protocol == "file:") {
+        alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
+        throw new Error();
+    }
+    /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
+    $(function () {
+        Andrew_Config({ //环境配置管理
+            MaskStyle: ["style3","opacity07"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
+            Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
+            touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
+            ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
+            WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
+            Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
+            fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
+            animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：andrew.animate.css
+            Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
+            Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
+        });
+    });
+
+    /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
+    $(function() {
+        $("img").Andrew_Lazyload({
+            effect: "fadeIn" //图片延迟加载效果
+        });
+    });
+
+    /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
+    $(function () {
+        Andrew_Loader({
+            //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+            autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+            timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
+            iconColor:"#ffffff", //图标颜色设置
+            maskBG: true, //是否开启遮挡背景 (开启 true, 关闭 false）
+            Loader:"load_2" //loading效果选择（load_1~7）
+        });
+        $(".ak-mask").on("click", function () {
+            Andrew_Loader("destroy"); //关闭loading窗
+        });
+    });
+
+    /*-----------------------------------------------Andrew_DropLoad 使用方法-------------------------------------------*/
+    $(function(){
+        // 页数
+        var page = 0;
+        // 每页展示5个
+        var size = 5;
+        $('.plug_DropLoad').Andrew_DropLoad({
+            scrollArea : window, // 滑动区域
+            domUp : { // 上方DOM
+                domRefresh : '↓ 下拉刷新',
+                domUpdate  : '↑ 释放更新',
+                domLoad    : '刷新中...'
+            },
+            domDown : { // 下方DOM
+                domRefresh : '↑ 上拉加载更多',
+                domLoad    : '加载中...',
+                domNoData  : '暂无数据'
+            },
+            autoLoad : true,// 自动加载
+            distance : 20,// 拉动距离
+            loadUpFn : function(me){ //上方function
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://ons.me/tools/dropload/json.php',
+                    dataType: 'json',
+                    success: function(data){
+                        // 为了测试，延迟3秒加载
+                        setTimeout(function(){
+                            // 每次数据加载完，必须重置
+                            me.resetload(); //重新初始化控件以及标识量
+                            me.unlock(); //解除锁定允许数据继续加载
+                            me.noData(false); //是否有数据（false代表有数据）
+                        },1000);
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload(); //重新初始化控件以及标识量
+                    }
+                });
+            },
+            loadDownFn : function(me){ //下方function
+                page++;
+                // 拼接HTML
+                var result = '';
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
+                    dataType: 'json',
+                    success: function(data){
+                        var arrLen = data.length;
+                        if(arrLen > 0){
+                            for(var i=0; i<arrLen; i++){
+                                result
+                                    +='     <li class="bg_white ovh mb_5">'
+                                    + '        <article class="rel w_100 ovh line_h_18em">'
+                                    + '            <aside class="ovh wp_94 mt_1em mb_05em pb_05em">'
+                                    + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32em bg_title bor_rad_50" />'
+                                    + '                <h3 class="fl ovh w_80 ml_05em">'+data[i].title+'</h3>'
+                                    + '            </aside>'
+                                    + '            <ol class="w_100 ovh bor_top_dashed bor_gray_ddd length2 list_h_3em">'
+                                    + '                <li class="fl text_al_c">订单价格：<em class="c_orange text_12em">待定</em></li>'
+                                    + '                <li class="fr text_al_c">上市日期：<em class="c_jd">'+data[i].date+'</em></li>'
+                                    + '            </ol>'
+                                    + '        </article>'
+                                    + '     </li>';
+                            }
+                            // 如果没有数据
+                        }else{
+                            // 数据锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }
+                        // 为了测试，延迟3秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('.plug_DropLoad').children("ul").append(result);
+                            // 每次数据插入，必须重置
+                            me.resetload(); //重新初始化控件以及标识量
+                        },1000);
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload(); //重新初始化控件以及标识量
+                    }
+                });
+            }
+        });
+    });
+</script>
+</html>
