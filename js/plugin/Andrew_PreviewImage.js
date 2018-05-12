@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_PreviewImage---------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_PreviewImage---------------------------------------*/
 (function($){
     var option = {};
     $.fn.Andrew_PreviewImage = function(setting) {

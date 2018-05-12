@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_DateTime-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_DateTime-------------------------------------------*/
 (function($){
     // 补0;
     function fillZero(x) {
@@ -262,6 +266,11 @@
                         $('body').append(sjObj.opt.timeElm);
                         document.activeElement.blur();//隐藏键盘
                         $("main").removeClass("scrolling");
+                        sjObj.opt.timeElm.find(".ak-mask").bind({
+                            touchmove: function (e) {
+                                e.preventDefault();
+                            }
+                        });
                         // $('body').append(persp.append(sjObj.opt.t_box.append(sjObj.opt.df_final).append(main.append(wrap)).append(sjObj.opt.df_btn)));
                     }
                     if (sjObj.opt.ampmText) {

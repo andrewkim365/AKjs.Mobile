@@ -1,14 +1,17 @@
-﻿/*-----------------------------------------------Andrew_ChooseList--------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_ChooseList--------------------------------------*/
 (function($){
-    // 默认实例化配置
     var defaults = {
         itemWidth: null,
         multi: false,
         active: '',
-        full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
-        dataKey: 'dataKey', //实例化后的data键值，方便后续通过data('dataKey')取出；
-        change: null, //Choose值改变时的回调；
-        click: null //Choose元素点击时的回调，diabled时不发生。
+        full: false,
+        dataKey: 'dataKey',
+        change: null,
+        click: null
     };
     $.fn.Andrew_ChooseList = function(options) {
         var _this = $(this),

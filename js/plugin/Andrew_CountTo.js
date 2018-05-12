@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_CountTo-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_CountTo-------------------------------------------*/
 (function($){
     $.fn.Andrew_CountTo = function (options) {
         options = options || {};

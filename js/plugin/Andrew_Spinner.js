@@ -1,18 +1,24 @@
-﻿/*-----------------------------------------------Andrew_Spinner-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Spinner-------------------------------------------*/
 (function($){
     $.fn.Andrew_Spinner=function(setting) {
         var option = $.extend({
-                input_width:"100%", //输入框宽度（px,%,em）
-                btn_wrap: "", //数量加减输入框的外框样式
-                btn_left: "", //数量减少按钮Class
-                btn_right: "", //数量增加按钮Class
+                input_width:"100%",
+                btn_wrap: "",
+                btn_left: "",
+                btn_right: "",
                 maxNumber: 999,
                 clickBack:function(){
                 }
             },
             setting);
         var spt =$(this);
-        ak_sptFun();
+        setTimeout(function() {
+            ak_sptFun();
+        },100);
         $(window).resize(function(){
             spt.parent().find("input").css({
                 "height": spt.parent().children("button").outerHeight()
@@ -33,7 +39,7 @@
                     "overflow": "hidden",
                     "width": option.input_width,
                     "height": spt.parent().children("button").height(),
-                    "margin-top": (spt.parent().outerHeight() - spt.parent().children("button").outerHeight()) / 2
+                    "margin-top": (spt.parent().outerHeight() - spt.parent().children("button").outerHeight()) / 2-2
                 });
                 var it =$(this).parent().find("input");
                 it.css({

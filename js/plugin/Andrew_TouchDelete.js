@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_TouchDelete-------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_TouchDelete-------------------------------------*/
 (function($){
     var Andrew_TouchDelete = function(ele, opt) {
         var self = this;

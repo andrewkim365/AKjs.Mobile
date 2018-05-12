@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_CountDown---------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_CountDown---------------------------------------*/
 function Andrew_CountDown(ele,setting){
     var option = $.extend({
             wait: 10,

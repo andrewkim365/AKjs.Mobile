@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Codeval-----------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Codeval-----------------------------------------*/
 (function($){
     var settings = {
         codeView: '',
@@ -47,9 +51,11 @@
         var htmlCode='';
         htmlCode+='<ol class="'+_set.codeval.substring(1)+'" id="'+_set.codeval.substring(1)+'" onclick="$.Andrew_Codeval.ak_setCode()">' + _setStyle(codeObj) + '</ol>';
         $(eid).html(htmlCode);
-        $(eid).css({
-            "margin-top": ($(settings.inputEle).outerHeight() - $(eid).outerHeight())/2
-        });
+        setTimeout(function() {
+            $(eid).css({
+                "margin-top": ($(settings.inputEle).outerHeight() - $(eid).outerHeight())/2
+            });
+        },100);
         $(window).resize(function(){
             $(eid).css({
                 "margin-top": ($(settings.inputEle).outerHeight() - $(eid).outerHeight())/2

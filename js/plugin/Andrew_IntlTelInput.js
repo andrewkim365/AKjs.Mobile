@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_IntlTelInput------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_IntlTelInput------------------------------------*/
 (function($){
     $.fn.Andrew_IntlTelInput = function(setting) {
         var option = $.extend({
@@ -66,22 +70,22 @@
                         "height":$(window).height()
                     });
                     datalist.addClass("scrolling press").css({
-                        "margin-top":$(".ak-IntlTel_head").outerHeight(),
+                        "margin-top":$(".ak-IntlTel_head").outerHeight()+10,
                         "height":$(window).height()
                     });
                     objsub_ol.css({
-                        "top":$(".ak-IntlTel_head").outerHeight()
+                        "top":$(".ak-IntlTel_head").outerHeight()+10
                     });
                     $(window).resize(function(){
                         objsub_title.addClass(option.show_color).css({
                             "height":$(window).height()
                         });
                         datalist.addClass("scrolling press").css({
-                            "margin-top":$(".ak-IntlTel_head").outerHeight(),
+                            "margin-top":$(".ak-IntlTel_head").outerHeight()+10,
                             "height":$(window).height()
                         });
                         objsub_ol.css({
-                            "top":$(".ak-IntlTel_head").outerHeight()
+                            "top":$(".ak-IntlTel_head").outerHeight()+10
                         });
                     });
                     objsub_dl.find("dd").addClass(option.list_Class);

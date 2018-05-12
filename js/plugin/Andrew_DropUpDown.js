@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_DropUpDown--------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_DropUpDown--------------------------------------*/
 (function($){
     $.fn.Andrew_DropUpDown = function(setting) {
         var option = $.extend({

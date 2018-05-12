@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
 function Andrew_Popupwin (setting){
     option = $.extend({
         dom: "",
@@ -13,7 +17,6 @@ function Andrew_Popupwin (setting){
         callback :function () {},
         scrollback :function () {}
     },setting);
-
     if (option.dom) {
         $(option.dom).css({
             "position": "fixed",
@@ -24,7 +27,6 @@ function Andrew_Popupwin (setting){
             setPopupStyle();
         });
     }
-
     if (option.position === 'offset') {
         var main_scroll = $("main").scrollTop() + $(option.dom).outerHeight();
         $("main").scroll(function(sc){
@@ -52,7 +54,6 @@ function Andrew_Popupwin (setting){
         addModalMask();
         $("main").removeClass("scrolling");
     }
-
     if (option.maskPosition) {
         $('#popup_mask').css({
             "z-index": option.maskPosition
@@ -106,6 +107,11 @@ function Andrew_Popupwin (setting){
         if ($("#popup_mask").length < 1) {
             $("main").append('<div id="popup_mask" class="ak-mask"></div>');
             $('#popup_mask').show();
+            $('#popup_mask').bind({
+                touchmove: function (e) {
+                    e.preventDefault();
+                }
+            });
         }
     }
     function setPopupStyle() {

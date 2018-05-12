@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Circliful-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Circliful-------------------------------------------*/
 (function($) {
     $.fn.Andrew_Circliful = function(b) {
         var c = $.extend({

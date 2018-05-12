@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
 (function($){
     var $window = $(window);
     $.fn.Andrew_Lazyload = function(options) {
@@ -16,117 +20,121 @@
             load            : null,
             placeholder     : ""
         };
-        function update() {
-            var counter = 0;
-            elements.each(function() {
-                var $this = $(this);
-                if (settings.skip_invisible && !$this.is(":visible")) {
-                    return;
-                }
-                if ($.abovethetop(this, settings) || $.leftofbegin(this, settings)) {
-                    /* Nothing. */
-                } else if (!$.belowthefold(this, settings) && !$.rightoffold(this, settings)) {
-                    $this.trigger("appear");
-                    /* if we found an image we'll load, reset the counter */
-                    counter = 0;
-                } else {
-                    if (++counter > settings.failure_limit) {
-                        return false;
+        var ele = this;
+        setTimeout(function() { //为了兼容所有的jQuery版本该功能延迟执行
+            function update() {
+                var counter = 0;
+                elements.each(function() {
+                    var $this = $(this);
+                    if (settings.skip_invisible && !$this.is(":visible")) {
+                        return;
                     }
-                }
-            });
-        }
-        if(options) {
-            /* Maintain BC for a couple of versions. */
-            if (undefined !== options.failurelimit) {
-                options.failure_limit = options.failurelimit;
-                delete options.failurelimit;
-            }
-            if (undefined !== options.effectspeed) {
-                options.effect_speed = options.effectspeed;
-                delete options.effectspeed;
-            }
-            $.extend(settings, options);
-        }
-        /* Cache container as jQuery as object. */
-        $container = (settings.container === undefined ||
-            settings.container === window) ? $window : $(settings.container);
-        /* Fire one scroll event per scroll. Not one scroll event per image. */
-        if (0 === settings.event.indexOf("scroll")) {
-            $container.bind(settings.event, function() {
-                return update();
-            });
-        }
-        this.each(function() {
-            var self = this;
-            var $self = $(self);
-            self.loaded = false;
-            /* If no src attribute given use data:uri. */
-            if ($self.attr("src") === undefined || $self.attr("src") === false) {
-                if ($self.is("img")) {
-                    $self.attr("src", settings.placeholder);
-                }
-            }
-            /* When appear is triggered load original image. */
-            $self.one("appear", function() {
-                if (!this.loaded) {
-                    if (settings.appear) {
-                        var elements_left = elements.length;
-                        settings.appear.call(self, elements_left, settings);
-                    }
-                    $("<img />")
-                        .bind("load", function() {
-                            var original = $self.attr("data-" + settings.data_attribute);
-                            $self.hide();
-                            if ($self.is("img")) {
-                                $self.attr("src", original);
-                            } else {
-                                $self.css("background-image", "url('" + original + "')");
-                            }
-                            $self[settings.effect](settings.effect_speed);
-                            self.loaded = true;
-                            /* Remove image from array so it is not looped next time. */
-                            var temp = $.grep(elements, function(element) {
-                                return !element.loaded;
-                            });
-                            elements = $(temp);
-                            if (settings.load) {
-                                var elements_left = elements.length;
-                                settings.load.call(self, elements_left, settings);
-                            }
-                        }).attr("src", $self.attr("data-" + settings.data_attribute));
-                }
-            });
-            /* When wanted event is triggered load original image */
-            /* by triggering appear.                              */
-            if (0 !== settings.event.indexOf("scroll")) {
-                $self.bind(settings.event, function() {
-                    if (!self.loaded) {
-                        $self.trigger("appear");
+                    if ($.abovethetop(this, settings) || $.leftofbegin(this, settings)) {
+                        /* Nothing. */
+                    } else if (!$.belowthefold(this, settings) && !$.rightoffold(this, settings)) {
+                        $this.trigger("appear");
+                        /* if we found an image we'll load, reset the counter */
+                        counter = 0;
+                    } else {
+                        if (++counter > settings.failure_limit) {
+                            return false;
+                        }
                     }
                 });
             }
-        });
-        /* Check if something appears when window is resized. */
-        $window.bind("resize", function() {
-            update();
-        });
-        /* With IOS5 force loading images when navigating with back button. */
-        /* Non optimal workaround. */
-        if ((/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)) {
-            $window.bind("pageshow", function(event) {
-                if (event.originalEvent && event.originalEvent.persisted) {
-                    elements.each(function() {
-                        $(this).trigger("appear");
-                    });
+            if(options) {
+                /* Maintain BC for a couple of versions. */
+                if (undefined !== options.failurelimit) {
+                    options.failure_limit = options.failurelimit;
+                    delete options.failurelimit;
                 }
+                if (undefined !== options.effectspeed) {
+                    options.effect_speed = options.effectspeed;
+                    delete options.effectspeed;
+                }
+                $.extend(settings, options);
+            }
+            /* Cache container as jQuery as object. */
+            $container = (settings.container === undefined ||
+                settings.container === window) ? $window : $(settings.container);
+            /* Fire one scroll event per scroll. Not one scroll event per image. */
+            if (0 === settings.event.indexOf("scroll")) {
+                $container.bind(settings.event, function() {
+                    return update();
+                });
+            }
+
+            ele.each(function() {
+                    var self = this;
+                    var $self = $(self);
+                    self.loaded = false;
+                    /* If no src attribute given use data:uri. */
+                    if ($self.attr("src") === undefined || $self.attr("src") === false) {
+                        if ($self.is("img")) {
+                            $self.attr("src", settings.placeholder);
+                        }
+                    }
+                    /* When appear is triggered load original image. */
+                    $self.one("appear", function() {
+                        if (!this.loaded) {
+                            if (settings.appear) {
+                                var elements_left = elements.length;
+                                settings.appear.call(self, elements_left, settings);
+                            }
+                            $("<img />").bind("load", function() {
+                                var original = $self.attr("data-" + settings.data_attribute);
+                                $self.hide();
+                                if ($self.is("img")) {
+                                    $self.attr("src", original);
+                                } else {
+                                    $self.css("background-image", "url('" + original + "')");
+                                }
+                                $self[settings.effect](settings.effect_speed);
+                                self.loaded = true;
+                                /* Remove image from array so it is not looped next time. */
+                                var temp = $.grep(elements, function(element) {
+                                    return !element.loaded;
+                                });
+                                elements = $(temp);
+                                if (settings.load) {
+                                    var elements_left = elements.length;
+                                    settings.load.call(self, elements_left, settings);
+                                }
+                            }).attr("src", $self.attr("data-" + settings.data_attribute));
+                        }
+                    });
+                    /* When wanted event is triggered load original image */
+                    /* by triggering appear.                              */
+                    if (0 !== settings.event.indexOf("scroll")) {
+                        $self.bind(settings.event, function() {
+                            if (!self.loaded) {
+                                $self.trigger("appear");
+                            }
+                        });
+                    }
+                });
+
+            /* Check if something appears when window is resized. */
+            $window.bind("resize", function() {
+                update();
             });
-        }
-        /* Force initial check if images should appear. */
-        $(document).ready(function() {
-            update();
-        });
-        return this;
+            /* With IOS5 force loading images when navigating with back button. */
+            /* Non optimal workaround. */
+            if ((/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)) {
+                $window.bind("pageshow", function(event) {
+                    if (event.originalEvent && event.originalEvent.persisted) {
+                        elements.each(function() {
+                            $(this).trigger("appear");
+                        });
+                    }
+                });
+            }
+            /* Force initial check if images should appear. */
+            $(document).ready(function() {
+                update();
+            });
+            return ele;
+        },100);
     };
     /* Convenience methods in jQuery namespace.           */
     /* Use as  $.belowthefold(element, {threshold : 100, container : window}) */

@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_PortraitImage--------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_PortraitImage--------------------------------------*/
 (function($){
     var option = {};
     $.fn.Andrew_PortraitImage = function(setting) {
@@ -11,19 +15,23 @@
             setting);
         option = op;
         var pimg = $(this);
-        pimg.addClass("ak-PortraitImage");
-        pimg.find("input[type=file]").attr("accept","image/*");
-        pimg.bind('change',
-            function() {
-                ak_PortraitFilePrvid($(this).children('input')[0],op);
+        setTimeout(function() {
+            pimg.each(function(){
+                $(this).addClass("ak-PortraitImage");
+                $(this).find("input[type=file]").attr("accept","image/*");
+                $(this).bind('change',
+                    function() {
+                        ak_PortraitFilePrvid($(this).children('input')[0],op);
+                    });
+                $(this).children("figure").css({
+                    "margin-top": (pimg.outerWidth() / 3 / 2)
+                });
             });
-        pimg.children("figure").css({
-            "margin-top": ($(this).outerWidth() / 3 / 2)-2
-        });
+        }, 100);
 
         $(window).resize(function(){
             pimg.children("figure").css({
-                "margin-top": (pimg.outerWidth() / 3 / 2)-2
+                "margin-top": (pimg.outerWidth() / 3 / 2)
             });
         });
     };

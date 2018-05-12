@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-04-13
+Modification Date: 2018-05-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Loader------------------------------------------*/
@@ -59,75 +59,74 @@ function Andrew_Loader(setting){
         '<div class="ak-Loader-circ3" style="background-color:'+option.iconColor+'"></div>' +
         '<div class="ak-Loader-circ4" style="background-color:'+option.iconColor+'"></div>' +
         '</div>';
-    $(".ak-Loader").remove();
-    if (option.ele) {
-        $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 h_100 zindex_22'></div>");
-    } else {
-        $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 h_100 zindex_22'></div>");
-    }
-    var load_ele = $(".ak-Loader");
-    if (option.maskBG == true) {
-        load_ele.addClass("ak-mask");
-    }
-    $("main").removeClass("scrolling");
-    load_ele.each(function() {
-        var op = option.Loader;
-        switch (op) {
-            case "load_1":
-                load_ele.html(load_1);
-                break;
-            case "load_2":
-                load_ele.html(load_2);
-                break;
-            case "load_3":
-                load_ele.html(load_3);
-                break;
-            case "load_4":
-                load_ele.html(load_4);
-                break;
-            case "load_5":
-                load_ele.html(load_5);
-                break;
-            case "load_6":
-                load_ele.html(load_6);
-                break;
-            case "load_7":
-                load_ele.html(load_7);
-                break;
+    setTimeout(function() {
+        $(".ak-Loader").remove();
+        if (option.ele) {
+            $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 h_100 zindex_22'></div>");
+        } else {
+            $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 h_100 zindex_22'></div>");
         }
-    });
-    var loading = load_ele.find(".ak-loading");
-    if (option.ele) {
-        var ww = $(option.ele).width();
-        var wh = $(option.ele).height();
-    } else {
-        var ww = $(window).width();
-        var wh = $(window).height();
-    }
-    var lw = loading.outerWidth();
-    var lh = loading.outerHeight();
-    var yy = {
-        position: "absolute",
-        left: (ww / 2) - (lw / 2),
-        top: (wh / 2) - (lh / 2)
-    };
-    loading.css(yy);
-    //销毁对象
-    if (option === "destroy") {
-        ak_closeLayer();
-    }
-    if (option.autoMode == false) {
-        $.fn.Andrew_Loader("destroy");
-    } else {
-        //自动关闭
-        setTimeout(function () {
+        var load_ele = $(".ak-Loader");
+        if (option.maskBG == true) {
+            load_ele.addClass("ak-mask");
+        }
+        $("main").removeClass("scrolling");
+        load_ele.each(function() {
+            var op = option.Loader;
+            switch (op) {
+                case "load_1":
+                    load_ele.html(load_1);
+                    break;
+                case "load_2":
+                    load_ele.html(load_2);
+                    break;
+                case "load_3":
+                    load_ele.html(load_3);
+                    break;
+                case "load_4":
+                    load_ele.html(load_4);
+                    break;
+                case "load_5":
+                    load_ele.html(load_5);
+                    break;
+                case "load_6":
+                    load_ele.html(load_6);
+                    break;
+                case "load_7":
+                    load_ele.html(load_7);
+                    break;
+            }
+        });
+        var loading = load_ele.find(".ak-loading");
+        if (option.ele) {
+            var ww = $(option.ele).width();
+            var wh = $(option.ele).height();
+        } else {
+            var ww = $(window).width();
+            var wh = $(window).height();
+        }
+        var lw = loading.outerWidth();
+        var lh = loading.outerHeight();
+        var yy = {
+            position: "absolute",
+            left: (ww / 2) - (lw / 2),
+            top: (wh / 2) - (lh / 2)
+        };
+        loading.css(yy);
+        if (option === "destroy") {
             ak_closeLayer();
-        }, option.timeToHide);
-    }
-    return;
-    //销毁对象
-    function ak_closeLayer() {
-        $(load_ele).fadeOut();
-        $("main").addClass("scrolling");
-    }
+        }
+        if (option.autoMode == false) {
+            $.fn.Andrew_Loader("destroy");
+        } else {
+            setTimeout(function () {
+                ak_closeLayer();
+            }, option.timeToHide);
+        }
+        return;
+        function ak_closeLayer() {
+            $(load_ele).fadeOut();
+            $("main").addClass("scrolling");
+        }
+    }, 100);
 }

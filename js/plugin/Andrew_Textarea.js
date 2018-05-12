@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Textarea----------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Textarea----------------------------------------*/
 (function($){
     $.fn.Andrew_Textarea = function(setting) {
         var opm = $.extend({

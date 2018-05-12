@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Ratyli-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Ratyli-------------------------------------------*/
 (function($){
     $.Andrew_Ratyli = function(el, options){
         var base = this;
@@ -6,13 +10,9 @@
         base.el = el;
         base.$el.data("Andrew_Ratyli", base);
         base.init = function(){
-            // extend with parameters
             base.options = $.extend({},$.Andrew_Ratyli.defaultOptions, options);
-            // extend with html5 dataset
             base.options =$.extend({},base.options,base.$el.data());
-            // for the loop
             base.set(base.options.rate,true);
-            // event listeners for rating signs
             base.$el.on("click","> *",function(e){
                 if(!base.options.disable){
                     var target= e.target;
@@ -43,18 +43,14 @@
             });
         };
         base.set=function(val,init){
-            if(val<0 || (val % 1 != 0) || val>base.options.ratemax) val=0; // reset to 0.
+            if(val<0 || (val % 1 != 0) || val>base.options.ratemax) val=0;
             if(val==1 && base.options.rate==1 && base.options.unrateable==true && !init){
                 val=0;
             }
             base.options.rate=val;
-            // reset html
             base.$el.html("");
-            // set data-rate
             if (base.options.rate!=0) base.$el.attr("data-rate",base.options.rate);
-            // set data-ratemax
             base.$el.attr("data-ratemax",base.options.ratemax);
-            // generate signs
             var i=0;
             while (i < base.options.ratemax) {
                 var tmp="";
@@ -66,12 +62,10 @@
                 base.$el.append(tmp);
                 i++;
             }
-            // set rated
             if(!init && !base.options.disable){
                 //base.$el.addClass("rated");
                 base.$el.attr("data-rate",val);
             }
-            //rated callack
             base.options.onRated.call(base,val,init);
             return base.options.rate;
         };

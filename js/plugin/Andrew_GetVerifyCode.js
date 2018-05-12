@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_GetVerifyCode-----------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_GetVerifyCode-----------------------------------*/
 (function($){
     /*constructor {} 计时按钮构造函数*/
     function Andrew_GetVerifyCode(){}

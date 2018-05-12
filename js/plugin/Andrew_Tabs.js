@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Tabs--------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Tabs--------------------------------------------*/
 (function($){
     var Plugin = function(elem, options) {
         this.$wrapper = elem;
@@ -31,7 +35,9 @@
 
             this.setData();
             this.tabInital();
-
+            setTimeout(function() {
+                self.setData();
+            },100);
             $(window).resize(function(){
                 self.setData();
             });
@@ -44,7 +50,6 @@
             } else if (this.opts.mouse === 'hover') {
                 this.$tab_list.hover(function() {
                         var cur_obj = this;
-
                         clearTimeout(self.timer);
                         self.timer = setTimeout(function() {
                             self.changeTab($(cur_obj).index());

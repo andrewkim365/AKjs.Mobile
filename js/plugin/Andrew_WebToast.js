@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_WebToast-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_WebToast-------------------------------------------*/
 function ak_webToast(){
     var dcfg = {
         msg: "",

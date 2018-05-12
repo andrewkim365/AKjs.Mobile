@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_ChangeIcon--------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_ChangeIcon--------------------------------------*/
 (function($){
     $.fn.Andrew_ChangeIcon = function(setting) {
         var option = $.extend({

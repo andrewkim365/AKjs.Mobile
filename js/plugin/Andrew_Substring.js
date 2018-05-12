@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Substring-----------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Substring-----------------------------------------*/
 (function($){
     $.fn.Andrew_Substring = function() {
         $(this).blur(function() {

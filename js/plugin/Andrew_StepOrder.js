@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_StepOrder---------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_StepOrder---------------------------------------*/
 (function($){
     $.fn.Andrew_StepOrder = function(setting) {
         var option = $.extend({

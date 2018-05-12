@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_AllChecked--------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_AllChecked--------------------------------------*/
 (function($){
     $.fn.Andrew_AllChecked = function(settings){
         var ele = $(this);

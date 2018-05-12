@@ -1,3 +1,7 @@
+/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
 (function($, undefined) {
     var oldManip = $.fn.domManip, Andrew_TemplateItmAtt = "_Template_Item",
         newTemplate_Items = {}, wrappedItems = {}, appendToTemplate_Items, topTemplate_Item = { key: 0, data: {} }, itemKey = 0, cloneIndex = 0, stack = [];

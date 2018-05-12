@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Select-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Select-------------------------------------------*/
 (function($){
     window.Andrew_Select = (function() {
         function getClass(dom, string) {
@@ -33,7 +37,9 @@
                 if(_this.trigger==undefined || _this.trigger==null || _this.trigger==""){
                     return;
                 }
-                $("body").append(_this.Andrew_Select);
+                setTimeout(function() {
+                    $("body").append(_this.Andrew_Select);
+                },100);
                 document.activeElement.blur();//隐藏键盘
                 _this.wheel = getClass(_this.Andrew_Select, 'wheel'); //wheel 数组
                 _this.slider = getClass(_this.Andrew_Select, 'selectContainer'); // slider 数组
@@ -56,6 +62,11 @@
                     _this.liHeight = _this.Andrew_Select.querySelector('li').offsetHeight;
                     _this.setCurDistance(_this.initPosition);
                 });
+                $(_this.grayLayer).bind({
+                    touchmove: function (e) {
+                        e.preventDefault();
+                    }
+                });
                 _this.titleText = config.title ? config.title : '';
                 _this.button_ensure = config.ensure ? config.ensure : '';
                 _this.button_cancel = config.cancel ? config.cancel : '';
@@ -74,6 +85,7 @@
                 }
                 _this.setCurDistance(_this.initPosition);
                 _this.addListenerAll();
+
                 //按钮监听
                 //$(_this.closeBtn).unbind("click");
                 _this.closeBtn.addEventListener('click',function () {

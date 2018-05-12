@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_MultiDate-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_MultiDate-------------------------------------------*/
 (function($){
     var jet = {},
         regymdzz = "YYYY|MM|DD|hh|mm|ss|zz", gr = /\-/g,
@@ -237,6 +241,16 @@
                 $("body").append('<div id="multi_mask" class="ak-mask"></div>');
                 $('#multi_mask').show();
             }
+            $('#ak-MultiDate').bind({
+                touchmove: function (e) {
+                    e.preventDefault();
+                }
+            });
+            $('#multi_mask').bind({
+                touchmove: function (e) {
+                    e.preventDefault();
+                }
+            });
             that.renderHtml(vals[0].YYYY, vals[0].MM,vals[0].DD, opts,jet.boxelem);
         };
         //为开启初始化的时间设置值

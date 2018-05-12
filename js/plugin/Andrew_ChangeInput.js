@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_ChangeInput-------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_ChangeInput-------------------------------------*/
 (function($){
     $.fn.Andrew_ChangeInput = function(setting) {
         var option = $.extend({

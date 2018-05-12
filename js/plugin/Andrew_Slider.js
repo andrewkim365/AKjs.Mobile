@@ -1,9 +1,14 @@
-﻿/*-----------------------------------------------Andrew_Slider------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Slider------------------------------------------*/
 (function($){
     var Andrew_Slider = function(ele, opt) {
         var self = this;
         self.$element = ele,
             self.defaults = {
+                fullpage: false,
                 start: 1,
                 speed: 500,
                 interval: 5000,
@@ -65,13 +70,25 @@
                     ele.find("button").css("top", arrOffset + "px");
                 }
                 if (self.options.dotShow) {
-                    var dots = ele.children("ol");
-                    dots.find("li").addClass(self.options.dotClass);
-                    var dotWidth = (SliderSize+1) * dots.find("li").eq(0).outerWidth();
-                    var dotOffset = (ele.outerWidth() - dotWidth) / 2;
-                    dots.css({
-                        "left": dotOffset + "px"
-                    });
+                    if  (self.options.fullpage) {
+                        setTimeout(function () {
+                            var dots = ele.children("ol");
+                            dots.find("li").addClass(self.options.dotClass);
+                            var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
+                            var dotOffset = (ele.outerWidth() - dotWidth) / 2;
+                            dots.css({
+                                "left": dotOffset + "px"
+                            });
+                        }, 100);
+                    } else {
+                        var dots = ele.children("ol");
+                        dots.find("li").addClass(self.options.dotClass);
+                        var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
+                        var dotOffset = (ele.outerWidth() - dotWidth) / 2;
+                        dots.css({
+                            "left": dotOffset + "px"
+                        });
+                    }
                 }
             };
             resize();
@@ -141,6 +158,14 @@
                     function() {
                         timer = setInterval(play, self.options.interval)
                     })
+            }
+            if (self.options.fullpage) {
+                ele.on({
+                    touchmove: function (e) {
+                        e.preventDefault();
+                        return false;
+                    }
+                });
             }
             SliderLi.on({
                 touchstart: function(e) {

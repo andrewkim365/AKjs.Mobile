@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Dialog------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Dialog------------------------------------------*/
 (function($){
     var m = {};
     var g = {};
@@ -136,6 +140,16 @@
             that.options = m.getOptions(options);
             $('body').append(m.getTeplate(type, message, that.options) + "<div id='alert_mask' class=\"ak-mask\"></div> ");
             that.container = $('body').find('.ak-dialog');
+            $("#alert_mask").bind({
+                touchmove: function (e) {
+                    e.preventDefault();
+                }
+            });
+            that.container.bind({
+                touchmove: function (e) {
+                    e.preventDefault();
+                }
+            });
             $("main").removeClass("scrolling");
             that.btnOk = that.container.find('.button_ok');
             that.btnCancel = that.container.find('.button_cancel');

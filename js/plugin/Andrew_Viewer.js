@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Viewer-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Viewer-------------------------------------------*/
 (function($){
     function aL(a) {
         return "string" == typeof a

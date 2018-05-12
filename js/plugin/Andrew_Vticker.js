@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Vticker--------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Vticker--------------------------------------*/
 (function($) {
     $.fn.Andrew_Vticker = function(c) {
         c = $.extend({

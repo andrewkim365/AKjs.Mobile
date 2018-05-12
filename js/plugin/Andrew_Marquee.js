@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_Marquee--------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_Marquee--------------------------------------*/
 (function ($) {
     var methods = {
         init: function (options) {

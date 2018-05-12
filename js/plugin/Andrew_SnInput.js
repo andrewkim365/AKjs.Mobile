@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_SnInput-------------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_SnInput-------------------------------------------*/
 (function($){
     $.fn.Andrew_SnInput = function(setting) {
         var option = $.extend({

@@ -1,3 +1,8 @@
+/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_DropLoad------------------------------------------*/
 (function($){
     var _absMoveY = 0;
     var win = window;

@@ -1,4 +1,9 @@
-﻿(function($) {
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_TypeIt-----------------------------------------*/
+(function($) {
     var Andrew_TypeIt = function(el, options) {
         this.el = $(el);
         this.options = $.extend({}, $.fn.Andrew_TypeIt.defaults, options);
@@ -204,33 +209,19 @@
     $.fn.Andrew_TypeIt.defaults = {
         strings: [],
         stringsElement: null,
-        // typing speed
         typeSpeed: 0,
-        // time before typing starts
         startDelay: 0,
-        // backspacing speed
         backSpeed: 0,
-        // shuffle the strings
         shuffle: false,
-        // time before backspacing
         backDelay: 500,
-        // loop
         loop: false,
-        // false = infinite
         loopCount: false,
-        // show cursor
         showCursor: true,
-        // character for cursor
         cursorChar: "|",
-        // attribute to type (null == text)
         attr: null,
-        // either html or text
         contentType: 'html',
-        // call when done callback function
         callback: function() {},
-        // starting callback function before each string
         preString: function() {},
-        //callback for every TypeIt string
         onString: function() {}
     };
 

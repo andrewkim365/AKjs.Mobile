@@ -1,3 +1,7 @@
+/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
 /*-----------------------------------------------Andrew_NavScroll--------------------------------------------*/
 (function($){
     $.fn.Andrew_NavScroll = function(setting) {
@@ -8,7 +12,8 @@
             },
             setting);
         var ele = $(this);
-        var ele_list = ele.children();
+        var ele_list = ele.children().first().children();
+        var ele_content = ele.children().last();
         if (ele_list.children("sub").length < 1) {
             ele_list.append("<sub></sub>");
         }
@@ -52,11 +57,27 @@
             ele_list.animate({
                 "left" : fnl_l
             }, 300);
+            ele_content.animate({
+                "left" : "-"+flb_w * $(this).index()
+            }, 300);
             option.ClickCallback($(this),$(this).index());
         });
+        setTimeout(function() {
+            ak_SetStyle();
+        }, 100);
 
-        var fl_w = ele_list.width() + (ele_list.find("li").length*(ele_list.find("li").length-2));
-        var flb_w = ele.width();
+        $(window).resize(function(){
+            ak_SetStyle();
+        });
+
+        function ak_SetStyle() {
+            fl_w = ele_list.width();
+            flb_w = ele.width();
+            ele_content.removeClass("dis_none");
+            ele_content.children().css({"width": flb_w});
+            ele_content.css({"width": ele_content.children().width() * ele_content.children().length});
+        }
+
         ele_list.on('touchstart', function (e) {
             var touch1 = e.originalEvent.targetTouches[0];
             x1 = touch1.pageX;
@@ -76,7 +97,7 @@
             }else if(ty_left + x2 - x1<=flb_w-fl_w){
                 $(this).css({
                     "left": flb_w-fl_w,
-                    "transform": "translate3d(-"+x1/8+"px, 0px, 0px)",
+                    "transform": "translate3d(-"+x1/4+"px, 0px, 0px)",
                     "transition-duration": "0.2s"
                 });
             }else{

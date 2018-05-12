@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_lightSlider---------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_lightSlider---------------------------------------*/
 (function($){
     var defaults = {
         item: 3,
@@ -624,7 +628,9 @@
                 $this.pager();
             }
         };
-        plugin.build();
+        setTimeout(function() {
+            plugin.build();
+        },100);
         refresh.init = function () {
             refresh.chbreakpoint();
             elSize = $slide.outerWidth();
@@ -751,7 +757,7 @@
         };
         setTimeout(function () {
             settings.onSliderLoad.call(this, $el);
-        }, 10);
+        }, 100);
         $(window).on('resize orientationchange', function (e) {
             setTimeout(function () {
                 if (e.preventDefault) {

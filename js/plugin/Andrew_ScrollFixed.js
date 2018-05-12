@@ -1,4 +1,8 @@
-﻿/*-----------------------------------------------Andrew_ScrollFixed-------------------------------------*/
+﻿/*
+Modification Date: 2018-05-12
+Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
+*/
+/*-----------------------------------------------Andrew_ScrollFixed-------------------------------------*/
 (function($){
     $.fn.Andrew_ScrollFixed = function(setting) {
         var option = $.extend({
