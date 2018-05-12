@@ -1,4 +1,4 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180510 AKjs.Mobile license */
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180512 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -20,10 +20,11 @@ function Andrew_Config(setting){
         },
         setting);
     Andrew_sUserAgent();
+    Andrew_ClearCache();
     if(option.MaskStyle) {
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
     }
-    if(option.Responsive) {
+    if(!option.Responsive) {
         $("body").addClass("ak-screen");
     }
     if(option.Topdblclick== true) {
@@ -96,7 +97,7 @@ function Andrew_Plugin(setting,css){
         for(var i=0;i<jssrcs.length;i++){
             $.ajax({
                 type:'GET',
-                url: Path+"plugin/"+setting+".js",
+                url: Path+"plugin/"+setting+".js?akjs="+new Date().getTime(),
                 async: false,
                 cache: false,
                 dataType:'script'
@@ -104,7 +105,7 @@ function Andrew_Plugin(setting,css){
         }
         if (css) {
             for(var i=0;i<jssrcs.length;i++){
-                var css_url = "'" + Path + "plugin/css/" + setting + ".css'";
+                var css_url = "'" + Path + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
                 $("head").find("link:first").before("<link rel='stylesheet' type='text/css' href=" + css_url + " />");
             }
         }
@@ -292,7 +293,7 @@ function Andrew_Menu(setting){
         ak_menu_btn.each(function () {
             var index = $(this).index();
             var data_href = $(this).attr("data-href").split("?")[0];
-            if (document.location.hash.substring(1).split("?")[0] != data_href) {
+            if (document.location.hash.substring(1).split("?")[0].indexOf(data_href) == -1) {
                 $(this).children().eq(0).removeClass(option.menu_icon_active[index]);
                 $(this).children().eq(1).removeClass(option.active_color);
             }
@@ -311,6 +312,17 @@ function Andrew_sUserAgent() {
     IsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
     IsUc = sUserAgent.match(/ucweb/i) == "ucweb";
     IsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+}
+
+/*-----------------------------------------------Andrew_ClearCache------------------------------------------*/
+function Andrew_ClearCache() {
+    $("head").find("script").each(function(){
+        var question_mark =  new RegExp("\\?");
+        if (!question_mark.test($(this).attr("src"))) {
+            $(this).attr("src",$(this).attr("src").replace(".js",".js?akjs="+new Date().getTime()+""));
+        }
+    });
+
 }
 
 /*-----------------------------------------------Andrew_InputFocus--------------------------------------*/
@@ -445,7 +457,8 @@ function Andrew_InputFocus() {
                 });
             }
             setTimeout(function () {
-                focus.scrollIntoViewIfNeeded();
+                focus.scrollIntoView(true);
+                //focus.scrollIntoViewIfNeeded();
             }, 100);
         }
     }
@@ -465,6 +478,16 @@ function Andrew_GetScrollTop(){
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_sUserAgent();
+    $("body, header, footer").bind({
+        touchmove: function (e) {
+            e.preventDefault();
+        }
+    });
+    $("main").bind({
+        touchstart: function () {
+            $("body").unbind("touchmove");
+        }
+    });
     setTimeout(function() {
         if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
             $("main").css({
@@ -595,46 +618,55 @@ function Andrew_Animation() {
 /*-----------------------------------------------Andrew_HashSharp------------------------------------------*/
 function Andrew_HashSharp(form) {
     $('*[data-href]').unbind("click");
-    $('*[data-href]').click(function () {
-        var hash_sharp = new RegExp("#");
-        var hash_script = new RegExp("javascript");
-        var question_mark =  new RegExp("\\?");
-        var akTime =  new RegExp("ak=");
-        if (hash_sharp.test($(this).attr("data-href"))) {
-            if(question_mark.test($(this).attr("data-href"))){
-                if(akTime.test($(this).attr("data-href"))){
-                    document.location.href=Andrew_changeURLArg($(this).attr("data-href"),"ak",new Date().getTime());
+    var hash_sharp = new RegExp("#");
+    var hash_sharps = new RegExp("\\?#");
+    var hash_script = new RegExp("javascript");
+    var question_mark =  new RegExp("\\?");
+    var akTime =  new RegExp("akjs=");
+
+    if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
+        $('*[data-href]').click(function () {
+            if (hash_sharp.test($(this).attr("data-href"))) {
+                if(question_mark.test($(this).attr("data-href"))){
+                    if(akTime.test($(this).attr("data-href"))){
+                        document.location.href=Andrew_changeURLArg($(this).attr("data-href"),"akjs",new Date().getTime());
+                    }else{
+                        document.location.href=$(this).attr("data-href") + '&akjs=' + new Date().getTime();
+                    }
                 }else{
-                    document.location.href=$(this).attr("data-href") + '&ak=' + new Date().getTime();
+                    document.location.href=$(this).attr("data-href") + '?akjs=' + new Date().getTime();
                 }
-            }else{
-                document.location.href=$(this).attr("data-href") + '?ak=' + new Date().getTime();
-            }
-        } else if (hash_script.test($(this).attr("data-href"))){
-            document.location.replace($(this).attr("data-href"));
-        } else {
-            if(question_mark.test($(this).attr("data-href"))){
-                if(akTime.test($(this).attr("data-href"))){
-                    document.location.href=Andrew_changeURLArg("#"+$(this).attr("data-href"),"ak",new Date().getTime());
+                $(this).attr("data-href",$(this).attr("data-href").replace("#",""));
+            } else if (hash_script.test($(this).attr("data-href"))){
+                document.location.replace($(this).attr("data-href"));
+            } else if (hash_sharps.test(document.location.href)) {
+                document.location.replace(document.location.href.replace("?#", "#"));
+            } else {
+                if(question_mark.test($(this).attr("data-href"))){
+                    if(akTime.test($(this).attr("data-href"))){
+                        document.location.href=Andrew_changeURLArg("#"+$(this).attr("data-href"),"akjs",new Date().getTime());
+                    }else{
+                        document.location.href="#"+$(this).attr("data-href") + '&akjs=' + new Date().getTime();
+                    }
                 }else{
-                    document.location.href="#"+$(this).attr("data-href") + '&ak=' + new Date().getTime();
+                    document.location.href="#"+$(this).attr("data-href") + '?akjs=' + new Date().getTime();
                 }
-            }else{
-                document.location.href="#"+$(this).attr("data-href") + '?ak=' + new Date().getTime();
             }
-        }
-    });
+        });
+    } else {
+        $('*[data-href]').click(function () {
+            document.location.href= $(this).attr("data-href");
+        });
+    }
     if (form == true) {
         $('form[action]').each(function () {
             var hash_sharp = new RegExp("#");
-            if (!hash_sharp.test($(this).attr("action"))) {
-                $(this).attr("action", "#" + $(this).attr("action")+'?ak='+new Date().getTime());
+            if (Andrew_getUrlParam('akjs') && hash_sharp.test(document.location.hash)) {
+                if (!hash_sharp.test($(this).attr("action"))) {
+                    $(this).attr("action", "#/" + $(this).attr("action") + '?akjs=' + new Date().getTime());
+                }
             }
         });
-    }
-    var hash_sharps = new RegExp("\\?#");
-    if (hash_sharps.test(document.location.href)) {
-        document.location.replace(document.location.href.replace("?#","#"));
     }
 }
 
@@ -772,12 +804,12 @@ function Andrew_Include(url,type){
         if(type == "js" || type != "css"){
             var fileref = document.createElement('script');
             fileref.setAttribute("type","text/javascript");
-            fileref.setAttribute("src",url);
+            fileref.setAttribute("src",url+"?akjs="+new Date().getTime());
         }else {
             var fileref = document.createElement('link');
             fileref.setAttribute("rel","stylesheet");
             fileref.setAttribute("type","text/css");
-            fileref.setAttribute("href",url);
+            fileref.setAttribute("href",url+"?akjs="+new Date().getTime());
         }
         if(typeof fileref != "undefined"){
             $("head").find("script").each(function(){
