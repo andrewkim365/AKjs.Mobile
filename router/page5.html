@@ -4,7 +4,7 @@
 </ak-header>
 
 <div class="module list press plug_DropLoad">
-    <ul class="plug_dropbutton">
+    <ul>
     </ul>
 </div>
 
@@ -95,18 +95,6 @@
                             // 每次数据插入，必须重置
                             me.resetload(); //重新初始化控件以及标识量
                         },1000);
-                        /*-----------------------------------------------Andrew_DropUpDown 使用方法-------------------------------------------*/
-                        $(function () {
-                            $(".plug_dropbutton").Andrew_DropUpDown({
-                                curDisplay: 0, //当前显示哪个(不展开设置为0)
-                                active_toggle: "bor_bottom bor_gray_ddd", //展开后的线条切换（实线切换虚线）
-                                up_ico: "iconfont icon-shang", //展开后的图标（上箭头）
-                                down_ico: "iconfont icon-xia", //展开前的图标（下箭头）
-                                callback:function(ele){ //回调获取展开后的元素
-                                    console.log(ele);
-                                }
-                            });
-                        });
                     },
                     error: function(xhr, type){
                         alert('Ajax error!');
