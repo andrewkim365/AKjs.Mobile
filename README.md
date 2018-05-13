@@ -26,6 +26,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.1版本；
 
 4、为了兼容低版本jQuery把所有的功能插件js代码全部优化完毕；
 
+5、增加了demo2.html ~ demo5.html不走路由模式的演示版。
+
 
 
 # 更新时间：2018/5/09 下午 16:36
