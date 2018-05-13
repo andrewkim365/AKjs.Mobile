@@ -1,4 +1,4 @@
-﻿/*
+/*
 Modification Date: 2018-05-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
@@ -77,7 +77,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 that.$menu.unbind("touchmove")
             }
             that.$menu.css({
-                "top": that.$element.parent().parent().outerHeight(),
+                "top": that.$element.parent().parent().outerHeight()-1,
                 "left": "0",
                 "width": "100%"
             });
