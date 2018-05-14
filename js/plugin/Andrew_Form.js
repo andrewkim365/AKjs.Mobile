@@ -1,4 +1,4 @@
-﻿/*
+/*
 Modification Date: 2018-05-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
@@ -46,11 +46,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 option.butCallback($(this).parents("form"));
             });
             //密码（显示/隐藏）
-            var btn_password = mbf.find(option.btn_password);
-            btn_password.each(function(){
-                var pass_btn = $(this);
-                setTimeout(function() {
-                    //console.log(pass_btn.parent())
+            setTimeout(function() {
+                var btn_password = mbf.find(option.btn_password);
+                btn_password.each(function(){
+                    var pass_btn = $(this);
                     pass_btn.parent().append("<button type=\"button\" class=\"press top_0 right_0 abs text_al_r text_18em c_gray_ccc\"></button>");
 
                     pass_btn.next("button").addClass(option.btn_password_ico_hide);
@@ -58,23 +57,23 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         "height": pass_btn.outerHeight(),
                         "margin-left": pass_btn.width() - pass_btn.next("button").width()
                     });
-                },1000);
-                $(window).resize(function(){
-                    pass_btn.next("button").css({
-                        "height": pass_btn.outerHeight(),
-                        "margin-left": pass_btn.width() - pass_btn.next("button").width()
+                    $(window).resize(function(){
+                        pass_btn.next("button").css({
+                            "height": pass_btn.outerHeight(),
+                            "margin-left": pass_btn.width() - pass_btn.next("button").width()
+                        });
+                    });
+                    $(this).next("button").unbind("click");
+                    $(this).next("button").click(function() {
+                        $(this).toggleClass(option.btn_password_ico_hide+" "+option.btn_password_ico_show);
+                        if ($(this).hasClass(option.btn_password_ico_show)) {
+                            $(this).prev("input").attr("type","text");
+                        } else {
+                            $(this).prev("input").attr("type","password");
+                        }
                     });
                 });
-                $(this).next("button").unbind("click");
-                $(this).next("button").click(function() {
-                    $(this).toggleClass(option.btn_password_ico_hide+" "+option.btn_password_ico_show);
-                    if ($(this).hasClass(option.btn_password_ico_show)) {
-                        $(this).prev("input").attr("type","text");
-                    } else {
-                        $(this).prev("input").attr("type","password");
-                    }
-                });
-            });
+            },100);
             //输入的文字删除按钮
             var btn_delete = mbf.find(option.btn_delete);
             btn_delete.bind('input propertychange', function () {
