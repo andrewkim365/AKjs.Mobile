@@ -461,9 +461,9 @@
     ];
     $(".plug_for").Andrew_Template(list_data);
 
-    /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
+    /*-----------------------------------------------Andrew_Popupwin (分享功能) 使用方法-------------------------------------------*/
     $(function(){
-        setTimeout(function() { //为了兼容所有的jQuery版本该功能延迟执行
+        setTimeout(function() { //为了兼容所有的jQuery版本header元素里面的任何绑定事件都需要延迟执行
             $("#plug_Share").bind("click", function (c) {
                 Andrew_Popupwin({
                     dom: "#plug_ShareWin", //弹窗内容的布局

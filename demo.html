@@ -1249,7 +1249,7 @@
 
     /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
     $(function(){
-        setTimeout(function() { //为了兼容所有的jQuery版本该功能延迟执行
+        setTimeout(function() { //为了兼容所有的jQuery版本header元素里面的任何绑定事件都需要延迟执行
             $("#plug_menu").bind("click", function (e) {
                 Andrew_Popupwin({
                     dom: "#plug_MenuWin", //弹窗内容的布局
@@ -1269,21 +1269,19 @@
     });
 
     $(function(){
-        setTimeout(function() { //为了兼容所有的jQuery版本该功能延迟执行
-            $("#plug_popup").click(function(){
-                Andrew_Popupwin({
-                    dom: "#plug_PopupWin", //弹窗内容的布局
-                    position: "middle", //位置类型(top，bottom，left，right，middle)
-                    effectIn: "bounceInDown ani_1s", //弹窗显示效果
-                    effectOut: "bounceOutDown ani_1s", //弹窗消失效果
-                    maskPosition:"11", //Mask的z-index数值
-                    closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
-                    callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-                        console.log($(ele[0].dom)); //获取当前的弹窗元素
-                    }
-                });
+        $("#plug_popup").click(function(){
+            Andrew_Popupwin({
+                dom: "#plug_PopupWin", //弹窗内容的布局
+                position: "middle", //位置类型(top，bottom，left，right，middle)
+                effectIn: "bounceInDown ani_1s", //弹窗显示效果
+                effectOut: "bounceOutDown ani_1s", //弹窗消失效果
+                maskPosition:"11", //Mask的z-index数值
+                closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                }
             });
-        },100);
+        });
     });
     /*-----------------------------------------------Andrew_ChooseList 使用方法-------------------------------------------*/
     $(function(){
