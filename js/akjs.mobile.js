@@ -20,7 +20,6 @@ function Andrew_Config(setting){
         },
         setting);
     Andrew_sUserAgent();
-    Andrew_ClearCache();
     if(option.MaskStyle) {
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
     }
@@ -311,17 +310,6 @@ function Andrew_sUserAgent() {
     IsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
     IsUc = sUserAgent.match(/ucweb/i) == "ucweb";
     IsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-}
-
-/*-----------------------------------------------Andrew_ClearCache------------------------------------------*/
-function Andrew_ClearCache() {
-    $("head").find("script").each(function(){
-        var question_mark =  new RegExp("\\?");
-        if (!question_mark.test($(this).attr("src"))) {
-            $(this).attr("src",$(this).attr("src").replace(".js",".js?akjs="+new Date().getTime()+""));
-        }
-    });
-
 }
 
 /*-----------------------------------------------Andrew_InputFocus--------------------------------------*/
