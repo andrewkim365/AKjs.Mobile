@@ -66,6 +66,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             var headStyle_h1 = $("header h1").attr("class");
                             objsub.find(".ak-IntlTel_head").addClass(headStyle);
                             objsub.find(".ak-IntlTel_head h1").addClass(headStyle_h1);
+                            objsub.find(".ak-IntlTel_head").removeClass("dis_none_im");
                         }
                         objsub_title.addClass(option.show_color).css({
                             "height":$(window).height()
