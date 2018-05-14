@@ -1,4 +1,4 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180512 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180514 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -188,7 +188,6 @@ function Andrew_Router(setting){
                             hash = document.location.hash.substring(1);
                             option.success(hash);
                             $("main").show();
-                            Andrew_InputFocus();
                         },
                         error: function () {
                             hash = document.location.hash.substring(1);
