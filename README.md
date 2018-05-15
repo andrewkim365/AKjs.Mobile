@@ -26,6 +26,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.1版本；
 
 4、为了兼容低版本jQuery把所有的功能插件js代码全部优化完毕；
 
+5、js/plugin/Andrew_WebToast.js 修改bug； （2015-5-15）
+
 
 
 # 更新时间：2018/5/09 下午 16:36
