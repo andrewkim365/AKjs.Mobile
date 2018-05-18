@@ -24,6 +24,16 @@
     box-shadow:0 0 1em rgba(0,0,0,0.2);
     overflow:hidden;
 }
+@media screen and (min-width:640px) and (max-width:1024px) {
+    .ak-dialog .ak-dialog_container {
+        width:40%;
+    }
+}
+@media screen and (min-width:1025px) {
+    .ak-dialog .ak-dialog_container {
+        width:30%;
+    }
+}
 .ak-dialog .ak-dialog_header {
     width:100%;
     line-height:3em;
@@ -38,7 +48,7 @@
     color:#333333;
     display:inline-block;
     font-size:1.2em !important;
-    vertical-align:top;
+    vertical-align: middle;
 }
 .ak-dialog .ak-dialog_header::before {
     content:'warning';
