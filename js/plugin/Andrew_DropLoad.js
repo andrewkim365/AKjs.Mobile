@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-12
+Modification Date: 2018-05-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_DropLoad------------------------------------------*/
@@ -113,6 +113,24 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
         });
         me.$element.on('touchend',function(){
+            if(!me.loading){
+                fnTouchend(me);
+            }
+        });
+
+        me.$element.on('mousedown',function(e){
+            if(!me.loading){
+                fnTouches(e);
+                fnTouchstart(e, me);
+            }
+        });
+        me.$element.on('mousemove',function(e){
+            if(!me.loading){
+                fnTouches(e, me);
+                fnTouchmove(e, me);
+            }
+        });
+        me.$element.on('mouseup',function(){
             if(!me.loading){
                 fnTouchend(me);
             }
