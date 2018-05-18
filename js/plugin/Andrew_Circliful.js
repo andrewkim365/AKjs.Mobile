@@ -1,5 +1,5 @@
-﻿/*
-Modification Date: 2018-05-12
+/*
+Modification Date: 2018-05-18
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Circliful-------------------------------------------*/
@@ -99,32 +99,59 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     } else if (i == "spacing") {
                         section.append('<span class="ak-info w_100 abs text_al_c dis_inbl">' + E + "</span>");
                         css_info();
-                        section.append("<aside class='top_0 left_0 abs bor_rad_50' />");
+                        section.append("<div class='top_0 left_0 abs bor_rad_50' />");
                         var val = ele.data("width");
-                        switch (true) {
-                            case val <= '5':
-                                var wh =(F - (v*2))-(v/0.2);
-                                break;
-                            case val <= '10':
-                                var wh =(F - (v*2))-(v/0.4);
-                                break;
-                            case val <= '15':
-                                var wh =(F - (v*2))-(v/0.6);
-                                break;
-                            case val > '15':
-                                var wh =(F - (v*2))-(v/1.2);
-                                break;
+                        Andrew_sUserAgent();
+                        if (IsMobile) {
+                            switch (true) {
+                                case val <= '5':
+                                    var wh =(F - (v*2))-(v/0.2);
+                                    break;
+                                case val <= '10':
+                                    var wh =(F - (v*2))-(v/0.4);
+                                    break;
+                                case val <= '15':
+                                    var wh =(F - (v*2))-(v/0.6);
+                                    break;
+                                case val > '15':
+                                    var wh =(F - (v*2))-(v/1.2);
+                                    break;
+                            }
+                        } else {
+                            switch (true) {
+                                case val <= '5':
+                                    var wh =(F - (v*2))-(v/0.1);
+                                    break;
+                                case val <= '10':
+                                    var wh =(F - (v*2))-(v/0.3);
+                                    break;
+                                case val <= '15':
+                                    var wh =(F - (v*2))-(v/0.4);
+                                    break;
+                                case val <= '20':
+                                    var wh =(F - (v*2))-(v/0.6);
+                                    break;
+                                case val <= '25':
+                                    var wh =(F - (v*2))-(v/0.8);
+                                    break;
+                                case val <= '30':
+                                    var wh =(F - (v*2))-(v/1.2);
+                                    break;
+                                case val > '30':
+                                    var wh =(F - (v*2))-(v/2);
+                                    break;
+                            }
                         }
-                        var aside = ele.find("aside");
-                        aside.css({
+                        var div = ele.find("div");
+                        div.css({
                             "width": wh + "px",
                             "height": wh + "px"
                         });
-                        aside.css({
-                            "margin": F/2 - (aside.outerWidth()/2) + "px"
+                        div.css({
+                            "margin": F/2 - (div.outerWidth()/2) + "px"
                         });
                         if (ele.data("spacing_color") != undefined) {
-                            aside.css({
+                            div.css({
                                 "background-color": ele.data("spacing_color")
                             });
                         }
@@ -148,7 +175,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             function css_info() {
                 ele.find(".ak-info").css({
                     "line-height": (F * 1.25) + "px",
-                    "font-size": "0.8em",
+                    "font-size": "0.6em",
                     "color": tc,
                     "z-index": 2
                 })
@@ -165,7 +192,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             function css_info_half() {
                 ele.find(".ak-info-half").css({
                     "line-height": (F * 0.86) + "px",
-                    "font-size": "0.8em",
                     "color": tc,
                     "z-index": 2
                 })
