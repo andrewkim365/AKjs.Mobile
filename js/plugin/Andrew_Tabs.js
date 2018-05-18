@@ -1,5 +1,5 @@
-﻿/*
-Modification Date: 2018-05-12
+/*
+Modification Date: 2018-05-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Tabs--------------------------------------------*/
@@ -32,14 +32,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     Plugin.prototype = {
         inital: function() {
             var self = this;
-
-            this.setData();
-            this.tabInital();
             setTimeout(function() {
                 self.setData();
+                self.tabInital();
             },100);
             $(window).resize(function(){
                 self.setData();
+                self.tabInital();
             });
             if (this.opts.mouse === 'click') {
                 //this.$tab_list.unbind("click");
