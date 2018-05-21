@@ -40,7 +40,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
                 /*---- 初始化 ----*/
                 // 是否选中以input:checkbox的选中状态为准
-                if ($(this).find('input[type="checkbox"]').prop("checked")) {
+                if ($(this).find('input[type="checkbox"]').attr("checked")) {
                     $(this).addClass(options.checkedClass);
                     $(this).find('input[type="checkbox"]').attr("checked","checked");
                 } else if ($(this).find('input[type="checkbox"]').is(':disabled')) {
@@ -52,9 +52,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
 
                 /*---- 添加事件 ----*/
-                $checkbox.unbind();
+                //$checkbox.unbind();
                 $checkbox.on("change", function() {
-                    if ($checkbox.find('input[type="checkbox"]').prop("checked")) {
+                    if ($checkbox.find('input[type="checkbox"]').attr("checked")) {
                         $checkbox.find('input[type="checkbox"]').removeAttr("checked");
                         $checkbox.removeClass(options.checkedClass)
                     } else {
