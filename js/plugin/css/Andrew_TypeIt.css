@@ -1,4 +1,4 @@
-﻿.ak-TypeIt-cursor{
+.ak-TypeIt-cursor{
     opacity: 1;
     font-weight: 100;
     -webkit-animation: blink 0.7s infinite;
@@ -6,6 +6,8 @@
     -ms-animation: blink 0.7s infinite;
     -o-animation: blink 0.7s infinite;
     animation: blink 0.7s infinite;
+    color: inherit;
+    font-size: inherit;
 }
 @-webkit-keyframes blink{
     0% { opacity:1; }
