@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-18
+Modification Date: 2018-05-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Checkbox--------------------------------------*/
@@ -40,21 +40,21 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
                 /*---- 初始化 ----*/
                 // 是否选中以input:checkbox的选中状态为准
-                if ($checkbox.find('input[type="checkbox"]').attr("checked")) {
-                    $checkbox.addClass(options.checkedClass);
-                    $checkbox.find('input[type="checkbox"]').attr("checked","checked");
-                } else if ($checkbox.find('input[type="checkbox"]').is(':disabled')) {
-                    $checkbox.addClass(options.disabledClass);
-                    $checkbox.find('input[type="checkbox"]').attr("checked","checked");
+                if ($(this).find('input[type="checkbox"]').prop("checked")) {
+                    $(this).addClass(options.checkedClass);
+                    $(this).find('input[type="checkbox"]').attr("checked","checked");
+                } else if ($(this).find('input[type="checkbox"]').is(':disabled')) {
+                    $(this).addClass(options.disabledClass);
+                    $(this).find('input[type="checkbox"]').attr("checked","checked");
                 } else {
-                    $checkbox.removeClass(options.checkedClass).removeClass(options.disabledClass);
-                    $checkbox.find('input[type="checkbox"]').removeAttr("checked");
+                    $(this).removeClass(options.checkedClass).removeClass(options.disabledClass);
+                    $(this).find('input[type="checkbox"]').removeAttr("checked");
                 }
 
                 /*---- 添加事件 ----*/
                 $checkbox.unbind();
                 $checkbox.on("change", function() {
-                    if ($checkbox.find('input[type="checkbox"]').attr("checked")) {
+                    if ($checkbox.find('input[type="checkbox"]').prop("checked")) {
                         $checkbox.find('input[type="checkbox"]').removeAttr("checked");
                         $checkbox.removeClass(options.checkedClass)
                     } else {
@@ -64,6 +64,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     options.onChange($(this).children()[0].checked); // 回调
                 });
             });
-        },10);
+        },100);
     };
 }(jQuery));
