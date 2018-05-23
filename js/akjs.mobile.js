@@ -99,7 +99,8 @@ function Andrew_Plugin(setting,css){
         if (css) {
             for(var i=0;i<jssrcs.length;i++){
                 var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
-                $("head").find("link:first").before("<link rel='stylesheet' type='text/css' href=" + css_url + " />");
+                $("head").find("link").filter("#"+setting).remove();
+                $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href=" + css_url + " />");
             }
         }
     }
