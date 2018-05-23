@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-21
+Modification Date: 2018-05-23
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Checkbox--------------------------------------*/
@@ -19,51 +19,49 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
         var options = $.extend(_defaults, settings || {});
         var self = this;
-        setTimeout(function() {
-            if (!self.parent("label").hasClass("ak-Checkbox")) {
-                self.wrap("<label />");
-            }
-            var checkboxes = self.parent("label");
-            checkboxes.addClass("ak-Checkbox");
-            checkboxes.attr("data-name",self.attr("name"));
+        if (!self.parent("label").hasClass("ak-Checkbox")) {
+            self.wrap("<label />");
+        }
+        var checkboxes = self.parent("label");
+        checkboxes.addClass("ak-Checkbox");
+        checkboxes.attr("data-name",self.attr("name"));
+        checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
+        checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
+        $(window).resize(function(){
             checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
             checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
-            $(window).resize(function(){
-                checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
-                checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
-            });
-            checkboxes.each(function(ev) {
-                if ($(this).find('input[type="checkbox"]').attr("multiple")) {
-                    var $checkbox = $(ev.target);
-                } else {
-                    var $checkbox = $(this);
-                }
-                /*---- 初始化 ----*/
-                // 是否选中以input:checkbox的选中状态为准
-                if ($(this).find('input[type="checkbox"]').attr("checked")) {
-                    $(this).addClass(options.checkedClass);
-                    $(this).find('input[type="checkbox"]').attr("checked","checked");
-                } else if ($(this).find('input[type="checkbox"]').is(':disabled')) {
-                    $(this).addClass(options.disabledClass);
-                    $(this).find('input[type="checkbox"]').attr("checked","checked");
-                } else {
-                    $(this).removeClass(options.checkedClass).removeClass(options.disabledClass);
-                    $(this).find('input[type="checkbox"]').removeAttr("checked");
-                }
+        });
+        checkboxes.each(function(ev) {
+            if ($(this).find('input[type="checkbox"]').attr("multiple")) {
+                var $checkbox = $(ev.target);
+            } else {
+                var $checkbox = $(this);
+            }
+            /*---- 初始化 ----*/
+            // 是否选中以input:checkbox的选中状态为准
+            if ($(this).find('input[type="checkbox"]').attr("checked")) {
+                $(this).addClass(options.checkedClass);
+                $(this).find('input[type="checkbox"]').attr("checked","checked");
+            } else if ($(this).find('input[type="checkbox"]').is(':disabled')) {
+                $(this).addClass(options.disabledClass);
+                $(this).find('input[type="checkbox"]').attr("checked","checked");
+            } else {
+                $(this).removeClass(options.checkedClass).removeClass(options.disabledClass);
+                $(this).find('input[type="checkbox"]').removeAttr("checked");
+            }
 
-                /*---- 添加事件 ----*/
-                //$checkbox.unbind();
-                $checkbox.on("change", function() {
-                    if ($checkbox.find('input[type="checkbox"]').attr("checked")) {
-                        $checkbox.find('input[type="checkbox"]').removeAttr("checked");
-                        $checkbox.removeClass(options.checkedClass)
-                    } else {
-                        $checkbox.find('input[type="checkbox"]').attr("checked","checked");
-                        $checkbox.addClass(options.checkedClass);
-                    }
-                    options.onChange($(this).children()[0].checked); // 回调
-                });
+            /*---- 添加事件 ----*/
+            //$checkbox.unbind();
+            $checkbox.on("change", function() {
+                if ($checkbox.find('input[type="checkbox"]').attr("checked")) {
+                    $checkbox.find('input[type="checkbox"]').removeAttr("checked");
+                    $checkbox.removeClass(options.checkedClass)
+                } else {
+                    $checkbox.find('input[type="checkbox"]').attr("checked","checked");
+                    $checkbox.addClass(options.checkedClass);
+                }
+                options.onChange($(this).children()[0].checked); // 回调
             });
-        },100);
+        });
     };
 }(jQuery));
