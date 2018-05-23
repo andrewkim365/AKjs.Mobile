@@ -1,4 +1,4 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180514 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180523 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -7997,6 +7997,67 @@ button.bg_gray_222[disabled],
 button.bg_gray_333[disabled],
 button.bg_gray_444[disabled] {
     background-color:#555555 !important;
+}
+
+/*------------------gradient black-------------------*/
+.grbg_black_tmb {
+    background: -moz-linear-gradient(top, rgba(0,0,0,1), transparent, rgba(0,0,0,1));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,1), transparent, rgba(0,0,0,1));
+}
+.grbg_black_lt {
+    background: -moz-linear-gradient(left top, rgba(0,0,0,1), transparent);
+    background: -webkit-linear-gradient(left top, rgba(0,0,0,1), transparent);
+}
+.grbg_black_tl {
+    background: -moz-linear-gradient(left top, transparent, rgba(0,0,0,1));
+    background: -webkit-linear-gradient(left top, transparent, rgba(0,0,0,1));
+}
+.grbg_black_rt {
+    background: -moz-linear-gradient(right top, rgba(0,0,0,1), transparent);
+    background: -webkit-linear-gradient(right top, rgba(0,0,0,1), transparent);
+}
+.grbg_black_tr {
+    background: -moz-linear-gradient(right top, transparent, rgba(0,0,0,1));
+    background: -webkit-linear-gradient(right top, transparent, rgba(0,0,0,1));
+}
+.grbg_black_bt {
+    background: -moz-linear-gradient(top, transparent, rgba(0,0,0,1));
+    background: -webkit-linear-gradient(top, transparent, rgba(0,0,0,1));
+}
+.grbg_black_tb {
+    background: -moz-linear-gradient(top, rgba(0,0,0,1), transparent);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,1), transparent);
+}
+
+/*------------------gradient white-------------------*/
+.grbg_white_tmb {
+    background: -moz-linear-gradient(top, rgba(255,255,255,1), transparent, rgba(255,255,255,1));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1), transparent, rgba(255,255,255,1));
+}
+.grbg_white_lt {
+    background: -moz-linear-gradient(left top, rgba(255,255,255,1), transparent);
+    background: -webkit-linear-gradient(left top, rgba(255,255,255,1), transparent);
+}
+.grbg_white_tl {
+    background: -moz-linear-gradient(left top, transparent, rgba(255,255,255,1));
+    background: -webkit-linear-gradient(left top, transparent, rgba(255,255,255,1));
+}
+
+.grbg_white_rt {
+    background: -moz-linear-gradient(right top, rgba(255,255,255,1), transparent);
+    background: -webkit-linear-gradient(right top, rgba(255,255,255,1), transparent);
+}
+.grbg_white_tr {
+    background: -moz-linear-gradient(right top, transparent, rgba(255,255,255,1));
+    background: -webkit-linear-gradient(right top, transparent, rgba(255,255,255,1));
+}
+.grbg_white_bt {
+    background: -moz-linear-gradient(top, transparent, rgba(255,255,255,1));
+    background: -webkit-linear-gradient(top, transparent, rgba(255,255,255,1));
+}
+.grbg_white_tb {
+    background: -moz-linear-gradient(top, rgba(255,255,255,1), transparent);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1), transparent);
 }
 
 /*-----------AK Other Style-----------*/
