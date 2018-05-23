@@ -85,18 +85,12 @@ function Andrew_Config(setting){
 
 /*-----------------------------------------------Andrew_Plugin------------------------------------------*/
 function Andrew_Plugin(setting,css){
-    var scripts = document.getElementsByTagName("script");
-    var script = scripts[scripts.length - 1];
-    strJsPath = document.querySelector ? script.src : script.getAttribute("src", 4);
-    var index = strJsPath .lastIndexOf("\/");
-    Path = strJsPath .substring(0, index + 1);
-
     var jssrcs = setting.split("|");
     if (window.location.protocol != "file:") {
         for(var i=0;i<jssrcs.length;i++){
             $.ajax({
                 type:'GET',
-                url: Path+"plugin/"+setting+".js?akjs="+new Date().getTime(),
+                url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
                 async: false,
                 cache: false,
                 dataType:'script'
@@ -104,12 +98,14 @@ function Andrew_Plugin(setting,css){
         }
         if (css) {
             for(var i=0;i<jssrcs.length;i++){
-                var css_url = "'" + Path + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
+                var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
                 $("head").find("link:first").before("<link rel='stylesheet' type='text/css' href=" + css_url + " />");
             }
         }
     }
 }
+var scripts = document.scripts;
+js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length - 1].src.lastIndexOf("/") + 1);
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
 function Andrew_Router(setting){
