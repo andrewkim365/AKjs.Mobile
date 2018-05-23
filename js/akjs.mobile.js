@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180514 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180523 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -144,68 +144,71 @@ function Andrew_Router(setting){
             Andrew_InputFocus();
             ErrorPage_403();
         });
-        $(window).each(function () {
-            if (document.location.hash.substring(1) != "") {
-                if (window.location.protocol != "file:") {
-                    htmlobj = $.ajax({
-                        url: Router_path + document.location.hash.substring(1),
-                        async: false,
-                        cache: false,
-                        success: function () {
-                            hash = Router_path + document.location.hash.substring(1);
-                            option.success(hash);
-                            $("main").show();
-                        },
-                        error: function () {
-                            hash = Router_path + document.location.hash.substring(1);
-                            option.error(hash);
-                            $("main").hide();
-                        }
-                    });
-                    $("main").html(htmlobj.responseText);
+        setTimeout(function() {
+            $(window).each(function () {
+                if (document.location.hash.substring(1) != "") {
+                    if (window.location.protocol != "file:") {
+                        htmlobj = $.ajax({
+                            url: Router_path + document.location.hash.substring(1),
+                            async: false,
+                            cache: false,
+                            success: function () {
+                                hash = Router_path + document.location.hash.substring(1);
+                                option.success(hash);
+                                $("main").show();
+                            },
+                            error: function () {
+                                hash = Router_path + document.location.hash.substring(1);
+                                option.error(hash);
+                                $("main").hide();
+                            }
+                        });
+                        $("main").html(htmlobj.responseText);
+                    }
+                    Router_Settings();
+                    Andrew_InputFocus();
+                    ErrorPage_403();
                 }
-                Router_Settings();
-                Andrew_InputFocus();
-                ErrorPage_403();
-            }
-            option.changePage(document.location.hash.substring(1));
-        });
-        $(window).bind('hashchange', function () {
-            var ak_menu_btn = $("footer").children("menu").find("button");
-            ak_menu_btn.each(function () {
-                if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
-                    $("footer").removeClass("dis_none_im");
-                }
+                option.changePage(document.location.hash.substring(1));
             });
-            if (document.location.hash.substring(1) != "") {
-                if (window.location.protocol != "file:") {
-                    htmlobj = $.ajax({
-                        url: Router_path + document.location.hash.substring(1),
-                        async: false,
-                        cache: false,
-                        success: function () {
-                            hash = document.location.hash.substring(1);
-                            option.success(hash);
-                            $("main").show();
-                        },
-                        error: function () {
-                            hash = document.location.hash.substring(1);
-                            option.error(hash);
-                            $("main").hide();
-                        }
-                    });
-                    $("main").html(htmlobj.responseText);
+            $(window).bind('hashchange', function () {
+                var ak_menu_btn = $("footer").children("menu").find("button");
+                ak_menu_btn.each(function () {
+                    if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
+                        $("footer").removeClass("dis_none_im");
+                    }
+                });
+                if (document.location.hash.substring(1) != "") {
+                    if (window.location.protocol != "file:") {
+                        htmlobj = $.ajax({
+                            url: Router_path + document.location.hash.substring(1),
+                            async: false,
+                            cache: false,
+                            success: function () {
+                                hash = document.location.hash.substring(1);
+                                option.success(hash);
+                                $("main").show();
+                            },
+                            error: function () {
+                                hash = document.location.hash.substring(1);
+                                option.error(hash);
+                                $("main").hide();
+                            }
+                        });
+                        $("main").html(htmlobj.responseText);
+                    }
+                    Router_Settings();
+                    Andrew_InputFocus();
+                    $('main').animate({"scrollTop":0},100);
+                    $('body').children("div").remove();
+                    $('body').find(".ak-mask").remove();
+                } else {
+                    document.location.reload();
                 }
-                Router_Settings();
-                Andrew_InputFocus();
-                $('main').animate({"scrollTop":0},100);
-                $('body').children("div").remove();
-                $('body').find(".ak-mask").remove();
-            } else {
-                document.location.reload();
-            }
-            option.changePage(document.location.hash.substring(1));
-        });
+                option.changePage(document.location.hash.substring(1));
+            });
+        },100);
+
         function Router_Settings() {
             if ($("footer").find("dfn").length == 0) {
                 $("footer").children().before("<dfn />");
