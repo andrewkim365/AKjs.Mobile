@@ -967,12 +967,12 @@
 
                    //得到日期时间对象，range为false
                    console.log(obj.date);    //这里是对象
-                   obj.date = {YYYY: 2017, MM: 08, DD: 18}
+                   obj.date = {YYYY: 2017, MM: 10, DD: 18}
 
                    //开启区域选择，range为字符串 时才会返回一个日期时间数组对象。
                    console.log(obj.date);    //这里是数组
                    obj.date = [
-                       {YYYY: 2017, MM: 08, DD: 18},
+                       {YYYY: 2017, MM: 10, DD: 18},
                        {YYYY: 2019, MM: 11, DD: 25}
                    ]
                },
