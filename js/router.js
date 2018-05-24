@@ -37,7 +37,7 @@ $(document).ready(function(){
             /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
             $(function () {
                 Andrew_Config({ //环境配置管理
-                    MaskStyle: ["style3","opacity07"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
+                    MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
                     Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
                     touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
                     ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
@@ -80,7 +80,7 @@ $(document).ready(function(){
                 /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
                 $(function () {
                     Andrew_Loader({
-                        ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+                        //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
                         autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
                         timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
                         iconColor:"#ffffff", //图标颜色设置
