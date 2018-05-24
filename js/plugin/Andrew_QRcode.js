@@ -1,5 +1,5 @@
-﻿/*
-Modification Date: 2018-05-12
+/*
+Modification Date: 2018-05-24
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_QRcode-------------------------------------------*/
@@ -400,13 +400,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             a = c;
             jQuery(a).appendTo(this);
+            Andrew_sUserAgent();
             if (IsMobile) {
                 jQuery(this).addClass("rel ovh");
                 jQuery("<img src='"+img_url+"' class='dis_block left_0 top_0 zindex_2 abs wh_100' />").appendTo(this);
             }
             var resize = this;
             $(window).resize(function(){
-                Andrew_sUserAgent();
                 if (IsMobile == null) {
                     jQuery(resize).removeClass("rel ovh");
                     jQuery(resize).find("img").remove();
