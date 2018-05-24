@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180523 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180524 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -72,7 +72,7 @@ function Andrew_Config(setting){
         Andrew_InputFocus();
     }
     if(option.ButtonLink== true) {
-        Andrew_HashSharp(false);
+        Andrew_HashSharp(false,false);
     } else {
         $("*").removeAttr("data-href");
     }
@@ -112,6 +112,8 @@ js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length 
 function Andrew_Router(setting){
     var option = $.extend({
             Router: false,
+            FileFormat: ".html",
+            Parameter: false,
             RouterPath:[],
             tailClass: "",
             success:function () {
@@ -142,20 +144,32 @@ function Andrew_Router(setting){
             ErrorPage_403();
         });
         setTimeout(function() {
+            var hash_dot = new RegExp("\\.");
+            var hash_question =  new RegExp("\\?");
             $(window).each(function () {
                 if (document.location.hash.substring(1) != "") {
                     if (window.location.protocol != "file:") {
+                        if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
+                            var ak_url = Router_path + document.location.hash.substring(1)
+                        } else {
+                            if (hash_question.test(Router_path + document.location.hash.substring(1))) {
+                                var ak_hash = Router_path + document.location.hash.substring(1).replace("?",option.FileFormat+"?");
+                            } else {
+                                var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
+                            }
+                            var ak_url = ak_hash.replace("/"+option.FileFormat,"/index"+option.FileFormat);
+                        }
                         htmlobj = $.ajax({
-                            url: Router_path + document.location.hash.substring(1),
+                            url: ak_url,
                             async: false,
                             cache: false,
                             success: function () {
-                                hash = Router_path + document.location.hash.substring(1);
+                                hash = ak_url;
                                 option.success(hash);
                                 $("main").show();
                             },
                             error: function () {
-                                hash = Router_path + document.location.hash.substring(1);
+                                hash = ak_url;
                                 option.error(hash);
                                 $("main").hide();
                             }
@@ -177,17 +191,27 @@ function Andrew_Router(setting){
                 });
                 if (document.location.hash.substring(1) != "") {
                     if (window.location.protocol != "file:") {
+                        if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
+                            var ak_url = Router_path + document.location.hash.substring(1)
+                        } else {
+                            if (hash_question.test(Router_path + document.location.hash.substring(1))) {
+                                var ak_hash = Router_path + document.location.hash.substring(1).replace("?",option.FileFormat+"?");
+                            } else {
+                                var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
+                            }
+                            var ak_url = ak_hash.replace("/"+option.FileFormat,"/index"+option.FileFormat);
+                        }
                         htmlobj = $.ajax({
-                            url: Router_path + document.location.hash.substring(1),
+                            url: ak_url,
                             async: false,
                             cache: false,
                             success: function () {
-                                hash = document.location.hash.substring(1);
+                                hash = ak_url;
                                 option.success(hash);
                                 $("main").show();
                             },
                             error: function () {
-                                hash = document.location.hash.substring(1);
+                                hash = ak_url;
                                 option.error(hash);
                                 $("main").hide();
                             }
@@ -242,7 +266,13 @@ function Andrew_Router(setting){
                 $("footer").addClass("dis_none_im").removeClass("dis_block_im");
             }
             Andrew_RouterResize(option);
-            Andrew_HashSharp(true);
+            setTimeout(function() {
+                if (option.Parameter) {
+                    Andrew_HashSharp(true,true);
+                } else {
+                    Andrew_HashSharp(true,false);
+                }
+            },100);
             Andrew_Animation();
         }
         function ErrorPage_403() {
@@ -292,7 +322,7 @@ function Andrew_Menu(setting){
             var index = $(this).index();
             var data_href = $(this).attr("data-href").split("?")[0];
             if (document.location.hash.substring(1).split("?")[0].indexOf(data_href) == -1) {
-                $(this).children().eq(0).removeClass(option.menu_icon_active[index]);
+                $(this).children().eq(0).removeClass(option.menu_icon_active[index]).addClass(option.menu_icon[index]);
                 $(this).children().eq(1).removeClass(option.active_color);
             }
         });
@@ -554,7 +584,7 @@ function Andrew_Ajax(setting){
                 if ($(option.to)) {
                     $(option.to).html(htmlobj.responseText);
                 }
-                Andrew_HashSharp(true);
+                Andrew_HashSharp(true,false);
                 Andrew_Animation();
             },
             error: function (error) {
@@ -603,25 +633,36 @@ function Andrew_Animation() {
 }
 
 /*-----------------------------------------------Andrew_HashSharp------------------------------------------*/
-function Andrew_HashSharp(form) {
+function Andrew_HashSharp(form,key) {
     $('*[data-href]').unbind("click");
     var hash_sharp = new RegExp("#");
     var hash_sharps = new RegExp("\\?#");
     var hash_script = new RegExp("javascript");
     var question_mark =  new RegExp("\\?");
     var akTime =  new RegExp("akjs=");
-
     if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
         $('*[data-href]').click(function () {
             if (hash_sharp.test($(this).attr("data-href"))) {
                 if(question_mark.test($(this).attr("data-href"))){
                     if(akTime.test($(this).attr("data-href"))){
-                        document.location.href=Andrew_changeURLArg($(this).attr("data-href"),"akjs",new Date().getTime());
+                        if (key) {
+                            document.location.href=Andrew_changeURLArg($(this).attr("data-href"),"akjs",new Date().getTime());
+                        } else {
+                            document.location.href=$(this).attr("data-href");
+                        }
                     }else{
-                        document.location.href=$(this).attr("data-href") + '&akjs=' + new Date().getTime();
+                        if (key) {
+                            document.location.href=$(this).attr("data-href") + '&akjs=' + new Date().getTime();
+                        } else {
+                            document.location.href=$(this).attr("data-href");
+                        }
                     }
                 }else{
-                    document.location.href=$(this).attr("data-href") + '?akjs=' + new Date().getTime();
+                    if (key) {
+                        document.location.href=$(this).attr("data-href") + '?akjs=' + new Date().getTime();
+                    } else {
+                        document.location.href=$(this).attr("data-href");
+                    }
                 }
                 $(this).attr("data-href",$(this).attr("data-href").replace("#",""));
             } else if (hash_script.test($(this).attr("data-href"))){
@@ -631,12 +672,24 @@ function Andrew_HashSharp(form) {
             } else {
                 if(question_mark.test($(this).attr("data-href"))){
                     if(akTime.test($(this).attr("data-href"))){
-                        document.location.href=Andrew_changeURLArg("#"+$(this).attr("data-href"),"akjs",new Date().getTime());
+                        if (key) {
+                            document.location.href=Andrew_changeURLArg("#"+$(this).attr("data-href"),"akjs",new Date().getTime());
+                        } else {
+                            document.location.href="#"+$(this).attr("data-href");
+                        }
                     }else{
-                        document.location.href="#"+$(this).attr("data-href") + '&akjs=' + new Date().getTime();
+                        if (key) {
+                            document.location.href="#"+$(this).attr("data-href") + '&akjs=' + new Date().getTime();
+                        } else {
+                            document.location.href="#"+$(this).attr("data-href");
+                        }
                     }
                 }else{
-                    document.location.href="#"+$(this).attr("data-href") + '?akjs=' + new Date().getTime();
+                    if (key) {
+                        document.location.href="#"+$(this).attr("data-href") + '?akjs=' + new Date().getTime();
+                    } else {
+                        document.location.href="#"+$(this).attr("data-href");
+                    }
                 }
             }
         });
@@ -650,7 +703,11 @@ function Andrew_HashSharp(form) {
             var hash_sharp = new RegExp("#");
             if (Andrew_getUrlParam('akjs') && hash_sharp.test(document.location.hash)) {
                 if (!hash_sharp.test($(this).attr("action"))) {
-                    $(this).attr("action", "#/" + $(this).attr("action") + '?akjs=' + new Date().getTime());
+                    if (key) {
+                        $(this).attr("action", "#/" + $(this).attr("action") + '?akjs=' + new Date().getTime());
+                    } else {
+                        $(this).attr("action", "#/" + $(this).attr("action"));
+                    }
                 }
             }
         });
