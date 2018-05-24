@@ -20,6 +20,8 @@ js目录和css目中 akjs.mobile.js 发布 1.1.3版本；
 
 修改 js/plugin/Andrew_Loader.js 功能插件bug；
 
+修改 js/plugin/Andrew_QRcode.js 功能插件bug；
+
 修改底部菜单的选中和不选中的图标一样时图标消失的bug；
 
 
