@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-05-24
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Loader------------------------------------------*/
@@ -113,17 +113,11 @@ function Andrew_Loader(setting){
             top: (wh / 2) - (lh / 2)
         };
         loading.css(yy);
-        if (option === "destroy") {
-            ak_closeLayer();
-        }
-        if (option.autoMode == false) {
-            $.fn.Andrew_Loader("destroy");
-        } else {
+        if (option.autoMode) {
             setTimeout(function () {
                 ak_closeLayer();
             }, option.timeToHide);
         }
-        return;
         function ak_closeLayer() {
             $(load_ele).fadeOut();
             $("main").addClass("scrolling");
