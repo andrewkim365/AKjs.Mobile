@@ -80,14 +80,14 @@ $(document).ready(function(){
                 /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
                 $(function () {
                     Andrew_Loader({
-                        //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+                        ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
                         autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-                        timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
+                        timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
                         iconColor:"#ffffff", //图标颜色设置
                         maskBG: true, //是否开启遮挡背景 (开启 true, 关闭 false）
                         Loader:"load_2" //loading效果选择（load_1~7）
                     });
-                    $(".ak-mask").on("click", function () {
+                    $(document).on('click','.ak-mask',function(){
                         Andrew_Loader("destroy"); //关闭loading窗
                     });
                 });
