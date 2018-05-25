@@ -14,7 +14,7 @@ AKjs前端技术支持QQ群：724501394
 
 # 更新说明：
 
-js目录和css目中 akjs.mobile.js 发布 1.1.3版本；
+js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.3版本；
 
 #1.1.3的版本中增加了路由模式的url中的akjs参数开关功能以及文件格式设置功能；
 
@@ -23,6 +23,8 @@ js目录和css目中 akjs.mobile.js 发布 1.1.3版本；
 修改 js/plugin/Andrew_QRcode.js 功能插件bug；
 
 修改底部菜单的选中和不选中的图标一样时图标消失的bug；
+
+akjs.mobile.css 中 增加了 grbg_black和grbg_white 开头的渐变背景颜色；
 
 
 # 更新时间：2018/5/23 下午 16:22
