@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180524 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180528 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -303,7 +303,9 @@ function Andrew_Menu(setting){
     }
     ak_menu_btn.each(function () {
         var index = $(this).index();
-        var data_href = $(this).attr("data-href").split("?")[0];
+        if ($(this).attr("data-href")) {
+            var data_href = $(this).attr("data-href").split("?")[0];
+        }
         $(this).children().eq(0).addClass(option.menu_icon[index]);
         $(this).children().removeClass(option.active_color);
         if (document.location.hash.indexOf(data_href) != -1 || document.location.hash.substring(1).split("?")[0].indexOf(data_href) != -1) {
@@ -320,7 +322,9 @@ function Andrew_Menu(setting){
     $(window).bind('hashchange', function () {
         ak_menu_btn.each(function () {
             var index = $(this).index();
-            var data_href = $(this).attr("data-href").split("?")[0];
+            if ($(this).attr("data-href")) {
+                var data_href = $(this).attr("data-href").split("?")[0];
+            }
             if (document.location.hash.substring(1).split("?")[0].indexOf(data_href) == -1) {
                 $(this).children().eq(0).removeClass(option.menu_icon_active[index]).addClass(option.menu_icon[index]);
                 $(this).children().eq(1).removeClass(option.active_color);
