@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180528 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180529 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -640,6 +640,7 @@ function Andrew_Animation() {
 function Andrew_HashSharp(form,key) {
     $('*[data-href]').unbind("click");
     var hash_sharp = new RegExp("#");
+    var hash_dot = new RegExp("./");
     var hash_sharps = new RegExp("\\?#");
     var hash_script = new RegExp("javascript");
     var question_mark =  new RegExp("\\?");
@@ -688,7 +689,17 @@ function Andrew_HashSharp(form,key) {
                             document.location.href="#"+$(this).attr("data-href");
                         }
                     }
-                }else{
+                } else if (hash_dot.test($(this).attr("data-href"))) {
+                    var str = document.location.hash;
+                    var index = str.lastIndexOf("\/");
+                    str = str.substring(0,index)+"/";
+                    str = str.replace("#","");
+                    if (key) {
+                        document.location.href="#"+$(this).attr("data-href").replace("./", str) + '?akjs=' + new Date().getTime();
+                    } else {
+                        document.location.href="#"+$(this).attr("data-href").replace("./", str);
+                    }
+                } else {
                     if (key) {
                         document.location.href="#"+$(this).attr("data-href") + '?akjs=' + new Date().getTime();
                     } else {
@@ -844,6 +855,21 @@ function Andrew_changeURLArg(url, arg, arg_val) {
         }
     }
     return url + '\n' + arg + '\n' + arg_val;
+}
+
+/*-----------------------------------------------Andrew_Params------------------------------------------*/
+function Andrew_Params(number){
+    var hash_sharp = new RegExp("\\#/");
+    if (hash_sharp.test(document.location.hash)) {
+        hash_arr = (location.hash || "").replace(/^\#/, '').split("&");
+    } else {
+        hash_arr = (location.hash || "").replace(/^\#/, '/').split("&");
+    }
+    var params = [];
+    for(var i=0; i<hash_arr.length; i++){
+        params.push(hash_arr[i].split("/"));
+    }
+    return params[0][number];
 }
 
 /*-----------------------------------------------Andrew_Include------------------------------------------*/
