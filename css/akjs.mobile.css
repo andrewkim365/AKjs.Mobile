@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180528 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180529 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -2955,6 +2955,7 @@ legend {
 }
 .h_fill {
     height: -webkit-fill-available;
+    height: -moz-fill-available;
 }
 .max_h_100 {
     max-height: 100% !important;
@@ -7598,18 +7599,84 @@ legend {
     width: 2px;
     background-color: #dddddd;
 }
-/*color list Style*/
-.list_f5f > *:nth-child(odd), .list_f9f > *:nth-child(odd) {
-    background:#ffffff;
+
+/*white color list Style*/
+.list_f1f_white > *:nth-child(even) {
+    background:#f1f1f1;
 }
-.list_f5f > *:nth-child(even) {
+.list_f2f_white > *:nth-child(even) {
+    background:#f2f2f2;
+}
+.list_f3f_white > *:nth-child(even) {
+    background:#f3f3f3;
+}
+.list_f4f_white > *:nth-child(even) {
+    background:#f4f4f4;
+}
+.list_f5f_white > *:nth-child(even) {
     background:#f5f5f5;
 }
-.list_f9f > *:nth-child(even) {
+.list_f6f_white > *:nth-child(even) {
+    background:#f6f6f6;
+}
+.list_f7f_white > *:nth-child(even) {
+    background:#f7f7f7;
+}
+.list_f8f_white > *:nth-child(even) {
+    background:#f8f8f8;
+}
+.list_f9f_white > *:nth-child(even) {
     background:#f9f9f9;
 }
-.list_f5f > *:active, .list_f9f > *:active {
+.list_f1f_white > *:nth-child(odd), .list_f2f_white > *:nth-child(odd), .list_f3f_white > *:nth-child(odd), .list_f4f_white > *:nth-child(odd), .list_f5f_white > *:nth-child(odd), .list_f6f_white > *:nth-child(odd), .list_f7f_white > *:nth-child(odd), .list_f8f_white > *:nth-child(odd), .list_f9f_white > *:nth-child(odd) {
+    background:#ffffff;
+}
+.list_f1f_white > *:active, .list_f2f_white > *:active, .list_f3f_white > *:active, .list_f4f_white > *:active, .list_f5f_white > *:active, .list_f6f_white > *:active, .list_f7f_white > *:active, .list_f8f_white > *:active, .list_f9f_white > *:active {
     background:#f1f1f1;
+}
+.list_f1f_white > *:active {
+    background:#eeeeee;
+}
+
+/*black color list Style*/
+.list_111_black > *:nth-child(even) {
+    background:#111111;
+}
+.list_222_black > *:nth-child(even) {
+    background:#222222;
+}
+.list_333_black > *:nth-child(even) {
+    background:#333333;
+}
+.list_444_black > *:nth-child(even) {
+    background:#444444;
+}
+.list_555_black > *:nth-child(even) {
+    background:#555555;
+}
+.list_666_black > *:nth-child(even) {
+    background:#666666;
+}
+.list_777_black > *:nth-child(even) {
+    background:#777777;
+}
+.list_888_black > *:nth-child(even) {
+    background:#888888;
+}
+.list_999_black > *:nth-child(even) {
+    background:#999999;
+}
+.list_111_black > *:nth-child(odd), .list_222_black > *:nth-child(odd), .list_333_black > *:nth-child(odd), .list_444_black > *:nth-child(odd), .list_555_black > *:nth-child(odd) {
+    background:#000000;
+}
+.list_666_black > *:nth-child(odd), .list_777_black > *:nth-child(odd), .list_888_black > *:nth-child(odd), .list_999_black > *:nth-child(odd) {
+    background:#555555;
+}
+.list_111_black > *:active, .list_222_black > *:active, .list_333_black > *:active, .list_444_black > *:active, .list_555_black > *:active {
+    background:#000000;
+}
+.list_666_black > *:active, .list_777_black > *:active, .list_888_black > *:active, .list_999_black > *:active {
+    background:#555555;
 }
 
 /*color setting*/
