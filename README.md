@@ -16,7 +16,9 @@ AKjs前端技术支持QQ群：724501394
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.5版本；
 
-增加 Andrew_Params功能；该功能是获取router的参数。比如url地址是/#/home/page时通过Andrew_Params(1),Andrew_Params(2)获取home和page；
+增加 Andrew_Params功能；该功能是获取router的参数。
+
+比如url地址是/#/home/page时通过Andrew_Params(1),Andrew_Params(2)获取home和page；
 
 增加 data-href="./"当前路径跳页的方法；
 
