@@ -1233,6 +1233,9 @@ legend {
     display: contents;
 }
 .dis_flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
 }
 .dis_none_im {
@@ -1254,6 +1257,9 @@ legend {
     display: contents !important;
 }
 .dis_flex_im {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
     display: flex !important;
 }
 
@@ -3922,7 +3928,10 @@ legend {
 .img_auto {
     position: relative;
     overflow: hidden;
-    display: block;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
 }
 .img_auto img, .img_auto video {
     width: auto !important;
