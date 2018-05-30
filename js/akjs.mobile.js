@@ -108,6 +108,35 @@ function Andrew_Plugin(setting,css){
 var scripts = document.scripts;
 js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length - 1].src.lastIndexOf("/") + 1);
 
+/*-----------------------------------------------Andrew_Responsive------------------------------------------*/
+function Andrew_Responsive(setting) {
+    var option = $.extend({
+            resizeCallback: function () {
+            }
+        },
+        setting);
+    function ak_WindowSize() {
+        var device_width = window.screen.width;
+        var device_height = window.screen.height;
+        if (window.innerWidth)
+            viewport_width = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            viewport_width = document.body.clientWidth;
+        if (window.innerHeight)
+            viewport_height = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            viewport_height = document.body.clientHeight;
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+            viewport_height = document.documentElement.clientHeight;
+            viewport_width = document.documentElement.clientWidth;
+        }
+        option.resizeCallback(device_width,device_height,viewport_width,viewport_height);
+    }
+    window.onresize = function() {
+        ak_WindowSize();
+    };
+}
+
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
 function Andrew_Router(setting){
     var option = $.extend({
