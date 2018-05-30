@@ -6,6 +6,8 @@ html, html * {
     font-family: "PingFangSC-Regular", "Source Han Sans SC", "Microsoft YaHei", "Segoe UI", Helvetica, Arial, "Lucida Grande", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
     -webkit-text-size-adjust:100%;
     -ms-text-size-adjust:100%;
+    word-wrap:break-word;
+    word-break:break-all;
     margin: 0;
     padding: 0;
     border:0;
