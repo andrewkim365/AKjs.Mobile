@@ -6698,11 +6698,20 @@ legend {
 }
 
 /*minus margin setting*/
+.minus_mt_10em {
+    margin-top:-10em;
+}
 .minus_mt_9em {
     margin-top: -9em;
 }
 .minus_mt_8em {
     margin-top: -8em;
+}
+.minus_mt_7em {
+    margin-top:-7em;
+}
+.minus_mt_6em {
+    margin-top:-6em;
 }
 .minus_mt_5em {
     margin-top:-5em;
@@ -6809,11 +6818,20 @@ legend {
 .minus_mt_1px {
     margin-top:-1px !important;
 }
+.minus_mb_10em {
+    margin-bottom: -10em;
+}
 .minus_mb_9em {
     margin-bottom: -9em;
 }
 .minus_mb_8em {
     margin-bottom: -8em;
+}
+.minus_mb_7em {
+    margin-bottom: -7em;
+}
+.minus_mb_6em {
+    margin-bottom: -6em;
 }
 .minus_mb_5em {
     margin-bottom:-5em;
@@ -6920,11 +6938,20 @@ legend {
 .minus_mb_1px {
     margin-bottom:-1px !important;
 }
+.minus_ml_10em {
+    margin-left: -10em;
+}
 .minus_ml_9em {
     margin-left: -9em;
 }
 .minus_ml_8em {
     margin-left: -8em;
+}
+.minus_ml_7em {
+    margin-left: -7em;
+}
+.minus_ml_6em {
+    margin-left: -6em;
 }
 .minus_ml_5em {
     margin-left:-5em;
@@ -7031,11 +7058,20 @@ legend {
 .minus_ml_1px {
     margin-left:-1px !important;
 }
+.minus_mr_10em {
+    margin-right: -10em;
+}
 .minus_mr_9em {
     margin-right: -9em;
 }
 .minus_mr_8em {
     margin-right: -8em;
+}
+.minus_mr_7em {
+    margin-right: -7em;
+}
+.minus_mr_6em {
+    margin-right: -6em;
 }
 .minus_mr_5em {
     margin-right:-5em;
@@ -7167,6 +7203,66 @@ legend {
 }
 .minus_bottom_50 {
     bottom:-50%;
+}
+.minus_left_10em {
+    left:-10em;
+}
+.minus_right_10em {
+    right:-10em;
+}
+.minus_top_10em {
+    top:-10em;
+}
+.minus_bottom_10em {
+    bottom:-10em;
+}
+.minus_left_9em {
+    left:-9em;
+}
+.minus_right_9em {
+    right:-9em;
+}
+.minus_top_9em {
+    top:-9em;
+}
+.minus_bottom_9em {
+    bottom:-9em;
+}
+.minus_left_8em {
+    left:-8em;
+}
+.minus_right_8em {
+    right:-8em;
+}
+.minus_top_8em {
+    top:-8em;
+}
+.minus_bottom_8em {
+    bottom:-8em;
+}
+.minus_left_7em {
+    left:-7em;
+}
+.minus_right_7em {
+    right:-7em;
+}
+.minus_top_7em {
+    top:-7em;
+}
+.minus_bottom_7em {
+    bottom:-7em;
+}
+.minus_left_6em {
+    left:-6em;
+}
+.minus_right_6em {
+    right:-6em;
+}
+.minus_top_6em {
+    top:-6em;
+}
+.minus_bottom_6em {
+    bottom:-6em;
 }
 .minus_left_5em {
     left:-5em;
