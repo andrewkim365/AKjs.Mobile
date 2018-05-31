@@ -21,7 +21,9 @@
 */
 /*-----------------------------------------------Andrew_Router (路由全局设置）使用方法-------------------------------------------*/
 $(document).ready(function(){
-    Andrew_Include("js/data.js"); //Json数据文件引入（Andrew_Include是js文件中引入另一个js文件的功能）
+    Andrew_Include("css/theme.default.css"); //颜色相关样式文件引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
+    Andrew_Include("js/data.js"); //Json数据文件引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
+    Andrew_Include("js/plugin.js"); //功能插件按需引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
     Andrew_Router({ //路由配置管理
         Router: true, //是否开启路由（开启路由URL中带#的路径访问页面不刷新页面形式跳转 (开启 true, 停用 false）
         FileFormat: ".html", //路由目录中的文件格式设置,该参数设置后data-href值里可以不写文件格式 （可设置html,php,aspx,jsp...等程序的文件名）
@@ -91,33 +93,44 @@ $(document).ready(function(){
                         Andrew_Loader("destroy"); //关闭loading窗
                     });
                 });
+
+                /*-----------------------------------------------Andrew_Responsive 使用方法-------------------------------------------*/
+                Andrew_Responsive({ //实时监听窗口大小变化的功能
+                    resizeCallback: function (deviceW,deviceH,viewportW,viewportH) {
+                        //console.log("屏幕宽度: "+deviceW);
+                        //console.log("屏幕高度: "+deviceH);
+                        //console.log("实时窗口宽度: "+viewportW);
+                        //console.log("实时窗口高度: "+viewportH);
+                    }
+                });
+
                 /*
-                    //---------Andrew_Location 使用方法：
+                    Andrew_Location 使用方法：
                     Andrew_Location("/start.html","href"); //location.href 跳转模式
-                    Andrew_Location("/","reload"); //location.reload() 刷新当前页
-                    Andrew_Location(-1,"history"); //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
+                    Andrew_Location("/","reload") //location.reload() 刷新当前页
+                    Andrew_Location(-1,"history") //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
 
-                    //---------Andrew_getUrlParam &  Andrew_changeURLArg 使用方法：
-                    console.log("GET_ak: "+Andrew_getUrlParam('akjs')); //获取URL中的参数值
-                    console.log(Andrew_changeURLArg(location.hash,"akjs","change"+Andrew_getUrlParam('akjs'))); //更改URL中的参数值
+                    Andrew_getUrlParam &  Andrew_changeURLArg 使用方法：
+                    console.log("GET_ak: "+Andrew_getUrlParam('ak')); //获取URL中的参数值
+                    console.log(Andrew_changeURLArg(location.hash,"ak","change"+Andrew_getUrlParam('ak'))); //更改URL中的参数值
 
-                    //---------Andrew_DateFormat 使用方法：
-                    console.log(Andrew_DateFormat("2018/03/30 17:50","yyyy-MM-dd HH:mm"));
-                    console.log(Andrew_DateFormat(new Date(),"yyyy-MM-dd HH:mm"));
-
-                    //---------Andrew_Unicode 使用方法：
+                    Andrew_Unicode 使用方法：
                     console.log(Andrew_Unicode("中文字符"));
 
-                    //---------Andrew_setCookie & Andrew_getCookie & Andrew_delCookie 使用方法：
+                    Andrew_setCookie & Andrew_getCookie & Andrew_delCookie 使用方法：
                     Andrew_setCookie("username", user, 365); //设置cookie
                     var user = Andrew_getCookie("username"); //获取cookie
-                    Andrew_delCookie(name); //删除cookie
+                    Andrew_delCookie(name) //删除cookie
 
-                    //---------Andrew_htmlEncode & Andrew_htmlDecode 使用方法：
+                    Andrew_htmlEncode & Andrew_htmlDecode 使用方法：
                     Andrew_htmlEncode(str); //把TEXT转换HTML
                     Andrew_htmlDecode(str); //把HTML转换TEXT
-                */
 
+                    Andrew_DateFormat & Andrew_FileFormat 使用方法：
+                    console.log(Andrew_DateFormat("2018/03/30 17:50","yyyy-MM-dd HH:mm"));
+                    console.log(Andrew_DateFormat(new Date(),"yyyy-MM-dd HH:mm"));
+                    Andrew_FileFormat(filename) //获取文件的扩展名
+                */
             }
         }
     });

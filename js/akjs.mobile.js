@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180529 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180531 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -81,60 +81,6 @@ function Andrew_Config(setting){
     } else {
         $("*").removeAttr("data-animation");
     }
-}
-
-/*-----------------------------------------------Andrew_Plugin------------------------------------------*/
-function Andrew_Plugin(setting,css){
-    var jssrcs = setting.split("|");
-    if (window.location.protocol != "file:") {
-        for(var i=0;i<jssrcs.length;i++){
-            $.ajax({
-                type:'GET',
-                url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
-                async: false,
-                cache: false,
-                dataType:'script'
-            });
-        }
-        if (css) {
-            for(var i=0;i<jssrcs.length;i++){
-                var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
-                $("head").find("link").filter("#"+setting).remove();
-                $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href=" + css_url + " />");
-            }
-        }
-    }
-}
-var scripts = document.scripts;
-js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length - 1].src.lastIndexOf("/") + 1);
-
-/*-----------------------------------------------Andrew_Responsive------------------------------------------*/
-function Andrew_Responsive(setting) {
-    var option = $.extend({
-            resizeCallback: function () {
-            }
-        },
-        setting);
-    function ak_WindowSize() {
-        var device_width = window.screen.width;
-        var device_height = window.screen.height;
-        if (window.innerWidth)
-            viewport_width = window.innerWidth;
-        else if ((document.body) && (document.body.clientWidth))
-            viewport_width = document.body.clientWidth;
-        if (window.innerHeight)
-            viewport_height = window.innerHeight;
-        else if ((document.body) && (document.body.clientHeight))
-            viewport_height = document.body.clientHeight;
-        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
-            viewport_height = document.documentElement.clientHeight;
-            viewport_width = document.documentElement.clientWidth;
-        }
-        option.resizeCallback(device_width,device_height,viewport_width,viewport_height);
-    }
-    window.onresize = function() {
-        ak_WindowSize();
-    };
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
@@ -364,15 +310,42 @@ function Andrew_Menu(setting){
 
 /*-----------------------------------------------Andrew_sUserAgent------------------------------------------*/
 function Andrew_sUserAgent() {
-    var sUserAgent = navigator.userAgent.toLowerCase();
-    IsMobile = sUserAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
-    IsIpad = sUserAgent.match(/ipad/i) == "ipad";
-    IsIphone = sUserAgent.match(/iphone os/i) == "iphone os";
-    IsAndroid = sUserAgent.match(/android/i) == "android";
-    IsWechat = sUserAgent.match(/MicroMessenger/i)=="micromessenger";
-    IsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
-    IsUc = sUserAgent.match(/ucweb/i) == "ucweb";
-    IsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+    var terminal = navigator.userAgent.toLowerCase();
+    var browser = window.navigator.userAgent;
+    var explorer = window.navigator.appVersion;
+    IsMobile = terminal.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+    IsIpad = terminal.match(/ipad/i) == "ipad";
+    IsIphone = terminal.match(/iphone os/i) == "iphone os";
+    IsAndroid = terminal.match(/android/i) == "android";
+    IsWindows = terminal.match(/windows/i) == "windows";
+    IsImac = terminal.match(/macintosh/i) == "Imac";
+    IsWechat = terminal.match(/MicroMessenger/i)=="micromessenger";
+    IsQQ = terminal.match(/QQ/i)=="qq";
+    IsUc7 = terminal.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    IsUc = terminal.match(/ucweb/i) == "ucweb";
+    IsWM = terminal.match(/windows mobile/i) == "windows mobile";
+    IsChrome = /Chrom/gi.test(browser);
+    IsFirefox = /firefox/gi.test(browser);
+    IsOpera = /opera/gi.test(browser);
+    IsIE = !!document.all;
+    IsIE6 = !!document.all && !window.XMLHttpRequest;
+    IsIE7 = !!document.all && /msie 7.0/gi.test(explorer);
+    IsIE8 = !!document.all && /msie 8.0/gi.test(explorer);
+    Oslanguage = (navigator.browserLanguage || navigator.language).toLowerCase();
+}
+
+/*-----------------------------------------------Andrew_RegsInput------------------------------------------*/
+function Andrew_RegsInput() {
+    Regs_email = /^[0-9a-zA-Z_]+@[0-9a-zA-Z_]+[\.]{1}[0-9a-zA-Z]+[\.]?[0-9a-zA-Z]+$/;
+    Regs_mobile = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/;
+    Regs_url = /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i;
+    Regs_idCard = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
+    Regs_postal = /^[1-9]\d{5}(?!\d)$/;
+    Regs_date = /^[1-2][0-9][0-9][0-9]-[0-1]{0,1}[0-9]-[0-3]{0,1}[0-9]$/;
+    Regs_qq = /^[1-9][0-9]{4,9}$/;
+    Regs_numAll = /"^\d+$/;
+    Regs_userBefit = /^[a-z0-9]+$/i;
+    Regs_pwdBefit = /^\w+$/;
 }
 
 /*-----------------------------------------------Andrew_InputFocus--------------------------------------*/
@@ -523,6 +496,35 @@ function Andrew_GetScrollTop(){
         scrollTop=document.body.scrollTop;
     }
     return scrollTop;
+}
+
+/*-----------------------------------------------Andrew_Responsive------------------------------------------*/
+function Andrew_Responsive(setting) {
+    var option = $.extend({
+            resizeCallback: function () {
+            }
+        },
+        setting);
+    function ak_WindowSize() {
+        var device_width = window.screen.width;
+        var device_height = window.screen.height;
+        if (window.innerWidth)
+            viewport_width = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            viewport_width = document.body.clientWidth;
+        if (window.innerHeight)
+            viewport_height = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            viewport_height = document.body.clientHeight;
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+            viewport_height = document.documentElement.clientHeight;
+            viewport_width = document.documentElement.clientWidth;
+        }
+        option.resizeCallback(device_width,device_height,viewport_width,viewport_height);
+    }
+    window.onresize = function() {
+        ak_WindowSize();
+    };
 }
 
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
@@ -818,6 +820,33 @@ function Andrew_RouterResize(option) {
     }
 }
 
+/*-----------------------------------------------Andrew_Include------------------------------------------*/
+function Andrew_Include(url){
+    Andrew_pathURL();
+    var type_js = new RegExp(".js");
+    var type_css = new RegExp(".css");
+    if(type_js.test(url)){
+        var fileref = document.createElement('script');
+        fileref.setAttribute("type","text/javascript");
+        fileref.setAttribute("src",realPath+"/"+url+"?akjs="+new Date().getTime());
+    }else if(type_css.test(url)){
+        var fileref = document.createElement('link');
+        fileref.setAttribute("rel","stylesheet");
+        fileref.setAttribute("type","text/css");
+        fileref.setAttribute("href",realPath+"/"+url+"?akjs="+new Date().getTime());
+    }
+    if(typeof fileref != "undefined"){
+        $("head").find("script").each(function(){
+            if ($(this).attr("src")==url) {
+                $(this).remove();
+            }
+            $(fileref).appendTo($("head"));
+        });
+    }else{
+        console.info("load include {"+url+"} file method error!");
+    }
+}
+
 /*-----------------------------------------------Andrew_Location-------------------------------------------*/
 function Andrew_Location(url,option) {
     Andrew_sUserAgent();
@@ -901,52 +930,14 @@ function Andrew_Params(number){
     return params[0][number];
 }
 
-/*-----------------------------------------------Andrew_Include------------------------------------------*/
-function Andrew_Include(url,type){
-    if (window.location.protocol != "file:") {
-        if(type == "js" || type != "css"){
-            var fileref = document.createElement('script');
-            fileref.setAttribute("type","text/javascript");
-            fileref.setAttribute("src",url+"?akjs="+new Date().getTime());
-        }else {
-            var fileref = document.createElement('link');
-            fileref.setAttribute("rel","stylesheet");
-            fileref.setAttribute("type","text/css");
-            fileref.setAttribute("href",url+"?akjs="+new Date().getTime());
-        }
-        if(typeof fileref != "undefined"){
-            $("head").find("script").each(function(){
-                if ($(this).attr("src")==url) {
-                    $(this).remove();
-                }
-                $(fileref).appendTo($("head"));
-            });
-        }else{
-            alert("load include file method error!");
-        }
-    }
-    //Andrew_Include("file.js","js");
-}
-
-/*-----------------------------------------------Andrew_Unicode------------------------------------------*/
-function Andrew_Unicode(str) {
-    var out, i, len, c;
-    out = "";
-    len = str.length;
-    for(i = 0; i < len; i++) {
-        c = str.charCodeAt(i);
-        if ((c >= 0x0001) && (c <= 0x007F)) {
-            out += str.charAt(i);
-        } else if (c > 0x07FF) {
-            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-            out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
-            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-        } else {
-            out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
-            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-        }
-    }
-    return out;
+/*-----------------------------------------------Andrew_pathURL------------------------------------------*/
+function Andrew_pathURL() {
+    wwwPath = window.document.location.href;
+    pathName = window.document.location.pathname;
+    pathPos = wwwPath.indexOf(pathName);
+    localhostPath = wwwPath.substring(0,pathPos);
+    projectName = pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+    realPath = localhostPath+projectName;
 }
 
 /*-----------------------------------------------Andrew_setCookie------------------------------------------*/
@@ -976,6 +967,27 @@ function Andrew_delCookie(name) {
     Andrew_setCookie(name, "", -1);
 }
 
+/*-----------------------------------------------Andrew_Unicode------------------------------------------*/
+function Andrew_Unicode(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for(i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if ((c >= 0x0001) && (c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if (c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+        }
+    }
+    return out;
+}
+
 /*-----------------------------------------------Andrew_htmlEncode------------------------------------------*/
 function Andrew_htmlEncode(str) {
     var s = "";
@@ -1001,6 +1013,14 @@ function Andrew_htmlDecode(str) {
     s = s.replace(/'/g, "\'");
     s = s.replace(/"/g, '\"');
     s = s.replace(/<br>/g, "\n");
+    return s;
+}
+
+/*-----------------------------------------------Andrew_FileFormat------------------------------------------*/
+function Andrew_FileFormat(filename) {
+    var d=/\.[^\.]+$/.exec(filename);
+    var ext = new String(d);
+    var s = ext.toLowerCase();
     return s;
 }
 
@@ -1053,3 +1073,28 @@ function Andrew_DateFormat(date,format) {
         }
     });
 }
+
+/*-----------------------------------------------Andrew_Plugin------------------------------------------*/
+function Andrew_Plugin(setting,css){
+    var jssrcs = setting.split("|");
+    if (window.location.protocol != "file:") {
+        for(var i=0;i<jssrcs.length;i++){
+            $.ajax({
+                type:'GET',
+                url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
+                async: false,
+                cache: false,
+                dataType:'script'
+            });
+        }
+        if (css) {
+            for(var i=0;i<jssrcs.length;i++){
+                var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
+                $("head").find("link").filter("#"+setting).remove();
+                $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href=" + css_url + " />");
+            }
+        }
+    }
+}
+var scripts = document.scripts;
+js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length - 1].src.lastIndexOf("/") + 1);
