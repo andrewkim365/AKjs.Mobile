@@ -227,9 +227,9 @@ header {
     height:3.2em;
     line-height:3.2em;
     position:fixed;
-    z-index:6;
     top:0;
     display: none;
+    z-index:6;
 }
 header>* {
     height:100%;
