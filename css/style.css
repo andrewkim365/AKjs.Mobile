@@ -311,6 +311,7 @@ footer {
     bottom:0;
     width:100%;
     display: none;
+    z-index:6;
 }
 footer menu, footer dfn {
     display:block;
@@ -320,9 +321,6 @@ footer menu, footer dfn {
 }
 footer menu i, footer menu em, footer dfn i, footer dfn em {
     display:block;
-}
-footer {
-    z-index:6;
 }
 
 /*********************其它样式覆盖区域*********************/
