@@ -304,7 +304,7 @@ main { /*container 容器*/
 }
 
 /*********************底部固定菜单*********************/
-footer, .tail {
+footer {
     position:fixed;
     overflow: hidden;
     padding: 0;
@@ -312,20 +312,17 @@ footer, .tail {
     width:100%;
     display: none;
 }
-footer menu {
+footer menu, footer dfn {
     display:block;
     position: relative;
     height:3.2em;
     overflow:hidden;
 }
-footer menu i, footer menu em {
+footer menu i, footer menu em, footer dfn i, footer dfn em {
     display:block;
 }
 footer {
     z-index:6;
-}
-.tail {
-    z-index:7;
 }
 
 /*********************其它样式覆盖区域*********************/
