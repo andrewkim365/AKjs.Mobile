@@ -1347,8 +1347,9 @@
             //执行条件，可以是function也可以是Boolean值，如果是函数则需返回true才会执行
             condition: function (phone) {
                 /*var phoneReg = /^1[345789]\d{9}$/,*/
-                var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/,
-                    flag = phoneReg.test($(phone).val());
+                //var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/
+                Andrew_RegsInput();
+                var flag = Regs_mobile.test($(phone).val());
                 if(!flag){
                     $ak.alert("您输入的手机号码有误！", {
                         icon: "error", //图标类型（warning，error，info，question，success）
