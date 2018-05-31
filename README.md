@@ -301,6 +301,8 @@ js/plugin/Andrew_StepOrder.js 需要替换；
 
 # 更新说明：
 
+js目录和css目中 andrew.mobile.plugin.js 和 andrew.mobile.style.css 发布 1.0.1版本；
+
 解决上传图片功能插件删除图片时插件报错的bug（请替换一下Andrew_PreviewImage.js）
 
 Andrew_PreviewImage的插件调用部分的参数修改成以下的方式；
@@ -323,8 +325,6 @@ AK插件优化，改成轻量级插件（功能插件分离后可按需引入）
 修改插件上拉刷新和下拉加载的数据调用时的bug；
 
 修改底部菜单切换时图标不变的bug；
-
-特别声明：使用jQuery的版本必须3.0以上才能效果完美；
 
 
 # 主要目录和主要文件说明：
