@@ -24,6 +24,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.6版本；
 
 以上功能的使用方法是Andrew_sUserAgent, Andrew_Responsive, Andrew_RegsInput;
 
+原先在router中用的通过.tail样式布局固定到页面底部的方法已取消。现在是直接写到ak-footer里即可用布局固定的方法。
+
 # 更新时间：2018/5/29 下午 15:55
 
 # 更新说明：
