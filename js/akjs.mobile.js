@@ -90,7 +90,6 @@ function Andrew_Router(setting){
             FileFormat: ".html",
             Parameter: false,
             RouterPath:[],
-            tailClass: "",
             success:function () {
             },
             error:function () {
@@ -114,7 +113,6 @@ function Andrew_Router(setting){
             Router_path = option.RouterPath[0]+"/";
         }
         $(window).resize(function(){
-            Andrew_RouterResize(option);
             Andrew_InputFocus();
             ErrorPage_403();
         });
@@ -215,7 +213,9 @@ function Andrew_Router(setting){
                     $("header").addClass("dis_none_im").removeClass("dis_block_im");
                 } else {
                     if ($("ak-header").children().length > 0) {
-                        $("header").html($("ak-header").children().clone());
+                        $("header").html($("ak-header").html());
+                    } else {
+                        $("header").html("<h1 class='text_al_c'>"+$("title").text()+"</h1>");
                     }
                     $("header").removeClass("dis_none_im").addClass("dis_block_im");
                 }
@@ -228,19 +228,20 @@ function Andrew_Router(setting){
                     $("footer").addClass("dis_none_im").removeClass("dis_block_im");
                 } else {
                     if ($("ak-footer").children().length > 0) {
-                        $("footer").children("dfn").html($("ak-footer").children().clone());
+                        $("footer").children("dfn").html($("ak-footer").html());
                         $("footer").children("dfn").removeClass("dis_none_im").addClass("dis_block_im");
+                        $("footer").children("menu").addClass("dis_none_im");
                     } else {
-                        $("footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im");
+                        $("footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im").remove();
+                        $("footer").children("menu").removeClass("dis_none_im");
                     }
                     $("footer").removeClass("dis_none_im").addClass("dis_block_im");
                 }
                 $("ak-footer").remove();
             } else {
-                $("footer").children("dfn").addClass("dis_none_im");
+                $("footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im").remove();
                 $("footer").addClass("dis_none_im").removeClass("dis_block_im");
             }
-            Andrew_RouterResize(option);
             setTimeout(function() {
                 if (option.Parameter) {
                     Andrew_HashSharp(true,true);
@@ -398,7 +399,6 @@ function Andrew_InputFocus() {
             }
         });
         if (IsIphone || IsIpad) {
-            var focus = this;
             $("main").on({
                 touchmove: function() {
                     document.activeElement.blur();
@@ -757,66 +757,6 @@ function Andrew_HashSharp(form,key) {
                 }
             }
         });
-    }
-}
-
-/*-----------------------------------------------Andrew_RouterResize------------------------------------------*/
-function Andrew_RouterResize(option) {
-    Andrew_sUserAgent();
-    if ($(option.tailClass).length > 0) {
-        $(option.tailClass).prev().css({
-            "margin-bottom": $(option.tailClass).outerHeight() + $(option.tailClass).outerHeight()/2
-        });
-        $("footer").addClass("dis_opa_0");
-        $("main").css({
-            "padding-bottom": $(option.tailClass).outerHeight()
-        });
-        if ($("header").hasClass("dis_none_im")) {
-            $("main").css({
-                "margin-top": 0,
-                "height": $(window).height() - $(option.tailClass).outerHeight()
-            });
-        } else {
-            $("main").css({
-                "margin-top": $("header").outerHeight(),
-                "height": $(window).height() - $("header").outerHeight() - $(option.tailClass).outerHeight()
-            });
-        }
-        $(option.tailClass).on({
-            touchmove: function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        });
-        if (IsIphone || IsIpad) {
-            $('main input[type="text"],main input[type="number"], main input[type="tel"], main input[type="email"]').on('focus', function () {
-                $(option.tailClass).addClass("dis_opa_0");
-            });
-            $('main input[type="password"]').not('main input[type="password"][multiple]').on('focus', function () {
-                $(option.tailClass).addClass("dis_opa_0");
-            });
-            $('main input[type="password"][multiple]').on('focus', function () {
-                $(option.tailClass).addClass("dis_opa_0");
-            });
-            $('main textarea').focus(function () {
-                $(option.tailClass).addClass("dis_opa_0");
-            });
-            $('main input[type="text"],main input[type="number"], main input[type="tel"], main input[type="email"]').on('blur', function () {
-                $(option.tailClass).removeClass("dis_opa_0");
-            });
-            $('main input[type="password"]').not('main input[type="password"][multiple]').on('blur', function () {
-                $(option.tailClass).removeClass("dis_opa_0");
-            });
-            $('main input[type="password"][multiple]').on('blur', function () {
-                $(option.tailClass).removeClass("dis_opa_0");
-            });
-            $('main textarea').on('blur', function () {
-                $(option.tailClass).removeClass("dis_opa_0");
-            });
-        }
-    } else {
-        $("footer").removeClass("dis_opa_0");
-        Andrew_mainHeight();
     }
 }
 
