@@ -765,15 +765,24 @@ function Andrew_Include(url){
     Andrew_pathURL();
     var type_js = new RegExp(".js");
     var type_css = new RegExp(".css");
+    var type_remote = new RegExp("http");
     if(type_js.test(url)){
         var fileref = document.createElement('script');
         fileref.setAttribute("type","text/javascript");
-        fileref.setAttribute("src",realPath+"/"+url+"?akjs="+new Date().getTime());
+        if (type_remote.test(url)) {
+            fileref.setAttribute("src",url);
+        } else {
+            fileref.setAttribute("src",realPath+"/"+url+"?akjs="+new Date().getTime());
+        }
     }else if(type_css.test(url)){
         var fileref = document.createElement('link');
         fileref.setAttribute("rel","stylesheet");
         fileref.setAttribute("type","text/css");
-        fileref.setAttribute("href",realPath+"/"+url+"?akjs="+new Date().getTime());
+        if (type_remote.test(url)) {
+            fileref.setAttribute("src",url);
+        } else {
+            fileref.setAttribute("href",realPath+"/"+url+"?akjs="+new Date().getTime());
+        }
     }
     if(typeof fileref != "undefined"){
         $("head").find("script").each(function(){
