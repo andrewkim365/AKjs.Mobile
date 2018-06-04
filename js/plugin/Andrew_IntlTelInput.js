@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-04
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_IntlTelInput------------------------------------*/
@@ -57,17 +57,23 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         var objsub_title = objsub.find("h6");
                         var objsub_ol = objsub.find("ol");
                         var objsub_dl = objsub.find("dl");
-                        if ($("header").length > 0) {
-                            objsub.append("<div class='ak-IntlTel_head'>" +
-                                "<button type='button' class='"+option.Close_btn+"'><i class='"+option.Close_Icon+"'></i>"+option.Close_Text+"</button>\n" +
-                                "<h1>"+option.Title_Text+"</h1>" +
-                                "</div>");
-                            var headStyle = $("header").attr("class");
-                            var headStyle_h1 = $("header h1").attr("class");
-                            objsub.find(".ak-IntlTel_head").addClass(headStyle);
-                            objsub.find(".ak-IntlTel_head h1").addClass(headStyle_h1);
-                            objsub.find(".ak-IntlTel_head").removeClass("dis_none_im");
+                        Andrew_sUserAgent();
+                        objsub.append("<div class='ak-IntlTel_head'>" +
+                            "<button type='button' class='"+option.Close_btn+"'><i class='"+option.Close_Icon+"'></i>"+option.Close_Text+"</button>\n" +
+                            "<h1>"+option.Title_Text+"</h1>" +
+                            "</div>");
+                        var IntlTel_head = "bg_gray_f9f bor_bottom bor_gray_ddd";
+                        if (IsMobile) {
+                            if ($("header").length > 0) {
+                                var headStyle = $("header").attr("class");
+                                objsub.find(".ak-IntlTel_head").addClass(headStyle);
+                            } else {
+                                objsub.find(".ak-IntlTel_head").addClass(IntlTel_head);
+                            }
+                        } else {
+                            objsub.find(".ak-IntlTel_head").addClass(IntlTel_head);
                         }
+                        objsub.find(".ak-IntlTel_head").removeClass("dis_none_im");
                         objsub_title.addClass(option.show_color).css({
                             "height":$(window).height()
                         });
@@ -75,9 +81,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             "margin-top":$(".ak-IntlTel_head").outerHeight(),
                             "height":$(window).height() - $(".ak-IntlTel_head").outerHeight()
                         });
-                        objsub_ol.css({
-                            "top":$(".ak-IntlTel_head").outerHeight()+10
-                        });
+                        if (IsMobile) {
+                            objsub_ol.css({
+                                "top": $(".ak-IntlTel_head").outerHeight() + 10,
+                                "margin-right": 0
+                            });
+                        } else {
+                            objsub_ol.css({
+                                "top": $(".ak-IntlTel_head").outerHeight() + 10,
+                                "margin-right": "1%"
+                            });
+                        }
                         $(window).resize(function(){
                             objsub_title.addClass(option.show_color).css({
                                 "height":$(window).height() - $(".ak-IntlTel_head").outerHeight()
