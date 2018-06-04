@@ -1,5 +1,5 @@
-﻿/*
-Modification Date: 2018-05-12
+/*
+Modification Date: 2018-06-04
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ScrollFixed-------------------------------------*/
@@ -9,36 +9,35 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 ScrollFixed: false,
                 zPosition: "1",
                 animated: "slideInDown ani_05s",
-                top: 0
+                top: 0,
+                scroll:function(ele,offsetTop){
+                }
             },
             setting);
         var Scroll_ele = $(this);
         if (option.ScrollFixed == true) {
-            scrollbar_fun();
+            setTimeout(function() {
+                    scrollbar_fun();
+                },100);
             $(window).resize(function(){
                 scrollbar_fun();
             });
             function scrollbar_fun() {
                 Andrew_sUserAgent();
-                if(IsWechat) {
-                    var $scrollbar = $(window);
+                var $scrollbar = $("main");
+                if($("header").length != 0) {
+                    var Scroll_ele_h = $("header").outerHeight();
                 } else {
-                    if($("header").length != 0 && $("footer").length != 0) {
-                        var $scrollbar = $("main");
-                        var Scroll_ele_h = $("header").outerHeight();
-                    } else {
-                        var $scrollbar = $(window);
-                        var Scroll_ele_h = 0;
-                    }
+                    var Scroll_ele_h = 0;
                 }
                 if (Scroll_ele.length > 0) {
                     var Scroll_ele_offset = Scroll_ele.offset().top
                 }
                 $scrollbar.scroll(function(){
                     if ($("header").length > 0) {
-                        var scrolltop= $(this).scrollTop() + $("header").outerHeight();
+                        var scrolltop= $scrollbar.scrollTop() + $("header").outerHeight();
                     } else {
-                        var scrolltop = $(this).scrollTop();
+                        var scrolltop = $scrollbar.scrollTop();
                     }
                     if(scrolltop > Scroll_ele_offset){
                         Scroll_ele.addClass("fix w_100 top_0 animated "+option.animated);
@@ -55,6 +54,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         Scroll_ele.removeClass("fix w_100 top_0 animated "+option.animated);
                         Scroll_ele.removeAttr("style");
                     }
+                    option.scroll(scrolltop,Scroll_ele_offset);
                 });
                 $('input[type="text"], input[type="password"], input[type="number"], input[type="tel"], input[type="email"]').focus(function () {
                     if (Scroll_ele.hasClass("fix")) {
