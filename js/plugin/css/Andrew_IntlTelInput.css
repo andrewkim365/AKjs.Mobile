@@ -17,6 +17,10 @@
     z-index: 5;
     top: 0;
     left: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .ak-IntlTel .ak-IntlTel_head>* {
     height:100%;
@@ -25,6 +29,7 @@
     width: 100%;
     font-size:1.36em !important;
     font-weight: 600;
+    text-align: center !important;
 }
 .ak-IntlTel .ak-IntlTel_head button {
     cursor: pointer;
