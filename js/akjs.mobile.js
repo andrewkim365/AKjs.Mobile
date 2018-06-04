@@ -115,7 +115,6 @@ function Andrew_Router(setting){
         }
         $(window).resize(function(){
             Andrew_InputFocus();
-            Router_Settings();
             ErrorPage_403();
         });
         setTimeout(function() {
