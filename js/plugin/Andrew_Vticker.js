@@ -1,11 +1,11 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-04
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Vticker--------------------------------------*/
 (function($) {
-    $.fn.Andrew_Vticker = function(c) {
-        c = $.extend({
+    $.fn.Andrew_Vticker = function(setting) {
+        var option = $.extend({
                 speed: 500,
                 pause: 3000,
                 showItems: 3,
@@ -13,66 +13,76 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 isPaused: false,
                 direction: "up",
                 height: 0
-            }, c);
-        moveUp = function(a, d, b) {
-            if (!b.isPaused) {
-                a = a.children();
-                var f = a.children("li:first").clone(true);
-                if (b.height > 0) d = a.children("li:first").outerHeight();
-                a.animate({
-                        top: "-=" + d
+            }, setting);
+        moveUp = function(ele, LiHeight, option) {
+            if (!option.isPaused) {
+                ele_children = ele.children();
+                var datas = ele_children.children("li:first").clone(true);
+                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
+                ele_children.animate({
+                        top: "-=" + LiHeight
                     },
-                    b.speed,
+                    option.speed,
                     function() {
                         $(this).children("li:first").remove();
                         $(this).css("top", "0")
                     });
-                f.appendTo(a)
+                datas.appendTo(ele_children)
             }
         };
-        moveDown = function(a, d, b) {
-            if (!b.isPaused) {
-                a = a.children();
-                var f = a.children("li:last").clone(true);
-                if (b.height > 0) d = a.children("li:first").outerHeight();
-                a.css("top", "-" + d).prepend(f);
-                a.animate({
+        moveDown = function(ele, LiHeight, option) {
+            if (!option.isPaused) {
+                ele_children = ele.children();
+                var datas = ele_children.children("li:last").clone(true);
+                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
+                ele_children.css("top", "-" + LiHeight).prepend(datas);
+                ele_children.animate({
                         top: 0
                     },
-                    b.speed,
+                    option.speed,
                     function() {
                         $(this).children("li:last").remove()
                     });
             }
         };
-        return this.each(function() {
-            var a = $(this),
-                d = 0;
-            a.css({
+        var _this = $(this);
+        $(window).resize(function() {
+            _this.each(function () {
+                var ele = $(this),
+                    LiHeight = $(this).children().children("li").outerHeight();
+                if (option.height) {
+                    ele.height(option.height);
+                    ele.children().children("li").height(option.height / option.showItems);
+                } else {
+                    ele.height(LiHeight * option.showItems)
+                }
+            });
+        });
+        _this.each(function() {
+            var ele = $(this),
+                LiHeight = $(this).children().children("li").outerHeight();
+            ele.css({
                 overflow: "hidden",
                 position: "relative"
             }).children().css({
                 position: "absolute"
             });
-            if (c.height == 0) {
-                a.children().children("li").each(function() {
-                    if ($(this).outerHeight() > d) d = $(this).outerHeight()
-                });
-                a.children().children("li").each(function() {
-                    $(this).height(d)
-                });
-                a.height(d * c.showItems)
-            } else a.height(c.height);
+            if (option.height) {
+                ele.height(option.height);
+                ele.children().children("li").height(option.height / option.showItems);
+            } else {
+                ele.height(LiHeight * option.showItems)
+            }
             setInterval(function() {
-                    c.direction == "up" ? moveUp(a, d, c) : moveDown(a, d, c)
+                    option.direction == "up" ? moveUp(ele, LiHeight, option) : moveDown(ele, LiHeight, option)
                 },
-                c.pause);
-            c.mousePause && a.bind("mouseenter",
+                option.pause);
+            option.mousePause && ele.bind("mouseenter",
                 function() {
-                    c.isPaused = true
+                    option.isPaused = true
                 }).bind("mouseleave",
                 function() {
-                    c.isPaused = false
+                    option.isPaused = false
                 })
         })
     }
