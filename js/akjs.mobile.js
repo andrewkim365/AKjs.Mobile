@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180531 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180604 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -64,9 +64,6 @@ function Andrew_Config(setting){
         } else {
             $("main").removeClass("mt_0");
         }
-        Andrew_mainHeight();
-    } else {
-        Andrew_mainHeight();
     }
     if(option.fixedBar== true) {
         Andrew_InputFocus();
@@ -81,6 +78,10 @@ function Andrew_Config(setting){
     } else {
         $("*").removeAttr("data-animation");
     }
+    Andrew_mainHeight();
+    $(window).resize(function(){
+        Andrew_mainHeight();
+    });
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
@@ -107,13 +108,14 @@ function Andrew_Router(setting){
             });
             $("body").html(layout.responseText);
         }
-
+        Andrew_sUserAgent();
         var Router_path = "./";
         if (option.RouterPath[0]) {
             Router_path = option.RouterPath[0]+"/";
         }
         $(window).resize(function(){
             Andrew_InputFocus();
+            Router_Settings();
             ErrorPage_403();
         });
         setTimeout(function() {
@@ -149,11 +151,12 @@ function Andrew_Router(setting){
                         });
                         $("main").html(htmlobj.responseText);
                     }
-                    Router_Settings();
+                    Andrew_mainHeight();
                     Andrew_InputFocus();
+                    Router_Settings();
                     ErrorPage_403();
                 }
-                option.changePage(document.location.hash.substring(1));
+                option.changePage(document.location.hash.substring(1),IsMobile);
             });
             $(window).bind('hashchange', function () {
                 var ak_menu_btn = $("footer").children("menu").find("button");
@@ -191,15 +194,17 @@ function Andrew_Router(setting){
                         });
                         $("main").html(htmlobj.responseText);
                     }
-                    Router_Settings();
+                    Andrew_mainHeight();
                     Andrew_InputFocus();
+                    Router_Settings();
+                    ErrorPage_403();
                     $('main').animate({"scrollTop":0},100);
                     $('body').children("div").remove();
                     $('body').find(".ak-mask").remove();
                 } else {
                     document.location.reload();
                 }
-                option.changePage(document.location.hash.substring(1));
+                option.changePage(document.location.hash.substring(1),IsMobile);
             });
         },100);
 
