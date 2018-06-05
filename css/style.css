@@ -249,9 +249,8 @@ header button, header>* i {
 }
 
 /******内容区域样式******/
-main { /*container 容器*/
-    overflow-x: hidden;
-    overflow-y: auto;
+main {
+    margin-top: 3.3em;
 }
 
 /*********************模块布局结构*********************/
