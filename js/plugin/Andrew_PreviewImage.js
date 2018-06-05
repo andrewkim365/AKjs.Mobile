@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-05
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_PreviewImage---------------------------------------*/
@@ -17,7 +17,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 box_icon: new Array(),
                 Class:"",
                 Del_icon:"",
+                length: 4,
                 length_title:"",
+                size: 5,
+                size_title:"",
                 errorTip:"",
                 addCallbak: function() {},
                 delCallbak: function() {}
@@ -52,10 +55,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             var tempFiles = [];
             for(var i=0;i<(op.length-option.uploadNum);i++){
+                if(tempData.files[i]!=null && tempData.files[i]!=undefined){
+                    if(tempData.files[i].size>op.size*1024*1024){
+                        ak_webToast(op.size_title + op.size+"MB","middle","mask",10000);
+                        return false;
+                    }
+                }
                 tempFiles.push(tempData.files[i])
             }
             file_prvid(tempData, tempFiles, op);
         });
+
         var figure_wh = $(this).outerWidth();
         var figure_m = $(this).outerWidth() / 3;
         pimg.children("figure").css({

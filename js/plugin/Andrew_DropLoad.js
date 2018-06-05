@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-17
+Modification Date: 2018-06-05
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_DropLoad------------------------------------------*/
@@ -53,7 +53,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             loadUpFn : '',// 上方function
             loadDownFn : ''// 下方function
         }, options);
-
+        setTimeout(function() {
+            $("main").removeClass("ak-scrollbar");
+            $("main").unbind('touchmove');
+        },500);
         // 如果加载下方，事先在下方插入DOM
         if(me.opts.loadDownFn != ''){
             $("."+ me.opts.domDown.domClass).remove();
