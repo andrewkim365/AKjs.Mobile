@@ -557,7 +557,7 @@ function Andrew_mainHeight() {
                 }
             });
         }
-    },100);
+    },200);
     if (IsMobile) {
         $("main").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
