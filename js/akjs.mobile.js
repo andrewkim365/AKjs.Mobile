@@ -559,10 +559,10 @@ function Andrew_mainHeight() {
         }
     },100);
     if (IsMobile) {
-        $("main").removeClass("scrollbar");
+        $("main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
     } else {
-        $("main").addClass("scrollbar");
+        $("main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
     }
     setTimeout(function() {
