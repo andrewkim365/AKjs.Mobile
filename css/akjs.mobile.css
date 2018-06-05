@@ -198,14 +198,12 @@ textarea {
     overflow:auto;
     vertical-align:top;
     resize:none;
-    height: 100%;
 }
 select {
     cursor:pointer;
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
-    height: 100%;
 }
 select::-ms-expand {
     display:none;
@@ -217,6 +215,9 @@ div,header,section,footer,aside,nav,article,figure,figcaption,details,main {
 label,button,input,select,textarea {
     font-size:100%;
     line-height: 100%;
+}
+label,input,select,textarea {
+    height: 100%;
 }
 legend {
     border:none !important;
