@@ -542,7 +542,7 @@ function Andrew_mainHeight() {
             $("body").unbind('touchmove');
         }
     });
-    setTimeout(function() {
+    setInterval(function(){
         var scrollHeight = $("main").prop('scrollHeight');
         var clientHeight = $("main").prop('clientHeight');
         if (scrollHeight > clientHeight) {
@@ -557,7 +557,7 @@ function Andrew_mainHeight() {
                 }
             });
         }
-    },200);
+    },100);
     if (IsMobile) {
         $("main").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
