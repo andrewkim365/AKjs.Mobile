@@ -66,7 +66,7 @@
 </div>
 
 <div class="plug_tabs_ud mt_5 module bg_white">
-    <nav class="abs left_0 h_12_em ova press list bg_white w_25">
+    <nav class="abs left_0 h_12_em ova bar_hide press list bg_white w_25">
         <ul class="bg_gray_f5f list_h_3em">
             <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-1</li>
             <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-2</li>
@@ -78,7 +78,7 @@
     </nav>
     <article class="fr rel ovh w_75">
         <div class="rel">
-            <section class="rel ova">
+            <section class="rel ova bar_hide">
                 <div class="ma_3 c_gray_777 line_h_18em h_in">
                     欢迎使用AKjs移动端前端UI框架。<br>
                     请点击左侧菜单列表进行切换Tabs的内容。<br>
@@ -1738,6 +1738,8 @@
             Del_icon:"icon-bt_quxiao_a", //图片删除图标样式
             length:4, //默认允许上传多少照片
             length_title:"最大支持上传图片数量为：", //超出上传限制数量后提示的文字
+            size: 5, //上传的文件大小限制 (MB)
+            size_title:"最大支持上传图片大小为：",  //超出上传限制的文件大小后提示的文字
             errorTip:"图片上传格式不正确！", //图片上传格式有误时提示的文字
             addCallbak: function(imglist) { //上传图片后的回调（获取图片列表元素）
                 console.log(imglist)
