@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180604 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180605 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -65,9 +65,6 @@ function Andrew_Config(setting){
             $("main").removeClass("mt_0");
         }
     }
-    if(option.fixedBar== true) {
-        Andrew_InputFocus();
-    }
     if(option.ButtonLink== true) {
         Andrew_HashSharp(false,false);
     } else {
@@ -78,9 +75,17 @@ function Andrew_Config(setting){
     } else {
         $("*").removeAttr("data-animation");
     }
-    Andrew_mainHeight();
+    setTimeout(function() {
+        Andrew_mainHeight();
+        if(option.fixedBar== true) {
+            Andrew_InputFocus();
+        }
+    },100);
     $(window).resize(function(){
         Andrew_mainHeight();
+        if(option.fixedBar== true) {
+            Andrew_InputFocus();
+        }
     });
 }
 
@@ -113,10 +118,6 @@ function Andrew_Router(setting){
         if (option.RouterPath[0]) {
             Router_path = option.RouterPath[0]+"/";
         }
-        $(window).resize(function(){
-            Andrew_InputFocus();
-            ErrorPage_403();
-        });
         setTimeout(function() {
             var hash_dot = new RegExp("\\.");
             var hash_question =  new RegExp("\\?");
@@ -150,8 +151,6 @@ function Andrew_Router(setting){
                         });
                         $("main").html(htmlobj.responseText);
                     }
-                    Andrew_mainHeight();
-                    Andrew_InputFocus();
                     Router_Settings();
                     ErrorPage_403();
                 }
@@ -193,8 +192,6 @@ function Andrew_Router(setting){
                         });
                         $("main").html(htmlobj.responseText);
                     }
-                    Andrew_mainHeight();
-                    Andrew_InputFocus();
                     Router_Settings();
                     ErrorPage_403();
                     $('main').animate({"scrollTop":0},100);
@@ -537,13 +534,37 @@ function Andrew_mainHeight() {
     $("body, header, footer").bind({
         touchmove: function (e) {
             e.preventDefault();
+            e.stopPropagation();
         }
     });
     $("main").bind({
         touchstart: function () {
-            $("body").unbind("touchmove");
+            $("body").unbind('touchmove');
         }
     });
+    setTimeout(function() {
+        var scrollHeight = $("main").prop('scrollHeight');
+        var clientHeight = $("main").prop('clientHeight');
+        if (scrollHeight > clientHeight) {
+            $("main").removeClass("ak-scrollbar");
+            $("main").unbind('touchmove');
+        } else {
+            $("main").addClass("ak-scrollbar");
+            $(".ak-scrollbar").bind({
+                touchmove: function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+        }
+    },100);
+    if (IsMobile) {
+        $("main").removeClass("scrollbar");
+        $(".bar_hide").removeClass("scrollbar_hide");
+    } else {
+        $("main").addClass("scrollbar");
+        $(".bar_hide").addClass("scrollbar_hide");
+    }
     setTimeout(function() {
         if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
             $("main").css({
