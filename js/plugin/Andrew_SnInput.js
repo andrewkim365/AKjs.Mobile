@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-06
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_SnInput-------------------------------------------*/
@@ -54,7 +54,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 } else {
                     if ($(this).val().length > parseInt(option.input_length)-1) {
-                        $(this).next().focus();
+                        Andrew_sUserAgent();
+                        if (!IsQQ) {
+                            $(this).next().focus();
+                        }
                     }
                 }
                 this.value=this.value.replace(/[^a-z0-9]/i,''); //只允许输入字母和数字

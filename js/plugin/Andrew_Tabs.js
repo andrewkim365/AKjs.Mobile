@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-17
+Modification Date: 2018-06-06
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Tabs--------------------------------------------*/
@@ -124,12 +124,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         }
                     },
                     mousedown: function (e) {
-                        touchStartY = e.originalEvent.clientY;
-                        touchStartX = e.originalEvent.clientX;
+                        touchStartY = e.clientY;
+                        touchStartX = e.clientX;
                     },
-                    /*mouseup: function (e) {
-                        var touchEndY = e.originalEvent.screenY,
-                            touchEndX = e.originalEvent.screenX,
+                    mouseup: function (e) {
+                        var touchEndY = e.screenY,
+                            touchEndX = e.screenX,
                             yDiff = touchStartY - touchEndY,
                             xDiff = touchStartX - touchEndX,
                             tabsize = self.$tab_list.length;
@@ -153,7 +153,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         }
                         touchStartY = null;
                         touchStartX = null
-                    },*/
+                    },
                     mousemove: function (e) {
                         e.preventDefault();
                     }

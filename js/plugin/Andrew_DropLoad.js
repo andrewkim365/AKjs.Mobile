@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-05
+Modification Date: 2018-06-06
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_DropLoad------------------------------------------*/
@@ -121,24 +121,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
         });
 
-        me.$element.on('mousedown',function(e){
-            if(!me.loading){
-                fnTouches(e);
-                fnTouchstart(e, me);
-            }
-        });
-        me.$element.on('mousemove',function(e){
-            if(!me.loading){
-                fnTouches(e, me);
-                fnTouchmove(e, me);
-            }
-        });
-        me.$element.on('mouseup',function(){
-            if(!me.loading){
-                fnTouchend(me);
-            }
-        });
-
         // 加载下方
         me.$element.on('scroll',function(){
             me._scrollTop = me.$scrollArea.scrollTop();
@@ -181,7 +163,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         if(me.$element.offset().top >=0){
             // 加载上方
             if(me.opts.loadUpFn != '' && me.touchScrollTop <= 0 && me.direction == 'down' && !me.isLockUp){
-                e.preventDefault();
+                //e.preventDefault();
 
                 me.$domUp = $('.'+me.opts.domUp.domClass);
                 // 如果加载区没有DOM
