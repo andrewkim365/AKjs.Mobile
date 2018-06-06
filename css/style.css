@@ -1,4 +1,4 @@
-/******基本样式配置******/
+﻿/******基本样式配置******/
 @import url("./akjs.mobile.css"); /*公共样式引入*/
 @import url("./akjs.animate.css"); /*动画库样式引入*/
 @import url("./iconfont/iconfont.css"); /*Iconfont图标库样式引入 （http://www.iconfont.cn/collections/detail?cid=8740）*/
@@ -235,7 +235,7 @@ header button {
     top:0;
 }
 header button:active {
-    opacity: 0.5 !important;
+    opacity: 0.3 !important;
 }
 header button, header>* i {
     vertical-align: middle;
