@@ -23,6 +23,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.7版本；
 
 修改 js/plugin/Andrew_PreviewImage.js 功能插件中增加上传文件大小限制参数；
 
+修改 js/plugin/Andrew_Dialog.js（包含对应的css） 功能插件bug；
+
 # 更新时间：2018/5/31 上午 11:35
 
 # 更新说明：
