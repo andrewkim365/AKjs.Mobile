@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180605 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180606 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -40,11 +40,15 @@ function Andrew_Config(setting){
         window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
             if (window.orientation === 180 || window.orientation === 0) {
                 $(".ak-landscape").remove();
+                if (IsMobile) {
+                    $("body").addClass("fix wh_100");
+                }
                 $("main").addClass("scrolling");
             }
             if (window.orientation === 90 || window.orientation === -90 ){
                 $("input").blur();
                 $("textarea").blur();
+                $("body").removeClass("fix wh_100");
                 $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
                 $("main").removeClass("scrolling");
             }
@@ -75,17 +79,14 @@ function Andrew_Config(setting){
     } else {
         $("*").removeAttr("data-animation");
     }
+    if(option.fixedBar== true) {
+        Andrew_InputFocus();
+    }
     setTimeout(function() {
         Andrew_mainHeight();
-        if(option.fixedBar== true) {
-            Andrew_InputFocus();
-        }
     },100);
     $(window).resize(function(){
         Andrew_mainHeight();
-        if(option.fixedBar== true) {
-            Andrew_InputFocus();
-        }
     });
 }
 
@@ -150,6 +151,11 @@ function Andrew_Router(setting){
                             }
                         });
                         $("main").html(htmlobj.responseText);
+                        $("main").css({
+                            opacity: 0
+                        }).animate({
+                            opacity: 1
+                        },500);
                     }
                     Router_Settings();
                     ErrorPage_403();
@@ -191,6 +197,11 @@ function Andrew_Router(setting){
                             }
                         });
                         $("main").html(htmlobj.responseText);
+                        $("main").css({
+                            opacity: 0
+                        }).animate({
+                            opacity: 1
+                        },500);
                     }
                     Router_Settings();
                     ErrorPage_403();
@@ -361,10 +372,10 @@ function Andrew_InputFocus() {
         var focus = this;
         header_scrollIntoView(focus);
     });
-    $('main input[type="password"][multiple]').on('focus', function(em) {
-        em.preventDefault();
+    $('main input[type="password"][multiple]').on('focus', function(andrew) {
+        andrew.preventDefault();
         if ($("main").scrollTop() > 0) {
-            $("header").hide();
+            $("header").addClass("dis_opa_0");
         }
         $("footer").addClass("dis_opa_0");
     });
@@ -380,23 +391,23 @@ function Andrew_InputFocus() {
     });
     $('main input[type="password"][multiple]').on('blur', function() {
         Input_BlurScrollTop();
-        $("footer").removeClass("dis_opa_0");
+        $("header, footer").removeClass("dis_opa_0");
     });
     $('main textarea').on('blur', function() {
         Input_BlurScrollTop();
     });
-    $("footer input").focus(function (ev) {
-        ev.preventDefault();
+    $("footer input").focus(function (andrew) {
+        andrew.preventDefault();
         $("header").on({
-            touchmove: function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+            touchmove: function(andrew) {
+                andrew.preventDefault();
+                andrew.stopPropagation();
             }
         });
         $("footer").on({
-            touchmove: function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+            touchmove: function(andrew) {
+                andrew.preventDefault();
+                andrew.stopPropagation();
             }
         });
         if (IsIphone || IsIpad) {
@@ -531,15 +542,10 @@ function Andrew_Responsive(setting) {
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_sUserAgent();
-    $("body, header, footer").bind({
-        touchmove: function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-    });
-    $("main").bind({
-        touchstart: function () {
-            $("body").unbind('touchmove');
+    $("header, footer").bind({
+        touchmove: function (andrew) {
+            andrew.preventDefault();
+            andrew.stopPropagation();
         }
     });
     setInterval(function(){
@@ -551,9 +557,9 @@ function Andrew_mainHeight() {
         } else {
             $("main").addClass("ak-scrollbar");
             $(".ak-scrollbar").bind({
-                touchmove: function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
+                touchmove: function(andrew) {
+                    andrew.preventDefault();
+                    andrew.stopPropagation();
                 }
             });
         }
@@ -561,9 +567,11 @@ function Andrew_mainHeight() {
     if (IsMobile) {
         $("main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
+        $("body").addClass("fix wh_100");
     } else {
         $("main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
+        $("body").removeClass("fix wh_100");
     }
     setTimeout(function() {
         if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
@@ -694,7 +702,6 @@ function Andrew_Animation() {
 
 /*-----------------------------------------------Andrew_HashSharp------------------------------------------*/
 function Andrew_HashSharp(form,key) {
-    $('*[data-href]').unbind("click");
     var hash_sharp = new RegExp("#");
     var hash_dot = new RegExp("./");
     var hash_sharps = new RegExp("\\?#");
@@ -702,7 +709,8 @@ function Andrew_HashSharp(form,key) {
     var question_mark =  new RegExp("\\?");
     var akTime =  new RegExp("akjs=");
     if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
-        $('*[data-href]').click(function () {
+        $('*[data-href]').bind('click',function(andrew) {
+            andrew.preventDefault();
             if (hash_sharp.test($(this).attr("data-href"))) {
                 if(question_mark.test($(this).attr("data-href"))){
                     if(akTime.test($(this).attr("data-href"))){
@@ -765,7 +773,8 @@ function Andrew_HashSharp(form,key) {
             }
         });
     } else {
-        $('*[data-href]').click(function () {
+        $('*[data-href]').bind('click',function(andrew) {
+            andrew.preventDefault();
             document.location.href= $(this).attr("data-href");
         });
     }
