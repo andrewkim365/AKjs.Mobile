@@ -27,8 +27,6 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.7版本；
 
 修改 js/plugin/Andrew_Dialog.js（包含对应的css） 功能插件bug；
 
-修改 js/plugin/Andrew_DropLoad.js 功能插件bug；
-
 修改 js/plugin/Andrew_Tabs.js 功能插件bug；
 
 修改 js/plugin/Andrew_SnInput.js 功能插件bug；
