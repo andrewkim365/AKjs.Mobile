@@ -1,5 +1,5 @@
-﻿/*
-Modification Date: 2018-05-12
+/*
+Modification Date: 2018-06-05
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Dialog------------------------------------------*/
@@ -27,7 +27,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     m.tplBase += "<div class=\"ak-dialog_container\">";
     m.tplBase += "{{header}}";
     m.tplBase += "<div class=\"ak-dialog_content\"><p>{{message}}</p>{{input}}</div>";
-    m.tplBase += "<div class=\"ak-dialog_footer\">{{button_cancel}} <button type=\"button\" class=\"jq_btn bg_white button_ok c_title\">{{btn_ok}}</button></div>";
+    m.tplBase += "<div class=\"ak-dialog_footer\">{{button_cancel}} <button type=\"button\" class=\"ak_btn bg_white button_ok c_title\">{{btn_ok}}</button></div>";
     m.tplBase += "</div>";
     m.tplBase += "</div>";
 
@@ -38,7 +38,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var t = m.tplBase;
 
         if( type !== 'alert' ){
-            t = t.replace("{{button_cancel}}", "<button type=\"button\" class=\"jq_btn bg_white button_cancel bor_right bor_gray_ddd\">{{btn_cancel}}</button>");
+            t = t.replace("{{button_cancel}}", "<button type=\"button\" class=\"ak_btn bg_white button_cancel bor_right bor_gray_ddd\">{{btn_cancel}}</button>");
         } else {
             t = t.replace("{{button_cancel}}", "");
         }
