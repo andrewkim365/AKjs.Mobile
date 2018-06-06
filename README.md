@@ -11,11 +11,13 @@ AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里�
 AKjs前端技术支持QQ群：724501394
 
 
-# 更新时间：2018/06/05 下午 17:10
+# 更新时间：2018/06/06 下午 12:10
 
 # 更新说明：
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.7版本；
+
+修改 css/style.css 样式文件；
 
 修改 js/plugin/Andrew_DropLoad.js 功能插件bug；
 
@@ -25,7 +27,13 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.7版本；
 
 修改 js/plugin/Andrew_Dialog.js（包含对应的css） 功能插件bug；
 
-修改 css/style.css 样式文件；
+修改 js/plugin/Andrew_DropLoad.js 功能插件bug；
+
+修改 js/plugin/Andrew_Tabs.js 功能插件bug；
+
+修改 js/plugin/Andrew_SnInput.js 功能插件bug；
+
+修改演示版的router/page1.html和router/page4.html；
 
 # 更新时间：2018/5/31 上午 11:35
 
