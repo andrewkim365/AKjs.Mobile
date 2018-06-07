@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180606 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180607 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -39,21 +39,22 @@ function Andrew_Config(setting){
     if(option.Orientation== true) {
         window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
             if (window.orientation === 180 || window.orientation === 0) {
-                $(".ak-landscape").remove();
+                $("main").addClass("scrolling");
+                $(".ak-landscape").hide().remove();
                 if (IsMobile) {
                     $("body").addClass("fix wh_100");
                 }
-                $("main").addClass("scrolling");
             }
             if (window.orientation === 90 || window.orientation === -90 ){
                 $("input").blur();
                 $("textarea").blur();
-                $("body").removeClass("fix wh_100");
-                $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
                 $("main").removeClass("scrolling");
+                $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
+                $("body").removeClass("fix wh_100");
             }
         }, false);
     }
+
     if(option.touchstart== true) {
         document.body.addEventListener('touchstart', function () {
         });
@@ -374,10 +375,14 @@ function Andrew_InputFocus() {
     });
     $('main input[type="password"][multiple]').on('focus', function(andrew) {
         andrew.preventDefault();
-        if ($("main").scrollTop() > 0) {
-            $("header").addClass("dis_opa_0");
+        var focus = this;
+        header_scrollIntoView(focus);
+        if (IsIphone || IsIpad) {
+            if ($("body").scrollTop() > 0) {
+                $("header").addClass("dis_opa_0");
+            }
+            $("footer").addClass("dis_opa_0");
         }
-        $("footer").addClass("dis_opa_0");
     });
     $('main textarea').focus(function () {
         var focus = this;
