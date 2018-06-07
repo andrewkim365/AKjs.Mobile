@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180606 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180607 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -283,6 +283,10 @@ legend {
     -webkit-overflow-scrolling: touch;
 }
 .shadow_none {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+.shadow_ab_none:after, .shadow_ab_none:before {
     text-shadow: none !important;
     box-shadow: none !important;
 }
@@ -1002,6 +1006,21 @@ legend {
 .bor_right_none {
     border-right:none !important;
 }
+.bor_ab_none:after, .bor_ab_none:before {
+    border:none !important;
+}
+.bor_top_ab_none:after, .bor_top_ab_none:before {
+    border-top:none !important;
+}
+.bor_bottom_ab_none:after, .bor_bottom_ab_none:before {
+    border-bottom:none !important;
+}
+.bor_left_ab_none:after, .bor_left_ab_none:before {
+    border-left:none !important;
+}
+.bor_right_ab_none:after, .bor_right_ab_none:before {
+    border-right:none !important;
+}
 
 /*element align*/
 .center {
@@ -1406,6 +1425,9 @@ legend {
     display: -webkit-flex !important;
     display: -ms-flexbox !important;
     display: flex !important;
+}
+.dis_ab_none:after, .dis_ab_none:before {
+    display:none !important;
 }
 
 /*overflow type*/
@@ -8195,6 +8217,9 @@ legend {
 .bg_none {
     background-color:transparent !important;
 }
+.bg_ab_none:after, .bg_ab_none:before {
+    background-color:transparent !important;
+}
 .bor_black {
     border-color:#000000 !important;
 }
@@ -8652,6 +8677,18 @@ button.bg_gray_444[disabled] {
     top: -0.6em;
 }
 /*Mask Background setting*/
+.ak-landscape {
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    text-align: center;
+    background: rgba(0,0,0,0.9);
+    padding: 6em 0;
+    top: 0;
+    left: 0;
+}
 .ak-mask {
     display:block;
     position:fixed;
