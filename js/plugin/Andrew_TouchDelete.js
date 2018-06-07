@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_TouchDelete-------------------------------------*/
@@ -108,8 +108,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 },
                 mousedown: function(e) {
-                    touchStartY = e.originalEvent.clientY;
-                    touchStartX = e.originalEvent.clientX;
+                    touchStartY = e.clientY;
+                    touchStartX = e.clientX;
                     $(this).children("button").unbind("click");
                     $(this).children("button").on('click', function (event) {
                         event.preventDefault();
@@ -117,8 +117,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     });
                 },
                 mouseup: function(e) {
-                    var touchEndY = e.originalEvent.screenY,
-                        touchEndX = e.originalEvent.screenX,
+                    var touchEndY = e.screenY,
+                        touchEndX = e.screenX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {

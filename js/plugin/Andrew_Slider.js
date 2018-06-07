@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Slider------------------------------------------*/
@@ -29,49 +29,49 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         init: function() {
             var self = this,
                 ele = self.$element;
+            var touchStartY = 0,
+                touchStartX = 0;
             var sliderInder = ele.children("ul");
             var SliderLi = sliderInder.children("li");
             var SliderSize = SliderLi.length;
             var index = self.options.start;
-            var touchStartY = 0,
-                touchStartX = 0;
-            if (self.options.arrShow) {
-                var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
-                ele.append(arrElement);
-                ele.find("button").addClass(self.options.arrClass);
-                ele.find("button.ak-arr_prev").css({
-                    "left": ele.find("button.ak-arr_prev").outerWidth()/2
-                });
-                ele.find("button.ak-arr_next").css({
-                    "right": ele.find("button.ak-arr_next").outerWidth()/2
-                });
-            }
-            for (i = 1; i <= SliderSize; i++) {
-                if (index == i) {
-                    SliderLi.eq(index - 1).addClass("dis_block_im")
+            var resize = function() {
+                if (self.options.arrShow) {
+                    var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
+                    ele.append(arrElement);
+                    ele.find("button").addClass(self.options.arrClass);
+                    ele.find("button.ak-arr_prev").css({
+                        "left": ele.find("button.ak-arr_prev").outerWidth()/2
+                    });
+                    ele.find("button.ak-arr_next").css({
+                        "right": ele.find("button.ak-arr_next").outerWidth()/2
+                    });
                 }
-            }
-            if (self.options.dotShow) {
-                var dot = "";
                 for (i = 1; i <= SliderSize; i++) {
                     if (index == i) {
-                        dot += '<li data-index="' + i + '" class="'+self.options.ActiveClass+'"></li>'
-                    } else {
-                        dot += '<li data-index="' + i + '"></li>'
+                        SliderLi.eq(index - 1).addClass("dis_block_im")
                     }
                 }
-                var dotElement = '<ol>' + dot + "</ol>";
-                ele.append(dotElement);
-            }
-            var resize = function() {
-                ele.addClass("ak-Slider");
-                if (self.options.arrShow) {
-                    var arrOffset = (ele.outerHeight() - ele.find("button").outerHeight()) / 2;
-                    ele.find("button").css("top", arrOffset + "px");
-                }
                 if (self.options.dotShow) {
-                    if  (self.options.fullpage) {
-                        setTimeout(function () {
+                    var dot = "";
+                    for (i = 1; i <= SliderSize; i++) {
+                        if (index == i) {
+                            dot += '<li data-index="' + i + '" class="'+self.options.ActiveClass+'"></li>'
+                        } else {
+                            dot += '<li data-index="' + i + '"></li>'
+                        }
+                    }
+                    var dotElement = '<ol>' + dot + "</ol>";
+                    ele.append(dotElement);
+                }
+                ele.addClass("ak-Slider");
+                setTimeout(function () {
+                    if (self.options.arrShow) {
+                        var arrOffset = (ele.outerHeight() - ele.find("button").outerHeight()) / 2;
+                        ele.find("button").css("top", arrOffset + "px");
+                    }
+                    if (self.options.dotShow) {
+                        if  (self.options.fullpage) {
                             var dots = ele.children("ol");
                             dots.find("li").addClass(self.options.dotClass);
                             var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
@@ -79,21 +79,21 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             dots.css({
                                 "left": dotOffset + "px"
                             });
-                        }, 100);
-                    } else {
-                        var dots = ele.children("ol");
-                        dots.find("li").addClass(self.options.dotClass);
-                        var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
-                        var dotOffset = (ele.outerWidth() - dotWidth) / 2;
-                        dots.css({
-                            "left": dotOffset + "px"
-                        });
+                        } else {
+                            var dots = ele.children("ol");
+                            dots.find("li").addClass(self.options.dotClass);
+                            var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
+                            var dotOffset = (ele.outerWidth() - dotWidth) / 2;
+                            dots.css({
+                                "left": dotOffset + "px"
+                            });
+                        }
                     }
-                }
+                }, 200);
             };
             resize();
             $(window).resize(function() {
-                resize()
+                resize();
             });
             if (self.options.arrShow) {
                 ele.find(".ak-arr_next").unbind("click");
@@ -226,12 +226,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 },
                 mousedown: function(e) {
-                    touchStartY = e.originalEvent.clientY;
-                    touchStartX = e.originalEvent.clientX;
+                    touchStartY = e.clientY;
+                    touchStartX = e.clientX;
                 },
                 mouseup: function(e) {
-                    var touchEndY = e.originalEvent.screenY,
-                        touchEndX = e.originalEvent.screenX,
+                    var touchEndY = e.screenY,
+                        touchEndX = e.screenX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {
