@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180607 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180608 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -713,6 +713,7 @@ function Andrew_HashSharp(form,key) {
     var hash_script = new RegExp("javascript");
     var question_mark =  new RegExp("\\?");
     var akTime =  new RegExp("akjs=");
+    $('*[data-href]').unbind('click');
     if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
         $('*[data-href]').bind('click',function(andrew) {
             andrew.preventDefault();
