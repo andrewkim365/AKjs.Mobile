@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-15
+Modification Date: 2018-06-08
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_WebToast-------------------------------------------*/
@@ -56,22 +56,28 @@ function ak_webToast(){
         }
         $(Andrew_WebToast).html(ret);
     }
-    var w = $(Andrew_WebToast).width(),
-        ww = $(window).width();
     $(Andrew_WebToast).fadeIn();
-    $(Andrew_WebToast).css("left", (ww - w) / 2 - 20);
-    if ("bottom" == dcfg.position) {
-        $(Andrew_WebToast).css("bottom", 50);
-        $(Andrew_WebToast).css("top", "");
-    } else if ("top" == dcfg.position) {
-        $(Andrew_WebToast).css("bottom", "");
-        $(Andrew_WebToast).css("top", 50);
-    } else if ("middle" == dcfg.position) {
-        $(Andrew_WebToast).css("bottom", "");
-        $(Andrew_WebToast).css("top", "");
-        var h = $(Andrew_WebToast).height(),
-            hh = $(window).height();
-        $(Andrew_WebToast).css("bottom", (hh - h) / 2 - 20);
+    ToastSetting();
+    $(window).resize(function(){
+        ToastSetting();
+    });
+    function ToastSetting() {
+        var w = $(Andrew_WebToast).width(),
+            ww = $(window).width();
+        $(Andrew_WebToast).css("left", (ww - w) / 2 - 20);
+        if ("bottom" == dcfg.position) {
+            $(Andrew_WebToast).css("bottom", 50);
+            $(Andrew_WebToast).css("top", "");
+        } else if ("top" == dcfg.position) {
+            $(Andrew_WebToast).css("bottom", "");
+            $(Andrew_WebToast).css("top", 50);
+        } else if ("middle" == dcfg.position) {
+            $(Andrew_WebToast).css("bottom", "");
+            $(Andrew_WebToast).css("top", "");
+            var h = $(Andrew_WebToast).height(),
+                hh = $(window).height();
+            $(Andrew_WebToast).css("bottom", (hh - h) / 2 - 20);
+        }
     }
     setTimeout(function() {
             $(Andrew_WebToast).fadeOut().remove();
