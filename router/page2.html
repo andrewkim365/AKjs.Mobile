@@ -3,7 +3,7 @@
     <h1 class="text_al_c">聊天展示</h1>
 </ak-header>
 
-<div class="wp_94 ovh">
+<div class="wp_94 mb_5 ovh plug_chat">
     <ul>
         <li class="ovh mt_1em">
             <dl class="ak-chat_left">
@@ -54,9 +54,9 @@
 </div>
 
 <ak-footer data-display="true">
-    <div class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd">
+    <div class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd plug_form">
         <form action="#" method="get" onsubmit="return false;">
-            <input type="text" class="fl bg_white w_85 h_24em line_h_100 pl_05em c_gray_777 border bor_gray_ddd bor_rad_05em mt_03em" placeholder="请输入文字" value="" />
+            <input type="text" class="fl bg_white w_85 h_24em line_h_100 pl_05em c_gray_777 border bor_gray_ddd bor_rad_05em mt_03em" placeholder="请输入文字,已开启实时聊天功能" value="" />
             <button class="fr wh_24em bor_rad_50 bg_title mt_03em mb_0" type="submit">
                 <i class="c_white text_14em icon-mn_fasong_fill"></i>
             </button>
@@ -66,5 +66,57 @@
 
 <script type="text/javascript">
     //引入Andrew插件的区域
+    /*ak-header和ak-footer里面的所有DOM元素操作请使用以下的“delegate”方法*/
+    $(document).delegate(".plug_form input","input propertychange", function(e){
+        e.preventDefault();
+        if ($(this).prop("value").length > 0) {
+            //console.log($(this).prop("value")) //实时监听输入框值的变化
+        }
+    });
+    $(document).delegate(".plug_form button","click", function(e){
+        e.preventDefault();
+        if ($(this).prev("input").prop("value").length > 0) {
+            var chat_str = $(this).prev("input").prop("value"); //获取实时的输入的消息
+            var chat_auto = "很高兴认识你！我是自动回复机器人！" //对方的自动回复消息
 
+            var chat_portrait_me = "img/tibet-2.jpg"; //您的头像图片地址
+            var chat_portrait_you = "img/tibet-1.jpg"; //对方的头像图片地址
+            var chat_name_me = "安德鲁"; //您的聊天名称
+            var chat_name_you = "KIM"; //对方的聊天名称
+
+            //您的聊天元素设置
+            var chat_view_me = "<li class=\"ovh mt_1em\">\n" +
+                "            <dl class=\"ak-chat_right\">\n" +
+                "                <dt>\n" +
+                "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_me+"></figure>\n" +
+                "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_me+"</span>\n" +
+                "                </dt>\n" +
+                "                <dd class=\"border bg_title bor_title c_white\">"+chat_str+"</dd>\n" +
+                "            </dl>\n" +
+                "        </li>";
+
+            //对方的聊天元素设置
+            var chat_view_you = "<li class=\"ovh mt_1em\">\n" +
+                "            <dl class=\"ak-chat_left\">\n" +
+                "                <dt>\n" +
+                "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_you+"></figure>\n" +
+                "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_you+"</span>\n" +
+                "                </dt>\n" +
+                "                <dd>"+chat_auto+"</dd>\n" +
+                "            </dl>\n" +
+                "        </li>";
+
+            var scrollHeight = $("main").prop("scrollHeight"); //获取实时变化的main元素的高度
+
+            $(chat_view_me).appendTo($(".plug_chat").children("ul")); //生成您的聊天元素
+            $("main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+
+            setTimeout(function() { //对方的聊天内容延迟执行
+                $(chat_view_you).appendTo($(".plug_chat").children("ul")); //生成对方的聊天元素
+                $("main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+            },1000);
+
+            $(this).prev("input").val(""); //发送消息后输入框的文字自动清空
+        }
+    });
 </script>

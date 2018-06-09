@@ -8,11 +8,24 @@
     </ul>
 </div>
 
-<ak-footer data-display="false">
+<ak-footer data-display="true">
+    <fieldset class="h_in bor_top bor_gray_ddd bg_gray_f9f length2">
+        <legend class="fl h_100 line_h_32em c_gray_777 text_al_c" data-href="/page4">应付金额：<span class="c_orange text_bold">¥100.00</span></legend>
+        <button type="button" class="fl bg_title h_100 c_white">立即支付</button>
+    </fieldset>
 </ak-footer>
 
 <script type="text/javascript">
     //引入Andrew插件的区域
+
+    /*ak-header和ak-footer里面的所有DOM元素操作请使用以下的“delegate”方法*/
+    $(document).delegate("fieldset button","click", function(e){
+        e.preventDefault();
+        ak_webToast("恭喜您！您支付成功了!","middle",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+        setTimeout(function(){
+            Andrew_Location("/page1");
+        },1000);
+    });
 
     /*-----------------------------------------------Andrew_DropLoad 使用方法-------------------------------------------*/
     $(function(){

@@ -249,7 +249,7 @@
     <!----------Andrew_TypeIt---------->
     <div class="module mt_5 press bg_white">
         <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">文字打字效果</h3>
-        <section class="pa_2 list">
+        <section class="pa_2 list h_8em">
             <span class="plug_TypeIt line_h_24em"></span>
         </section>
     </div>
@@ -464,6 +464,13 @@
             loadUpFn : function(me){ //上方function
                 setTimeout(function(){
                     //刷新后需要执行的代码
+
+                    $(".plug_tabs_find section").css({
+                        opacity: 0
+                    }).animate({
+                        opacity: 1
+                    },1000);
+
                     me.resetload(); //重新初始化控件以及标识量
                     me.unlock(); //解除锁定允许数据继续加载
                     me.noData(false); //是否有数据（false代表有数据）

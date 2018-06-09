@@ -1874,6 +1874,13 @@
             loadUpFn : function(me){ //上方function
                 setTimeout(function(){
                     //刷新后需要执行的代码
+
+                    $("img").css({
+                        opacity: 0
+                    }).animate({
+                        opacity: 1
+                    },1000);
+
                     me.resetload(); //重新初始化控件以及标识量
                     me.unlock(); //解除锁定允许数据继续加载
                     me.noData(false); //是否有数据（false代表有数据）
