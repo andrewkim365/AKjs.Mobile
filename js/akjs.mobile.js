@@ -425,6 +425,12 @@ function Andrew_InputFocus() {
     });
     $("footer input").focus(function (andrew) {
         andrew.preventDefault();
+        $("header, footer").bind({
+            touchmove: function (andrew) {
+                andrew.preventDefault();
+                andrew.stopPropagation();
+            }
+        });
         if (IsIphone || IsIpad) {
             $("main").on({
                 touchmove: function() {
@@ -457,6 +463,7 @@ function Andrew_InputFocus() {
         }
     });
     $('footer input').on('blur', function() {
+        $("main").unbind('touchmove');
         if (IsIphone || IsIpad) {
             if ($("header").length > 0) {
                 $("header").css({
@@ -466,6 +473,7 @@ function Andrew_InputFocus() {
         }
     });
     function Input_BlurScrollTop(){
+        $("main").unbind('touchmove');
         if (IsIphone || IsIpad) {
             $("main").removeClass("pb_100");
             $("footer").removeClass("minus_bottom_100");
@@ -557,6 +565,12 @@ function Andrew_Responsive(setting) {
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_sUserAgent();
+    $("header, footer").bind({
+        touchmove: function (andrew) {
+            andrew.preventDefault();
+            andrew.stopPropagation();
+        }
+    });
     setInterval(function(){
         var scrollHeight = $("main").prop('scrollHeight');
         var clientHeight = $("main").prop('clientHeight');
