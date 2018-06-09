@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180608 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180609 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -8,6 +8,7 @@ if (window.location.protocol == "file:") throw new Error("AKjs.Mobile Plugin's L
 function Andrew_Config(setting){
     var option = $.extend({
             MaskStyle: [],
+            ImgLoadStyle: "",
             Responsive: true,
             touchstart: true,
             ButtonLink: true,
@@ -23,17 +24,41 @@ function Andrew_Config(setting){
     if(option.MaskStyle) {
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
     }
+    if(option.ImgLoadStyle) {
+        setTimeout(function() {
+            if ($("img").length > 0) {
+                if ($("img").parent()[0].tagName != "FIGURE") {
+                    $("img").wrap("<figure />");
+                }
+            }
+            $("img").parent("figure").addClass("ak_img_"+option.ImgLoadStyle);
+            $("figure").children("img").css({
+                opacity: 0
+            }).animate({
+                opacity: 1
+            },1000);
+            $("img").each(function () {
+                var view_h = parseInt(window.screen.height);
+                var view_img = $(this);
+                if ($(this).offset().top > view_h) {
+                    setTimeout(function() {
+                        view_img.attr("data-animation","{name:'fadeIn', duration:1, delay:0}");
+                    },100);
+                }
+            });
+        },100);
+    }
     if(!option.Responsive) {
         $("body").addClass("ak-screen");
     }
     if(option.Topdblclick== true) {
-        $("header h1").bind("touchstart", function() {
-            $('main').animate({scrollTop:0},500);
-            return false;
-        });
-        $("header h1").bind("dblclick", function() {
-            $('main').animate({scrollTop:0},500);
-            return false;
+        var touchtime = new Date().getTime();
+        $("header h1").on("click", function(){
+            if( new Date().getTime() - touchtime < 500 ){
+                $('main').animate({scrollTop:0},500);
+            }else{
+                touchtime = new Date().getTime();
+            }
         });
     }
     if(option.Orientation== true) {
@@ -41,16 +66,13 @@ function Andrew_Config(setting){
             if (window.orientation === 180 || window.orientation === 0) {
                 $("main").addClass("scrolling");
                 $(".ak-landscape").hide().remove();
-                if (IsMobile) {
-                    $("body").addClass("fix wh_100");
-                }
-            }
-            if (window.orientation === 90 || window.orientation === -90 ){
+            } else if (window.orientation === 90 || window.orientation === -90 ){
                 $("input").blur();
                 $("textarea").blur();
                 $("main").removeClass("scrolling");
-                $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
-                $("body").removeClass("fix wh_100");
+                setTimeout(function() {
+                    $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
+                },200);
             }
         }, false);
     }
@@ -403,18 +425,6 @@ function Andrew_InputFocus() {
     });
     $("footer input").focus(function (andrew) {
         andrew.preventDefault();
-        $("header").on({
-            touchmove: function(andrew) {
-                andrew.preventDefault();
-                andrew.stopPropagation();
-            }
-        });
-        $("footer").on({
-            touchmove: function(andrew) {
-                andrew.preventDefault();
-                andrew.stopPropagation();
-            }
-        });
         if (IsIphone || IsIpad) {
             $("main").on({
                 touchmove: function() {
@@ -547,12 +557,6 @@ function Andrew_Responsive(setting) {
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_sUserAgent();
-    $("header, footer").bind({
-        touchmove: function (andrew) {
-            andrew.preventDefault();
-            andrew.stopPropagation();
-        }
-    });
     setInterval(function(){
         var scrollHeight = $("main").prop('scrollHeight');
         var clientHeight = $("main").prop('clientHeight');
@@ -569,14 +573,18 @@ function Andrew_mainHeight() {
             });
         }
     },100);
+    $("body").css({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
     if (IsMobile) {
         $("main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
-        $("body").addClass("fix wh_100");
+        $("body").addClass("fix");
     } else {
         $("main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
-        $("body").removeClass("fix wh_100");
+        $("body").removeClass("fix");
     }
     setTimeout(function() {
         if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
@@ -672,34 +680,84 @@ function Andrew_Ajax(setting){
 
 /*-----------------------------------------------Andrew_Animation------------------------------------------*/
 function Andrew_Animation() {
-    $("*[data-animation]").each(function () {
-        $(this).addClass("animated");
-        var animated = $(this).attr("data-animation");
-        var ani_s = new RegExp("s");
-        aniJson = eval("(" + animated + ")");
-        if (aniJson.name) {
-            $(this).addClass(aniJson.name);
+    var ani_s = new RegExp("s");
+    $('*[data-animation]').each(function(){
+        var ani_ele = $(this);
+        var animated_each = ani_ele.attr("data-animation");
+        aniJson_each = eval("(" + animated_each + ")");
+        if (aniJson_each.name) {
+            ani_ele.removeClass("animated "+aniJson_each.name);
+            ani_ele.addClass("animated "+aniJson_each.name);
         }
-        if (aniJson.duration) {
-            if (ani_s.test(aniJson.duration)) {
-                $(this).css({
-                    "animation-duration" : aniJson.duration
+        if (aniJson_each.duration) {
+            if (ani_s.test(aniJson_each.duration)) {
+                ani_ele.css({
+                    "animation-duration" : parseInt(aniJson_each.duration)
                 });
             } else {
-                $(this).css({
-                    "animation-duration" : aniJson.duration+"s"
+                ani_ele.css({
+                    "animation-duration" : parseInt(aniJson_each.duration)+"s"
                 });
             }
         }
-        if (aniJson.delay) {
-            if (ani_s.test(aniJson.delay)) {
-                $(this).css({
-                    "animation-delay" : aniJson.delay
+        if (aniJson_each.delay) {
+            if (ani_s.test(aniJson_each.delay)) {
+                ani_ele.css({
+                    "animation-delay" : parseInt(aniJson_each.delay)
                 });
             } else {
-                $(this).css({
-                    "animation-delay" : aniJson.delay+"s"
+                ani_ele.css({
+                    "animation-delay" : parseInt(aniJson_each.delay)+"s"
                 });
+            }
+        }
+    });
+    $("main").on('scroll', function (andrew) {
+        andrew.preventDefault();
+        var clientHeight = $(this).scrollTop() + $(this).prop('clientHeight');
+        var scrollTop = $(this).scrollTop();
+        var ele = $(this).find("*[data-animation]");
+        var arr = new Array();
+        for(var i = 0; i < ele.length; i++) {
+            var animated = ele.eq(i).attr("data-animation");
+            aniJson = eval("(" + animated + ")");
+            arr[i] = ele.eq(i).offset().top + scrollTop + (ele.eq(i)[0].offsetHeight / 2);
+            if(arr[i] >= scrollTop && arr[i] <= clientHeight){
+                if (ele.eq(i)[0].tagName == "IMG") {
+                    ele.eq(i).css({
+                        opacity: 1
+                    });
+                }
+                if (aniJson.name) {
+                    ele.eq(i).removeClass("animated "+aniJson.name);
+                    ele.eq(i).addClass("animated "+aniJson.name);
+                }
+                if (aniJson.duration) {
+                    if (ani_s.test(aniJson.duration)) {
+                        ele.eq(i).css({
+                            "animation-duration" : parseInt(aniJson.duration)
+                        });
+                    } else {
+                        ele.eq(i).css({
+                            "animation-duration" : parseInt(aniJson.duration)+"s"
+                        });
+                    }
+                }
+                if (aniJson.delay) {
+                    if (ani_s.test(aniJson.delay)) {
+                        ele.eq(i).css({
+                            "animation-delay" : parseInt(aniJson.delay)
+                        });
+                    } else {
+                        ele.eq(i).css({
+                            "animation-delay" : parseInt(aniJson.delay)+"s"
+                        });
+                    }
+                }
+            }else{
+                if ($("main").scrollTop() < ele[0].offsetTop) {
+                    ele.removeClass("animated "+aniJson.name);
+                }
             }
         }
     });
