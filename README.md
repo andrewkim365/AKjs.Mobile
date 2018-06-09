@@ -16,7 +16,9 @@ AKjs前端技术支持QQ群：724501394
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.9版本；
 
---Andrew_Config中增加了ImgLoadStyle图片加载样式设置功能（共5个样式）
+--Andrew_Config中增加了ImgLoadStyle参数设置让图片加载时有loading效果（共5个效果）
+
+--Andrew_Router中增加了Animate参数设置让页面切换时有动画效果 （引入akjs.animate.css动画库里的效果）
 
 -- 这次版本主要优化性能以及对动画功能进行强化了一些；
 
