@@ -934,6 +934,7 @@
     $(function () {
         Andrew_Config({ //环境配置管理
             MaskStyle: ["style3","opacity07"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
+            ImgLoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）
             Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
             touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
             ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
@@ -1000,7 +1001,7 @@
             autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
             timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
             iconColor:"#ffffff", //图标颜色设置
-            maskBG: true, //是否开启遮挡背景 (开启 true, 关闭 false）
+            maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
             Loader:"load_2" //loading效果选择（load_1~7）
         });
         $(".ak-mask").on("click", function () {
@@ -2004,6 +2005,13 @@
             loadUpFn : function(me){ //上方function
                 setTimeout(function(){
                     //刷新后需要执行的代码
+
+                    $("img").css({
+                        opacity: 0
+                    }).animate({
+                        opacity: 1
+                    },1000);
+
                     me.resetload(); //重新初始化控件以及标识量
                     me.unlock(); //解除锁定允许数据继续加载
                     me.noData(false); //是否有数据（false代表有数据）
