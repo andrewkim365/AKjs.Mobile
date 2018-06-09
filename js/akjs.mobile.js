@@ -119,6 +119,7 @@ function Andrew_Router(setting){
             Router: false,
             FileFormat: ".html",
             Parameter: false,
+            Animate:"",
             RouterPath:[],
             success:function () {
             },
@@ -174,11 +175,6 @@ function Andrew_Router(setting){
                             }
                         });
                         $("main").html(htmlobj.responseText);
-                        $("main").css({
-                            opacity: 0
-                        }).animate({
-                            opacity: 1
-                        },500);
                     }
                     Router_Settings();
                     ErrorPage_403();
@@ -220,11 +216,12 @@ function Andrew_Router(setting){
                             }
                         });
                         $("main").html(htmlobj.responseText);
-                        $("main").css({
-                            opacity: 0
-                        }).animate({
-                            opacity: 1
-                        },500);
+                        if (option.Animate) {
+                            $("main").removeClass("animated "+option.Animate);
+                            setTimeout(function() {
+                                $("main").addClass("animated "+option.Animate);
+                            },100);
+                        }
                     }
                     Router_Settings();
                     ErrorPage_403();
