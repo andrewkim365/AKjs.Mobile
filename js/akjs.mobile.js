@@ -463,6 +463,7 @@ function Andrew_InputFocus() {
         }
     });
     $('footer input').on('blur', function() {
+        $("main").unbind('touchstart');
         $("main").unbind('touchmove');
         if (IsIphone || IsIpad) {
             if ($("header").length > 0) {
@@ -473,6 +474,7 @@ function Andrew_InputFocus() {
         }
     });
     function Input_BlurScrollTop(){
+        $("main").unbind('touchstart');
         $("main").unbind('touchmove');
         if (IsIphone || IsIpad) {
             $("main").removeClass("pb_100");
@@ -575,11 +577,10 @@ function Andrew_mainHeight() {
         var scrollHeight = $("main").prop('scrollHeight');
         var clientHeight = $("main").prop('clientHeight');
         if (scrollHeight > clientHeight) {
-            $("main").removeClass("ak-scrollbar");
+            $("main").unbind('touchstart');
             $("main").unbind('touchmove');
         } else {
-            $("main").addClass("ak-scrollbar");
-            $(".ak-scrollbar").bind({
+            $("main").bind({
                 touchmove: function(andrew) {
                     andrew.preventDefault();
                     andrew.stopPropagation();
