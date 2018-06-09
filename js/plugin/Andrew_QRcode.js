@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-24
+Modification Date: 2018-06-09
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_QRcode-------------------------------------------*/
@@ -399,21 +399,21 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 d.fillRect(Math.round(i * b), Math.round(f * e), g, j)
             }
             a = c;
-            jQuery(a).appendTo(this);
+            $(a).appendTo(this);
             Andrew_sUserAgent();
             if (IsMobile) {
-                jQuery(this).addClass("rel ovh");
-                jQuery("<img src='"+img_url+"' class='dis_block left_0 top_0 zindex_2 abs wh_100' />").appendTo(this);
+                $(this).addClass("rel ovh");
+                $("<img src='"+img_url+"' class='dis_block left_0 top_0 zindex_2 abs wh_100' />").appendTo(this);
             }
             var resize = this;
             $(window).resize(function(){
                 if (IsMobile == null) {
-                    jQuery(resize).removeClass("rel ovh");
-                    jQuery(resize).find("img").remove();
+                    $(resize).removeClass("rel ovh");
+                    $(resize).find("img").remove();
                 } else {
-                    jQuery(resize).addClass("rel ovh");
-                    if (jQuery(resize).find("img").length < 1) {
-                        jQuery("<img src='"+img_url+"' class='dis_block left_0 top_0 zindex_2 abs wh_100' />").appendTo(resize);
+                    $(resize).addClass("rel ovh");
+                    if ($(resize).find("img").length < 1) {
+                        $("<img src='"+img_url+"' class='dis_block left_0 top_0 zindex_2 abs wh_100' />").appendTo(resize);
                     }
                 }
             });
