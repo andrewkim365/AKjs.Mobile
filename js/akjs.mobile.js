@@ -217,9 +217,9 @@ function Andrew_Router(setting){
                         });
                         $("main").html(htmlobj.responseText);
                         if (option.Animate) {
-                            $("main").removeClass("animated "+option.Animate);
+                            $("main").addClass("dis_opa_0").removeClass("animated "+option.Animate);
                             setTimeout(function() {
-                                $("main").addClass("animated "+option.Animate);
+                                $("main").removeClass("dis_opa_0").addClass("animated "+option.Animate);
                             },100);
                         }
                     }
