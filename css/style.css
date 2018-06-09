@@ -316,3 +316,22 @@ footer menu i, footer menu em, footer dfn i, footer dfn em {
 }
 
 /*********************其它样式覆盖区域*********************/
+
+/*Loading效果样式覆盖*/
+.ak-loading {
+    width: 3em;
+    height: 3em;
+}
+.ak-loading > div {
+    z-index: 2;
+}
+.ak-loading:after {
+    content: '';
+    position: absolute;
+    left: -40%;
+    top: -40%;
+    width: 180%;
+    height: 180%;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+}
