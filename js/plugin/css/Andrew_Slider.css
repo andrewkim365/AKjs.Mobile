@@ -26,9 +26,9 @@
     position: absolute;
     z-index: 1;
 }
-.ak-Slider:active button {
+.ak-Slider:hover button {
     display: block;
 }
-.ak-Slider button:active {
+.ak-Slider button:hover, .ak-Slider button:active {
     background-color: rgba(0, 0, 0, 0.7);
 }
