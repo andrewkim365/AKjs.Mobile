@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-07
+Modification Date: 2018-06-11
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Slider------------------------------------------*/
@@ -38,7 +38,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var resize = function() {
                 if (self.options.arrShow) {
                     var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
-                    ele.append(arrElement);
+                    if ($(ele).children("button").length < 1) {
+                        ele.append(arrElement);
+                    }
                     ele.find("button").addClass(self.options.arrClass);
                     ele.find("button.ak-arr_prev").css({
                         "left": ele.find("button.ak-arr_prev").outerWidth()/2
@@ -62,13 +64,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         }
                     }
                     var dotElement = '<ol>' + dot + "</ol>";
-                    ele.append(dotElement);
+                    if ($(ele).children("ol").length < 1) {
+                        ele.append(dotElement);
+                    }
                 }
                 ele.addClass("ak-Slider");
                 setTimeout(function () {
                     if (self.options.arrShow) {
                         var arrOffset = (ele.outerHeight() - ele.find("button").outerHeight()) / 2;
-                        ele.find("button").css("top", arrOffset + "px");
+                        if (ele.hasClass("h_fill")) {
+                            ele.find("button").css("top", $(window).height()/2 - ele.find("button").outerHeight() / 2+ "px");
+                        } else {
+                            ele.find("button").css("top", arrOffset + "px");
+                        }
                     }
                     if (self.options.dotShow) {
                         if  (self.options.fullpage) {
