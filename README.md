@@ -26,6 +26,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.9版本；
 
 修改 css/style.css 样式文件；
 
+修改 js/plugin/Andrew_Slider.js 功能插件bug；
+
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
 # 更新时间：2018/06/07 下午 17:15
@@ -37,8 +39,6 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.1.8版本；
 --主要解决安卓机输入框兼容性问题；
 
 修改 css/style.css 样式文件；
-
-修改 js/plugin/Andrew_Slider.js 功能插件bug；
 
 修改 js/plugin/Andrew_TouchDelete.js 功能插件bug；
 
