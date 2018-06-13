@@ -1,197 +1,147 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
 (function($){
-    var $window = $(window);
-    $.fn.Andrew_Lazyload = function(options) {
-        var elements = this;
-        var $container;
-        var settings = {
-            threshold       : 0,
-            failure_limit   : 0,
-            event           : "scroll",
-            effect          : "show",
-            container       : window,
-            data_attribute  : "original",
-            skip_invisible  : true,
-            appear          : null,
-            load            : null,
-            placeholder     : ""
-        };
-        var ele = this;
-        setTimeout(function() { //为了兼容所有的jQuery版本该功能延迟执行
-            function update() {
-                var counter = 0;
-                elements.each(function() {
-                    var $this = $(this);
-                    if (settings.skip_invisible && !$this.is(":visible")) {
-                        return;
-                    }
-                    if ($.abovethetop(this, settings) || $.leftofbegin(this, settings)) {
-                        /* Nothing. */
-                    } else if (!$.belowthefold(this, settings) && !$.rightoffold(this, settings)) {
-                        $this.trigger("appear");
-                        /* if we found an image we'll load, reset the counter */
-                        counter = 0;
-                    } else {
-                        if (++counter > settings.failure_limit) {
-                            return false;
+    $.fn.Andrew_Lazyload = function(setting) {
+        var option = $.extend({
+                scroll: $(window),
+                scrollTop: 0,
+                Img_Effect: "",
+                Img_LoadStyle: "",
+                Img_Error: "",
+                Callback: function() {},
+                Scrollback: function() {}
+            },
+            setting);
+        var ele = $(this);
+        var view_h = parseInt(window.screen.height);
+        option.Callback(option.scroll.find(ele));
+        if (ele.prop('tagName') == "IMG") {
+            if (option.Img_LoadStyle) {
+                ele.each(function () {
+                    var view_img = $(this);
+                    if (view_img.length > 0) {
+                        if (view_img.parent().prop('tagName') != "FIGURE") {
+                            view_img.wrap("<figure />");
                         }
                     }
-                });
-            }
-            if(options) {
-                /* Maintain BC for a couple of versions. */
-                if (undefined !== options.failurelimit) {
-                    options.failure_limit = options.failurelimit;
-                    delete options.failurelimit;
-                }
-                if (undefined !== options.effectspeed) {
-                    options.effect_speed = options.effectspeed;
-                    delete options.effectspeed;
-                }
-                $.extend(settings, options);
-            }
-            /* Cache container as jQuery as object. */
-            $container = (settings.container === undefined ||
-                settings.container === window) ? $window : $(settings.container);
-            /* Fire one scroll event per scroll. Not one scroll event per image. */
-            if (0 === settings.event.indexOf("scroll")) {
-                $container.bind(settings.event, function() {
-                    return update();
-                });
-            }
-
-            ele.each(function() {
-                    var self = this;
-                    var $self = $(self);
-                    self.loaded = false;
-                    /* If no src attribute given use data:uri. */
-                    if ($self.attr("src") === undefined || $self.attr("src") === false) {
-                        if ($self.is("img")) {
-                            $self.attr("src", settings.placeholder);
-                        }
-                    }
-                    /* When appear is triggered load original image. */
-                    $self.one("appear", function() {
-                        if (!this.loaded) {
-                            if (settings.appear) {
-                                var elements_left = elements.length;
-                                settings.appear.call(self, elements_left, settings);
+                    view_img.parent("figure").addClass("ak_img_" + option.Img_LoadStyle);
+                    setTimeout(function () {
+                        if (view_img.offset().top < view_h) {
+                            view_img.attr("data-src", view_img.attr("src"));
+                            view_img.attr("src",TransparentImage);
+                            setTimeout(function () {
+                                view_img.attr("src", view_img.data("src"));
+                            }, 200);
+                            if (option.Img_Effect) {
+                                view_img.addClass("animated "+option.Img_Effect);
                             }
-                            $("<img />").bind("load", function() {
-                                var original = $self.attr("data-" + settings.data_attribute);
-                                $self.hide();
-                                if ($self.is("img")) {
-                                    $self.attr("src", original);
-                                } else {
-                                    $self.css("background-image", "url('" + original + "')");
-                                }
-                                $self[settings.effect](settings.effect_speed);
-                                self.loaded = true;
-                                /* Remove image from array so it is not looped next time. */
-                                var temp = $.grep(elements, function(element) {
-                                    return !element.loaded;
+                        } else {
+                            view_img.attr("data-src", view_img.attr("src"));
+                            view_img.attr("src",TransparentImage);
+                            if (option.Img_Effect) {
+                                view_img.removeClass("animated "+option.Img_Effect);
+                            }
+                        }
+                    }, 100);
+                });
+            }
+            if (option.Img_Error) {
+                ele.error(function () {
+                    if ($(this).attr("src") != "") {
+                        $(this).replaceWith("<img src=" + option.Img_Error + " class='ak-noimage' />");
+                    }
+                });
+            }
+        } else if (ele.attr("data-animation")){
+            ele.each(function () {
+                var view_ani = $(this);
+                var animated = view_ani.attr("data-animation");
+                aniJson = eval("(" + animated + ")");
+                if (view_ani.offset().top > view_h) {
+                    setTimeout(function () {
+                        view_ani.removeClass("animated "+aniJson.name);
+                    }, 1000);
+                } else {
+                    setTimeout(function () {
+                        view_ani.addClass("animated "+aniJson.name);
+                    }, 1000);
+                }
+            });
+        }
+
+        option.scroll.on('scroll', function (andrew) {
+            andrew.preventDefault();
+            var scroll_ele = $(this);
+            var clientHeight = scroll_ele.scrollTop() + scroll_ele.prop('clientHeight');
+            var scrollTop = scroll_ele.scrollTop();
+            var arr = new Array();
+            for(var i = 0; i < ele.length; i++) {
+                arr[i] = ele.eq(i).offset().top + scrollTop + (ele.eq(i).prop('offsetHeight') / 2);
+                if(arr[i] >= scrollTop && arr[i] <= clientHeight){
+                    if (ele.eq(i).prop('tagName') == "IMG") {
+                        ele.eq(i).attr("src", ele.eq(i).data("src"));
+                        ele.eq(i).addClass("animated " + option.Img_Effect);
+                    } else if (ele.eq(i).attr("data-animation")){
+                        var ele_ani_s = new RegExp("s");
+                        var animated = ele.eq(i).attr("data-animation");
+                        aniJson = eval("(" + animated + ")");
+                        if (aniJson.name) {
+                            ele.eq(i).addClass("animated "+aniJson.name);
+                        }
+                        if (aniJson.duration) {
+                            if (ele_ani_s.test(aniJson.duration)) {
+                                ele.eq(i).css({
+                                    "animation-duration" : parseInt(aniJson.duration)
                                 });
-                                elements = $(temp);
-                                if (settings.load) {
-                                    var elements_left = elements.length;
-                                    settings.load.call(self, elements_left, settings);
-                                }
-                            }).attr("src", $self.attr("data-" + settings.data_attribute));
-                        }
-                    });
-                    /* When wanted event is triggered load original image */
-                    /* by triggering appear.                              */
-                    if (0 !== settings.event.indexOf("scroll")) {
-                        $self.bind(settings.event, function() {
-                            if (!self.loaded) {
-                                $self.trigger("appear");
+                            } else {
+                                ele.eq(i).css({
+                                    "animation-duration" : parseInt(aniJson.duration)+"s"
+                                });
                             }
-                        });
+                        }
+                        if (aniJson.delay) {
+                            if (ele_ani_s.test(aniJson.delay)) {
+                                ele.eq(i).css({
+                                    "animation-delay" : parseInt(aniJson.delay)
+                                });
+                            } else {
+                                ele.eq(i).css({
+                                    "animation-delay" : parseInt(aniJson.delay)+"s"
+                                });
+                            }
+                        }
                     }
-                });
-
-            /* Check if something appears when window is resized. */
-            $window.bind("resize", function() {
-                update();
-            });
-            /* With IOS5 force loading images when navigating with back button. */
-            /* Non optimal workaround. */
-            if ((/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)) {
-                $window.bind("pageshow", function(event) {
-                    if (event.originalEvent && event.originalEvent.persisted) {
-                        elements.each(function() {
-                            $(this).trigger("appear");
-                        });
-                    }
-                });
+                }
             }
-            /* Force initial check if images should appear. */
-            $(document).ready(function() {
-                update();
+            option.Scrollback(option.scroll.find(ele),scrollTop);
+            ele.each(function () {
+                var view_ele = $(this);
+                if (view_ele.prop('tagName') == "IMG") {
+                    if (view_ele.offset().top < view_h) {
+                        if (option.scrollTop >= scrollTop) {
+                            view_ele.removeClass("animated "+option.Img_Effect);
+                            view_ele.attr("src",TransparentImage);
+                            setTimeout(function () {
+                                view_ele.addClass("animated "+option.Img_Effect);
+                                view_ele.attr("src", view_ele.data("src"));
+                            }, 200);
+                        }
+                    } else {
+                        if (option.scrollTop >= scrollTop) {
+                            view_ele.attr("src",TransparentImage);
+                            view_ele.removeClass("animated "+option.Img_Effect);
+                        }
+                    }
+                } else {
+                    if (option.scrollTop >= scrollTop) {
+                        view_ele.removeClass("animated "+aniJson.name);
+                    }
+                }
             });
-            return ele;
-        },100);
+        });
+        var TransparentImage ="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYwMkY5NUExNkVBRjExRThCOEE5RjZEMjg3OUQzMUIxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYwMkY5NUEyNkVBRjExRThCOEE5RjZEMjg3OUQzMUIxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjAyRjk1OUY2RUFGMTFFOEI4QTlGNkQyODc5RDMxQjEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjAyRjk1QTA2RUFGMTFFOEI4QTlGNkQyODc5RDMxQjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAAAACwAAAAAAQABAAACAkQBADs=";
     };
-    /* Convenience methods in jQuery namespace.           */
-    /* Use as  $.belowthefold(element, {threshold : 100, container : window}) */
-    $.belowthefold = function(element, settings) {
-        var fold;
-        if (settings.container === undefined || settings.container === window) {
-            fold = (window.innerHeight ? window.innerHeight : $window.height()) + $window.scrollTop();
-        } else {
-            fold = $(settings.container).offset().top + $(settings.container).height();
-        }
-        return fold <= $(element).offset().top - settings.threshold;
-    };
-    $.rightoffold = function(element, settings) {
-        var fold;
-        if (settings.container === undefined || settings.container === window) {
-            fold = $window.width() + $window.scrollLeft();
-        } else {
-            fold = $(settings.container).offset().left + $(settings.container).width();
-        }
-        return fold <= $(element).offset().left - settings.threshold;
-    };
-    $.abovethetop = function(element, settings) {
-        var fold;
-
-        if (settings.container === undefined || settings.container === window) {
-            fold = $window.scrollTop();
-        } else {
-            fold = $(settings.container).offset().top;
-        }
-        return fold >= $(element).offset().top + settings.threshold  + $(element).height();
-    };
-    $.leftofbegin = function(element, settings) {
-        var fold;
-
-        if (settings.container === undefined || settings.container === window) {
-            fold = $window.scrollLeft();
-        } else {
-            fold = $(settings.container).offset().left;
-        }
-        return fold >= $(element).offset().left + settings.threshold + $(element).width();
-    };
-    $.inviewport = function(element, settings) {
-        return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) &&
-            !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
-    };
-    /* Custom selectors for your convenience.   */
-    /* Use as $("img:below-the-fold").something() or */
-    /* $("img").filter(":below-the-fold").something() which is faster */
-    $.extend($.expr[":"], {
-        "below-the-fold" : function(a) { return $.belowthefold(a, {threshold : 0}); },
-        "above-the-top"  : function(a) { return !$.belowthefold(a, {threshold : 0}); },
-        "right-of-screen": function(a) { return $.rightoffold(a, {threshold : 0}); },
-        "left-of-screen" : function(a) { return !$.rightoffold(a, {threshold : 0}); },
-        "in-viewport"    : function(a) { return $.inviewport(a, {threshold : 0}); },
-        /* Maintain BC for couple of versions. */
-        "above-the-fold" : function(a) { return !$.belowthefold(a, {threshold : 0}); },
-        "right-of-fold"  : function(a) { return $.rightoffold(a, {threshold : 0}); },
-        "left-of-fold"   : function(a) { return !$.rightoffold(a, {threshold : 0}); }
-    });
 }(jQuery));
