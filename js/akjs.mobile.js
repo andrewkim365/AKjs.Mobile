@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180609 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180613 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -8,7 +8,6 @@ if (window.location.protocol == "file:") throw new Error("AKjs.Mobile Plugin's L
 function Andrew_Config(setting){
     var option = $.extend({
             MaskStyle: [],
-            ImgLoadStyle: "",
             Responsive: true,
             touchstart: true,
             ButtonLink: true,
@@ -23,30 +22,6 @@ function Andrew_Config(setting){
     Andrew_sUserAgent();
     if(option.MaskStyle) {
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
-    }
-    if(option.ImgLoadStyle) {
-        setTimeout(function() {
-            if ($("img").length > 0) {
-                if ($("img").parent()[0].tagName != "FIGURE") {
-                    $("img").wrap("<figure />");
-                }
-            }
-            $("img").parent("figure").addClass("ak_img_"+option.ImgLoadStyle);
-            $("figure").children("img").css({
-                opacity: 0
-            }).animate({
-                opacity: 1
-            },1000);
-            $("img").each(function () {
-                var view_h = parseInt(window.screen.height);
-                var view_img = $(this);
-                if ($(this).offset().top > view_h) {
-                    setTimeout(function() {
-                        view_img.attr("data-animation","{name:'fadeIn', duration:1, delay:0}");
-                    },100);
-                }
-            });
-        },100);
     }
     if(!option.Responsive) {
         $("body").addClass("ak-screen");
@@ -76,7 +51,6 @@ function Andrew_Config(setting){
             }
         }, false);
     }
-
     if(option.touchstart== true) {
         document.body.addEventListener('touchstart', function () {
         });
@@ -139,102 +113,82 @@ function Andrew_Router(setting){
             $("body").html(layout.responseText);
         }
         Andrew_sUserAgent();
-        var Router_path = "./";
-        if (option.RouterPath[0]) {
-            Router_path = option.RouterPath[0]+"/";
-        }
-        setTimeout(function() {
-            var hash_dot = new RegExp("\\.");
-            var hash_question =  new RegExp("\\?");
-            $(window).each(function () {
-                if (document.location.hash.substring(1) != "") {
-                    if (window.location.protocol != "file:") {
-                        if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
-                            var ak_url = Router_path + document.location.hash.substring(1)
-                        } else {
-                            if (hash_question.test(Router_path + document.location.hash.substring(1))) {
-                                var ak_hash = Router_path + document.location.hash.substring(1).replace("?",option.FileFormat+"?");
-                            } else {
-                                var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
-                            }
-                            var ak_url = ak_hash.replace("/"+option.FileFormat,"/index"+option.FileFormat);
-                        }
-                        htmlobj = $.ajax({
-                            url: ak_url,
-                            async: false,
-                            cache: false,
-                            success: function () {
-                                hash = ak_url;
-                                option.success(hash);
-                                $("main").show();
-                            },
-                            error: function () {
-                                hash = ak_url;
-                                option.error(hash);
-                                $("main").hide();
-                            }
-                        });
-                        $("main").html(htmlobj.responseText);
-                    }
-                    Router_Settings();
-                    ErrorPage_403();
-                }
+        $(window).each(function () {
+            if (document.location.hash.substring(1) != "") {
+                Router_Ajax(option);
+            }
+            setTimeout(function() {
                 option.changePage(document.location.hash.substring(1),IsMobile);
-            });
-            $(window).bind('hashchange', function () {
+            },100);
+        });
+        $(window).bind('hashchange', function () {
+            var page = "hashchange";
+            if (document.location.hash.substring(1) != "") {
+                Router_Ajax(option,page);
+            }
+            setTimeout(function() {
+                option.changePage(document.location.hash.substring(1),IsMobile);
+            },100);
+        });
+        function Router_Ajax(option,page) {
+            if (page == "hashchange") {
                 var ak_menu_btn = $("footer").children("menu").find("button");
                 ak_menu_btn.each(function () {
                     if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
                         $("footer").removeClass("dis_none_im");
                     }
                 });
-                if (document.location.hash.substring(1) != "") {
-                    if (window.location.protocol != "file:") {
-                        if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
-                            var ak_url = Router_path + document.location.hash.substring(1)
-                        } else {
-                            if (hash_question.test(Router_path + document.location.hash.substring(1))) {
-                                var ak_hash = Router_path + document.location.hash.substring(1).replace("?",option.FileFormat+"?");
-                            } else {
-                                var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
-                            }
-                            var ak_url = ak_hash.replace("/"+option.FileFormat,"/index"+option.FileFormat);
-                        }
-                        htmlobj = $.ajax({
-                            url: ak_url,
-                            async: false,
-                            cache: false,
-                            success: function () {
-                                hash = ak_url;
-                                option.success(hash);
-                                $("main").show();
-                            },
-                            error: function () {
-                                hash = ak_url;
-                                option.error(hash);
-                                $("main").hide();
-                            }
-                        });
-                        $("main").html(htmlobj.responseText);
-                        if (option.Animate) {
-                            $("main").addClass("dis_opa_0").removeClass("animated "+option.Animate);
-                            setTimeout(function() {
-                                $("main").removeClass("dis_opa_0").addClass("animated "+option.Animate);
-                            },100);
-                        }
-                    }
-                    Router_Settings();
-                    ErrorPage_403();
-                    $('main').animate({"scrollTop":0},100);
-                    $('body').children("div").remove();
-                    $('body').find(".ak-mask").remove();
-                } else {
-                    document.location.reload();
+                if (option.Animate) {
+                    $("main").addClass("dis_opa_0").removeClass("animated "+option.Animate);
+                    setTimeout(function() {
+                        $("main").removeClass("dis_opa_0").addClass("animated "+option.Animate);
+                    },100);
                 }
-                option.changePage(document.location.hash.substring(1),IsMobile);
-            });
-        },100);
-
+                $('main').animate({"scrollTop":0},100);
+                $('body').children("div").remove();
+                $(".ak-mask").remove();
+            }
+            var Router_path = "./";
+            if (option.RouterPath[0]) {
+                Router_path = option.RouterPath[0]+"/";
+            }
+            var hash_dot = new RegExp("\\.");
+            var hash_question =  new RegExp("\\?");
+            if (window.location.protocol != "file:") {
+                if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
+                    var ak_url = Router_path + document.location.hash.substring(1)
+                } else {
+                    if (hash_question.test(Router_path + document.location.hash.substring(1))) {
+                        var ak_hash = Router_path + document.location.hash.substring(1).replace("?",option.FileFormat+"?");
+                    } else {
+                        var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
+                    }
+                    var ak_url = ak_hash.replace("/"+option.FileFormat,"/index"+option.FileFormat);
+                }
+                htmlobj = $.ajax({
+                    url: ak_url,
+                    async: false,
+                    cache: false,
+                    success: function () {
+                        hash = ak_url;
+                        $("main").removeClass("dis_none_im");
+                        setTimeout(function() {
+                            option.success(hash);
+                        },200);
+                    },
+                    error: function () {
+                        hash = ak_url;
+                        $("main").addClass("dis_none_im");
+                        setTimeout(function() {
+                            option.error(hash);
+                        },200);
+                    }
+                });
+                $("main").html(htmlobj.responseText);
+            }
+            Router_Settings();
+            ErrorPage_403();
+        }
         function Router_Settings() {
             if ($("footer").find("dfn").length == 0) {
                 $("footer").children().before("<dfn />");
@@ -280,7 +234,7 @@ function Andrew_Router(setting){
                 } else {
                     Andrew_HashSharp(true,false);
                 }
-            },100);
+            },200);
             Andrew_Animation();
         }
         function ErrorPage_403() {
@@ -692,9 +646,9 @@ function Andrew_Ajax(setting){
 
 /*-----------------------------------------------Andrew_Animation------------------------------------------*/
 function Andrew_Animation() {
-    var ani_s = new RegExp("s");
     $('*[data-animation]').each(function(){
         var ani_ele = $(this);
+        var ani_s = new RegExp("s");
         var animated_each = ani_ele.attr("data-animation");
         aniJson_each = eval("(" + animated_each + ")");
         if (aniJson_each.name) {
@@ -721,55 +675,6 @@ function Andrew_Animation() {
                 ani_ele.css({
                     "animation-delay" : parseInt(aniJson_each.delay)+"s"
                 });
-            }
-        }
-    });
-    $("main").on('scroll', function (andrew) {
-        andrew.preventDefault();
-        var clientHeight = $(this).scrollTop() + $(this).prop('clientHeight');
-        var scrollTop = $(this).scrollTop();
-        var ele = $(this).find("*[data-animation]");
-        var arr = new Array();
-        for(var i = 0; i < ele.length; i++) {
-            var animated = ele.eq(i).attr("data-animation");
-            aniJson = eval("(" + animated + ")");
-            arr[i] = ele.eq(i).offset().top + scrollTop + (ele.eq(i)[0].offsetHeight / 2);
-            if(arr[i] >= scrollTop && arr[i] <= clientHeight){
-                if (ele.eq(i)[0].tagName == "IMG") {
-                    ele.eq(i).css({
-                        opacity: 1
-                    });
-                }
-                if (aniJson.name) {
-                    ele.eq(i).removeClass("animated "+aniJson.name);
-                    ele.eq(i).addClass("animated "+aniJson.name);
-                }
-                if (aniJson.duration) {
-                    if (ani_s.test(aniJson.duration)) {
-                        ele.eq(i).css({
-                            "animation-duration" : parseInt(aniJson.duration)
-                        });
-                    } else {
-                        ele.eq(i).css({
-                            "animation-duration" : parseInt(aniJson.duration)+"s"
-                        });
-                    }
-                }
-                if (aniJson.delay) {
-                    if (ani_s.test(aniJson.delay)) {
-                        ele.eq(i).css({
-                            "animation-delay" : parseInt(aniJson.delay)
-                        });
-                    } else {
-                        ele.eq(i).css({
-                            "animation-delay" : parseInt(aniJson.delay)+"s"
-                        });
-                    }
-                }
-            }else{
-                if ($("main").scrollTop() < ele[0].offsetTop) {
-                    ele.removeClass("animated "+aniJson.name);
-                }
             }
         }
     });
