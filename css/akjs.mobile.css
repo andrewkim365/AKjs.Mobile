@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.1.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180609 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180613 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -4108,7 +4108,7 @@ legend {
 }
 .img_auto img, .img_auto video {
     width: auto !important;
-    height: auto !important;
+    height: auto;
     max-width: 100%;
     min-width: 100%;
     min-height: 100%;
@@ -8686,7 +8686,15 @@ button.bg_gray_444[disabled] {
     left: -0.5em;
     top: -0.6em;
 }
-/*Mask Background setting*/
+
+/*Noimage & Responsive setting*/
+.ak-noimage {
+    display: block !important;
+    margin: 0 auto !important;
+    width: auto !important;
+    height: inherit !important;
+    min-width: auto !important;
+}
 .ak-landscape {
     position: fixed;
     z-index: 99999;
@@ -8699,6 +8707,8 @@ button.bg_gray_444[disabled] {
     top: 0;
     left: 0;
 }
+
+/*Mask Background setting*/
 .ak-mask {
     display:block;
     position:fixed;
