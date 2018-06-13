@@ -169,20 +169,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             if (self.options.fullpage) {
                 ele.on({
-                    touchmove: function (e) {
-                        e.preventDefault();
+                    touchmove: function (es) {
+                        es.preventDefault();
                         return false;
                     }
                 });
             }
             SliderLi.on({
-                touchstart: function(e) {
-                    touchStartY = e.originalEvent.touches[0].clientY;
-                    touchStartX = e.originalEvent.touches[0].clientX;
+                touchstart: function(es) {
+                    touchStartY = es.originalEvent.touches[0].clientY;
+                    touchStartX = es.originalEvent.touches[0].clientX;
                 },
-                touchend: function(e) {
-                    var touchEndY = e.originalEvent.changedTouches[0].clientY,
-                        touchEndX = e.originalEvent.changedTouches[0].clientX,
+                touchend: function(es) {
+                    var touchEndY = es.originalEvent.changedTouches[0].clientY,
+                        touchEndX = es.originalEvent.changedTouches[0].clientX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {
@@ -209,37 +209,37 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         }
                     }
                     if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                        if (yDiff > 5) {
-                            e.preventDefault();
+                        /*if (yDiff > 5) {
+                            es.preventDefault();
                         } else {
-                            e.preventDefault();
-                        }
+                            es.preventDefault();
+                        }*/
                     }
                     touchStartY = null;
                     touchStartX = null
                 },
-                touchmove: function(e) {
-                    var touchEndY = e.originalEvent.changedTouches[0].clientY,
-                        touchEndX = e.originalEvent.changedTouches[0].clientX,
+                touchmove: function(es) {
+                    var touchEndY = es.originalEvent.changedTouches[0].clientY,
+                        touchEndX = es.originalEvent.changedTouches[0].clientX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
-                    if (self.options.loopPlay) {
+                    /*if (self.options.loopPlay) {
                         if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                            e.preventDefault()
+                            es.preventDefault()
                         }
                     } else {
                         if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                            e.preventDefault()
+                            es.preventDefault()
                         }
-                    }
+                    }*/
                 },
-                mousedown: function(e) {
-                    touchStartY = e.clientY;
-                    touchStartX = e.clientX;
+                mousedown: function(es) {
+                    touchStartY = es.clientY;
+                    touchStartX = es.clientX;
                 },
-                mouseup: function(e) {
-                    var touchEndY = e.screenY,
-                        touchEndX = e.screenX,
+                mouseup: function(es) {
+                    var touchEndY = es.screenY,
+                        touchEndX = es.screenX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {
@@ -268,8 +268,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     touchStartY = null;
                     touchStartX = null
                 },
-                mousemove: function(e) {
-                    e.preventDefault();
+                mousemove: function(es) {
+                    //es.preventDefault();
                 }
             })
         },

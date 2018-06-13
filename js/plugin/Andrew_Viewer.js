@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Viewer-------------------------------------------*/
@@ -222,7 +222,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var j = this.src,
                     e = this.alt || aN(j),
                     f = b.url;
-                j && (aL(f) ? f = this.getAttribute(f) : $.isFunction(f) && (f = f.call(this, this)), c.push('<li><img src="' + j + '" data-action="view" data-index="' + g + '" data-original-url="' + (f || j) + '" alt="' + e + '"></li>'))
+                j && (aL(f) ? f = this.getAttribute(f) : $.isFunction(f) && (f = f.call(this, this)), c.push('<li><img src="' + j + '" data-action="view" data-index="' + g + '" data-url="' + (f || j) + '" alt="' + e + '"></li>'))
             }),
                 d.html(c.join("")).find(ax).one(ao, {
                         filled: !0
@@ -506,7 +506,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         view: function(c) {
             var g, f, k, j, b, d = this.$title;
             c = Number(c) || 0,
-            !this.isShown || this.isPlayed || 0 > c || c >= this.length || this.isViewed && c === this.index || this.trigger(ab).isDefaultPrevented() || (f = this.$items.eq(c), k = f.find(ax), j = k.data("originalUrl"), b = k.attr("alt"), this.$image = g = $('<img src="' + j + '" alt="' + b + '">'), this.isViewed && this.$items.eq(this.index).removeClass(aU), f.addClass(aU), this.isViewed = !1, this.index = c, this.image = null, this.$canvas.html(g.addClass(at)), this.renderList(), d.empty(), this.$element.one(aq, $.proxy(function() {
+            !this.isShown || this.isPlayed || 0 > c || c >= this.length || this.isViewed && c === this.index || this.trigger(ab).isDefaultPrevented() || (f = this.$items.eq(c), k = f.find(ax), j = k.data("url"), b = k.attr("alt"), this.$image = g = $('<img src="' + j + '" alt="' + b + '">'), this.isViewed && this.$items.eq(this.index).removeClass(aU), f.addClass(aU), this.isViewed = !1, this.index = c, this.image = null, this.$canvas.html(g.addClass(at)), this.renderList(), d.empty(), this.$element.one(aq, $.proxy(function() {
                     var h = this.image,
                         a = h.naturalWidth,
                         l = h.naturalHeight;
@@ -588,7 +588,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this.isShown && !this.isPlayed && (e.fullscreen && this.requestFullscreen(), this.isPlayed = !0, j.addClass(a4), this.$items.each(function(h) {
                 var k = $(this),
                     a = k.find(ax),
-                    m = $('<img src="' + a.data("originalUrl") + '" alt="' + a.attr("alt") + '">');
+                    m = $('<img src="' + a.data("url") + '" alt="' + a.attr("alt") + '">');
                 d++,
                     m.addClass(aF).toggleClass(ad, e.transition),
                 k.hasClass(aU) && (m.addClass(aw), f = h),
@@ -780,7 +780,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         maxZoomRatio: 100,
         zIndex: 99,
         zIndexInline: 0,
-        url: "src",
+        url: "data-url",
         build: null,
         built: null,
         show: null,
