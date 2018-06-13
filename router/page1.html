@@ -149,7 +149,7 @@
     </div>
 
     <!----------Andrew_StepOrder---------->
-    <div class="module list press mt_5">
+    <div class="module list press mt_5"  data-animation="{name:'fadeIn', duration:1, delay:0}">
         <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">步骤效果</h3>
         <article class="plug_step pa_3 bg_white dis_none">
             <ul class="length4">
@@ -802,32 +802,32 @@
         <ul class="plug_viewer lazyload ml_3 mt_1em length2">
             <li class="fl ovh h_8em mb_1em">
                 <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                    <img data-original="./img/tibet-1.jpg" src="./img/thumbnails/tibet-1.jpg" alt="图片1" />
+                    <img src="./img/tibet-1.jpg" data-url="./img/thumbnails/tibet-1.jpg" alt="图片1" />
                 </figure>
             </li>
             <li class="fl ovh h_8em mb_1em">
                 <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                    <img data-original="./img/tibet-2.jpg" src="./img/thumbnails/tibet-2.jpg" alt="图片2" />
+                    <img src="./img/tibet-2.jpg" data-url="./img/thumbnails/tibet-2.jpg" alt="图片2" />
                 </figure>
             </li>
             <li class="fl ovh h_8em mb_1em">
                 <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                    <img data-original="./img/tibet-3.jpg" src="./img/thumbnails/tibet-3.jpg" alt="图片3" />
+                    <img src="./img/tibet-3.jpg" data-url="./img/thumbnails/tibet-3.jpg" alt="图片3" />
                 </figure>
             </li>
             <li class="fl ovh h_8em mb_1em">
                 <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                    <img data-original="./img/tibet-4.jpg" src="./img/thumbnails/tibet-4.jpg" alt="图片4" />
+                    <img src="./img/tibet-4.jpg" data-url="./img/thumbnails/tibet-4.jpg" alt="图片4" />
                 </figure>
             </li>
             <li class="fl ovh h_8em mb_1em">
                 <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                    <img data-original="./img/tibet-5.jpg" src="./img/thumbnails/tibet-5.jpg" alt="图片5" />
+                    <img src="./img/tibet-5.jpg" data-url="./img/thumbnails/tibet-5.jpg" alt="图片5" />
                 </figure>
             </li>
             <li class="fl ovh h_8em mb_1em">
                 <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                    <img data-original="./img/tibet-6.jpg" src="./img/thumbnails/tibet-6.jpg" alt="图片6" />
+                    <img src="./img/tibet-6.jpg" data-url="./img/thumbnails/tibet-6.jpg" alt="图片6" />
                 </figure>
             </li>
         </ul>
@@ -938,8 +938,30 @@
 
     /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
     $(function() {
-        $("img").Andrew_Lazyload({
-            effect: "fadeIn" //图片延迟加载效果
+        $("img").Andrew_Lazyload({ //对所有的图片懒加载
+            scroll: $("main"), //滚动区域的容器
+            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+            Img_Effect: "fadeIn", //图片加载动画效果
+            Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
+            Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
+            Callback: function(ele) { //初始化回调入口
+                //console.log(ele);
+            },
+            Scrollback: function(ele,scroll) { //页面滚动后的回调
+                //console.log(ele);
+            }
+        });
+    });
+    $(function() {
+        $("*[data-animation]").Andrew_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
+            scroll: $("main"), //滚动区域的容器
+            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+            Callback: function(ele) { //初始化回调入口
+                //console.log(ele);
+            },
+            Scrollback: function(ele,scroll) { //页面滚动后的回调
+                //console.log(scroll);
+            }
         });
     });
 
@@ -1766,7 +1788,7 @@
     /*-----------------------------------------------Andrew_Viewer 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_viewer").Andrew_Viewer({
-            url: "data-original" //图片放大后高清图片URL设置
+            url: "data-url" //图片放大后的高清图片URL设置
         });
     });
 
