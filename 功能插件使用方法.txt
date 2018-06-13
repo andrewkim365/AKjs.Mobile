@@ -6,7 +6,6 @@
        $(function () {
            Andrew_Config({ //环境配置管理
                MaskStyle: ["style3","opacity07"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
-               ImgLoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）
                Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
                touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
                ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
@@ -62,8 +61,30 @@
 
        /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
        $(function() {
-           $("img").Andrew_Lazyload({
-               effect: "fadeIn" //图片延迟加载效果
+           $("img").Andrew_Lazyload({ //对所有的图片懒加载
+               scroll: $("main"), //滚动区域的容器
+               scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+               Img_Effect: "fadeIn", //图片加载动画效果
+               Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
+               Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
+               Callback: function(ele) { //初始化回调入口
+                   //console.log(ele);
+               },
+               Scrollback: function(ele,scroll) { //页面滚动后的回调
+                   //console.log(ele);
+               }
+           });
+       });
+       $(function() {
+           $("*[data-animation]").Andrew_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
+               scroll: $("main"), //滚动区域的容器
+               scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+               Callback: function(ele) { //初始化回调入口
+                   //console.log(ele);
+               },
+               Scrollback: function(ele,scroll) { //页面滚动后的回调
+                   //console.log(scroll);
+               }
            });
        });
 
@@ -923,7 +944,7 @@
        /*-----------------------------------------------Andrew_Viewer 使用方法-------------------------------------------*/
        $(function() {
            $(".plug_viewer").Andrew_Viewer({
-               url: "data-original" //图片放大后高清图片URL设置
+               url: "data-url" //图片放大后的高清图片URL设置
            });
        });
 
