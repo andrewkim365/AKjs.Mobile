@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180613 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180614 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -26,7 +26,7 @@ function Andrew_Config(setting){
     if(!option.Responsive) {
         $("body").addClass("ak-screen");
     }
-    if(option.Topdblclick== true) {
+    if(option.Topdblclick == true) {
         var touchtime = new Date().getTime();
         $("header h1").on("click", function(){
             if( new Date().getTime() - touchtime < 500 ){
@@ -113,81 +113,71 @@ function Andrew_Router(setting){
             $("body").html(layout.responseText);
         }
         Andrew_sUserAgent();
-        $(window).each(function () {
-            if (document.location.hash.substring(1) != "") {
-                Router_Ajax(option);
-            }
-            setTimeout(function() {
-                option.changePage(document.location.hash.substring(1),IsMobile);
-            },100);
+        $(window).bind('load', function () {
+            Router_Ajax(option);
+            option.changePage(document.location.hash.substring(1));
         });
         $(window).bind('hashchange', function () {
             var page = "hashchange";
-            if (document.location.hash.substring(1) != "") {
-                Router_Ajax(option,page);
-            }
-            setTimeout(function() {
-                option.changePage(document.location.hash.substring(1),IsMobile);
-            },100);
+            Router_Ajax(option,page);
+            option.changePage(document.location.hash.substring(1));
         });
         function Router_Ajax(option,page) {
-            if (page == "hashchange") {
-                var ak_menu_btn = $("footer").children("menu").find("button");
-                ak_menu_btn.each(function () {
-                    if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
-                        $("footer").removeClass("dis_none_im");
+            $("main").ready(function(){
+                if (document.location.hash.substring(1) != "") {
+                    if (page == "hashchange") {
+                        var ak_menu_btn = $("footer").children("menu").find("button");
+                        ak_menu_btn.each(function () {
+                            if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
+                                $("footer").removeClass("dis_none_im");
+                            }
+                        });
+                        if (option.Animate) {
+                            $("main").addClass("dis_opa_0").removeClass("animated " + option.Animate);
+                            setTimeout(function () {
+                                $("main").removeClass("dis_opa_0").addClass("animated " + option.Animate);
+                            }, 100);
+                        }
+                        $("main").animate({"scrollTop": 0}, 100);
+                        $("body").children("div").remove();
+                        $(".ak-mask").remove();
                     }
-                });
-                if (option.Animate) {
-                    $("main").addClass("dis_opa_0").removeClass("animated "+option.Animate);
-                    setTimeout(function() {
-                        $("main").removeClass("dis_opa_0").addClass("animated "+option.Animate);
-                    },100);
+                    var Router_path = "./";
+                    if (option.RouterPath[0]) {
+                        Router_path = option.RouterPath[0] + "/";
+                    }
+                    var hash_dot = new RegExp("\\.");
+                    var hash_question = new RegExp("\\?");
+                    if (window.location.protocol != "file:") {
+                        if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
+                            var ak_url = Router_path + document.location.hash.substring(1)
+                        } else {
+                            if (hash_question.test(Router_path + document.location.hash.substring(1))) {
+                                var ak_hash = Router_path + document.location.hash.substring(1).replace("?", option.FileFormat + "?");
+                            } else {
+                                var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
+                            }
+                            var ak_url = ak_hash.replace("/" + option.FileFormat, "/index" + option.FileFormat);
+                        }
+                        htmlobj = $.ajax({
+                            url: ak_url,
+                            async: false,
+                            cache: false,
+                            success: function () {
+                                $("main").removeClass("dis_none_im");
+                                option.success(document.location.hash.substring(1));
+                            },
+                            error: function () {
+                                $("main").addClass("dis_none_im");
+                                option.error(document.location.hash.substring(1));
+                            }
+                        });
+                        $("main").html(htmlobj.responseText);
+                    }
+                    Router_Settings();
+                    ErrorPage_403();
                 }
-                $('main').animate({"scrollTop":0},100);
-                $('body').children("div").remove();
-                $(".ak-mask").remove();
-            }
-            var Router_path = "./";
-            if (option.RouterPath[0]) {
-                Router_path = option.RouterPath[0]+"/";
-            }
-            var hash_dot = new RegExp("\\.");
-            var hash_question =  new RegExp("\\?");
-            if (window.location.protocol != "file:") {
-                if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
-                    var ak_url = Router_path + document.location.hash.substring(1)
-                } else {
-                    if (hash_question.test(Router_path + document.location.hash.substring(1))) {
-                        var ak_hash = Router_path + document.location.hash.substring(1).replace("?",option.FileFormat+"?");
-                    } else {
-                        var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
-                    }
-                    var ak_url = ak_hash.replace("/"+option.FileFormat,"/index"+option.FileFormat);
-                }
-                htmlobj = $.ajax({
-                    url: ak_url,
-                    async: false,
-                    cache: false,
-                    success: function () {
-                        hash = ak_url;
-                        $("main").removeClass("dis_none_im");
-                        setTimeout(function() {
-                            option.success(hash);
-                        },200);
-                    },
-                    error: function () {
-                        hash = ak_url;
-                        $("main").addClass("dis_none_im");
-                        setTimeout(function() {
-                            option.error(hash);
-                        },200);
-                    }
-                });
-                $("main").html(htmlobj.responseText);
-            }
-            Router_Settings();
-            ErrorPage_403();
+            });
         }
         function Router_Settings() {
             if ($("footer").find("dfn").length == 0) {
