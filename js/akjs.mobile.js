@@ -5,7 +5,7 @@ if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScri
 if (window.location.protocol == "file:") throw new Error("AKjs.Mobile Plugin's Local Ajax requests are not supported");
 
 /*-----------------------------------------------Andrew_Config------------------------------------------*/
-function Andrew_Config(setting){
+function Andrew_Config(setting) {
     var option = $.extend({
             MaskStyle: [],
             Responsive: true,
@@ -28,7 +28,13 @@ function Andrew_Config(setting){
     }
     if(option.Topdblclick == true) {
         var touchtime = new Date().getTime();
-        $("header h1").on("click", function(){
+        if (IsMobile) {
+            var delegate = "touchstart";
+        } else {
+            var delegate = "click";
+        }
+        $(document).delegate("header h1",delegate, function(andrew) {
+            andrew.preventDefault();
             if( new Date().getTime() - touchtime < 500 ){
                 $('main').animate({scrollTop:0},500);
             }else{
@@ -88,7 +94,7 @@ function Andrew_Config(setting){
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
-function Andrew_Router(setting){
+function Andrew_Router(setting) {
     var option = $.extend({
             Router: false,
             FileFormat: ".html",
@@ -236,7 +242,7 @@ function Andrew_Router(setting){
 }
 
 /*-----------------------------------------------Andrew_Menu--------------------------------------------*/
-function Andrew_Menu(setting){
+function Andrew_Menu(setting) {
     var option = $.extend({
             active_color: "",
             menu_icon: new Array(),
@@ -466,7 +472,7 @@ function Andrew_InputFocus() {
 }
 
 /*-----------------------------------------------Andrew_GetScrollTop--------------------------------------*/
-function Andrew_GetScrollTop(){
+function Andrew_GetScrollTop() {
     var scrollTop=0;
     if(document.documentElement&&document.documentElement.scrollTop){
         scrollTop=document.documentElement.scrollTop;
@@ -595,7 +601,7 @@ function Andrew_mainHeight() {
 }
 
 /*-----------------------------------------------Andrew_Ajax--------------------------------------------*/
-function Andrew_Ajax(setting){
+function Andrew_Ajax(setting) {
     var option = $.extend({
             to: "",
             type: "POST",
@@ -766,7 +772,7 @@ function Andrew_HashSharp(form,key) {
 }
 
 /*-----------------------------------------------Andrew_Include------------------------------------------*/
-function Andrew_Include(url){
+function Andrew_Include(url) {
     Andrew_pathURL();
     var type_js = new RegExp(".js");
     var type_css = new RegExp(".css");
@@ -870,7 +876,7 @@ function Andrew_changeURLArg(url, arg, arg_val) {
 }
 
 /*-----------------------------------------------Andrew_Params------------------------------------------*/
-function Andrew_Params(number){
+function Andrew_Params(number) {
     var hash_sharp = new RegExp("\\#/");
     if (hash_sharp.test(document.location.hash)) {
         hash_arr = (location.hash || "").replace(/^\#/, '').split("&");
@@ -1029,7 +1035,7 @@ function Andrew_DateFormat(date,format) {
 }
 
 /*-----------------------------------------------Andrew_Plugin------------------------------------------*/
-function Andrew_Plugin(setting,css){
+function Andrew_Plugin(setting,css) {
     var jssrcs = setting.split("|");
     if (window.location.protocol != "file:") {
         for(var i=0;i<jssrcs.length;i++){

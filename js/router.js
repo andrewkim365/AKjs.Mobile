@@ -81,7 +81,7 @@ $(document).ready(function(){
                         maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
                         Loader:"load_2" //loading效果选择（load_1~7）
                     });
-                    $(document).on('click','.ak-mask',function(){
+                    $(document).on('click','.ak-loading',function(){
                         Andrew_Loader("destroy"); //关闭loading窗
                     });
                 }
