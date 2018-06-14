@@ -130,23 +130,6 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
-    $(function() {
-        $("img").Andrew_Lazyload({ //对所有的图片懒加载
-            scroll: $("main"), //滚动区域的容器
-            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
-            Img_Effect: "fadeIn", //图片加载动画效果
-            Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
-            Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
-            Callback: function(ele) { //初始化回调入口
-                //console.log(ele);
-            },
-            Scrollback: function(ele,scroll) { //页面滚动后的回调
-                //console.log(ele);
-            }
-        });
-    });
-
 
       $(".plug_form").find("input").on("input propertychange", function(e){
           e.preventDefault();
