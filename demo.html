@@ -1025,7 +1025,7 @@
             maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
             Loader:"load_2" //loading效果选择（load_1~7）
         });
-        $(".ak-mask").on("click", function () {
+        $(".ak-loading").on("click", function () {
             Andrew_Loader("destroy"); //关闭loading窗
         });
     });
@@ -1979,11 +1979,10 @@
                 setTimeout(function(){
                     //刷新后需要执行的代码
 
-                    $("img").css({
-                        opacity: 0
-                    }).animate({
-                        opacity: 1
-                    },1000);
+                    $("img").removeClass("animated fadeIn");
+                    setTimeout(function(){
+                        $("img").addClass("animated fadeIn");
+                    },500);
 
                     me.resetload(); //重新初始化控件以及标识量
                     me.unlock(); //解除锁定允许数据继续加载

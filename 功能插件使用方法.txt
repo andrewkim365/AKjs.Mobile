@@ -1,6 +1,6 @@
 //引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-06-13
+//文档更新日期：2018-06-14
 
    /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
        $(function () {
@@ -98,7 +98,7 @@
                maskBG: true, //是否开启遮挡背景 (开启 true, 关闭 false）
                Loader:"load_2" //loading效果选择（load_1~7）
            });
-           $(".ak-mask").on("click", function () {
+           $(".ak-loading").on("click", function () {
                Andrew_Loader("destroy"); //关闭loading窗
            });
        });
