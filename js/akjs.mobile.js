@@ -36,7 +36,7 @@ function Andrew_Config(setting) {
         $(document).delegate("header h1",delegate, function(andrew) {
             andrew.preventDefault();
             if( new Date().getTime() - touchtime < 500 ){
-                $('main').animate({scrollTop:0},500);
+                $("main").animate({scrollTop:0},1000);
             }else{
                 touchtime = new Date().getTime();
             }
