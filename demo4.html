@@ -382,13 +382,41 @@
         Andrew_Loader({
             //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
             autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-            timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
+            timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
             iconColor:"#ffffff", //图标颜色设置
             maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
             Loader:"load_2" //loading效果选择（load_1~7）
         });
-        $(".ak-loading").on("click", function () {
-            Andrew_Loader("destroy"); //关闭loading窗
+        setTimeout(function() { //页面加载完5秒后执行
+            if($(".ak-Loader").css('display') == 'none'){
+                Andrew_Loader("destroy"); //关闭loading窗
+            }
+        },2000);
+    });
+
+    /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
+    $(function () {
+        $("header").Andrew_ScrollFixed({
+            ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
+            scroll:function(ele, scrolltop){
+                if (scrolltop > 100){
+                    ele.addClass("translateY_05 h_2em line_h_2em");
+                    ele.children("h1").addClass("text_1em");
+                    ele.children("button").addClass("dis_none");
+                    main_setting();
+                } else {
+                    ele.removeClass("translateY_05 h_2em line_h_2em");
+                    ele.children("h1").removeClass("text_1em");
+                    ele.children("button").removeClass("dis_none");
+                    main_setting();
+                }
+                function main_setting() {
+                    $("main").css({
+                        "margin-top": ele.outerHeight(),
+                        "height": $(window).height() - ele.outerHeight() - $("footer").outerHeight()
+                    });
+                }
+            }
         });
     });
 
