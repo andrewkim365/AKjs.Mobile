@@ -26,6 +26,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.0版本；
 
 修改 css/style.css 样式文件；
 
+修改 js/router.js 路由管理文件；
+
 修改 js/plugin/Andrew_Viewer.js 功能插件bug；
 
 修改 js/plugin/Andrew_Tabs.js 功能插件bug；
