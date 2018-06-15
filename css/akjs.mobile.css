@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180613 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180615 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -4362,6 +4362,197 @@ legend {
     transition-timing-function: cubic-bezier(0, 1, 0.9, 1);
     -webkit-overflow-scrolling: touch;
     -webkit-touch-callout: none;
+}
+/*element translateXY setting*/
+.translateX_01 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+}
+.translateX_02 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.translateX_03 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.translateX_04 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.translateX_05 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.translateX_06 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    transition: all 0.6s;
+}
+.translateX_07 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    transition: all 0.7s;
+}
+.translateX_08 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    transition: all 0.8s;
+}
+.translateX_09 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 0.9s;
+    -moz-transition: all 0.9s;
+    transition: all 0.9s;
+}
+.translateX_1 {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+}
+
+.translateY_01 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+}
+.translateY_02 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.translateY_03 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.translateY_04 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.translateY_05 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.translateY_06 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    transition: all 0.6s;
+}
+.translateY_07 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    transition: all 0.7s;
+}
+.translateY_08 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    transition: all 0.8s;
+}
+.translateY_09 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 0.9s;
+    -moz-transition: all 0.9s;
+    transition: all 0.9s;
+}
+.translateY_1 {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+}
+/*element flip horizintal scale setting*/
+.scale_tb {
+    -moz-transform: scale(1, -1) !important;
+    -webkit-transform: scale(1, -1) !important;
+    -o-transform: scale(1, -1) !important;
+    -ms-transform: scale(1, -1) !important;
+    transform: scale(1, -1) !important;
+}
+.scale_lr {
+    -moz-transform: scale(-1, 1) !important;
+    -webkit-transform: scale(-1, 1) !important;
+    -o-transform: scale(-1, 1) !important;
+    -ms-transform: scale(-1, 1) !important;
+    transform: scale(-1, 1) !important;
+}
+.scale_tblr {
+    -moz-transform: scale(-1, -1) !important;
+    -webkit-transform: scale(-1, -1) !important;
+    -o-transform: scale(-1, -1) !important;
+    -ms-transform: scale(-1, -1) !important;
+    transform: scale(-1, -1) !important;
+}
+.scale_none {
+    -moz-transform: scale(1, 1) !important;
+    -webkit-transform: scale(1, 1) !important;
+    -o-transform: scale(1, 1) !important;
+    -ms-transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
 }
 /*element rotate setting*/
 .rotate_5 {
