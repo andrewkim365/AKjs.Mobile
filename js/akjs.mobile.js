@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180614 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180615 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -33,7 +33,7 @@ function Andrew_Config(setting) {
         } else {
             var delegate = "click";
         }
-        $(document).delegate("header h1",delegate, function(andrew) {
+        $("header h1").bind(delegate, function (andrew) {
             andrew.preventDefault();
             if( new Date().getTime() - touchtime < 500 ){
                 $("main").animate({scrollTop:0},1000);

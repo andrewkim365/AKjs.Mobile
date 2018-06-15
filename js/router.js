@@ -48,6 +48,26 @@ $(document).ready(function(){
                 Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
             });
 
+            /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
+            if (Andrew_Params(1) != "start") { //通过Andrew_Params获取hash的第一个值后不执行下面loading效果
+                Andrew_Loader({
+                    //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+                    autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+                    timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
+                    iconColor:"#ffffff", //图标颜色设置
+                    maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
+                    Loader:"load_2" //loading效果选择（load_1~7）
+                });
+            }
+        },
+        success:function (hash) { //请求加载页面成功后的回调
+
+            setTimeout(function() { //页面加载完5秒后执行
+                if($(".ak-Loader").css('display') == 'none'){
+                    //Andrew_Loader("destroy"); //关闭loading窗
+                }
+            },2000);
+
             /*-----------------------------------------------Andrew_Menu (底部菜单图标设置）使用方法-------------------------------------------*/
             Andrew_Menu({ //底部菜单的图标以及文字样式变化设置
                 active_color: "c_title", //被选中的文字和图标的颜色
@@ -70,20 +90,27 @@ $(document).ready(function(){
                 }
             });
 
-            /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
-            $(function () {
-                if (Andrew_Params(1) != "start") { //通过Andrew_Params获取hash的第一个值后不执行下面loading效果
-                    Andrew_Loader({
-                        //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-                        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-                        timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
-                        iconColor:"#ffffff", //图标颜色设置
-                        maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-                        Loader:"load_2" //loading效果选择（load_1~7）
-                    });
-                    $(document).on('click','.ak-loading',function(){
-                        Andrew_Loader("destroy"); //关闭loading窗
-                    });
+            /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
+            $("header").Andrew_ScrollFixed({
+                ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
+                scroll:function(ele, scrolltop){
+                    if (scrolltop > 100){
+                        ele.addClass("translateY_05 h_2em line_h_2em");
+                        ele.children("h1").addClass("text_1em");
+                        ele.children("button").addClass("dis_none");
+                        main_setting();
+                    } else {
+                        ele.removeClass("translateY_05 h_2em line_h_2em");
+                        ele.children("h1").removeClass("text_1em");
+                        ele.children("button").removeClass("dis_none");
+                        main_setting();
+                    }
+                    function main_setting() {
+                        $("main").css({
+                            "margin-top": ele.outerHeight(),
+                            "height": $(window).height() - ele.outerHeight() - $("footer").outerHeight()
+                        });
+                    }
                 }
             });
 
@@ -125,10 +152,7 @@ $(document).ready(function(){
                 Andrew_FileFormat(filename) //获取文件的扩展名
             */
         },
-        success:function (hash) { //请求加载页面成功后的回调 （可删除该回调入口）
-            //console.log(hash+" 当前页面加载成功！");
-        },
-        error:function (hash) { //请求加载页面失败后的回调 （可删除该回调入口）
+        error:function (hash) { //请求加载页面失败后的回调
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况
                 ak_webToast("您访问的界面加载失败,请稍后再试!","middle",9999); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
             }
