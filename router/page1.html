@@ -971,7 +971,9 @@
             ScrollFixed: false, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
             zPosition: "4", //浮动元素的z-index数值
             animated: "slideInDown ani_05s", //滚动后的显示的动画效果 (css动画库：andrew.animate.css)
-            top: 0 //屏幕上方和滑动后的元素固定的上下间距
+            top: 0, //屏幕上方和滑动后的元素固定的上下间距
+            scroll:function(ele, scrolltop, offsetTop){
+            }
         });
     });
 
