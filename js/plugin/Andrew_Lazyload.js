@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-13
+Modification Date: 2018-06-15
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
@@ -122,8 +122,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (view_ele.prop('tagName') == "IMG") {
                     if (view_ele.offset().top < view_h) {
                         if (option.scrollTop >= scrollTop) {
-                            view_ele.removeClass("animated "+option.Img_Effect);
-                            view_ele.attr("src",TransparentImage);
                             setTimeout(function () {
                                 view_ele.addClass("animated "+option.Img_Effect);
                                 view_ele.attr("src", view_ele.data("src"));

@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-05
+Modification Date: 2018-06-15
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ScrollFixed-------------------------------------*/
@@ -7,8 +7,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     $.fn.Andrew_ScrollFixed = function(setting) {
         var option = $.extend({
                 ScrollFixed: false,
-                zPosition: "1",
-                animated: "slideInDown ani_05s",
+                zPosition: "",
+                animated: "",
                 top: 0,
                 scroll:function(ele, scrolltop, offsetTop){
                 }
@@ -39,20 +39,22 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     } else {
                         var scrolltop = $scrollbar.scrollTop();
                     }
-                    if(scrolltop > Scroll_ele_offset){
-                        Scroll_ele.addClass("fix w_100 top_0 animated "+option.animated);
-                        Scroll_ele.css({
-                            "margin-top": Scroll_ele_h + option.top,
-                            "z-index": option.zPosition
-                        });
-                        if ($("header").hasClass("dis_none_im")) {
+                    if (option.animated) {
+                        if(scrolltop > Scroll_ele_offset){
+                            Scroll_ele.addClass("fix w_100 top_0 animated "+option.animated);
                             Scroll_ele.css({
-                                "margin-top": 0
+                                "margin-top": Scroll_ele_h + option.top,
+                                "z-index": option.zPosition
                             });
+                            if ($("header").hasClass("dis_none_im")) {
+                                Scroll_ele.css({
+                                    "margin-top": 0
+                                });
+                            }
+                        } else{
+                            Scroll_ele.removeClass("fix w_100 top_0 animated "+option.animated);
+                            Scroll_ele.removeAttr("style");
                         }
-                    } else{
-                        Scroll_ele.removeClass("fix w_100 top_0 animated "+option.animated);
-                        Scroll_ele.removeAttr("style");
                     }
                     option.scroll(Scroll_ele, scrolltop, Scroll_ele_offset);
                 });
