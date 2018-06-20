@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180615 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180620 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -43,9 +43,8 @@ body {
     height: 100%;
 }
 main {
-    overflow-x: hidden;
-    overflow-y: auto;
     position: relative;
+    overflow: auto;
     padding: 0;
     margin: 0;
 }
@@ -319,9 +318,9 @@ legend {
     cursor: default !important;
 }
 .touchstart:active {
-    -webkit-transition-duration: 0.2s;
-    -moz-transition-duration: 0.2s;
-    transition-duration: 0.2ms;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    transition-duration: 0.5ms;
     background-color: #dddddd !important;
 }
 /*-----------Global Style-----------*/
@@ -1450,6 +1449,12 @@ legend {
 .ova {
     overflow: auto;
 }
+.ova_x {
+    overflow-x: auto;
+}
+.ova_y {
+    overflow-y: auto;
+}
 .ovs {
     overflow: scroll;
 }
@@ -1458,6 +1463,9 @@ legend {
 }
 .ovs_y {
     overflow-y: scroll;
+}
+.ovi {
+    overflow: initial;
 }
 .ovh_im {
     overflow: hidden !important;
@@ -1468,6 +1476,12 @@ legend {
 .ova_im {
     overflow: auto !important;
 }
+.ova_x_im {
+    overflow-x: auto !important;
+}
+.ova_y_im {
+    overflow-y: auto !important;
+}
 .ovs_im {
     overflow: scroll !important;
 }
@@ -1476,6 +1490,9 @@ legend {
 }
 .ovs_y_im {
     overflow-y: scroll !important;
+}
+.ovi_im {
+    overflow: initial !important;
 }
 
 /*position type*/
@@ -8123,6 +8140,83 @@ legend {
     height: 80%;
     width: 2px;
     background-color: #dddddd;
+}
+
+/*active color setting*/
+.active_black:active {
+    background-color:#000000 !important;
+}
+.active_gray_111:active {
+    background-color:#111111 !important;
+}
+.active_gray_222:active {
+    background-color:#222222 !important;
+}
+.active_gray_333:active {
+    background-color:#333333 !important;
+}
+.active_gray_444:active {
+    background-color:#444444 !important;
+}
+.active_gray_555:active {
+    background-color:#555555 !important;
+}
+.active_gray_666:active {
+    background-color:#666666 !important;
+}
+.active_gray_777:active {
+    background-color:#777777 !important;
+}
+.active_gray_888:active {
+    background-color:#888888 !important;
+}
+.active_gray_999:active {
+    background-color:#999999 !important;
+}
+.active_gray_aaa:active {
+    background-color:#aaaaaa !important;
+}
+.active_gray_bbb:active {
+    background-color:#bbbbbb !important;
+}
+.active_gray_ccc:active {
+    background-color:#cccccc !important;
+}
+.active_gray_ddd:active {
+    background-color:#dddddd !important;
+}
+.active_gray_eee:active {
+    background-color:#eeeeee !important;
+}
+.active_gray_f1f:active {
+    background-color:#f1f1f1 !important;
+}
+.active_gray_f2f:active {
+    background-color:#f2f2f2 !important;
+}
+.active_gray_f3f:active {
+    background-color:#f3f3f3 !important;
+}
+.active_gray_f4f:active {
+    background-color:#f4f4f4 !important;
+}
+.active_gray_f5f:active {
+    background-color:#f5f5f5 !important;
+}
+.active_gray_f6f:active {
+    background-color:#f6f6f6 !important;
+}
+.active_gray_f7f:active {
+    background-color:#f7f7f7 !important;
+}
+.active_gray_f8f:active {
+    background-color:#f8f8f8 !important;
+}
+.active_gray_f9f:active {
+    background-color:#f9f9f9 !important;
+}
+.active_white:active {
+    background-color:#ffffff !important;
 }
 
 /*white color list Style*/

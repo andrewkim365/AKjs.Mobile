@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2018 Daniel Eden
 /*----------------------------------------------------------------------------------------------------------------
-jquery.AKjs by AKjs.Animate Css v1.0.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180420 AKjs license
+jquery.AKjs by AKjs.Animate Css v1.0.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180620 AKjs license
 Add Animate by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365
 /*----------------------------------------------------------------------------------------------------------------
 
@@ -206,40 +206,40 @@ animation-direction 	规定是否应该轮流反向播放动画。
     animation-delay:0s !important;
 }
 .animated.ani_delay_01s {
-    -webkit-animation-delay:01s !important;
-    animation-delay:01s !important;
+    -webkit-animation-delay:0.1s !important;
+    animation-delay:0.1s !important;
 }
 .animated.ani_delay_02s {
-    -webkit-animation-delay:02s !important;
-    animation-delay:02s !important;
+    -webkit-animation-delay:0.2s !important;
+    animation-delay:0.2s !important;
 }
 .animated.ani_delay_03s {
-    -webkit-animation-delay:03s !important;
-    animation-delay:03s !important;
+    -webkit-animation-delay:0.3s !important;
+    animation-delay:0.3s !important;
 }
 .animated.ani_delay_04s {
-    -webkit-animation-delay:04s !important;
-    animation-delay:04s !important;
+    -webkit-animation-delay:0.4s !important;
+    animation-delay:0.4s !important;
 }
 .animated.ani_delay_05s {
-    -webkit-animation-delay:05s !important;
-    animation-delay:05s !important;
+    -webkit-animation-delay:0.5s !important;
+    animation-delay:0.5s !important;
 }
 .animated.ani_delay_06s {
-    -webkit-animation-delay:06s !important;
-    animation-delay:06s !important;
+    -webkit-animation-delay:0.6s !important;
+    animation-delay:0.6s !important;
 }
 .animated.ani_delay_07s {
-    -webkit-animation-delay:07s !important;
-    animation-delay:07s !important;
+    -webkit-animation-delay:0.7s !important;
+    animation-delay:0.7s !important;
 }
 .animated.ani_delay_08s {
-    -webkit-animation-delay:08s !important;
-    animation-delay:08s !important;
+    -webkit-animation-delay:0.8s !important;
+    animation-delay:0.8s !important;
 }
 .animated.ani_delay_09s {
-    -webkit-animation-delay:09s !important;
-    animation-delay:09s !important;
+    -webkit-animation-delay:0.9s !important;
+    animation-delay:0.9s !important;
 }
 .animated.ani_delay_1s {
     -webkit-animation-delay:1s !important;
