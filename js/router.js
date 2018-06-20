@@ -61,7 +61,6 @@ $(document).ready(function(){
             }
         },
         success:function (hash) { //请求加载页面成功后的回调
-
             setTimeout(function() { //页面加载完5秒后执行
                 if($(".ak-Loader").css('display') == 'none'){
                     //Andrew_Loader("destroy"); //关闭loading窗
@@ -87,30 +86,6 @@ $(document).ready(function(){
                 ),
                 Callback: function(ele,index) { //回调入口
                     console.log(ele, index);
-                }
-            });
-
-            /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
-            $("header").Andrew_ScrollFixed({
-                ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
-                scroll:function(ele, scrolltop){
-                    if (scrolltop > 100){
-                        ele.addClass("translateY_05 h_2em line_h_2em");
-                        ele.children("h1").addClass("text_1em");
-                        ele.children("button").addClass("dis_none");
-                        main_setting();
-                    } else {
-                        ele.removeClass("translateY_05 h_2em line_h_2em");
-                        ele.children("h1").removeClass("text_1em");
-                        ele.children("button").removeClass("dis_none");
-                        main_setting();
-                    }
-                    function main_setting() {
-                        $("main").css({
-                            "margin-top": ele.outerHeight(),
-                            "height": $(window).height() - ele.outerHeight() - $("footer").outerHeight()
-                        });
-                    }
                 }
             });
 

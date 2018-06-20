@@ -52,4 +52,6 @@ Andrew_Plugin("Andrew_TypeIt","css"); //文字打字效果
 Andrew_Plugin("Andrew_Validate"); //表单验证功能
 Andrew_Plugin("Andrew_Viewer","css"); //图片放大预览功能
 Andrew_Plugin("Andrew_Vticker"); //列表垂直滚动插件
+Andrew_Plugin("Andrew_Waterfall","css"); //瀑布流展示功能
 Andrew_Plugin("Andrew_WebToast","css"); //提示框效果
+Andrew_Plugin("Andrew_ReadMore"); //查看更多插件

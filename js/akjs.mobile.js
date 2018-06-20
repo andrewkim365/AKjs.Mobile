@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180615 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180620 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -66,8 +66,10 @@ function Andrew_Config(setting) {
     }
     if(option.WechatHeader== true) {
         if(IsWechat) {
-            $("header").addClass("dis_none_im").removeClass("dis_block_im");
-            $("main").addClass("mt_0");
+            setTimeout(function() {
+                $("header").addClass("dis_none_im").removeClass("dis_block_im");
+                $("main").addClass("mt_0");
+            },100);
         } else {
             $("main").removeClass("mt_0");
         }
@@ -85,9 +87,7 @@ function Andrew_Config(setting) {
     if(option.fixedBar== true) {
         Andrew_InputFocus();
     }
-    setTimeout(function() {
-        Andrew_mainHeight();
-    },100);
+    Andrew_mainHeight();
     $(window).resize(function(){
         Andrew_mainHeight();
     });
@@ -120,13 +120,15 @@ function Andrew_Router(setting) {
         }
         Andrew_sUserAgent();
         $(window).bind('load', function () {
-            Router_Ajax(option);
             option.changePage(document.location.hash.substring(1));
+            Router_Ajax(option);
         });
         $(window).bind('hashchange', function () {
             var page = "hashchange";
-            Router_Ajax(option,page);
+            $("*").unbind();
             option.changePage(document.location.hash.substring(1));
+            Router_Ajax(option,page);
+            Andrew_mainHeight();
         });
         function Router_Ajax(option,page) {
             $("main").ready(function(){
@@ -548,56 +550,55 @@ function Andrew_mainHeight() {
         $(".bar_hide").addClass("scrollbar_hide");
         $("body").removeClass("fix");
     }
-    setTimeout(function() {
-        if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
-            $("main").css({
-                "margin-top": 0,
-                "margin-bottom": 0,
-                "height": $(window).height()
-            });
-        } else if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
-            $("main").css({
-                "margin-top": 0,
-                "margin-bottom": $("footer").outerHeight(),
-                "height": $(window).height() - $("footer").outerHeight()
-            });
-        } else if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
-            $("main").css({
-                "margin-top": $("header").outerHeight(),
-                "margin-bottom": 0,
-                "height": $(window).height() - $("header").outerHeight()
-            });
-        } else if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
-            $("main").css({
-                "margin-top": $("header").outerHeight(),
-                "margin-bottom": $("footer").outerHeight(),
-                "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
-            });
-        }
-        if ($("header").length === 0 && $("footer").length > 0) {
-            $("main").css({
-                "height": $(window).height() - $("footer").outerHeight()
-            });
-        } else if ($("header").length > 0 && $("footer").length === 0) {
-            $("main").css({
-                "height": $(window).height() - $("header").outerHeight()
-            });
-        } else if ($("header").length === 0 && $("footer").length === 0) {
-            $("main").css({
-                "height": $(window).height()
-            });
-        }
+    if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
         $("main").css({
-            "top": "0",
-            "bottom": "0",
-            "left": "0",
-            "right": "0",
-            "position": "relative"
+            "margin-top": 0,
+            "margin-bottom": 0,
+            "height": $(window).height()
         });
+    } else if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+        $("main").css({
+            "margin-top": 0,
+            "margin-bottom": $("footer").outerHeight(),
+            "height": $(window).height() - $("footer").outerHeight()
+        });
+    } else if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
+        $("main").css({
+            "margin-top": $("header").outerHeight(),
+            "margin-bottom": 0,
+            "height": $(window).height() - $("header").outerHeight()
+        });
+    } else if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+        $("main").css({
+            "margin-top": $("header").outerHeight(),
+            "margin-bottom": $("footer").outerHeight(),
+            "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
+        });
+    }
+    if ($("header").length === 0 && $("footer").length > 0) {
+        $("main").css({
+            "height": $(window).height() - $("footer").outerHeight()
+        });
+    } else if ($("header").length > 0 && $("footer").length === 0) {
+        $("main").css({
+            "height": $(window).height() - $("header").outerHeight()
+        });
+    } else if ($("header").length === 0 && $("footer").length === 0) {
+        $("main").css({
+            "height": $(window).height()
+        });
+    }
+    $("main").css({
+        "top": "0",
+        "bottom": "0",
+        "left": "0",
+        "right": "0",
+    });
+    setTimeout(function() {
         $(".h_fill").css({
             "height": $(window).height()
         });
-    }, 100);
+    },200);
 }
 
 /*-----------------------------------------------Andrew_Ajax--------------------------------------------*/
