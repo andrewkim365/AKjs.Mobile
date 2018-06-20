@@ -66,10 +66,8 @@ function Andrew_Config(setting) {
     }
     if(option.WechatHeader== true) {
         if(IsWechat) {
-            setTimeout(function() {
-                $("header").addClass("dis_none_im").removeClass("dis_block_im");
-                $("main").addClass("mt_0");
-            },100);
+            $("header").addClass("dis_none_im").removeClass("dis_block_im");
+            $("main").addClass("mt_0");
         } else {
             $("main").removeClass("mt_0");
         }
@@ -120,15 +118,14 @@ function Andrew_Router(setting) {
         }
         Andrew_sUserAgent();
         $(window).bind('load', function () {
-            option.changePage(document.location.hash.substring(1));
             Router_Ajax(option);
+            option.changePage(document.location.hash.substring(1));
         });
         $(window).bind('hashchange', function () {
             var page = "hashchange";
             $("*").unbind();
-            option.changePage(document.location.hash.substring(1));
             Router_Ajax(option,page);
-            Andrew_mainHeight();
+            option.changePage(document.location.hash.substring(1));
         });
         function Router_Ajax(option,page) {
             $("main").ready(function(){
@@ -173,11 +170,15 @@ function Andrew_Router(setting) {
                             cache: false,
                             success: function () {
                                 $("main").removeClass("dis_none_im");
-                                option.success(document.location.hash.substring(1));
+                                setTimeout(function () {
+                                    option.success(document.location.hash.substring(1));
+                                }, 100);
                             },
                             error: function () {
                                 $("main").addClass("dis_none_im");
-                                option.error(document.location.hash.substring(1));
+                                setTimeout(function () {
+                                    option.error(document.location.hash.substring(1));
+                                }, 100);
                             }
                         });
                         $("main").html(htmlobj.responseText);
@@ -516,39 +517,17 @@ function Andrew_Responsive(setting) {
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_sUserAgent();
-    $("header, footer").bind({
-        touchmove: function (andrew) {
-            andrew.preventDefault();
-            andrew.stopPropagation();
-        }
-    });
-    setInterval(function(){
-        var scrollHeight = $("main").prop('scrollHeight');
-        var clientHeight = $("main").prop('clientHeight');
-        if (scrollHeight > clientHeight) {
-            $("main").unbind('touchstart');
-            $("main").unbind('touchmove');
-        } else {
-            $("main").bind({
-                touchmove: function(andrew) {
-                    andrew.preventDefault();
-                    andrew.stopPropagation();
-                }
-            });
-        }
-    },100);
-    $("body").css({
-        width: window.innerWidth,
-        height: window.innerHeight
-    });
     if (IsMobile) {
         $("main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
-        $("body").addClass("fix");
+        $("body").addClass("fix").css({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
     } else {
         $("main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
-        $("body").removeClass("fix");
+        $("body").removeClass("fix").removeAttr("style");
     }
     if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
         $("main").css({
@@ -598,7 +577,7 @@ function Andrew_mainHeight() {
         $(".h_fill").css({
             "height": $(window).height()
         });
-    },200);
+    },100);
 }
 
 /*-----------------------------------------------Andrew_Ajax--------------------------------------------*/
