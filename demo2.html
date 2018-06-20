@@ -11,7 +11,8 @@
   <meta name="format-detection" content="telphone=no, email=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>AKjs移动端框架</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css" /><!--公共样式以及布局相关样式-->
+  <link rel="stylesheet" type="text/css" href="css/akjs.mobile.min.css" /><!--AKjs公共样式库引入-->
+  <link rel="stylesheet" type="text/css" href="css/style.css" /><!--布局相关样式-->
   <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
   <script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
@@ -132,33 +133,6 @@
             }
         },2000);
     });
-
-    /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
-    $(function () {
-        $("header").Andrew_ScrollFixed({
-            ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
-            scroll:function(ele, scrolltop){
-                if (scrolltop > 100){
-                    ele.addClass("translateY_05 h_2em line_h_2em");
-                    ele.children("h1").addClass("text_1em");
-                    ele.children("button").addClass("dis_none");
-                    main_setting();
-                } else {
-                    ele.removeClass("translateY_05 h_2em line_h_2em");
-                    ele.children("h1").removeClass("text_1em");
-                    ele.children("button").removeClass("dis_none");
-                    main_setting();
-                }
-                function main_setting() {
-                    $("main").css({
-                        "margin-top": ele.outerHeight(),
-                        "height": $(window).height() - ele.outerHeight() - $("footer").outerHeight()
-                    });
-                }
-            }
-        });
-    });
-
 
       $(".plug_form").find("input").on("input propertychange", function(e){
           e.preventDefault();
