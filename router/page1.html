@@ -834,7 +834,7 @@
     </div>
 
     <!----------Andrew_PopupWin Start---------->
-    <div id="plug_MenuWin" class="dis_none bg_white pa_3 w_100 mt_32em"> <!--顶部位置显示的弹窗-->
+    <div id="plug_MenuWin" class="dis_none bg_white pa_3 w_100"> <!--顶部位置显示的弹窗-->
         <ul class="wp_94 c_gray_777">
             <li class="fl h_3em line_h_3em mr_1em">功能A</li>
             <li class="fl h_3em line_h_3em mr_1em">功能B</li>
@@ -961,6 +961,51 @@
             },
             Scrollback: function(ele,scroll) { //页面滚动后的回调
                 //console.log(scroll);
+            }
+        });
+    });
+
+    /*-----------------------------------------------Andrew_ScrollFixed (仿朋友圈) 使用方法-------------------------------------------*/
+    $(function () {
+        $("header").Andrew_ScrollFixed({
+            ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
+            callback:function(ele) { //页面初始化回调
+                ele.addClass("translateY_05");
+                ele.removeClass("h_2em line_h_2em");
+                ele.children("h1").removeClass("text_1em");
+                ele.children("button").removeClass("dis_none");
+            },
+            exitback:function(ele) { //离开当前页面后的回调
+                ele.removeClass("translateY_05");
+                ele.removeClass("h_2em line_h_2em");
+            },
+            scroll:function(ele, scrolltop, offsetTop){ //页面滚动后的回调
+                var scrollHeight = $("main").prop("scrollHeight") - $(window).height();
+                if (scrolltop < 50) {
+                    ele.removeClass("h_2em line_h_2em");
+                    ele.children("h1").removeClass("text_1em");
+                    ele.children("button").removeClass("dis_none");
+                } else if (scrolltop > scrollHeight) {
+                    ele.addClass("h_2em line_h_2em");
+                    ele.children("h1").addClass("text_1em");
+                    ele.children("button").addClass("dis_none");
+                }
+                $("main").css({
+                    "margin-top": ele.prop("clientHeight"),
+                    "height": $(window).height() - ele.prop("clientHeight") - $("footer").prop("clientHeight")
+                });
+            },
+            ScrollUp: function (ele, scrolltop, offsetTop) { //往上滚动回调
+                ele.removeClass("h_2em line_h_2em");
+                ele.children("h1").removeClass("text_1em");
+                ele.children("button").removeClass("dis_none");
+            },
+            ScrollDown: function (ele, scrolltop, offsetTop) { //往下滚动回调
+                if (scrolltop > 50) {
+                    ele.addClass("h_2em line_h_2em");
+                    ele.children("h1").addClass("text_1em");
+                    ele.children("button").addClass("dis_none");
+                }
             }
         });
     });
