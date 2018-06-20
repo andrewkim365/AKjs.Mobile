@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="renderer" content="webkit" />
-  <meta name="full-screen" content="yes" />
-  <meta name="x5-fullscreen" content="true" />
-  <meta name="format-detection" content="telphone=no, email=no" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <title>AKjs移动端框架</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css" /><!--公共样式以及布局相关样式-->
-  <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
-  <script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
-  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
-  <script type="text/javascript" language="javascript" src="js/plugin.js"></script><!--功能插件按需引入-->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="renderer" content="webkit" />
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>AKjs移动端框架</title>
+    <link rel="stylesheet" type="text/css" href="css/akjs.mobile.min.css" /><!--AKjs公共样式库引入-->
+    <link rel="stylesheet" type="text/css" href="css/style.css" /><!--布局相关样式-->
+    <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
+    <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
+    <script type="text/javascript" language="javascript" src="js/plugin.js"></script><!--功能插件按需引入-->
 </head>
 <body>
 
@@ -910,7 +911,7 @@
     </button>
     <button type="button" class="fl h_100" data-href="demo3.html">
       <i class="text_18em c_gray_777 icon-mn_huodong"></i>
-      <em class="text_08em c_gray_777">时间轴</em>
+      <em class="text_08em c_gray_777">瀑布流</em>
     </button>
     <button type="button" class="fl h_100" data-href="demo4.html">
       <i class="text_18em c_gray_777 icon-mn_kuangjia"></i>
@@ -1050,38 +1051,61 @@
         });
     });
 
+    /*-----------------------------------------------Andrew_ScrollFixed (仿朋友圈) 使用方法-------------------------------------------*/
+    $(function () {
+        $("header").Andrew_ScrollFixed({
+            ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
+            callback:function(ele) { //页面初始化回调
+                ele.addClass("translateY_05");
+                ele.removeClass("h_2em line_h_2em");
+                ele.children("h1").removeClass("text_1em");
+                ele.children("button").removeClass("dis_none");
+            },
+            exitback:function(ele) { //离开当前页面后的回调
+                ele.removeClass("translateY_05");
+                ele.removeClass("h_2em line_h_2em");
+            },
+            scroll:function(ele, scrolltop, offsetTop){ //页面滚动后的回调
+                var scrollHeight = $("main").prop("scrollHeight") - $(window).height();
+                if (scrolltop < 50) {
+                    ele.removeClass("h_2em line_h_2em");
+                    ele.children("h1").removeClass("text_1em");
+                    ele.children("button").removeClass("dis_none");
+                } else if (scrolltop > scrollHeight) {
+                    ele.addClass("h_2em line_h_2em");
+                    ele.children("h1").addClass("text_1em");
+                    ele.children("button").addClass("dis_none");
+                }
+                $("main").css({
+                    "margin-top": ele.prop("clientHeight"),
+                    "height": $(window).height() - ele.prop("clientHeight") - $("footer").prop("clientHeight")
+                });
+            },
+            ScrollUp: function (ele, scrolltop, offsetTop) { //往上滚动回调
+                ele.removeClass("h_2em line_h_2em");
+                ele.children("h1").removeClass("text_1em");
+                ele.children("button").removeClass("dis_none");
+            },
+            ScrollDown: function (ele, scrolltop, offsetTop) { //往下滚动回调
+                if (scrolltop > 50) {
+                    ele.addClass("h_2em line_h_2em");
+                    ele.children("h1").addClass("text_1em");
+                    ele.children("button").addClass("dis_none");
+                }
+            }
+        });
+    });
+
     /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
     $(function () {
         $(".plug_tabs nav").Andrew_ScrollFixed({
             ScrollFixed: false, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
             zPosition: "4", //浮动元素的z-index数值
             animated: "slideInDown ani_05s", //滚动后的显示的动画效果 (css动画库：andrew.animate.css)
-            top: 0 //屏幕上方和滑动后的元素固定的上下间距
-        });
-
-        $("header").Andrew_ScrollFixed({
-            ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
-            scroll:function(ele, scrolltop){
-                if (scrolltop > 100){
-                    ele.addClass("translateY_05 h_2em line_h_2em");
-                    ele.children("h1").addClass("text_1em");
-                    ele.children("button").addClass("dis_none");
-                    main_setting();
-                } else {
-                    ele.removeClass("translateY_05 h_2em line_h_2em");
-                    ele.children("h1").removeClass("text_1em");
-                    ele.children("button").removeClass("dis_none");
-                    main_setting();
-                }
-                function main_setting() {
-                    $("main").css({
-                        "margin-top": ele.outerHeight(),
-                        "height": $(window).height() - ele.outerHeight() - $("footer").outerHeight()
-                    });
-                }
+            top: 0, //屏幕上方和滑动后的元素固定的上下间距
+            scroll:function(ele, scrolltop, offsetTop){
             }
         });
-
     });
 
     /*-----------------------------------------------Andrew_Tabs 使用方法-------------------------------------------*/
