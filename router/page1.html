@@ -967,32 +967,34 @@
 
     /*-----------------------------------------------Andrew_ScrollFixed (仿朋友圈) 使用方法-------------------------------------------*/
     $(function () {
-        $("header").Andrew_ScrollFixed({
-            ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
-            callback:function(ele) { //页面初始化回调
-                ele.addClass("translateY_02");
-            },
-            exitback:function(ele) { //离开当前页面后的回调
-                ele.removeClass("translateY_02");
-                ele.removeClass("h_2em line_h_2em");
-                ele.children("h1").removeClass("text_1em");
-                ele.children("button").removeClass("dis_none");
-                $("main").removeClass("minus_mt_32em h_in");
-            },
-            scroll:function(ele, scrolltop, offsetTop){ //页面滚动后的回调
-                if (scrolltop > 100) {
-                    ele.addClass("h_2em line_h_2em");
-                    ele.children("h1").addClass("text_1em");
-                    ele.children("button").addClass("dis_none");
-                    $("main").addClass("minus_mt_32em h_in");
-                } else {
+        if (!IsWechat) { //通过微信访问时不执行该插件
+            $("header").Andrew_ScrollFixed({
+                ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
+                callback:function(ele) { //页面初始化回调
+                    ele.addClass("translateY_02");
+                },
+                exitback:function(ele) { //离开当前页面后的回调
+                    ele.removeClass("translateY_02");
                     ele.removeClass("h_2em line_h_2em");
                     ele.children("h1").removeClass("text_1em");
                     ele.children("button").removeClass("dis_none");
                     $("main").removeClass("minus_mt_32em h_in");
+                },
+                scroll:function(ele, scrolltop, offsetTop){ //页面滚动后的回调
+                    if (scrolltop > 100) {
+                        ele.addClass("h_2em line_h_2em");
+                        ele.children("h1").addClass("text_1em");
+                        ele.children("button").addClass("dis_none");
+                        $("main").addClass("minus_mt_32em h_in");
+                    } else {
+                        ele.removeClass("h_2em line_h_2em");
+                        ele.children("h1").removeClass("text_1em");
+                        ele.children("button").removeClass("dis_none");
+                        $("main").removeClass("minus_mt_32em h_in");
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
