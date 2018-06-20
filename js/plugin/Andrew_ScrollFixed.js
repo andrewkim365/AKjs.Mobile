@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-15
+Modification Date: 2018-06-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ScrollFixed-------------------------------------*/
@@ -10,7 +10,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 zPosition: "",
                 animated: "",
                 top: 0,
-                scroll:function(ele, scrolltop, offsetTop){
+                callback:function(){
+                },
+                exitback:function(){
+                },
+                scroll:function(){
+                },
+                ScrollUp: function () {
+                },
+                ScrollDown: function () {
                 }
             },
             setting);
@@ -19,8 +27,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             setTimeout(function() {
                 scrollbar_fun();
             },100);
-            $(window).resize(function(){
-                scrollbar_fun();
+            $(window).bind('hashchange', function () {
+                option.exitback(Scroll_ele);
             });
             function scrollbar_fun() {
                 Andrew_sUserAgent();
@@ -33,6 +41,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (Scroll_ele.length > 0) {
                     var Scroll_ele_offset = Scroll_ele.offset().top
                 }
+                option.callback(Scroll_ele);
                 $scrollbar.scroll(function(){
                     if ($("header").length > 0) {
                         var scrolltop= $scrollbar.scrollTop() + $("header").outerHeight();
@@ -55,9 +64,24 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             Scroll_ele.removeClass("fix w_100 top_0 animated "+option.animated);
                             Scroll_ele.removeAttr("style");
                         }
+                        option.scroll(Scroll_ele, scrolltop, Scroll_ele_offset);
+                    } else {
+                        var before = $(this).scrollTop();
+                        $(this).scroll(function () {
+                            var after = $(this).scrollTop();
+                            if (before < after) {
+                                option.ScrollDown(Scroll_ele, after, Scroll_ele_offset);
+                                before = after;
+                            }
+                            if (before > after) {
+                                option.ScrollUp(Scroll_ele, after, Scroll_ele_offset);
+                                before = after;
+                            }
+                            option.scroll(Scroll_ele, after, Scroll_ele_offset);
+                        });
                     }
-                    option.scroll(Scroll_ele, scrolltop, Scroll_ele_offset);
                 });
+
                 if (IsMobile) {
                     $('input[type="text"], input[type="password"], input[type="number"], input[type="tel"], input[type="email"]').focus(function () {
                         if (Scroll_ele.hasClass("fix")) {

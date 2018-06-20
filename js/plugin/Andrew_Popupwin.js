@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
@@ -54,6 +54,10 @@ function Andrew_Popupwin (setting){
         addModalMask();
         $("main").removeClass("scrolling");
     }
+    $(window).bind('hashchange', function () {
+        option.callback($(option),false);
+        ClickHideModal();
+    });
     if (option.maskPosition) {
         $('#popup_mask').css({
             "z-index": option.maskPosition
@@ -69,19 +73,23 @@ function Andrew_Popupwin (setting){
     if (option.OneButton) {
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function() {
+            option.callback($(option),false);
             ClickHideModal();
         });
 
         $(option.OneButton).toggleClass("ak-is_active");
         if ($(option.OneButton).hasClass("ak-is_active")) {
             addModalMask();
+            option.callback($(option),true);
             if (option.position === 'offset') {
                 var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
                 $(option.dom).css({
                     "top": oth
                 })
             }
-            $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
+            if (option.effectIn || option.effectOut) {
+                $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
+            }
             if (option.toggleIcon) {
                 if (option.position != 'offset') {
                     $(option.OneButton).append("<i />");
@@ -89,12 +97,14 @@ function Andrew_Popupwin (setting){
                     $(option.OneButton).children("i").eq(1).addClass(option.toggleIcon);
                 }
             }
-            option.callback($(option));
         } else {
+            option.callback($(option),false);
             ClickHideModal();
         }
     } else {
-        $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
+        if (option.effectIn || option.effectOut) {
+            $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
+        }
         addModalMask();
         option.callback($(option));
         $(option.closeBtn).unbind("click");
@@ -147,7 +157,7 @@ function Andrew_Popupwin (setting){
                 "left": 0,
                 "top": ot + oh
             });
-        } else { // middle
+        } else if (option.position === 'middle') {
             $(option.dom).css({
                 "left": (ww / 2) - (dw / 2),
                 "top": (wh / 2) - (dh / 2)
@@ -156,12 +166,14 @@ function Andrew_Popupwin (setting){
     }
     function ClickHideModal(){
         if (option.OneButton) {
-            $(option.dom).removeClass("animated " + option.effectIn).addClass("animated " + option.effectOut);
+            if (option.effectIn || option.effectOut) {
+                $(option.dom).removeClass("animated " + option.effectIn).addClass("animated " + option.effectOut);
+            }
             $(option.OneButton).children("i").eq(0).show();
             $(option.OneButton).children("i").eq(1).remove();
             $(option.OneButton).removeClass(option.toggleIcon);
         } else {
-            if (option.effectOut) {
+            if (option.effectIn || option.effectOut) {
                 $(option.dom).removeClass("animated " + option.effectIn).addClass("animated " + option.effectOut);
             }
         }

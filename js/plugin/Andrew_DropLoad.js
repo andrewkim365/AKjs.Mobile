@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-06
+Modification Date: 2018-06-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_DropLoad------------------------------------------*/
@@ -262,9 +262,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     // 加载下方
     function loadDown(me){
         me.direction = 'up';
-        me.$domDown.html('<div class="ak-dropload-load"><span class="loading"></span>'+me.opts.domDown.domLoad+'</div>');
-        me.loading = true;
-        me.opts.loadDownFn(me);
+        if (me.$domDown) {
+            me.$domDown.html('<div class="ak-dropload-load"><span class="loading"></span>'+me.opts.domDown.domLoad+'</div>');
+            me.loading = true;
+            me.opts.loadDownFn(me);
+        }
     }
 
     // 锁定
