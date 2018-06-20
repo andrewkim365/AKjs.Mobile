@@ -15,10 +15,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 exitback:function(){
                 },
                 scroll:function(){
-                },
-                ScrollUp: function () {
-                },
-                ScrollDown: function () {
                 }
             },
             setting);
@@ -49,8 +45,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         var scrolltop = $scrollbar.scrollTop();
                     }
                     if (option.animated) {
-                        if(scrolltop > Scroll_ele_offset){
-                            Scroll_ele.addClass("fix w_100 top_0 animated "+option.animated);
+                        if (scrolltop > Scroll_ele_offset) {
+                            Scroll_ele.addClass("fix w_100 top_0 animated " + option.animated);
                             Scroll_ele.css({
                                 "margin-top": Scroll_ele_h + option.top,
                                 "z-index": option.zPosition
@@ -60,26 +56,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                     "margin-top": 0
                                 });
                             }
-                        } else{
-                            Scroll_ele.removeClass("fix w_100 top_0 animated "+option.animated);
+                        } else {
+                            Scroll_ele.removeClass("fix w_100 top_0 animated " + option.animated);
                             Scroll_ele.removeAttr("style");
                         }
-                        option.scroll(Scroll_ele, scrolltop, Scroll_ele_offset);
-                    } else {
-                        var before = $(this).scrollTop();
-                        $(this).scroll(function () {
-                            var after = $(this).scrollTop();
-                            if (before < after) {
-                                option.ScrollDown(Scroll_ele, after, Scroll_ele_offset);
-                                before = after;
-                            }
-                            if (before > after) {
-                                option.ScrollUp(Scroll_ele, after, Scroll_ele_offset);
-                                before = after;
-                            }
-                            option.scroll(Scroll_ele, after, Scroll_ele_offset);
-                        });
                     }
+                    option.scroll(Scroll_ele, scrolltop, Scroll_ele_offset);
                 });
 
                 if (IsMobile) {
