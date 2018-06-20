@@ -123,7 +123,7 @@ function Andrew_Router(setting) {
         });
         $(window).bind('hashchange', function () {
             var page = "hashchange";
-            $("*").unbind();
+            $("header, main, footer").unbind();
             Router_Ajax(option,page);
             option.changePage(document.location.hash.substring(1));
         });
