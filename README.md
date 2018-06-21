@@ -24,15 +24,15 @@ js目录和css目中 akjs.mobile.js 发布 1.2.2版本；
 
 router目录中的所有文件布局结构使用方法（必须用以下的结构使用）：
 
-<template>
-    <ak-header></ak-header>
-    <div></div>
-    <ak-footer></ak-header>
-</template>
-<script>
-</script>
-<style>
-</style>
+&lt;template&gt;
+    &lt;ak-header&gt;&lt;/ak-header&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;ak-footer&gt;&lt;/ak-header&gt;
+&lt;/template&gt;
+&lt;script&gt;
+&lt;/script&gt;
+&lt;style&gt;
+&lt;/style&gt;
 
 # 更新时间：2018/06/20 下午 17:40
 
