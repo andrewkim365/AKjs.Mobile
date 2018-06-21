@@ -1067,16 +1067,18 @@
                     $("main").removeClass("minus_mt_32em h_in");
                 },
                 scroll:function(ele, scrolltop, offsetTop){ //页面滚动后的回调
-                    if (scrolltop > 100) {
-                        ele.addClass("h_2em line_h_2em");
-                        ele.children("h1").addClass("text_1em");
-                        ele.children("button").addClass("dis_none");
-                        $("main").addClass("minus_mt_32em h_in");
-                    } else {
-                        ele.removeClass("h_2em line_h_2em");
-                        ele.children("h1").removeClass("text_1em");
-                        ele.children("button").removeClass("dis_none");
-                        $("main").removeClass("minus_mt_32em h_in");
+                    if (IsMobile) { //是否移动端访问的
+                        if (scrolltop > 100) {
+                            ele.addClass("h_2em line_h_2em");
+                            ele.children("h1").addClass("text_1em");
+                            ele.children("button").addClass("dis_none");
+                            $("main").addClass("minus_mt_32em h_in");
+                        } else {
+                            ele.removeClass("h_2em line_h_2em");
+                            ele.children("h1").removeClass("text_1em");
+                            ele.children("button").removeClass("dis_none");
+                            $("main").removeClass("minus_mt_32em h_in");
+                        }
                     }
                 }
             });
