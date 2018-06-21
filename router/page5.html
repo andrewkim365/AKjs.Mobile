@@ -1,19 +1,21 @@
-<ak-header data-display="true">
-    <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
-    <h1 class="text_al_c">加载效果</h1>
-</ak-header>
+<template>
+    <ak-header data-display="true">
+        <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
+        <h1 class="text_al_c">加载效果</h1>
+    </ak-header>
 
-<div class="module list press plug_DropLoad">
-    <ul>
-    </ul>
-</div>
+    <div class="module list press plug_DropLoad">
+        <ul>
+        </ul>
+    </div>
 
-<ak-footer data-display="true">
-    <fieldset class="h_in bor_top bor_gray_ddd bg_gray_f9f length2">
-        <legend class="fl h_100 line_h_32em c_gray_777 text_al_c" data-href="/page4">应付金额：<span class="c_orange text_bold">¥100.00</span></legend>
-        <button type="button" class="fl bg_title h_100 c_white">立即支付</button>
-    </fieldset>
-</ak-footer>
+    <ak-footer data-display="true">
+        <fieldset class="h_in bor_top bor_gray_ddd bg_gray_f9f length2">
+            <legend class="fl h_100 line_h_32em c_gray_777 text_al_c" data-href="/page4">应付金额：<span class="c_orange text_bold">¥100.00</span></legend>
+            <button type="button" class="fl bg_title h_100 c_white">立即支付</button>
+        </fieldset>
+    </ak-footer>
+</template>
 
 <script type="text/javascript">
     //引入Andrew插件的区域
@@ -120,3 +122,21 @@
     });
 
 </script>
+
+<style type="text/css">
+    /*样式覆盖区域*/
+</style>
+
+<!--
+//注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
+路由页面的布局结构使用方法（必须用以下的结构使用）：
+<template>
+    <ak-header></ak-header>
+    <div></div>
+    <ak-footer></ak-header>
+</template>
+<script>
+</script>
+<style>
+</style>
+-->
