@@ -59,8 +59,6 @@ $(document).ready(function(){
                     Loader:"load_2" //loading效果选择（load_1~7）
                 });
             }
-        },
-        success:function (hash) { //请求加载页面成功后的回调
             setTimeout(function() { //页面加载完5秒后执行
                 if($(".ak-Loader").css('display') == 'none'){
                     //Andrew_Loader("destroy"); //关闭loading窗
@@ -98,7 +96,6 @@ $(document).ready(function(){
                     //console.log("实时窗口高度: "+viewportH);
                 }
             });
-
             /*
                 Andrew_Location 使用方法：
                 Andrew_Location("/start.html","href"); //location.href 跳转模式
@@ -129,7 +126,10 @@ $(document).ready(function(){
         },
         error:function (hash) { //请求加载页面失败后的回调
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况
-                ak_webToast("您访问的界面加载失败,请稍后再试!","middle",9999); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
+                ak_webToast("您访问的界面加载失败,请稍后再试!","middle",3000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
+                setTimeout(function () {
+                    Andrew_Location("/page1"); //location.replace 跳转模式
+                }, 3000);
             }
         }
     });

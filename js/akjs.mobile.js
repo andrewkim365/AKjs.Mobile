@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180620 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180621 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -170,21 +170,36 @@ function Andrew_Router(setting) {
                             cache: false,
                             success: function () {
                                 $("main").removeClass("dis_none_im");
-                                setTimeout(function () {
-                                    option.success(document.location.hash.substring(1));
-                                }, 100);
+                                option.success(document.location.hash.substring(1));
                             },
                             error: function () {
                                 $("main").addClass("dis_none_im");
-                                setTimeout(function () {
-                                    option.error(document.location.hash.substring(1));
-                                }, 100);
+                                option.error(document.location.hash.substring(1));
                             }
                         });
-                        $("main").html(htmlobj.responseText);
+                        if ($(htmlobj.responseText).prop("localName") == "template") {
+                            $("main").html($(htmlobj.responseText).html());
+                        } else {
+                            $("main").text('sorry! The lack of "<template></template>" elements!');
+                        }
+                        if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
+                            var jsText = $($(htmlobj.responseText)).next().html();
+                        } else if ($($(htmlobj.responseText)).next().prop("localName") == "style") {
+                            var jsText = $($(htmlobj.responseText)).next().next().html();
+                        }
+                        if ($($(htmlobj.responseText)).next().next().prop("localName") == "style") {
+                            var cssText = $($(htmlobj.responseText)).next().next().html();
+                        } else if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
+                            var cssText = $($(htmlobj.responseText)).next().html();
+                        }
+                        $("html").children("script").html("").remove();
+                        $("html").children("style").html("").remove();
+                        setTimeout(function () {
+                            $("<script type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
+                            $("<style type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
+                        }, 100);
                     }
                     Router_Settings();
-                    ErrorPage_403();
                 }
             });
         }
@@ -235,11 +250,6 @@ function Andrew_Router(setting) {
                 }
             },200);
             Andrew_Animation();
-        }
-        function ErrorPage_403() {
-            if ($("main").find("title").length > 0) {
-                document.location.replace("./");
-            }
         }
     }
 }
@@ -529,51 +539,51 @@ function Andrew_mainHeight() {
         $(".bar_hide").addClass("scrollbar_hide");
         $("body").removeClass("fix").removeAttr("style");
     }
-    if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": 0,
-            "margin-bottom": 0,
-            "height": $(window).height()
-        });
-    } else if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": 0,
-            "margin-bottom": $("footer").outerHeight(),
-            "height": $(window).height() - $("footer").outerHeight()
-        });
-    } else if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": $("header").outerHeight(),
-            "margin-bottom": 0,
-            "height": $(window).height() - $("header").outerHeight()
-        });
-    } else if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
-        $("main").css({
-            "margin-top": $("header").outerHeight(),
-            "margin-bottom": $("footer").outerHeight(),
-            "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
-        });
-    }
-    if ($("header").length === 0 && $("footer").length > 0) {
-        $("main").css({
-            "height": $(window).height() - $("footer").outerHeight()
-        });
-    } else if ($("header").length > 0 && $("footer").length === 0) {
-        $("main").css({
-            "height": $(window).height() - $("header").outerHeight()
-        });
-    } else if ($("header").length === 0 && $("footer").length === 0) {
-        $("main").css({
-            "height": $(window).height()
-        });
-    }
-    $("main").css({
-        "top": "0",
-        "bottom": "0",
-        "left": "0",
-        "right": "0",
-    });
     setTimeout(function() {
+        if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": 0,
+                "margin-bottom": 0,
+                "height": $(window).height()
+            });
+        } else if ($("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": 0,
+                "margin-bottom": $("footer").outerHeight(),
+                "height": $(window).height() - $("footer").outerHeight()
+            });
+        } else if (!$("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": $("header").outerHeight(),
+                "margin-bottom": 0,
+                "height": $(window).height() - $("header").outerHeight()
+            });
+        } else if (!$("header").hasClass("dis_none_im") && !$("footer").hasClass("dis_none_im")) {
+            $("main").css({
+                "margin-top": $("header").outerHeight(),
+                "margin-bottom": $("footer").outerHeight(),
+                "height": $(window).height() - ($("header").outerHeight() + $("footer").outerHeight())
+            });
+        }
+        if ($("header").length === 0 && $("footer").length > 0) {
+            $("main").css({
+                "height": $(window).height() - $("footer").outerHeight()
+            });
+        } else if ($("header").length > 0 && $("footer").length === 0) {
+            $("main").css({
+                "height": $(window).height() - $("header").outerHeight()
+            });
+        } else if ($("header").length === 0 && $("footer").length === 0) {
+            $("main").css({
+                "height": $(window).height()
+            });
+        }
+        $("main").css({
+            "top": "0",
+            "bottom": "0",
+            "left": "0",
+            "right": "0",
+        });
         $(".h_fill").css({
             "height": $(window).height()
         });
