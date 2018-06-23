@@ -92,6 +92,14 @@
 <script type="text/javascript">
     //引入Andrew插件的区域
 
+    /*-----------------------------------------------Andrew_Import (路由内页中按需引入功能插件 ) 使用方法-------------------------------------------*/
+    /*
+    注：Andrew_Import和Andrew_Plugin的功能和使用方法是一样的，唯一的区别是Andrew_Import是在需要的页面中按需引入功能插件，而Andrew_Plugin是全局引入需要用的功能插件。该两个功能不能反过来使用，否则会出现bug;
+    Andrew_Import: 路由内页专用按需引入功能插件的方法（监听路由跳页的变化，只能使用在路由模式中）；
+    Andrew_Plugin: 全局使用按需引入功能插件的方法（不监听路由跳页的变化，可以使用在路由模式和无路由模式）；
+    */
+    Andrew_Import("Andrew_Waterfall","css"); //瀑布流展示功能
+
     /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
     $(function() {
         $("img").Andrew_Lazyload({ //对所有的图片懒加载
@@ -239,7 +247,7 @@
 <template>
     <ak-header></ak-header>
     <div></div>
-    <ak-footer></ak-header>
+    <ak-footer></ak-footer>
 </template>
 <script>
 </script>
