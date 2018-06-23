@@ -1055,14 +1055,5 @@ function Andrew_Plugin(setting,css) {
         }
     }
 }
-
-/*-----------------------------------------------Andrew_Import------------------------------------------*/
-function Andrew_Import(setting,css) {
-    Andrew_Plugin(setting,css);
-    $(window).bind('hashchange', function () {
-        $("head").find("link").filter("#"+setting).remove();
-    });
-}
-
 var scripts = document.scripts;
 js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length - 1].src.lastIndexOf("/") + 1);
