@@ -16,13 +16,7 @@ AKjs前端技术支持QQ群：724501394
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.3版本；
 
---当前版本增加了Andrew_Import方法（使用方法跟Andrew_Plugin完全一致）以及优化了Andrew_Include的方法；
-
-Andrew_Import: 路由内页专用按需引入功能插件的方法（监听路由跳页的变化，只能使用在路由模式中）；
-
-Andrew_Plugin: 全局使用按需引入功能插件的方法（不监听路由跳页的变化，可以使用在路由模式和无路由模式）；
-
-修改 js/plugin.js 全局按需引入功能插件文件；
+修改Andrew_Include的不断生成js文件的bug；
 
 修改演示版中的几个路由模式的demo文件。（/router/page1 ~ page5）
 
