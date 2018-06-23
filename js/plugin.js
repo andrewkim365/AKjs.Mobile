@@ -3,6 +3,9 @@
 参数说明：Andrew_Plugin("插件名称或插件的js文件名","该插件是否存在相关css文件？存在写css，不存在设为空。");
 * 做项目时不必要的插件可以注释处理。
 * 注：调用插件的地方在router目录里的相关html文件中的最底部。
+* Andrew_Plugin是全局的按需引入功能，在需要的页面中单独按需引入功能插件时建议使用Andrew_Import的方法；
+    Andrew_Import: 路由内页专用按需引入功能插件的方法（监听路由跳页的变化，只能使用在路由模式中）；
+    Andrew_Plugin: 全局使用按需引入功能插件的方法（不监听路由跳页的变化，可以使用在路由模式和无路由模式）；
 */
 Andrew_Plugin("Andrew_AllChecked"); //全选功能
 Andrew_Plugin("Andrew_ChangeIcon"); //图标切换功能

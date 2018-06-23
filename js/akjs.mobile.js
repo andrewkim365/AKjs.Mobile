@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180621 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180623 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -149,7 +149,7 @@ function Andrew_Router(setting) {
                     }
                     var Router_path = "./";
                     if (option.RouterPath[0]) {
-                        Router_path = option.RouterPath[0] + "/";
+                        Router_path = option.RouterPath[0];
                     }
                     var hash_dot = new RegExp("\\.");
                     var hash_question = new RegExp("\\?");
@@ -770,6 +770,7 @@ function Andrew_Include(url) {
     if(type_js.test(url)){
         var fileref = document.createElement('script');
         fileref.setAttribute("type","text/javascript");
+        fileref.setAttribute("data-akjs",new Date().getTime());
         if (type_remote.test(url)) {
             fileref.setAttribute("src",url);
         } else {
@@ -779,6 +780,7 @@ function Andrew_Include(url) {
         var fileref = document.createElement('link');
         fileref.setAttribute("rel","stylesheet");
         fileref.setAttribute("type","text/css");
+        fileref.setAttribute("data-akjs",new Date().getTime());
         if (type_remote.test(url)) {
             fileref.setAttribute("src",url);
         } else {
@@ -786,12 +788,21 @@ function Andrew_Include(url) {
         }
     }
     if(typeof fileref != "undefined"){
-        $("head").find("script").each(function(){
-            if ($(this).attr("src")==url) {
-                $(this).remove();
+        if(type_js.test(url)){
+            var type ="script";
+            var type_url = "src";
+        }else if(type_css.test(url)){
+            var type ="link";
+            var type_url = "href";
+        }
+        $("head").find(type).each(function(){
+            if ($(this).data("akjs")) {
+                if ($(this).attr(type_url).indexOf(url) != -1) {
+                    $(this).remove();
+                }
             }
-            $(fileref).appendTo($("head"));
         });
+        $(fileref).appendTo($("head"));
     }else{
         console.info("load include {"+url+"} file method error!");
     }
@@ -1038,13 +1049,20 @@ function Andrew_Plugin(setting,css) {
             });
         }
         if (css) {
-            for(var i=0;i<jssrcs.length;i++){
-                var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
-                $("head").find("link").filter("#"+setting).remove();
-                $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href=" + css_url + " />");
-            }
+            var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
+            $("head").find("link").filter("#"+setting).remove();
+            $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href=" + css_url + " />");
         }
     }
 }
+
+/*-----------------------------------------------Andrew_Import------------------------------------------*/
+function Andrew_Import(setting,css) {
+    Andrew_Plugin(setting,css);
+    $(window).bind('hashchange', function () {
+        $("head").find("link").filter("#"+setting).remove();
+    });
+}
+
 var scripts = document.scripts;
 js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length - 1].src.lastIndexOf("/") + 1);
