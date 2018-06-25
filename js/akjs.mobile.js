@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180623 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180625 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -893,12 +893,36 @@ function Andrew_Params(number) {
 
 /*-----------------------------------------------Andrew_pathURL------------------------------------------*/
 function Andrew_pathURL() {
+    var hash_sharp = new RegExp("#");
+    var hash_dot = new RegExp("[.]");
     wwwPath = window.document.location.href;
-    pathName = window.document.location.pathname;
-    pathPos = wwwPath.indexOf(pathName);
-    localhostPath = wwwPath.substring(0,pathPos);
-    projectName = pathName.substring(0,pathName.substr(1).indexOf('/')+1);
-    realPath = localhostPath+projectName;
+    if(!hash_sharp.test(wwwPath)){
+        pathName = window.document.location.pathname;
+        var urlArr = pathName.split("/");
+        var hash_sharp_Url = "";
+        for(var i = 0; i<urlArr.length; i++){
+            if(hash_dot.test(urlArr[i])){
+                hash_sharp_Url =  urlArr[i];
+            }
+        }
+        if(hash_sharp_Url == ""){
+            realPath = wwwPath;
+        }else{
+            var new_hash_sharp_Url = new RegExp(hash_sharp_Url+".*");
+            realPath = new_hash_sharp_Url.test(wwwPath)?wwwPath.replace(new_hash_sharp_Url,""):wwwPath;
+        }
+    } else{
+        var urlArr = wwwPath.split("/");
+
+        var hash_sharp_Url = "";
+        for(var i = 0; i<urlArr.length; i++){
+            if(hash_sharp.test(urlArr[i])){
+                hash_sharp_Url =  urlArr[i];
+            }
+        }
+        var new_hash_sharp_Url = new RegExp(hash_sharp_Url+"/.*");
+        realPath = new_hash_sharp_Url.test(wwwPath)?wwwPath.replace(new_hash_sharp_Url,""):wwwPath;
+    }
 }
 
 /*-----------------------------------------------Andrew_setCookie------------------------------------------*/
