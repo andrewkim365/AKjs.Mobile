@@ -19,6 +19,10 @@ AKjs前端技术支持QQ群：724501394
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.4版本；
 
+修改 js/plugin/Andrew_Slider.js 功能插件bug(解决欢迎页滑动时有时候出现卡顿的问题)；
+
+修改演示版中的router/start.html文件。
+
 -- 主要解决使用路由功能的项目只能放到根目录使用的bug;
 
 -- 修改Andrew_Include 引入文件时路径正则表达式有误的bug;
