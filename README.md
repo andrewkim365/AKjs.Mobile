@@ -18,6 +18,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.3版本；
 
 修改Andrew_Include的不断生成js文件的bug；
 
+修改 css/style.css 样式文件；
+
 修改演示版中的几个路由模式的demo文件。（/router/page1 ~ page5）
 
 # 更新时间：2018/06/21 下午 17:40
