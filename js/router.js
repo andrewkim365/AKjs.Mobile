@@ -83,7 +83,7 @@ $(document).ready(function(){
                     "icon-mn_kongjian_fill" //第5个按钮的图标
                 ),
                 Callback: function(ele,index) { //回调入口
-                    console.log(ele, index);
+                    //console.log(ele, index);
                 }
             });
 

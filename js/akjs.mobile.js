@@ -894,10 +894,11 @@ function Andrew_Params(number) {
 /*-----------------------------------------------Andrew_pathURL------------------------------------------*/
 function Andrew_pathURL() {
     var hash_sharp = new RegExp("#");
+    var hash_question = new RegExp("\\?");
     var hash_dot = new RegExp("[.]");
     wwwPath = window.document.location.href;
+    pathName = window.document.location.pathname;
     if(!hash_sharp.test(wwwPath)){
-        pathName = window.document.location.pathname;
         var urlArr = pathName.split("/");
         var hash_sharp_Url = "";
         for(var i = 0; i<urlArr.length; i++){
@@ -906,22 +907,45 @@ function Andrew_pathURL() {
             }
         }
         if(hash_sharp_Url == ""){
-            realPath = wwwPath;
+            if (hash_question.test(wwwPath)) {
+                var question = wwwPath.split("?")[0];
+                realPath = question;
+            } else {
+                realPath = wwwPath;
+            }
         }else{
             var new_hash_sharp_Url = new RegExp(hash_sharp_Url+".*");
             realPath = new_hash_sharp_Url.test(wwwPath)?wwwPath.replace(new_hash_sharp_Url,""):wwwPath;
         }
     } else{
         var urlArr = wwwPath.split("/");
-
         var hash_sharp_Url = "";
         for(var i = 0; i<urlArr.length; i++){
             if(hash_sharp.test(urlArr[i])){
                 hash_sharp_Url =  urlArr[i];
             }
         }
-        var new_hash_sharp_Url = new RegExp(hash_sharp_Url+"/.*");
-        realPath = new_hash_sharp_Url.test(wwwPath)?wwwPath.replace(new_hash_sharp_Url,""):wwwPath;
+        if (hash_question.test(wwwPath)) {
+            if(hash_sharp.test(wwwPath)) {
+                var question = wwwPath.split("?")[0];
+                var urlArr = pathName.split("/");
+                var hash_sharp_Url = "";
+                for(var i = 0; i<urlArr.length; i++){
+                    if(hash_dot.test(urlArr[i])){
+                        hash_sharp_Url =  urlArr[i];
+                    }
+                }
+                realPath = wwwPath.replace(hash_sharp_Url,"");
+                var question = realPath.split("?")[0];
+                realPath = question;
+            } else {
+                var question = wwwPath.split("?")[0];
+                realPath = question;
+            }
+        } else {
+            var new_hash_sharp_Url = new RegExp(hash_sharp_Url+"/.*");
+            realPath = new_hash_sharp_Url.test(wwwPath)?wwwPath.replace(new_hash_sharp_Url,""):wwwPath;
+        }
     }
 }
 
