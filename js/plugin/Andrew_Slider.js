@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-11
+Modification Date: 2018-06-25
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Slider------------------------------------------*/
@@ -79,23 +79,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         }
                     }
                     if (self.options.dotShow) {
-                        if  (self.options.fullpage) {
-                            var dots = ele.children("ol");
-                            dots.find("li").addClass(self.options.dotClass);
-                            var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
-                            var dotOffset = (ele.outerWidth() - dotWidth) / 2;
-                            dots.css({
-                                "left": dotOffset + "px"
-                            });
-                        } else {
-                            var dots = ele.children("ol");
-                            dots.find("li").addClass(self.options.dotClass);
-                            var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
-                            var dotOffset = (ele.outerWidth() - dotWidth) / 2;
-                            dots.css({
-                                "left": dotOffset + "px"
-                            });
-                        }
+                        var dots = ele.children("ol");
+                        dots.find("li").addClass(self.options.dotClass);
+                        var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
+                        var dotOffset = (ele.outerWidth() - dotWidth) / 2;
+                        dots.css({
+                            "left": dotOffset + "px"
+                        });
                     }
                 }, 200);
             };
@@ -281,29 +271,30 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var sliderInder = ele.children("ul");
             var SliderLi = sliderInder.children("li");
             if (clickable) {
-                self.clickable = false;
+                //self.clickable = false;
                 var offset = ele.width();
                 if (dir == "ak-arr_prev") {
                     offset = -1 * offset
                 }
                 sliderInder.children(".dis_block_im").stop().animate({
-                        left: -offset
-                    },
-                    self.options.speed,
-                    function() {
-                        $(this).removeClass("dis_block_im")
-                    });
+                    left: -offset
+                },
+                self.options.speed,
+                function() {
+                    $(this).removeClass("dis_block_im")
+                });
                 SliderLi.eq(index - 1).css("left", offset + "px").addClass("dis_block_im").stop().animate({
-                        left: 0
-                    },
-                    self.options.speed,
-                    function() {
-                        self.clickable = true
-                    });
+                    left: 0
+                },
+                self.options.speed,
+                function() {
+                    self.clickable = true
+                });
                 self.options.afterSlider(index);
                 dots_li.removeClass(self.options.ActiveClass);
                 dots_li.eq(index - 1).addClass(self.options.ActiveClass);
             } else {
+                self.clickable = false;
                 return false
             }
         }
