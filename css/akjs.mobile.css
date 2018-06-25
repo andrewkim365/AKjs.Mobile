@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180623 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180625 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -12,6 +12,11 @@ html, html * {
     padding: 0;
     border:0;
     font-size:12px;
+}
+.wrap {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 }
 @media screen and (min-width:320px) and (max-width:369px) {
     html, html * {
@@ -31,6 +36,11 @@ html, html * {
 @media screen and (min-width:1025px) {
     html, html * {
         font-size:24px;
+    }
+    .wrap {
+        width: 94%;
+        margin: 0 auto;
+        position: relative;
     }
 }
 .ak-screen, .ak-screen * {
@@ -296,6 +306,10 @@ legend {
     box-shadow: none !important;
 }
 .shadow_ab_none:after, .shadow_ab_none:before {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+.shadow_cd_none > * {
     text-shadow: none !important;
     box-shadow: none !important;
 }
@@ -1030,6 +1044,21 @@ legend {
 .bor_right_ab_none:after, .bor_right_ab_none:before {
     border-right:none !important;
 }
+.bor_cd_none > * {
+    border:none !important;
+}
+.bor_top_cd_none > * {
+    border-top:none !important;
+}
+.bor_bottom_cd_none > * {
+    border-bottom:none !important;
+}
+.bor_left_cd_none > * {
+    border-left:none !important;
+}
+.bor_right_cd_none > * {
+    border-right:none !important;
+}
 
 /*element align*/
 .center {
@@ -1436,6 +1465,9 @@ legend {
     display: flex !important;
 }
 .dis_ab_none:after, .dis_ab_none:before {
+    display:none !important;
+}
+.dis_cd_none > * {
     display:none !important;
 }
 
@@ -8587,6 +8619,9 @@ legend {
     background-color:transparent !important;
 }
 .bg_ab_none:after, .bg_ab_none:before {
+    background-color:transparent !important;
+}
+.bg_cd_none > * {
     background-color:transparent !important;
 }
 .bor_black {
