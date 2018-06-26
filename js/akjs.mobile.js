@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180625 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180626 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -774,7 +774,7 @@ function Andrew_Include(url) {
         if (type_remote.test(url)) {
             fileref.setAttribute("src",url);
         } else {
-            fileref.setAttribute("src",realPath+"/"+url+"?akjs="+new Date().getTime());
+            fileref.setAttribute("src",AKjsPath+"/"+url+"?akjs="+new Date().getTime());
         }
     }else if(type_css.test(url)){
         var fileref = document.createElement('link');
@@ -784,7 +784,7 @@ function Andrew_Include(url) {
         if (type_remote.test(url)) {
             fileref.setAttribute("src",url);
         } else {
-            fileref.setAttribute("href",realPath+"/"+url+"?akjs="+new Date().getTime());
+            fileref.setAttribute("href",AKjsPath+"/"+url+"?akjs="+new Date().getTime());
         }
     }
     if(typeof fileref != "undefined"){
@@ -889,64 +889,6 @@ function Andrew_Params(number) {
         params.push(hash_arr[i].split("/"));
     }
     return params[0][number];
-}
-
-/*-----------------------------------------------Andrew_pathURL------------------------------------------*/
-function Andrew_pathURL() {
-    var hash_sharp = new RegExp("#");
-    var hash_question = new RegExp("\\?");
-    var hash_dot = new RegExp("[.]");
-    wwwPath = window.document.location.href;
-    pathName = window.document.location.pathname;
-    if(!hash_sharp.test(wwwPath)){
-        var urlArr = pathName.split("/");
-        var hash_sharp_Url = "";
-        for(var i = 0; i<urlArr.length; i++){
-            if(hash_dot.test(urlArr[i])){
-                hash_sharp_Url =  urlArr[i];
-            }
-        }
-        if(hash_sharp_Url == ""){
-            if (hash_question.test(wwwPath)) {
-                var question = wwwPath.split("?")[0];
-                realPath = question;
-            } else {
-                realPath = wwwPath;
-            }
-        }else{
-            var new_hash_sharp_Url = new RegExp(hash_sharp_Url+".*");
-            realPath = new_hash_sharp_Url.test(wwwPath)?wwwPath.replace(new_hash_sharp_Url,""):wwwPath;
-        }
-    } else{
-        var urlArr = wwwPath.split("/");
-        var hash_sharp_Url = "";
-        for(var i = 0; i<urlArr.length; i++){
-            if(hash_sharp.test(urlArr[i])){
-                hash_sharp_Url =  urlArr[i];
-            }
-        }
-        if (hash_question.test(wwwPath)) {
-            if(hash_sharp.test(wwwPath)) {
-                var question = wwwPath.split("?")[0];
-                var urlArr = pathName.split("/");
-                var hash_sharp_Url = "";
-                for(var i = 0; i<urlArr.length; i++){
-                    if(hash_dot.test(urlArr[i])){
-                        hash_sharp_Url =  urlArr[i];
-                    }
-                }
-                realPath = wwwPath.replace(hash_sharp_Url,"");
-                var question = realPath.split("?")[0];
-                realPath = question;
-            } else {
-                var question = wwwPath.split("?")[0];
-                realPath = question;
-            }
-        } else {
-            var new_hash_sharp_Url = new RegExp(hash_sharp_Url+"/.*");
-            realPath = new_hash_sharp_Url.test(wwwPath)?wwwPath.replace(new_hash_sharp_Url,""):wwwPath;
-        }
-    }
 }
 
 /*-----------------------------------------------Andrew_setCookie------------------------------------------*/
@@ -1103,5 +1045,13 @@ function Andrew_Plugin(setting,css) {
         }
     }
 }
-var scripts = document.scripts;
-js_folder = scripts[scripts.length - 1].src.substring(0, scripts[scripts.length - 1].src.lastIndexOf("/") + 1);
+
+/*-----------------------------------------------Andrew_pathURL------------------------------------------*/
+function Andrew_pathURL() {
+    var js_index = js_folder.lastIndexOf("\/");
+    var js_Path = js_folder.substring(0, js_index);
+    var real_index = js_Path.lastIndexOf("\/");
+    AKjsPath = js_Path.substring(0, real_index);
+}
+ak_scripts = document.scripts;
+js_folder = ak_scripts[ak_scripts.length - 1].src.substring(0, ak_scripts[ak_scripts.length - 1].src.lastIndexOf("/") + 1);
