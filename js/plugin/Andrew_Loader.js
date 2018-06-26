@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-15
+Modification Date: 2018-06-26
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Loader------------------------------------------*/
@@ -62,9 +62,9 @@ function Andrew_Loader(setting){
     setTimeout(function() {
         $(".ak-Loader").remove();
         if (option.ele) {
-            $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 h_100 zindex_0'></div>");
+            $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 h_100 zindex_1'></div>");
         } else {
-            $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 h_100 zindex_0'></div>");
+            $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 h_100 zindex_1'></div>");
         }
         var load_ele = $(".ak-Loader");
         if (option.maskBG == true) {
