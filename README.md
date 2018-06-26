@@ -21,6 +21,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.4版本；
 
 修改 js/plugin/Andrew_Slider.js 功能插件bug(解决欢迎页滑动时有时候出现卡顿的问题)；
 
+增加 js/plugin/Andrew_Loader.js Loading效果插件bug （解决loading效果被其它元素遮挡的问题）；
+
 修改演示版中的router/start.html文件（解决滑屏时卡顿的问题）。
 
 修改演示版中的/router/page3.html文件(解决左侧菜单中的点击事件bug)。
