@@ -18,13 +18,13 @@ AKjs前端技术支持QQ群：724501394
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.5版本；
 
-演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
+修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
 -- 解决上一个版本出现的项目文件夹名中带特殊符号时页面报错的问题；
 
 -- 演示版的Andrew_DropLoad插件中注释数据加载失败时加的me.resetload()方法（为了避免死循环的问题）;
 
--- 新增<dialog>元素，让所有弹窗元素不使用div元素可代替dialog（演示版中已使用请参考）。
+-- 新增<dialog>元素，让所有弹窗元素不使用div元素可代替dialog（演示版中已使用该元素可参考）。
 
 
 # 更新时间：2018/06/25 下午 22:15
