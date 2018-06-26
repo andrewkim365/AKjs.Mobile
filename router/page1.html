@@ -835,7 +835,7 @@
         </div>
 
         <!----------Andrew_PopupWin Start---------->
-        <div id="plug_NavMenuWin" class="dis_none bg_white pa_3 w_100 mt_32em"> <!--顶部位置显示的弹窗-->
+        <dialog id="plug_NavMenuWin" class="dis_none bg_white pa_3 w_100 mt_32em"> <!--顶部位置显示的弹窗-->
             <ul class="wp_94 c_gray_777">
                 <li class="fl h_3em line_h_3em mr_1em">功能A</li>
                 <li class="fl h_3em line_h_3em mr_1em">功能B</li>
@@ -846,9 +846,9 @@
                 <li class="fl h_3em line_h_3em mr_1em">功能G</li>
                 <li class="fl h_3em line_h_3em mr_1em">功能H</li>
             </ul>
-        </div>
+        </dialog>
 
-        <div id="plug_PopupWin" class="dis_none bg_white pa_5 w_85"> <!--中间位置显示的弹窗-->
+        <dialog id="plug_PopupWin" class="dis_none bg_white pa_5 w_85"> <!--中间位置显示的弹窗-->
             <button type="button" class="plug_closeIn dis_block wh_12em mt_01em mr_01em abs bg_white top_0 right_0 c_gray_333 text_18em icon-ln_quxiao"></button>
             <h2 class="text_bold press text_12em">弹窗标题</h2>
             <ul class="bor_top_dashed bor_gray_ddd mt_05em pt_05em c_gray_777">
@@ -856,9 +856,9 @@
                 <li class="h_3em line_h_3em">弹窗内容显示中2</li>
                 <li class="h_3em line_h_3em">弹窗内容显示中3</li>
             </ul>
-        </div>
+        </dialog>
 
-        <div id="plug_filterWin" class="dis_none w_100 ovh"> <!--对应位置显示的弹窗-->
+        <dialog id="plug_filterWin" class="dis_none w_100 ovh"> <!--对应位置显示的弹窗-->
             <ul class="abs ovh wp_94 bg_white bor_top bor_gray_ddd pt_3 pb_3 zindex_2 c_gray_777">
                 <li class="fl h_3em line_h_3em mr_1em">筛选A</li>
                 <li class="fl h_3em line_h_3em mr_1em">筛选B</li>
@@ -869,7 +869,7 @@
                 <li class="fl h_3em line_h_3em mr_1em">筛选G</li>
                 <li class="fl h_3em line_h_3em mr_1em">筛选H</li>
             </ul>
-        </div>
+        </dialog>
         <!----------Andrew_PopupWin End---------->
     </article>
     <ak-footer data-display="true">
@@ -971,7 +971,7 @@
     $(function () {
         if (!IsWechat) { //通过微信访问时不执行该插件
             $("header").Andrew_ScrollFixed({
-                ScrollFixed: true, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
+                ScrollFixed: false, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
                 callback:function(ele) { //页面初始化回调
                     ele.addClass("translateY_02");
                 },
