@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180625 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180626 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -219,7 +219,7 @@ select {
 select::-ms-expand {
     display:none;
 }
-div,header,section,footer,aside,nav,article,figure,figcaption,details,main {
+div,header,section,footer,aside,nav,article,figure,figcaption,details,main,dialog,menu {
     display:block;
     -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
