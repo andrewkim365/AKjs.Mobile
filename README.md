@@ -18,6 +18,8 @@ AKjs前端技术支持QQ群：724501394
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.5版本；
 
+修改 js/plugin/Andrew_Popupwin.js 功能插件 (为了解决绑定事件重复的问题增加leaveback页面离开时的回调)；
+
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
 -- 解决上一个版本出现的项目文件夹名中带特殊符号时页面报错的问题；
