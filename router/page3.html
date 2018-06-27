@@ -120,7 +120,7 @@
                     closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                     OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                     toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-                    callback :function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                    callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                         if (toggle) { //判断是否弹出弹窗
                             $(ele[0].dom).addClass("dis_block_im");
                             $("footer").addClass("zindex_2");
@@ -142,11 +142,11 @@
                                 $(ele[0].dom).removeClass("dis_block_im");
                             },500);
                         }
-                        $(ele[0].dom).find("li").click(function () {
-                            $("header, main, footer").css({
-                                "left": 0
-                            });
-                        })
+                    },
+                    leaveback: function (ele,toggle) { //当路由页面离开时的回调(页面跳转后可以初始化设置)
+                        $("header, main, footer").css({
+                            "left": 0
+                        });
                     }
                 });
             });
