@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-27
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Favorite-------------------------------------------*/
@@ -69,11 +69,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 $("body").append("<span class='ak-NumLength press'>" + options.str + "</span>");
                 var box = $(".ak-NumLength");
                 $(window).resize(function(){
-                    var left = that.offset().left + that.width() / 2;
-                    var top = that.offset().top - that.outerHeight();
+                    left = that.offset().left + that.width() / 2;
+                    top = that.offset().top - 10;
                 });
                 var left = that.offset().left + that.width() / 2;
-                var top = that.offset().top - that.outerHeight();
+                var top = that.offset().top - 10;
                 box.css({
                     "position": "absolute",
                     "left": left,

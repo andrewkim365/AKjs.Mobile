@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-06-27
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Progress-------------------------------------------*/
@@ -42,13 +42,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $(this).html($(this).html().replace(/\s/g, ' '));
                     setTimeout(function() {
                         rendered.find('span').css({
-                            "line-height": rendered.height()+4+"px"
+                            "line-height": rendered.height()+2+"px"
                         });
                         obj.css("margin-top", (obj.parent().height() - obj.height()) / 2);
                     }, 100);
                     $(window).resize(function(){
                         rendered.find('span').css({
-                            "line-height": rendered.height()+4+"px"
+                            "line-height": rendered.height()+2+"px"
                         });
                         obj.css("margin-top", (obj.parent().height() - obj.height()) / 2);
                     });
