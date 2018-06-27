@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-20
+Modification Date: 2018-06-27
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
@@ -15,7 +15,8 @@ function Andrew_Popupwin (setting){
         maskPosition: "",
         toggleIcon: "",
         callback :function () {},
-        scrollback :function () {}
+        scrollback :function () {},
+        leaveback :function () {}
     },setting);
     if (option.dom) {
         $(option.dom).css({
@@ -55,7 +56,7 @@ function Andrew_Popupwin (setting){
         $("main").removeClass("scrolling");
     }
     $(window).bind('hashchange', function () {
-        option.callback($(option),false);
+        option.leaveback($(option),false);
         ClickHideModal();
     });
     if (option.maskPosition) {
