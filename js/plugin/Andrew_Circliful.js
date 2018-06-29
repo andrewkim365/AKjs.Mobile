@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-18
+Modification Date: 2018-06-29
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Circliful-------------------------------------------*/
@@ -101,7 +101,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         css_info();
                         section.append("<div class='top_0 left_0 abs bor_rad_50' />");
                         var val = ele.data("width");
-                        Andrew_sUserAgent();
+                        Andrew_UserAgent();
                         if (IsMobile) {
                             switch (true) {
                                 case val <= '5':

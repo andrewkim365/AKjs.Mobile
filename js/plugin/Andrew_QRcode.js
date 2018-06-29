@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-09
+Modification Date: 2018-06-29
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_QRcode-------------------------------------------*/
@@ -400,7 +400,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             a = c;
             $(a).appendTo(this);
-            Andrew_sUserAgent();
+            Andrew_UserAgent();
             if (IsMobile) {
                 $(this).addClass("rel ovh");
                 $("<img src='"+img_url+"' class='dis_block left_0 top_0 zindex_2 abs wh_100' />").appendTo(this);

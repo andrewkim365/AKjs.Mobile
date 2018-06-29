@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-04
+Modification Date: 2018-06-29
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_IntlTelInput------------------------------------*/
@@ -57,7 +57,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         var objsub_title = objsub.find("h6");
                         var objsub_ol = objsub.find("ol");
                         var objsub_dl = objsub.find("dl");
-                        Andrew_sUserAgent();
+                        Andrew_UserAgent();
                         objsub.append("<div class='ak-IntlTel_head'>" +
                             "<button type='button' class='"+option.Close_btn+"'><i class='"+option.Close_Icon+"'></i>"+option.Close_Text+"</button>\n" +
                             "<h1>"+option.Title_Text+"</h1>" +

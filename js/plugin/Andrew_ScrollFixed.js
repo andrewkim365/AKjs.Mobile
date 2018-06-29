@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-20
+Modification Date: 2018-06-29
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ScrollFixed-------------------------------------*/
@@ -27,7 +27,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 option.exitback(Scroll_ele);
             });
             function scrollbar_fun() {
-                Andrew_sUserAgent();
+                Andrew_UserAgent();
                 var $scrollbar = $("main");
                 if($("header").length != 0) {
                     var Scroll_ele_h = $("header").outerHeight();

@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-06
+Modification Date: 2018-06-29
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_SnInput-------------------------------------------*/
@@ -54,7 +54,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 } else {
                     if ($(this).val().length > parseInt(option.input_length)-1) {
-                        Andrew_sUserAgent();
+                        Andrew_UserAgent();
                         if (!IsQQ) {
                             $(this).next().focus();
                         }
