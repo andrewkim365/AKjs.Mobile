@@ -121,9 +121,41 @@
 
         <div class="module list press">
             <h3 class="wp_94 bg_white line_h_36em text_bold bor_bottom_dashed bor_gray_ddd c_title"><i class="icon-yk_xinxi_fill text_al_s text_14em mr_02em"></i> 详情描述展示</h3>
-            <p class="wp_94 bg_white pb_3 pt_3 line_h_2em c_gray_777">
-                欢迎使用AKjs移动端前端UI框架。当前内容是详情内容的展示。
+            <p class="wp_94 bg_white pb_3 pt_3 line_h_2em c_gray_777 text_hidden text_hidden_line5">
+                AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。
             </p>
+        </div>
+
+        <div class="module list mt_5">
+            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">正则表达式 (data-type)</h3>
+            <form action="#" method="get" onsubmit="return false;">
+                <ul class="wp_94 press bg_white list_h_36em">
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <label class="dis_block rel ovh fl w_28 mr_1 text_al_r line_h_in">数字：</label>
+                        <input type="number" data-type="number" class="fl w_70 c_gray_777" required value="" placeholder="只允许输入数字" />
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <label class="dis_block rel ovh fl w_28 mr_1 text_al_r line_h_in">数字+小数点：</label>
+                        <input type="number" data-type="number_symbol" class="fl w_70 c_gray_777" required value="" placeholder="只允许输入数字和小数点" />
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <label class="dis_block rel ovh fl w_28 mr_1 text_al_r line_h_in">字母：</label>
+                        <input type="text" data-type="alpha" class="fl w_70 c_gray_777" required value="" placeholder="只允许输入英文字母" />
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <label class="dis_block rel ovh fl w_28 mr_1 text_al_r line_h_in">字母+数字：</label>
+                        <input type="text" data-type="alpha_number" class="fl w_70 c_gray_777" required value="" placeholder="只允许输入英文字母和数字" />
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <label class="dis_block rel ovh fl w_28 mr_1 text_al_r line_h_in">汉字：</label>
+                        <input type="text" data-type="sino" class="fl w_70 c_gray_777" required value="" placeholder="只允许输入汉字" />
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <label class="dis_block rel ovh fl w_28 mr_1 text_al_r line_h_in">汉字+字母：</label>
+                        <input type="text" data-type="sino_alpha" class="fl w_70 c_gray_777" required value="" placeholder="只允许输入汉字和英文字母" />
+                    </li>
+                </ul>
+            </form>
         </div>
 
         <div class="module list mt_5">
@@ -136,7 +168,7 @@
                     </li>
                     <li class="rel bor_bottom bor_gray_ddd">
                         <label class="dis_block rel ovh fl mr_1em line_h_in">手机号码</label>
-                        <input type="tel" class="fl w_75 c_gray_777 plug_Delete" required value="" maxlength="11" placeholder="请输入手机号码" pattern="[0-9]*" />
+                        <input type="tel" class="fl w_75 c_gray_777 plug_Delete" required value="" maxlength="11" placeholder="请输入手机号码" data-type="number" />
                     </li>
                     <li class="rel bor_bottom bor_gray_ddd">
                         <label class="dis_block rel ovh fl pl_2em mr_1em line_h_in">性别</label>
