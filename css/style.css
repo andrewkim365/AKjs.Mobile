@@ -228,18 +228,19 @@ header h1 {
     font-size:1.36em !important;
     font-weight: 600;
 }
-header button {
+header > button {
     cursor: pointer;
     position: absolute;
     top:0;
+    opacity: 1;
 }
-header button:active {
+header > button:active {
     opacity: 0.3 !important;
 }
-header button:visited {
+header > button:visited {
     opacity: 1 !important;
 }
-header button, header>* i {
+header > button, header>* i {
     vertical-align: middle;
 }
 
