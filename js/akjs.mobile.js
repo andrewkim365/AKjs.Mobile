@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180626 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180629 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -19,7 +19,9 @@ function Andrew_Config(setting) {
             animation: true
         },
         setting);
-    Andrew_sUserAgent();
+    Andrew_UserAgent();
+    Andrew_RegsInput();
+    Andrew_RegularExpression();
     if(option.MaskStyle) {
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
     }
@@ -114,10 +116,11 @@ function Andrew_Router(setting) {
                 async: false,
                 cache: false
             });
-            $("body").html(layout.responseText);
+            $(document).ready(function(){
+                $("body").html(layout.responseText);
+            });
         }
-        Andrew_sUserAgent();
-        $(window).bind('load', function () {
+        $("main").ready(function(){
             Router_Ajax(option);
             option.changePage(document.location.hash.substring(1));
         });
@@ -128,80 +131,81 @@ function Andrew_Router(setting) {
             option.changePage(document.location.hash.substring(1));
         });
         function Router_Ajax(option,page) {
-            $("main").ready(function(){
-                if (document.location.hash.substring(1) != "") {
-                    if (page == "hashchange") {
-                        var ak_menu_btn = $("footer").children("menu").find("button");
-                        ak_menu_btn.each(function () {
-                            if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
-                                $("footer").removeClass("dis_none_im");
-                            }
-                        });
-                        if (option.Animate) {
-                            $("main").addClass("dis_opa_0").removeClass("animated " + option.Animate);
-                            setTimeout(function () {
-                                $("main").removeClass("dis_opa_0").addClass("animated " + option.Animate);
-                            }, 100);
+            Andrew_UserAgent();
+            Andrew_RegsInput();
+            Andrew_RegularExpression();
+            if (document.location.hash.substring(1) != "") {
+                if (page == "hashchange") {
+                    var ak_menu_btn = $("footer").children("menu").find("button");
+                    ak_menu_btn.each(function () {
+                        if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
+                            $("footer").removeClass("dis_none_im");
                         }
-                        $("main").animate({"scrollTop": 0}, 100);
-                        $("body").children("div").remove();
-                        $(".ak-mask").remove();
-                    }
-                    var Router_path = "./";
-                    if (option.RouterPath[0]) {
-                        Router_path = option.RouterPath[0];
-                    }
-                    var hash_dot = new RegExp("\\.");
-                    var hash_question = new RegExp("\\?");
-                    if (window.location.protocol != "file:") {
-                        if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
-                            var ak_url = Router_path + document.location.hash.substring(1)
-                        } else {
-                            if (hash_question.test(Router_path + document.location.hash.substring(1))) {
-                                var ak_hash = Router_path + document.location.hash.substring(1).replace("?", option.FileFormat + "?");
-                            } else {
-                                var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
-                            }
-                            var ak_url = ak_hash.replace("/" + option.FileFormat, "/index" + option.FileFormat);
-                        }
-                        htmlobj = $.ajax({
-                            url: ak_url,
-                            async: false,
-                            cache: false,
-                            success: function () {
-                                $("main").removeClass("dis_none_im");
-                                option.success(document.location.hash.substring(1));
-                            },
-                            error: function () {
-                                $("main").addClass("dis_none_im");
-                                option.error(document.location.hash.substring(1));
-                            }
-                        });
-                        if ($(htmlobj.responseText).prop("localName") == "template") {
-                            $("main").html($(htmlobj.responseText).html());
-                        } else {
-                            $("main").text('sorry! The lack of "<template></template>" elements!');
-                        }
-                        if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
-                            var jsText = $($(htmlobj.responseText)).next().html();
-                        } else if ($($(htmlobj.responseText)).next().prop("localName") == "style") {
-                            var jsText = $($(htmlobj.responseText)).next().next().html();
-                        }
-                        if ($($(htmlobj.responseText)).next().next().prop("localName") == "style") {
-                            var cssText = $($(htmlobj.responseText)).next().next().html();
-                        } else if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
-                            var cssText = $($(htmlobj.responseText)).next().html();
-                        }
-                        $("html").children("script").html("").remove();
-                        $("html").children("style").html("").remove();
+                    });
+                    if (option.Animate) {
+                        $("main").addClass("dis_opa_0").removeClass("animated " + option.Animate);
                         setTimeout(function () {
-                            $("<script type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
-                            $("<style type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
+                            $("main").removeClass("dis_opa_0").addClass("animated " + option.Animate);
                         }, 100);
                     }
-                    Router_Settings();
+                    $("main").animate({"scrollTop": 0}, 100);
+                    $("body").children("div").remove();
+                    $(".ak-mask").remove();
                 }
-            });
+                var Router_path = "./";
+                if (option.RouterPath[0]) {
+                    Router_path = option.RouterPath[0];
+                }
+                var hash_dot = new RegExp("\\.");
+                var hash_question = new RegExp("\\?");
+                if (window.location.protocol != "file:") {
+                    if (hash_dot.test(Router_path + document.location.hash.substring(1))) {
+                        var ak_url = Router_path + document.location.hash.substring(1)
+                    } else {
+                        if (hash_question.test(Router_path + document.location.hash.substring(1))) {
+                            var ak_hash = Router_path + document.location.hash.substring(1).replace("?", option.FileFormat + "?");
+                        } else {
+                            var ak_hash = Router_path + document.location.hash.substring(1) + option.FileFormat;
+                        }
+                        var ak_url = ak_hash.replace("/" + option.FileFormat, "/index" + option.FileFormat);
+                    }
+                    htmlobj = $.ajax({
+                        url: ak_url,
+                        async: false,
+                        cache: false,
+                        success: function () {
+                            $("main").removeClass("dis_none_im");
+                            option.success(document.location.hash.substring(1));
+                        },
+                        error: function () {
+                            $("main").addClass("dis_none_im");
+                            option.error(document.location.hash.substring(1));
+                        }
+                    });
+                    if ($(htmlobj.responseText).prop("localName") == "template") {
+                        $("main").html($(htmlobj.responseText).html());
+                    } else {
+                        $("main").text('sorry! The lack of "<template></template>" elements!');
+                    }
+                    if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
+                        var jsText = $($(htmlobj.responseText)).next().html();
+                    } else if ($($(htmlobj.responseText)).next().prop("localName") == "style") {
+                        var jsText = $($(htmlobj.responseText)).next().next().html();
+                    }
+                    if ($($(htmlobj.responseText)).next().next().prop("localName") == "style") {
+                        var cssText = $($(htmlobj.responseText)).next().next().html();
+                    } else if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
+                        var cssText = $($(htmlobj.responseText)).next().html();
+                    }
+                    $("html").children("script").html("").remove();
+                    $("html").children("style").html("").remove();
+                    setTimeout(function () {
+                        $("<script type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
+                        $("<style type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
+                    }, 100);
+                }
+                Router_Settings();
+            }
         }
         function Router_Settings() {
             if ($("footer").find("dfn").length == 0) {
@@ -304,8 +308,8 @@ function Andrew_Menu(setting) {
     });
 }
 
-/*-----------------------------------------------Andrew_sUserAgent------------------------------------------*/
-function Andrew_sUserAgent() {
+/*-----------------------------------------------Andrew_UserAgent------------------------------------------*/
+function Andrew_UserAgent() {
     var terminal = navigator.userAgent.toLowerCase();
     var browser = window.navigator.userAgent;
     var explorer = window.navigator.appVersion;
@@ -346,7 +350,7 @@ function Andrew_RegsInput() {
 
 /*-----------------------------------------------Andrew_InputFocus--------------------------------------*/
 function Andrew_InputFocus() {
-    Andrew_sUserAgent();
+    Andrew_UserAgent();
     $('main input[type="text"],main input[type="number"], main input[type="tel"], main input[type="email"]').on('focus', function() {
         var focus = this;
         header_scrollIntoView(focus);
@@ -526,7 +530,7 @@ function Andrew_Responsive(setting) {
 
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
-    Andrew_sUserAgent();
+    Andrew_UserAgent();
     if (IsMobile) {
         $("main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
@@ -761,6 +765,53 @@ function Andrew_HashSharp(form,key) {
     }
 }
 
+/*-----------------------------------------------Andrew_RegularExpression------------------------------------------*/
+function Andrew_RegularExpression() {
+    $('input[data-type]').each(function(){
+        if ($(this).prop("dataset").type == "number") {
+            $(this).attr("pattern","[0-9]*");
+            $(this).keyup(function() {
+                this.value = this.value.replace(/\D/g, '');
+            }).bind("paste", function () {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        } else if ($(this).prop("dataset").type == "number_symbol") {
+            $(this).attr("pattern","(\\d{5}([-]\\d{4})?)");
+            $(this).keyup(function() {
+                this.value = this.value.replace(/[^\0-9\.]/g,'');
+            }).bind("paste", function () {
+                this.value = this.value.replace(/[^\0-9\.]/g,'');
+            });
+        } else if ($(this).prop("dataset").type == "alpha") {
+            $(this).attr("pattern","[a-zA-Z]{1}");
+            $(this).keyup(function() {
+                this.value = this.value.replace(/[^a-zA-Z]/g,'');
+            }).bind("paste", function () {
+                this.value = this.value.replace(/[^a-zA-Z]/g,'');
+            });
+        } else if ($(this).prop("dataset").type == "alpha_number") {
+            $(this).attr("pattern","[a-zA-Z0-9_]{4,19}");
+            $(this).keyup(function() {
+                this.value = this.value.replace(/[^\w\.\/]/ig,'');
+            }).bind("paste", function () {
+                this.value = this.value.replace(/[^\w\.\/]/ig,'');
+            });
+        } else if ($(this).prop("dataset").type == "sino") {
+            $(this).keyup(function() {
+                this.value = this.value.replace(/[^\u4E00-\u9FA5]/g,'');
+            }).bind("paste", function () {
+                this.value = this.value.replace(/[^\u4E00-\u9FA5]/g,'');
+            });
+        } else if ($(this).prop("dataset").type == "sino_alpha") {
+            $(this).keyup(function() {
+                this.value = this.value.replace(/[\d]/g,'');
+            }).bind("paste", function () {
+                this.value = this.value.replace(/[\d]/g,'');
+            });
+        }
+    });
+}
+
 /*-----------------------------------------------Andrew_Include------------------------------------------*/
 function Andrew_Include(url) {
     Andrew_pathURL();
@@ -810,7 +861,7 @@ function Andrew_Include(url) {
 
 /*-----------------------------------------------Andrew_Location-------------------------------------------*/
 function Andrew_Location(url,option) {
-    Andrew_sUserAgent();
+    Andrew_UserAgent();
     if (IsIphone || IsIpad) {
         switch (option) {
             case 'href':
