@@ -1,4 +1,4 @@
-# AKjs.Mobile v 1.2.5
+# AKjs.Mobile v 1.2.6
 AKjs前端框架是Andrew.Kim和他的团队一起研发的基于jQuery的一个轻量级前端框架。它是只要懂jQuery的语法很容易上手的框架。该框架里面现在发布了很多移动端常用的功能效果；开发者们使用过程中功能插件也可以自己扩展增加。另一方面，它是相当于一个丰富的组件化UI框架，优点是开发要前后端分离，项目开发过程中后端通过ajax调用数据的机制。
 
 AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里包含着移动端常用的功能效果以及简单明了的CSS样式库，对IOS和安卓系统的兼容性很完美。支持前后端分离开发和路由模式跳页方式。它与其他重量级框架不同的是AKjs采用了按需引入插件功能以及所有的UI布局中可以让用户自行发挥写页面，因为它提供的CSS库模块化的很细分，让开发者们可以轻松的解决前端的烦恼。
@@ -11,6 +11,28 @@ AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里�
 预览效果 http://118.244.206.115:8080/ak/
 
 AKjs前端技术支持QQ群：724501394
+
+# 更新时间：2018/06/29 下午 16:55
+
+# 更新说明：
+
+js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.6版本；
+
+--- input输入框增加正则表达式控制的data-type属性（number，number_symbol，alpha，alpha_number，sino，sino_alpha）
+
+--- 解决当键盘按键Ctrl+F5强制刷新时页面有时加载不出来的bug;
+
+修改 js/plugin/Andrew_SnInput.js 功能插件bug；
+
+修改 js/plugin/Andrew_Circliful.js 功能插件bug；
+
+修改 js/plugin/Andrew_IntlTelInput.js 功能插件bug；
+
+修改 js/plugin/Andrew_ScrollFixed.js 功能插件bug；
+
+修改 js/plugin/Andrew_QRcode.js 功能插件bug；
+
+修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
 # 更新时间：2018/06/26 下午 22:40
 
