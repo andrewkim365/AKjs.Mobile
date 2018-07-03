@@ -1,7 +1,7 @@
 /*-----------------------------------------------Andrew_Progress-------------------------------------------*/
 .ak-progressBar {
     display: block;
-    text-indent: 3%;
+    text-indent: 1em;
     width: 0;
     height: inherit;
     line-height: inherit;
@@ -24,5 +24,6 @@
     left: 0;
     position: absolute;
     width: 100%;
+    display: none;
     color: inherit !important;
 }
