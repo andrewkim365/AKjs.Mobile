@@ -144,6 +144,31 @@
       </ul>
     </div>
 
+    <!----------Andrew_SelectOption---------->
+    <div class=" module mt_5 bg_white">
+      <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">select下拉框功能</h3>
+      <article class="wp_94 pt_3 pb_3">
+        <!--赋值select-->
+        <select class="plug_select w_8em h_3em line_h_28em c_gray_777 bor_rad_05em bor_gray_ddd border bg_gray_f5f">
+          <option value="0">请选择</option>
+          <option value="1">男</option>
+          <option value="2" selected>女</option>
+        </select>
+        <!--路由跳页select 方法：data-type="router-link"-->
+        <select data-type="router-link" class="plug_select w_8em h_3em line_h_28em c_gray_777 bor_rad_05em bor_gray_ddd border bg_gray_f5f">
+          <option value="0">请选择</option>
+          <option value="/page2">聊天</option>
+          <option value="/page3">瀑布流</option>
+        </select>
+        <!--普通跳转select 方法：data-type="link"-->
+        <select data-type="link" class="plug_select w_8em h_3em line_h_28em c_gray_777 bor_rad_05em bor_gray_ddd border bg_gray_f5f">
+          <option value="0">请选择</option>
+          <option value="http://www.baidu.com">百度</option>
+          <option value="http://www.taobao.com">淘宝</option>
+        </select>
+      </article>
+    </div>
+
     <div class="module list press">
       <h3 class="wp_94 bg_white line_h_36em text_bold bor_bottom_dashed bor_gray_ddd c_title"><i class="icon-yk_xinxi_fill text_al_s text_14em mr_02em"></i> 详情描述展示</h3>
       <p class="wp_94 bg_white pb_3 pt_3 line_h_2em c_gray_777 text_hidden text_hidden_line5">
@@ -517,6 +542,27 @@
                 Andrew_Loader("destroy"); //关闭loading窗
             }
         },2000);
+    });
+
+    /*-----------------------------------------------Andrew_SelectOption 使用方法-------------------------------------------*/
+    $(function(){
+        $(".plug_select").Andrew_SelectOption({
+            active: "bg_title c_white", //下拉列表被选中时样式
+            //boxheight: "11em", //下拉框展开后的列表区域的高度
+            speed: 300, //下拉框展开和折叠毫秒时间
+            callback:function(ele,list,val,text){ //初始化回调
+                //console.log(ele);
+                //console.log(list);
+                //console.log(val);
+                //console.log(text);
+            },
+            clickback:function(ele,list,val,text){ //选中回调函数获取值
+                console.log(ele);
+                console.log(list);
+                console.log(val);
+                console.log(text);
+            }
+        });
     });
 
     /*-----------------------------------------------Andrew_ReadMore 使用方法-------------------------------------------*/
