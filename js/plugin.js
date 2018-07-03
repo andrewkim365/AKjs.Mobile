@@ -36,7 +36,8 @@ Andrew_Plugin("Andrew_QRcode"); //二维码生成插件
 Andrew_Plugin("Andrew_Radio","css"); //单选框美化
 Andrew_Plugin("Andrew_Ratyli"); //星级评价功能
 Andrew_Plugin("Andrew_ScrollFixed"); //当屏幕滑动时把指定元素固定到页面顶部的功能
-Andrew_Plugin("Andrew_Select","css"); //下拉菜单功能
+Andrew_Plugin("Andrew_Select","css"); //移动端专用下拉菜单功能
+Andrew_Plugin("Andrew_SelectOption","css"); //pc端专用select下拉框插件
 Andrew_Plugin("Andrew_Slider","css"); //欢迎页和联播图功能
 Andrew_Plugin("Andrew_SnInput"); //输入支付密码功能
 Andrew_Plugin("Andrew_Spinner"); //数量控制功能
