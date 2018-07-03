@@ -12,6 +12,22 @@ AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里�
 
 AKjs前端技术支持QQ群：724501394
 
+# 更新时间：2018/07/03 下午 16:17
+
+# 更新说明：
+
+修改 js/plugin/Andrew_DropLoad.js 功能插件bug；
+
+增加 js/plugin/Andrew_SelectOption.js 功能插件以及该插件的css文件（下拉框插件）；
+
+修改 js/plugin/Andrew_ReadMore.js 功能插件bug （解决在安卓机不能展开的问题）；
+
+修改 js/plugin/Andrew_Progress.js 功能插件以及该插件的css文件（微调布局样式）；
+
+修改 js/plugin.js 全局按需引入功能插件文件（增加 Andrew_SelectOption）；
+
+修改演示版中的demo文件。（demo4.html 和 /router/page4.html）
+
 # 更新时间：2018/06/29 下午 16:55
 
 # 更新说明：
