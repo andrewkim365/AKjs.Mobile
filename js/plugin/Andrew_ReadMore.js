@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-19
+Modification Date: 2018-07-03
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ReadMore-------------------------------------------*/
@@ -58,14 +58,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 expanded = false,
                 collapsedHeight = $(element).data('collapsedHeight');
 
-            if ($(element).height() <= collapsedHeight) {
-                newHeight = $(element).data('expandedHeight') + 'px';
+            if ($(element).height() <= collapsedHeight + $(trigger).height()) {
+                newHeight = $(element).data('expandedHeight');
                 newLink = 'lessLink';
                 expanded = true;
             }
             else {
                 newHeight = collapsedHeight;
                 newLink = 'moreLink';
+                expanded = false;
             }
             $this.options.beforeToggle(trigger, element, expanded);
             $(element).animate({
@@ -85,7 +86,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     'width': element.width(),
                     'overflow': 'hidden'
             }).insertAfter(element),
-                height = el.outerHeight(true);
+                height = el.outerHeight();
             el.remove();
             element.data('expandedHeight', height);
         }

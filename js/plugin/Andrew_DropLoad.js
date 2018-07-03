@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-20
+Modification Date: 2018-07-03
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_DropLoad------------------------------------------*/
@@ -143,6 +143,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
     // touchstart
     function fnTouchstart(e, me){
+        e.preventDefault();
         me._startY = e.touches[0].pageY;
         // 记住触摸时的scrolltop值
         me.touchScrollTop = me.$scrollArea.scrollTop();
@@ -150,6 +151,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
     // touchmove
     function fnTouchmove(e, me){
+        e.preventDefault();
         me._curY = e.touches[0].pageY;
         me._moveY = me._curY - me._startY;
 

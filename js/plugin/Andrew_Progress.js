@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-27
+Modification Date: 2018-07-03
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Progress-------------------------------------------*/
@@ -41,20 +41,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     obj.find(".ak-progressBar").addClass(defaults.ColorStyle);
                     $(this).html($(this).html().replace(/\s/g, ' '));
                     setTimeout(function() {
-                        rendered.find('span').css({
+                        rendered.find('span').show().css({
                             "line-height": rendered.height()+2+"px"
                         });
                         obj.css("margin-top", (obj.parent().height() - obj.height()) / 2);
                     }, 100);
                     $(window).resize(function(){
-                        rendered.find('span').css({
+                        rendered.find('span').show().css({
                             "line-height": rendered.height()+2+"px"
                         });
                         obj.css("margin-top", (obj.parent().height() - obj.height()) / 2);
                     });
                 });
                 rendered.animate({
-                    width: percentage +'%',
+                    width: percentage +'%'
                 },{
                     duration:defaults.speed,
                     step:function(now,fx){
