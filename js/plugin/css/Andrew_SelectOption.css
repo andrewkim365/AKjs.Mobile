@@ -5,6 +5,10 @@
     text-indent: 1em;
     display: inline-block;
     overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 select.ak-SelectOpts {
     display: none !important;
@@ -50,6 +54,14 @@ select.ak-SelectOpts {
     overflow-y:scroll;
     border:1px solid #dddddd;
     background:#fff;
+    -webkit-tap-highlight-color:rgba(255,255,255,0);
+    text-decoration:none;
+    outline:0;
+    noFocusLine: expression(this.onFocus = this.blur());
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .ak-SelectList ul {
     width: 100%;
