@@ -300,26 +300,22 @@
                 <li class="bor_top bor_gray_ddd bg_white">
                     <dl class="ovh list_h_36em">
                         <dt class="fl ovh ml_3 mr_03em">单选：</dt>
-                        <dd class="fl ovh w_80">
-                            <ul class="plug_choose mt_05em c_gray_777">
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer" data-checked="true">戴尔</li>
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer">三星</li>
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer">惠普</li>
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer">微软</li>
-                            </ul>
+                        <dd class="plug_choose fl ovh w_80 mt_05em">
+                            <button type="button" data-checked="true">戴尔</button>
+                            <button type="button">三星</button>
+                            <button type="button">惠普</button>
+                            <button type="button">微软</button>
                         </dd>
                     </dl>
                 </li>
                 <li class="bor_top bor_gray_ddd bg_white">
                     <dl class="ovh list_h_36em">
                         <dt class="fl ovh ml_3 mr_03em">多选：</dt>
-                        <dd class="fl ovh w_80">
-                            <ul class="plug_choose mt_05em c_gray_777" data-multiple="multiple">
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer" data-checked="true">东芝</li>
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer" data-checked="true">松下</li>
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer">苹果</li>
-                                <li class="fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em pointer">联想</li>
-                            </ul>
+                        <dd class="plug_choose fl ovh w_80 mt_05em" data-multiple="multiple">
+                            <button type="button" data-checked="true">东芝</button>
+                            <button type="button" data-checked="true">松下</button>
+                            <button type="button">苹果</button>
+                            <button type="button">联想</button>
                         </dd>
                     </dl>
                 </li>
@@ -1217,6 +1213,7 @@
     $(function(){
         $(".plug_choose").Andrew_ChooseList({
             itemWidth: "", //自定义设置按钮宽度
+            btnClass: "fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em", //按钮的class名称设置
             active: "bg_title c_white bor_title", //选中后的样式
             multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
             full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
