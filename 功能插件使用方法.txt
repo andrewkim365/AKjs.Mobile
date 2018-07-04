@@ -1,6 +1,6 @@
 //引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-06-14
+//文档更新日期：2018-07-04
 
    /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
        $(function () {
@@ -333,20 +333,21 @@
 
        /*-----------------------------------------------Andrew_ChooseList 使用方法-------------------------------------------*/
        $(function(){
-           $(".plug_choose").Andrew_ChooseList({
-               itemWidth: "", //自定义设置按钮宽度
-               active: "bg_title c_white bor_title", //选中后的样式
-               multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
-               full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
-               dataKey: '', //实例化后的data键值，方便后续通过data('dataKey')取出；
-               click: function(index, item) { //Choose元素点击时的回调，diabled时不发生。
-                   console.log("click", index, item.text());
-               },
-               change: function(index, item) { //choose值改变时的回调；
-                   console.log("change", index, item.text());
-               }
+               $(".plug_choose").Andrew_ChooseList({
+                   itemWidth: "", //自定义设置按钮宽度
+                   btnClass: "fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em", //按钮的class名称设置
+                   active: "bg_title c_white bor_title", //选中后的样式
+                   multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
+                   full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
+                   dataKey: '', //实例化后的data键值，方便后续通过data('dataKey')取出；
+                   click: function(index, item) { //Choose元素点击时的回调，diabled时不发生。
+                       console.log("click", index, item.text());
+                   },
+                   change: function(index, item) { //choose值改变时的回调；
+                       console.log("change", index, item.text());
+                   }
+               });
            });
-       });
 
        /*-----------------------------------------------Andrew_ChangeInput 使用方法-------------------------------------------*/
        $(function(){
@@ -1179,7 +1180,7 @@
            });
 
            /*-----------------------------------------------Andrew_DropLoad 使用方法-------------------------------------------*/
-               $(function(){
+           $(function(){
                    // 页数
                    var page = 0;
                    // 每页展示5个
@@ -1261,7 +1262,7 @@
                                    },1000);
                                },
                                error: function(xhr, type){
-                                   alert('Ajax error!');
+                                   ak_webToast("数据请求加载失败！请稍后再试。!","middle",3000);
                                    // 即使加载出错，也得重置
                                    //me.resetload(); //重新初始化控件以及标识量
                                }
