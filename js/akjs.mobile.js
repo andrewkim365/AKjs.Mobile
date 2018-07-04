@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180629 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180704 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -538,10 +538,18 @@ function Andrew_mainHeight() {
             width: window.innerWidth,
             height: window.innerHeight
         });
+        document.oncontextmenu = function(){
+            event.returnValue = false;
+            return false;
+        };
     } else {
         $("main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
         $("body").removeClass("fix").removeAttr("style");
+        document.oncontextmenu = function(){
+            event.returnValue = true;
+            return true;
+        };
     }
     setTimeout(function() {
         if ($("header").hasClass("dis_none_im") && $("footer").hasClass("dis_none_im")) {
@@ -774,12 +782,16 @@ function Andrew_RegularExpression() {
                 this.value = this.value.replace(/\D/g, '');
             }).bind("paste", function () {
                 this.value = this.value.replace(/\D/g, '');
+            }).bind("blur", function () {
+                this.value = this.value.replace(/\D/g, '');
             });
         } else if ($(this).prop("dataset").type == "number_symbol") {
             $(this).attr("pattern","(\\d{5}([-]\\d{4})?)");
             $(this).keyup(function() {
                 this.value = this.value.replace(/[^\0-9\.]/g,'');
             }).bind("paste", function () {
+                this.value = this.value.replace(/[^\0-9\.]/g,'');
+            }).bind("blur", function () {
                 this.value = this.value.replace(/[^\0-9\.]/g,'');
             });
         } else if ($(this).prop("dataset").type == "alpha") {
@@ -788,6 +800,8 @@ function Andrew_RegularExpression() {
                 this.value = this.value.replace(/[^a-zA-Z]/g,'');
             }).bind("paste", function () {
                 this.value = this.value.replace(/[^a-zA-Z]/g,'');
+            }).bind("blur", function () {
+                this.value = this.value.replace(/[^a-zA-Z]/g,'');
             });
         } else if ($(this).prop("dataset").type == "alpha_number") {
             $(this).attr("pattern","[a-zA-Z0-9_]{4,19}");
@@ -795,17 +809,23 @@ function Andrew_RegularExpression() {
                 this.value = this.value.replace(/[^\w\.\/]/ig,'');
             }).bind("paste", function () {
                 this.value = this.value.replace(/[^\w\.\/]/ig,'');
+            }).bind("blur", function () {
+                this.value = this.value.replace(/[^\w\.\/]/ig,'');
             });
         } else if ($(this).prop("dataset").type == "sino") {
             $(this).keyup(function() {
                 this.value = this.value.replace(/[^\u4E00-\u9FA5]/g,'');
             }).bind("paste", function () {
                 this.value = this.value.replace(/[^\u4E00-\u9FA5]/g,'');
+            }).bind("blur", function () {
+                this.value = this.value.replace(/[^\u4E00-\u9FA5]/g,'');
             });
         } else if ($(this).prop("dataset").type == "sino_alpha") {
             $(this).keyup(function() {
                 this.value = this.value.replace(/[\d]/g,'');
             }).bind("paste", function () {
+                this.value = this.value.replace(/[\d]/g,'');
+            }).bind("blur", function () {
                 this.value = this.value.replace(/[\d]/g,'');
             });
         }
