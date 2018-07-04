@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-19
+Modification Date: 2018-07-04
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Waterfall-------------------------------------------*/
@@ -35,16 +35,16 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this._doScroll();
         },
         _getColumnCount: function () {
-            var WindowWidth = $(window).width(),
+            var eleWidth = this.$element.width(),
                 $item = this.$element.children(),
                 itemWidth = $item.eq(0).outerWidth(),
-                iCol = Math.floor(WindowWidth / (itemWidth + this.options.spacingWidth)),
+                iCol = Math.floor(eleWidth / (itemWidth + this.options.spacingWidth)),
                 realWidth = 0,
                 leftOffset = 0;
             iCol = iCol > this.options.minColCount ? iCol : this.options.minColCount;
             realWidth = iCol * itemWidth;
-            if(WindowWidth > realWidth) {
-                leftOffset = Math.floor((WindowWidth - realWidth - iCol * this.options.spacingWidth) / 2);
+            if(eleWidth > realWidth) {
+                leftOffset = Math.floor((eleWidth - realWidth - iCol * this.options.spacingWidth) / 2);
             }
             this.itemWidth = itemWidth;
             this.cols = iCol;
@@ -61,13 +61,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $item.each(function(index) {
                     if(index < $this.cols) {
                         $(this).css("top", 0);
+                        console.log($this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
                         $(this).css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
                         $this.colHeightArray.push($(this).outerHeight());
                     } else {
                         minHeight = Math.min.apply(null, $this.colHeightArray);
                         minIndex = $.inArray(minHeight, $this.colHeightArray);
                         $(this).css("top", minHeight + $this.options.spacingHeight);
-                        $(this).css("left", $item.eq(minIndex).offset().left);
+                        $(this).css("left", $item.eq(minIndex).offset().left - $this.$element.offset().left);
                         $this.colHeightArray[minIndex] += $(this).outerHeight() + $this.options.spacingHeight;
                     }
                     if($this.options.isFadeIn) {

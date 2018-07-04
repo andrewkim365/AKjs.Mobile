@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-07-04
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ChooseList--------------------------------------*/
@@ -7,6 +7,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     var defaults = {
         itemWidth: null,
         multi: false,
+        btnClass: "",
         active: '',
         full: false,
         dataKey: 'dataKey',
@@ -54,7 +55,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this.multi = this.el.attr('data-multiple') ? !!this.el.attr('data-multiple') : this._opt.multi;
 
             // 根据不同的标签进行不同的元素组建
-            var _setFunc = this['_setHtml_' + this._tag];
+            var _setFunc = this['_setHtml_btn'];
             if (_setFunc) {
                 _setFunc.call(this);
             }
@@ -62,6 +63,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this._items.each(function() {
                 var _this = this;
                 var _self = $(this);
+                _self.attr("type","button").addClass(option.btnClass);
                 if (_self.attr("data-checked")) {
                     _self.addClass(option.active);
                 } else {
@@ -70,10 +72,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
             this._bindEvent(); // 绑定事件
         },
-        // 组建并获取相关的dom元素-ul;
-        _setHtml_ul: function() {
+        // 组建并获取相关的dom元素-btn;
+        _setHtml_btn: function() {
             this._wrap = this.el;
-            this._items = this.el.children('li');
+            this._items = this.el.children('button');
             if (this._opt.itemWidth) {
                 this._items.css('width', this._opt.itemWidth);
             }
@@ -81,12 +83,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         // 绑定事件；
         _bindEvent: function() {
             var _this = this;
-            _this._wrap.find("li").unbind("click");
-            _this._wrap.on('click', 'li', function() {
+            this._items.unbind("click");
+            _this._wrap.on('click', 'button', function() {
                 var _self = $(this);
                 if (_self.hasClass('disabled'))
                     return;
-                if (!_this.multi) { // single select
+                if (!_this.multi) { // single Choose
                     var _val = _self.attr('data-value') || _self.index();
                     _this.val(_val);
                     _this._triggerClick(_val, _self);
@@ -97,7 +99,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         var _el = $(this);
                         if (_el.hasClass(_this._opt.active)) {
                             _el.attr("data-checked","true");
-                            var _valOrIndex = _this._tag == 'select' ? _el.attr('data-value') : _el.index();
+                            var _valOrIndex = _el.index();
                             _val.push(_valOrIndex);
                         }
                     });
@@ -123,14 +125,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this._opt.click.call(this, value, item);
         },
 
-        // 获取或设置值:ul
-        _val_ul: function(index) {
+        // 获取或设置值:btn
+        _val_btn: function(index) {
             // getValue
             if (arguments.length === 0) {
-                var _oActive = this._wrap.children('li.' + this._opt.active);
-                if (!this.multi) { // single select
+                var _oActive = this._wrap.children('button.' + this._opt.active);
+                if (!this.multi) { // single Choose
                     return _oActive.index() == -1 ? null : _oActive.index();
-                } else { // single select
+                } else { // single Choose
                     if (_oActive.length == 0) {
                         return null;
                     }
@@ -147,17 +149,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
             }
             // setValue
-            var _oIndex = this._val_ul();
-            if (!this.multi) { // single select
-                var _selectedItem = this._wrap.children('li').eq(index);
-                if (!_selectedItem.length)
+            var _oIndex = this._val_btn();
+            if (!this.multi) { // single Choose
+                var _ChooseItem = this._wrap.children('button').eq(index);
+                if (!_ChooseItem.length)
                     return this;
-                _selectedItem.addClass(this._opt.active).siblings('li').removeClass(this._opt.active);
-                _selectedItem.attr("data-checked","true").siblings('li').removeAttr("data-checked");
+                _ChooseItem.addClass(this._opt.active).siblings('button').removeClass(this._opt.active);
+                _ChooseItem.attr("data-checked","true").siblings('button').removeAttr("data-checked");
                 if (index !== _oIndex) {
-                    this._triggerChange(index, _selectedItem);
+                    this._triggerChange(index, _ChooseItem);
                 }
-            } else { // multiple select
+            } else { // multiple Choose
                 if (index == null || index == '' || index == []) {
                     this._items.removeClass(this._opt.active);
                     this._items.removeAttr("data-checked");
@@ -167,8 +169,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     this._items.removeAttr("data-checked");
                     for (var i in index) {
                         var _no = index[i];
-                        this._wrap.children('li').eq(_no).addClass(this._opt.active);
-                        this._wrap.children('li').eq(_no).attr("data-checked","true");
+                        this._wrap.children('button').eq(_no).addClass(this._opt.active);
+                        this._wrap.children('button').eq(_no).attr("data-checked","true");
                     }
                 }
                 if (index !== _oIndex) {
@@ -181,7 +183,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
         // 获取或设置值
         val: function() {
-            return this['_val_' + this._tag].apply(this, arguments);
+            return this['_val_btn'].apply(this, arguments);
         },
 
         // 值改变事件；
