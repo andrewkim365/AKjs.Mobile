@@ -237,9 +237,6 @@ header > button {
 header > button:active {
     opacity: 0.3 !important;
 }
-header > button:visited {
-    opacity: 1 !important;
-}
 header > button, header>* i {
     vertical-align: middle;
 }

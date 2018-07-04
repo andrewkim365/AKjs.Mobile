@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180629 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180704 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -320,6 +320,11 @@ legend {
     -moz-user-select: none; /* Firefox all */
     -ms-user-select: none; /* IE 10+ */
     user-select: none;
+}
+.disabled {
+    pointer-events:none;
+    opacity: 0.3 !important;
+    filter:alpha(opacity=30);
 }
 .pointer {
     cursor: pointer;
@@ -4149,6 +4154,10 @@ legend {
     width:.4em;
     height:.4em;
 }
+.wh_in {
+    width: inherit;
+    height: inherit;
+}
 .img_auto {
     position: relative;
     overflow: hidden;
@@ -4909,6 +4918,254 @@ legend {
 }
 
 /*list line height setting*/
+.list_h_100em > * {
+    height:100em;
+    line-height:100em;
+}
+.list_h_98_em > * {
+    height:98em;
+    line-height:98em;
+}
+.list_h_96_em > * {
+    height:96em;
+    line-height:96em;
+}
+.list_h_95_em > * {
+    height:95em;
+    line-height:95em;
+}
+.list_h_94_em > * {
+    height:94em;
+    line-height:94em;
+}
+.list_h_92_em > * {
+    height:92em;
+    line-height:92em;
+}
+.list_h_90em > * {
+    height:90em;
+    line-height:90em;
+}
+.list_h_88_em > * {
+    height:88em;
+    line-height:88em;
+}
+.list_h_86_em > * {
+    height:86em;
+    line-height:86em;
+}
+.list_h_85_em > * {
+    height:85em;
+    line-height:85em;
+}
+.list_h_84_em > * {
+    height:84em;
+    line-height:84em;
+}
+.list_h_82_em > * {
+    height:82em;
+    line-height:82em;
+}
+.list_h_80em > * {
+    height:80em;
+    line-height:80em;
+}
+.list_h_78_em > * {
+    height:78em;
+    line-height:78em;
+}
+.list_h_76_em > * {
+    height:76em;
+    line-height:76em;
+}
+.list_h_75_em > * {
+    height:75em;
+    line-height:75em;
+}
+.list_h_74_em > * {
+    height:74em;
+    line-height:74em;
+}
+.list_h_72_em > * {
+    height:72em;
+    line-height:72em;
+}
+.list_h_70em > * {
+    height:70em;
+    line-height:70em;
+}
+.list_h_68_em > * {
+    height:68em;
+    line-height:68em;
+}
+.list_h_66_em > * {
+    height:66em;
+    line-height:66em;
+}
+.list_h_65_em > * {
+    height:65em;
+    line-height:65em;
+}
+.list_h_64_em > * {
+    height:64em;
+    line-height:64em;
+}
+.list_h_62_em > * {
+    height:62em;
+    line-height:62em;
+}
+.list_h_60em > * {
+    height:60em;
+    line-height:60em;
+}
+.list_h_58_em > * {
+    height:58em;
+    line-height:58em;
+}
+.list_h_56_em > * {
+    height:56em;
+    line-height:56em;
+}
+.list_h_55_em > * {
+    height:55em;
+    line-height:55em;
+}
+.list_h_54_em > * {
+    height:54em;
+    line-height:54em;
+}
+.list_h_52_em > * {
+    height:52em;
+    line-height:52em;
+}
+.list_h_50em > * {
+    height:50em;
+    line-height:50em;
+}
+.list_h_48_em > * {
+    height:48em;
+    line-height:48em;
+}
+.list_h_46_em > * {
+    height:46em;
+    line-height:46em;
+}
+.list_h_45_em > * {
+    height:45em;
+    line-height:45em;
+}
+.list_h_44_em > * {
+    height:44em;
+    line-height:44em;
+}
+.list_h_42_em > * {
+    height:42em;
+    line-height:42em;
+}
+.list_h_40em > * {
+    height:40em;
+    line-height:40em;
+}
+.list_h_38_em > * {
+    height:38em;
+    line-height:38em;
+}
+.list_h_36_em > * {
+    height:36em;
+    line-height:36em;
+}
+.list_h_35_em > * {
+    height:35em;
+    line-height:35em;
+}
+.list_h_34_em > * {
+    height:34em;
+    line-height:34em;
+}
+.list_h_32_em > * {
+    height:32em;
+    line-height:32em;
+}
+.list_h_30em > * {
+    height:30em;
+    line-height:30em;
+}
+.list_h_29_em > * {
+    height:29em;
+    line-height:29em;
+}
+.list_h_28_em > * {
+    height:28em;
+    line-height:28em;
+}
+.list_h_27_em > * {
+    height:27em;
+    line-height:27em;
+}
+.list_h_26_em > * {
+    height:26em;
+    line-height:26em;
+}
+.list_h_25_em > * {
+    height:25em;
+    line-height:25em;
+}
+.list_h_24_em > * {
+    height:24em;
+    line-height:24em;
+}
+.list_h_23_em > * {
+    height:23em;
+    line-height:23em;
+}
+.list_h_22_em > * {
+    height:22em;
+    line-height:22em;
+}
+.list_h_21_em > * {
+    height:21em;
+    line-height:21em;
+}
+.list_h_20em > * {
+    height:20em;
+    line-height:20em;
+}
+.list_h_19_em > * {
+    height:19em;
+    line-height:19em;
+}
+.list_h_18_em > * {
+    height:18em;
+    line-height:18em;
+}
+.list_h_17_em > * {
+    height:17em;
+    line-height:17em;
+}
+.list_h_16_em > * {
+    height:16em;
+    line-height:16em;
+}
+.list_h_15_em > * {
+    height:15em;
+    line-height:15em;
+}
+.list_h_14_em > * {
+    height:14em;
+    line-height:14em;
+}
+.list_h_12_em > * {
+    height:12em;
+    line-height:12em;
+}
+.list_h_10em > * {
+    height:10em;
+    line-height:10em;
+}
+.list_h_9em > * {
+    height:9em;
+    line-height:9em;
+}
 .list_h_8em > * {
     height:8em;
     line-height:8em;
@@ -9138,6 +9395,10 @@ button.bg_gray_444[disabled] {
     background: -moz-linear-gradient(top, rgba(0,0,0,1), transparent, rgba(0,0,0,1)) !important;
     background: -webkit-linear-gradient(top, rgba(0,0,0,1), transparent, rgba(0,0,0,1)) !important;
 }
+.grbg_black_lmr {
+    background: -moz-linear-gradient(left, rgba(0,0,0,1), transparent, rgba(0,0,0,1)) !important;
+    background: -webkit-linear-gradient(left, rgba(0,0,0,1), transparent, rgba(0,0,0,1)) !important;
+}
 .grbg_black_lt {
     background: -moz-linear-gradient(left top, rgba(0,0,0,1), transparent) !important;
     background: -webkit-linear-gradient(left top, rgba(0,0,0,1), transparent) !important;
@@ -9167,6 +9428,10 @@ button.bg_gray_444[disabled] {
 .grbg_white_tmb {
     background: -moz-linear-gradient(top, rgba(255,255,255,1), transparent, rgba(255,255,255,1)) !important;
     background: -webkit-linear-gradient(top, rgba(255,255,255,1), transparent, rgba(255,255,255,1)) !important;
+}
+.grbg_white_lmr {
+    background: -moz-linear-gradient(left, rgba(255,255,255,1), transparent, rgba(255,255,255,1)) !important;
+    background: -webkit-linear-gradient(left, rgba(255,255,255,1), transparent, rgba(255,255,255,1)) !important;
 }
 .grbg_white_lt {
     background: -moz-linear-gradient(left top, rgba(255,255,255,1), transparent) !important;
