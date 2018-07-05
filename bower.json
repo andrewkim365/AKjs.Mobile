@@ -1,0 +1,13 @@
+{
+  "name": "AKjs.Mobile",
+  "authors": [
+    "Andrew.Kim <andrewkim365@qq.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "jquery": "1.7.1"
+  }
+}
