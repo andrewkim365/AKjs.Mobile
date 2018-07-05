@@ -1,8 +1,5 @@
 # AKjs.Mobile v 1.2.7
 
-[![Build Status][travis-image]][travis-url]
-[![Bower Status][bower-image]][bower-url]
-
 #### 主要目录和主要文件说明：
 
 ```shell
