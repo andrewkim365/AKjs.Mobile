@@ -1,49 +1,42 @@
-# jqPaginator分页组件
+# AKjs.Mobile v 1.2.7
 
 [![Build Status][travis-image]][travis-url]
 [![Bower Status][bower-image]][bower-url]
 
-## 使用说明
-
-1. 使用bower安装`bower install jqPaginator`
-2. 直接引入`dist`编译好的文件
-
-## 开发说明
-
-源码基于GruntJS构建，确保安装Node的情况下，全局安装
+## 主要目录和主要文件说明：
 
 ```shell
-sudo npm install grunt-cli
-sudo npm install bower
+index.html --- 走路由模式的DEMO页面 （可查看页面切换效果）
+
+demo.html --- 未开启路由模式的DEMO页面
+
+layout/main.html --- 整个界面的布局；（该文件夹和文件名可以在路由管理器文件中配置）
+
+router/ --- 通过路由访问的html界面，该文件夹也在路由管理器文件中配置（里面的所有html文件中最底部都调用功能插件的方法）
+
+js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版akjs.mobile.min.js）
+
+js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
+
+js/plugin.js --- 按需引入功能插件（按需引入功能插件时后面带css的意思是相关插件有对应的css文件）
+
+js/plugin/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件
+
+js/data.js --- Json数据文件
+
+css/iconfont --- 图标库 (AK图标库地址：http://www.iconfont.cn/collections/detail?cid=8740)
+
+css/akjs.mobile.css --- AKjs全局公共样式库（初始使用本插件的开发者们尽量都看看里面的class命名）
+
+css/akjs.animate.css --- AKjs动画库（在animated.css基础上增加了更多的动画效果）
+
+css/theme.default.css --- 所有颜色相关的样式文件
+
+css/style.css --- 自定义样式文件（引入第三方插件时通过该css文件进行覆盖样式）
 ```
 
-在文件目录下运行
+## AKjs介绍
 
-```shell
-npm install
-bower install
-```
-
-然后运行
-
-```shell
-grunt server
-```
-
-修改相应代码会自动刷新  
-打包编译请运行
-
-```shell
-grunt build
-```
-
-开发文件位于src目录，编译后的最终文件位于dist目录
-
-## 版本更新
-
-#### 1.2.0
-
-# AKjs.Mobile v 1.2.7
 AKjs前端框架是Andrew.Kim和他的团队一起研发的基于jQuery的一个轻量级前端框架。它是只要懂jQuery的语法很容易上手的框架。该框架里面现在发布了很多移动端常用的功能效果；开发者们使用过程中功能插件也可以自己扩展增加。另一方面，它是相当于一个丰富的组件化UI框架，优点是开发要前后端分离，项目开发过程中后端通过ajax调用数据的机制。
 
 AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里包含着移动端常用的功能效果以及简单明了的CSS样式库，对IOS和安卓系统的兼容性很完美。支持前后端分离开发和路由模式跳页方式。它与其他重量级框架不同的是AKjs采用了按需引入插件功能以及所有的UI布局中可以让用户自行发挥写页面，因为它提供的CSS库模块化的很细分，让开发者们可以轻松的解决前端的烦恼。
@@ -57,9 +50,9 @@ AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里�
 
 AKjs前端技术支持QQ群：724501394
 
-# 更新时间：2018/07/04 下午 15:25
+#### 更新时间：2018/07/04 下午 15:25
 
-# 更新说明：
+#### 更新说明：
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.7版本；
 
@@ -618,32 +611,3 @@ AK插件优化，改成轻量级插件（功能插件分离后可按需引入）
 修改底部菜单切换时图标不变的bug；
 
 
-# 主要目录和主要文件说明：
-
-index.html --- 走路由模式的DEMO页面 （可查看页面切换效果）
-
-demo.html --- 未开启路由模式的DEMO页面
-
-layout/main.html --- 整个界面的布局；（该文件夹和文件名可以在路由管理器文件中配置）
-
-router/ --- 通过路由访问的html界面，该文件夹也在路由管理器文件中配置（里面的所有html文件中最底部都调用功能插件的方法）
-
-js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版akjs.mobile.min.js）
-
-js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
-
-js/plugin.js --- 按需引入功能插件（按需引入功能插件时后面带css的意思是相关插件有对应的css文件）
-
-js/plugin/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件
-
-js/data.js --- Json数据文件
-
-css/iconfont --- 图标库 (AK图标库地址：http://www.iconfont.cn/collections/detail?cid=8740)
-
-css/akjs.mobile.css --- AKjs全局公共样式库（初始使用本插件的开发者们尽量都看看里面的class命名）
-
-css/akjs.animate.css --- AKjs动画库（在animated.css基础上增加了更多的动画效果）
-
-css/theme.default.css --- 所有颜色相关的样式文件
-
-css/style.css --- 自定义样式文件（引入第三方插件时通过该css文件进行覆盖样式）
