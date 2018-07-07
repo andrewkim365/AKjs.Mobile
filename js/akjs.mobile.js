@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180704 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180707 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -117,7 +117,12 @@ function Andrew_Router(setting) {
                 cache: false
             });
             $(document).ready(function(){
-                $("body").html(layout.responseText);
+                if (option.Animate) {
+                    $("body").append("<animation />");
+                    $("animation").html(layout.responseText);
+                } else {
+                    $("body").html(layout.responseText);
+                }
             });
         }
         $("main").ready(function(){
@@ -128,7 +133,41 @@ function Andrew_Router(setting) {
             var page = "hashchange";
             $("header, main, footer").unbind();
             Router_Ajax(option,page);
-            option.changePage(document.location.hash.substring(1));
+            if (option.Animate) {
+                $("animation").after("<aside id='ak-aside' class='fix bg_gray_eee top_0 left_0 wh_100' />");
+                var asideEle = $("#ak-aside");
+                var asideRecord = $(aside_record);
+                var animationEle = {};
+                for (var i = 0; i < asideRecord.length; i++) {
+                    if (asideRecord[i].localName === 'animation') {
+                        animationEle = asideRecord[i];
+                    }
+                }
+                if ($("animation").prop("dataset").router == "slideLeft") {
+                    asideEle.addClass("animated slideOutRight ani_05s zindex_3 filter_brig_09");
+                    asideEle.html($(animationEle).html());
+                } else if ($("animation").prop("dataset").router == "slideRight") {
+                    asideEle.addClass("filter_brig_09");
+                    $("animation").addClass("animated slideInRight ani_05s");
+                    asideEle.html($(animationEle).html());
+                } else {
+                    $("animation").removeClass();
+                    asideEle.html($(animationEle).html());
+                }
+                asideEle.find("footer").addClass("dis_opa_0");
+                asideEle.find(".animated").removeClass("animated");
+                asideEle.find(".dis_opa_0").removeClass("dis_opa_0");
+                asideEle.find("#ak-main-record").addClass("rel ova");
+                setTimeout(function () {
+                    asideEle.find("footer").removeClass("dis_opa_0");
+                    asideEle.removeClass("animated slideOutRight ani_05s zindex_3 filter_brig_09");
+                    asideEle.remove();
+                    $("animation").removeClass();
+                }, 500);
+                option.changePage(document.location.hash.substring(1),$(animationEle).html());
+            } else {
+                option.changePage(document.location.hash.substring(1),record);
+            }
         });
         function Router_Ajax(option,page) {
             Andrew_UserAgent();
@@ -142,12 +181,10 @@ function Andrew_Router(setting) {
                             $("footer").removeClass("dis_none_im");
                         }
                     });
-                    if (option.Animate) {
-                        $("main").addClass("dis_opa_0").removeClass("animated " + option.Animate);
-                        setTimeout(function () {
-                            $("main").removeClass("dis_opa_0").addClass("animated " + option.Animate);
-                        }, 100);
-                    }
+                    $("main").addClass("dis_opa_0").removeClass("animated fadeIn");
+                    setTimeout(function () {
+                        $("main").removeClass("dis_opa_0").addClass("animated fadeIn");
+                    }, 100);
                     $("main").animate({"scrollTop": 0}, 100);
                     $("body").children("div").remove();
                     $(".ak-mask").remove();
@@ -182,20 +219,30 @@ function Andrew_Router(setting) {
                             option.error(document.location.hash.substring(1));
                         }
                     });
-                    if ($(htmlobj.responseText).prop("localName") == "template") {
-                        $("main").html($(htmlobj.responseText).html());
+                    var htmlobj_text = $(htmlobj.responseText);
+                    if (htmlobj_text.prop("localName") == "template") {
+                        var main_tmpl = htmlobj_text.html().replace('<ak-main', '<div id="ak-main"').replace('</ak-main>', '</div>');
+                        if (option.Animate) {
+                            if (typeof(Storage) !== "undefined") {
+                                localStorage.setItem("Retrieve", $("body").html());
+                                record = localStorage.getItem("Retrieve");
+                                localStorage.setItem("aside_Retrieve", $("body").html().replace('id=', 'data-id=').replace('<main', '<div id="ak-main-record"').replace('</main>', '</div>'));
+                                aside_record = localStorage.getItem("aside_Retrieve");
+                            }
+                        }
+                        $("main").html(main_tmpl);
                     } else {
                         $("main").text('sorry! The lack of "<template></template>" elements!');
                     }
-                    if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
-                        var jsText = $($(htmlobj.responseText)).next().html();
-                    } else if ($($(htmlobj.responseText)).next().prop("localName") == "style") {
-                        var jsText = $($(htmlobj.responseText)).next().next().html();
+                    if ($(htmlobj_text).next().prop("localName") == "script") {
+                        var jsText = $(htmlobj_text).next().html();
+                    } else if ($(htmlobj_text).next().prop("localName") == "style") {
+                        var jsText = $(htmlobj_text).next().next().html();
                     }
-                    if ($($(htmlobj.responseText)).next().next().prop("localName") == "style") {
-                        var cssText = $($(htmlobj.responseText)).next().next().html();
-                    } else if ($($(htmlobj.responseText)).next().prop("localName") == "script") {
-                        var cssText = $($(htmlobj.responseText)).next().html();
+                    if ($(htmlobj_text).next().next().prop("localName") == "style") {
+                        var cssText = $(htmlobj_text).next().next().html();
+                    } else if ($(htmlobj_text).next().prop("localName") == "script") {
+                        var cssText = $(htmlobj_text).next().html();
                     }
                     $("html").children("script").html("").remove();
                     $("html").children("style").html("").remove();
@@ -690,6 +737,16 @@ function Andrew_HashSharp(form,key) {
     if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
         $('*[data-href]').bind('click',function(andrew) {
             andrew.preventDefault();
+            if ($("animation").length > 0) {
+                $("animation").attr("data-router","");
+                if ($(this).parents("main")[0] != undefined) {
+                    $("animation").attr("data-router","slideRight");
+                } else if (hash_script.test($(this).attr("data-href"))){
+                    $("animation").attr("data-router","slideLeft");
+                } else {
+                    $("animation").attr("data-router","");
+                }
+            }
             if (hash_sharp.test($(this).attr("data-href"))) {
                 if(question_mark.test($(this).attr("data-href"))){
                     if(akTime.test($(this).attr("data-href"))){
