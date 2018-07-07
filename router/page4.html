@@ -4,7 +4,8 @@
         <h1 class="text_al_c">布局展示</h1>
         <button type="button" class="right_0 w_25 pr_3 text_al_r text_12em" id="plug_Share">分享</button>
     </ak-header>
-    <article class="plug_refresh">
+
+    <ak-main>
         <!----------Andrew_NavScroll---------->
         <div class="module press">
             <div class="plug_tabs_find rel ovh">
@@ -403,12 +404,12 @@
         </div>
 
         <!----------Andrew_TypeIt---------->
-        <div class="module mt_5 press bg_white">
+        <!--<div class="module mt_5 press bg_white">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">文字打字效果</h3>
             <section class="pa_2 list h_8em">
                 <span class="plug_TypeIt line_h_24em"></span>
             </section>
-        </div>
+        </div>-->
 
         <div class="module mt_5 bg_white">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">特殊效果样式</h3>
@@ -548,10 +549,9 @@
             </ul>
         </dialog>
         <!----------Andrew_PopupWin End---------->
-    </article>
+    </ak-main>
 
-    <ak-footer data-display="false">
-    </ak-footer>
+    <ak-footer data-display="false"></ak-footer>
 </template>
 
 <script type="text/javascript">
@@ -755,34 +755,6 @@
         data-spacing_color === 整个圆形的边框颜色
         data-type="spacing" === 饼图类型设置 （half, spacing）；空值代表默认类型
         */
-    });
-
-    /*-----------------------------------------------Andrew_DropLoad （页面刷新） 使用方法-------------------------------------------*/
-    $(function(){
-        $('.plug_refresh').Andrew_DropLoad({
-            scrollArea : window, // 滑动区域
-            domUp : { // 上方DOM
-                domRefresh : '↓ 下拉刷新',
-                domUpdate  : '↑ 释放更新',
-                domLoad    : '刷新中...'
-            },
-            distance : 20,// 拉动距离
-            loadUpFn : function(me){ //上方function
-                setTimeout(function(){
-                    //刷新后需要执行的代码
-
-                    $(".plug_tabs_find section").css({
-                        opacity: 0
-                    }).animate({
-                        opacity: 1
-                    },1000);
-
-                    me.resetload(); //重新初始化控件以及标识量
-                    me.unlock(); //解除锁定允许数据继续加载
-                    me.noData(false); //是否有数据（false代表有数据）
-                },1000);
-            }
-        });
     });
 </script>
 
