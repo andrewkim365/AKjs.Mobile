@@ -1,4 +1,4 @@
-# AKjs.Mobile v 1.2.7
+# AKjs.Mobile v 1.2.8
 
 AKjs前端框架是Andrew.Kim和他的团队一起研发的基于jQuery的一个轻量级前端框架。它是只要懂jQuery的语法很容易上手的框架。该框架里面现在发布了很多移动端常用的功能效果；开发者们使用过程中功能插件也可以自己扩展增加。另一方面，它是相当于一个丰富的组件化UI框架，优点是开发要前后端分离，项目开发过程中后端通过ajax调用数据的机制。
 
@@ -45,6 +45,28 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 * AKjs前端技术支持QQ群：724501394
 
 -----------------------------------------------------------------------------------------------------------------------
+#### 更新时间：2018/07/07 下午 15:25
+
+#### 更新说明：
+
+js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.8版本；
+
+js/router.js文件中Andrew_Router方法里增加record回调；该回调用于记忆上一个页面的html代码；
+
+js/router.js文件中Andrew_Router方法里Animate参数修正为true和false。该功能是启用和停用页面切换动画效果；
+
+-主要增加路由功能中页面切换时仿造原生APP的slide效果；
+
+（该功能的效果时智能识别slide效果：当点击返回按钮时左侧滑动；main原生里面的点击按钮都是右侧滑动，底部菜单的点击事件是fadein效果；）
+
+修改 js/plugin/Andrew_Viewer.js和该插件的相关样式 （图片滑动时屏幕闪的bug）；
+
+增加 js/plugin/Andrew_SelectOption.js 功能插件以及该插件的css文件（下拉框插件）；
+
+修改 js/plugin.js 全局按需引入功能插件文件（增加 Andrew_SelectOption）；
+
+修改演示版中的几个demo文件。（/router/page1 ~ page5）-- 增加 <ak-main></ak-main>元素；
+
 
 #### 更新时间：2018/07/04 下午 15:25
 
