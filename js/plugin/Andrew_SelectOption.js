@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-03
+Modification Date: 2018-07-05
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_SelectOption-------------------------------------------*/
@@ -16,6 +16,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var option = $.extend({
             }, defaluts, options);
             $(this).addClass("ak-SelectOpts");
+            $(window).bind('hashchange', function () {
+                $(".ak-SelectList").remove();
+            });
             return this.each(function(){
                 var $this = $(this);
                 var _html = [];
