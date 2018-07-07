@@ -168,6 +168,7 @@
     z-index: 10;
 }
 .ak-viewer-title {
+    height: 2em;
     line-height: 2em;
     display: inline-block;
     width: 100%;
