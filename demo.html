@@ -878,16 +878,16 @@
             </ul>
         </dialog>
 
-        <dialog id="plug_filterWin" class="dis_none w_100 ovh"> <!--对应位置显示的弹窗-->
-            <ul class="abs ovh wp_94 bg_white bor_top bor_gray_ddd pt_3 pb_3 zindex_2 c_gray_777">
-              <li class="fl h_3em line_h_3em mr_1em">筛选A</li>
-              <li class="fl h_3em line_h_3em mr_1em">筛选B</li>
-              <li class="fl h_3em line_h_3em mr_1em">筛选C</li>
-              <li class="fl h_3em line_h_3em mr_1em">筛选D</li>
-              <li class="fl h_3em line_h_3em mr_1em">筛选E</li>
-              <li class="fl h_3em line_h_3em mr_1em">筛选F</li>
-              <li class="fl h_3em line_h_3em mr_1em">筛选G</li>
-              <li class="fl h_3em line_h_3em mr_1em">筛选H</li>
+        <dialog id="plug_filterWin" class="dis_none bg_none w_100 ovh"> <!--对应位置显示的弹窗-->
+            <ul class="wp_94 bg_white bor_top bor_gray_ddd pt_3 pb_3 c_gray_777">
+                <li class="fl h_3em line_h_3em mr_1em">筛选A</li>
+                <li class="fl h_3em line_h_3em mr_1em">筛选B</li>
+                <li class="fl h_3em line_h_3em mr_1em">筛选C</li>
+                <li class="fl h_3em line_h_3em mr_1em">筛选D</li>
+                <li class="fl h_3em line_h_3em mr_1em">筛选E</li>
+                <li class="fl h_3em line_h_3em mr_1em">筛选F</li>
+                <li class="fl h_3em line_h_3em mr_1em">筛选G</li>
+                <li class="fl h_3em line_h_3em mr_1em">筛选H</li>
             </ul>
         </dialog>
         <!----------Andrew_PopupWin End---------->
@@ -1416,7 +1416,7 @@
                         effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
                         effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
                         maskPosition:"1", //Mask的z-index数值
-                        closeBtn: ".plug_closeIn", //关闭弹窗按钮
+                        closeBtn: "#plug_filterWin", //关闭弹窗按钮
                         OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
                         callback :function (ele) { //通过回调获取弹窗显示后的参数
                             var modal =$(ele[0].dom); //获取弹窗元素
