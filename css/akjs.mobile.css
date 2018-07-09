@@ -2160,6 +2160,10 @@ legend {
 .w_au {
     width: auto !important;
 }
+.w_fit {
+    width: fit-content !important;
+    width: -moz-fit-content !important;
+}
 .max_w_in {
     max-width: inherit !important;
 }
