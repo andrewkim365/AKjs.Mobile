@@ -63,10 +63,6 @@ js/router.js文件中Andrew_Router方法里Animate参数修正为true和false。
 
 修改 js/plugin/Andrew_Viewer.js和该插件的相关样式 （图片滑动时屏幕闪的bug）；
 
-增加 js/plugin/Andrew_SelectOption.js 功能插件以及该插件的css文件（下拉框插件）；
-
-修改 js/plugin.js 全局按需引入功能插件文件（增加 Andrew_SelectOption）；
-
 修改演示版中的几个demo文件。（/router/page1 ~ page5）-- 增加 <ak-main></ak-main>元素；
 
 
