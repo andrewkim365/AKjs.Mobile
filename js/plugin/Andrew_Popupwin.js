@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-27
+Modification Date: 2018-07-09
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
@@ -21,6 +21,7 @@ function Andrew_Popupwin (setting){
     if (option.dom) {
         $(option.dom).css({
             "position": "fixed",
+            "background": "transparent",
             "z-index": parseInt(option.maskPosition)+1
         });
         setPopupStyle();
@@ -31,6 +32,7 @@ function Andrew_Popupwin (setting){
     if (option.position === 'offset') {
         var main_scroll = $("main").scrollTop() + $(option.dom).outerHeight();
         $("main").scroll(function(sc){
+            sc.preventDefault();
             var scrolltop = $(this).scrollTop();
             if(scrolltop < main_scroll) {
                 if ($(option.OneButton).hasClass("ak-is_active")) {
@@ -48,7 +50,6 @@ function Andrew_Popupwin (setting){
                 }
             }
             option.scrollback($(option));
-            sc.preventDefault();
         });
     }
     if (option.hasMask) {
