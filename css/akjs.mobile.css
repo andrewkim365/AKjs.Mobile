@@ -3266,6 +3266,9 @@ legend {
 .h_au {
     height: auto !important;
 }
+.h_fit {
+    height: fit-content !important;
+}
 .max_h_100 {
     max-height: 100% !important;
 }
