@@ -21,6 +21,7 @@ Andrew_Plugin("Andrew_Favorite"); //点赞或收藏功能
 Andrew_Plugin("Andrew_Form"); //表单提交相关效果
 Andrew_Plugin("Andrew_GetVerifyCode"); //手机短信验证码认证功能
 Andrew_Plugin("Andrew_IntlTelInput","css"); //国际区号选择功能
+Andrew_Plugin("Andrew_Keyboard","css"); //安全键盘
 Andrew_Plugin("Andrew_Lazyload"); //图片加载时有动画效果
 Andrew_Plugin("Andrew_lightSlider","css"); //图片列表左右滑动功能
 Andrew_Plugin("Andrew_Loader","css"); //Loading效果功能
@@ -28,12 +29,14 @@ Andrew_Plugin("Andrew_Marquee","css"); //上下左右滚动插件
 Andrew_Plugin("Andrew_MultiDate","css"); //多功能日期和时间插件
 Andrew_Plugin("Andrew_NavScroll"); //导航滑动功能（今日头条）
 Andrew_Plugin("Andrew_NowTime"); //获取当前时间的功能
+Andrew_Plugin("Andrew_Paginator","css"); //分页插件
 Andrew_Plugin("Andrew_Popupwin"); //弹窗功能
 Andrew_Plugin("Andrew_PortraitImage","css"); //头像上传功能
 Andrew_Plugin("Andrew_PreviewImage","css"); //同时上传多个图片的功能
 Andrew_Plugin("Andrew_Progress","css"); //进度条插件
 Andrew_Plugin("Andrew_QRcode"); //二维码生成插件
 Andrew_Plugin("Andrew_Radio","css"); //单选框美化
+Andrew_Plugin("Andrew_Range","css"); //滑块功能插件
 Andrew_Plugin("Andrew_Ratyli"); //星级评价功能
 Andrew_Plugin("Andrew_ScrollFixed"); //当屏幕滑动时把指定元素固定到页面顶部的功能
 Andrew_Plugin("Andrew_Select","css"); //移动端专用下拉菜单功能

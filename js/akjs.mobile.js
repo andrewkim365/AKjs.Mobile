@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180707 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180711 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -118,7 +118,7 @@ function Andrew_Router(setting) {
             });
             $(document).ready(function(){
                 if (option.Animate) {
-                    $("body").append("<animation />");
+                    $("body").html("<animation />");
                     $("animation").html(layout.responseText);
                 } else {
                     $("body").html(layout.responseText);
