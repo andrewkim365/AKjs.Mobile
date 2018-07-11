@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180707 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.2.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180711 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -2161,8 +2161,28 @@ legend {
     width: auto !important;
 }
 .w_fit {
-    width: fit-content !important;
     width: -moz-fit-content !important;
+    width: -webkit-fit-content !important;
+    width: -o-fit-content !important;
+    width: fit-content !important;
+}
+.w_maxc {
+    width: -webkit-max-content !important;
+    width: -moz-max-content !important;
+    width: -o-max-content !important;
+    width: max-content !important;
+}
+.w_minc {
+    width: -webkit-min-content !important;
+    width: -moz-min-content !important;
+    width: -o-min-content !important;
+    width: min-content !important;
+}
+.w_fill {
+    width: -webkit-fill-available !important;
+    width: -moz-fill-available !important;
+    width: -moz-available !important;
+    width: fill-available !important;
 }
 .max_w_in {
     max-width: inherit !important;
@@ -3267,7 +3287,28 @@ legend {
     height: auto !important;
 }
 .h_fit {
+    height: -moz-fit-content !important;
+    height: -webkit-fit-content !important;
+    height: -o-fit-content !important;
     height: fit-content !important;
+}
+.h_maxc {
+    height: -webkit-max-content !important;
+    height: -moz-max-content !important;
+    height: -o-max-content !important;
+    height: max-content !important;
+}
+.h_minc {
+    height: -webkit-min-content !important;
+    height: -moz-min-content !important;
+    height: -o-min-content !important;
+    height: min-content !important;
+}
+.h_fill {
+    height: -webkit-fill-available !important;
+    height: -moz-fill-available !important;
+    height: -moz-available !important;
+    height: fill-available !important;
 }
 .max_h_100 {
     max-height: 100% !important;
@@ -8592,6 +8633,54 @@ legend {
 .minus_bottom_05em {
     bottom:-0.5em;
 }
+.minus_left_04em {
+    left:-0.4em;
+}
+.minus_right_04em {
+    right:-0.4em;
+}
+.minus_top_04em {
+    top:-0.4em;
+}
+.minus_bottom_04em {
+    bottom:-0.4em;
+}
+.minus_left_03em {
+    left:-0.3em;
+}
+.minus_right_03em {
+    right:-0.3em;
+}
+.minus_top_03em {
+    top:-0.3em;
+}
+.minus_bottom_03em {
+    bottom:-0.3em;
+}
+.minus_left_02em {
+    left:-0.2em;
+}
+.minus_right_02em {
+    right:-0.2em;
+}
+.minus_top_02em {
+    top:-0.2em;
+}
+.minus_bottom_02em {
+    bottom:-0.2em;
+}
+.minus_left_01em {
+    left:-0.1em;
+}
+.minus_right_01em {
+    right:-0.1em;
+}
+.minus_top_01em {
+    top:-0.1em;
+}
+.minus_bottom_01em {
+    bottom:-0.1em;
+}
 
 /*multiple rows setting*/
 .text_hidden {
@@ -9963,10 +10052,24 @@ filter_gray_0 {
 .ak-for >*:first-child, ak-header, ak-footer, ak-title, ak-menu-code, ak-page-code  {
     display: none !important;
 }
+animation {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: inherit;
+    background-color: inherit;
+}
 #ak-main, ak-main {
     display: block;
     position: relative;
-    height: fit-content;
+    height: -moz-fit-content !important;
+    height: -webkit-fit-content !important;
+    height: -o-fit-content !important;
+    height: fit-content !important;
     min-height: inherit;
 }
 

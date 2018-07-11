@@ -99,7 +99,7 @@ button.bg_white:active {
 button.bg_title:active {
     background-color: #5aa42c !important;
 }
-button.bor_title.c_title:active {
+.active_title:active {
     background-color: #79c34a !important;
     color: #ffffff !important;
 }
