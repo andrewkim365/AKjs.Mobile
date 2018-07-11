@@ -1,0 +1,64 @@
+.ak-pagination {
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
+    width: -o-fit-content;
+    width: fit-content;
+    -webkit-user-select: none; /* Chrome all, Safari all, opera15+ */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+}
+.ak-pagination li:first-child {
+    margin-left: 0;
+    border-bottom-left-radius: 0.3em;
+    border-top-left-radius: 0.3em;
+}
+.ak-pagination li:last-child {
+    margin-right: 0;
+    border-bottom-right-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+}
+.ak-pagination li {
+    display: block;
+    position: relative;
+    float: left;
+    padding: 0.5em 1em;
+    line-height: 1.6em;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    cursor: pointer;
+}
+.ak-pagination li:active {
+    background-color: #f1f1f1;
+}
+@media screen and (min-width:1025px) {
+    .ak-pagination li:hover {
+        background-color: #f1f1f1;
+    }
+}
+.ak-pagination .arrow-left {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 3px 8px 5px 0;
+    border-left: 5px dashed transparent;
+    border-bottom: 5px dashed transparent;
+    border-top: 5px dashed transparent;
+    border-right: 5px solid #ccc;
+}
+.ak-pagination .arrow-right {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 3px 0 5px 8px;
+    border-top: 5px dashed transparent;
+    border-bottom: 5px dashed transparent;
+    border-right: 5px dashed transparent;
+    border-left: 5px solid #ccc;
+}

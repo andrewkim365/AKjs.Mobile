@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-25
+Modification Date: 2018-07-11
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Slider------------------------------------------*/
@@ -35,7 +35,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var SliderLi = sliderInder.children("li");
             var SliderSize = SliderLi.length;
             var index = self.options.start;
-            var resize = function() {
+            var styleSetting = function() {
                 if (self.options.arrShow) {
                     var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
                     if ($(ele).children("button").length < 1) {
@@ -89,9 +89,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 }, 200);
             };
-            resize();
+            styleSetting();
             $(window).resize(function() {
-                resize();
+                styleSetting();
             });
             if (self.options.arrShow) {
                 ele.find(".ak-arr_next").unbind("click");

@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-04
+Modification Date: 2018-07-10
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ChooseList--------------------------------------*/
@@ -8,6 +8,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         itemWidth: null,
         multi: false,
         btnClass: "",
+        btnIcon: true,
         active: '',
         full: false,
         dataKey: 'dataKey',
@@ -63,6 +64,16 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this._items.each(function() {
                 var _this = this;
                 var _self = $(this);
+                if (option.btnIcon) {
+                    if (_self.children("i").length < 1) {
+                        _self.append("<i class=\"c_in abs minus_bottom_03em minus_right_01em line_h_no text_18em icon-im_xuanze_b dis_none_im\"></i>");
+                        if (_self.attr("data-checked")) {
+                            _self.children("i").removeClass("dis_none_im");
+                        } else {
+                            _self.children("i").addClass("dis_none_im");
+                        }
+                    }
+                }
                 _self.attr("type","button").addClass(option.btnClass);
                 if (_self.attr("data-checked")) {
                     _self.addClass(option.active);
@@ -92,6 +103,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     var _val = _self.attr('data-value') || _self.index();
                     _this.val(_val);
                     _this._triggerClick(_val, _self);
+                    _this._items.each(function(el) {
+                        var _el = $(this);
+                        if (_el.hasClass(_this._opt.active)) {
+                            _el.children("i").removeClass("dis_none_im");
+                        } else {
+                            _el.children("i").addClass("dis_none_im");
+                        }
+                    });
                 } else { // multiple
                     _self.toggleClass(_this._opt.active);
                     var _val = [];
@@ -101,6 +120,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             _el.attr("data-checked","true");
                             var _valOrIndex = _el.index();
                             _val.push(_valOrIndex);
+                            _el.children("i").removeClass("dis_none_im");
+                        } else {
+                            _el.children("i").addClass("dis_none_im");
                         }
                     });
                     _this.val(_val);
