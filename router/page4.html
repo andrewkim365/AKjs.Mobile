@@ -271,6 +271,11 @@
             </section>
         </div>
 
+        <!----------Andrew_Paginator---------->
+        <div class="module press mt_5">
+            <ul id="plug_page"></ul>
+        </div>
+
         <!----------Andrew_Template---------->
         <div class="module list mt_5 ovh rel">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片列表展示</h3>
@@ -574,6 +579,28 @@
                 console.log(list);
                 console.log(val);
                 console.log(text);
+            }
+        });
+    });
+
+    /*-----------------------------------------------Andrew_Paginator  使用方法-------------------------------------------*/
+    $(function(){
+        $("#plug_page").Andrew_Paginator({
+            totalPages: 20, //设置分页的总页数
+            totalCounts: 200, //设置分页的总条目数
+            pageSize: 10, //设置每一页的条目数
+            currentPage: 1, //设置当前的页码
+            visiblePages: 3, //设置最多显示的页码数
+            disableClass: 'disabled', //设置首页，上一页，下一页，末页的“禁用状态”样式
+            activeClass: 'bor_title bg_title c_white cur_default', //设置当前页码样式
+            //first_text: '首页', //设置“首页”的文字
+            prev_text: '<i class="arrow-left"><\/i>上一页', //设置“上一页”的文字
+            next_text: '下一页<i class="arrow-right"><\/i>', //设置“下一页”的文字
+            //last_text: '末页', //设置“末页”的文字
+            onPageChange: function (n,type,ele) { //回调入口（当前的页码，回调状态）
+                console.log(n);
+                console.log(type);
+                console.log(ele);
             }
         });
     });

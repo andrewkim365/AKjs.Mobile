@@ -294,6 +294,25 @@
             </ul>
         </div>
 
+        <!----------Andrew_Range---------->
+        <div class="module list press mt_5">
+            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">滑块功能</h3>
+            <ul>
+                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_5">
+                    <input type="range" class="plug_range1" value="23" />
+                </li>
+                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_5">
+                    <input type="range" class="plug_range1" value="45" disabled />
+                </li>
+                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_10">
+                    <input type="range" class="plug_range2" value="25,75" />
+                </li>
+                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_10">
+                    <input type="range" class="plug_range2" value="45,85" disabled />
+                </li>
+            </ul>
+        </div>
+
         <!----------Andrew_ChooseList---------->
         <div class="module press mt_5">
             <h3 class="bg_white c_title pl_3 line_h_36em">品牌选择</h3>
@@ -635,8 +654,8 @@
             </ul>
         </div>
 
-        <!----------Andrew_SnInput---------->
-        <div class="module press mt_5 ovh bg_white">
+        <!----------Andrew_SnInput (已被Andrew_Keyboard 取代 page5.html)---------->
+        <!--<div class="module press mt_5 ovh bg_white">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">支付密码</h3>
             <fieldset class="plug_sn_input pt_5 pb_5 ml_3 ovh">
                 <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
@@ -646,7 +665,7 @@
                 <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
                 <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
             </fieldset>
-        </div>
+        </div>-->
 
         <!----------Andrew_Textarea---------->
         <form action="#" method="get" onsubmit="return false;">
@@ -1210,12 +1229,49 @@
         });
     });
 
+    /*-----------------------------------------------Andrew_Range  使用方法-------------------------------------------*/
+    $(function(){
+        $('.plug_range1').Andrew_Range({
+            from: 0, //滑动范围的最小值，数字，如0
+            to: 100, //滑动范围的最大值，数字，如100
+            step: 1, //步长值，每次滑动大小
+            scale: [0,25,50,75,100], //滑动条下方的尺度标签，数组类型，如[0,50,100] 	[from,to]
+            format: '%s', //数值格式
+            width: "90%", //滑动条宽度
+            ProgClass: "bg_title", //选取范围内的样式（可设置背景颜色）
+            showLabels: true, //布尔型，是否显示滑块上方的数值标签
+            showScale: false, //布尔型，是否显示滑动条下方的尺寸标签
+            isRange : false, //是否为选取范围。
+            onstatechange: function(ele,val){
+                //console.log(ele);
+                console.log(val);
+            }
+        });
+        $('.plug_range2').Andrew_Range({
+            from: 0, //滑动范围的最小值，数字，如0
+            to: 100, //滑动范围的最大值，数字，如100
+            step: 1, //步长值，每次滑动大小
+            scale: [0,25,50,75,100], //滑动条下方的尺度标签，数组类型，如[0,50,100] 	[from,to]
+            format: '%s', //数值格式
+            width: "90%", //滑动条宽度
+            ProgClass: "bg_title", //选取范围内的样式（可设置背景颜色）
+            showLabels: true, //布尔型，是否显示滑块上方的数值标签
+            showScale: true, //布尔型，是否显示滑动条下方的尺寸标签
+            isRange : true, //是否为选取范围。
+            onstatechange: function(ele,val){
+                //console.log(ele);
+                console.log(val);
+            }
+        });
+    });
+
     /*-----------------------------------------------Andrew_ChooseList 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_choose").Andrew_ChooseList({
             itemWidth: "", //自定义设置按钮宽度
-            btnClass: "fl pl_3 pr_3 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em", //按钮的class名称设置
-            active: "bg_title c_white bor_title", //选中后的样式
+            btnClass: "fl pl_5 pr_5 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em c_gray_777 rel ovh", //按钮的class名称设置
+            btnIcon: true, //是否开启被选中时显示打钩符号 (true/false)
+            active: "c_title bor_title", //选中后的样式
             multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
             full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
             dataKey: '', //实例化后的data键值，方便后续通过data('dataKey')取出；
@@ -1713,7 +1769,7 @@
     });
 
     /*-----------------------------------------------Andrew_SnInput 使用方法-------------------------------------------*/
-    $(function(){
+    /*$(function(){
         $(".plug_sn_input").Andrew_SnInput({
             default_active: false, //是否开启默认选择第一个输入框
             input_length: "1", //每个输入框限制的字数
@@ -1721,7 +1777,7 @@
                 console.log(sn);
             }
         })
-    });
+    });*/
 
     /*-----------------------------------------------Andrew_Typeahead 使用方法-------------------------------------------*/
     $(function(){
