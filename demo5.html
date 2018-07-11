@@ -85,11 +85,36 @@
         },2000);
     });
 
-    $("fieldset").find("button").click(function () {
-        ak_webToast("恭喜您！您支付成功了!","middle",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
-        setTimeout(function(){
-            window.location.replace("demo.html");
-        },1000);
+    /*-----------------------------------------------Andrew_Keyboard 使用方法-------------------------------------------*/
+    $(function() {
+        var plug_keyboard = $.Andrew_Keyboard({
+            num: 6, //密码输入框需要几位数?
+            title: "请输入支付密码", //安全键盘标题
+            msg: "正在验证支付密码", //输入密码后的loading文字
+            cancel: "取消", //取消按钮的文字
+            callback: function(data,ele) {
+                //console.log(ele); //安全键盘的元素
+                //console.log(data); //密码数组
+                if (data.join('') != "123456") {
+                    setTimeout(function() {
+                        plug_keyboard.akjs_reset("支付密码错误，请重新输入！"); //密码错误提示
+                    }, 2000);
+                } else {
+                    setTimeout(function() {
+                        ele.find("figure img").remove();
+                        ele.find("figure em").text("恭喜您！您支付成功了!");
+                        plug_keyboard.akjs_hideKeyBoard(); //隐藏安全键盘
+                    }, 2000);
+                    setTimeout(function() {
+                        document.location.replace("demo.html");
+                    }, 3000);
+                }
+            }
+        });
+        /*ak-header和ak-footer里面的所有DOM元素操作请使用以下的“delegate”方法*/
+        $("fieldset").find("button").click(function () {
+            plug_keyboard.akjs_showKeyBoard(); //展开安全键盘
+        });
     });
 
     /*-----------------------------------------------Andrew_DropLoad 使用方法-------------------------------------------*/
