@@ -53,6 +53,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.9版本；
 
 修改css/style.css和css/theme.default.css样式文件；删除style.css中的控制animation元素样式，在theme样式文件中增加active_title;
 
+需要更新 css/iconfont/ 目录中的所有文件（新增几个图标）；
+
 修改 js/plugin.js文件中按需引入了三个功能插件；（Andrew_Range，Andrew_Paginator，Andrew_Keyboard）
 
 增加 js/plugin/Andrew_Range.js 功能插件（滑块功能：该插件在演示版中的page1）；
