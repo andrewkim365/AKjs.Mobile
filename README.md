@@ -57,6 +57,13 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.0版本；
 
 增加 js/plugin/Andrew_GoTop.js 功能插件（返回顶部的功能）；
 
+修改 js/plugin/Andrew_Loader.js 功能插件bug；
+
+修改 js/plugin/Andrew_Textarea.js 功能插件bug；
+
+修改 js/plugin/Andrew_Popupwin.js 功能插件bug；
+
+
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
 #### 更新时间：2018/07/11 下午 16:15
