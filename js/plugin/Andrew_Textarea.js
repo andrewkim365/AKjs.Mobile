@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-07-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Textarea----------------------------------------*/
@@ -52,7 +52,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
                     if (opm.topButton !="") {
                         if(len>0 && len<=opm.maxlength){
-                            $(this).parents("form").find(":submit").addClass("dis_none_im");
+                            if ($("header").length === 0 && !$("header").hasClass("dis_none_im")) {
+                                $(this).parents("form").find(":submit").addClass("dis_none_im");
+                            }
                             if ($("header").children("button.ak-txtbutton").length == 0) {
                                 var btn_text = txt.parents("form").find(":submit").text();
                                 $("header").append('<button type="button" class="ak-txtbutton press text_12em pr_3 text_al_r">'+btn_text+'</button>');
@@ -63,6 +65,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                     "z-index": "2"
                                 });
                             }
+                            $("button.ak-txtbutton").prev("button").addClass("dis_none_im");
                             $("header").children("button.ak-txtbutton").unbind("click");
                             $("header").children("button.ak-txtbutton").on("click",function(e) {
                                 e.stopPropagation();
@@ -70,6 +73,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 opm.TopbtnOK(data);
                             });
                         } else {
+                            $("button.ak-txtbutton").prev("button").removeClass("dis_none_im");
                             $(this).parents("form").find(":submit").removeClass("dis_none_im");
                             $("header").children("button.ak-txtbutton").remove();
                         }

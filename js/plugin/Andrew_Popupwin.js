@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-11
+Modification Date: 2018-07-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
@@ -57,8 +57,10 @@ function Andrew_Popupwin (setting){
         $("main").removeClass("scrolling");
     }
     $(window).bind('hashchange', function () {
-        option.leaveback($(option),false);
-        ClickHideModal();
+        if (option.leaveback !=  undefined) {
+            option.leaveback($(option),false);
+        }
+        return false;
     });
     if (option.maskPosition) {
         $('#popup_mask').css({

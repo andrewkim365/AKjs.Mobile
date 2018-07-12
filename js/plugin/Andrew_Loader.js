@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-26
+Modification Date: 2018-07-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Loader------------------------------------------*/
@@ -59,14 +59,18 @@ function Andrew_Loader(setting){
         '<div class="ak-Loader-circ3" style="background-color:'+option.iconColor+'"></div>' +
         '<div class="ak-Loader-circ4" style="background-color:'+option.iconColor+'"></div>' +
         '</div>';
+    Andrew_UserAgent();
     setTimeout(function() {
         $(".ak-Loader").remove();
         if (option.ele) {
-            $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 h_100 zindex_1'></div>");
+            $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 zindex_22'></div>");
         } else {
-            $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 h_100 zindex_1'></div>");
+            $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 zindex_22'></div>");
         }
         var load_ele = $(".ak-Loader");
+        if (IsMobile) {
+            load_ele.attr("style",$("main").attr("style"));
+        }
         if (option.maskBG == true) {
             load_ele.addClass("ak-mask");
         }
@@ -107,11 +111,19 @@ function Andrew_Loader(setting){
         }
         var lw = loading.outerWidth();
         var lh = loading.outerHeight();
-        var yy = {
-            position: "absolute",
-            left: (ww / 2) - (lw / 2),
-            top: (wh / 2) - (lh / 2)
-        };
+        if (IsMobile) {
+            var yy = {
+                position: "absolute",
+                left: (ww / 2) - (lw / 2),
+                top: (wh / 2) - (lh / 2) - lh * 2
+            };
+        } else {
+            var yy = {
+                position: "absolute",
+                left: (ww / 2) - (lw / 2),
+                top: (wh / 2) - (lh / 2)
+            };
+        }
         loading.css(yy);
         if (option.autoMode) {
             setTimeout(function () {
