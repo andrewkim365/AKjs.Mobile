@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-29
+Modification Date: 2018-07-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ScrollFixed-------------------------------------*/
@@ -38,30 +38,43 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     var Scroll_ele_offset = Scroll_ele.offset().top
                 }
                 option.callback(Scroll_ele);
+                var topValue = 0,
+                    interval = null;
                 $scrollbar.scroll(function(){
-                    if ($("header").length > 0) {
-                        var scrolltop= $scrollbar.scrollTop() + $("header").outerHeight();
-                    } else {
-                        var scrolltop = $scrollbar.scrollTop();
-                    }
-                    if (option.animated) {
-                        if (scrolltop > Scroll_ele_offset) {
-                            Scroll_ele.addClass("fix w_100 top_0 animated " + option.animated);
-                            Scroll_ele.css({
-                                "margin-top": Scroll_ele_h + option.top,
-                                "z-index": option.zPosition
-                            });
-                            if ($("header").hasClass("dis_none_im")) {
-                                Scroll_ele.css({
-                                    "margin-top": 0
-                                });
+                    option.scroll(Scroll_ele, $scrollbar.scrollTop(), Scroll_ele_offset);
+                    if(interval == null) {
+                        interval = setInterval(function() {
+                            if($scrollbar.scrollTop() == topValue) {
+                                option.callback(Scroll_ele);
+                                clearInterval(interval);
+                                interval = null;
+                            } else {
+                                if ($("header").length > 0) {
+                                    var scrolltop= $scrollbar.scrollTop() + $("header").outerHeight();
+                                } else {
+                                    var scrolltop = $scrollbar.scrollTop();
+                                }
+                                if (option.animated) {
+                                    if (scrolltop > Scroll_ele_offset) {
+                                        Scroll_ele.addClass("fix w_100 top_0 animated " + option.animated);
+                                        Scroll_ele.css({
+                                            "margin-top": Scroll_ele_h + option.top,
+                                            "z-index": option.zPosition
+                                        });
+                                        if ($("header").hasClass("dis_none_im")) {
+                                            Scroll_ele.css({
+                                                "margin-top": 0
+                                            });
+                                        }
+                                    } else {
+                                        Scroll_ele.removeClass("fix w_100 top_0 animated " + option.animated);
+                                        Scroll_ele.removeAttr("style");
+                                    }
+                                }
                             }
-                        } else {
-                            Scroll_ele.removeClass("fix w_100 top_0 animated " + option.animated);
-                            Scroll_ele.removeAttr("style");
-                        }
+                        }, 1000);
                     }
-                    option.scroll(Scroll_ele, scrolltop, Scroll_ele_offset);
+                    topValue = $scrollbar.scrollTop();
                 });
 
                 if (IsMobile) {
