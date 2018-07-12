@@ -4,7 +4,7 @@
         <button type="button" class="right_0 w_25 pr_3 text_al_r text_12em" id="plug_NavMenu"><i class="text_14em icon-im_fenlei"></i></button>
     </ak-header>
 
-    <ak-main class="ak_test rel">
+    <ak-main>
         <!----------Andrew_Typeahead---------->
         <form action="#" method="get" onsubmit="return false;">
             <div class="module press ovh bg_white bor_bottom bor_gray_ddd">
@@ -984,7 +984,7 @@
     });
 
     /*-----------------------------------------------Andrew_ScrollFixed (仿朋友圈) 使用方法-------------------------------------------*/
-    $(function () {
+    /*$(function () {
         if (!IsWechat) { //通过微信访问时不执行该插件
             $("header").Andrew_ScrollFixed({
                 ScrollFixed: false, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
@@ -1015,7 +1015,7 @@
                 }
             });
         }
-    });
+    });*/
 
     /*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
     $(function () {
@@ -1981,11 +1981,13 @@
 </style>
 
 <!--
+* ak-header和ak-footer元素的data-display值是隐藏和显示APP的头部区域和底部菜单区域 (true / false)；
 //注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
 路由页面的布局结构使用方法（必须用以下的结构使用）：
 <template>
     <ak-header></ak-header>
-    <div></div>
+    <ak-main></ak-main>
+    <dialog></dialog>
     <ak-footer></ak-footer>
 </template>
 <script>

@@ -1,8 +1,10 @@
 <template>
-    <ak-header data-display="true">
-        <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
-        <h1 class="text_al_c">加载效果</h1>
+    <ak-header data-display="false">
     </ak-header>
+
+    <button type="button" class="plug_back fix left_0 top_0 ml_1em mt_1em wh_28em text_al_c zindex_8 bg_title05 bor_rad_50" data-href="javascript:history.back();">
+        <i class="text_14em icon-ln_zhixiangzuo c_white"></i>
+    </button>
 
     <ak-main>
         <div class="module list press plug_DropLoad">
@@ -21,6 +23,33 @@
 
 <script type="text/javascript">
     //引入Andrew插件的区域
+
+    /*-----------------------------------------------Andrew_GoTop (全局) 使用方法-------------------------------------------*/
+    Andrew_GoTop({
+        dom: $("main"), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main"), $("body"), $("html")）
+        hide: true, //当页面不滚动时是否隐藏(true,false)
+        url: "./img/gotop.png", //图片路径
+        icon: "", //图标的Class
+        state: "bottom", //出现的位置(center, bottom)
+        height: "auto", //高 默认40px
+        width: "2.4em", //宽 默认40px
+        scrollTop: 50, //滚到什么位置出现 px
+        time: 500, //返回顶部多长时间 ms 默认500ms
+        hidetime: 1000, //图标隐藏的时间&刚开始淡入的时间 ms 默认1000ms
+        aimation: "animated bounceInDown", //出场动画 默认show（没有出场动画） 这个可以自定义
+        toTop: function () { //返回最顶部后的回调
+            //console.log("toTop");
+        },
+        toShow: function () { //按钮显示后的回调
+            //console.log("toShow");
+        },
+        toHide: function () { //按钮隐藏后的回调
+            //console.log("toHide");
+        },
+        toClick: function () { //按钮点击后的回调
+            //console.log("toClick");
+        }
+    });
 
     /*-----------------------------------------------Andrew_Keyboard 使用方法-------------------------------------------*/
     $(function() {
@@ -59,8 +88,8 @@
     $(function(){
         // 页数
         var page = 0;
-        // 每页展示5个
-        var size = 5;
+        // 每页展示20个
+        var size = 20;
         $('.plug_DropLoad').Andrew_DropLoad({
             scrollArea : window, // 滑动区域
             domUp : { // 上方DOM
@@ -154,15 +183,19 @@
 </style>
 
 <!--
+* ak-header和ak-footer元素的data-display值是隐藏和显示APP的头部区域和底部菜单区域 (true / false)；
 //注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
 路由页面的布局结构使用方法（必须用以下的结构使用）：
 <template>
-    <ak-header></ak-header>
-    <div></div>
-    <ak-footer></ak-footer>
+    <ak-header>头部区域</ak-header>
+    <ak-main><div>中间内容</div></ak-main>
+    <ak-footer>底部区域</ak-footer>
+    <dialog>弹窗代码</dialog>
 </template>
 <script>
+    //编写当前页面的脚本代码区域
 </script>
 <style>
+    //覆盖当前界面的样式区域
 </style>
 -->

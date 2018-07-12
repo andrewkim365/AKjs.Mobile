@@ -790,15 +790,19 @@
 </style>
 
 <!--
+* ak-header和ak-footer元素的data-display值是隐藏和显示APP的头部区域和底部菜单区域 (true / false)；
 //注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
 路由页面的布局结构使用方法（必须用以下的结构使用）：
 <template>
-    <ak-header></ak-header>
-    <div></div>
-    <ak-footer></ak-footer>
+    <ak-header>头部区域</ak-header>
+    <ak-main><div>中间内容</div></ak-main>
+    <ak-footer>底部区域</ak-footer>
+    <dialog>弹窗代码</dialog>
 </template>
 <script>
+    //编写当前页面的脚本代码区域
 </script>
 <style>
+    //覆盖当前界面的样式区域
 </style>
 -->
