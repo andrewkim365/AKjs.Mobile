@@ -20,6 +20,7 @@ Andrew_Plugin("Andrew_DropUpDown"); //列表展开和收起功能
 Andrew_Plugin("Andrew_Favorite"); //点赞或收藏功能
 Andrew_Plugin("Andrew_Form"); //表单提交相关效果
 Andrew_Plugin("Andrew_GetVerifyCode"); //手机短信验证码认证功能
+Andrew_Plugin("Andrew_GoTop"); //返回页面顶部插件
 Andrew_Plugin("Andrew_IntlTelInput","css"); //国际区号选择功能
 Andrew_Plugin("Andrew_Keyboard","css"); //安全键盘
 Andrew_Plugin("Andrew_Lazyload"); //图片加载时有动画效果
