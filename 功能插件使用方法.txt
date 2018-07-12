@@ -54,7 +54,7 @@ $(function () {
        },
        TopbtnOK:function(val){ //通过回调获取点击头部的提交按钮后的最终值
            console.log(val);
-           webToast("提交成功！","middle",2000);
+           ak_webToast("提交成功！","middle",2000);
        }
    });
 });
@@ -948,7 +948,7 @@ $(function () {
             "提示" //alert
         ),
         delbtnClass: ".plug_DelImage", //设置控制显示和隐藏删除按钮的控制按钮
-        webToast: "成功删除!", //删除图片后提示的文字
+        ak_webToast: "成功删除!", //删除图片后提示的文字
         Class:"bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd", //图片列表边框样式
         Del_icon:"icon-bt_quxiao_a", //图片删除图标样式
         length:4, //默认允许上传多少照片

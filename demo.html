@@ -17,7 +17,6 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
     <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
-    <script type="text/javascript" language="javascript" src="js/plugin.js"></script><!--功能插件按需引入-->
 </head>
 <body>
 
@@ -939,6 +938,7 @@
 </body>
 <script type="text/javascript">
     //引入Andrew插件的区域
+    Andrew_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过Andrew_Include方式引入）
     if (window.location.protocol == "file:") {
         alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
         throw new Error();
@@ -994,7 +994,7 @@
             },
             TopbtnOK:function(val){ //通过回调获取点击头部的提交按钮后的最终值
                 console.log(val);
-                webToast("提交成功！","middle",2000);
+                ak_webToast("提交成功！","middle",2000);
             }
         });
     });
