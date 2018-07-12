@@ -2,6 +2,7 @@
     <ak-header data-display="true">
         <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
         <h1 class="text_al_c">聊天展示</h1>
+        <button type="button" class="right_0 w_25 pr_3 text_al_r text_12em" id="plug_MyMenu"><i class="text_14em icon-mn_wo"></i></button>
     </ak-header>
 
     <ak-main>
@@ -56,6 +57,16 @@
         </div>
     </ak-main>
 
+    <!----------Andrew_PopupWin Start---------->
+    <dialog id="plug_MyMenuWin" class="dis_none ovh left_au right_0 w_30 mr_05em mt_32em"> <!--顶部位置显示的弹窗-->
+        <i class="abs right_0 top_0 dis_block minus_mt_01em mr_02em icon-ln_jiantoushang text_18em c_white"></i>
+        <ul class="rel ovh list zindex_2 bg_white mt_08em list_h_3em bor_rad_03em">
+            <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单A</li>
+            <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单B</li>
+            <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单C</li>
+        </ul>
+    </dialog>
+
     <ak-footer data-display="true">
         <div class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd plug_form">
             <form action="#" method="get" onsubmit="return false;">
@@ -70,6 +81,27 @@
 
 <script type="text/javascript">
     //引入Andrew插件的区域
+
+    /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
+    $(function(){
+        setTimeout(function() { //为了兼容所有的jQuery版本header元素里面的任何绑定事件都需要延迟执行
+            $("#plug_MyMenu").bind("click", function (e) {
+                Andrew_Popupwin({
+                    dom: "#plug_MyMenuWin", //弹窗内容的布局
+                    position: "top", //位置类型(top，bottom，left，right，middle)
+                    effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                    effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                    maskPosition:"4", //Mask的z-index数值
+                    closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                    OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                    toggleIcon: "text_14em icon-mn_wo", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                    callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                        console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    }
+                });
+            });
+        },100);
+    });
 
     /*ak-header和ak-footer里面的所有DOM元素操作请使用以下的“delegate”方法*/
     $(document).delegate(".plug_form input","input propertychange", function(e){
