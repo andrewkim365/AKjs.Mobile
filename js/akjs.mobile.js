@@ -118,8 +118,7 @@ function Andrew_Router(setting) {
             });
             $(document).ready(function(){
                 if (option.Animate) {
-                    $("body").html("<animation />");
-                    $("animation").html(layout.responseText);
+                    $("body").html("<animation>"+layout.responseText+"</animation>");
                 } else {
                     $("body").html(layout.responseText);
                 }
@@ -643,11 +642,22 @@ function Andrew_mainHeight() {
                 "height": $(window).height()
             });
         }
-        $("main").not("aside main").css({
-            "top": "0",
-            "bottom": "0",
-            "left": "0",
-            "right": "0",
+        $("header, main, footer").not("aside header, aside main, aside footer").css({
+            "left": 0,
+            "right": 0,
+            "opacity": 1
+        });
+        $("header").not("aside header").css({
+            "top": 0,
+            "bottom":"auto",
+        });
+        $(" main").not("aside main").css({
+            "top": 0,
+            "bottom": 0,
+        });
+        $("footer").not("aside footer").css({
+            "top": "auto",
+            "bottom": 0,
         });
         $(".h_fill").css({
             "height": $(window).height()
@@ -1161,17 +1171,14 @@ function Andrew_DateFormat(date,format) {
 
 /*-----------------------------------------------Andrew_Plugin------------------------------------------*/
 function Andrew_Plugin(setting,css) {
-    var jssrcs = setting.split("|");
     if (window.location.protocol != "file:") {
-        for(var i=0;i<jssrcs.length;i++){
-            $.ajax({
-                type:'GET',
-                url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
-                async: false,
-                cache: false,
-                dataType:'script'
-            });
-        }
+        $.ajax({
+            type:'GET',
+            url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
+            async: false,
+            cache: false,
+            dataType:'script'
+        });
         if (css) {
             var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
             $("head").find("link").filter("#"+setting).remove();
