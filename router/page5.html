@@ -2,16 +2,17 @@
     <ak-header data-display="false">
     </ak-header>
 
-    <button type="button" class="plug_back fix left_0 top_0 ml_1em mt_1em wh_28em text_al_c zindex_8 bg_title05 bor_rad_50" data-href="javascript:history.back();">
-        <i class="text_14em icon-ln_zhixiangzuo c_white"></i>
-    </button>
-
     <ak-main>
         <div class="module list press plug_DropLoad">
             <ul>
             </ul>
         </div>
     </ak-main>
+
+    <!--fix固定元素和dialog弹窗元素的代码可以在ak-main元素下面写。-->
+    <button type="button" class="plug_back fix left_0 top_0 ml_1em mt_1em wh_28em text_al_c zindex_8 bg_title05 bor_rad_50" data-href="javascript:history.back();">
+        <i class="text_14em icon-ln_zhixiangzuo c_white"></i>
+    </button>
 
     <ak-footer data-display="true">
         <fieldset class="h_in bor_top bor_gray_ddd bg_gray_f9f length2">
@@ -26,7 +27,7 @@
 
     /*-----------------------------------------------Andrew_GoTop (全局) 使用方法-------------------------------------------*/
     Andrew_GoTop({
-        dom: $("main"), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main"), $("body"), $("html")）
+        dom: $("main").children(), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main").children(), $("body"), $("html")）
         hide: true, //当页面不滚动时是否隐藏(true,false)
         url: "./img/gotop.png", //图片路径
         icon: "", //图标的Class
