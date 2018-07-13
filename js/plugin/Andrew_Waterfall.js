@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-07-04
+Modification Date: 2018-07-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Waterfall-------------------------------------------*/
@@ -11,6 +11,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             minColCount: 2,
             itemAlign: "center",
             isFadeIn: true,
+            Callback: null,
             ajaxCallback: null
         };
 
@@ -26,9 +27,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         constructor: Andrew_Waterfall,
         _init: function () {
             var $this = this;
+            this.options.Callback(this.$element);
+            this.$element.addClass("dis_opa_0");
             setTimeout(function() {
+                $this.$element.removeClass("dis_opa_0");
                 $this._positionAll();
-            },100);
+            },500);
             $(window).resize(function(){
                 $this._positionAll();
             });
@@ -61,7 +65,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $item.each(function(index) {
                     if(index < $this.cols) {
                         $(this).css("top", 0);
-                        console.log($this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
+                        //console.log($this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
                         $(this).css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
                         $this.colHeightArray.push($(this).outerHeight());
                     } else {
@@ -82,7 +86,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         _doScroll: function () {
             var $this = this,
                 scrollTimer;
-            var $container = $("main");
+            var $container = $("main").children();
             $container.on('scroll', function (andrew) {
                 andrew.preventDefault();
                 if(scrollTimer) {

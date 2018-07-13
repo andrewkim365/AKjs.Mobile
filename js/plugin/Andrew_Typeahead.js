@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-12
+Modification Date: 2018-07-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Typeahead-----------------------------------------*/
@@ -86,12 +86,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 "height": $(window).height()
             });
             that.$element.parent().parent().addClass("ak-is_search w_100 zindex_show fix top_0 left_0");
-            $("header").hide();
+            $("header").addClass("dis_opa_0");
             $("main").addClass("mt_0").removeClass("scrolling");
             $(window).bind("hashchange",
                 function() {
                     that.$menu.remove();
-                    $("header").show();
+                    $("header").removeClass("dis_opa_0");
                     $("main").removeClass("mt_0").addClass("scrolling")
                 });
             that.$menu.fadeIn();
@@ -228,7 +228,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         },
         hide: function() {
             this.$element.parent().parent().removeClass("ak-is_search w_100 zindex_show fix top_0 left_0");
-            $("header").show();
+            $("header").removeClass("dis_opa_0");
             $("main").removeClass("mt_0").addClass("scrolling");
             this.$menu.hide();
             this.shown = false;
