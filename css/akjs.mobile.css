@@ -10219,6 +10219,10 @@ animation {
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
 }
+#ak-aside, #ak-aside > #ak-main-record {
+    display: block;
+    background-color: inherit;
+}
 
 /*Iconfont Style setting*/
 .iconfont , [class^="icon-"], [class*=" icon-"] {
