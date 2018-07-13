@@ -285,15 +285,6 @@ main {
     border-bottom: none !important;
 }
 
-/*********************最新消息图标*********************/
-.new_icon::after {
-    content: '●';
-    color: red;
-    margin: -0.1em 0.5em;
-    position: absolute;
-    top: 0;
-}
-
 /*********************底部固定菜单*********************/
 footer {
     position:fixed;
