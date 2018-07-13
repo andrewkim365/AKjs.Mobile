@@ -30,8 +30,8 @@ function Andrew_Popupwin (setting){
         });
     }
     if (option.position === 'offset') {
-        var main_scroll = $("main").children().scrollTop() + $(option.dom).outerHeight();
-        $("main").children().scroll(function(sc){
+        var main_scroll = $("main").children("#ak-main").scrollTop() + $(option.dom).outerHeight();
+        $("main").children("#ak-main").scroll(function(sc){
             sc.preventDefault();
             var scrolltop = $(this).scrollTop();
             if(scrolltop < main_scroll) {

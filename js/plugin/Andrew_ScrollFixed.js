@@ -28,7 +28,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
             function scrollbar_fun() {
                 Andrew_UserAgent();
-                var $scrollbar = $("main").children();
+                var $scrollbar = $("main").children("#ak-main");
                 if($("header").length != 0) {
                     var Scroll_ele_h = $("header").outerHeight();
                 } else {

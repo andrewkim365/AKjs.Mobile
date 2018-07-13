@@ -86,7 +86,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         _doScroll: function () {
             var $this = this,
                 scrollTimer;
-            var $container = $("main").children();
+            var $container = $("main").children("#ak-main");
             $container.on('scroll', function (andrew) {
                 andrew.preventDefault();
                 if(scrollTimer) {

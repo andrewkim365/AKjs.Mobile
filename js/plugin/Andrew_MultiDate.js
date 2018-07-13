@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-07-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_MultiDate-------------------------------------------*/
@@ -1020,8 +1020,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     $.splitDate = function (str) {
         var sdate = str.match(/\w+|d+/g);
         return {
-            YYYY:parseInt(sdate[0]),MM:parseInt(sdate[1])||00,DD:parseInt(sdate[2])||00,
-            hh:parseInt(sdate[3])||00,mm:parseInt(sdate[4])||00,ss:parseInt(sdate[5])||00
+            YYYY:parseInt(sdate[0]),MM:parseInt(sdate[1])||0,DD:parseInt(sdate[2])||0,
+            hh:parseInt(sdate[3])||0,mm:parseInt(sdate[4])||0,ss:parseInt(sdate[5])||0
         };
     };
     //获取年月日星期
