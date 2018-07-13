@@ -52,7 +52,7 @@ $(document).ready(function(){
             /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
             if (Andrew_Params(1) != "start") { //通过Andrew_Params获取hash的第一个值后不执行下面loading效果
                 Andrew_Loader({
-                    //ele: $("main").children(), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+                    //ele: $("main").children("#ak-main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
                     autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
                     timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
                     iconColor:"#ffffff", //图标颜色设置

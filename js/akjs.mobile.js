@@ -149,6 +149,9 @@ function Andrew_Router(setting) {
                 } else if ($("animation").prop("dataset").router == "slideRight") {
                     asideEle.addClass("filter_brig_09");
                     $("animation").addClass("animated slideInRight ani_05s");
+                    $("animation").find("header").addClass("top_0 right_0 left_0");
+                    $("animation").find("main").addClass("top_0 right_0 bottom_0 left_0");
+                    $("animation").find("header").addClass("right_0 bottom_0 left_0");
                     asideEle.html($(animationEle).html());
                 } else {
                     $("animation").removeClass();
@@ -163,6 +166,9 @@ function Andrew_Router(setting) {
                     asideEle.removeClass();
                     asideEle.remove();
                     $("animation").removeClass();
+                    $("animation").find("header").removeClass("top_0 right_0 left_0");
+                    $("animation").find("main").removeClass("top_0 right_0 bottom_0 left_0");
+                    $("animation").find("header").removeClass("right_0 bottom_0 left_0");
                 }, 500);
                 option.changePage(document.location.hash.substring(1),$(animationEle).html());
             } else {
@@ -221,18 +227,26 @@ function Andrew_Router(setting) {
                     });
                     var htmlobj_text = $(htmlobj.responseText);
                     if (htmlobj_text.prop("localName") == "template") {
-                        var main_tmpl = htmlobj_text.html().replace('<ak-main', '<div id="ak-main"').replace('</ak-main>', '</div>');
+                        var main_tmpl = htmlobj_text.html().replace('<ak-main', '<scrollview id="ak-main"').replace('</ak-main>', '</scrollview>');
                         if (option.Animate) {
                             if (typeof(Storage) !== "undefined") {
                                 localStorage.setItem("Retrieve", $("body").html());
                                 record = localStorage.getItem("Retrieve");
-                                localStorage.setItem("aside_Retrieve", $("body").html().replace('id=', 'data-id=').replace('<main', '<div id="ak-main-record"').replace('</main>', '</div>'));
+                                localStorage.setItem("aside_Retrieve", $("body").html().replace('id=', 'data-id=').replace('<main', '<container id="ak-main-record"').replace('</main>', '</container>'));
                                 aside_record = localStorage.getItem("aside_Retrieve");
                             }
                         }
                         $("main").not("aside main").html(main_tmpl);
+                        setTimeout(function () {
+                            if ($("main").not("aside main").find("#ak-main").length > 0) {
+                                $("main").not("aside main").find("#ak-main").prevAll().remove();
+                            }
+                            if ($("#ak-main").parentsUntil("main").length > 0) {
+                                $("main").not("aside main").html('<span class="c_red">sorry! The outer layer of the "&lt;ak-main&gt;&lt;/ak-main&gt;" element can not have other elements!</span>');
+                            }
+                        }, 100);
                     } else {
-                        $("main").not("aside main").text('sorry! The lack of "<template></template>" elements!');
+                        $("main").not("aside main").html('<span class="c_red">sorry! The lack of "&lt;template&gt;&lt;/template&gt;" elements!</span>');
                     }
                     if ($(htmlobj_text).next().prop("localName") == "script") {
                         var jsText = $(htmlobj_text).next().html();
@@ -578,8 +592,11 @@ function Andrew_Responsive(setting) {
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_UserAgent();
+    if ($("main").not("aside main").children("#ak-main").length === 0) {
+        $("main").not("aside main").children().not("dialog").wrapAll("<scrollview id=\"ak-main\"></scrollview>");
+    }
     if (IsMobile) {
-        $("main, textarea").removeClass("scrollbar");
+        $("#ak-main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
         $("body").addClass("fix").css({
             width: window.innerWidth,
@@ -590,7 +607,7 @@ function Andrew_mainHeight() {
             return false;
         };
     } else {
-        $("main, textarea").addClass("scrollbar");
+        $("#ak-main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
         $("body").removeClass("fix").removeAttr("style");
         document.oncontextmenu = function(){
