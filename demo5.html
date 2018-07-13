@@ -80,7 +80,7 @@
     /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
     $(function () {
         Andrew_Loader({
-            //ele: $("main").children(), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+            //ele: $("main").children("#ak-main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
             autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
             timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
             iconColor:"#ffffff", //图标颜色设置
@@ -96,7 +96,7 @@
 
     /*-----------------------------------------------Andrew_GoTop (全局) 使用方法-------------------------------------------*/
     Andrew_GoTop({
-        dom: $("main").children(), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main").children(), $("body"), $("html")）
+        dom: $("main").children("#ak-main"), // 滑动区域
         hide: true, //当页面不滚动时是否隐藏(true,false)
         url: "./img/gotop.png", //图片路径
         icon: "", //图标的Class
