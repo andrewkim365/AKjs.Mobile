@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180712 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180713 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -38,7 +38,7 @@ function Andrew_Config(setting) {
         $("header h1").bind(delegate, function (andrew) {
             andrew.preventDefault();
             if( new Date().getTime() - touchtime < 500 ){
-                $("main").not("aside main").animate({scrollTop:0},1000);
+                $("#ak-main").animate({scrollTop:0},1000);
             }else{
                 touchtime = new Date().getTime();
             }
@@ -143,7 +143,8 @@ function Andrew_Router(setting) {
                     }
                 }
                 if ($("animation").prop("dataset").router == "slideLeft") {
-                    asideEle.addClass("animated slideOutRight ani_05s zindex_3 filter_brig_09");
+                    asideEle.addClass("animated slideOutRight ani_05s zindex_3");
+                    $("animation").addClass("filter_brig_09");
                     asideEle.html($(animationEle).html());
                 } else if ($("animation").prop("dataset").router == "slideRight") {
                     asideEle.addClass("filter_brig_09");
@@ -159,7 +160,7 @@ function Andrew_Router(setting) {
                 asideEle.find("#ak-main-record").addClass("rel ova");
                 setTimeout(function () {
                     asideEle.find("footer").removeClass("dis_opa_0");
-                    asideEle.removeClass("animated slideOutRight ani_05s zindex_3 filter_brig_09");
+                    asideEle.removeClass();
                     asideEle.remove();
                     $("animation").removeClass();
                 }, 500);
@@ -184,7 +185,7 @@ function Andrew_Router(setting) {
                     setTimeout(function () {
                         $("main").not("aside main").removeClass("dis_opa_0").addClass("animated fadeIn");
                     }, 100);
-                    $("main").not("aside main").animate({"scrollTop": 0}, 100);
+                    $("#ak-main").animate({"scrollTop": 0}, 100);
                     $("body").children("div").remove();
                     $(".ak-mask").remove();
                 }
@@ -597,6 +598,38 @@ function Andrew_mainHeight() {
             return true;
         };
     }
+    $("main").not("aside main").on({
+        touchstart: function(ak) {
+            touchStartY = ak.originalEvent.touches[0].clientY;
+            touchStartX = ak.originalEvent.touches[0].clientX;
+        },
+        touchmove: function(ak) {
+            var touchEndY = ak.originalEvent.changedTouches[0].clientY,
+                touchEndX = ak.originalEvent.changedTouches[0].clientX,
+                yDiff = touchStartY - touchEndY,
+                xDiff = touchStartX - touchEndX;
+            if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                if ($(this).children("#ak-main").scrollTop() === 0) {
+                    if (yDiff < 5) {
+                        $(this).children("#ak-main").css({
+                            "transform": "translate3d(0,"+Math.abs(yDiff)/4+"px,0)"
+                        });
+                    }
+                } else if($(this).children("#ak-main").scrollTop() === $(this).children("#ak-main").prop("scrollHeight") - $(this).height()) {
+                    if (yDiff > 5) {
+                        $(this).children("#ak-main").css({
+                            "transform": "translate3d(0,-"+Math.abs(yDiff)/4+"px,0)"
+                        });
+                    }
+                }
+            }
+        },
+        touchend: function(ak) {
+            $(this).children("#ak-main").css({
+                "transform": "translate3d(0,0,0)"
+            });
+        }
+    });
     setTimeout(function() {
         if ($("header").not("aside header").hasClass("dis_none_im") && $("footer").not("aside footer").hasClass("dis_none_im")) {
             $("main").not("aside main").css({
