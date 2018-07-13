@@ -10188,7 +10188,7 @@ filter_gray_0 {
 .new_icon::after {
     content: '●';
     color: red;
-    margin: 0.3em 0.8em;
+    margin: 0.5em 0.8em;
     position: absolute;
     top: 0;
     left: 50%;
