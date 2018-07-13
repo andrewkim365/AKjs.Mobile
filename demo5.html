@@ -26,16 +26,21 @@
   <h1 class="text_al_c">加载效果</h1>
 </header>-->
 
-<button type="button" class="plug_back left_3 top_2 fix wh_28em text_al_c zindex_8 bg_title05 bor_rad_50" data-href="javascript:history.back();">
-  <i class="text_14em icon-ln_fanhui_b c_white"></i>
-</button>
-
 <main>
 
-  <div class="module list press plug_DropLoad">
-    <ul>
-    </ul>
+  <!--main元素里面必须有id="ak-main"才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main元素的下面写（ak-main的上一级元素必须使用main元素）。-->
+  <div id="ak-main">
+    <div class="module list press plug_DropLoad">
+      <ul>
+      </ul>
+    </div>
   </div>
+  <!--ak-main End-->
+
+  <!--fix固定元素和dialog弹窗元素的代码可以在ak-main下面写。-->
+  <button type="button" class="plug_back left_3 top_2 fix wh_28em text_al_c zindex_8 bg_title05 bor_rad_50" data-href="javascript:history.back();">
+    <i class="text_14em icon-ln_fanhui_b c_white"></i>
+  </button>
 
 </main>
 
@@ -75,7 +80,7 @@
     /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
     $(function () {
         Andrew_Loader({
-            //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+            //ele: $("main").children(), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
             autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
             timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
             iconColor:"#ffffff", //图标颜色设置
@@ -91,7 +96,7 @@
 
     /*-----------------------------------------------Andrew_GoTop (全局) 使用方法-------------------------------------------*/
     Andrew_GoTop({
-        dom: $("main"), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main"), $("body"), $("html")）
+        dom: $("main").children(), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main").children(), $("body"), $("html")）
         hide: true, //当页面不滚动时是否隐藏(true,false)
         url: "./img/gotop.png", //图片路径
         icon: "", //图标的Class

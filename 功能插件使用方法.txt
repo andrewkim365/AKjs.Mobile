@@ -1,6 +1,6 @@
 //引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-07-12
+//文档更新日期：2018-07-13
 
 /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
 $(function () {
@@ -62,7 +62,7 @@ $(function () {
 /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
 $(function() {
    $("img").Andrew_Lazyload({ //对所有的图片懒加载
-       scroll: $("main"), //滚动区域的容器
+       scroll: $("main").children(), //滚动区域的容器
        scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
        Img_Effect: "fadeIn", //图片加载动画效果
        Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
@@ -77,7 +77,7 @@ $(function() {
 });
 $(function() {
    $("*[data-animation]").Andrew_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
-       scroll: $("main"), //滚动区域的容器
+       scroll: $("main").children(), //滚动区域的容器
        scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
        Callback: function(ele) { //初始化回调入口
            //console.log(ele);
@@ -91,7 +91,7 @@ $(function() {
 /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
 $(function () {
    Andrew_Loader({
-       //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+       //ele: $("main").children(), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
        timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
        iconColor:"#ffffff", //图标颜色设置
@@ -1237,6 +1237,57 @@ $(function(){
     });
 });
 
+/*-----------------------------------------------Andrew_Waterfall 使用方法-------------------------------------------*/
+$(function(){
+    $(".plug_waterfall").Andrew_Waterfall({
+        spacingWidth: 5, // 布局的元素水平间距设置
+        spacingHeight: 5, // 布局的元素垂直间距设置
+        minColCount: 2, // 最小一行显示几个？
+        itemAlign: "center", // 布局排列方式 (center|left)
+        isFadeIn: true, //是否开启浅入效果 （追加元素中的class必须有ak-fadeIn才有效果）
+        Callback: function(ele) {
+            var data = {"data": [
+                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
+                ]};
+            var str = "";
+            var templ = '<figure class="ak-fadeIn"><img src="./img/{{src}}" /></figure>'
+
+            for(var i = 0; i < data.data.length; i++) {
+                str += templ.replace("{{src}}", data.data[i].src);
+            }
+            $(str).appendTo(ele);
+        },
+        ajaxCallback: function(ele, success, end) { //数据加载回调入口
+            success();
+            /*数据设置*/
+            var data = {"data": [
+                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
+                ]};
+            var str = "";
+            var templ = '<figure class="ak-fadeIn"><img src="./img/{{src}}" /></figure>'
+
+            for(var i = 0; i < data.data.length; i++) {
+                str += templ.replace("{{src}}", data.data[i].src);
+            }
+            /*元素设置*/
+            var wdropload = "<div class=\"ak-waterfall-down dis_none\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>\n" +
+                "    <div class=\"ak-waterfall-down dis_none\"><div class=\"ak-waterfall-noData\">暂无数据</div></div>";
+            if ($(".ak-waterfall-down").length < 3) {
+                ele.parent().append(wdropload);
+            }
+            if (ele.children().length < 200) {
+                $(".ak-waterfall-down").eq(0).removeClass("dis_none");
+                $(".ak-waterfall-down").eq(1).addClass("dis_none");
+                $(str).appendTo(ele);
+            } else {
+                $(".ak-waterfall-down").eq(0).addClass("dis_none");
+                $(".ak-waterfall-down").eq(1).removeClass("dis_none");
+            }
+            end();
+        }
+    });
+});
+
 /*-----------------------------------------------Andrew_Keyboard 使用方法-------------------------------------------*/
 $(function() {
     var plug_keyboard = $.Andrew_Keyboard({
@@ -1364,7 +1415,7 @@ $(function(){
 
 /*-----------------------------------------------Andrew_GoTop (全局) 使用方法-------------------------------------------*/
 Andrew_GoTop({
-    dom: $("main"), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main"), $("body"), $("html")）
+    dom: $("main").children(), // 滑动区域 （可设置的dom元素：$(window), $(document), $("main").children(), $("body"), $("html")）
     hide: true, //当页面不滚动时是否隐藏(true,false)
     url: "./img/gotop.png", //图片路径
     icon: "", //图标的Class

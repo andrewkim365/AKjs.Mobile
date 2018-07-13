@@ -29,7 +29,9 @@
 
 <main>
 
-  <div class="wp_94 mb_5 ovh plug_chat">
+  <!--main元素里面必须有id="ak-main"才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main下面写（ak-main的上一级元素必须使用main元素）。-->
+  <div id="ak-main">
+    <div class="wp_94 mb_5 ovh plug_chat">
     <ul>
       <li class="ovh mt_1em">
         <dl class="ak-chat_left">
@@ -78,18 +80,21 @@
       </li>
     </ul>
   </div>
+  </div>
+  <!--ak-main End-->
+
+  <!----------Andrew_PopupWin Start---------->
+  <dialog id="plug_MyMenuWin" class="dis_none ovh left_au right_0 w_30 mr_05em mt_32em"> <!--顶部位置显示的弹窗-->
+    <i class="abs right_0 top_0 dis_block minus_mt_01em mr_02em icon-ln_jiantoushang text_18em c_white"></i>
+    <ul class="rel ovh list zindex_2 bg_white mt_08em list_h_3em bor_rad_03em">
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单A</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单B</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单C</li>
+    </ul>
+  </dialog>
+  <!----------Andrew_PopupWin End---------->
 
 </main>
-
-<!----------Andrew_PopupWin Start---------->
-<dialog id="plug_MyMenuWin" class="dis_none ovh left_au right_0 w_30 mr_05em mt_32em"> <!--顶部位置显示的弹窗-->
-  <i class="abs right_0 top_0 dis_block minus_mt_01em mr_02em icon-ln_jiantoushang text_18em c_white"></i>
-  <ul class="rel ovh list zindex_2 bg_white mt_08em list_h_3em bor_rad_03em">
-    <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单A</li>
-    <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单B</li>
-    <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单C</li>
-  </ul>
-</dialog>
 
 <footer class="press bg_gray_f9f dis_block">
   <menu>
@@ -131,7 +136,7 @@
     /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
     $(function () {
         Andrew_Loader({
-            //ele: $("main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+            //ele: $("main").children(), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
             autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
             timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
             iconColor:"#ffffff", //图标颜色设置
@@ -204,14 +209,14 @@
                 "            </dl>\n" +
                 "        </li>";
 
-            var scrollHeight = $("main").prop("scrollHeight"); //获取实时变化的main元素的高度
+            var scrollHeight = $("#ak-main").prop("scrollHeight"); //获取实时变化的main元素的高度
 
             $(chat_view_me).appendTo($(".plug_chat").children("ul")); //生成您的聊天元素
-            $("main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+            $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
 
             setTimeout(function() { //对方的聊天内容延迟执行
                 $(chat_view_you).appendTo($(".plug_chat").children("ul")); //生成对方的聊天元素
-                $("main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
             },1000);
 
             $(this).prev("input").val(""); //发送消息后输入框的文字自动清空
