@@ -52,7 +52,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
                     if (opm.topButton !="") {
                         if(len>0 && len<=opm.maxlength){
-                            if ($("header").length === 0 && !$("header").hasClass("dis_none_im")) {
+                            if ($("header").length === 0 || !$("header").hasClass("dis_none_im")) {
                                 $(this).parents("form").find(":submit").addClass("dis_none_im");
                             }
                             if ($("header").children("button.ak-txtbutton").length == 0) {
