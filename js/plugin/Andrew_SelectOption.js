@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-05
+Modification Date: 2018-07-16
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_SelectOption-------------------------------------------*/
@@ -36,7 +36,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var select_text = select.find("var");
                 var select_list = select.find("cite");
                 $this.after(select);
-                $('body').append(select_list);
+                if ($('#ak-main').length > 0) {
+                    $('#ak-main').append(select_list);
+                } else {
+                    $('body').append(select_list);
+                }
                 select_list.find("li").each(function () {
                     var list = $(this);
                     if (list.data("value") == $this.find(":selected").val()) {
@@ -52,7 +56,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $(this).toggleClass("ak-open");
                     select_list.css({
                         "width": $(this).innerWidth(),
-                        "height": option.boxheight
+                        "max-height": option.boxheight
                     });
                     if ($(this).offset().top + $(this).innerHeight()+ select_list.innerHeight() > $(window).height()) {
                         select_list.css({
@@ -62,10 +66,18 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         });
                     } else {
                         select_list.css({
-                            "top": $(this).offset().top + $(this).innerHeight()+1,
                             "bottom": "auto",
                             "left": $(this).offset().left
                         });
+                        if ($('#ak-main').length > 0) {
+                            select_list.css({
+                                "top": $(this).offset().top + $('#ak-main').scrollTop()-4
+                            });
+                        } else {
+                            select_list.css({
+                                "top": $(this).offset().top + $(this).innerHeight() + 1
+                            });
+                        }
                     }
                     select_list.find("li").css({
                         "height": select.outerHeight()+"px",
@@ -75,14 +87,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         $(".ak-SelectOpts").not(select).removeClass("ak-open");
                         $(".ak-SelectList").not(select_list).hide();
                         select_list.slideDown(option.speed);
+                        select_list.animate({scrollTop:0},0);
                         $("body").unbind("click");
                         setTimeout(function() {
                             $("body").click(function () {
                                 $(".ak-SelectList").slideUp(option.speed);
                                 $(".ak-SelectOpts").removeClass("ak-open");
                             });
-                            $("main").scroll(function() {
-                                $(".ak-SelectList").hide();
+                            if ($('#ak-main').length > 0) {
+                                var $scrollbar = $("main").children("#ak-main");
+                            } else {
+                                var $scrollbar = $("main");
+                            }
+                            $scrollbar.scroll(function(){
+                                $(".ak-SelectList").slideUp(option.speed);
                                 $(".ak-SelectOpts").removeClass("ak-open");
                             });
                         },option.speed);
@@ -93,10 +111,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 select_list.find("li").unbind("click");
                 select_list.on("click", "li", function () {
                     var li = $(this);
-                    if (li.data("value") > 0) {
-                        var val = li.addClass(option.active).siblings("li").removeClass(option.active).end().data("value").toString();
+                    if (li.data("value") === 0 || li.data("value") === "") {
+                        var val = li.removeClass(option.active).siblings("li").removeClass(option.active).end().data("value");
                     } else {
-                        var val = li.removeClass(option.active).siblings("li").removeClass(option.active);
+                        var val = li.addClass(option.active).siblings("li").removeClass(option.active).end().data("value").toString();
                     }
                     select.removeClass("ak-open");
                     select_list.slideUp(option.speed);
@@ -108,7 +126,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             document.location.href = li.data("value");
                         }
                     }
-
                     if (val !== $this.val()) {
                         select_text.text(li.text());
                         $this.val(val);
