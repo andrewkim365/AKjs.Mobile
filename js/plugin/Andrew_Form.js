@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-05-12
+Modification Date: 2018-07-16
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Form--------------------------------------------*/
@@ -18,11 +18,16 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 butCallback: function() {}
             },
             setting);
-        var mbf = $(this);
-
+            var mbf = $(this);
+            mbf.each(function(){
+                if($(this).prop("attributes").action.value) {
+                    $(this).removeAttr("onsubmit");
+                } else {
+                    $(this).attr("onsubmit","return false");
+                }
+            });
             //对比两次输入的密码
             var password = mbf.find(option.PassCheck);
-
             mbf.find(":submit").addClass("mb_5");
             mbf.find(":submit").unbind("click");
             mbf.keyup(function (event) {
@@ -44,6 +49,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 }
                 option.butCallback($(this).parents("form"));
+                return false;
             });
             //密码（显示/隐藏）
             setTimeout(function() {
