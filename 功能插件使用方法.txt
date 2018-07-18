@@ -1,6 +1,6 @@
 //引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-07-13
+//文档更新日期：2018-07-18
 
 /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
 $(function () {
@@ -1255,7 +1255,17 @@ $(function(){
             for(var i = 0; i < data.data.length; i++) {
                 str += templ.replace("{{src}}", data.data[i].src);
             }
+            /*元素设置*/
+            var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
+            ele.parent().append(wdropload);
             $(str).appendTo(ele);
+            ele.children().removeClass("animated fadeIn");
+            ele.children().addClass("dis_opa_0");
+            setTimeout(function() {
+                $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
+                ele.children().removeClass("dis_opa_0");
+                ele.children().addClass("animated fadeIn");
+            },1000);
         },
         ajaxCallback: function(ele, success, end) { //数据加载回调入口
             success();
