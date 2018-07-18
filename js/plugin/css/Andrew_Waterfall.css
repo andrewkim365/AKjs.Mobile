@@ -1,3 +1,6 @@
+.ak-waterfall {
+    background-color: inherit;
+}
 .ak-waterfall figure {
     float: left;
     border: solid 1px #dddddd;
