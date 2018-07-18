@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180713 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180718 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -57,12 +57,10 @@ main {
     overflow: hidden;
     padding: 0;
     margin: 0;
-    opacity: 0;
-    filter:Alpha(opacity=0);
-    -o-animation:defer 2s forwards;
-    -moz-animation:defer 2s forwards;
-    -webkit-animation:defer 2s forwards;
-    animation:defer 2s forwards;
+    -o-animation:defer 0.5s forwards;
+    -moz-animation:defer 0.5s forwards;
+    -webkit-animation:defer 0.5s forwards;
+    animation:defer 0.5s forwards;
     background-color: inherit;
 }
 body,input,span,p,a {
@@ -1084,6 +1082,11 @@ legend {
 
 /*element & text align middle*/
 .ud_ele_c {
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    width: -moz-min-content !important;
+    width: -webkit-min-content !important;
+    width: min-content !important;
     display: -o-flex;
     display: -ms-flex;
     display: -moz-flex;
@@ -1097,6 +1100,7 @@ legend {
 .ud_text_c {
     margin: 0;
     position: absolute;
+    width: inherit;
     top: 50%;
     left: 50%;
     -o-transform: translate(-50%, -50%);
@@ -1104,6 +1108,12 @@ legend {
     -moz-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+text {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: inherit;
 }
 
 /*element align*/
@@ -9975,6 +9985,27 @@ filter_gray_0 {
     -webkit-filter:brightness(1);
     filter:brightness(1);
 }
+.filter_brig_096 {
+    -o-filter:brightness(0.96);
+    -ms-filter:brightness(0.96);
+    -moz-filter:brightness(0.96);
+    -webkit-filter:brightness(0.96);
+    filter:brightness(0.96);
+}
+.filter_brig_094 {
+    -o-filter:brightness(0.94);
+    -ms-filter:brightness(0.94);
+    -moz-filter:brightness(0.94);
+    -webkit-filter:brightness(0.94);
+    filter:brightness(0.94);
+}
+.filter_brig_092 {
+    -o-filter:brightness(0.92);
+    -ms-filter:brightness(0.92);
+    -moz-filter:brightness(0.92);
+    -webkit-filter:brightness(0.92);
+    filter:brightness(0.92);
+}
 .filter_brig_09 {
     -o-filter:brightness(0.9);
     -ms-filter:brightness(0.9);
@@ -10214,6 +10245,7 @@ animation {
     position: relative;
     width: 100%;
     height: inherit !important;
+    background-color: inherit;
 }
 .scrolling #ak-main {
     -webkit-overflow-scrolling: touch;
