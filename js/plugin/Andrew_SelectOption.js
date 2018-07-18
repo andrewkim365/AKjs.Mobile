@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-16
+Modification Date: 2018-07-18
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_SelectOption-------------------------------------------*/
@@ -50,9 +50,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 });
                 option.callback(select,select_list,$this.find(":selected").val(),select_text.text());
+                Andrew_UserAgent();
                 select.unbind("click");
                 select.click(function (andrew) {
                     andrew.preventDefault();
+                    if (IsMobile) {
+                        var pa_num = 4;
+                    } else {
+                        var pa_num = 8;
+                    }
                     $(this).toggleClass("ak-open");
                     select_list.css({
                         "width": $(this).innerWidth(),
@@ -61,17 +67,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if ($(this).offset().top + $(this).innerHeight()+ select_list.innerHeight() > $(window).height()) {
                         select_list.css({
                             "top": "auto",
-                            "bottom": $(window).height() - $(this).offset().top,
-                            "left": $(this).offset().left
+                            "bottom": $("#ak-main").outerHeight() - ($(this).offset().top + $('#ak-main').scrollTop() - pa_num) + $(this).innerHeight() - 1,
+                            "left": $(this).offset().left - $("#ak-main").offset().left
                         });
                     } else {
                         select_list.css({
                             "bottom": "auto",
-                            "left": $(this).offset().left
+                            "left": $(this).offset().left - $("#ak-main").offset().left
                         });
                         if ($('#ak-main').length > 0) {
                             select_list.css({
-                                "top": $(this).offset().top + $('#ak-main').scrollTop()-4
+                                "top": $(this).offset().top + $('#ak-main').scrollTop() - pa_num
                             });
                         } else {
                             select_list.css({
