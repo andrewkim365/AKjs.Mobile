@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180718 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180719 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -127,7 +127,6 @@ function Andrew_Router(setting) {
         });
         $(window).bind('hashchange', function () {
             var page = "hashchange";
-            $("header, main, footer").unbind();
             Router_Ajax(option,page);
             if (option.Animate) {
                 $("animation").after("<aside id='ak-aside' class='fix bg_gray_eee top_0 left_0 wh_100' />");
@@ -146,9 +145,9 @@ function Andrew_Router(setting) {
                 } else if ($("animation").prop("dataset").router == "slideRight") {
                     asideEle.addClass("filter_brig_096");
                     $("animation").addClass("animated slideInRight ani_05s");
-                    $("animation").find("header").addClass("top_0 right_0 left_0");
-                    $("animation").find("main").addClass("top_0 right_0 bottom_0 left_0");
-                    $("animation").find("header").addClass("right_0 bottom_0 left_0");
+                    $("header").not("aside header").addClass("top_0 right_0 left_0");
+                    $("main").not("aside main").addClass("top_0 right_0 bottom_0 left_0");
+                    $("footer").not("aside footer").addClass("right_0 bottom_0 left_0");
                     asideEle.html($(animationEle).html());
                 } else {
                     $("animation").removeClass();
@@ -163,12 +162,16 @@ function Andrew_Router(setting) {
                     asideEle.removeClass();
                     asideEle.remove();
                     $("animation").removeClass();
-                    $("animation").find("header").removeClass("top_0 right_0 left_0");
-                    $("animation").find("main").removeClass("top_0 right_0 bottom_0 left_0");
-                    $("animation").find("header").removeClass("right_0 bottom_0 left_0");
+                    $("header").not("aside header").removeClass("top_0 right_0 left_0");
+                    $("main").not("aside main").removeClass("top_0 right_0 bottom_0 left_0");
+                    $("footer").not("aside footer").removeClass("right_0 bottom_0 left_0");
                 }, 500);
                 option.changePage(document.location.hash.substring(1),$(animationEle).html());
             } else {
+                $("header, main, footer").css({
+                    "left": 0,
+                    "right": 0
+                });
                 option.changePage(document.location.hash.substring(1),record);
             }
         });
@@ -213,23 +216,25 @@ function Andrew_Router(setting) {
                     async: false,
                     cache: false,
                     success: function () {
-                        $("main").not("aside main").removeClass("dis_none_im");
                         option.success(document.location.hash.substring(1));
                     },
                     error: function () {
-                        $("main").not("aside main").addClass("dis_none_im");
                         option.error(document.location.hash.substring(1));
+                        $("main").not("aside main").hide();
+                        setTimeout(function () {
+                            $("main").not("aside main").show().html('<div class="mt_30 text_al_c"><i class="dis_block dis_opa_05 bg_black c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5">&Chi;</i> Sorry! Error Document 404!</div>');
+                        }, 100);
                     }
                 });
                 var htmlobj_text = $(htmlobj.responseText);
                 if (htmlobj_text.prop("localName") == "template") {
                     var main_tmpl = htmlobj_text.html().replace('<ak-main', '<scrollview id="ak-main"').replace('</ak-main>', '</scrollview>');
-                    if (option.Animate) {
-                        if (typeof(Storage) !== "undefined") {
-                            localStorage.setItem("Retrieve", $("body").html());
-                            record = localStorage.getItem("Retrieve");
-                            localStorage.setItem("aside_Retrieve", $("body").html().replace('id=', 'data-id=').replace('<main', '<container id="ak-main-record"').replace('</main>', '</container>'));
-                            aside_record = localStorage.getItem("aside_Retrieve");
+                    if (typeof(Storage) !== "undefined") {
+                        localStorage.setItem("Retrieve", $("body").html());
+                        record = localStorage.getItem("Retrieve");
+                        if (option.Animate) {
+                            localStorage.setItem("aside_Retrieve", $("body").html().replace('<main', '<container id="ak-main-record"').replace('</main>', '</container>'));
+                            aside_record = localStorage.getItem("aside_Retrieve").replace(/id=/g, "data-id=").replace(/plug_/g, "akjs_plug_");
                         }
                     }
                     $("main").not("aside main").html(main_tmpl);
@@ -238,11 +243,11 @@ function Andrew_Router(setting) {
                             $("main").not("aside main").find("#ak-main").prevAll().remove();
                         }
                         if ($("#ak-main").parentsUntil("main").length > 0) {
-                            $("main").not("aside main").html('<span class="c_red">sorry! The outer layer of the "&lt;ak-main&gt;&lt;/ak-main&gt;" element can not have other elements!</span>');
+                            $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block dis_opa_05 bg_black c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5">&Chi;</i> Sorry! The outer layer of the "&lt;ak-main&gt;&lt;/ak-main&gt;" element can not have other elements!</div>');
                         }
                     }, 100);
                 } else {
-                    $("main").not("aside main").html('<span class="c_red">sorry! The lack of "&lt;template&gt;&lt;/template&gt;" elements!</span>');
+                    $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block dis_opa_05 bg_black c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5">&Chi;</i> Sorry! The lack of "&lt;template&gt;&lt;/template&gt;" elements!</div>');
                 }
                 if ($(htmlobj_text).next().prop("localName") == "script") {
                     var jsText = $(htmlobj_text).next().html();
@@ -256,14 +261,24 @@ function Andrew_Router(setting) {
                 }
                 $("html").children("script").html("").remove();
                 $("html").children("style").html("").remove();
-                setTimeout(function () {
-                    $("<script type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
-                    $("<style type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
-                }, 100);
+                if (jsText != undefined) {
+                    setTimeout(function () {
+                        $("<script id='akjs_script' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
+                        $("<style id='akjs_style' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
+                    }, 100);
+                }
                 Router_Settings();
+                setTimeout(function() {
+                    if (option.Parameter) {
+                        Andrew_HashSharp(true,true);
+                    } else {
+                        Andrew_HashSharp(true,false);
+                    }
+                },500);
             }
         }
         function Router_Settings() {
+            Andrew_Animation();
             if ($("footer").not("aside footer").find("dfn").length == 0) {
                 $("footer").not("aside footer").children().before("<dfn />");
                 $("footer").not("aside footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im");
@@ -302,14 +317,6 @@ function Andrew_Router(setting) {
                 $("footer").not("aside footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im").remove();
                 $("footer").not("aside footer").addClass("dis_none_im").removeClass("dis_block_im");
             }
-            setTimeout(function() {
-                if (option.Parameter) {
-                    Andrew_HashSharp(true,true);
-                } else {
-                    Andrew_HashSharp(true,false);
-                }
-            },200);
-            Andrew_Animation();
         }
     }
 }
@@ -332,36 +339,34 @@ function Andrew_Menu(setting) {
     } else {
         ak_menu.addClass("length"+ak_menu_btn.length);
     }
-    ak_menu_btn.each(function () {
-        var index = $(this).index();
-        if ($(this).attr("data-href")) {
-            var data_href = $(this).attr("data-href").split("?")[0];
-        }
-        $(this).children().eq(0).addClass(option.menu_icon[index]);
-        $(this).children().removeClass(option.active_color);
-        if (document.location.hash.indexOf(data_href) != -1 || document.location.hash.substring(1).split("?")[0].indexOf(data_href) != -1) {
-            ak_menu_btn.children().eq(1).removeClass(option.active_color);
-            $(this).children().eq(0).removeClass(option.menu_icon[index]);
-            $(this).children().eq(0).addClass(option.menu_icon_active[index]).addClass(option.active_color);
-            $(this).children().eq(1).addClass(option.active_color);
-            option.Callback($(this),index+1);
-        } else if (document.location.hash.substring(1).split("?")[0] == "") {
-            ak_menu_btn.eq(0).children().eq(0).removeClass(option.menu_icon[0]).addClass(option.menu_icon_active[0]).addClass(option.active_color);
-            ak_menu_btn.eq(0).children().eq(1).addClass(option.active_color);
-        }
-    });
+    ak_menu_setting();
     $(window).bind('hashchange', function () {
+        ak_menu_setting();
+    });
+    function ak_menu_setting() {
         ak_menu_btn.each(function () {
+            var ak_hash = document.location.hash;
             var index = $(this).index();
             if ($(this).attr("data-href")) {
                 var data_href = $(this).attr("data-href").split("?")[0];
             }
-            if (document.location.hash.substring(1).split("?")[0].indexOf(data_href) == -1) {
-                $(this).children().eq(0).removeClass(option.menu_icon_active[index]).addClass(option.menu_icon[index]);
+            $(this).children().eq(0).addClass(option.menu_icon[index]);
+            $(this).children().removeClass(option.active_color);
+            if (ak_hash.indexOf(data_href) != -1 || ak_hash.substring(1).split("?")[0].indexOf(data_href) != -1 || ak_hash.substring(1).split("?")[0].indexOf(data_href.substring(1)) != -1) {
+                ak_menu_btn.children().eq(1).removeClass(option.active_color);
+                $(this).children().eq(0).removeClass(option.menu_icon[index]);
+                $(this).children().eq(0).addClass(option.menu_icon_active[index]).addClass(option.active_color);
+                $(this).children().eq(1).addClass(option.active_color);
+                option.Callback($(this),index+1);
+            } else if (ak_hash.substring(1).split("?")[0].indexOf(data_href) == -1 || ak_hash.substring(1).split("?")[0].indexOf(data_href.substring(1)) == -1) {
+                $(this).children().eq(0).removeClass(option.menu_icon_active[index]).addClass(option.menu_icon[index]).removeClass(option.active_color);
                 $(this).children().eq(1).removeClass(option.active_color);
+            } else if (ak_hash.substring(1).split("?")[0] == "") {
+                ak_menu_btn.eq(0).children().eq(0).removeClass(option.menu_icon[0]).addClass(option.menu_icon_active[0]).addClass(option.active_color);
+                ak_menu_btn.eq(0).children().eq(1).addClass(option.active_color);
             }
         });
-    });
+    }
 }
 
 /*-----------------------------------------------Andrew_UserAgent------------------------------------------*/
@@ -950,7 +955,7 @@ function Andrew_RegularExpression() {
 }
 
 /*-----------------------------------------------Andrew_Include------------------------------------------*/
-function Andrew_Include(url) {
+function Andrew_Include(url,important) {
     Andrew_pathURL();
     var type_js = new RegExp(".js");
     var type_css = new RegExp(".css");
@@ -970,7 +975,7 @@ function Andrew_Include(url) {
         fileref.setAttribute("type","text/css");
         fileref.setAttribute("data-akjs",new Date().getTime());
         if (type_remote.test(url)) {
-            fileref.setAttribute("src",url);
+            fileref.setAttribute("href",url);
         } else {
             fileref.setAttribute("href",AKjsPath+"/"+url+"?akjs="+new Date().getTime());
         }
@@ -990,43 +995,97 @@ function Andrew_Include(url) {
                 }
             }
         });
-        $(fileref).appendTo($("head"));
+        if (important) {
+            $("head").find("title").after(fileref);
+        } else {
+            $(fileref).appendTo($("head"));
+        }
     }else{
         console.info("load include {"+url+"} file method error!");
     }
 }
 
 /*-----------------------------------------------Andrew_Location-------------------------------------------*/
-function Andrew_Location(url,option) {
+function Andrew_Location(url,option,time) {
     Andrew_UserAgent();
     if (IsIphone || IsIpad) {
         switch (option) {
             case 'href':
-                document.location.href="#"+url;
+                if (time) {
+                    setTimeout(function () {
+                        document.location.href="#"+url;
+                    }, time);
+                } else {
+                    document.location.href="#"+url;
+                }
                 break;
             case 'history':
-                history.back(url);
+                if (time) {
+                    setTimeout(function () {
+                        history.back(url);
+                    }, time);
+                } else {
+                    history.back(url);
+                }
                 break;
             case 'reload':
-                document.location.reload();
+                if (time) {
+                    setTimeout(function () {
+                        document.location.reload();
+                    }, time);
+                } else {
+                    document.location.reload();
+                }
                 break;
             default:
-                document.location.replace("#"+url);
+                time = option;
+                if (time) {
+                    setTimeout(function () {
+                        document.location.replace("#"+url);
+                    }, time);
+                } else {
+                    document.location.replace("#"+url);
+                }
                 break;
         }
     }else{
         switch (option) {
             case 'href':
-                window.location.href="#"+url;
+                if (time) {
+                    setTimeout(function () {
+                        window.location.href="#"+url;
+                    }, time);
+                } else {
+                    window.location.href="#"+url;
+                }
                 break;
             case 'history':
-                window.back(url);
+                if (time) {
+                    setTimeout(function () {
+                        window.back(url);
+                    }, time);
+                } else {
+                    window.back(url);
+                }
                 break;
             case 'reload':
-                window.location.reload();
+                if (time) {
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, time);
+                } else {
+                    window.location.reload();
+                }
                 break;
             default:
-                window.location.replace("#"+url);
+                time = option;
+                if (time) {
+                    setTimeout(function () {
+                        window.location.replace("#"+url);
+                    }, time);
+                } else {
+                    window.location.replace("#"+url);
+                }
                 break;
         }
     }
@@ -1047,9 +1106,9 @@ function Andrew_getUrlParam(name) {
 }
 
 /*-----------------------------------------------Andrew_changeURLArg-------------------------------------------*/
-function Andrew_changeURLArg(url, arg, arg_val) {
+function Andrew_changeURLArg(url,arg,val) {
     var pattern = arg + '=([^&]*)';
-    var replaceText = arg + '=' + arg_val;
+    var replaceText = arg + '=' + val;
     if (url.match(pattern)) {
         var tmp = '/(' + arg + '=)([^&]*)/gi';
         tmp = url.replace(eval(tmp), replaceText);
@@ -1061,7 +1120,7 @@ function Andrew_changeURLArg(url, arg, arg_val) {
             return url + '?' + replaceText;
         }
     }
-    return url + '\n' + arg + '\n' + arg_val;
+    return url + '\n' + arg + '\n' + val;
 }
 
 /*-----------------------------------------------Andrew_Params------------------------------------------*/
@@ -1080,7 +1139,7 @@ function Andrew_Params(number) {
 }
 
 /*-----------------------------------------------Andrew_setCookie------------------------------------------*/
-function Andrew_setCookie(cname, cvalue, exdays) {
+function Andrew_setCookie(cname,cvalue,exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();

@@ -22,7 +22,7 @@
 /*-----------------------------------------------Andrew_Router (路由全局设置）使用方法-------------------------------------------*/
 $(document).ready(function(){
     Andrew_Include("css/theme.default.css"); //颜色相关样式文件引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
-    Andrew_Include("js/data.js"); //Json数据文件引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
+    Andrew_Include("js/data.js",true); //Json数据文件引入（Andrew_Include是js文件中引入另一个js或css文件的功能。后面加 true 代表优先级引入的意思（important））
     Andrew_Include("js/plugin.js"); //功能插件按需引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
     Andrew_Router({ //路由配置管理
         Router: true, //是否开启路由（开启路由URL中带#的路径访问页面不刷新页面形式跳转 (开启 true, 停用 false）
@@ -99,9 +99,11 @@ $(document).ready(function(){
             });
             /*
                 Andrew_Location 使用方法：
-                Andrew_Location("/start.html","href"); //location.href 跳转模式
-                Andrew_Location("/","reload") //location.reload() 刷新当前页
-                Andrew_Location(-1,"history") //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
+                Andrew_Location(url,option,time); //url=跳转路径，option=跳转类型，time=延迟时间
+                Andrew_Location("/start"); //location.replace 跳转模式(第二个参数默认识别time参数)
+                Andrew_Location("/start","href"); //location.href 跳转模式
+                Andrew_Location("/","reload"); //location.reload() 刷新当前页
+                Andrew_Location(-1,"history"); //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
 
                 Andrew_getUrlParam &  Andrew_changeURLArg 使用方法：
                 console.log("GET_ak: "+Andrew_getUrlParam('ak')); //获取URL中的参数值
