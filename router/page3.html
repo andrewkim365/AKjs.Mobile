@@ -153,6 +153,7 @@
                     OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                     toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                     callback :function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                        $("main").addClass("dis_opa_1");
                         if (toggle) { //判断是否弹出弹窗
                             $(ele[0].dom).addClass("dis_block_im");
                             $("main").addClass("left_au");
@@ -174,6 +175,9 @@
                                 $("main").removeClass("left_au");
                             },500);
                         }
+                    },
+                    leaveback: function (ele,toggle) { //当路由页面离开时的回调(页面跳转后可以初始化设置)
+                        $("main").removeClass("dis_opa_1");
                     }
                 });
             });
