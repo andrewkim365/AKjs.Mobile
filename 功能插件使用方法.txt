@@ -346,7 +346,7 @@ $(function(){
        isRange : false, //是否为选取范围。
        onstatechange: function(ele,val){
            //console.log(ele);
-           console.log(val);
+           //console.log(val);
        }
    });
    $('.plug_range2').Andrew_Range({
@@ -362,7 +362,7 @@ $(function(){
        isRange : true, //是否为选取范围。
        onstatechange: function(ele,val){
            //console.log(ele);
-           console.log(val);
+           //console.log(val);
        }
    });
 });
