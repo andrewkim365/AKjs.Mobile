@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-08
+Modification Date: 2018-07-19
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_WebToast-------------------------------------------*/
@@ -56,8 +56,11 @@ function ak_webToast(){
         }
         $(Andrew_WebToast).html(ret);
     }
-    $(Andrew_WebToast).fadeIn();
-    ToastSetting();
+    setTimeout(function () {
+        $(Andrew_WebToast).fadeIn();
+        ToastSetting();
+    }, 100);
+
     $(window).resize(function(){
         ToastSetting();
     });
