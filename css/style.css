@@ -281,9 +281,6 @@ main {
     text-align: left;
     left: 0;
 }
-.list li:last-child , .list dl:last-child { /*列表中最后一个线条隐藏*/
-    border-bottom: none !important;
-}
 
 /*********************底部固定菜单*********************/
 footer {
@@ -301,8 +298,13 @@ footer menu, footer dfn {
     height:3.2em;
     overflow:hidden;
 }
+footer button {
+    float: left;
+    height: inherit;
+}
 footer menu i, footer menu em, footer dfn i, footer dfn em {
     display:block;
+    color: #777777;
 }
 
 /*********************其它样式覆盖区域*********************/
