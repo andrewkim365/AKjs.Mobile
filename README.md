@@ -51,6 +51,8 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.2版本，akjs.animate.css发布1.0.5版本；
 
+修改 css目录中的style.css文件和js目录中的router.js文件内容；
+
 修改 js/plugin/Andrew_Loader.js以及对应的css 功能插件bug；
 
 修改 js/plugin/Andrew_Waterfall.js以及对应的css 功能插件bug；
