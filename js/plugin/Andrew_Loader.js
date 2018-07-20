@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-18
+Modification Date: 2018-07-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Loader------------------------------------------*/
@@ -134,5 +134,5 @@ function Andrew_Loader(setting){
             $(load_ele).fadeOut();
             $("main").addClass("scrolling");
         }
-    }, 100);
+    }, 200);
 }
