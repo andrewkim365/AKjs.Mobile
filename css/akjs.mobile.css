@@ -10201,7 +10201,7 @@ animation {
     z-index: 2;
     background-color: inherit;
 }
-#ak-main, ak-main {
+#ak-main, ak-main, scrollview {
     display: block;
     overflow: auto;
     position: relative;
@@ -10209,11 +10209,11 @@ animation {
     height: inherit !important;
     background-color: inherit;
 }
-.scrolling #ak-main {
+.scrolling #ak-main, .scrolling scrollview {
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
 }
-#ak-aside, #ak-aside > #ak-main-record {
+#ak-aside, #ak-aside > container {
     display: block;
     background-color: inherit;
 }
