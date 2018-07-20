@@ -751,7 +751,7 @@
             afterToggle: function(trigger, element, expanded) { //称为后，该块被折叠或展开
                 if(!expanded) {
                     $('main').animate({
-                        scrollTop: element.offset().top
+                        scrollTop: element.offset().top + $("#ak-main").scrollTop() - element.next("button").height()
                     }, {duration: 500 } );
                 }
             },
