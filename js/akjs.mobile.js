@@ -265,7 +265,7 @@ function Andrew_Router(setting) {
                     setTimeout(function () {
                         $("<script id='akjs_script' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
                         $("<style id='akjs_style' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
-                    }, 100);
+                    }, 500);
                 }
                 Router_Settings();
                 setTimeout(function() {
