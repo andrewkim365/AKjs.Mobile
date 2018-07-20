@@ -10215,6 +10215,7 @@ animation {
 }
 #ak-aside, #ak-aside > container {
     display: block;
+    position: relative;
     background-color: inherit;
 }
 
