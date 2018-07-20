@@ -663,7 +663,7 @@
                 console.log($('main').children());
                 if(!expanded) {
                     $("main").children("#ak-main").animate({
-                        scrollTop: element.offset().top
+                        scrollTop: element.offset().top + $("#ak-main").scrollTop() - element.next("button").height()
                     }, {duration: 500 } );
                 }
             },
