@@ -6,7 +6,7 @@
 
     <!--业务代码外层必须有ak-main元素才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main元素的下面写（ak-header和ak-main中间禁止写代码）。-->
     <ak-main>
-        <div class="plug_waterfall module mt_5 mb_5 wm_96 min_h_100 defer_3">
+        <div class="plug_waterfall module mt_5 mb_5 wm_96 min_h_100 defer_15">
         </div>
     </ak-main>
 
@@ -205,7 +205,9 @@
                 /*元素设置*/
                 var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
                 ele.parent().append(wdropload);
-                $(str).appendTo(ele);
+                setTimeout(function() {
+                    $(str).appendTo(ele);
+                },500);
                 setTimeout(function() {
                     $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
                 },1000);
