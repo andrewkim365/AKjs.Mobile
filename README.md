@@ -63,7 +63,7 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.3版本；
 
 修改 js/plugin/Andrew_GoTop.js 功能插件bug；
 
-修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
+修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5 , start.html）
 
 
 #### 更新时间：2018/07/19 下午 17:15
