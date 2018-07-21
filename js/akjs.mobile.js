@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180719 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180721 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -99,6 +99,7 @@ function Andrew_Router(setting) {
             FileFormat: ".html",
             Parameter: false,
             Animate:"",
+            ErrorMsg: "Current Page loading failure!",
             RouterPath:[],
             success:function () {
             },
@@ -222,7 +223,7 @@ function Andrew_Router(setting) {
                         option.error(document.location.hash.substring(1));
                         $("main").not("aside main").hide();
                         setTimeout(function () {
-                            $("main").not("aside main").show().html('<div class="mt_30 text_al_c"><i class="dis_block dis_opa_05 bg_black c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5">&Chi;</i> Sorry! Error Document 404!</div>');
+                            $("main").not("aside main").show().html('<div class="mt_30 text_al_c"><i class="dis_block c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5" style="background-color:#f16a6a;">&Chi;</i>'+option.ErrorMsg+'</div>');
                         }, 100);
                     }
                 });
@@ -243,11 +244,11 @@ function Andrew_Router(setting) {
                             $("main").not("aside main").find("#ak-main").prevAll().remove();
                         }
                         if ($("#ak-main").parentsUntil("main").length > 0) {
-                            $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block dis_opa_05 bg_black c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5">&Chi;</i> Sorry! The outer layer of the "&lt;ak-main&gt;&lt;/ak-main&gt;" element can not have other elements!</div>');
+                            $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5" style="background-color:#f16a6a;">&Chi;</i> Sorry! The outer layer of the "&lt;ak-main&gt;&lt;/ak-main&gt;" element can not have other elements!</div>');
                         }
                     }, 100);
                 } else {
-                    $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block dis_opa_05 bg_black c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5">&Chi;</i> Sorry! The lack of "&lt;template&gt;&lt;/template&gt;" elements!</div>');
+                    $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5" style="background-color:#f16a6a;">&Chi;</i>Sorry! The lack of "&lt;template&gt;&lt;/template&gt;" elements!</div>');
                 }
                 if ($(htmlobj_text).next().prop("localName") == "script") {
                     var jsText = $(htmlobj_text).next().html();
