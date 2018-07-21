@@ -1,6 +1,6 @@
 //引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-07-19
+//文档更新日期：2018-07-21
 
 /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
 $(function () {
@@ -1347,6 +1347,27 @@ $(function () {
         beforeToggle: function(trigger, element, expanded) { //称为或多或少链接被点击后，但之前的块被折叠或展开
             if(!expanded) {
             }
+        }
+    });
+});
+
+/*-----------------------------------------------Andrew_SelectOption 使用方法-------------------------------------------*/
+$(function(){
+    $(".plug_select").Andrew_SelectOption({
+        active: "bg_title c_white", //下拉列表被选中时样式
+        boxheight: "12.6em", //下拉框展开后的列表区域的最大高度
+        speed: 300, //下拉框展开和折叠毫秒时间
+        callback:function(ele,list,val,text){ //初始化回调
+            //console.log(ele);
+            //console.log(list);
+            //console.log(val);
+            //console.log(text);
+        },
+        clickback:function(ele,list,val,text){ //选中回调函数获取值
+            console.log(ele);
+            console.log(list);
+            console.log(val);
+            console.log(text);
         }
     });
 });
