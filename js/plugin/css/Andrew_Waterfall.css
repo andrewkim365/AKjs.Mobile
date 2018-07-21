@@ -1,5 +1,7 @@
 .ak-waterfall {
     background-color: inherit;
+    position: relative;
+    z-index: 2;
 }
 .ak-waterfall figure {
     float: left;
