@@ -806,7 +806,7 @@ function Andrew_HashSharp(form,key) {
                 $("animation").attr("data-router","");
                 if ($(this).parents("footer")[0] != undefined) {
                     $("animation").attr("data-router","");
-                } else if (hash_script.test($(this).attr("data-href"))){
+                } else if ($(this).attr("data-back") === "true" || hash_script.test($(this).attr("data-href"))){
                     $("animation").attr("data-router","slideLeft");
                 } else {
                     $("animation").attr("data-router","slideRight");
