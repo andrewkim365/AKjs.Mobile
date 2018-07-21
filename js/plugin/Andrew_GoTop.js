@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-12
+Modification Date: 2018-07-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_GoTop--------------------------------------*/
@@ -39,6 +39,7 @@ function Andrew_GoTop (setting){
             var dom = '<div class="ak-GoTopBox ' + option.icon + '" style="width:' + option.width + ';height:' + option.height + ';display:none;position:fixed;cursor:pointer;right:2em;z-index:999;' + sate + '">' +
                 '</div>'
         }
+        $('.ak-GoTopBox').remove();
         $("body").append(dom);
         var GoTopBox = $('.ak-GoTopBox');
         option.dom.on('scroll',throttle(scroll,50));
