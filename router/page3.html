@@ -207,6 +207,7 @@
                 ele.parent().append(wdropload);
                 $(str).appendTo(ele);
                 setTimeout(function() {
+                    ele.removeClass("defer_15");
                     $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
                 },1000);
             },
