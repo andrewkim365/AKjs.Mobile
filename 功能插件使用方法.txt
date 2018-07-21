@@ -1258,9 +1258,7 @@ $(function(){
             /*元素设置*/
             var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
             ele.parent().append(wdropload);
-            setTimeout(function() {
-                $(str).appendTo(ele);
-            },500);
+            $(str).appendTo(ele);
             setTimeout(function() {
                 $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
             },1000);

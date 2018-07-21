@@ -30,7 +30,7 @@
 
   <!--main元素里面必须有id="ak-main"才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main元素的下面写（ak-main的上一级元素必须使用main元素）。-->
   <div id="ak-main">
-    <div class="plug_waterfall module mt_5 mb_5 wm_96 min_h_100 defer_15">
+    <div class="plug_waterfall module mt_3 mb_3 wm_96 h_fill defer_15">
     </div>
   </div>
   <!--ak-main End-->
@@ -277,8 +277,8 @@
             isFadeIn: true, //是否开启浅入效果 （追加元素中的class必须有ak-fadeIn才有效果）
             Callback: function(ele) {
                 var data = {"data": [
-                        { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
-                    ]};
+                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
+                ]};
                 var str = "";
                 var templ = '<figure class="ak-fadeIn"><img src="./img/{{src}}" /></figure>'
 
@@ -288,9 +288,7 @@
                 /*元素设置*/
                 var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
                 ele.parent().append(wdropload);
-                setTimeout(function() {
-                    $(str).appendTo(ele);
-                },500);
+                $(str).appendTo(ele);
                 setTimeout(function() {
                     $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
                 },1000);
@@ -299,8 +297,8 @@
                 success();
                 /*数据设置*/
                 var data = {"data": [
-                        { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
-                    ]};
+                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
+                ]};
                 var str = "";
                 var templ = '<figure class="ak-fadeIn"><img src="./img/{{src}}" /></figure>'
 
