@@ -660,7 +660,6 @@
             lessLink: '<button class="bg_white c_gray_333 w_100 h_36em bor_top bor_gray_ddd">收起内容 <i class="icon-ln_xiangshang"></i></button>', //收起按钮HTML
             startOpen: false, //不要立即截断，开始在全开位置
             afterToggle: function(trigger, element, expanded) { //称为后，该块被折叠或展开
-                console.log($('main').children());
                 if(!expanded) {
                     $("main").children("#ak-main").animate({
                         scrollTop: element.offset().top + $("#ak-main").scrollTop() - element.next("button").height()
