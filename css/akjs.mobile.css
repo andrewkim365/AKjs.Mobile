@@ -57,10 +57,11 @@ main {
     overflow: hidden;
     padding: 0;
     margin: 0;
-    -o-animation:defer 0.5s forwards;
-    -moz-animation:defer 0.5s forwards;
+    opacity: 0;
+    -o-animation:defer_fadeIn 0.5s forwards;
+    -moz-animation:defer_fadeIn 0.5s forwards;
     -webkit-animation:defer 0.5s forwards;
-    animation:defer 0.5s forwards;
+    animation:defer_fadeIn 0.5s forwards;
     background-color: inherit;
 }
 body,input,span,p,a {
@@ -1584,6 +1585,18 @@ text {
     0% {opacity: 0 !important;}
     99% {opacity: 0 !important;}
     100% {opacity: 1 !important;}
+}
+@keyframes defer_fadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    80% {opacity: 0.5;}
+    100% {opacity: 1;}
+}
+@-webkit-keyframes defer_fadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    80% {opacity: 0.5;}
+    100% {opacity: 1;}
 }
 /*opacity, show, hide*/
 .dis_opa_1 {
@@ -10402,6 +10415,13 @@ animation {
     left: 0;
     z-index: 2;
     background-color: inherit;
+}
+animation main {
+    opacity: 1 !important;
+    -o-animation: none !important;
+    -moz-animation: none !important;
+    -webkit-animation: none !important;
+    animation: none !important;
 }
 #ak-main, ak-main, scrollview {
     display: block;
