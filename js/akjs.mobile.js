@@ -225,6 +225,7 @@ function Andrew_Router(setting) {
                         setTimeout(function () {
                             $("main").not("aside main").show().html('<div class="mt_30 text_al_c"><i class="dis_block c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5" style="background-color:#f16a6a;">&Chi;</i>'+option.ErrorMsg+'</div>');
                         }, 100);
+                        throw new Error("Sorry! Document not found!");
                     }
                 });
                 var htmlobj_text = $(htmlobj.responseText);
@@ -239,16 +240,12 @@ function Andrew_Router(setting) {
                         }
                     }
                     $("main").not("aside main").html(main_tmpl);
-                    setTimeout(function () {
-                        if ($("main").not("aside main").find("#ak-main").length > 0) {
-                            $("main").not("aside main").find("#ak-main").prevAll().remove();
-                        }
-                        if ($("#ak-main").parentsUntil("main").length > 0) {
-                            $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5" style="background-color:#f16a6a;">&Chi;</i> Sorry! The outer layer of the "&lt;ak-main&gt;&lt;/ak-main&gt;" element can not have other elements!</div>');
-                        }
-                    }, 100);
+                    if ($("#ak-main").parentsUntil("main").length > 0) {
+                        $("#ak-main").remove();
+                        throw new Error("Sorry! The outer layer of the \"<ak-main></ak-main>\" element can not have other elements!");
+                    }
                 } else {
-                    $("main").not("aside main").html('<div class="mt_30 text_al_c"><i class="dis_block c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5" style="background-color:#f16a6a;">&Chi;</i>Sorry! The lack of "&lt;template&gt;&lt;/template&gt;" elements!</div>');
+                    throw new Error("Sorry! The lack of \"<template></template>\" elements!");
                 }
                 if ($(htmlobj_text).next().prop("localName") == "script") {
                     var jsText = $(htmlobj_text).next().html();
@@ -275,7 +272,7 @@ function Andrew_Router(setting) {
                     } else {
                         Andrew_HashSharp(true,false);
                     }
-                },500);
+                },1000);
             }
         }
         function Router_Settings() {
