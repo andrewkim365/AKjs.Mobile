@@ -375,7 +375,6 @@
     width: 3em;
     height: 3em;
     position: absolute;
-    top: 50% !important;
     left: 50% !important;
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -383,6 +382,12 @@
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+@media screen and (max-width:1024px) {
+    .ak-Loader:not(.ak-mask) .ak-loading {
+        top: 50% !important;
+    }
+}
+
 .ak-Loader:not(.ak-mask) .ak-loading > div {
     z-index: 2;
 }
