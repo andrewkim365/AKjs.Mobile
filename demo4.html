@@ -750,7 +750,7 @@
             startOpen: false, //不要立即截断，开始在全开位置
             afterToggle: function(trigger, element, expanded) { //称为后，该块被折叠或展开
                 if(!expanded) {
-                    $('main').animate({
+                    $("main").children("#ak-main").animate({
                         scrollTop: element.offset().top + $("#ak-main").scrollTop() - element.next("button").height()
                     }, {duration: 500 } );
                 }
