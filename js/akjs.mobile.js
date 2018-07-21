@@ -188,10 +188,6 @@ function Andrew_Router(setting) {
                             $("footer").not("aside footer").removeClass("dis_none_im");
                         }
                     });
-                    $("main").addClass("animated_none dis_opa_0");
-                    setTimeout(function () {
-                        $("main").removeClass("animated_none dis_opa_0");
-                    }, 100);
                     $("#ak-main").animate({"scrollTop": 0}, 100);
                     $("body").children("div").remove();
                     $(".ak-mask").remove();
