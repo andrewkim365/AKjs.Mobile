@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180719 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180721 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -1311,11 +1311,59 @@ text {
     opacity: 0;
     filter:alpha(opacity=0);
 }
+.defer_01 {
+    -o-animation:defer 0.1s forwards;
+    -moz-animation:defer 0.1s forwards;
+    -webkit-animation:defer 0.1s forwards;
+    animation:defer 0.1s forwards;
+}
+.defer_02 {
+    -o-animation:defer 0.2s forwards;
+    -moz-animation:defer 0.2s forwards;
+    -webkit-animation:defer 0.2s forwards;
+    animation:defer 0.2s forwards;
+}
+.defer_03 {
+    -o-animation:defer 0.3s forwards;
+    -moz-animation:defer 0.3s forwards;
+    -webkit-animation:defer 0.3s forwards;
+    animation:defer 0.3s forwards;
+}
+.defer_04 {
+    -o-animation:defer 0.4s forwards;
+    -moz-animation:defer 0.4s forwards;
+    -webkit-animation:defer 0.4s forwards;
+    animation:defer 0.4s forwards;
+}
 .defer_05 {
     -o-animation:defer 0.5s forwards;
     -moz-animation:defer 0.5s forwards;
     -webkit-animation:defer 0.5s forwards;
     animation:defer 0.5s forwards;
+}
+.defer_06 {
+    -o-animation:defer 0.6s forwards;
+    -moz-animation:defer 0.6s forwards;
+    -webkit-animation:defer 0.6s forwards;
+    animation:defer 0.6s forwards;
+}
+.defer_07 {
+    -o-animation:defer 0.7s forwards;
+    -moz-animation:defer 0.7s forwards;
+    -webkit-animation:defer 0.7s forwards;
+    animation:defer 0.7s forwards;
+}
+.defer_08 {
+    -o-animation:defer 0.8s forwards;
+    -moz-animation:defer 0.8s forwards;
+    -webkit-animation:defer 0.8s forwards;
+    animation:defer 0.8s forwards;
+}
+.defer_09 {
+    -o-animation:defer 0.9s forwards;
+    -moz-animation:defer 0.9s forwards;
+    -webkit-animation:defer 0.9s forwards;
+    animation:defer 0.9s forwards;
 }
 .defer_1 {
     -o-animation:defer 1s forwards;
@@ -1323,11 +1371,59 @@ text {
     -webkit-animation:defer 1s forwards;
     animation:defer 1s forwards;
 }
+.defer_11 {
+    -o-animation:defer 1.1s forwards;
+    -moz-animation:defer 1.1s forwards;
+    -webkit-animation:defer 1.1s forwards;
+    animation:defer 1.1s forwards;
+}
+.defer_12 {
+    -o-animation:defer 1.2s forwards;
+    -moz-animation:defer 1.2s forwards;
+    -webkit-animation:defer 1.2s forwards;
+    animation:defer 1.2s forwards;
+}
+.defer_13 {
+    -o-animation:defer 1.3s forwards;
+    -moz-animation:defer 1.3s forwards;
+    -webkit-animation:defer 1.3s forwards;
+    animation:defer 1.3s forwards;
+}
+.defer_14 {
+    -o-animation:defer 1.4s forwards;
+    -moz-animation:defer 1.4s forwards;
+    -webkit-animation:defer 1.4s forwards;
+    animation:defer 1.4s forwards;
+}
 .defer_15 {
     -o-animation:defer 1.5s forwards;
     -moz-animation:defer 1.5s forwards;
     -webkit-animation:defer 1.5s forwards;
     animation:defer 1.5s forwards;
+}
+.defer_16 {
+    -o-animation:defer 1.6s forwards;
+    -moz-animation:defer 1.6s forwards;
+    -webkit-animation:defer 1.6s forwards;
+    animation:defer 1.6s forwards;
+}
+.defer_17 {
+    -o-animation:defer 1.7s forwards;
+    -moz-animation:defer 1.7s forwards;
+    -webkit-animation:defer 1.7s forwards;
+    animation:defer 1.7s forwards;
+}
+.defer_18 {
+    -o-animation:defer 1.8s forwards;
+    -moz-animation:defer 1.8s forwards;
+    -webkit-animation:defer 1.8s forwards;
+    animation:defer 1.8s forwards;
+}
+.defer_19 {
+    -o-animation:defer 1.9s forwards;
+    -moz-animation:defer 1.9s forwards;
+    -webkit-animation:defer 1.9s forwards;
+    animation:defer 1.9s forwards;
 }
 .defer_2 {
     -o-animation:defer 2s forwards;
@@ -1335,11 +1431,59 @@ text {
     -webkit-animation:defer 2s forwards;
     animation:defer 2s forwards;
 }
+.defer_21 {
+    -o-animation:defer 2.1s forwards;
+    -moz-animation:defer 2.1s forwards;
+    -webkit-animation:defer 2.1s forwards;
+    animation:defer 2.1s forwards;
+}
+.defer_22 {
+    -o-animation:defer 2.2s forwards;
+    -moz-animation:defer 2.2s forwards;
+    -webkit-animation:defer 2.2s forwards;
+    animation:defer 2.2s forwards;
+}
+.defer_23 {
+    -o-animation:defer 2.3s forwards;
+    -moz-animation:defer 2.3s forwards;
+    -webkit-animation:defer 2.3s forwards;
+    animation:defer 2.3s forwards;
+}
+.defer_24 {
+    -o-animation:defer 2.4s forwards;
+    -moz-animation:defer 2.4s forwards;
+    -webkit-animation:defer 2.4s forwards;
+    animation:defer 2.4s forwards;
+}
 .defer_25 {
     -o-animation:defer 2.5s forwards;
     -moz-animation:defer 2.5s forwards;
     -webkit-animation:defer 2.5s forwards;
     animation:defer 2.5s forwards;
+}
+.defer_26 {
+    -o-animation:defer 2.6s forwards;
+    -moz-animation:defer 2.6s forwards;
+    -webkit-animation:defer 2.6s forwards;
+    animation:defer 2.6s forwards;
+}
+.defer_27 {
+    -o-animation:defer 2.7s forwards;
+    -moz-animation:defer 2.7s forwards;
+    -webkit-animation:defer 2.7s forwards;
+    animation:defer 2.7s forwards;
+}
+.defer_28 {
+    -o-animation:defer 2.8s forwards;
+    -moz-animation:defer 2.8s forwards;
+    -webkit-animation:defer 2.8s forwards;
+    animation:defer 2.8s forwards;
+}
+.defer_29 {
+    -o-animation:defer 2.9s forwards;
+    -moz-animation:defer 2.9s forwards;
+    -webkit-animation:defer 2.9s forwards;
+    animation:defer 2.9s forwards;
 }
 .defer_3 {
     -o-animation:defer 3s forwards;
@@ -1371,15 +1515,75 @@ text {
     -webkit-animation:defer 5s forwards;
     animation:defer 5s forwards;
 }
+.defer_55 {
+    -o-animation:defer 5.5s forwards;
+    -moz-animation:defer 5.5s forwards;
+    -webkit-animation:defer 5.5s forwards;
+    animation:defer 5.5s forwards;
+}
+.defer_6 {
+    -o-animation:defer 6s forwards;
+    -moz-animation:defer 6s forwards;
+    -webkit-animation:defer 6s forwards;
+    animation:defer 6s forwards;
+}
+.defer_65 {
+    -o-animation:defer 6.5s forwards;
+    -moz-animation:defer 6.5s forwards;
+    -webkit-animation:defer 6.5s forwards;
+    animation:defer 6.5s forwards;
+}
+.defer_7 {
+    -o-animation:defer 7s forwards;
+    -moz-animation:defer 7s forwards;
+    -webkit-animation:defer 7s forwards;
+    animation:defer 7s forwards;
+}
+.defer_75 {
+    -o-animation:defer 7.5s forwards;
+    -moz-animation:defer 7.5s forwards;
+    -webkit-animation:defer 7.5s forwards;
+    animation:defer 7.5s forwards;
+}
+.defer_8 {
+    -o-animation:defer 8s forwards;
+    -moz-animation:defer 8s forwards;
+    -webkit-animation:defer 8s forwards;
+    animation:defer 8s forwards;
+}
+.defer_85 {
+    -o-animation:defer 8.5s forwards;
+    -moz-animation:defer 8.5s forwards;
+    -webkit-animation:defer 8.5s forwards;
+    animation:defer 8.5s forwards;
+}
+.defer_9 {
+    -o-animation:defer 9s forwards;
+    -moz-animation:defer 9s forwards;
+    -webkit-animation:defer 9s forwards;
+    animation:defer 9s forwards;
+}
+.defer_95 {
+    -o-animation:defer 9.5s forwards;
+    -moz-animation:defer 9.5s forwards;
+    -webkit-animation:defer 9.5s forwards;
+    animation:defer 9.5s forwards;
+}
+.defer_10 {
+    -o-animation:defer 10s forwards;
+    -moz-animation:defer 10s forwards;
+    -webkit-animation:defer 10s forwards;
+    animation:defer 10s forwards;
+}
 @keyframes defer {
-    0% {opacity: 0;}
-    99% {opacity: 0;}
-    100% {opacity: 1;}
+    0% {opacity: 0 !important;}
+    99% {opacity: 0 !important;}
+    100% {opacity: 1 !important;}
 }
 @-webkit-keyframes defer {
-    0% {opacity: 0;}
-    99% {opacity: 0;}
-    100% {opacity: 1;}
+    0% {opacity: 0 !important;}
+    99% {opacity: 0 !important;}
+    100% {opacity: 1 !important;}
 }
 /*opacity, show, hide*/
 .dis_opa_1 {
