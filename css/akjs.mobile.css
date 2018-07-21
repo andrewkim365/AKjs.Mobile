@@ -60,7 +60,7 @@ main {
     opacity: 0;
     -o-animation:defer_fadeIn 0.5s forwards;
     -moz-animation:defer_fadeIn 0.5s forwards;
-    -webkit-animation:defer 0.5s forwards;
+    -webkit-animation:defer_fadeIn 0.5s forwards;
     animation:defer_fadeIn 0.5s forwards;
     background-color: inherit;
 }
@@ -1577,24 +1577,22 @@ text {
     animation:defer 10s forwards;
 }
 @keyframes defer {
-    0% {opacity: 0 !important;}
-    99% {opacity: 0 !important;}
-    100% {opacity: 1 !important;}
+    0% {opacity: 0;}
+    90% {opacity: 0;}
+    100% {opacity: 1;}
 }
 @-webkit-keyframes defer {
-    0% {opacity: 0 !important;}
-    99% {opacity: 0 !important;}
-    100% {opacity: 1 !important;}
+    0% {opacity: 0;}
+    90% {opacity: 0;}
+    100% {opacity: 1;}
 }
 @keyframes defer_fadeIn {
     0% {opacity: 0;}
-    50% {opacity: 0;}
     80% {opacity: 0.5;}
     100% {opacity: 1;}
 }
 @-webkit-keyframes defer_fadeIn {
     0% {opacity: 0;}
-    50% {opacity: 0;}
     80% {opacity: 0.5;}
     100% {opacity: 1;}
 }
