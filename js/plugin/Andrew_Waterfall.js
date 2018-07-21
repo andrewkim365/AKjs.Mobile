@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-07-13
+Modification Date: 2018-07-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Waterfall-------------------------------------------*/
@@ -28,9 +28,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         _init: function () {
             var $this = this;
             this.options.Callback(this.$element);
-            this.$element.addClass("dis_opa_0");
             setTimeout(function() {
-                $this.$element.removeClass("dis_opa_0");
                 $this._positionAll();
             },500);
             $(window).resize(function(){
