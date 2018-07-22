@@ -279,6 +279,9 @@ function Andrew_Router(setting) {
             }
             if ($("ak-header").length > 0) {
                 if ($("ak-header").attr("data-display") == "false") {
+                    $("main").not("aside main").css({
+                        "height": $(window).height() - $("footer").not("aside footer").outerHeight()
+                    });
                     $("header").not("aside header").addClass("dis_none_im").removeClass("dis_block_im");
                 } else {
                     if ($("ak-header").children().length > 0) {
@@ -290,10 +293,16 @@ function Andrew_Router(setting) {
                 }
                 $("ak-header").remove();
             } else {
+                $("main").not("aside main").css({
+                    "height": $(window).height() - $("footer").not("aside footer").outerHeight()
+                });
                 $("header").not("aside header").addClass("dis_none_im").removeClass("dis_block_im");
             }
             if ($("ak-footer").length > 0) {
                 if ($("ak-footer").attr("data-display") == "false") {
+                    $("main").not("aside main").css({
+                        "height": $(window).height() - $("header").not("aside header").outerHeight()
+                    });
                     $("footer").not("aside footer").addClass("dis_none_im").removeClass("dis_block_im");
                 } else {
                     if ($("ak-footer").children().length > 0) {
@@ -309,6 +318,9 @@ function Andrew_Router(setting) {
                 $("ak-footer").remove();
             } else {
                 $("footer").not("aside footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im").remove();
+                $("main").not("aside main").css({
+                    "height": $(window).height() - $("header").not("aside header").outerHeight()
+                });
                 $("footer").not("aside footer").addClass("dis_none_im").removeClass("dis_block_im");
             }
         }
