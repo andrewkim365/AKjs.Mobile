@@ -10429,6 +10429,14 @@ animation main {
     -webkit-animation: none !important;
     animation: none !important;
 }
+animation img {
+    border-radius: inherit;
+    opacity: 0;
+    -o-animation:defer 1s forwards;
+    -moz-animation:defer 1s forwards;
+    -webkit-animation:defer 1s forwards;
+    animation:defer 1s forwards;
+}
 #ak-main, ak-main, scrollview {
     display: block;
     overflow: auto;
