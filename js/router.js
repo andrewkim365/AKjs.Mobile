@@ -33,7 +33,7 @@ $(document).ready(function(){
         RouterPath:["router","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
         changePage: function (hash,record) { //路由初始化调用和页面变化时的回调（公共插件引入的区域）
             //console.log(record) /*获取上一个页面的HTML代码（在路由hash模式跳页后才能有效）*/
-            if (!hash) { //首次访问的界面或者界面加载失败后您要跳转到哪个URL？
+            if (!hash) { //首次访问的界面您要跳转到哪个界面？
                 Andrew_Location("/start"); //location.replace 跳转模式
             }
             /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
@@ -132,7 +132,7 @@ $(document).ready(function(){
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况
                 ak_webToast("您访问的界面加载失败,请稍后再试!","middle",3000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
                 setTimeout(function () {
-                    //Andrew_Location("/page1"); //location.replace 跳转模式
+                    Andrew_Location("/page1"); //location.replace 跳转模式
                 }, 3000);
             }
         }

@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180721 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180722 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -219,7 +219,7 @@ function Andrew_Router(setting) {
                         option.error(document.location.hash.substring(1));
                         $("main").not("aside main").hide();
                         setTimeout(function () {
-                            $("main").not("aside main").show().html('<div class="mt_30 text_al_c"><i class="dis_block c_white wh_3em line_h_3em text_2em center bor_rad_50 mb_5" style="background-color:#f16a6a;">&Chi;</i>'+option.ErrorMsg+'</div>');
+                            $("main").not("aside main").show().html('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
                         }, 100);
                         throw new Error("Sorry! Document not found!");
                     }
@@ -613,6 +613,8 @@ function Andrew_mainHeight() {
         touchstart: function(ak) {
             touchStartY = ak.originalEvent.touches[0].clientY;
             touchStartX = ak.originalEvent.touches[0].clientX;
+            $('[class^="defer_"]').addClass("defer_none");
+            $('[class*=" defer_"]').addClass("defer_none");
         },
         touchmove: function(ak) {
             var touchEndY = ak.originalEvent.changedTouches[0].clientY,
@@ -707,6 +709,10 @@ function Andrew_mainHeight() {
         });
         $(".ud_text_c").wrap("<text />");
     },100);
+    setTimeout(function() {
+        $('[class^="defer_"]').addClass("defer_none");
+        $('[class*=" defer_"]').addClass("defer_none");
+    },10000);
 }
 
 /*-----------------------------------------------Andrew_Ajax--------------------------------------------*/
