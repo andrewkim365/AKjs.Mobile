@@ -214,10 +214,11 @@ function Andrew_Router(setting) {
                     cache: false,
                     success: function () {
                         option.success(document.location.hash.substring(1));
+                        $("header, main，aside, footer").show();
                     },
                     error: function () {
                         option.error(document.location.hash.substring(1));
-                        $("main").not("aside main").hide();
+                        $("header, main，aside, footer").hide();
                         setTimeout(function () {
                             $("main").not("aside main").show().html('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
                         }, 100);
