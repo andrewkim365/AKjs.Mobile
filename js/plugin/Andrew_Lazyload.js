@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-20
+Modification Date: 2018-07-23
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
@@ -50,8 +50,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         });
                     }
                     if (option.Img_Error) {
-                        ele.error(function () {
-                            if ($(this).attr("src") != "") {
+                        ele.on("error",function(){
+                            if ($(this).attr("src") != "" || $(this).attr("onerror")==="") {
                                 $(this).replaceWith("<img src=" + option.Img_Error + " class='ak-noimage' />");
                             }
                         });
