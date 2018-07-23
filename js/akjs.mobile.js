@@ -182,12 +182,6 @@ function Andrew_Router(setting) {
             Andrew_RegularExpression();
             if (document.location.hash.substring(1) != "") {
                 if (page == "hashchange") {
-                    var ak_menu_btn = $("footer").not("aside footer").children("menu").find("button");
-                    ak_menu_btn.each(function () {
-                        if (document.location.hash == $(this).attr("data-href") || document.location.hash.substring(1) == $(this).attr("data-href")) {
-                            $("footer").not("aside footer").removeClass("dis_none_im");
-                        }
-                    });
                     $("#ak-main").animate({"scrollTop": 0}, 100);
                     $("body").children("div").remove();
                     $(".ak-mask").remove();
