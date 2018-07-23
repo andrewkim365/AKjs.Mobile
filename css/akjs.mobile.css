@@ -10471,10 +10471,15 @@ animation img {
     height: 3em;
     line-height: 3em;
     font-size: 2em;
-    margin: 40% auto 5% auto;
+    margin: 15% auto 1em auto;
     border-radius: 50%;
     background-color:#f16a6a;
 
+}
+@media screen and (max-width:1024px) {
+    .ak-ErrorPage > i {
+        margin: 30% auto 1em auto;
+    }
 }
 /*Iconfont Style setting*/
 .iconfont , [class^="icon-"], [class*=" icon-"] {
