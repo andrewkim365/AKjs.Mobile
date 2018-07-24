@@ -1292,23 +1292,17 @@ function Andrew_DateFormat(date,format) {
 
 /*-----------------------------------------------Andrew_Plugin------------------------------------------*/
 function Andrew_Plugin(setting,css) {
-    plugin_random();
-    $(window).bind('hashchange', function () {
-        plugin_random();
+    $.ajax({
+        type:'GET',
+        url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
+        async: false,
+        cache: false,
+        dataType:'script'
     });
-    function plugin_random() {
-        $.ajax({
-            type:'GET',
-            url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
-            async: false,
-            cache: false,
-            dataType:'script'
-        });
-        if (css) {
-            var css_url = js_folder + "plugin/css/" + setting + ".css";
-            $("head").find("link").filter("#"+setting).remove();
-            $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href='"+css_url+"?akjs="+new Date().getTime()+"' />");
-        }
+    if (css) {
+        var css_url = js_folder + "plugin/css/" + setting + ".css";
+        $("head").find("link").filter("#"+setting).remove();
+        $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href='"+css_url+"?akjs="+new Date().getTime()+"' />");
     }
 }
 
