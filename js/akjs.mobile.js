@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180722 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180724 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -221,7 +221,7 @@ function Andrew_Router(setting) {
                 });
                 var htmlobj_text = $(htmlobj.responseText);
                 if (htmlobj_text.prop("localName") == "template") {
-                    var main_tmpl = htmlobj_text.html().replace('<ak-main', '<scrollview id="ak-main"').replace('</ak-main>', '</scrollview>');
+                    var main_tmpl = htmlobj_text.html().replace('<ak-main', '<scrollview id="ak-main"').replace('</ak-main>', '</scrollview>').replace(/class=/g, 'data-temp='+new Date().getTime()+' class=');
                     if (typeof(Storage) !== "undefined") {
                         localStorage.setItem("Retrieve", $("body").html());
                         record = localStorage.getItem("Retrieve");
@@ -230,6 +230,7 @@ function Andrew_Router(setting) {
                             aside_record = localStorage.getItem("aside_Retrieve").replace(/id=/g, "data-id=").replace(/plug_/g, "akjs_plug_");
                         }
                     }
+                    main_tmpl = main_tmpl.replace(/class=/g,"data-temp="+new Date().getTime()+" class=");
                     $("main").not("aside main").html(main_tmpl);
                     if ($("#ak-main").parentsUntil("main").length > 0) {
                         $("#ak-main").remove();
@@ -238,24 +239,34 @@ function Andrew_Router(setting) {
                 } else {
                     throw new Error("Sorry! The lack of \"<template></template>\" elements!");
                 }
-                if ($(htmlobj_text).next().prop("localName") == "script") {
-                    var jsText = $(htmlobj_text).next().html();
-                } else if ($(htmlobj_text).next().prop("localName") == "style") {
-                    var jsText = $(htmlobj_text).next().next().html();
-                }
-                if ($(htmlobj_text).next().next().prop("localName") == "style") {
-                    var cssText = $(htmlobj_text).next().next().html();
-                } else if ($(htmlobj_text).next().prop("localName") == "script") {
-                    var cssText = $(htmlobj_text).next().html();
+
+                if ($(htmlobj_text).next().length > 0 && $(htmlobj_text).next().next().length < 1) {
+                    if ($(htmlobj_text).next().prop("localName") == "script") {
+                        var jsText = $(htmlobj_text).next().html();
+                    } else if ($(htmlobj_text).next().prop("localName") == "style") {
+                        var cssText = $(htmlobj_text).next().html();
+                    }
+                } else if ($(htmlobj_text).next().length > 0 && $(htmlobj_text).next().next().length > 0) {
+                    if ($(htmlobj_text).next().prop("localName") == "script" && $(htmlobj_text).next().next().prop("localName") == "style") {
+                        var jsText = $(htmlobj_text).next().html();
+                        var cssText = $(htmlobj_text).next().next().html();
+                    } else if ($(htmlobj_text).next().prop("localName") == "style" && $(htmlobj_text).next().next().prop("localName") == "script") {
+                        var cssText = $(htmlobj_text).next().html();
+                        var jsText = $(htmlobj_text).next().next().html();
+                    }
+                    $(htmlobj_text).next().next().nextAll().remove();
                 }
                 $("html").children("script").html("").remove();
                 $("html").children("style").html("").remove();
-                if (jsText != undefined) {
-                    setTimeout(function () {
-                        $("<script id='akjs_script' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
-                        $("<style id='akjs_style' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
-                    }, 500);
-                }
+                setTimeout(function () {
+                    if (jsText != undefined) {
+                        $("<script id='akjs_script' data-temp='"+new Date().getTime()+"' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
+                    }
+                    if (cssText != undefined) {
+                        $("<style id='akjs_style' data-temp='"+new Date().getTime()+"' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
+                    }
+                }, 500);
+
                 Router_Settings();
                 setTimeout(function() {
                     if (option.Parameter) {
@@ -1281,17 +1292,23 @@ function Andrew_DateFormat(date,format) {
 
 /*-----------------------------------------------Andrew_Plugin------------------------------------------*/
 function Andrew_Plugin(setting,css) {
-    $.ajax({
-        type:'GET',
-        url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
-        async: false,
-        cache: false,
-        dataType:'script'
+    plugin_random();
+    $(window).bind('hashchange', function () {
+        plugin_random();
     });
-    if (css) {
-        var css_url = "'" + js_folder + "plugin/css/" + setting + ".css?akjs="+new Date().getTime()+"'";
-        $("head").find("link").filter("#"+setting).remove();
-        $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href=" + css_url + " />");
+    function plugin_random() {
+        $.ajax({
+            type:'GET',
+            url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
+            async: false,
+            cache: false,
+            dataType:'script'
+        });
+        if (css) {
+            var css_url = js_folder + "plugin/css/" + setting + ".css";
+            $("head").find("link").filter("#"+setting).remove();
+            $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href='"+css_url+"?akjs="+new Date().getTime()+"' />");
+        }
     }
 }
 
