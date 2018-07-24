@@ -382,11 +382,6 @@
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-@media screen and (max-width:1024px) {
-    .ak-Loader:not(.ak-mask) .ak-loading {
-        top: 50% !important;
-    }
-}
 
 .ak-Loader:not(.ak-mask) .ak-loading > div {
     z-index: 2;
