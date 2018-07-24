@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-23
+Modification Date: 2018-07-24
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
@@ -17,6 +17,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             setting);
             var ele = $(this);
             var view_h = parseInt(window.screen.height);
+            var png_regexp = new RegExp("\\.png");
+            var gif_regexp = new RegExp("\\.gif");
             setTimeout(function () {
                 option.Callback(option.scroll.find(ele));
                 if (ele.prop('tagName') == "IMG") {
@@ -28,7 +30,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                     view_img.wrap("<figure />");
                                 }
                             }
-                            view_img.parent("figure").addClass("ak_img_" + option.Img_LoadStyle);
+                            if (png_regexp.test(view_img.attr("src")) || gif_regexp.test(view_img.attr("src"))) {
+                                view_img.parent("figure").addClass("bg_white ak_img_" + option.Img_LoadStyle);
+                            } else {
+                                view_img.parent("figure").addClass("ak_img_" + option.Img_LoadStyle);
+                            }
                             setTimeout(function () {
                                 if (view_img.offset().top < view_h) {
                                     view_img.attr("data-src", view_img.attr("src"));

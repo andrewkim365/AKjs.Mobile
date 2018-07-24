@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-07-19
+Modification Date: 2018-07-24
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_WebToast-------------------------------------------*/
@@ -8,7 +8,7 @@ function ak_webToast(){
         message: "",
         position: "bottom",
         mask: "mask",
-        time: 1000
+        time: ""
     };
     var Andrew_WebToast = ".ak-webtoast";
     var sub_Andrew_WebToast = Andrew_WebToast.substring(1,Andrew_WebToast.length);
@@ -65,25 +65,29 @@ function ak_webToast(){
         ToastSetting();
     });
     function ToastSetting() {
-        var w = $(Andrew_WebToast).width(),
+        var w = $(Andrew_WebToast).children("h3").width(),
             ww = $(window).width();
-        $(Andrew_WebToast).css("left", (ww - w) / 2 - 20);
+        $(Andrew_WebToast).children("h3").css("left", (ww - w) / 2);
         if ("bottom" == dcfg.position) {
-            $(Andrew_WebToast).css("bottom", 50);
-            $(Andrew_WebToast).css("top", "");
+            $(Andrew_WebToast).children("h3").css("bottom", 50);
+            $(Andrew_WebToast).children("h3").css("top", "");
         } else if ("top" == dcfg.position) {
-            $(Andrew_WebToast).css("bottom", "");
-            $(Andrew_WebToast).css("top", 50);
+            $(Andrew_WebToast).children("h3").css("bottom", "");
+            $(Andrew_WebToast).children("h3").css("top", 50);
         } else if ("middle" == dcfg.position) {
-            $(Andrew_WebToast).css("bottom", "");
-            $(Andrew_WebToast).css("top", "");
-            var h = $(Andrew_WebToast).height(),
+            $(Andrew_WebToast).children("h3").css("bottom", "");
+            $(Andrew_WebToast).children("h3").css("top", "");
+            var h = $(Andrew_WebToast).children("h3").height(),
                 hh = $(window).height();
-            $(Andrew_WebToast).css("bottom", (hh - h) / 2 - 20);
+            $(Andrew_WebToast).children("h3").css("bottom", (hh - h) / 2 - 20);
         }
     }
-    setTimeout(function() {
+    if (dcfg.message==="destroy") {
+        $(Andrew_WebToast).fadeOut().remove();
+    }
+    if (dcfg.time) {
+        setTimeout(function() {
             $(Andrew_WebToast).fadeOut().remove();
-        },
-        dcfg.time);
+        }, dcfg.time);
+    }
 }
