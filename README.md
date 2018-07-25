@@ -55,6 +55,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.5版本；
 
 修改Andrew_Location跳转方法（详情router.js文件中的102行代码）；
 
+解决打包APP时路由路径不对的问题；
+
 解决当点击手机物理返回键时可识别是返回页面，以下是使用方法；
 
 Andrew_Back.listen(function(){
