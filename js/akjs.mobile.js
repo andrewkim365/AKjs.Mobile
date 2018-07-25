@@ -610,7 +610,9 @@ function Andrew_Responsive(setting) {
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
     Andrew_Back.listen(function(){
-        $("animation").attr("data-router","slideLeft");
+        if ($("animation").length > 0) {
+            $("animation").attr("data-router", "slideLeft");
+        }
     });
     Andrew_UserAgent();
     if ($("main").not("aside main").children("#ak-main").length === 0) {
