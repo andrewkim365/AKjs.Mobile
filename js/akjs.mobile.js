@@ -129,6 +129,7 @@ function Andrew_Router(setting) {
         $(window).bind('hashchange', function () {
             var page = "hashchange";
             Router_Ajax(option,page);
+            Andrew_mainHeight();
             if (option.Animate) {
                 $("animation").after("<aside id='ak-aside' class='fix bg_gray_eee top_0 left_0 wh_100' />");
                 var asideEle = $("#ak-aside");
