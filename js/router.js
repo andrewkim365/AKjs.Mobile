@@ -100,11 +100,15 @@ $(document).ready(function(){
             });
             /*
                 Andrew_Location 使用方法：
-                Andrew_Location(url,option,time); //url=跳转路径，option=跳转类型，time=延迟时间
+                //url=跳转路径，{type=跳转类型（href,history,reload），time=延迟时间，router=页面切换效果（left,right）}
+
+                Andrew_Location("url",{type:"", time: "", router:""}); //参数设置结构
                 Andrew_Location("/start"); //location.replace 跳转模式(第二个参数默认识别time参数)
-                Andrew_Location("/start","href"); //location.href 跳转模式
-                Andrew_Location("/","reload"); //location.reload() 刷新当前页
-                Andrew_Location(-1,"history"); //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
+                Andrew_Location("/start",{type:"href"}); //location.href 跳转模式
+                Andrew_Location("/",{type:"reload"}); //location.reload() 刷新当前页
+                Andrew_Location("-1",{type:"history"}); //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
+                Andrew_Location("/start",{time:1000}); //location.replace 跳转模式 (延迟1秒后跳转)
+                Andrew_Location("/start",{router:left}); //location.replace 跳转模式 (router参数是页面切换效果，left是左滑[返回效果]，right是右滑[进入效果])
 
                 Andrew_getUrlParam &  Andrew_changeURLArg 使用方法：
                 console.log("GET_ak: "+Andrew_getUrlParam('ak')); //获取URL中的参数值
@@ -127,13 +131,31 @@ $(document).ready(function(){
                 console.log(Andrew_DateFormat(new Date(),"yyyy-MM-dd HH:mm"));
                 Andrew_FileFormat(filename) //获取文件的扩展名
             */
+
+            /*
+                $(window).resize(function () {
+                    if ($(window).height() - $(this).height() > 140) {
+                        //安卓软键盘弹出
+                    } else {
+                        //安卓软键盘收起
+                    }
+                });
+
+                $(document).on('focusin', function () {
+                    //IOS软键盘弹出的事件处理
+                });
+
+                $(document).on('focusout', function () {
+                    //IOS软键盘收起的事件处理
+                });
+
+                document.activeElement.blur(); //强制隐藏软键盘
+            */
         },
         error:function (hash) { //请求加载页面失败后的回调
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况
                 ak_webToast("您访问的界面加载失败,请稍后再试!","middle",3000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
-                setTimeout(function () {
-                    Andrew_Location("/page1"); //location.replace 跳转模式
-                }, 3000);
+                Andrew_Location("/page1",{time:3000}); //location.replace 跳转模式 (延迟跳转)
             }
         }
     });

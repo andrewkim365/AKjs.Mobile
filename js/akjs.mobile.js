@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.4 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180724 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180725 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -90,6 +90,9 @@ function Andrew_Config(setting) {
     $(window).resize(function(){
         Andrew_mainHeight();
     });
+    Andrew_Back.listen(function(){
+        $("animation").attr("data-router","slideLeft");
+    });
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
@@ -166,6 +169,7 @@ function Andrew_Router(setting) {
                     $("header").not("aside header").removeClass("top_0 right_0 left_0");
                     $("main").not("aside main").removeClass("top_0 right_0 bottom_0 left_0");
                     $("footer").not("aside footer").removeClass("right_0 bottom_0 left_0");
+                    $("animation").attr("data-router","");
                 }, 500);
                 option.changePage(document.location.hash.substring(1),$(animationEle).html());
             } else {
@@ -188,7 +192,11 @@ function Andrew_Router(setting) {
                 }
                 var Router_path = "./";
                 if (option.RouterPath[0]) {
-                    Router_path = option.RouterPath[0]+"/";
+                    if (document.location.hash.substring(1).substr(0, 1) != "/") {
+                        Router_path = option.RouterPath[0] + "/";
+                    } else {
+                        Router_path = option.RouterPath[0];
+                    }
                 }
                 var hash_dot = new RegExp("\\.");
                 var hash_question = new RegExp("\\?");
@@ -1024,88 +1032,102 @@ function Andrew_Include(url,important) {
 }
 
 /*-----------------------------------------------Andrew_Location-------------------------------------------*/
-function Andrew_Location(url,option,time) {
+function Andrew_Location(url,setting) {
+    var option = $.extend({
+            type: "",
+            time: 0,
+            router:""
+        },
+        setting);
     Andrew_UserAgent();
-    if (IsIphone || IsIpad) {
-        switch (option) {
-            case 'href':
-                if (time) {
-                    setTimeout(function () {
-                        document.location.href="#"+url;
-                    }, time);
-                } else {
-                    document.location.href="#"+url;
-                }
-                break;
-            case 'history':
-                if (time) {
-                    setTimeout(function () {
-                        history.back(url);
-                    }, time);
-                } else {
-                    history.back(url);
-                }
-                break;
-            case 'reload':
-                if (time) {
-                    setTimeout(function () {
-                        document.location.reload();
-                    }, time);
-                } else {
-                    document.location.reload();
-                }
-                break;
-            default:
-                time = option;
-                if (time) {
-                    setTimeout(function () {
-                        document.location.replace("#"+url);
-                    }, time);
-                } else {
-                    document.location.replace("#"+url);
-                }
-                break;
+    function AniSetting() {
+        if ($("animation").length > 0) {
+            if (option.router === "right") {
+                $("animation").attr("data-router","slideRight");
+            } else if (option.router === "left") {
+                $("animation").attr("data-router","slideLeft");
+            }
         }
-    }else{
-        switch (option) {
-            case 'href':
-                if (time) {
-                    setTimeout(function () {
+    }
+    switch (option.type) {
+        case 'href':
+            if (option.time) {
+                setTimeout(function () {
+                    AniSetting();
+                    if (IsIphone || IsIpad) {
+                        document.location.href="#"+url;
+                    } else {
                         window.location.href="#"+url;
-                    }, time);
+                    }
+                }, option.time);
+            } else {
+                AniSetting();
+                if (IsIphone || IsIpad) {
+                    document.location.href="#"+url;
                 } else {
                     window.location.href="#"+url;
                 }
-                break;
-            case 'history':
-                if (time) {
-                    setTimeout(function () {
+            }
+            break;
+        case 'history':
+            if (option.time) {
+                setTimeout(function () {
+                    if ($("animation").length > 0) {
+                        $("animation").attr("data-router", "slideLeft");
+                    }
+                    if (IsIphone || IsIpad) {
+                        history.back(url);
+                    } else {
                         window.back(url);
-                    }, time);
+                    }
+                }, option.time);
+            } else {
+                if ($("animation").length > 0) {
+                    $("animation").attr("data-router", "slideLeft");
+                }
+                if (IsIphone || IsIpad) {
+                    history.back(url);
                 } else {
                     window.back(url);
                 }
-                break;
-            case 'reload':
-                if (time) {
-                    setTimeout(function () {
+            }
+            break;
+        case 'reload':
+            if (option.time) {
+                setTimeout(function () {
+                    if (IsIphone || IsIpad) {
+                        document.location.reload();
+                    } else {
                         window.location.reload();
-                    }, time);
+                    }
+                }, option.time);
+            } else {
+                if (IsIphone || IsIpad) {
+                    document.location.reload();
                 } else {
                     window.location.reload();
                 }
-                break;
-            default:
-                time = option;
-                if (time) {
-                    setTimeout(function () {
+            }
+            break;
+        default:
+            if (option.time) {
+                setTimeout(function () {
+                    AniSetting();
+                    if (IsIphone || IsIpad) {
+                        document.location.replace("#"+url);
+                    } else {
                         window.location.replace("#"+url);
-                    }, time);
+                    }
+                }, option.time);
+            } else {
+                AniSetting();
+                if (IsIphone || IsIpad) {
+                    document.location.replace("#"+url);
                 } else {
                     window.location.replace("#"+url);
                 }
-                break;
-        }
+            }
+            break;
     }
 }
 
@@ -1315,3 +1337,29 @@ function Andrew_pathURL() {
 }
 ak_scripts = document.scripts;
 js_folder = ak_scripts[ak_scripts.length - 1].src.substring(0, ak_scripts[ak_scripts.length - 1].src.lastIndexOf("/") + 1);
+
+/*-----------------------------------------------Andrew_Back------------------------------------------*/
+!function(Andrew_Back){
+    var STATE = 'ak-back';
+    var element;
+    var onPopState = function(event){
+        event.state === STATE && fire();
+    };
+    var record = function(state){
+        history.pushState(state, null, location.href);
+    };
+    var fire = function(){
+        var event = document.createEvent('Events');
+        event.initEvent(STATE, false, false);
+        element.dispatchEvent(event);
+    };
+    var listen = function(listener){
+        element.addEventListener(STATE, listener, false);
+    };
+    !function(){
+        element = document.createElement('span');
+        window.addEventListener('popstate', onPopState);
+        this.listen = listen;
+        record(STATE);
+    }.call(window[Andrew_Back] = window[Andrew_Back] || {});
+}('Andrew_Back');
