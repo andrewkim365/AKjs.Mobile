@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-24
+Modification Date: 2018-07-25
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
@@ -31,7 +31,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 }
                             }
                             if (png_regexp.test(view_img.attr("src")) || gif_regexp.test(view_img.attr("src"))) {
-                                view_img.parent("figure").addClass("bg_white ak_img_" + option.Img_LoadStyle);
+                                view_img.parent("figure").addClass("bg_none ak_img_" + option.Img_LoadStyle);
                             } else {
                                 view_img.parent("figure").addClass("ak_img_" + option.Img_LoadStyle);
                             }
