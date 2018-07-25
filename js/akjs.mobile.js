@@ -90,9 +90,6 @@ function Andrew_Config(setting) {
     $(window).resize(function(){
         Andrew_mainHeight();
     });
-    Andrew_Back.listen(function(){
-        $("animation").attr("data-router","slideLeft");
-    });
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
@@ -611,6 +608,9 @@ function Andrew_Responsive(setting) {
 
 /*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
 function Andrew_mainHeight() {
+    Andrew_Back.listen(function(){
+        $("animation").attr("data-router","slideLeft");
+    });
     Andrew_UserAgent();
     if ($("main").not("aside main").children("#ak-main").length === 0) {
         $("main").not("aside main").children().not("dialog").wrapAll("<scrollview id=\"ak-main\"></scrollview>");
