@@ -10457,7 +10457,7 @@ animation img {
     height: inherit !important;
     background-color: inherit;
 }
-.scrolling #ak-main, .scrolling scrollview {
+.scrolling, .scrolling #ak-main, .scrolling scrollview {
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
 }
