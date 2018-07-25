@@ -9598,6 +9598,7 @@ text {
 }
 .bg_none, .bg_ab_none:after, .bg_ab_none:before, .bg_cd_none > * {
     background-color:transparent !important;
+    background-image: none !important;
 }
 
 .bor_black, .bor_ab_black:after, .bor_ab_black:before, .bor_cd_black > * {
