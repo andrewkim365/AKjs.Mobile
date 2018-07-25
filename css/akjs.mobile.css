@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180722 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180725 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -1266,17 +1266,32 @@ text {
 .text_24em {
     font-size:2.4em !important;
 }
+.text_22em {
+    font-size:2.2em !important;
+}
 .text_2em {
     font-size:2em !important;
+}
+.text_19em {
+    font-size:1.9em !important;
 }
 .text_18em {
     font-size:1.8em !important;
 }
+.text_17em {
+    font-size:1.7em !important;
+}
 .text_16em {
     font-size:1.6em !important;
 }
+.text_15em {
+    font-size:1.5em !important;
+}
 .text_14em {
     font-size:1.4em !important;
+}
+.text_13em {
+    font-size:1.3em !important;
 }
 .text_12em {
     font-size:1.2em !important;
@@ -1301,9 +1316,6 @@ text {
 }
 .text_05em {
     font-size:.5em !important;
-}
-.text_9pt {
-    font-size:9pt !important;
 }
 .text_in {
     font-size:inherit !important;
