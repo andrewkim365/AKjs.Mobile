@@ -622,8 +622,8 @@ function Andrew_mainHeight() {
         $("#ak-main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
         $("body").addClass("fix").css({
-            width: window.innerWidth,
-            height: window.innerHeight
+            width: $(document).width(),
+            height: $(document).height()
         });
         document.oncontextmenu = function(){
             event.returnValue = false;
