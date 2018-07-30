@@ -1,17 +1,16 @@
 ﻿/*
-Modification Date: 2018-05-12
+Modification Date: 2018-07-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Validate----------------------------------------*/
 (function($){
     $.fn.Andrew_Validate = function(setting) {
         var option = $.extend({
-                opacity: "0.7",
                 callback: function() {}
             },
             setting);
         var vld = $(this);
-        vld.find(":submit").css("opacity", option.opacity).attr("disabled", "disabled");
+        vld.find(":submit").addClass("disabled").attr("disabled", "disabled");
         vld.keyup(function() {
             var inputs = $(this).find(":required");
             var submits = $(this).find(":submit");
@@ -34,12 +33,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 flag = true;
             }
             if (!flag) {
-                submits.css("opacity", option.opacity);
+                submits.addClass("disabled");
                 submits.attr("disabled", "disabled");
                 option.callback(flag);
             } else {
                 //$(this).find(":required").removeAttr("required");
-                submits.css("opacity", "1");
+                submits.removeClass("disabled");
                 submits.removeAttr("disabled");
                 option.callback(flag);
             }
