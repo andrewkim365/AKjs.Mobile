@@ -44,7 +44,6 @@ Andrew_Plugin("Andrew_ScrollFixed"); //当屏幕滑动时把指定元素固定�
 Andrew_Plugin("Andrew_Select","css"); //移动端专用下拉菜单功能
 Andrew_Plugin("Andrew_SelectOption","css"); //pc端专用select下拉框插件
 Andrew_Plugin("Andrew_Slider","css"); //欢迎页和联播图功能
-Andrew_Plugin("Andrew_SnInput"); //输入支付密码功能
 Andrew_Plugin("Andrew_Spinner"); //数量控制功能
 Andrew_Plugin("Andrew_StepOrder"); //步骤插件
 Andrew_Plugin("Andrew_Substring"); //输入框里输入的数字强行转换为人民币格式的插件
@@ -55,9 +54,11 @@ Andrew_Plugin("Andrew_Textarea"); //多行输入框实时查询字符数的功�
 Andrew_Plugin("Andrew_TouchDelete","css"); //列表滑动删除功能
 Andrew_Plugin("Andrew_Typeahead","css"); //模糊搜索功能
 Andrew_Plugin("Andrew_TypeIt","css"); //文字打字效果
-Andrew_Plugin("Andrew_Validate"); //表单验证功能
 Andrew_Plugin("Andrew_Viewer","css"); //图片放大预览功能
 Andrew_Plugin("Andrew_Vticker"); //列表垂直滚动插件
 Andrew_Plugin("Andrew_Waterfall","css"); //瀑布流展示功能
 Andrew_Plugin("Andrew_WebToast","css"); //提示框效果
 Andrew_Plugin("Andrew_ReadMore"); //查看更多插件
+
+//Andrew_Plugin("Andrew_SnInput"); //输入支付密码功能 (已停用：被Andrew_Keyboard取代)
+//Andrew_Plugin("Andrew_Validate"); //表单验证功能 （已停用：被Andrew_Form合并）

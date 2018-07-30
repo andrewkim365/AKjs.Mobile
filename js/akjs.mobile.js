@@ -285,6 +285,13 @@ function Andrew_Router(setting) {
         }
         function Router_Settings() {
             Andrew_Animation();
+            $("form").each(function(){
+                if ($(this).attr("data-submit") != "true") {
+                    $(this).attr("onsubmit","return false");
+                } else {
+                    $(this).removeAttr("onsubmit");
+                }
+            });
             if ($("footer").not("aside footer").find("dfn").length == 0) {
                 $("footer").not("aside footer").children().before("<dfn />");
                 $("footer").not("aside footer").children("dfn").addClass("dis_none_im").removeClass("dis_block_im");
