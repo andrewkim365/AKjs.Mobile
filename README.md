@@ -53,15 +53,19 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.6版本；
 
 修改 js/plugin.js文件中按需引入Andrew_ButtonSubmit功能插件；
 
+修改根目录中的index.html文件（修改cdn引入部分代码）。
+
 新增了元素放大缩小的class名zoom_* （*可设置05~5）；
 
 解决akjs样式库在NodeJs环境中渐变样式无法编译的问题；
 
 新增 js/plugin/Andrew_ButtonSubmit.js以及对应的css文件（防止重复提交功能）；
 
-修改 js/plugin/Andrew_Form.js以及对应的css 功能插件bug；
+修改 js/plugin/Andrew_Form.js以及对应的css 功能插件 （停用Andrew_Validate插件，跟Andrew_Form合并到一起）；
 
 修改 js/plugin/Andrew_Tabs.js 功能插件bug（增加change事件的回调）；
+
+修改 js/plugin/Andrew_Textarea.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
