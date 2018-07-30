@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-06-11
+Modification Date: 2018-07-26
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Tabs--------------------------------------------*/
@@ -24,7 +24,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             emptyclass: 'bor_bottom bor_gray_ddd',
             changeMethod: 'default',
             autoPlay: false,
-            callback: function() {}
+            callback: function() {},
+            changeback: function() {}
         };
         this.opts = $.extend({},
             this.defaults, options);
@@ -258,7 +259,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             //console.log(this.$tab_list.length)
             this.$tab_list.removeClass(this.opts.fullclass).addClass(this.opts.emptyclass).removeAttr("style");
             this.$tab_list.eq(index).removeClass(this.opts.emptyclass).addClass(this.opts.fullclass);
-            this.opts.callback(this.$tab_cont.eq(index),index);
+            this.opts.changeback(this.$tab_cont.eq(index),index);
             if (this.opts.changeMethod != 'vertical') {
                 var that = this;
                 setTimeout(function () {

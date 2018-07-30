@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-07-16
+Modification Date: 2018-07-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Form--------------------------------------------*/
@@ -19,13 +19,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             },
             setting);
             var mbf = $(this);
-            mbf.each(function(){
-                if($(this).prop("attributes").action.value) {
-                    $(this).removeAttr("onsubmit");
-                } else {
-                    $(this).attr("onsubmit","return false");
-                }
-            });
+            if (mbf.prop("localName") == "form") {
+                mbf.each(function(){
+                    if($(this).prop("attributes").action.value) {
+                        $(this).removeAttr("onsubmit");
+                    } else {
+                        $(this).attr("onsubmit","return false");
+                    }
+                });
+            }
             //对比两次输入的密码
             var password = mbf.find(option.PassCheck);
             mbf.find(":submit").addClass("mb_5");
@@ -41,14 +43,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (option.PassCheck) {
                     if(password.length > 1){
                         if (password[0].value != password[1].value){
-                            if ($(this).parents("form").find(option.PassCheck).length > 0) {
+                            if (mbf.find(option.PassCheck).length > 0) {
                                 option.passCallback();
                                 return false;
                             }
                         }
                     }
                 }
-                option.butCallback($(this).parents("form"));
+                option.butCallback(mbf);
                 return false;
             });
             //密码（显示/隐藏）

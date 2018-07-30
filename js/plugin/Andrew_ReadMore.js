@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-07-03
+Modification Date: 2018-07-26
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ReadMore-------------------------------------------*/
@@ -45,8 +45,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }));
                     if(!$this.options.startOpen) {
                         current.css({
-                            height: maxHeight
+                            height: maxHeight,
+                            display: "block"
                         });
+                        current.removeClass("dis_none_im").removeClass("dis_none");
                     }
                 }
             });
