@@ -5,15 +5,15 @@
     </ak-header>
 
     <ak-main>
+
         <!----------Andrew_Typeahead---------->
-        <form action="" method="get">
-            <div class="module press ovh bg_white bor_bottom bor_gray_ddd">
-                <fieldset class="ml_3 mr_3 pl_2em rel h_24em mt_05em mb_05em ovh bor_rad_05em border bor_gray_ddd bg_gray_f9f">
-                    <i class="abs left_0 ml_03em text_14em c_gray_999 line_h_18em icon-im_sousuo_b"></i>
-                    <input type="search" class="plug_Typeahead c_gray_777 w_100 h_in" placeholder="请输入搜索关键词（例：北京）" value="" />
-                </fieldset>
-            </div>
-        </form>
+        <div class="module press ovh bg_white bor_bottom bor_gray_ddd">
+            <fieldset class="ml_3 mr_3 pl_2em rel h_24em mt_05em mb_05em ovh bor_rad_05em border bor_gray_ddd bg_gray_f9f">
+                <i class="abs left_0 ml_03em text_14em c_gray_999 line_h_18em icon-im_sousuo_b"></i>
+                <input type="search" class="plug_Typeahead c_gray_777 w_100 h_in" placeholder="请输入搜索关键词（例：北京）" value="" />
+            </fieldset>
+        </div>
+
         <!----------Andrew_Slider---------->
         <div class="plug_slider w_100 h_12_em ovh rel bg_white">
             <ul class="defer_05">
@@ -66,9 +66,8 @@
                 </div>
             </article>
         </div>
-
-        <div class="plug_tabs_ud mt_5 module bg_white">
-            <nav class="abs left_0 h_12_em ova bar_hide press list bg_white w_25">
+        <div class="plug_tabs_ud mt_5 module bg_white h_12_em">
+            <nav class="abs left_0 ova bar_hide press list bg_white w_25 h_in">
                 <ul class="bg_gray_f5f list_h_3em">
                     <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart bg_white c_title bor_right_none">Tabs-1</li>
                     <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-2</li>
@@ -152,7 +151,7 @@
 
         <!----------Andrew_StepOrder---------->
         <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">步骤效果</h3>
+            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd"><span class="zoom_1">步骤效果</span></h3>
             <article class="plug_step pa_3 bg_white dis_none">
                 <ul class="length4">
                     <li>
@@ -182,6 +181,7 @@
             <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_webToast">Webtoast</button>
             <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_alert">Alert Dialog Box</button>
             <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_confirm">Confirm Dialog Box</button>
+            <button type="submit" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em plug_submit">Submit Button</button>
         </div>
         <div class="module press mt_5">
             <ul class="list_h_36em">
@@ -198,7 +198,7 @@
                 </li>
             </ul>
         </div>
-        <div id="plug_prompt_textarea_view" class="module list press mt_5">
+        <div class="module list press mt_5" id="plug_prompt_textarea_view">
             <h3 class="wp_94 bg_white line_h_36em text_bold bor_bottom_dashed bor_gray_ddd">提问内容</h3>
             <ul class="wp_94 bg_white list_h_36em">
             </ul>
@@ -320,7 +320,7 @@
                 <li class="bor_top bor_gray_ddd bg_white">
                     <dl class="ovh list_h_36em">
                         <dt class="fl ovh ml_3 mr_03em">单选：</dt>
-                        <dd class="plug_choose fl ovh w_80 mt_05em">
+                        <dd class="plug_choose fl ovh w_80 mt_05em defer_1">
                             <button type="button" data-checked="true">戴尔</button>
                             <button type="button">三星</button>
                             <button type="button">惠普</button>
@@ -331,7 +331,7 @@
                 <li class="bor_top bor_gray_ddd bg_white">
                     <dl class="ovh list_h_36em">
                         <dt class="fl ovh ml_3 mr_03em">多选：</dt>
-                        <dd class="plug_choose fl ovh w_80 mt_05em" data-multiple="multiple">
+                        <dd class="plug_choose fl ovh w_80 mt_05em defer_1" data-multiple="multiple">
                             <button type="button" data-checked="true">东芝</button>
                             <button type="button" data-checked="true">松下</button>
                             <button type="button">苹果</button>
@@ -430,7 +430,6 @@
                     </dl>
                 </li>
             </ul>
-
         </div>
 
         <!----------Andrew_Progress---------->
@@ -439,7 +438,7 @@
                 <li class="ovh rel bg_white">
                     <dl class="ovh h_in">
                         <dt class="fl ovh ml_3 mr_03em line_h_38em">当前进度：</dt>
-                        <dd class="fl ovh w_70 h_in">
+                        <dd class="fl ovh w_70 h_in defer_1">
                             <div class="plug_progress h_2em bg_gray_ddd" data-from="0" data-to="70"></div>
                         </dd>
                     </dl>
@@ -496,13 +495,14 @@
                 </li>
             </ul>
         </div>
+
         <!----------Andrew_Spinner---------->
         <div class="module press mt_5">
             <ul class="list_h_36em">
                 <li class="rel bg_white">
                     <dl class="h_in">
                         <dt class="fl ml_3">产品数量</dt>
-                        <dd class="fr w_35 mr_3 h_in">
+                        <dd class="fr w_35 mr_3 h_in defer_1">
                             <input type="number" class="plug_spinner text_al_c c_gray_777 bor_rad_0" value="1" data-type="number" />
                         </dd>
                     </dl>
@@ -533,40 +533,37 @@
         <!----------Andrew_GetVerifyCode---------->
         <!----------Andrew_intlTelInput---------->
         <!----------Andrew_Codeval---------->
-        <form action="#" method="get">
-            <input type="hidden" name="id" value="mobile" />
-            <div class="module list mt_5 plug_validate">
-                <ul class="wp_94 press bg_white list_h_36em">
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mb_shouji c_title text_16em"></i>
-                        <label class="plug_mobileNum dis_block rel ovh fl ml_8 mr_05em line_h_in bor_right bor_gray_eee touchstart">
-                            <input type="button" class="fl c_gray_777" value="+86" />
-                            <i class="fl icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </label>
-                        <input type="tel" id="plug_phone" class="fl w_70 plug_Delete c_gray_777" required value="" maxlength="11" placeholder="请输入手机号码" data-type="number" />
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-im_yanzhengma c_title text_16em"></i>
-                        <input type="text" class="fl ml_8 w_92 c_gray_777" required value="" maxlength="6" placeholder="请输入手机短信验证码" />
-                        <button type="button" id="plug_getVerifyCode" class="press abs h_100 bg_white press top_0 right_0 c_title">获取验证码</button>
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mn_dunpai c_title text_16em"></i>
-                        <input type="text" id="plug_codeInput" class="fl ml_8 w_92 c_gray_777" required value="" placeholder="请输入右侧验证码" />
-                        <code id="plug_codeView" class="ovh press abs right_0 bg_white w_20 line_h_2em border bor_gray_ddd touchstart"></code>
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
-                        <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入新密码" />
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
-                        <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入确认密码" />
-                    </li>
-                </ul>
-                <button type="submit" class="btn_h_3em wm_94 bg_title c_white mt_5 h_32em">提交</button>
-            </div>
-        </form>
+        <div class="module list mt_5 plug_validate plug_form">
+            <ul class="wp_94 press bg_white list_h_36em">
+                <li class="rel bor_bottom bor_gray_ddd">
+                    <i class="abs left_0 icon-mb_shouji c_title text_16em"></i>
+                    <label class="plug_mobileNum dis_block rel ovh fl ml_8 mr_05em line_h_in bor_right bor_gray_eee touchstart">
+                        <input type="button" class="fl c_gray_777" value="+86" />
+                        <i class="fl icon-ln_qianjin_b text_16em c_gray_777"></i>
+                    </label>
+                    <input type="tel" id="plug_phone" class="fl w_70 plug_Delete c_gray_777" required value="" maxlength="11" placeholder="请输入手机号码" data-type="number" />
+                </li>
+                <li class="rel bor_bottom bor_gray_ddd">
+                    <i class="abs left_0 icon-im_yanzhengma c_title text_16em"></i>
+                    <input type="text" class="fl ml_8 w_92 c_gray_777" required value="" maxlength="6" placeholder="请输入手机短信验证码" />
+                    <button type="button" id="plug_getVerifyCode" class="press abs h_100 bg_white press top_0 right_0 c_title">获取验证码</button>
+                </li>
+                <li class="rel bor_bottom bor_gray_ddd">
+                    <i class="abs left_0 icon-mn_dunpai c_title text_16em"></i>
+                    <input type="text" id="plug_codeInput" class="fl ml_8 w_92 c_gray_777" required value="" placeholder="请输入右侧验证码" />
+                    <code id="plug_codeView" class="defer_1 press ovh abs right_0 bg_white w_20 line_h_2em border bor_gray_ddd touchstart"></code>
+                </li>
+                <li class="rel bor_bottom bor_gray_ddd">
+                    <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
+                    <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入新密码" />
+                </li>
+                <li class="rel bor_bottom bor_gray_ddd">
+                    <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
+                    <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入确认密码" />
+                </li>
+            </ul>
+            <button type="submit" class="btn_h_3em wm_94 bg_title c_white mt_5 h_32em">提交</button>
+        </div>
 
         <!----------Andrew_PortraitImage---------->
         <!----------Andrew_Select---------->
@@ -646,7 +643,7 @@
                         <input multiple type="file" />
                     </label>
                 </li>
-                <li class="rel fl mb_5">
+                <li class="rel fl mb_5 defer_2">
                     <button type="button" class="plug_DelImage bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd">
                         <i class="icon-ln_jian_a text_24em line_h_16em text_bold c_gray_ddd text_al_m"></i>
                     </button>
@@ -668,49 +665,47 @@
         </div>-->
 
         <!----------Andrew_Textarea---------->
-        <form action="#" method="get">
-            <div class="module mt_5 plug_validate">
-                <dl class="ovh bg_white">
-                    <dt class="press c_title bg_white pl_3 h_3em line_h_3em">感谢您为我提出宝贵意见</dt>
-                    <dd class="rel minus_mt_05em">
-                        <textarea class="plug_textarea ml_3 mr_3 w_94 h_12_em c_gray_777" placeholder="请输入遇到的问题或者意见..." required></textarea>
-                    </dd>
-                </dl>
-                <button type="submit" class="btn_h_3em wm_94 bg_title c_white mt_5 h_32em">提交</button>
-            </div>
-        </form>
+        <div class="module mt_5 plug_validate plug_form">
+            <dl class="ovh bg_white">
+                <dt class="press c_title bg_white pl_3 h_3em line_h_3em">感谢您为我提出宝贵意见</dt>
+                <dd class="rel minus_mt_05em pb_12em">
+                    <textarea class="plug_textarea ml_3 mr_3 w_94 h_12_em c_gray_777" placeholder="请输入遇到的问题或者意见..." required></textarea>
+                </dd>
+            </dl>
+            <button type="submit" class="btn_h_3em wm_94 bg_title c_white mt_5 h_32em">提交</button>
+        </div>
 
         <!----------Andrew_lightSlider---------->
-        <div class="module bg_white press mt_5 pb_3">
+        <div class="module bg_white press mt_5">
             <h3 class="bg_white c_title pl_3 mb_1em line_h_36em bor_bottom bor_gray_ddd">图片滑动展示</h3>
-            <div class="wm_94 ovh rel">
-                <ul id="plug_photo_slider">
-                    <li class="h_8em">
+            <div class="wm_94 ovh rel h_9em">
+                <ul id="plug_photo_slider" class="defer_1">
+                    <li class="fl h_8em ovi_im">
                         <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
                             <img src="./img/tibet-1.jpg" />
                         </figure>
                     </li>
-                    <li class="h_8em">
+                    <li class="fl h_8em ovi_im">
                         <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
                             <img src="./img/tibet-2.jpg" />
                         </figure>
                     </li>
-                    <li class="h_8em">
+                    <li class="fl h_8em ovi_im">
                         <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
                             <img src="./img/tibet-3.jpg" />
                         </figure>
                     </li>
-                    <li class="h_8em">
+                    <li class="fl h_8em ovi_im">
                         <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
                             <img src="./img/tibet-4.jpg" />
                         </figure>
                     </li>
-                    <li class="h_8em">
+                    <li class="fl h_8em ovi_im">
                         <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
                             <img src="./img/tibet-5.jpg" />
                         </figure>
                     </li>
-                    <li class="h_8em">
+                    <li class="fl h_8em ovi_im">
                         <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
                             <img src="./img/tibet-6.jpg" />
                         </figure>
@@ -732,7 +727,7 @@
                             <i class="text_14em icon-ln_jiantouxia"></i>
                         </dd>
                     </dl>
-                    <article class="ma_3 c_gray_777 line_h_18em">
+                    <article class="dis_none ma_3 c_gray_777 line_h_18em">
                         欢迎使用AKjs移动端前端UI框架。<br>
                         当前内容是点击查看更多后的详情信息。
                     </article>
@@ -746,7 +741,7 @@
                             <i class="text_14em icon-ln_jiantouxia"></i>
                         </dd>
                     </dl>
-                    <article class="ma_3 c_gray_777 line_h_18em">
+                    <article class="dis_none ma_3 c_gray_777 line_h_18em">
                         欢迎使用AKjs移动端前端UI框架。<br>
                         当前内容是点击查看更多后的详情信息。
                     </article>
@@ -760,7 +755,7 @@
                             <i class="text_14em icon-ln_jiantouxia"></i>
                         </dd>
                     </dl>
-                    <article class="ma_3 c_gray_777 line_h_18em">
+                    <article class="dis_none ma_3 c_gray_777 line_h_18em">
                         欢迎使用AKjs移动端前端UI框架。<br>
                         当前内容是点击查看更多后的详情信息。
                     </article>
@@ -773,7 +768,7 @@
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">全选功能</h3>
             <ul class="plug_allchk">
                 <li class="bg_white">
-                    <dl class="rel line_h_36em ovh touchstart bor_bottom_dashed bor_gray_ddd">
+                    <dl class="rel h_36em list_h_36em ovh touchstart bor_bottom_dashed bor_gray_ddd">
                         <dt class="fl ml_3 h_in">
                             <input type="checkbox" name="checkbox2-2" class="plug_Checkbox" multiple value="0202" />
                         </dt>
@@ -817,32 +812,32 @@
         <div class="module press mt_5 bg_white">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片放大展示</h3>
             <ul class="plug_viewer lazyload ml_3 mt_1em length2">
-                <li class="fl ovh h_8em mb_1em">
+                <li class="fl h_8em mb_1em">
                     <figure class="w_94 border bor_gray_ddd img_auto h_in">
                         <img src="./img/tibet-1.jpg" data-url="./img/thumbnails/tibet-1.jpg" alt="图片1" />
                     </figure>
                 </li>
-                <li class="fl ovh h_8em mb_1em">
+                <li class="fl h_8em mb_1em">
                     <figure class="w_94 border bor_gray_ddd img_auto h_in">
                         <img src="./img/tibet-2.jpg" data-url="./img/thumbnails/tibet-2.jpg" alt="图片2" />
                     </figure>
                 </li>
-                <li class="fl ovh h_8em mb_1em">
+                <li class="fl h_8em mb_1em">
                     <figure class="w_94 border bor_gray_ddd img_auto h_in">
                         <img src="./img/tibet-3.jpg" data-url="./img/thumbnails/tibet-3.jpg" alt="图片3" />
                     </figure>
                 </li>
-                <li class="fl ovh h_8em mb_1em">
+                <li class="fl h_8em mb_1em">
                     <figure class="w_94 border bor_gray_ddd img_auto h_in">
                         <img src="./img/tibet-4.jpg" data-url="./img/thumbnails/tibet-4.jpg" alt="图片4" />
                     </figure>
                 </li>
-                <li class="fl ovh h_8em mb_1em">
+                <li class="fl h_8em mb_1em">
                     <figure class="w_94 border bor_gray_ddd img_auto h_in">
                         <img src="./img/tibet-5.jpg" data-url="./img/thumbnails/tibet-5.jpg" alt="图片5" />
                     </figure>
                 </li>
-                <li class="fl ovh h_8em mb_1em">
+                <li class="fl h_8em mb_1em">
                     <figure class="w_94 border bor_gray_ddd img_auto h_in">
                         <img src="./img/tibet-6.jpg" data-url="./img/thumbnails/tibet-6.jpg" alt="图片6" />
                     </figure>
@@ -915,7 +910,7 @@
 
     /*-----------------------------------------------Andrew_Form 使用方法-------------------------------------------*/
     $(function(){
-        $("form").Andrew_Form({ //输入框右侧加删除文字按钮
+        $(".plug_form").Andrew_Form({ //表单专用插件
             btn_delete: ".plug_Delete", //输入文字的删除按钮class名
             btn_delete_ico: "icon-ln_quxiao", //输入文字的删除按钮的图标
             btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
@@ -934,6 +929,32 @@
             },
             butCallback: function(form) { //点击提交按钮后的回调，获取当前表单的元素
                 console.log(form);
+                form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
+                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+                    icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+                    callback: function(btn,disabled) { //回调入口
+                        disabled(true); //把提交按钮设为disabled状态
+                        setTimeout(function () {
+                            disabled(false); //把提交按钮解除disabled状态
+                            //btn.html("提交成功");
+                        }, 3000);
+                    }
+                });
+            }
+        });
+    });
+
+    /*-----------------------------------------------Andrew_ButtonSubmit 使用方法-------------------------------------------*/
+    $(function () {
+        $(".plug_submit").Andrew_ButtonSubmit("数据正在提交中...",{
+            click: true, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+            icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+            callback: function(btn,disabled) { //回调入口
+                disabled(true); //把提交按钮设为disabled状态
+                setTimeout(function () {
+                    disabled(false); //把提交按钮解除disabled状态
+                    //btn.html("提交成功");
+                }, 3000);
             }
         });
     });
@@ -1042,7 +1063,7 @@
             mouse: "click", //鼠标事件 (click/hover)
             touchmode : true, //是否开启触屏滑动切换功能 (true/false)
             changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
-            callback: function(ele,index) { //通过回调获取当前显示的元素
+            callback: function(ele,index) { //初始化回调入口
                 if (index == 0) {
                     var ajax_url = './router/tab_test1.html';
                 } else if (index == 1) {
@@ -1069,6 +1090,9 @@
                         //ak_webToast("请求加载数据失败！","middle",2000);
                     }
                 });
+            },
+            changeback: function (ele,index) { //Tab切换回调入口
+                console.log(index);
             }
         });
     });
@@ -1086,8 +1110,11 @@
             mouse: "click", //鼠标事件 (click/hover)
             touchmode : false, //是否开启触屏滑动切换功能 (true/false)
             changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
-            callback: function(ele) { //通过回调获取当前显示的元素
+            callback: function(ele,index) { //初始化回调入口
                 //console.log(ele);
+            },
+            changeback: function (ele,index) { //Tab切换回调入口
+                console.log(index);
             }
         });
     });
@@ -1317,6 +1344,14 @@
                     $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
                     $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
                     $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+                    /*把筛选功能中的弹窗关闭处理*/
+                    $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+                    $(".plug_sort_btn4").removeClass("ak-is_active");
+                    $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+                    setTimeout(function() {
+                        $('#popup_mask').fadeOut().remove();
+                    },500);
                 }
             }
         });
@@ -1337,6 +1372,14 @@
                     $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
                     $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
                     $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+                    /*把筛选功能中的弹窗关闭处理*/
+                    $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+                    $(".plug_sort_btn4").removeClass("ak-is_active");
+                    $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+                    setTimeout(function() {
+                        $('#popup_mask').fadeOut().remove();
+                    },500);
                 }
             }
         });
@@ -1357,6 +1400,14 @@
                     $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
                     $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
                     $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+                    /*把筛选功能中的弹窗关闭处理*/
+                    $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+                    $(".plug_sort_btn4").removeClass("ak-is_active");
+                    $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+                    setTimeout(function() {
+                        $('#popup_mask').fadeOut().remove();
+                    },500);
                 }
             }
         });
@@ -1408,7 +1459,6 @@
                         var text_color2 = op.text_color[1]; //点击后的颜色
                         var Change_icon1 = op.Change_icon[0]; //默认图标
                         var Change_icon2 = op.Change_icon[1]; //点击后的图标
-                        _this.removeClass("active"); //清空弹窗元素中的Class，让弹窗设置为关闭的状态
                         _this.children().removeClass(text_color2).addClass(text_color1); //把文字颜色切换为默认颜色
                         _this.children().find("i").removeClass(text_color2).addClass(text_color1); //把图标颜色切换为默认颜色
                         _this.children().find("i").removeClass(Change_icon2).addClass(Change_icon1); //把图标切换为默认显示的图标
