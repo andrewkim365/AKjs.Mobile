@@ -21,8 +21,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var mbf = $(this);
             if (mbf.prop("localName") == "form") {
                 mbf.each(function(){
-                    if($(this).prop("attributes").action.value) {
-                        $(this).removeAttr("onsubmit");
+                    if ($(this).attr("data-submit")) {
+                        $(this).attr("onsubmit","return true");
                     } else {
                         $(this).attr("onsubmit","return false");
                     }
