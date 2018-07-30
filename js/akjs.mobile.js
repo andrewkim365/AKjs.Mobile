@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180725 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180730 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -52,9 +52,7 @@ function Andrew_Config(setting) {
                 $("input").blur();
                 $("textarea").blur();
                 $("main").not("aside main").removeClass("scrolling");
-                setTimeout(function() {
-                    $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
-                },200);
+                $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
             }
         }, false);
     }
@@ -131,7 +129,7 @@ function Andrew_Router(setting) {
             Router_Ajax(option,page);
             Andrew_mainHeight();
             if (option.Animate) {
-                $("animation").after("<aside id='ak-aside' class='fix bg_gray_eee top_0 left_0 wh_100' />");
+                $("animation").after("<aside id='ak-aside' class='fix bg_gray_eee top_0 left_0 vwh_100' />");
                 var asideEle = $("#ak-aside");
                 var asideRecord = $(aside_record);
                 var animationEle = {};
@@ -155,6 +153,8 @@ function Andrew_Router(setting) {
                     $("animation").removeClass();
                     asideEle.html($(animationEle).html());
                 }
+                asideEle.find('[class^="defer_"]').addClass("defer_none");
+                asideEle.find('[class*=" defer_"]').addClass("defer_none");
                 asideEle.find("footer").addClass("dis_opa_0");
                 asideEle.find(".animated").removeClass("animated");
                 asideEle.find(".dis_opa_0").removeClass("dis_opa_0");
@@ -621,12 +621,7 @@ function Andrew_mainHeight() {
     if (IsMobile) {
         $("#ak-main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
-        $("body").addClass("fix").css({
-            top: 0,
-            left: 0,
-            width: $(document).width(),
-            height: $(document).height()
-        });
+        $("body").addClass("fix vwh_100");
         document.oncontextmenu = function(){
             event.returnValue = false;
             return false;
@@ -634,7 +629,7 @@ function Andrew_mainHeight() {
     } else {
         $("#ak-main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
-        $("body").removeClass("fix").removeAttr("style");
+        $("body").removeClass("fix vwh_100");
         document.oncontextmenu = function(){
             event.returnValue = true;
             return true;

@@ -5,6 +5,7 @@
 * 注：调用插件的地方在router目录里的相关html文件中的最底部。
 */
 Andrew_Plugin("Andrew_AllChecked"); //全选功能
+Andrew_Plugin("Andrew_ButtonSubmit","css"); //防止重复提交功能
 Andrew_Plugin("Andrew_ChangeIcon"); //图标切换功能
 Andrew_Plugin("Andrew_ChangeInput"); //输入框值互换功能
 Andrew_Plugin("Andrew_Checkbox","css"); //复选框美化
