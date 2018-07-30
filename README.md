@@ -1,4 +1,4 @@
-# AKjs.Mobile v 1.3.5
+# AKjs.Mobile v 1.3.6
 
 AKjs前端框架是Andrew.Kim和他的团队一起研发的基于jQuery的一个轻量级前端框架。它是只要懂jQuery的语法很容易上手的框架。该框架里面现在发布了很多移动端常用的功能效果；开发者们使用过程中功能插件也可以自己扩展增加。另一方面，它是相当于一个丰富的组件化UI框架，优点是开发要前后端分离，项目开发过程中后端通过ajax调用数据的机制。
 
@@ -45,7 +45,28 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 * AKjs前端技术支持QQ群：724501394
 
 -----------------------------------------------------------------------------------------------------------------------
-#### 更新时间：2018/07/25 下午 11:32
+#### 更新时间：2018/07/30 下午 16:58
+
+#### 更新说明：
+
+js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.6版本；
+
+修改 js/plugin.js文件中按需引入Andrew_ButtonSubmit功能插件；
+
+新增了元素放大缩小的class名zoom_* （*可设置05~5）；
+
+解决akjs样式库在NodeJs环境中渐变样式无法编译的问题；
+
+新增 js/plugin/Andrew_ButtonSubmit.js以及对应的css文件（防止重复提交功能）；
+
+修改 js/plugin/Andrew_Form.js以及对应的css 功能插件bug；
+
+修改 js/plugin/Andrew_Tabs.js 功能插件bug（增加change事件的回调）；
+
+修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
+
+
+#### 更新时间：2018/07/25 上午 11:32
 
 #### 更新说明：
 
@@ -81,7 +102,7 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.4版本；
 修改演示版中的几个demo文件。（demo.html 和 /router/page1）
 
 
-#### 更新时间：2018/07/22 下午 11:11
+#### 更新时间：2018/07/22 上午 11:11
 
 #### 更新说明：
 
