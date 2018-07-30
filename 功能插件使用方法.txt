@@ -1,6 +1,6 @@
 //引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-07-21
+//文档更新日期：2018-07-26
 
 /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
 $(function () {
@@ -20,7 +20,7 @@ $(function () {
 
 /*-----------------------------------------------Andrew_Form  使用方法-------------------------------------------*/
 $(function(){
-   $("form").Andrew_Form({ //输入框右侧加删除文字按钮
+   $(".plug_form").Andrew_Form({ //表单专用插件
        btn_delete: ".plug_Delete", //输入文字的删除按钮class名
        btn_delete_ico: "icon-ln_quxiao", //输入文字的删除按钮的图标
        btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
@@ -133,65 +133,71 @@ $(function () {
 
 /*-----------------------------------------------Andrew_Tabs 使用方法-------------------------------------------*/
 $(function () {
-   $(".plug_tabs").Andrew_Tabs({
-       curDisplay: 1, //当前显示哪张
-       autoPlay: false, //自动播放 (true/false)
-       playDelay: 2000, //切换Tabs延迟时间
-       boxheight: false, //切换内容区域的高度设置px；建议vertical方式时使用 （不使用高度：false）
-       navlength: 4, //切换导航的数量设置（文字屏幕对齐）
-       fullclass: "bor_bottom2 bor_title c_title minus_mt_1px", //被选中状态的class
-       emptyclass: "bor_bottom bor_gray_ddd", //未选中状态的class
-       mouse: "click", //鼠标事件 (click/hover)
-       touchmode : true, //是否开启触屏滑动切换功能 (true/false)
-       changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
-       callback: function(ele,index) { //通过回调获取当前显示的元素
-           if (index == 0) {
-               var ajax_url = './router/tab_test1.html';
-           } else if (index == 1) {
-               var ajax_url = './router/tab_test2.html';
-           } else if (index == 2) {
-               var ajax_url = './router/tab_test3.html';
-           } else if (index == 3) {
-               var ajax_url = './router/tab_test4.html';
-           }
-           //console.log(ajax_url);
-           /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
-           Andrew_Ajax({
-               to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-               type: "GET", //GET或POST
-               url: ajax_url, //需要加载的URL
-               data:{}, //传入参数
-               async: true, //异步方式：true，同步方式：false
-               success:function (result) { //ajax请求加载成功后的回调
-                   //console.log(result);
-                   //ak_webToast("请求加载数据成功！","middle",2000);
-               },
-               error:function (error) { //ajax请求加载失败后的回调
-                   //console.log(error);
-                   //ak_webToast("请求加载数据失败！","middle",2000);
-               }
-           });
-       }
-   });
+    $(".plug_tabs").Andrew_Tabs({
+        curDisplay: 1, //当前显示哪张
+        autoPlay: false, //自动播放 (true/false)
+        playDelay: 2000, //切换Tabs延迟时间
+        boxheight: false, //切换内容区域的高度设置px；建议vertical方式时使用 （不使用高度：false）
+        navlength: 4, //切换导航的数量设置（文字屏幕对齐）
+        fullclass: "bor_bottom2 bor_title c_title minus_mt_1px", //被选中状态的class
+        emptyclass: "bor_bottom bor_gray_ddd", //未选中状态的class
+        mouse: "click", //鼠标事件 (click/hover)
+        touchmode : true, //是否开启触屏滑动切换功能 (true/false)
+        changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
+        callback: function(ele,index) { //初始化回调入口
+            if (index == 0) {
+                var ajax_url = './router/tab_test1.html';
+            } else if (index == 1) {
+                var ajax_url = './router/tab_test2.html';
+            } else if (index == 2) {
+                var ajax_url = './router/tab_test3.html';
+            } else if (index == 3) {
+                var ajax_url = './router/tab_test4.html';
+            }
+            //console.log(ajax_url);
+            /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
+            Andrew_Ajax({
+                to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
+                type: "GET", //GET或POST
+                url: ajax_url, //需要加载的URL
+                data:{}, //传入参数
+                async: true, //异步方式：true，同步方式：false
+                success:function (result) { //ajax请求加载成功后的回调
+                    //console.log(result);
+                    //ak_webToast("请求加载数据成功！","middle",2000);
+                },
+                error:function (error) { //ajax请求加载失败后的回调
+                    //console.log(error);
+                    //ak_webToast("请求加载数据失败！","middle",2000);
+                }
+            });
+        },
+        changeback: function (ele,index) { //Tab切换回调入口
+            console.log(index);
+        }
+    });
 });
 
 /*-----------------------------------------------Andrew_Tabs (仿京东商品分类) 使用方法-------------------------------------------*/
 $(function () {
-   $(".plug_tabs_ud").Andrew_Tabs({
-       curDisplay: 1, //当前显示哪张
-       autoPlay: false, //自动播放 (true/false)
-       playDelay: 1000, //切换Tabs延迟时间
-       boxheight: "12em", //切换内容区域的高度设置px （不使用高度：false）
-       navlength: 1, //切换导航的数量设置（文字屏幕对齐）
-       fullclass: "bg_white c_title bor_right_none", //被选中状态的class
-       emptyclass: "bg_gray_f5f", //未选中状态的class
-       mouse: "click", //鼠标事件 (click/hover)
-       touchmode : false, //是否开启触屏滑动切换功能 (true/false)
-       changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
-       callback: function(ele) { //通过回调获取当前显示的元素
-           //console.log(ele);
-       }
-   });
+    $(".plug_tabs_ud").Andrew_Tabs({
+        curDisplay: 1, //当前显示哪张
+        autoPlay: false, //自动播放 (true/false)
+        playDelay: 1000, //切换Tabs延迟时间
+        boxheight: "12em", //切换内容区域的高度设置px （不使用高度：false）
+        navlength: 1, //切换导航的数量设置（文字屏幕对齐）
+        fullclass: "bg_white c_title bor_right_none", //被选中状态的class
+        emptyclass: "bg_gray_f5f", //未选中状态的class
+        mouse: "click", //鼠标事件 (click/hover)
+        touchmode : false, //是否开启触屏滑动切换功能 (true/false)
+        changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
+        callback: function(ele,index) { //初始化回调入口
+            //console.log(ele);
+        },
+        changeback: function (ele,index) { //Tab切换回调入口
+            console.log(index);
+        }
+    });
 });
 
 /*-----------------------------------------------Andrew_Dialog 使用方法-------------------------------------------*/
@@ -401,123 +407,146 @@ $(function(){
 });
 
 /*-----------------------------------------------Andrew_ChangeIcon 使用方法-------------------------------------------*/
-   $(function(){
-       $(".plug_sort_btn1").Andrew_ChangeIcon({
-           multi_icon: false, //是否控制的图标是多个
-           text_color: new Array( //文字颜色设置（最多两个）
-               "c_gray_777", //默认颜色
-               "c_title" //点击后的颜色
-           ),
-           clickBack:function(state,op){ //回调获取当前的值和option参数
-               var text_color1 = $(this)[0].text_color[0]; //默认颜色
-               var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-               if (state == true) { //是否被开启
-                   $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第2个的文字样式
-                   $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第2个的图标样式
-                   $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                   $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                   $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
-                   $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
-               }
+$(function(){
+   $(".plug_sort_btn1").Andrew_ChangeIcon({
+       multi_icon: false, //是否控制的图标是多个
+       text_color: new Array( //文字颜色设置（最多两个）
+           "c_gray_777", //默认颜色
+           "c_title" //点击后的颜色
+       ),
+       clickBack:function(state,op){ //回调获取当前的值和option参数
+           var text_color1 = $(this)[0].text_color[0]; //默认颜色
+           var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+           if (state == true) { //是否被开启
+               $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第2个的文字样式
+               $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第2个的图标样式
+               $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+               $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+               $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
+               $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+               /*把筛选功能中的弹窗关闭处理*/
+               $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+               $(".plug_sort_btn4").removeClass("ak-is_active");
+               $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+               setTimeout(function() {
+                   $('#popup_mask').fadeOut().remove();
+               },500);
            }
-       });
+       }
    });
-   $(function(){
-       $(".plug_sort_btn2").Andrew_ChangeIcon({
-           multi_icon: true, //是否控制的图标是多个
-           text_color: new Array( //文字颜色设置（最多两个）
-               "c_gray_777", //默认颜色
-               "c_title" //点击后的颜色
-           ),
-           clickBack:function(state,op){ //回调获取当前的值和option参数
-               var text_color1 = $(this)[0].text_color[0]; //默认颜色
-               var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-               if (state) { //是否被开启
-                   $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
-                   $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                   $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                   $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
-                   $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
-               }
+});
+$(function(){
+   $(".plug_sort_btn2").Andrew_ChangeIcon({
+       multi_icon: true, //是否控制的图标是多个
+       text_color: new Array( //文字颜色设置（最多两个）
+           "c_gray_777", //默认颜色
+           "c_title" //点击后的颜色
+       ),
+       clickBack:function(state,op){ //回调获取当前的值和option参数
+           var text_color1 = $(this)[0].text_color[0]; //默认颜色
+           var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+           if (state) { //是否被开启
+               $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
+               $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+               $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+               $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
+               $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+               /*把筛选功能中的弹窗关闭处理*/
+               $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+               $(".plug_sort_btn4").removeClass("ak-is_active");
+               $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+               setTimeout(function() {
+                   $('#popup_mask').fadeOut().remove();
+               },500);
            }
-       });
+       }
    });
-   $(function(){
-       $(".plug_sort_btn3").Andrew_ChangeIcon({
-           multi_icon: true, //是否控制的图标是多个
-           text_color: new Array( //文字颜色设置（最多两个）
-               "c_gray_777", //默认颜色
-               "c_title" //点击后的颜色
-           ),
-           clickBack:function(state,op){ //回调获取当前的值和option参数
-               var text_color1 = $(this)[0].text_color[0]; //默认颜色
-               var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-               if (state) { //是否被开启
-                   $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
-                   $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                   $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                   $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
-                   $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
-               }
+});
+$(function(){
+   $(".plug_sort_btn3").Andrew_ChangeIcon({
+       multi_icon: true, //是否控制的图标是多个
+       text_color: new Array( //文字颜色设置（最多两个）
+           "c_gray_777", //默认颜色
+           "c_title" //点击后的颜色
+       ),
+       clickBack:function(state,op){ //回调获取当前的值和option参数
+           var text_color1 = $(this)[0].text_color[0]; //默认颜色
+           var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+           if (state) { //是否被开启
+               $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
+               $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+               $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+               $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
+               $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+               /*把筛选功能中的弹窗关闭处理*/
+               $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+               $(".plug_sort_btn4").removeClass("ak-is_active");
+               $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+               setTimeout(function() {
+                   $('#popup_mask').fadeOut().remove();
+               },500);
            }
-       });
+       }
    });
-   $(function(){
-       $(".plug_sort_btn4").Andrew_ChangeIcon({
-           multi_icon: false, //是否控制的图标是多个
-           text_color: new Array( //文字颜色设置（最多两个）
-               "c_gray_777", //默认颜色
-               "c_title" //点击后的颜色
-           ),
-           Change_icon: new Array( //文字颜色设置（最多两个）
-               "icon-ln_xiangxia", //默认显示图标
-               "icon-ln_xiangshang" //切换后显示的图标
-           ),
-           clickBack:function(state,op){ //回调获取当前的值和option参数
-               console.log(op);
-               var text_color1 = $(this)[0].text_color[0]; //默认颜色
-               var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-               if (state == true) { //是否被开启
-                   $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
-                   $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                   $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                   $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                   $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-               }
-               $(".plug_sort_btn4").each(function(){
-                   var _this = $(this);
-                   Andrew_Popupwin({ //调用弹窗插件
-                       dom: "#plug_filterWin", //弹窗内容的布局
-                       position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
-                       effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
-                       effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
-                       maskPosition:"1", //Mask的z-index数值
-                       closeBtn: "#plug_filterWin", //关闭弹窗按钮
-                       OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
-                       callback :function (ele) { //通过回调获取弹窗显示后的参数
-                           var modal =$(ele[0].dom); //获取弹窗元素
-                           $(modal).click(function(){ //点击弹窗内容区域后关闭当前被展开的弹窗
-                               initialize_btn(); //调用按钮样式初始化功能
-                           });
-                       },
-                       scrollback :function (ele) { //页面滑动时的回调获取参数
+});
+$(function(){
+   $(".plug_sort_btn4").Andrew_ChangeIcon({
+       multi_icon: false, //是否控制的图标是多个
+       text_color: new Array( //文字颜色设置（最多两个）
+           "c_gray_777", //默认颜色
+           "c_title" //点击后的颜色
+       ),
+       Change_icon: new Array( //文字颜色设置（最多两个）
+           "icon-ln_xiangxia", //默认显示图标
+           "icon-ln_xiangshang" //切换后显示的图标
+       ),
+       clickBack:function(state,op){ //回调获取当前的值和option参数
+           console.log(op);
+           var text_color1 = $(this)[0].text_color[0]; //默认颜色
+           var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+           if (state == true) { //是否被开启
+               $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
+               $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+               $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+               $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+               $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+           }
+           $(".plug_sort_btn4").each(function(){
+               var _this = $(this);
+               Andrew_Popupwin({ //调用弹窗插件
+                   dom: "#plug_filterWin", //弹窗内容的布局
+                   position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
+                   effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
+                   effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
+                   maskPosition:"1", //Mask的z-index数值
+                   closeBtn: "#plug_filterWin", //关闭弹窗按钮
+                   OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
+                   callback :function (ele) { //通过回调获取弹窗显示后的参数
+                       var modal =$(ele[0].dom); //获取弹窗元素
+                       $(modal).click(function(){ //点击弹窗内容区域后关闭当前被展开的弹窗
                            initialize_btn(); //调用按钮样式初始化功能
-                       }
-                   });
-                   function initialize_btn(){ //按钮的样式初始化
-                       var text_color1 = op.text_color[0]; //默认颜色
-                       var text_color2 = op.text_color[1]; //点击后的颜色
-                       var Change_icon1 = op.Change_icon[0]; //默认图标
-                       var Change_icon2 = op.Change_icon[1]; //点击后的图标
-                       _this.removeClass("active"); //清空弹窗元素中的Class，让弹窗设置为关闭的状态
-                       _this.children().removeClass(text_color2).addClass(text_color1); //把文字颜色切换为默认颜色
-                       _this.children().find("i").removeClass(text_color2).addClass(text_color1); //把图标颜色切换为默认颜色
-                       _this.children().find("i").removeClass(Change_icon2).addClass(Change_icon1); //把图标切换为默认显示的图标
+                       });
+                   },
+                   scrollback :function (ele) { //页面滑动时的回调获取参数
+                       initialize_btn(); //调用按钮样式初始化功能
                    }
                });
-           }
-       });
+               function initialize_btn(){ //按钮的样式初始化
+                   var text_color1 = op.text_color[0]; //默认颜色
+                   var text_color2 = op.text_color[1]; //点击后的颜色
+                   var Change_icon1 = op.Change_icon[0]; //默认图标
+                   var Change_icon2 = op.Change_icon[1]; //点击后的图标
+                   _this.children().removeClass(text_color2).addClass(text_color1); //把文字颜色切换为默认颜色
+                   _this.children().find("i").removeClass(text_color2).addClass(text_color1); //把图标颜色切换为默认颜色
+                   _this.children().find("i").removeClass(Change_icon2).addClass(Change_icon1); //把图标切换为默认显示的图标
+               }
+           });
+       }
    });
+});
 
 /*-----------------------------------------------Andrew_Radio&Andrew_Checkbox&Andrew_Switch 使用方法-------------------------------------------*/
 $(function(){

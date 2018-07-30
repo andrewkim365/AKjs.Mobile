@@ -86,7 +86,7 @@
         <div class="module mt_5 list press">
             <ul>
                 <li class="bg_white rel ovh"><!--可循环-->
-                    <dl class="rel h_in ovh list_h_36em wp_94 bor_bottom bor_gray_ddd touchstart" data-href="demo3.html">
+                    <dl class="rel h_in ovh list_h_36em wp_94 bor_bottom bor_gray_ddd touchstart" data-href="/page3">
                         <dt class="fl">列表布局展示</dt>
                         <dd class="fr rel mr_7">
                             <span class="fr c_orange ml_05em">状态</span>
@@ -107,7 +107,11 @@
                     </dl>
                     <dl class="wm_94 ovh pt_1em pb_1em bor_bottom_dashed bor_gray_ddd">
                         <dt class="fl rel ovh h_in mr_03em">邮箱：</dt>
-                        <dd class="fl rel ovh h_in c_gray_777">andrewkim365@qq.com</dd>
+                        <dd class="fl rel ovh h_in c_gray_777"><a href="mailto:andrewkim365@qq.com">andrewkim365@qq.com</a></dd>
+                    </dl>
+                    <dl class="wm_94 ovh pt_1em pb_1em bor_bottom_dashed bor_gray_ddd">
+                        <dt class="fl rel ovh h_in mr_03em">手机号码：</dt>
+                        <dd class="fl rel ovh h_in c_gray_777"><a href="tel:133-3333-3333">133-3333-3333</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -182,11 +186,17 @@
                     <option value="8">南京</option>
                     <option value="9">青岛</option>
                 </select>
+                <!--路由跳页select 方法：data-type="router-link"-->
+                <select data-type="router-link" class="plug_select w_8em h_3em line_h_28em c_gray_777 bor_rad_05em bor_gray_ddd border bg_gray_f5f">
+                    <option value="0">请选择</option>
+                    <option value="page2">聊天</option>
+                    <option value="page3">瀑布流</option>
+                </select>
                 <!--普通跳转select 方法：data-type="link"-->
                 <select data-type="link" class="plug_select w_8em h_3em line_h_28em c_gray_777 bor_rad_05em bor_gray_ddd border bg_gray_f5f">
                     <option value="0">请选择</option>
-                    <option value="demo2.html">聊天</option>
-                    <option value="demo3.html">瀑布流</option>
+                    <option value="http://www.baidu.com">百度</option>
+                    <option value="http://www.taobao.com">淘宝</option>
                 </select>
             </article>
         </div>
@@ -212,7 +222,7 @@
         <!----------Andrew_ReadMore---------->
         <div class="module mt_5 bg_white">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">查看更多内容插件</h3>
-            <article class="plug_readmore wp_94 pt_3 line_h_18em">
+            <article class="plug_readmore wp_94 pt_3 line_h_18em dis_none">
                 <p>AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。</p>
                 <p>AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。</p>
                 <p>AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。</p>
@@ -298,8 +308,8 @@
         <!----------Andrew_Template---------->
         <div class="module list mt_5 ovh rel">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片列表展示</h3>
-            <ul class="plug_for">
-                <li class="rel ovh bg_white pa_3 bor_bottom bor_gray_ddd touchstart" data-href="demo3.html">
+            <ul class="plug_for defer_1">
+                <li class="rel ovh bg_white pa_3 bor_bottom bor_gray_ddd touchstart" data-href="/page3">
                     <figure class="fl bg_gray_f5f border bor_gray_ddd wh_6em img_auto">
                         {{html Image}}
                     </figure>
@@ -318,7 +328,7 @@
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">功能布局</h3>
             <ul class="ovh list_h_8em verline_list length3">
                 <li class="fl rel text_al_c touchstart">
-                    <button type="button" class="dis_block ovh w_100" data-href="demo3.html">
+                    <button type="button" class="dis_block ovh w_100" data-href="/page3">
                         <label class="bg_title bor_rad_50 c_white wh_4em mt_05em center">
                             <i class="text_al_c text_al_t line_h_18em text_24em icon-xt_pingguo"></i>
                         </label>
@@ -326,7 +336,7 @@
                     </button>
                 </li>
                 <li class="fl rel text_al_c touchstart">
-                    <button type="button" class="dis_block ovh w_100" data-href="demo3.html">
+                    <button type="button" class="dis_block ovh w_100" data-href="/page3">
                         <label class="bg_title bor_rad_50 c_white wh_4em mt_05em center">
                             <i class="text_al_c text_al_t line_h_18em text_24em icon-xt_anzhuo"></i>
                         </label>
@@ -334,7 +344,7 @@
                     </button>
                 </li>
                 <li class="fl rel text_al_c touchstart">
-                    <button type="button" class="dis_block ovh w_100" data-href="demo3.html">
+                    <button type="button" class="dis_block ovh w_100" data-href="/page3">
                         <label class="bg_title bor_rad_50 c_white wh_4em mt_05em center">
                             <i class="text_al_c text_al_t line_h_18em text_24em icon-xt_weiruan"></i>
                         </label>
@@ -443,7 +453,6 @@
                 <span class="plug_TypeIt line_h_24em"></span>
             </section>
         </div>-->
-
         <div class="module mt_5 bg_white">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">文字和布局的居中方法</h3>
             <ul class="ud_ele_c w_100 h_16_em"><!--ud_ele_c里面的所有li标签自动上下居中到ul标签中-->
