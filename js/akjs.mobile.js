@@ -129,7 +129,7 @@ function Andrew_Router(setting) {
             Router_Ajax(option,page);
             Andrew_mainHeight();
             if (option.Animate) {
-                $("animation").after("<aside id='ak-aside' class='fix bg_gray_eee top_0 left_0 vwh_100' />");
+                $("animation").after("<aside id='ak-aside' class='fix_full' />");
                 var asideEle = $("#ak-aside");
                 var asideRecord = $(aside_record);
                 var animationEle = {};
@@ -621,7 +621,7 @@ function Andrew_mainHeight() {
     if (IsMobile) {
         $("#ak-main, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
-        $("body").addClass("fix vwh_100");
+        $("body").addClass("fix_full");
         document.oncontextmenu = function(){
             event.returnValue = false;
             return false;
@@ -629,7 +629,7 @@ function Andrew_mainHeight() {
     } else {
         $("#ak-main, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
-        $("body").removeClass("fix vwh_100");
+        $("body").removeClass("fix_full");
         document.oncontextmenu = function(){
             event.returnValue = true;
             return true;
