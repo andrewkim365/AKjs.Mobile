@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-12
+Modification Date: 2018-07-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Textarea----------------------------------------*/
@@ -8,9 +8,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var opm = $.extend({
                 maxlength: 300,
                 rows: 6,
-                topButton: "",
-                onTextVal: function() {},
-                TopbtnOK: function() {}
+                onTextVal: function() {}
             },
             setting);
         var txt =$(this);
@@ -49,35 +47,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $(this).next("span").children("var").eq(0).html(len);
                     var data = $(this).val();
                     opm.onTextVal(data);
-
-                    if (opm.topButton !="") {
-                        if(len>0 && len<=opm.maxlength){
-                            if ($("header").length === 0 || !$("header").hasClass("dis_none_im")) {
-                                $(this).parents("form").find(":submit").addClass("dis_none_im");
-                            }
-                            if ($("header").children("button.ak-txtbutton").length == 0) {
-                                var btn_text = txt.parents("form").find(":submit").text();
-                                $("header").append('<button type="button" class="ak-txtbutton press text_12em pr_3 text_al_r">'+btn_text+'</button>');
-                                $("header").children("button.ak-txtbutton").addClass(opm.topButton);
-                                $("header").children("button.ak-txtbutton").css({
-                                    "position": "absolute",
-                                    "right": "0",
-                                    "z-index": "2"
-                                });
-                            }
-                            $("button.ak-txtbutton").prev("button").addClass("dis_none_im");
-                            $("header").children("button.ak-txtbutton").unbind("click");
-                            $("header").children("button.ak-txtbutton").on("click",function(e) {
-                                e.stopPropagation();
-                                $("header").children("button.ak-txtbutton").show();
-                                opm.TopbtnOK(data);
-                            });
-                        } else {
-                            $("button.ak-txtbutton").prev("button").removeClass("dis_none_im");
-                            $(this).parents("form").find(":submit").removeClass("dis_none_im");
-                            $("header").children("button.ak-txtbutton").remove();
-                        }
-                    }
                 }
             });
         }

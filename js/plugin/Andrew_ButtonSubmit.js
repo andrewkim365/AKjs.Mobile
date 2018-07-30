@@ -13,15 +13,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         setting);
         var btn = $(this);
         if (btn.prop("localName") == "button") {
-            btn.attr("data-text",btn.text());
             if (option.click) {
                 btn.click(function(){
                     var _this = $(this);
+                    if (!_this.attr("data-text")) {
+                        _this.attr("data-text",_this.text());
+                    }
                     submit_setting(_this);
                 });
             } else {
                 btn.each(function(){
                     var _this = $(this);
+                    if (!_this.attr("data-text")) {
+                        _this.attr("data-text",_this.text());
+                    }
                     submit_setting(_this);
                 });
             }

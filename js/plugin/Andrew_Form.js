@@ -14,31 +14,21 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 placeholder: true,
                 keyboard: true,
                 PassCheck: "",
+                validate: true,
+                valCallback: function() {},
                 passCallback: function() {},
                 butCallback: function() {}
             },
             setting);
             var mbf = $(this);
-            if (mbf.prop("localName") == "form") {
-                mbf.each(function(){
-                    if ($(this).attr("data-submit")) {
-                        $(this).attr("onsubmit","return true");
-                    } else {
-                        $(this).attr("onsubmit","return false");
-                    }
-                });
+            if (option.validate == true) {
+                mbf.find(":submit").addClass("disabled").attr("disabled", "disabled");
             }
             //对比两次输入的密码
             var password = mbf.find(option.PassCheck);
             mbf.find(":submit").addClass("mb_5");
             mbf.find(":submit").unbind("click");
-            mbf.keyup(function (event) {
-                event.preventDefault();
-                var keycode = event.which;
-                if (keycode == 13) {
-                    mbf.find(":submit").click();
-                }
-            });
+
             mbf.find(":submit").click(function () {
                 if (option.PassCheck) {
                     if(password.length > 1){
@@ -53,6 +43,45 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 option.butCallback(mbf);
                 return false;
             });
+            mbf.keyup(function (event) {
+            event.preventDefault();
+            if (option.validate == true) {
+                var inputs = $(this).find(":required");
+                var submits = $(this).find(":submit");
+                var arr = [];
+                for (var i = 0; i < inputs.length; i++) {
+                    var tmpFlag = inputs[i].value == "" ? false : true;
+                    arr.push(tmpFlag);
+                }
+                //console.log(arr);
+                var flag = false;
+                if (arr.length == 1) {
+                    flag = arr[0];
+                } else if (arr.length > 1) {
+                    flag = arr[0];
+                    for (var i = 1; i < arr.length; i++) {
+                        flag = flag && arr[i];
+                        //console.log("flag:"+flag);
+                    }
+                } else {
+                    flag = true;
+                }
+                if (!flag) {
+                    submits.addClass("disabled");
+                    submits.attr("disabled", "disabled");
+                    option.valCallback(flag);
+                } else {
+                    //$(this).find(":required").removeAttr("required");
+                    submits.removeClass("disabled");
+                    submits.removeAttr("disabled");
+                    option.valCallback(flag);
+                }
+            }
+            var keycode = event.which;
+            if (keycode == 13) {
+                mbf.find(":submit").click();
+            }
+        });
             //密码（显示/隐藏）
             setTimeout(function() {
                 var btn_password = mbf.find(option.btn_password);
