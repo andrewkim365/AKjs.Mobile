@@ -529,11 +529,10 @@
         </div>
 
         <!----------Andrew_Form---------->
-        <!----------Andrew_Validate---------->
         <!----------Andrew_GetVerifyCode---------->
         <!----------Andrew_intlTelInput---------->
         <!----------Andrew_Codeval---------->
-        <div class="module list mt_5 plug_validate plug_form">
+        <div class="module list mt_5 plug_form">
             <ul class="wp_94 press bg_white list_h_36em">
                 <li class="rel bor_bottom bor_gray_ddd">
                     <i class="abs left_0 icon-mb_shouji c_title text_16em"></i>
@@ -665,7 +664,7 @@
         </div>-->
 
         <!----------Andrew_Textarea---------->
-        <div class="module mt_5 plug_validate plug_form">
+        <div class="module mt_5 plug_form">
             <dl class="ovh bg_white">
                 <dt class="press c_title bg_white pl_3 h_3em line_h_3em">感谢您为我提出宝贵意见</dt>
                 <dd class="rel minus_mt_05em pb_12em">
@@ -910,7 +909,7 @@
 
     /*-----------------------------------------------Andrew_Form 使用方法-------------------------------------------*/
     $(function(){
-        $(".plug_form").Andrew_Form({ //表单专用插件
+        $(".plug_form").Andrew_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
             btn_delete: ".plug_Delete", //输入文字的删除按钮class名
             btn_delete_ico: "icon-ln_quxiao", //输入文字的删除按钮的图标
             btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
@@ -919,6 +918,10 @@
             placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
             keyboard: true, //是否输入框内设置的maxlength自定的限制字数后手机键盘自动消失或者input元素加readonly属性不显示键盘，建议开启 (开启 true, 停用 false）
             PassCheck: ".plug_PassCheck", //两次输入密码确认时需要加的class名
+            validate: true, //是否开启表单提交按钮的校验功能 （表单内的输入框有required属性代表必填项，所有的必填项全部输入完成才能提交的功能）
+            valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
+                console.log(flag)
+            },
             passCallback: function() { //通过回调进入两次输入的密码不一致状态 （PassCheck的参数空值时不走当前的回调）
                 console.log("两次输入的密码不一致");
                 $ak.alert("两次输入的密码必须一致！", {
@@ -950,6 +953,7 @@
             click: true, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
             icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
             callback: function(btn,disabled) { //回调入口
+                console.log(btn)
                 disabled(true); //把提交按钮设为disabled状态
                 setTimeout(function () {
                     disabled(false); //把提交按钮解除disabled状态
@@ -964,13 +968,8 @@
         $(".plug_textarea").Andrew_Textarea({ //多行输入框设置
             maxlength:200, //文字最多输入限制
             rows:"6", //输入框的行高
-            topButton: "c_title", //提交按钮在头部显示后的样式 （设置为空，代表不使用该功能）
             onTextVal:function(val){ //通过回调获取实时输入的值
                 console.log(val);
-            },
-            TopbtnOK:function(val){ //通过回调获取点击头部的提交按钮后的最终值
-                console.log(val);
-                ak_webToast("提交成功！","middle",2000);
             }
         });
     });
@@ -1554,15 +1553,6 @@
                 console.log(this);//这里的this指向验证按钮
                 console.log($(phone)); //这里获取输入手机号的输入框
                 console.log($(phone).prev("label").find("input"))//获取国家区号的输入框
-            }
-        });
-    });
-
-    /*-----------------------------------------------Andrew_Validate 使用方法-------------------------------------------*/
-    $(function () {
-        $(".plug_validate").Andrew_Validate({ //提交验证设置
-            callback: function(flag) { //获取回调表单的所有状态
-                console.log(flag);
             }
         });
     });
