@@ -744,23 +744,21 @@
 
     /*-----------------------------------------------Andrew_Popupwin (分享功能) 使用方法-------------------------------------------*/
     $(function(){
-        setTimeout(function() { //为了兼容所有的jQuery版本header元素里面的任何绑定事件都需要延迟执行
-            $("#plug_Share").bind("click", function (c) {
-                Andrew_Popupwin({
-                    dom: "#plug_ShareWin", //弹窗内容的布局
-                    position: "bottom", //位置类型(top，bottom，left，right，middle)
-                    effectIn: "slideInUp ani_07s", //弹窗显示效果 (css动画库：andrew.animate.css)
-                    effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
-                    maskPosition:"4", //Mask的z-index数值
-                    closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
-                    OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                    toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-                    callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-                        console.log($(ele[0].dom)); //获取当前的弹窗元素
-                    }
-                });
+        $("#plug_Share").bind("click", function (c) {
+            Andrew_Popupwin({
+                dom: "#plug_ShareWin", //弹窗内容的布局
+                position: "bottom", //位置类型(top，bottom，left，right，middle)
+                effectIn: "slideInUp ani_07s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                maskPosition:"4", //Mask的z-index数值
+                closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
+                OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                }
             });
-        },100);
+        });
     });
 
     /*-----------------------------------------------Andrew_Marquee 使用方法-------------------------------------------*/

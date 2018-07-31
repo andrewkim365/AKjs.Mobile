@@ -101,51 +101,49 @@
 
     /*-----------------------------------------------Andrew_Popupwin (左侧方法)使用方法-------------------------------------------*/
     $(function(){
-        setTimeout(function() { //为了兼容所有的jQuery版本header元素里面的任何绑定事件都需要延迟执行
-            $("#plug_menu").unbind("click");
-            $("#plug_menu").bind("click", function (e) {
-                Andrew_Popupwin({
-                    dom: "#plug_MenuWin", //弹窗内容的布局
-                    maskPosition: "3", //Mask的z-index数值
-                    closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
-                    OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                    toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-                    callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
-                        $("main").addClass("dis_opa_1");
-                        if (toggle) { //判断是否弹出弹窗
-                            $("footer").addClass("zindex_2");
-                            $(ele[0].dom).addClass("dis_block_im");
-                            $("header, main, footer").animate({
-                                "left": "50%"
-                            },500);
-                            $(ele[0].dom).animate({
-                                "left": "0"
-                            },500);
-                        } else {
-                            $("header, main, footer").animate({
-                                "left": 0
-                            },500);
-                            $(ele[0].dom).animate({
-                                "left": "-50%"
-                            },500);
-                            setTimeout(function() {
-                                $("footer").removeClass("zindex_2");
-                                $(ele[0].dom).removeClass("dis_block_im");
-                            },500);
-                        }
-                    },
-                    leaveback: function (ele,toggle) { //当路由页面离开时的回调(页面跳转后可以初始化设置)
-                        $("main").removeClass("dis_opa_1");
+        $("#plug_menu").bind("click", function (e) {
+            Andrew_Popupwin({
+                dom: "#plug_MenuWin", //弹窗内容的布局
+                maskPosition: "3", //Mask的z-index数值
+                closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
+                OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                    $("main").addClass("dis_opa_1");
+                    if (toggle) { //判断是否弹出弹窗
+                        $("footer").addClass("zindex_2");
+                        $(ele[0].dom).addClass("dis_block_im");
+                        $("header, main, footer").animate({
+                            "left": "50%"
+                        },500);
+                        $(ele[0].dom).animate({
+                            "left": "0"
+                        },500);
+                    } else {
+                        $("header, main, footer").animate({
+                            "left": 0
+                        },500);
+                        $(ele[0].dom).animate({
+                            "left": "-50%"
+                        },500);
+                        setTimeout(function() {
+                            $(ele[0].dom).removeClass("dis_block_im");
+                        },500);
+                        setTimeout(function() {
+                            $("footer").removeClass("zindex_2");
+                        },1000);
                     }
-                });
+                },
+                leaveback: function (ele,toggle) { //当路由页面离开时的回调(页面跳转后可以初始化设置)
+                    $("main").removeClass("dis_opa_1");
+                }
             });
-        },100);
+        });
     });
 
     /*-----------------------------------------------Andrew_Popupwin (右侧方法)使用方法-------------------------------------------*/
     /*$(function(){
-        setTimeout(function() { //为了兼容所有的jQuery版本header元素里面的任何绑定事件都需要延迟执行
-            $("#plug_menu").bind("click", function (e) {
+        $("#plug_menu").bind("click", function (e) {
                 Andrew_Popupwin({
                     dom: "#plug_MenuWin", //弹窗内容的布局
                     maskPosition:"3", //Mask的z-index数值
@@ -181,7 +179,6 @@
                     }
                 });
             });
-        },100);
     });*/
 
     /*-----------------------------------------------Andrew_Waterfall 使用方法-------------------------------------------*/
