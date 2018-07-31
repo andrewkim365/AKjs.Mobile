@@ -67,6 +67,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.6版本；
 
 修改 js/plugin/Andrew_Textarea.js 功能插件bug；
 
+修改 js/plugin/Andrew_SelectOption.js 功能插件bug；
+
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
 
