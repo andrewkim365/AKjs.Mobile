@@ -1627,22 +1627,32 @@
                 //var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/
                 Andrew_RegsInput();
                 var flag = Regs_mobile.test($(phone).val());
-                if(!flag){
-                    $ak.alert("您输入的手机号码有误！", {
+                if ($(phone).val() != "") {
+                    if(!flag){
+                        $ak.alert("您输入的手机号码有误！", {
+                            icon: "error", //图标类型（warning，error，info，question，success）
+                            button_ok: "确定", //弹窗中的确定按钮文字
+                            button_cancel: "取消", //弹窗中的取消按钮文字
+                            title: "提示" //弹窗中的标题名称文字
+                        });
+                        return false;
+                    } else {
+                        $ak.alert("验证码发送成功！", {
+                            icon: "success", //图标类型（warning，error，info，question，success）
+                            button_ok: "确定", //弹窗中的确定按钮文字
+                            button_cancel: "取消", //弹窗中的取消按钮文字
+                            title: "提示" //弹窗中的标题名称文字
+                        });
+                        return true;
+                    }
+                } else {
+                    $ak.alert("请输入手机号码！", {
                         icon: "error", //图标类型（warning，error，info，question，success）
                         button_ok: "确定", //弹窗中的确定按钮文字
                         button_cancel: "取消", //弹窗中的取消按钮文字
                         title: "提示" //弹窗中的标题名称文字
                     });
                     return false;
-                } else {
-                    $ak.alert("验证码发送成功！", {
-                        icon: "success", //图标类型（warning，error，info，question，success）
-                        button_ok: "确定", //弹窗中的确定按钮文字
-                        button_cancel: "取消", //弹窗中的取消按钮文字
-                        title: "提示" //弹窗中的标题名称文字
-                    });
-                    return true;
                 }
             },
             progress: function (time,phone) {//计时正在进行中时的回调
