@@ -445,16 +445,9 @@ function Andrew_InputFocus() {
         var focus = this;
         header_scrollIntoView(focus);
     });
-    $('main input[type="password"][multiple]').on('focus', function(andrew) {
-        andrew.preventDefault();
+    $('main input[type="password"][multiple]').on('focus', function() {
         var focus = this;
         header_scrollIntoView(focus);
-        if (IsIphone || IsIpad) {
-            if ($("body").scrollTop() > 0) {
-                $("header").not("aside header").not("aside header").addClass("dis_opa_0");
-            }
-            $("footer").not("aside footer").addClass("dis_opa_0");
-        }
     });
     $('main textarea').focus(function () {
         var focus = this;
@@ -468,7 +461,6 @@ function Andrew_InputFocus() {
     });
     $('main input[type="password"][multiple]').on('blur', function() {
         Input_BlurScrollTop();
-        $("header, footer").removeClass("dis_opa_0");
     });
     $('main textarea').on('blur', function() {
         Input_BlurScrollTop();
@@ -526,30 +518,29 @@ function Andrew_InputFocus() {
     function Input_BlurScrollTop(){
         $("main").not("aside main").unbind('touchstart');
         $("main").not("aside main").unbind('touchmove');
-        if (IsIphone || IsIpad) {
-            $("main").not("aside main").removeClass("pb_100");
-            $("footer").not("aside footer").removeClass("minus_bottom_100");
-        } else if (IsAndroid) {
-            $("footer").not("aside footer").removeClass("dis_opa_0");
-        }
+        $("main").not("aside main").removeClass("vh_100");
+        $("footer").not("aside footer").removeClass("dis_opa_0");
         if ($("header").not("aside header").length > 0) {
             $("header").not("aside header").css({
                 "margin-top": 0
             });
         }
-        $("header").not("aside header").show();
     }
     function header_scrollIntoView(focus) {
         if (IsIphone || IsIpad) {
             setTimeout(function () {
-                $('main').animate({scrollTop:$('main').scrollTop()},100);
+                $('#ak-main').animate({
+                    scrollTop: $('#ak-main').scrollTop()
+                },100);
+                $("main").not("aside main").addClass("vh_100");
+                $("footer").not("aside footer").addClass("dis_opa_0");
             }, 100);
             if ($("header").not("aside header").length > 0) {
                 setTimeout(function () {
                     $("header").not("aside header").animate({
-                        "margin-top": Andrew_GetScrollTop()-1
+                        "margin-top": Andrew_GetScrollTop()
                     });
-                }, 200);
+                }, 300);
                 $("main").not("aside main").on({
                     touchmove: function() {
                         $("header").not("aside header").css({
@@ -558,8 +549,6 @@ function Andrew_InputFocus() {
                     }
                 });
             }
-            $("main").not("aside main").addClass("pb_100");
-            $("footer").not("aside footer").addClass("minus_bottom_100");
         } else if (IsAndroid) {
             if ($("header").not("aside header").length > 0) {
                 $("header").not("aside header").css({
