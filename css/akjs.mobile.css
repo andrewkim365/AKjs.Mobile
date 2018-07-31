@@ -51,6 +51,8 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    -webkit-overflow-scrolling: auto !important;
+    overflow-scrolling: auto !important;
 }
 main {
     position: relative;
@@ -318,6 +320,14 @@ legend {
 }
 .scrollbar_hide::-webkit-scrollbar {
     display: none;
+}
+.scrolling_touch {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-scrolling: touch !important;
+}
+.scrolling_auto {
+    -webkit-overflow-scrolling: auto !important;
+    overflow-scrolling: auto !important;
 }
 
 .shadow_none, .shadow_ab_none:after, .shadow_ab_none:before, .shadow_cd_none > *, .shadow_abcd_none > *:after, .shadow_abcd_none > *:before {
@@ -12738,6 +12748,8 @@ animation main {
     -moz-animation: none !important;
     -webkit-animation: none !important;
     animation: none !important;
+    -webkit-overflow-scrolling: auto !important;
+    overflow-scrolling: auto !important;
 }
 animation img {
     border-radius: inherit;
