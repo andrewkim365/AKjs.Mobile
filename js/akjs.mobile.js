@@ -637,8 +637,6 @@ function Andrew_mainHeight() {
         touchstart: function(ak) {
             touchStartY = ak.originalEvent.touches[0].clientY;
             touchStartX = ak.originalEvent.touches[0].clientX;
-            $('[class^="defer_"]').addClass("defer_none");
-            $('[class*=" defer_"]').addClass("defer_none");
         },
         touchmove: function(ak) {
             var touchEndY = ak.originalEvent.changedTouches[0].clientY,
@@ -648,13 +646,13 @@ function Andrew_mainHeight() {
             if (Math.abs(xDiff) < Math.abs(yDiff)) {
                 if ($(this).children("#ak-main").scrollTop() === 0) {
                     if (yDiff < 5) {
-                        $(this).children("#ak-main").css({
+                        $("main").not("aside main").css({
                             "transform": "translate3d(0,"+Math.abs(yDiff)/4+"px,0)"
                         });
                     }
                 } else if($(this).children("#ak-main").scrollTop() === $(this).children("#ak-main").prop("scrollHeight") - $(this).height()) {
                     if (yDiff > 5) {
-                        $(this).children("#ak-main").css({
+                        $("main").not("aside main").css({
                             "transform": "translate3d(0,-"+Math.abs(yDiff)/4+"px,0)"
                         });
                     }
@@ -662,12 +660,9 @@ function Andrew_mainHeight() {
             }
         },
         touchend: function(ak) {
-            $(this).children("#ak-main").css({
-                "transform": "translate3d(0,0,0)"
+            $("main").not("aside main").css({
+                "transform": "none"
             });
-            setTimeout(function() {
-                $("#ak-main").removeAttr("style");
-            },500);
         }
     });
     setTimeout(function() {
