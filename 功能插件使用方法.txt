@@ -341,10 +341,10 @@ $(function(){
             callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                 console.log($(ele[0].dom)); //获取当前的弹窗元素
                 if (toggle) { //判断是否弹出弹窗
-                    $("footer").addClass("zindex_3");
+                    $("footer").addClass("zindex_0");
                 } else {
                     setTimeout(function() {
-                        $("footer").removeClass("zindex_3");
+                        $("footer").removeClass("zindex_0");
                     },1000);
                 }
             }

@@ -40,7 +40,7 @@
         </div>
 
         <!----------Andrew_Slider---------->
-        <div class="plug_slider w_100 h_12_em ovh rel bg_white">
+        <div class="plug_slider w_100 h_12_em ovh rel bg_gray_f5f">
             <ul class="defer_05">
                 <li><img src="img/tibet-1.jpg"></li>
                 <li><img src="img/tibet-2.jpg"></li>
@@ -1341,8 +1341,15 @@
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
                 OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                 toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    if (toggle) { //判断是否弹出弹窗
+                        $("footer").addClass("zindex_0");
+                    } else {
+                        setTimeout(function() {
+                            $("footer").removeClass("zindex_0");
+                        },1000);
+                    }
                 }
             });
         });
@@ -1359,13 +1366,6 @@
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     console.log($(ele[0].dom)); //获取当前的弹窗元素
-                    if (toggle) { //判断是否弹出弹窗
-                        $("footer").addClass("zindex_3");
-                    } else {
-                        setTimeout(function() {
-                            $("footer").removeClass("zindex_3");
-                        },1000);
-                    }
                 }
             });
         });
