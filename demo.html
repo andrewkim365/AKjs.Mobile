@@ -1331,23 +1331,21 @@
 
     /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
     $(function(){
-        setTimeout(function() { //为了兼容所有的jQuery版本header元素里面的任何绑定事件都需要延迟执行
-            $("#plug_NavMenu").bind("click", function (e) {
-                Andrew_Popupwin({
-                    dom: "#plug_NavMenuWin", //弹窗内容的布局
-                    position: "top", //位置类型(top，bottom，left，right，middle)
-                    effectIn: "slideInDown ani_07s", //弹窗显示效果 (css动画库：andrew.animate.css)
-                    effectOut: "slideOutUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
-                    maskPosition:"4", //Mask的z-index数值
-                    closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
-                    OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                    toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-                    callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-                        console.log($(ele[0].dom)); //获取当前的弹窗元素
-                    }
-                });
+        $("#plug_NavMenu").bind("click", function (e) {
+            Andrew_Popupwin({
+                dom: "#plug_NavMenuWin", //弹窗内容的布局
+                position: "top", //位置类型(top，bottom，left，right，middle)
+                effectIn: "slideInDown ani_07s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                effectOut: "slideOutUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                maskPosition:"4", //Mask的z-index数值
+                closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                }
             });
-        },100);
+        });
     });
 
     $(function(){
@@ -1359,8 +1357,15 @@
                 effectOut: "bounceOutUp ani_05s", //弹窗消失效果
                 maskPosition:"11", //Mask的z-index数值
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
-                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    if (toggle) { //判断是否弹出弹窗
+                        $("footer").addClass("zindex_3");
+                    } else {
+                        setTimeout(function() {
+                            $("footer").removeClass("zindex_3");
+                        },1000);
+                    }
                 }
             });
         });
