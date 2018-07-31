@@ -12755,6 +12755,13 @@ animation img {
     -webkit-animation:defer 1s forwards;
     animation:defer 1s forwards;
 }
+animation, header, footer {
+    -o-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
 #ak-aside figure, #ak-aside img {
     opacity: 1 !important;
     -o-animation: none !important;
