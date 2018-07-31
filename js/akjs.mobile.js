@@ -184,9 +184,11 @@ function Andrew_Router(setting) {
             Andrew_RegularExpression();
             if (document.location.hash.substring(1) != "") {
                 if (page == "hashchange") {
-                    $("#ak-main").animate({"scrollTop": 0}, 100);
-                    $("body").children("div").remove();
-                    $(".ak-mask").remove();
+                    setTimeout(function () {
+                        $("#ak-main").animate({"scrollTop": 0}, 100);
+                        $("body").children("div").remove();
+                        $("main .ak-mask").not("aside main .ak-mask").remove();
+                    }, 500);
                 }
                 var Router_path = "./";
                 if (option.RouterPath[0]) {
@@ -660,7 +662,12 @@ function Andrew_mainHeight() {
             }
         },
         touchend: function(ak) {
-            $(this).children("#ak-main").removeAttr("style");
+            $(this).children("#ak-main").css({
+                "transform": "translate3d(0,0,0)"
+            });
+            setTimeout(function() {
+                $("#ak-main").removeAttr("style");
+            },500);
         }
     });
     setTimeout(function() {
