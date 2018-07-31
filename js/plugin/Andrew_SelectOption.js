@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-18
+Modification Date: 2018-07-31
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_SelectOption-------------------------------------------*/
@@ -37,7 +37,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var select_list = select.find("cite");
                 $this.after(select);
                 if ($('#ak-main').length > 0) {
-                    $('#ak-main').append(select_list);
+                    if (select.parents("dialog")[0] != undefined) {
+                        $('main').append(select_list);
+                    } else {
+                        $('#ak-main').append(select_list);
+                    }
                 } else {
                     $('body').append(select_list);
                 }
@@ -76,9 +80,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             "left": $(this).offset().left - $("#ak-main").offset().left
                         });
                         if ($('#ak-main').length > 0) {
-                            select_list.css({
-                                "top": $(this).offset().top + $('#ak-main').scrollTop() - pa_num
-                            });
+                            if (select.parents("dialog")[0] != undefined) {
+                                select_list.css({
+                                    "top": $(this).offset().top - pa_num
+                                });
+                            } else {
+                                select_list.css({
+                                    "top": $(this).offset().top + $('#ak-main').scrollTop() - pa_num
+                                });
+                            }
                         } else {
                             select_list.css({
                                 "top": $(this).offset().top + $(this).innerHeight() + 1
