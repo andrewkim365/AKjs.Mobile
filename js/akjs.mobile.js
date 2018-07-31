@@ -184,9 +184,9 @@ function Andrew_Router(setting) {
             Andrew_RegularExpression();
             if (document.location.hash.substring(1) != "") {
                 if (page == "hashchange") {
+                    $("#ak-main").animate({"scrollTop": 0}, 100);
+                    $("body").children("div").remove();
                     setTimeout(function () {
-                        $("#ak-main").animate({"scrollTop": 0}, 100);
-                        $("body").children("div").remove();
                         $("main .ak-mask").not("aside main .ak-mask").remove();
                     }, 500);
                 }
