@@ -660,9 +660,7 @@ function Andrew_mainHeight() {
             }
         },
         touchend: function(ak) {
-            $(this).children("#ak-main").css({
-                "transform": "translate3d(0,0,0)"
-            });
+            $(this).children("#ak-main").removeAttr("style");
         }
     });
     setTimeout(function() {
