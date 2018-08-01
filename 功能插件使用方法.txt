@@ -18,7 +18,7 @@ $(function () {
    });
 });
 
-/*-----------------------------------------------Andrew_Form  使用方法-------------------------------------------*/
+/*-----------------------------------------------Andrew_Form 使用方法-------------------------------------------*/
 $(function(){
     $(".plug_form").Andrew_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
         btn_delete: ".plug_Delete", //输入文字的删除按钮class名
@@ -41,19 +41,46 @@ $(function(){
                 title: "提示" //弹窗的标题文字
             });
         },
-        butCallback: function(form) { //点击提交按钮后的回调，获取当前表单的元素
-            console.log(form);
-            form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
-                click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
-                icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
-                callback: function(btn,disabled) { //回调入口
-                    disabled(true); //把提交按钮设为disabled状态
-                    setTimeout(function () {
-                        disabled(false); //把提交按钮解除disabled状态
-                        //btn.html("提交成功");
-                    }, 3000);
-                }
-            });
+        butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
+            //console.log(form);
+            if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
+                form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
+                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+                    icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+                    callback: function(btn,disabled) { //回调入口
+                        disabled(true); //把提交按钮设为disabled状态
+                        setTimeout(function () {
+                            disabled(false); //把提交按钮解除disabled状态
+                            //btn.html("提交成功");
+                        }, 3000);
+                    }
+                });
+            }
+        }
+    });
+
+    $(".plug_formTextarea").Andrew_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
+        placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
+        validate: true, //是否开启表单提交按钮的校验功能 （表单内的输入框有required属性代表必填项，所有的必填项全部输入完成才能提交的功能）
+        valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
+            console.log(flag)
+        },
+        butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
+            //console.log(form);
+            if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
+                form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
+                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+                    icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+                    callback: function(btn,disabled) { //回调入口
+                        disabled(true); //把提交按钮设为disabled状态
+                        setTimeout(function () {
+                            disabled(false); //把提交按钮解除disabled状态
+                            //btn.html("提交成功");
+                        }, 3000);
+                    }
+                });
+            }
+
         }
     });
 });
