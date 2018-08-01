@@ -159,7 +159,20 @@ function Andrew_Router(setting) {
                 asideEle.find(".animated").removeClass("animated");
                 asideEle.find(".dis_opa_0").removeClass("dis_opa_0");
                 asideEle.find("#ak-main-record").addClass("rel ova");
+                $("header, footer").not("aside header, aside footer").css({
+                    "left": 0,
+                    "right": 0
+                });
+                $("header").not("aside header").css({
+                    "top": 0,
+                    "bottom":"auto",
+                });
+                $("footer").not("aside footer").css({
+                    "top": "auto",
+                    "bottom": 0,
+                });
                 setTimeout(function () {
+                    $("header, footer").not("aside header, aside footer").removeAttr("style");
                     asideEle.find("footer").removeClass("dis_opa_0");
                     asideEle.removeClass();
                     asideEle.remove();
@@ -686,22 +699,6 @@ function Andrew_mainHeight() {
                 "height": $(window).height()
             });
         }
-        $("header, main, footer").not("aside header, aside main, aside footer").css({
-            "left": 0,
-            "right": 0
-        });
-        $("header").not("aside header").css({
-            "top": 0,
-            "bottom":"auto",
-        });
-        $(" main").not("aside main").css({
-            "top": 0,
-            "bottom": 0,
-        });
-        $("footer").not("aside footer").css({
-            "top": "auto",
-            "bottom": 0,
-        });
         $(".h_fill").css({
             "height": $(window).height()
         });
