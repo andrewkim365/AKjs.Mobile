@@ -57,17 +57,17 @@ css目录中 akjs.animate.css 发布1.0.6版本 （修改slideUp和slideDown的�
 
 演示版中大量的修改使用Andrew_Popupwin插件的页面；
 
-新增 js/plugin/Andrew_Lazyload.js 功能插件bug（解决页面切换时影响上一个页面的图片闪烁的问题）；
+修改 js/plugin/Andrew_Lazyload.js 功能插件bug（解决页面切换时影响上一个页面的图片闪烁的问题）；
 
-新增 js/plugin/Andrew_Loader.js 功能插件bug（loading的位置重新计算）；
+修改 js/plugin/Andrew_Loader.js 功能插件bug（loading的位置重新计算）；
 
-新增 js/plugin/Andrew_Popupwin.js 功能插件bug（修改菜单功能在有些设备上闪屏的bug）；
+修改 js/plugin/Andrew_Popupwin.js 功能插件bug（修改菜单功能在有些设备上闪屏的bug）；
 
-新增 js/plugin/Andrew_ButtonSubmit.js 功能插件bug；
+修改 js/plugin/Andrew_ButtonSubmit.js 功能插件bug；
 
-新增 js/plugin/Andrew_Form.js 功能插件bug（增加键盘enter键的回调）；
+修改 js/plugin/Andrew_Form.js 功能插件bug（增加键盘enter键的回调）；
 
-新增 js/plugin/Andrew_Textarea.js 功能插件bug；
+修改 js/plugin/Andrew_Textarea.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo4.html /router/page1 ~ page4）
 
