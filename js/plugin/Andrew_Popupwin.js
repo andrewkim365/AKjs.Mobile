@@ -105,10 +105,6 @@ function Andrew_Popupwin (setting){
             }
         } else {
             option.callback($(option),false);
-            setTimeout(function() {
-                $("main").attr("style",$("#ak-main").attr("style")).removeClass("mt_0");
-                $("#ak-main").removeAttr("style");
-            },500);
             ClickHideModal();
         }
     } else {
@@ -188,7 +184,8 @@ function Andrew_Popupwin (setting){
             }
         }
         setTimeout(function() {
-            $("main").addClass("scrolling");
+            $("main").addClass("scrolling").attr("style",$("#ak-main").attr("style")).removeClass("mt_0");
+            $("#ak-main").removeAttr("style");
             $(option.OneButton).removeClass("ak-is_active");
             $('#popup_mask').fadeOut().remove();
             $(option.dom).addClass("dis_none").removeAttr("style");
