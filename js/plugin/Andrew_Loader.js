@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-20
+Modification Date: 2018-08-01
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Loader------------------------------------------*/
@@ -112,10 +112,15 @@ function Andrew_Loader(setting){
         var lw = loading.outerWidth();
         var lh = loading.outerHeight();
         if (IsMobile) {
+            if ($("header").not("aside header").hasClass("dis_none_im") || $("header").length === 0) {
+                var heh = 0;
+            } else {
+                var heh = $("header").outerHeight();
+            }
             var yy = {
                 position: "absolute",
                 left: (ww / 2) - (lw / 2),
-                top: (wh / 2) - (lh / 2) - lh * 2
+                top: (wh / 2) - (lh / 2) - lh * 2 + heh
             };
         } else {
             var yy = {

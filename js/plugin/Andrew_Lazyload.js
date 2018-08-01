@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-25
+Modification Date: 2018-08-01
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Lazyload-------------------------------------------*/
@@ -15,7 +15,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 Scrollback: function() {}
             },
             setting);
-            var ele = $(this);
+            var ele = $(this).not("#ak-aside img");
             var view_h = parseInt(window.screen.height);
             var png_regexp = new RegExp("\\.png");
             var gif_regexp = new RegExp("\\.gif");
