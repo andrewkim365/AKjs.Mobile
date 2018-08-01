@@ -873,8 +873,8 @@
     <!--ak-main End-->
 
     <!----------Andrew_PopupWin Start---------->
-    <dialog id="plug_NavMenuWin" class="dis_none bg_white pa_3 w_100 mt_32em"> <!--顶部位置显示的弹窗-->
-        <ul class="wp_94 c_gray_777 plug_closeIn">
+    <dialog id="plug_NavMenuWin" class="dis_none bg_white w_100 ovh mt_32em"> <!--顶部位置显示的弹窗-->
+        <ul class="ma_3 ovh c_gray_777 plug_closeIn">
             <li class="fl h_3em line_h_3em mr_1em">功能A</li>
             <li class="fl h_3em line_h_3em mr_1em">功能B</li>
             <li class="fl h_3em line_h_3em mr_1em">功能C</li>
@@ -886,14 +886,16 @@
         </ul>
     </dialog>
 
-    <dialog id="plug_PopupWin" class="dis_none bg_white pa_5 w_85"> <!--中间位置显示的弹窗-->
+    <dialog id="plug_PopupWin" class="dis_none bg_white w_85"> <!--中间位置显示的弹窗-->
         <button type="button" class="plug_closeIn dis_block wh_12em mt_01em mr_01em abs bg_white top_0 right_0 c_gray_333 text_18em icon-ln_quxiao"></button>
-        <h2 class="text_bold press text_12em">弹窗标题</h2>
-        <ul class="bor_top_dashed bor_gray_ddd mt_05em pt_05em c_gray_777">
-            <li class="h_3em line_h_3em">弹窗内容显示中1</li>
-            <li class="h_3em line_h_3em">弹窗内容显示中2</li>
-            <li class="h_3em line_h_3em">弹窗内容显示中3</li>
-        </ul>
+        <div class="ma_5">
+            <h2 class="text_bold press text_12em">弹窗标题</h2>
+            <ul class="bor_top_dashed bor_gray_ddd mt_05em pt_05em c_gray_777">
+                <li class="h_3em line_h_3em">弹窗内容显示中1</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中2</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中3</li>
+            </ul>
+        </div>
     </dialog>
 
     <dialog id="plug_filterWin" class="dis_none bg_none w_100 ovh"> <!--对应位置显示的弹窗-->
@@ -1152,7 +1154,7 @@
         $(".plug_tabs nav").Andrew_ScrollFixed({
             ScrollFixed: false, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
             zPosition: "4", //浮动元素的z-index数值
-            animated: "slideInDown ani_07s", //滚动后的显示的动画效果 (css动画库：andrew.animate.css)
+            animated: "slideInDown ani_05s", //滚动后的显示的动画效果 (css动画库：andrew.animate.css)
             top: 0, //屏幕上方和滑动后的元素固定的上下间距
             scroll:function(ele, scrolltop, offsetTop){
             }
@@ -1242,8 +1244,8 @@
                 title: "提示", //弹窗的标题文字
                 button_ok: "确定", //弹窗的确定按钮文字
                 icon: "warning", //图标类型（warning，error，info，question，success）
-                animateIn: "bounceInDown ani_07s", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp ani_05s", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn: "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     console.log(res);
                 }
@@ -1258,8 +1260,8 @@
                 button_ok: "确定", //弹窗的确定按钮文字
                 button_cancel: "取消", //弹窗的取消按钮文字
                 icon: "question", //图标类型（warning，error，info，question，success）
-                animateIn : "bounceInDown ani_07s", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp ani_05s", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     console.log(res);
@@ -1288,8 +1290,8 @@
                 inputClass: "c_gray_777 border bor_gray_ddd h_3em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
                 placeholder:"请输入姓名", //设置输入框的提示文字
                 required: true, //弹窗后的输入框设置为是否必填（true，false）
-                animateIn : "bounceInDown ani_07s", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp ani_05s", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     input.val(res); //插入内容
@@ -1314,8 +1316,8 @@
                 inputClass: "c_gray_777 border bor_gray_ddd h_6em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
                 placeholder:"请输入提问内容", //设置输入框的提示文字
                 required: true, //弹窗后的输入框设置为是否必填（true，false）
-                animateIn : "bounceInDown ani_07s", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp ani_05s", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置，耗时)
                     $("#plug_prompt_textarea_view ul").append("<li  class=\"c_gray_777 bor_bottom bor_gray_ddd\">"+res+"</li>"); //插入内容
@@ -1335,8 +1337,8 @@
             Andrew_Popupwin({
                 dom: "#plug_NavMenuWin", //弹窗内容的布局
                 position: "top", //位置类型(top，bottom，left，right，middle)
-                effectIn: "slideInDown ani_07s", //弹窗显示效果 (css动画库：andrew.animate.css)
-                effectOut: "slideOutUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
                 maskPosition:"4", //Mask的z-index数值
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
                 OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
@@ -1360,8 +1362,8 @@
             Andrew_Popupwin({
                 dom: "#plug_PopupWin", //弹窗内容的布局
                 position: "middle", //位置类型(top，bottom，left，right，middle)
-                effectIn: "bounceInDown ani_07s", //弹窗显示效果
-                effectOut: "bounceOutUp ani_05s", //弹窗消失效果
+                effectIn: "bounceInDown", //弹窗显示效果
+                effectOut: "bounceOutUp", //弹窗消失效果
                 maskPosition:"11", //Mask的z-index数值
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
@@ -1740,8 +1742,8 @@
                     button_ok: "确定", //弹窗的确定按钮文字
                     button_cancel: "取消", //弹窗的取消按钮文字
                     icon: "question", //图标类型（warning，error，info，question，success）
-                    animateIn : "bounceInDown ani_07s", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                    animateOut: "bounceOutUp ani_05s", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                    animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
+                    animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
                     onSubmit:function(){
                         ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                         ele.remove();//删除当前元素
