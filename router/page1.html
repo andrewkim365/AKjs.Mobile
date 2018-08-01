@@ -561,7 +561,7 @@
                     <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入确认密码" />
                 </li>
             </ul>
-            <button type="submit" class="btn_h_3em wm_94 bg_title c_white mt_5 h_32em">提交</button>
+            <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
         </div>
 
         <!----------Andrew_PortraitImage---------->
@@ -671,7 +671,7 @@
                     <textarea class="plug_textarea ml_3 mr_3 w_94 h_12_em c_gray_777" placeholder="请输入遇到的问题或者意见..." required></textarea>
                 </dd>
             </dl>
-            <button type="submit" class="btn_h_3em wm_94 bg_title c_white mt_5 h_32em">提交</button>
+            <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
         </div>
 
         <!----------Andrew_lightSlider---------->
@@ -863,10 +863,17 @@
         <button type="button" class="plug_closeIn dis_block wh_12em mt_01em mr_01em abs bg_white top_0 right_0 c_gray_333 text_18em icon-ln_quxiao"></button>
         <div class="ma_5">
             <h2 class="text_bold press text_12em">弹窗标题</h2>
-            <ul class="bor_top_dashed bor_gray_ddd mt_05em pt_05em c_gray_777">
+            <ul class="bor_top_dashed bor_gray_ddd mt_05em pt_05em c_gray_777 ova h_12_em">
                 <li class="h_3em line_h_3em">弹窗内容显示中1</li>
                 <li class="h_3em line_h_3em">弹窗内容显示中2</li>
                 <li class="h_3em line_h_3em">弹窗内容显示中3</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中4</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中5</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中6</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中7</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中8</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中9</li>
+                <li class="h_3em line_h_3em">弹窗内容显示中0</li>
             </ul>
         </div>
     </dialog>
@@ -932,19 +939,21 @@
                     title: "提示" //弹窗的标题文字
                 });
             },
-            butCallback: function(form) { //点击提交按钮后的回调，获取当前表单的元素
-                console.log(form);
-                form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
-                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
-                    icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
-                    callback: function(btn,disabled) { //回调入口
-                        disabled(true); //把提交按钮设为disabled状态
-                        setTimeout(function () {
-                            disabled(false); //把提交按钮解除disabled状态
-                            //btn.html("提交成功");
-                        }, 3000);
-                    }
-                });
+            butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
+                //console.log(form);
+                if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
+                    form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
+                        click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+                        icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+                        callback: function(btn,disabled) { //回调入口
+                            disabled(true); //把提交按钮设为disabled状态
+                            setTimeout(function () {
+                                disabled(false); //把提交按钮解除disabled状态
+                                //btn.html("提交成功");
+                            }, 3000);
+                        }
+                    });
+                }
             }
         });
 
@@ -954,19 +963,22 @@
             valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
                 console.log(flag)
             },
-            butCallback: function(form) { //点击提交按钮后的回调，获取当前表单的元素
-                console.log(form);
-                form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
-                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
-                    icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
-                    callback: function(btn,disabled) { //回调入口
-                        disabled(true); //把提交按钮设为disabled状态
-                        setTimeout(function () {
-                            disabled(false); //把提交按钮解除disabled状态
-                            //btn.html("提交成功");
-                        }, 3000);
-                    }
-                });
+            butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
+                //console.log(form);
+                if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
+                    form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
+                        click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+                        icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+                        callback: function(btn,disabled) { //回调入口
+                            disabled(true); //把提交按钮设为disabled状态
+                            setTimeout(function () {
+                                disabled(false); //把提交按钮解除disabled状态
+                                //btn.html("提交成功");
+                            }, 3000);
+                        }
+                    });
+                }
+
             }
         });
     });

@@ -564,33 +564,34 @@
     </ak-main>
 
     <!----------Andrew_PopupWin Start---------->
-    <dialog id="plug_ShareWin" class="dis_none bg_white pa_3 w_100 zindex_8"> <!--顶部位置显示的弹窗-->
-        <ul class="ovh list_h_8em verline_list length3">
+    <dialog id="plug_ShareWin" class="dis_none w_100 zindex_8"> <!--顶部位置显示的弹窗-->
+        <ul class="bg_white ovh list_h_8em verline_list length4 mb_1">
             <li class="fl rel text_al_c touchstart">
-                <button type="button" class="dis_block ovh w_100" data-href="/page3">
-                    <label class="bg_wechat bor_rad_50 c_white wh_4em mt_05em center">
-                        <i class="text_al_c text_al_t line_h_16em text_24em icon-sr_weixin"></i>
-                    </label>
-                    <span class="dis_block text_al_c line_h_2em">分享至微信</span>
+                <button type="button" class="dis_block ovh w_100 mt_15em" data-href="/page3">
+                    <i class="c_wechat text_al_c text_3em icon-sr_weixin"></i>
+                    <span class="dis_block text_al_c line_h_2em text_08em">分享至微信</span>
                 </button>
             </li>
             <li class="fl rel text_al_c touchstart">
-                <button type="button" class="dis_block ovh w_100" data-href="/page3">
-                    <label class="bg_jd bor_rad_50 c_white wh_4em mt_05em center">
-                        <i class="text_al_c text_al_t line_h_16em text_24em icon-sr_pengyouquan"></i>
-                    </label>
-                    <span class="dis_block text_al_c line_h_2em">分享至朋友圈</span>
+                <button type="button" class="dis_block ovh w_100 mt_15em" data-href="/page3">
+                    <i class="c_orange text_al_c text_3em icon-sr_pengyouquan"></i>
+                    <span class="dis_block text_al_c line_h_2em text_08em">分享至朋友圈</span>
                 </button>
             </li>
             <li class="fl rel text_al_c touchstart">
-                <button type="button" class="dis_block ovh w_100" data-href="/page3">
-                    <label class="bg_qq bor_rad_50 c_white wh_4em mt_05em center">
-                        <i class="text_al_c text_al_t line_h_16em text_24em icon-sr_qq"></i>
-                    </label>
-                    <span class="dis_block text_al_c line_h_2em">分享至QQ</span>
+                <button type="button" class="dis_block ovh w_100 mt_15em" data-href="/page3">
+                    <i class="c_qq text_al_c text_3em icon-sr_qq"></i>
+                    <span class="dis_block text_al_c line_h_2em text_08em">分享至QQ</span>
+                </button>
+            </li>
+            <li class="fl rel text_al_c touchstart">
+                <button type="button" class="dis_block ovh w_100 mt_15em" data-href="/page3">
+                    <i class="c_weibo text_al_c text_3em icon-sr_weibo"></i>
+                    <span class="dis_block text_al_c line_h_2em text_08em">分享至微博</span>
                 </button>
             </li>
         </ul>
+        <button type="button" class="w_100 h_32em text_12em bg_white c_title">取消</button>
     </dialog>
     <!----------Andrew_PopupWin End---------->
 
@@ -748,7 +749,7 @@
             Andrew_Popupwin({
                 dom: "#plug_ShareWin", //弹窗内容的布局
                 position: "bottom", //位置类型(top，bottom，left，right，middle)
-                effectIn: "slideInUp ani_07s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
                 effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
                 maskPosition:"4", //Mask的z-index数值
                 closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
@@ -756,6 +757,9 @@
                 toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                 callback :function (ele) { //通过回调获取弹窗显示后的以上参数
                     console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    $(ele[0].dom).find("button").click(function () {
+                        $(".ak-mask").click();
+                    })
                 }
             });
         });
