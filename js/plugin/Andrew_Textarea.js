@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-07-30
+Modification Date: 2018-08-01
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Textarea----------------------------------------*/
@@ -46,7 +46,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                     $(this).next("span").children("var").eq(0).html(len);
                     var data = $(this).val();
-                    opm.onTextVal(data);
+
+                    if (strLen > 0) {
+                        opm.onTextVal(data);
+                    }
                 }
             });
         }

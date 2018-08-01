@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-07-30
+Modification Date: 2018-08-01
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_ButtonSubmit--------------------------------------------*/
@@ -19,7 +19,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (!_this.attr("data-text")) {
                         _this.attr("data-text",_this.text());
                     }
-                    submit_setting(_this);
+                    if (!_this.attr("disabled")) {
+                        submit_setting(_this);
+                    }
                 });
             } else {
                 btn.each(function(){
@@ -27,7 +29,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (!_this.attr("data-text")) {
                         _this.attr("data-text",_this.text());
                     }
-                    submit_setting(_this);
+                    if (!_this.attr("disabled")) {
+                        submit_setting(_this);
+                    }
                 });
             }
             function submit_setting(_this) {
@@ -49,7 +53,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         _this.removeClass("disabled").removeAttr("disabled").html(_this.attr("data-text"));
                     }
                 }
-                return false;
             }
         }
     };
