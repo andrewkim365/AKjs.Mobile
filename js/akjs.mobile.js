@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180730 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180801 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -88,6 +88,9 @@ function Andrew_Config(setting) {
     $(window).resize(function(){
         Andrew_mainHeight();
     });
+    setTimeout(function () {
+        $("main").not("aside main").addClass("ak-display");
+    }, 500);
 }
 
 /*-----------------------------------------------Andrew_Router------------------------------------------*/
@@ -145,9 +148,6 @@ function Andrew_Router(setting) {
                 } else if ($("animation").prop("dataset").router == "slideRight") {
                     asideEle.addClass("filter_brig_096");
                     $("animation").addClass("animated slideInRight ani_05s");
-                    $("header").not("aside header").addClass("top_0 right_0 left_0");
-                    $("main").not("aside main").addClass("top_0 right_0 bottom_0 left_0");
-                    $("footer").not("aside footer").addClass("right_0 bottom_0 left_0");
                     asideEle.html($(animationEle).html());
                 } else {
                     $("animation").removeClass();
@@ -164,9 +164,6 @@ function Andrew_Router(setting) {
                     asideEle.removeClass();
                     asideEle.remove();
                     $("animation").removeClass();
-                    $("header").not("aside header").removeClass("top_0 right_0 left_0");
-                    $("main").not("aside main").removeClass("top_0 right_0 bottom_0 left_0");
-                    $("footer").not("aside footer").removeClass("right_0 bottom_0 left_0");
                     $("animation").attr("data-router","");
                 }, 500);
                 option.changePage(document.location.hash.substring(1),$(animationEle).html());
@@ -439,32 +436,11 @@ function Andrew_RegsInput() {
 /*-----------------------------------------------Andrew_InputFocus--------------------------------------*/
 function Andrew_InputFocus() {
     Andrew_UserAgent();
-    $('main input[type="text"],main input[type="number"], main input[type="tel"], main input[type="email"]').on('focus', function() {
+    $('main input[type="text"],main input[type="password"],main input[type="number"], main input[type="tel"], main input[type="email"],main textarea').on('focus', function() {
         var focus = this;
         header_scrollIntoView(focus);
     });
-    $('main input[type="password"]').not('main input[type="password"][multiple]').on('focus', function() {
-        var focus = this;
-        header_scrollIntoView(focus);
-    });
-    $('main input[type="password"][multiple]').on('focus', function() {
-        var focus = this;
-        header_scrollIntoView(focus);
-    });
-    $('main textarea').focus(function () {
-        var focus = this;
-        header_scrollIntoView(focus);
-    });
-    $('main input[type="text"],main input[type="number"], main input[type="tel"], main input[type="email"]').on('blur', function() {
-        Input_BlurScrollTop();
-    });
-    $('main input[type="password"]').not('main input[type="password"][multiple]').on('blur', function() {
-        Input_BlurScrollTop();
-    });
-    $('main input[type="password"][multiple]').on('blur', function() {
-        Input_BlurScrollTop();
-    });
-    $('main textarea').on('blur', function() {
+    $('main input[type="text"],main input[type="password"],main input[type="number"], main input[type="tel"], main input[type="email"],main textarea').on('blur', function() {
         Input_BlurScrollTop();
     });
     $("footer input").focus(function (andrew) {
@@ -633,7 +609,7 @@ function Andrew_mainHeight() {
             return true;
         };
     }
-    $("main").not("aside main").on({
+    $("#ak-main").on({
         touchstart: function(ak) {
             touchStartY = ak.originalEvent.touches[0].clientY;
             touchStartX = ak.originalEvent.touches[0].clientX;
@@ -644,13 +620,13 @@ function Andrew_mainHeight() {
                 yDiff = touchStartY - touchEndY,
                 xDiff = touchStartX - touchEndX;
             if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                if ($(this).children("#ak-main").scrollTop() === 0) {
+                if ($(this).scrollTop() === 0) {
                     if (yDiff < 5) {
                         $("main").not("aside main").css({
                             "transform": "translate3d(0,"+Math.abs(yDiff)/4+"px,0)"
                         });
                     }
-                } else if($(this).children("#ak-main").scrollTop() === $(this).children("#ak-main").prop("scrollHeight") - $(this).height()) {
+                } else if($(this).scrollTop() === $(this).prop("scrollHeight") - $(this).height()) {
                     if (yDiff > 5) {
                         $("main").not("aside main").css({
                             "transform": "translate3d(0,-"+Math.abs(yDiff)/4+"px,0)"
