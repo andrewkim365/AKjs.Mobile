@@ -199,8 +199,8 @@
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     if (toggle) { //判断是否弹出弹窗
                         $("footer").addClass("zindex_2");
-                        $(ele[0].dom).removeClass("dis_none");
-                        $(ele[0].dom).css({"left": "-"+$(ele[0].dom).outerWidth()+"px"});
+                        $("header, #ak-main, footer").addClass("right_au");
+                        $(ele[0].dom).removeClass("dis_none").addClass("right_au").css({"left": parseInt(-$(ele[0].dom).outerWidth())+"px"});
                         $("header, #ak-main, footer").animate({
                             "left": parseInt($(ele[0].dom).outerWidth())+"px"
                         },500);
@@ -218,6 +218,10 @@
                             $(ele[0].dom).addClass("dis_none");
                             $("footer").removeClass("zindex_2");
                         },500);
+                        setTimeout(function() {
+                            $("header, #ak-main, footer").removeClass("right_au");
+                            $(ele[0].dom).removeClass("right_au");
+                        },1000);
                     }
                 }
             });
@@ -238,7 +242,7 @@
                     if (toggle) { //判断是否弹出弹窗
                         $("footer").addClass("zindex_2");
                         $("header, #ak-main, footer").addClass("left_au");
-                        $(ele[0].dom).removeClass("dis_none").addClass("left_au").css({"right": "-"+$(ele[0].dom).outerWidth()+"px"});
+                        $(ele[0].dom).removeClass("dis_none").addClass("left_au").css({"right": parseInt(-$(ele[0].dom).outerWidth())+"px"});
                         $("header, #ak-main, footer").animate({
                             "right": parseInt($(ele[0].dom).outerWidth())+"px"
                         },500);
