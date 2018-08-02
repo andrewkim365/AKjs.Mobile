@@ -6,7 +6,7 @@
     </ak-header>
 
     <ak-main>
-        <div class="wp_94 mb_5 ovh plug_chat">
+        <div class="wp_94 mb_5 ovh ak-chat">
             <ul>
                 <li class="ovh mt_1em">
                     <dl class="ak-chat_left">
@@ -16,6 +16,9 @@
                         </dt>
                         <dd>您好，我想要咨询一下一个问题。</dd>
                     </dl>
+                </li>
+                <li class="ovh mt_1em">
+                    <time>13:35</time>
                 </li>
                 <li class="ovh mt_1em">
                     <dl class="ak-chat_right">
@@ -142,13 +145,49 @@
         $(".plug_chat").Andrew_MobileChat({
             chat_optDom: ".plugin_chatOption", //更多功能区域dom
             chat_optHeight: "8em", //更多功能选项的高度
-            chat_auto: "很高兴认识你！我是自动回复机器人！", //对方的自动回复消息
-            chat_portrait_me: "img/tibet-2.jpg", //您的头像图片地址
-            chat_portrait_you: "img/tibet-1.jpg", //对方的头像图片地址
-            chat_name_me: "安德鲁", //您的聊天名称
-            chat_name_you: "KIM", //对方的聊天名称
+            callback: function(ele,container,scrollHeight) { //初始化回调入口
+
+            },
             chatcallback: function(ele,val) { //实时输入的回调入口
                 console.log(val)
+            },
+            btncallback: function(str,container,scrollHeight) { //聊天内容提交后的回调（输入内容，聊天内容生成区域，聊天内容区域实时的高度）
+
+                var chat_portrait_me = "img/tibet-2.jpg"; //您的头像图片地址
+                var chat_name_me = "安德鲁"; //您的聊天名称
+                var chat_portrait_you = "img/tibet-1.jpg"; //对方的头像图片地址
+                var chat_name_you = "KIM"; //对方的聊天名称
+                var chat_auto = "很高兴认识你！我是自动回复机器人！"; //对方的自动回复消息
+
+                //您的聊天元素设置
+                var chat_view_me = "<li class=\"ovh mt_1em\">\n" +
+                    "            <dl class=\"ak-chat_right\">\n" +
+                    "                <dt>\n" +
+                    "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_me+" class=\"defer_none\"></figure>\n" +
+                    "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_me+"</span>\n" +
+                    "                </dt>\n" +
+                    "                <dd class=\"border bg_title bor_title c_white\">"+str+"</dd>\n" +
+                    "            </dl>\n" +
+                    "        </li>";
+
+                //对方的聊天元素设置
+                var chat_view_you = "<li class=\"ovh mt_1em\">\n" +
+                    "            <dl class=\"ak-chat_left\">\n" +
+                    "                <dt>\n" +
+                    "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_you+" class=\"defer_none\"></figure>\n" +
+                    "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_you+"</span>\n" +
+                    "                </dt>\n" +
+                    "                <dd>"+chat_auto+"</dd>\n" +
+                    "            </dl>\n" +
+                    "        </li>";
+
+                $(chat_view_me).appendTo(container); //生成您的聊天元素
+                $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+
+                setTimeout(function() { //对方的聊天内容延迟执行
+                    $(chat_view_you).appendTo(container); //生成对方的聊天元素
+                    $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                },100);
             },
             optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
                 console.log(toggle)
