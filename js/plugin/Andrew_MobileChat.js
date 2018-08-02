@@ -6,6 +6,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 (function($){
     $.fn.Andrew_MobileChat = function(setting) {
         var option = $.extend({
+                chat_view: "",
                 chat_optDom: "",
                 chat_optHeight: "8em",
                 callback: function() {},
@@ -18,7 +19,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         if ($chat_plugin.find("button[type='submit']").length < 1) {
             $chat_plugin.find("button[type='button']").before("<button class=\"dis_none_im\" type=\"submit\" />");
         }
-        var container = $chat_plugin.children("ul");
+        $(option.chat_view).addClass("ak-chat");
+        var container = $(option.chat_view).children("ul");
         var scrollHeight = $("#ak-main").prop("scrollHeight");
         option.callback($chat_plugin,container,scrollHeight);
         $chat_plugin.find("input").on("input propertychange", function(e){
