@@ -84,14 +84,15 @@ function Andrew_Popupwin (setting){
         $(option.OneButton).toggleClass("ak-is_active");
         if ($(option.OneButton).hasClass("ak-is_active")) {
             addModalMask();
-            $("#ak-main").attr("style",$("main").attr("style"));
-            $("main").removeAttr("style").addClass("mt_0");
             option.callback($(option),true);
             if (option.position === 'offset') {
                 var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
                 $(option.dom).css({
                     "top": oth
                 })
+            } else {
+                $("#ak-main").attr("style",$("main").attr("style"));
+                $("main").removeAttr("style").addClass("mt_0");
             }
             if (option.effectIn || option.effectOut) {
                 $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
