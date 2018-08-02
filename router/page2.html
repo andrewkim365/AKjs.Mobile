@@ -6,7 +6,7 @@
     </ak-header>
 
     <ak-main>
-        <div class="wp_94 mb_5 ovh ak-chat">
+        <div class="wp_94 mb_5 ovh defer_05 plug_chatView">
             <ul>
                 <li class="ovh mt_1em">
                     <dl class="ak-chat_left">
@@ -18,7 +18,7 @@
                     </dl>
                 </li>
                 <li class="ovh mt_1em">
-                    <time>13:35</time>
+                    <time class="defer_08">13:35</time>
                 </li>
                 <li class="ovh mt_1em">
                     <dl class="ak-chat_right">
@@ -80,7 +80,7 @@
                 </button>
             </form>
         </div>
-        <fieldset class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd dis_none plugin_chatOption">
+        <fieldset class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd dis_none plug_chatOption">
             <ul class="length4 rel ovh">
                 <li class="fl ovh mt_1em">
                     <button class="fn center wh_4em bor_rad_05em bg_white border bor_gray_ddd" type="button">
@@ -143,7 +143,8 @@
     /*-----------------------------------------------Andrew_MobileChat 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_chat").Andrew_MobileChat({
-            chat_optDom: ".plugin_chatOption", //更多功能区域dom
+            chat_view: ".plug_chatView", //聊天内容展示区域dom
+            chat_optDom: ".plug_chatOption", //更多功能区域dom
             chat_optHeight: "8em", //更多功能选项的高度
             callback: function(ele,container,scrollHeight) { //初始化回调入口
 
@@ -180,7 +181,7 @@
                     "                <dd>"+chat_auto+"</dd>\n" +
                     "            </dl>\n" +
                     "        </li>";
-
+console.log(container)
                 $(chat_view_me).appendTo(container); //生成您的聊天元素
                 $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
 
