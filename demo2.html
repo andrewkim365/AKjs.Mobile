@@ -31,7 +31,7 @@
 
   <!--main元素里面必须有id="ak-main"才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main下面写（ak-main的上一级元素必须使用main元素）。-->
   <div id="ak-main">
-    <div class="wp_94 mb_5 ovh ak-chat">
+    <div class="wp_94 mb_5 ovh defer_05 plug_chatView">
       <ul>
         <li class="ovh mt_1em">
           <dl class="ak-chat_left">
@@ -43,7 +43,7 @@
           </dl>
         </li>
         <li class="ovh mt_1em">
-          <time>13:35</time>
+          <time class="defer_08">13:35</time>
         </li>
         <li class="ovh mt_1em">
           <dl class="ak-chat_right">
@@ -210,7 +210,8 @@
     /*-----------------------------------------------Andrew_MobileChat 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_chat").Andrew_MobileChat({
-            chat_optDom: ".plugin_chatOption", //更多功能区域dom
+            chat_view: ".plug_chatView", //聊天内容展示区域dom
+            chat_optDom: ".plug_chatOption", //更多功能区域dom
             chat_optHeight: "8em", //更多功能选项的高度
             callback: function(ele,container,scrollHeight) { //初始化回调入口
 
@@ -247,7 +248,7 @@
                     "                <dd>"+chat_auto+"</dd>\n" +
                     "            </dl>\n" +
                     "        </li>";
-
+                console.log(container)
                 $(chat_view_me).appendTo(container); //生成您的聊天元素
                 $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
 
