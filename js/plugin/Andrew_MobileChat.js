@@ -8,12 +8,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var option = $.extend({
                 chat_optDom: "",
                 chat_optHeight: "8em",
-                chat_auto: "",
-                chat_portrait_me: "",
-                chat_portrait_you: "",
-                chat_name_me: "",
-                chat_name_you: "",
+                callback: function() {},
                 chatcallback: function() {},
+                btncallback: function() {},
                 optcallback: function() {}
             },
             setting);
@@ -21,6 +18,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         if ($chat_plugin.find("button[type='submit']").length < 1) {
             $chat_plugin.find("button[type='button']").before("<button class=\"dis_none_im\" type=\"submit\" />");
         }
+        var container = $chat_plugin.children("ul");
+        var scrollHeight = $("#ak-main").prop("scrollHeight");
+        option.callback($chat_plugin,container,scrollHeight);
         $chat_plugin.find("input").on("input propertychange", function(e){
             e.preventDefault();
             if ($(this).prop("value").length > 0) {
@@ -48,39 +48,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             e.preventDefault();
             if ($(this).prev("input").prop("value").length > 0) {
                 var chat_str = $(this).prev("input").prop("value"); //获取实时的输入的消息
-
-                //您的聊天元素设置
-                var chat_view_me = "<li class=\"ovh mt_1em\">\n" +
-                    "            <dl class=\"ak-chat_right\">\n" +
-                    "                <dt>\n" +
-                    "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+option.chat_portrait_me+" class=\"defer_none\"></figure>\n" +
-                    "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+option.chat_name_me+"</span>\n" +
-                    "                </dt>\n" +
-                    "                <dd class=\"border bg_title bor_title c_white\">"+chat_str+"</dd>\n" +
-                    "            </dl>\n" +
-                    "        </li>";
-
-                //对方的聊天元素设置
-                var chat_view_you = "<li class=\"ovh mt_1em\">\n" +
-                    "            <dl class=\"ak-chat_left\">\n" +
-                    "                <dt>\n" +
-                    "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+option.chat_portrait_you+" class=\"defer_none\"></figure>\n" +
-                    "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+option.chat_name_you+"</span>\n" +
-                    "                </dt>\n" +
-                    "                <dd>"+option.chat_auto+"</dd>\n" +
-                    "            </dl>\n" +
-                    "        </li>";
-
                 var scrollHeight = $("#ak-main").prop("scrollHeight"); //获取实时变化的main元素的高度
-
-                $(chat_view_me).appendTo($chat_plugin.children("ul")); //生成您的聊天元素
-                $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
-
-                setTimeout(function() { //对方的聊天内容延迟执行
-                    $(chat_view_you).appendTo($chat_plugin.children("ul")); //生成对方的聊天元素
-                    $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
-                },100);
-
+                option.btncallback(chat_str,container,scrollHeight);
                 $(this).prev("input").val(""); //发送消息后输入框的文字自动清空
             }
         });
@@ -101,6 +70,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
                 },100);
                 option.optcallback($(option.chat_optDom),true);
+                $chat_plugin.find("input").on('focus', function() {
+                    ChatOption_hide();
+                });
             },200);
         }
 
