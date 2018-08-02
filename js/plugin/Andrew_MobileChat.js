@@ -38,7 +38,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             ChatOption_hide();//隐藏更多功能
         });
         $chat_plugin.find("button[type='button']").click(function () {
-            if ($chat_plugin.next().hasClass("dis_none")) {
+            if ($(option.chat_optDom).hasClass("dis_none")) {
                 ChatOption_show();//展开更多功能
             } else {
                 ChatOption_hide();//隐藏更多功能
@@ -87,7 +87,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
         function ChatOption_show() { //展开更多功能的方法
             $("footer").children().addClass("h_au");
-            $chat_plugin.next().removeClass("dis_none").animate({
+            $(option.chat_optDom).removeClass("dis_none").animate({
                 "height": option.chat_optHeight
             },200);
             setTimeout(function() {
@@ -105,12 +105,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
 
         function ChatOption_hide() { //隐藏更多功能的方法
-            $chat_plugin.next().animate({
+            $(option.chat_optDom).animate({
                 "height": 0
             },200);
             setTimeout(function() {
                 $("footer").children().removeClass("h_au");
-                $chat_plugin.next().addClass("dis_none");
+                $(option.chat_optDom).addClass("dis_none");
                 $("main").css({
                     "height": $(window).height() - $("header").outerHeight() - $("footer").outerHeight(),
                     "margin-bottom": $("footer").outerHeight()
