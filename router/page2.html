@@ -69,14 +69,42 @@
     <!----------Andrew_PopupWin End---------->
 
     <ak-footer data-display="true">
-        <div class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd plug_form">
-            <form action="#" method="get" onsubmit="return false;">
-                <input type="text" class="fl bg_white w_85 h_24em line_h_100 pl_05em c_gray_777 border bor_gray_ddd bor_rad_05em mt_03em" placeholder="请输入文字,已开启实时聊天功能" value="" />
-                <button class="fr wh_24em bor_rad_50 bg_title mt_03em mb_0" type="submit">
-                    <i class="c_white text_14em icon-mn_fasong_fill"></i>
+        <div class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd pt_03em pb_03em plug_chat">
+            <form action="#" method="get">
+                <input type="text" class="fl bg_white w_85 h_24em line_h_100 pl_05em c_gray_777 border bor_gray_ddd bor_rad_05em" placeholder="请输入文字,已开启实时聊天功能" value="" />
+                <button class="fr wh_24em bor_rad_50 bg_white border bor_gray_ddd" type="button">
+                    <i class="text_bold c_gray_777 text_14em icon-ln_jia_b"></i>
                 </button>
             </form>
         </div>
+        <fieldset class="wp_94 bg_gray_f5fg bor_top bor_gray_ddd dis_none plugin_chatOption">
+            <ul class="length4 rel ovh">
+                <li class="fl ovh mt_1em">
+                    <button class="fn center wh_4em bor_rad_05em bg_white border bor_gray_ddd" type="button">
+                        <i class="c_gray_777 text_2em icon-mn_tupian_fill"></i>
+                    </button>
+                    <p class="text_al_c text_09em c_gray_777 line_h_24em">照片</p>
+                </li>
+                <li class="fl ovh mt_1em">
+                    <button class="fn center wh_4em bor_rad_05em bg_white border bor_gray_ddd" type="button">
+                        <i class="c_gray_777 text_2em icon-mn_xiangji_fill"></i>
+                    </button>
+                    <p class="text_al_c text_09em c_gray_777 line_h_24em">拍摄</p>
+                </li>
+                <li class="fl ovh mt_1em">
+                    <button class="fn center wh_4em bor_rad_05em bg_white border bor_gray_ddd" type="button">
+                        <i class="c_gray_777 text_2em icon-mn_hongbao_fill"></i>
+                    </button>
+                    <p class="text_al_c text_09em c_gray_777 line_h_24em">红包</p>
+                </li>
+                <li class="fl ovh mt_1em">
+                    <button class="fn center wh_4em bor_rad_05em bg_white border bor_gray_ddd" type="button">
+                        <i class="c_gray_777 text_2em icon-mn_weizhi_fill"></i>
+                    </button>
+                    <p class="text_al_c text_09em c_gray_777 line_h_24em">位置</p>
+                </li>
+            </ul>
+        </fieldset>
     </ak-footer>
 </template>
 
@@ -109,59 +137,25 @@
         });
     });
 
-    /*ak-header和ak-footer里面的所有DOM元素操作请使用以下的“delegate”方法*/
-    $(document).delegate(".plug_form input","input propertychange", function(e){
-        e.preventDefault();
-        if ($(this).prop("value").length > 0) {
-            //console.log($(this).prop("value")) //实时监听输入框值的变化
-        }
+    /*-----------------------------------------------Andrew_MobileChat 使用方法-------------------------------------------*/
+    $(function(){
+        $(".plug_chat").Andrew_MobileChat({
+            chat_optDom: ".plugin_chatOption", //更多功能区域dom
+            chat_optHeight: "8em", //更多功能选项的高度
+            chat_auto: "很高兴认识你！我是自动回复机器人！", //对方的自动回复消息
+            chat_portrait_me: "img/tibet-2.jpg", //您的头像图片地址
+            chat_portrait_you: "img/tibet-1.jpg", //对方的头像图片地址
+            chat_name_me: "安德鲁", //您的聊天名称
+            chat_name_you: "KIM", //对方的聊天名称
+            chatcallback: function(ele,val) { //实时输入的回调入口
+                console.log(val)
+            },
+            optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
+                console.log(toggle)
+            }
+        });
     });
-    $(document).delegate(".plug_form button","click", function(e){
-        e.preventDefault();
-        if ($(this).prev("input").prop("value").length > 0) {
-            var chat_str = $(this).prev("input").prop("value"); //获取实时的输入的消息
-            var chat_auto = "很高兴认识你！我是自动回复机器人！" //对方的自动回复消息
 
-            var chat_portrait_me = "img/tibet-2.jpg"; //您的头像图片地址
-            var chat_portrait_you = "img/tibet-1.jpg"; //对方的头像图片地址
-            var chat_name_me = "安德鲁"; //您的聊天名称
-            var chat_name_you = "KIM"; //对方的聊天名称
-
-            //您的聊天元素设置
-            var chat_view_me = "<li class=\"ovh mt_1em\">\n" +
-                "            <dl class=\"ak-chat_right\">\n" +
-                "                <dt>\n" +
-                "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_me+" class=\"defer_none\"></figure>\n" +
-                "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_me+"</span>\n" +
-                "                </dt>\n" +
-                "                <dd class=\"border bg_title bor_title c_white\">"+chat_str+"</dd>\n" +
-                "            </dl>\n" +
-                "        </li>";
-
-            //对方的聊天元素设置
-            var chat_view_you = "<li class=\"ovh mt_1em\">\n" +
-                "            <dl class=\"ak-chat_left\">\n" +
-                "                <dt>\n" +
-                "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_you+" class=\"defer_none\"></figure>\n" +
-                "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_you+"</span>\n" +
-                "                </dt>\n" +
-                "                <dd>"+chat_auto+"</dd>\n" +
-                "            </dl>\n" +
-                "        </li>";
-
-            var scrollHeight = $("main").prop("scrollHeight"); //获取实时变化的main元素的高度
-
-            $(chat_view_me).appendTo($(".plug_chat").children("ul")); //生成您的聊天元素
-            $("main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
-
-            setTimeout(function() { //对方的聊天内容延迟执行
-                $(chat_view_you).appendTo($(".plug_chat").children("ul")); //生成对方的聊天元素
-                $("main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
-            },1000);
-
-            $(this).prev("input").val(""); //发送消息后输入框的文字自动清空
-        }
-    });
 </script>
 
 <style type="text/css">
