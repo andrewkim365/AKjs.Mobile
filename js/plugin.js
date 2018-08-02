@@ -28,6 +28,7 @@ Andrew_Plugin("Andrew_Lazyload"); //图片加载时有动画效果
 Andrew_Plugin("Andrew_lightSlider","css"); //图片列表左右滑动功能
 Andrew_Plugin("Andrew_Loader","css"); //Loading效果功能
 Andrew_Plugin("Andrew_Marquee","css"); //上下左右滚动插件
+Andrew_Plugin("Andrew_MobileChat","css"); //移动端聊天功能插件
 Andrew_Plugin("Andrew_MultiDate","css"); //多功能日期和时间插件
 Andrew_Plugin("Andrew_NavScroll"); //导航滑动功能（今日头条）
 Andrew_Plugin("Andrew_NowTime"); //获取当前时间的功能
