@@ -915,5 +915,62 @@
 </script>
 <style type="text/css">
     /*样式覆盖区域*/
+    .ak-TimeAxis {
+        display: flex;
+    }
+    .ak-TimeAxis > cite {
+        flex-shrink: 0;
+        display: block;
+        overflow: hidden;
+        position: relative;
+    }
+    .ak-TimeAxis strong {
+        display: block;
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        margin-left: 50%;
+        border-top: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+    }
+    .ak-TimeAxis > ul {
+        display: block;
+        flex-grow: 1;
+    }
+    .ak-TimeAxis > ul > li {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .ak-TimeAxis section {
+        position: relative;
+        flex-shrink: 0;
+    }
+    .ak-TimeAxis article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .ak-TimeAxis locator {
+        width: 0;
+        height: 0;
+        border: 0.6em solid;
+        border-top-color: transparent !important;
+        border-bottom-color: transparent !important;
+        border-left-color: transparent !important;
+        position: relative;
+    }
+    .ak-TimeAxis locator > span {
+        width: 0;
+        height: 0;
+        border: 0.6em solid;
+        border-top-color: transparent !important;
+        border-bottom-color: transparent !important;
+        border-left-color: transparent !important;
+        position: absolute;
+        left: -0.5em;
+        top: -0.6em;
+    }
 </style>
 </html>
