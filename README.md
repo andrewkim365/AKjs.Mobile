@@ -53,6 +53,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.8版本；
 
 主要解决data-href跳页反应迟钝的问题以及form表单中增加data-submit=属性（action提交的开关）；
 
+修改js目录中的data.js文件和plugin.js文件（增加json_TimeAxis数据，Andrew_TimeAxis功能插件的按需引入）
+
 新增 js/plugin/Andrew_TimeAxis.js 时间轴展示功能插件；
 
 新增 js/plugin/Andrew_MobileChat.js 移动端聊天功能插件；
