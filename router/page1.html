@@ -8,10 +8,12 @@
 
         <!----------Andrew_Typeahead---------->
         <div class="module press ovh bg_white bor_bottom bor_gray_ddd">
-            <fieldset class="ml_3 mr_3 pl_2em rel h_24em mt_05em mb_05em ovh bor_rad_05em border bor_gray_ddd bg_gray_f9f">
-                <i class="abs left_0 ml_03em text_14em c_gray_999 line_h_18em icon-im_sousuo_b"></i>
-                <input type="search" class="plug_Typeahead c_gray_777 w_100 h_in" placeholder="请输入搜索关键词（例：北京）" value="" />
-            </fieldset>
+            <form action="#" method="get">
+                <fieldset class="ml_3 mr_3 pl_2em rel h_24em mt_05em mb_05em ovh bor_rad_05em border bor_gray_ddd bg_gray_f9f">
+                    <i class="abs left_0 ml_03em text_14em c_gray_999 line_h_18em icon-im_sousuo_b"></i>
+                    <input type="search" class="plug_Typeahead c_gray_777 w_100 h_in" placeholder="请输入搜索关键词（例：北京）" value="" />
+                </fieldset>
+            </form>
         </div>
 
         <!----------Andrew_Slider---------->
@@ -533,35 +535,37 @@
         <!----------Andrew_intlTelInput---------->
         <!----------Andrew_Codeval---------->
         <div class="module list mt_5 plug_form">
-            <ul class="wp_94 press bg_white list_h_36em">
-                <li class="rel bor_bottom bor_gray_ddd">
-                    <i class="abs left_0 icon-mb_shouji c_title text_16em"></i>
-                    <label class="plug_mobileNum dis_block rel ovh fl ml_8 mr_05em line_h_in bor_right bor_gray_eee touchstart">
-                        <input type="button" class="fl c_gray_777" value="+86" />
-                        <i class="fl icon-ln_qianjin_b text_16em c_gray_777"></i>
-                    </label>
-                    <input type="tel" id="plug_phone" class="fl w_70 plug_Delete c_gray_777" required value="" maxlength="11" placeholder="请输入手机号码" data-type="number" />
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd">
-                    <i class="abs left_0 icon-im_yanzhengma c_title text_16em"></i>
-                    <input type="text" class="fl ml_8 w_92 c_gray_777" required value="" maxlength="6" placeholder="请输入手机短信验证码" />
-                    <button type="button" id="plug_getVerifyCode" class="press abs h_100 bg_white press top_0 right_0 c_title">获取验证码</button>
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd">
-                    <i class="abs left_0 icon-mn_dunpai c_title text_16em"></i>
-                    <input type="text" id="plug_codeInput" class="fl ml_8 w_92 c_gray_777" required value="" placeholder="请输入右侧验证码" />
-                    <code id="plug_codeView" class="defer_1 press ovh abs right_0 bg_white w_20 line_h_2em border bor_gray_ddd touchstart"></code>
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd">
-                    <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
-                    <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入新密码" />
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd">
-                    <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
-                    <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入确认密码" />
-                </li>
-            </ul>
-            <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
+            <form action="#" method="get">
+                <ul class="wp_94 press bg_white list_h_36em">
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <i class="abs left_0 icon-mb_shouji c_title text_16em"></i>
+                        <label class="plug_mobileNum dis_block rel ovh fl ml_8 mr_05em line_h_in bor_right bor_gray_eee touchstart">
+                            <input type="button" class="fl c_gray_777" value="+86" />
+                            <i class="fl icon-ln_qianjin_b text_16em c_gray_777"></i>
+                        </label>
+                        <input type="tel" id="plug_phone" class="fl w_70 plug_Delete c_gray_777" required value="" maxlength="11" placeholder="请输入手机号码" data-type="number" />
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <i class="abs left_0 icon-im_yanzhengma c_title text_16em"></i>
+                        <input type="text" class="fl ml_8 w_92 c_gray_777" required value="" maxlength="6" placeholder="请输入手机短信验证码" />
+                        <button type="button" id="plug_getVerifyCode" class="press abs h_100 bg_white press top_0 right_0 c_title">获取验证码</button>
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <i class="abs left_0 icon-mn_dunpai c_title text_16em"></i>
+                        <input type="text" id="plug_codeInput" class="fl ml_8 w_92 c_gray_777" required value="" placeholder="请输入右侧验证码" />
+                        <code id="plug_codeView" class="defer_1 press ovh abs right_0 bg_white w_20 line_h_2em border bor_gray_ddd touchstart"></code>
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
+                        <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入新密码" />
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd">
+                        <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
+                        <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入确认密码" />
+                    </li>
+                </ul>
+                <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
+            </form>
         </div>
 
         <!----------Andrew_PortraitImage---------->
