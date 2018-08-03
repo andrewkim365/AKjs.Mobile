@@ -53,6 +53,7 @@ Andrew_Plugin("Andrew_Tabs"); //TABS切换内容功能
 Andrew_Plugin("Andrew_Template"); //模板引擎插件
 Andrew_Plugin("Andrew_Textarea"); //多行输入框实时查询字符数的功能
 Andrew_Plugin("Andrew_TouchDelete","css"); //列表滑动删除功能
+Andrew_Plugin("Andrew_TimeAxis","css"); //时间轴展示功能
 Andrew_Plugin("Andrew_Typeahead","css"); //模糊搜索功能
 Andrew_Plugin("Andrew_TypeIt","css"); //文字打字效果
 Andrew_Plugin("Andrew_Viewer","css"); //图片放大预览功能

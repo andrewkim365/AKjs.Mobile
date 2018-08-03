@@ -30,6 +30,40 @@ var json_weekData = [
     }
 ];
 
+//时间轴Json数据
+var json_TimeAxis = [
+    {
+        id:'1',
+        time: '今天',
+        value:'欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。'
+    },
+    {
+        id:'2',
+        time: '昨天',
+        value:'欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。'
+    },
+    {
+        id:'3',
+        time: '前天',
+        value:'欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。'
+    },
+    {
+        id:'4',
+        time: '一周前',
+        value:'欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。'
+    },
+    {
+        id:'5',
+        time: '半年前',
+        value:'欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。'
+    },
+    {
+        id:'6',
+        time: '一年前',
+        value:'欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。'
+    }
+];
+
 //选择省市区Json数据
 var json_cityData = [
     {
