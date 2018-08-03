@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180801 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180803 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -362,10 +362,10 @@ legend {
     cursor: pointer;
 }
 .touchstart:active {
-    -o-transition-duration: 0.5s;
-    -moz-transition-duration: 0.5s;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5ms;
+    -o-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0ms;
     background-color: #dddddd !important;
 }
 /*-----------Global Style-----------*/
