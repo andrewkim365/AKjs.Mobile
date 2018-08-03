@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180801 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180803 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -303,6 +303,7 @@ function Andrew_Router(setting) {
                 } else {
                     $(this).removeAttr("onsubmit");
                 }
+                $(this).removeAttr("data-submit");
             });
             if ($("footer").not("aside footer").find("dfn").length == 0) {
                 $("footer").not("aside footer").children().before("<dfn />");
@@ -602,6 +603,12 @@ function Andrew_mainHeight() {
         }
     });
     Andrew_UserAgent();
+    $("form").each(function(){
+        if ($(this).attr("data-submit") == "false") {
+            $(this).attr("onsubmit","return false");
+        }
+        $(this).removeAttr("data-submit");
+    });
     if ($("main").not("aside main").children("#ak-main").length === 0) {
         $("main").not("aside main").children().not("dialog").wrapAll("<scrollview id=\"ak-main\"></scrollview>");
     }
@@ -792,84 +799,102 @@ function Andrew_HashSharp(form,key) {
     var hash_script = new RegExp("javascript");
     var question_mark =  new RegExp("\\?");
     var akTime =  new RegExp("akjs=");
-    $('*[data-href]').unbind('click');
-    $('*[data-href]').addClass("pointer");
+    var href = $('*[data-href]');
+    Andrew_UserAgent();
+    href.addClass("pointer");
     if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
-        $('*[data-href]').bind('click',function(andrew) {
+        if (IsMobile) {
+            href.unbind('touchstart');
+            delegate = "touchstart";
+        } else {
+            href.unbind('click');
+            delegate = "click";
+        }
+        href.bind(delegate, function (andrew) {
             andrew.preventDefault();
+            var _this = $(this);
             if ($("animation").length > 0) {
                 $("animation").attr("data-router","");
-                if ($(this).parents("footer")[0] != undefined) {
+                if (_this.parents("footer")[0] != undefined) {
                     $("animation").attr("data-router","");
-                } else if ($(this).attr("data-back") === "true" || hash_script.test($(this).attr("data-href"))){
+                } else if (_this.attr("data-back") === "true" || hash_script.test(_this.attr("data-href"))){
                     $("animation").attr("data-router","slideLeft");
                 } else {
                     $("animation").attr("data-router","slideRight");
                 }
             }
-            if (hash_sharp.test($(this).attr("data-href"))) {
-                if(question_mark.test($(this).attr("data-href"))){
-                    if(akTime.test($(this).attr("data-href"))){
-                        if (key) {
-                            document.location.href=Andrew_changeURLArg($(this).attr("data-href"),"akjs",new Date().getTime());
-                        } else {
-                            document.location.href=$(this).attr("data-href");
-                        }
-                    }else{
-                        if (key) {
-                            document.location.href=$(this).attr("data-href") + '&akjs=' + new Date().getTime();
-                        } else {
-                            document.location.href=$(this).attr("data-href");
-                        }
-                    }
-                }else{
-                    if (key) {
-                        document.location.href=$(this).attr("data-href") + '?akjs=' + new Date().getTime();
-                    } else {
-                        document.location.href=$(this).attr("data-href");
-                    }
-                }
-                $(this).attr("data-href",$(this).attr("data-href").replace("#",""));
-            } else if (hash_script.test($(this).attr("data-href"))){
-                document.location.replace($(this).attr("data-href"));
-            } else if (hash_sharps.test(document.location.href)) {
-                document.location.replace(document.location.href.replace("?#", "#"));
+            if (_this.parents("header")[0] != undefined || _this.parents("footer")[0] != undefined) {
+                data_href();
             } else {
-                if(question_mark.test($(this).attr("data-href"))){
-                    if(akTime.test($(this).attr("data-href"))){
-                        if (key) {
-                            document.location.href=Andrew_changeURLArg("#"+$(this).attr("data-href"),"akjs",new Date().getTime());
-                        } else {
-                            document.location.href="#"+$(this).attr("data-href");
+                setTimeout(function() {
+                    data_href();
+                },100);
+            }
+            function data_href() {
+                if (hash_sharp.test(_this.attr("data-href"))) {
+                    if(question_mark.test(_this.attr("data-href"))){
+                        if(akTime.test(_this.attr("data-href"))){
+                            if (key) {
+                                document.location.href=Andrew_changeURLArg(_this.attr("data-href"),"akjs",new Date().getTime());
+                            } else {
+                                document.location.href=_this.attr("data-href");
+                            }
+                        }else{
+                            if (key) {
+                                document.location.href=_this.attr("data-href") + '&akjs=' + new Date().getTime();
+                            } else {
+                                document.location.href=_this.attr("data-href");
+                            }
                         }
                     }else{
                         if (key) {
-                            document.location.href="#"+$(this).attr("data-href") + '&akjs=' + new Date().getTime();
+                            document.location.href=_this.attr("data-href") + '?akjs=' + new Date().getTime();
                         } else {
-                            document.location.href="#"+$(this).attr("data-href");
+                            document.location.href=_this.attr("data-href");
                         }
                     }
-                } else if (hash_dot.test($(this).attr("data-href"))) {
-                    var str = document.location.hash;
-                    var index = str.lastIndexOf("\/");
-                    str = str.substring(0,index)+"/";
-                    str = str.replace("#","");
-                    if (key) {
-                        document.location.href="#"+$(this).attr("data-href").replace("./", str) + '?akjs=' + new Date().getTime();
-                    } else {
-                        document.location.href="#"+$(this).attr("data-href").replace("./", str);
-                    }
+                    _this.attr("data-href",_this.attr("data-href").replace("#",""));
+                } else if (hash_script.test(_this.attr("data-href"))){
+                    document.location.replace(_this.attr("data-href"));
+                } else if (hash_sharps.test(document.location.href)) {
+                    document.location.replace(document.location.href.replace("?#", "#"));
                 } else {
-                    if (key) {
-                        document.location.href="#"+$(this).attr("data-href") + '?akjs=' + new Date().getTime();
+                    if(question_mark.test(_this.attr("data-href"))){
+                        if(akTime.test(_this.attr("data-href"))){
+                            if (key) {
+                                document.location.href=Andrew_changeURLArg("#"+_this.attr("data-href"),"akjs",new Date().getTime());
+                            } else {
+                                document.location.href="#"+_this.attr("data-href");
+                            }
+                        }else{
+                            if (key) {
+                                document.location.href="#"+_this.attr("data-href") + '&akjs=' + new Date().getTime();
+                            } else {
+                                document.location.href="#"+_this.attr("data-href");
+                            }
+                        }
+                    } else if (hash_dot.test(_this.attr("data-href"))) {
+                        var str = document.location.hash;
+                        var index = str.lastIndexOf("\/");
+                        str = str.substring(0,index)+"/";
+                        str = str.replace("#","");
+                        if (key) {
+                            document.location.href="#"+_this.attr("data-href").replace("./", str) + '?akjs=' + new Date().getTime();
+                        } else {
+                            document.location.href="#"+_this.attr("data-href").replace("./", str);
+                        }
                     } else {
-                        document.location.href="#"+$(this).attr("data-href");
+                        if (key) {
+                            document.location.href="#"+_this.attr("data-href") + '?akjs=' + new Date().getTime();
+                        } else {
+                            document.location.href="#"+_this.attr("data-href");
+                        }
                     }
                 }
             }
         });
     } else {
-        $('*[data-href]').bind('click',function(andrew) {
+        href.bind('click',function(andrew) {
             andrew.preventDefault();
             document.location.href= $(this).attr("data-href");
         });
