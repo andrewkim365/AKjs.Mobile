@@ -337,79 +337,7 @@
 
         <div class="module mt_5 press">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">时间轴布局展示</h3>
-            <div class="ak-TimeAxis">
-                <cite class="w_3em ml_3">
-                    <strong class="bor_dashed2 bor_gray_ddd"></strong>
-                </cite>
-                <ul>
-                    <li class="mt_1em mb_1em">
-                        <section class="check wh_3em bg_title bor_rad_50 line_h_3em text_al_c minus_left_3em">
-                            <h6 class="c_white text_06em">今天</h6>
-                        </section>
-                        <locator class="bor_gray_ddd minus_left_3em">
-                            <span class="bor_white"></span>
-                        </locator>
-                        <article class="bor_gray_ddd border bor_rad_03em bg_white line_h_14em pa_3 mr_3 minus_ml_3em">
-                            <p class="c_gray_777">欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。</p>
-                        </article>
-                    </li>
-                    <li class="mt_1em mb_1em">
-                        <section class="wh_3em bg_gray_ccc bor_rad_50 line_h_3em text_al_c minus_left_3em">
-                            <h6 class="c_white text_06em">昨天</h6>
-                        </section>
-                        <locator class="bor_gray_ddd minus_left_3em minus_left_3em">
-                            <span class="bor_white"></span>
-                        </locator>
-                        <article class="bor_gray_ddd border bor_rad_03em bg_white line_h_14em pa_3 mr_3 minus_ml_3em">
-                            <p class="c_gray_777">欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。</p>
-                        </article>
-                    </li>
-                    <li class="mt_1em mb_1em">
-                        <section class="wh_3em bg_gray_ccc bor_rad_50 line_h_3em text_al_c minus_left_3em">
-                            <h6 class="c_white text_06em">前天</h6>
-                        </section>
-                        <locator class="bor_gray_ddd minus_left_3em minus_left_3em">
-                            <span class="bor_white"></span>
-                        </locator>
-                        <article class="bor_gray_ddd border bor_rad_03em bg_white line_h_14em pa_3 mr_3 minus_ml_3em">
-                            <p class="c_gray_777">欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。</p>
-                        </article>
-                    </li>
-                    <li class="mt_1em mb_1em">
-                        <section class="wh_3em bg_gray_ccc bor_rad_50 line_h_3em text_al_c minus_left_3em">
-                            <h6 class="c_white text_06em">一周前</h6>
-                        </section>
-                        <locator class="bor_gray_ddd minus_left_3em minus_left_3em">
-                            <span class="bor_white"></span>
-                        </locator>
-                        <article class="bor_gray_ddd border bor_rad_03em bg_white line_h_14em pa_3 mr_3 minus_ml_3em">
-                            <p class="c_gray_777">欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。</p>
-                        </article>
-                    </li>
-                    <li class="mt_1em mb_1em">
-                        <section class="wh_3em bg_gray_ccc bor_rad_50 line_h_3em text_al_c minus_left_3em">
-                            <h6 class="c_white text_06em">半年前</h6>
-                        </section>
-                        <locator class="bor_gray_ddd minus_left_3em minus_left_3em">
-                            <span class="bor_white"></span>
-                        </locator>
-                        <article class="bor_gray_ddd border bor_rad_03em bg_white line_h_14em pa_3 mr_3 minus_ml_3em">
-                            <p class="c_gray_777">欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。</p>
-                        </article>
-                    </li>
-                    <li class="mt_1em mb_1em">
-                        <section class="wh_3em bg_gray_ccc bor_rad_50 line_h_3em text_al_c minus_left_3em">
-                            <h6 class="c_white text_06em">一年前</h6>
-                        </section>
-                        <locator class="bor_gray_ddd minus_left_3em minus_left_3em">
-                            <span class="bor_white"></span>
-                        </locator>
-                        <article class="bor_gray_ddd border bor_rad_03em bg_white line_h_14em pa_3 mr_3 minus_ml_3em">
-                            <p class="c_gray_777">欢迎使用AKjs移动端前端UI框架。当前内容是时间轴样式展示页面。</p>
-                        </article>
-                    </li>
-                </ul>
-            </div>
+            <div class="plug_timeaxis"></div>
         </div>
 
         <div class="module list mt_5 press">
@@ -823,67 +751,22 @@
         data-type="spacing" === 饼图类型设置 （half, spacing）；空值代表默认类型
         */
     });
+
+    /*-----------------------------------------------Andrew_TimeAxis 使用方法-------------------------------------------*/
+    $(function(){
+        $(".plug_timeaxis").Andrew_TimeAxis({
+            firstbox: "bg_title", //第一个圆框的样式
+            boxsize: "3em", //圆框大小设置
+            textstyle: "text_06em c_white", //圆框内的文字样式
+            data: json_TimeAxis, //Json获取data数据(data.js)
+            callback:function(ele){ //初始化回调入口
+            }
+        });
+    });
 </script>
 
 <style type="text/css">
     /*样式覆盖区域*/
-    .ak-TimeAxis {
-        display: flex;
-    }
-    .ak-TimeAxis > cite {
-        flex-shrink: 0;
-        display: block;
-        overflow: hidden;
-        position: relative;
-    }
-    .ak-TimeAxis strong {
-        display: block;
-        position: absolute;
-        width: 2px;
-        height: 100%;
-        margin-left: 50%;
-        border-top: none !important;
-        border-right: none !important;
-        border-bottom: none !important;
-    }
-    .ak-TimeAxis > ul {
-        display: block;
-        flex-grow: 1;
-    }
-    .ak-TimeAxis > ul > li {
-        display: flex;
-        align-items: center;
-        width: 100%;
-    }
-    .ak-TimeAxis section {
-        position: relative;
-        flex-shrink: 0;
-    }
-    .ak-TimeAxis article {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .ak-TimeAxis locator {
-        width: 0;
-        height: 0;
-        border: 0.6em solid;
-        border-top-color: transparent !important;
-        border-bottom-color: transparent !important;
-        border-left-color: transparent !important;
-        position: relative;
-    }
-    .ak-TimeAxis locator > span {
-        width: 0;
-        height: 0;
-        border: 0.6em solid;
-        border-top-color: transparent !important;
-        border-bottom-color: transparent !important;
-        border-left-color: transparent !important;
-        position: absolute;
-        left: -0.5em;
-        top: -0.6em;
-    }
 </style>
 
 <!--
