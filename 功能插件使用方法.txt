@@ -114,7 +114,7 @@ $(function () {
 
 /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
 $(function() {
-   $("img").Andrew_Lazyload({ //对所有的图片懒加载
+   $(".plug_lazyload img").Andrew_Lazyload({ //对所有的图片懒加载
        scroll: $("main").children("#ak-main"), //滚动区域的容器
        scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
        Img_Effect: "fadeIn", //图片加载动画效果
@@ -361,6 +361,7 @@ $(function(){
             position: "top", //位置类型(top，bottom，left，right，middle)
             effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
             effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+            hasMask: true, //是否开启遮罩层背景 (true / false)
             maskPosition:"4", //Mask的z-index数值
             closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
             OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
@@ -386,6 +387,7 @@ $(function(){
            position: "middle", //位置类型(top，bottom，left，right，middle)
            effectIn: "bounceInDown", //弹窗显示效果
            effectOut: "bounceOutUp", //弹窗消失效果
+           hasMask: true, //是否开启遮罩层背景 (true / false)
            maskPosition:"11", //Mask的z-index数值
            closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
            callback :function (ele) { //通过回调获取弹窗显示后的以上参数
@@ -582,6 +584,7 @@ $(function(){
                     position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
                     effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
                     effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
+                    hasMask: true, //是否开启遮罩层背景 (true / false)
                     maskPosition:"1", //Mask的z-index数值
                     closeBtn: "#plug_filterWin", //关闭弹窗按钮
                     OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
@@ -1234,6 +1237,7 @@ $(function(){
            position: "bottom", //位置类型(top，bottom，left，right，middle)
            effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
            effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+           hasMask: true, //是否开启遮罩层背景 (true / false)
            maskPosition:"4", //Mask的z-index数值
            closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
            OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性

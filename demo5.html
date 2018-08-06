@@ -30,7 +30,7 @@
 
   <!--main元素里面必须有id="ak-main"才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main元素的下面写（ak-main的上一级元素必须使用main元素）。-->
   <div id="ak-main">
-    <div class="module list press plug_DropLoad">
+    <div class="module list press plug_DropLoad plug_lazyload">
       <ul>
       </ul>
     </div>
@@ -231,7 +231,7 @@
                         setTimeout(function(){
                             // 插入数据到页面，放到最后面
                             $('.plug_DropLoad').children("ul").append(result);
-                            $("img").Andrew_Lazyload({ //对所有的图片懒加载
+                            $(".plug_lazyload img").Andrew_Lazyload({ //对所有的图片懒加载
                                 scroll: $("main").children(), //滚动区域的容器
                                 scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
                                 Img_Effect: "fadeIn", //图片加载动画效果
