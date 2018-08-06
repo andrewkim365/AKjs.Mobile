@@ -226,7 +226,7 @@
             </section>
         </div>
 
-        <div class="module press mt_5 bg_white">
+        <div class="module press mt_5 bg_white plug_lazyload">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片加载失败展示</h3>
             <section class="wm_96 ovh mb_1em line_h_2em c_gray_777">
                 <img data-src="./img/akjs" /> <!--输入无效的图片地址-->
@@ -382,7 +382,7 @@
             </ul>
         </div>
 
-        <div class="module mt_5 bg_white">
+        <div class="module mt_5 bg_white plug_lazyload">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">特殊效果样式</h3>
             <section class="mt_3 mb_3 wm_94">
                 <ul class="ovh length2 rel list_h_12_em">
@@ -656,7 +656,7 @@
 
     /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
     $(function() {
-        $("img").Andrew_Lazyload({ //对所有的图片懒加载
+        $(".plug_lazyload img").Andrew_Lazyload({ //对所有的图片懒加载
             scroll: $("main").children("#ak-main"), //滚动区域的容器
             scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
             Img_Effect: "fadeIn", //图片加载动画效果
@@ -679,6 +679,7 @@
                 position: "bottom", //位置类型(top，bottom，left，right，middle)
                 effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
                 effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition:"4", //Mask的z-index数值
                 closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
                 OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性

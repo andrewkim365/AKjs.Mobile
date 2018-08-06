@@ -7,7 +7,7 @@
 
     <!--业务代码外层必须有ak-main元素才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main元素的下面写（ak-header和ak-main中间禁止写代码）。-->
     <ak-main>
-        <div class="plug_waterfall module mt_3 mb_3 wm_96 h_fill defer_15">
+        <div class="plug_waterfall plug_lazyload module mt_3 mb_3 wm_96 h_fill defer_15">
         </div>
     </ak-main>
 
@@ -85,7 +85,7 @@
 
     /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
     $(function() {
-        $("img").Andrew_Lazyload({ //对所有的图片懒加载
+        $(".plug_lazyload img").Andrew_Lazyload({ //对所有的图片懒加载
             scroll: $("main").children("#ak-main"), //滚动区域的容器
             scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
             Img_Effect: "fadeIn", //图片加载动画效果
@@ -106,6 +106,7 @@
             el.preventDefault();
             Andrew_Popupwin({
                 dom: "#plug_MenuWin", //弹窗内容的布局
+                hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition: "3", //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                 OneButton: el.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
@@ -148,6 +149,7 @@
             er.preventDefault();
             Andrew_Popupwin({
                 dom: "#plug_MenuWin", //弹窗内容的布局
+                hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition: "3", //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                 OneButton: er.currentTarget, //点击按钮和关闭按钮通用时需要加该属性

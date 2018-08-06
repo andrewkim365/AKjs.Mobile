@@ -17,7 +17,7 @@
         </form>
 
         <!----------Andrew_Slider---------->
-        <div class="plug_slider w_100 h_12_em ovh rel bg_gray_f5f">
+        <div class="plug_slider plug_lazyload w_100 h_12_em ovh rel bg_gray_f5f">
             <ul class="defer_05">
                 <li><img src="img/tibet-1.jpg"></li>
                 <li><img src="img/tibet-2.jpg"></li>
@@ -681,7 +681,7 @@
         <!----------Andrew_lightSlider---------->
         <div class="module bg_white press mt_5">
             <h3 class="bg_white c_title pl_3 mb_1em line_h_36em bor_bottom bor_gray_ddd">图片滑动展示</h3>
-            <div class="wm_94 ovh rel h_9em">
+            <div class="wm_94 ovh rel h_9em plug_lazyload">
                 <ul id="plug_photo_slider" class="defer_1">
                     <li class="fl h_8em ovi_im">
                         <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
@@ -814,7 +814,7 @@
         <!----------Andrew_lazyload---------->
         <div class="module press mt_5 bg_white">
             <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片放大展示</h3>
-            <ul class="plug_viewer lazyload ml_3 mt_1em length2">
+            <ul class="plug_viewer plug_lazyload ml_3 mt_1em length2">
                 <li class="fl h_8em mb_1em">
                     <figure class="w_94 border bor_gray_ddd img_auto h_in">
                         <img src="./img/tibet-1.jpg" data-url="./img/thumbnails/tibet-1.jpg" alt="图片1" />
@@ -1015,7 +1015,7 @@
 
     /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
     $(function() {
-        $("img").Andrew_Lazyload({ //对所有的图片懒加载
+        $(".plug_lazyload img").Andrew_Lazyload({ //对所有的图片懒加载
             scroll: $("main").children(), //滚动区域的容器
             scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
             Img_Effect: "fadeIn", //图片加载动画效果
@@ -1266,6 +1266,7 @@
                 position: "top", //位置类型(top，bottom，left，right，middle)
                 effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
                 effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition:"4", //Mask的z-index数值
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
                 OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
@@ -1291,6 +1292,7 @@
                 position: "middle", //位置类型(top，bottom，left，right，middle)
                 effectIn: "bounceInDown", //弹窗显示效果
                 effectOut: "bounceOutUp", //弹窗消失效果
+                hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition:"11", //Mask的z-index数值
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
                 callback :function (ele) { //通过回调获取弹窗显示后的以上参数
@@ -1487,6 +1489,7 @@
                         position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
                         effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
                         effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
+                        hasMask: true, //是否开启遮罩层背景 (true / false)
                         maskPosition:"1", //Mask的z-index数值
                         closeBtn: "#plug_filterWin", //关闭弹窗按钮
                         OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
