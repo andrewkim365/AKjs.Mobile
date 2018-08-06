@@ -22,6 +22,7 @@
 /*-----------------------------------------------Andrew_Router (路由全局设置）使用方法-------------------------------------------*/
 $(document).ready(function(){
     Andrew_Include("css/theme.default.css"); //颜色相关样式文件引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
+    Andrew_Include("http://echarts.baidu.com/dist/echarts.min.js"); //Echarts插件全局引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
     Andrew_Include("js/data.js",true); //Json数据文件引入（Andrew_Include是js文件中引入另一个js或css文件的功能。后面加 true 代表优先级引入的意思（important））
     Andrew_Include("js/plugin.js"); //功能插件按需引入（Andrew_Include是js文件中引入另一个js或css文件的功能）
     Andrew_Router({ //路由配置管理

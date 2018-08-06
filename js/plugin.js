@@ -18,6 +18,7 @@ Andrew_Plugin("Andrew_DateTime","css"); //日期和时间插件
 Andrew_Plugin("Andrew_Dialog","css"); //alert，confirm，prompt等弹出层功能
 Andrew_Plugin("Andrew_DropLoad","css"); //上拉刷新和下拉加载更多功能
 Andrew_Plugin("Andrew_DropUpDown"); //列表展开和收起功能
+Andrew_Plugin("Andrew_EchartsRun"); //百度Echarts运行功能
 Andrew_Plugin("Andrew_Favorite"); //点赞或收藏功能
 Andrew_Plugin("Andrew_Form"); //表单提交相关效果
 Andrew_Plugin("Andrew_GetVerifyCode"); //手机短信验证码认证功能

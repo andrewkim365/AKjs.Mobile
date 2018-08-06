@@ -67,6 +67,16 @@ function Andrew_Config(setting) {
         if(IsWechat) {
             $("header").not("aside header").addClass("dis_none_im").removeClass("dis_block_im");
             $("main").not("aside main").addClass("mt_0");
+            if ($("footer").not("aside footer").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
+                var footer_h = 0;
+            } else {
+                var footer_h = $("footer").not("aside footer").outerHeight();
+            }
+            setTimeout(function () {
+                $("main").not("aside main").css({
+                    "height": $(window).height() - footer_h
+                })
+            }, 300);
         } else {
             $("main").not("aside main").removeClass("mt_0");
         }
