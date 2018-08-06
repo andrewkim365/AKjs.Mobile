@@ -171,6 +171,7 @@ function Andrew_Router(setting) {
                     "top": "auto",
                     "bottom": 0,
                 });
+                $("footer").find(".h_au").removeClass("h_au");
                 setTimeout(function () {
                     $("header, footer").not("aside header, aside footer").removeAttr("style");
                     asideEle.find("footer").removeClass("dis_opa_0");
