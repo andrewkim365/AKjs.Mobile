@@ -16,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
   <script type="text/javascript" language="javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
+  <script type="text/javascript" language="javascript" src="http://echarts.baidu.com/dist/echarts.min.js"></script><!--Echarts插件引入-->
   <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
 </head>
 <body>
@@ -372,6 +373,11 @@
                 AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。
                 AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。
             </p>
+        </div>
+
+        <div class="module mt_5 bg_white pt_3 wp_94">
+            <div id="plug_echarts1"></div>
+            <div id="plug_echarts2"></div>
         </div>
 
         <!----------Andrew_TypeIt---------->
@@ -850,6 +856,275 @@
             textstyle: "text_06em c_white", //圆框内的文字样式
             data: json_TimeAxis, //Json获取data数据(data.js)
             callback:function(ele){ //初始化回调入口
+            }
+        });
+    });
+
+    /*-----------------------------------------------Andrew_EchartsRun 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_echarts1").Andrew_EchartsRun({
+            width: "100%", //宽度
+            height: 320, //高度
+            option: { //Echarts的option数据结构（Echarts官网：http://echarts.baidu.com/examples/）
+                title: {
+                    text: 'Echarts1',
+                    subtext: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['使用情况', '当前数量']
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: false
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                dataZoom: {
+                    show: false,
+                    start: 0,
+                    end: 100
+                },
+                xAxis: [{
+                    type: 'category',
+                    boundaryGap: false,
+                    data: (function() {
+                        var now = new Date();
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                }],
+                yAxis: [{
+                    type: 'value',
+                    //scale: true,
+                    name: '使用情况',
+                    max: 20,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }, {
+                    type: 'value',
+                    scale: true,
+                    name: '当前数量',
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }],
+                series: [{
+                    name: '当前数量',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    itemStyle: {
+                        normal: {
+                            color:'#d71b1c',
+                            lineStyle:{
+                                color:'#d71b1c'
+                            }
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.push(null);
+                        }
+                        return res;
+                    })()
+                }, {
+                    name: '使用情况',
+                    type: 'line',
+                    smooth:true,
+                    // itemStyle areaStyle 成为面积图的关键。
+                    itemStyle: {
+                        normal: {
+                            color:'#79c34a',
+                            areaStyle: {
+                                type: 'default'
+                            },
+                            lineStyle:{
+                                color:'#79c34a'
+                            }
+                        }
+                    },
+                    areaStyle: {// 实现蓝白渐变色
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgba(121,195,74,0.8)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255,255,255)'
+                            }])
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 0;
+                        while (len < 10) {
+                            res.push(null);
+                            len++;
+                        }
+                        return res;
+                    })()
+                }]
+            },
+            callback:function(myChart,option){ //初始化回调入口
+                setInterval(function() {
+                    axisData = (new Date()).toLocaleTimeString().replace(/^\D*!/, '');
+                    var data0 = option.series[0].data;
+                    var data1 = option.series[1].data;
+                    data0.shift();
+                    data0.push(Math.round(Math.random() * 10000));
+                    data1.shift();
+                    data1.push(Math.round(Math.random() * 20));
+                    option.xAxis[0].data.shift();
+                    option.xAxis[0].data.push(axisData);
+                    myChart.setOption(option);
+                }, 1000);
+            }
+        });
+    });
+
+    $(function() {
+        $("#plug_echarts2").Andrew_EchartsRun({
+            width: "100%", //宽度
+            height: 320, //高度
+            option: { //Echarts的option数据结构（Echarts官网：http://echarts.baidu.com/examples/）
+                title: {
+                    text: 'Echarts2',
+                    subtext: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['使用情况', '当前数量']
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: false
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                dataZoom: {
+                    show: false,
+                    start: 0,
+                    end: 100
+                },
+                xAxis: [{
+                    type: 'category',
+                    boundaryGap: true,
+                    data: (function() {
+                        var now = new Date();
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                }],
+                yAxis: [{
+                    type: 'value',
+                    scale: true,
+                    name: '使用情况',
+                    max: 20,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }, {
+                    type: 'value',
+                    scale: true,
+                    name: '当前数量',
+                    max: 1200,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }],
+                series: [{
+                    name: '当前数量',
+                    type: 'bar',
+                    xAxisIndex: 0,
+                    yAxisIndex: 1,
+                    itemStyle: {
+                        normal: {
+                            color:'#CCCCCC',
+                            lineStyle:{
+                                color:'#CCCCCC'
+                            }
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.push(null);
+                        }
+                        return res;
+                    })()
+                }, {
+                    name: '使用情况',
+                    type: 'line',
+                    smooth:true,
+                    // itemStyle成为面积图的关键。
+                    itemStyle: {
+                        normal: {
+                            color:'#79c34a',
+                            areaStyle: {
+                                type: 'default'
+                            },
+                            lineStyle:{
+                                color:'#79c34a'
+                            }
+                        }
+                    },
+                    areaStyle: {// 实现蓝白渐变色
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgba(121,195,74,0.8)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255,255,255)'
+                            }])
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 0;
+                        while (len < 10) {
+                            res.push(null);
+                            len++;
+                        }
+                        return res;
+                    })()
+                }]
+            },
+            callback:function(myChart,option){ //初始化回调入口
+                setInterval(function() {
+                    axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+                    var data0 = option.series[0].data;
+                    var data1 = option.series[1].data;
+                    data0.shift();
+                    data0.push(Math.round(Math.random() * 1000));
+                    data1.shift();
+                    data1.push((Math.random() * 10 + 5).toFixed(1) - 0);
+                    option.xAxis[0].data.shift();
+                    option.xAxis[0].data.push(axisData);
+                    myChart.setOption(option);
+                }, 2000);
             }
         });
     });
