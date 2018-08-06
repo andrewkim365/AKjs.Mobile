@@ -55,7 +55,11 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.8版本；
 
 解决了在安卓机上路由页面跳转时有卡顿的问题；
 
+修改js目录中的plugin.js和router.js文件（按需引入Andrew_EchartsRun插件以及cdn引入Echarts插件文件）
+
 修改js目录中的data.js文件和plugin.js文件（增加json_TimeAxis数据，Andrew_TimeAxis功能插件的按需引入）
+
+新增 js/plugin/Andrew_EchartsRun.js 百度Echarts功能插件（使用方法请参考page4）；
 
 新增 js/plugin/Andrew_TimeAxis.js 时间轴展示功能插件；
 
