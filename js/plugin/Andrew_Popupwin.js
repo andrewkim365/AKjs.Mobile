@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-01
+Modification Date: 2018-08-06
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
@@ -52,28 +52,12 @@ function Andrew_Popupwin (setting){
             option.scrollback($(option));
         });
     }
-    if (option.hasMask) {
-        addModalMask();
-        $("main").removeClass("scrolling");
-    }
     $(window).bind('hashchange', function () {
         if (option.leaveback !=  undefined) {
             option.leaveback($(option),false);
         }
         return false;
     });
-    if (option.maskPosition) {
-        $('#popup_mask').css({
-            "z-index": option.maskPosition
-        });
-        if (option.position === 'offset') {
-            var otm = $(option.OneButton).offset().top;
-            var ohm = $(option.OneButton).outerHeight();
-            $('#popup_mask').css({
-                "top": otm + ohm
-            });
-        }
-    }
     if (option.OneButton) {
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function() {
@@ -83,7 +67,10 @@ function Andrew_Popupwin (setting){
 
         $(option.OneButton).toggleClass("ak-is_active");
         if ($(option.OneButton).hasClass("ak-is_active")) {
-            addModalMask();
+            if (option.hasMask) {
+                addModalMask();
+                $("main").removeClass("scrolling");
+            }
             option.callback($(option),true);
             if (option.position === 'offset') {
                 var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
@@ -112,7 +99,10 @@ function Andrew_Popupwin (setting){
         if (option.effectIn || option.effectOut) {
             $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
         }
-        addModalMask();
+        if (option.hasMask) {
+            addModalMask();
+            $("main").removeClass("scrolling");
+        }
         option.callback($(option));
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function(ec) {
@@ -129,6 +119,18 @@ function Andrew_Popupwin (setting){
                     e.preventDefault();
                 }
             });
+            if (option.maskPosition) {
+                $('#popup_mask').css({
+                    "z-index": option.maskPosition
+                });
+                if (option.position === 'offset') {
+                    var otm = $(option.OneButton).offset().top;
+                    var ohm = $(option.OneButton).outerHeight();
+                    $('#popup_mask').css({
+                        "top": otm + ohm
+                    });
+                }
+            }
         }
     }
     function setPopupStyle() {
