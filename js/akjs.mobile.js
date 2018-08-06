@@ -142,7 +142,7 @@ function Andrew_Router(setting) {
                     }
                 }
                 if ($("animation").prop("dataset").router == "slideLeft") {
-                    asideEle.addClass("animated slideOutRight ani_05s zindex_3");
+                    asideEle.addClass("animated slideOutRight ani_04s zindex_3");
                     $("animation").addClass("filter_brig_096");
                     asideEle.html($(animationEle).html());
                 } else if ($("animation").prop("dataset").router == "slideRight") {
@@ -276,17 +276,14 @@ function Andrew_Router(setting) {
                 }
                 $("html").children("script").html("").remove();
                 $("html").children("style").html("").remove();
-                setTimeout(function () {
+                Router_Settings();
+                setTimeout(function() {
                     if (jsText != undefined) {
                         $("<script id='akjs_script' data-temp='"+new Date().getTime()+"' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
                     }
                     if (cssText != undefined) {
                         $("<style id='akjs_style' data-temp='"+new Date().getTime()+"' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
                     }
-                }, 500);
-
-                Router_Settings();
-                setTimeout(function() {
                     if (option.Parameter) {
                         Andrew_HashSharp(true,true);
                     } else {
@@ -803,7 +800,7 @@ function Andrew_HashSharp(form,key) {
     Andrew_UserAgent();
     href.addClass("pointer");
     if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
-        if (IsMobile) {
+        if (IsIphone || IsIpad) {
             href.unbind('touchstart');
             delegate = "touchstart";
         } else {
