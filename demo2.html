@@ -102,7 +102,7 @@
         <button type="button" class="dis_block ovh w_100 text_al_c line_h_36em" id="plug_map">发送位置</button>
       </li>
       <li class="bor_bottom bor_gray_ddd touchstart">
-        <button type="button" class="dis_block ovh w_100 text_al_c line_h_36em">共享实时位置</button>
+        <button type="button" class="dis_block ovh w_100 text_al_c line_h_36em" id="plug_livemap">共享实时位置</button>
       </li>
     </ul>
     <button type="button" class="plug_closeIn w_100 h_32em text_12em bg_white c_title">取消</button>
@@ -299,7 +299,9 @@
                             callback :function (ele1,toggle1) { //通过回调获取弹窗显示后的以上参数
                                 //console.log($(ele1[0].dom)); //获取当前的弹窗元素
                                 $(ele1[0].dom).find("#plug_map").unbind("click");
+                                $(ele1[0].dom).find("#plug_livemap").unbind("click");
                                 if (toggle1) {
+                                    //发送位置
                                     $(ele1[0].dom).find("#plug_map").bind("click", function (cc) {
                                         Andrew_Popupwin({
                                             dom: "#plug_mapWin", //弹窗内容的布局
@@ -325,6 +327,54 @@
                                                         cache: true,
                                                         dataType:'script'
                                                     });
+                                                    $("#allmap").html("");
+                                                    setTimeout(function() {
+                                                        var map = new AMap.Map("allmap", {
+                                                            resizeEnable: true,
+                                                            center: [116.397428, 39.90923],//地图中心点
+                                                            zoom: 13 //地图显示的缩放级别
+                                                        });
+                                                        var marker = new AMap.Marker({ //添加自定义点标记
+                                                            map: map,
+                                                            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                                                            position: [116.397428, 39.90923], //基点位置
+                                                            offset: new AMap.Pixel(-17, -42), //相对于基点的偏移位置
+                                                            draggable: true,  //是否可拖动
+                                                            content: '<div class="marker-route marker-marker-bus-from"></div>'   //自定义点标记覆盖物内容
+                                                        });
+                                                    },500);
+                                                    /*------------------------------------------高德地图API调用结束-----------------------------------------*/
+                                                }
+                                            }
+                                        });
+                                    });
+                                    //共享实时位置
+                                    $(ele1[0].dom).find("#plug_livemap").bind("click", function (cc) {
+                                        Andrew_Popupwin({
+                                            dom: "#plug_mapWin", //弹窗内容的布局
+                                            position: "bottom", //位置类型(top，bottom，left，right，middle)
+                                            effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                                            effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                                            hasMask: true, //是否开启遮罩层背景 (true / false)
+                                            maskPosition: 8, //Mask的z-index数值
+                                            closeBtn: ".plug_back", //关闭弹窗按钮的Class名
+                                            OneButton: cc.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                                            toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                                            callback :function (ele2,toggle2) { //通过回调获取弹窗显示后的以上参数
+                                                console.log($(ele2[0].dom)); //获取当前的弹窗元素
+                                                $(ele1[0].dom).removeClass("slideInUp ani_05s").addClass("slideOutDown ani_05s dis_none");
+                                                ele.find("#plug_location").removeClass("ak-is_active");
+                                                if (toggle2) {
+                                                    /*------------------------------------------高德地图API调用开始-----------------------------------------*/
+                                                    var jsurl = 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf';
+                                                    $.ajax({
+                                                        type:'GET',
+                                                        url: jsurl,
+                                                        async: true,
+                                                        cache: true,
+                                                        dataType:'script'
+                                                    });
+                                                    $("#allmap").html("");
                                                     setTimeout(function() {
                                                         var map, geolocation;
                                                         //加载地图，调用浏览器定位服务
@@ -377,6 +427,17 @@
   /*样式覆盖区域*/
   .amap-logo, .amap-copyright {
     display: none !important;
+  }
+  .amap-marker .marker-route {
+    position: absolute;
+    width: 40px;
+    height: 44px;
+    color: #e90000;
+    background: url(https://webapi.amap.com/theme/v1.3/images/newpc/poi-1.png) no-repeat;
+    cursor: pointer;
+  }
+  .amap-marker .marker-marker-bus-from {
+    background-position: -330px -18px;
   }
 </style>
 </html>
