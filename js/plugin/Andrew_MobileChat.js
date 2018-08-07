@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-02
+Modification Date: 2018-08-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_MobileChat--------------------------------------------*/
@@ -66,12 +66,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     "height": $(window).height() - $("header").outerHeight() - $("footer").outerHeight(),
                     "margin-bottom": $("footer").outerHeight()
                 });
+                option.optcallback($(option.chat_optDom),true);
                 var scrollHeight = $("#ak-main").prop("scrollHeight");
                 $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
                 setTimeout(function() {
                     $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
                 },100);
-                option.optcallback($(option.chat_optDom),true);
                 $chat_plugin.find("input").on('focus', function() {
                     ChatOption_hide();
                 });
@@ -89,12 +89,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     "height": $(window).height() - $("header").outerHeight() - $("footer").outerHeight(),
                     "margin-bottom": $("footer").outerHeight()
                 });
+                option.optcallback($(option.chat_optDom),false);
                 var scrollHeight = $("#ak-main").prop("scrollHeight");
                 $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
                 setTimeout(function() {
                     $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
                 },100);
-                option.optcallback($(option.chat_optDom),false);
             },200);
         }
     };

@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-06-05
+Modification Date: 2018-08-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_PreviewImage---------------------------------------*/
@@ -46,18 +46,18 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
         pimg.bind('change', function() {
             if(option.uploadNum == op.length){
-                ak_webToast(op.length_title +""+ op.length+"","middle","mask",10000);
+                ak_webToast(op.length_title +""+ op.length+"","middle","mask",3000);
                 return false;
             }
             var tempData = $(this).children('input')[0];
             if((option.uploadNum + tempData.files.length) > op.length){
-                ak_webToast(op.length_title +""+ op.length+"","middle","mask",10000);
+                ak_webToast(op.length_title +""+ op.length+"","middle","mask",3000);
             }
             var tempFiles = [];
             for(var i=0;i<(op.length-option.uploadNum);i++){
                 if(tempData.files[i]!=null && tempData.files[i]!=undefined){
                     if(tempData.files[i].size>op.size*1024*1024){
-                        ak_webToast(op.size_title + op.size+"MB","middle","mask",10000);
+                        ak_webToast(op.size_title + op.size+"MB","middle","mask",3000);
                         return false;
                     }
                 }
