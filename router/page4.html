@@ -497,8 +497,8 @@
     </ak-main>
 
     <!----------Andrew_PopupWin Start---------->
-    <dialog id="plug_ShareWin" class="dis_none w_100 zindex_8"> <!--顶部位置显示的弹窗-->
-        <ul class="bg_white ovh list_h_8em verline_list length4 mb_1">
+    <dialog id="plug_ShareWin" class="dis_none w_100 bg_gray_eee"> <!--顶部位置显示的弹窗-->
+        <ul class="bg_white ovh list_h_8em verline_list length4 mb_2">
             <li class="fl rel text_al_c touchstart">
                 <button type="button" class="dis_block ovh w_100 mt_15em" data-href="/page3">
                     <i class="c_wechat text_al_c text_3em icon-sr_weixin"></i>
@@ -533,7 +533,6 @@
 
 <script type="text/javascript">
     //引入Andrew插件的区域
-
     /*-----------------------------------------------Andrew_SelectOption 使用方法-------------------------------------------*/
     $(function(){
         $(".plug_select").Andrew_SelectOption({
@@ -685,7 +684,7 @@
                 effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
                 effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
                 hasMask: true, //是否开启遮罩层背景 (true / false)
-                maskPosition:"4", //Mask的z-index数值
+                maskPosition: 4, //Mask的z-index数值
                 closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
                 OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                 toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
