@@ -90,9 +90,9 @@
   <dialog id="plug_MyMenuWin" class="dis_none ovh left_au right_0 w_30 mr_05em mt_32em"> <!--顶部位置显示的弹窗-->
     <i class="abs right_0 top_0 dis_block minus_mt_01em mr_02em icon-ln_jiantoushang text_18em c_white"></i>
     <ul class="rel ovh list zindex_2 bg_white mt_08em list_h_3em bor_rad_03em">
-      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单A</li>
-      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单B</li>
-      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单C</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单A</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单B</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单C</li>
     </ul>
   </dialog>
 
@@ -112,7 +112,7 @@
     <button type="button" class="plug_back fix left_0 top_0 ml_1em mt_1em wh_28em text_al_c zindex_8 bg_title05 bor_rad_50">
       <i class="text_14em icon-ln_zhixiangzuo c_white"></i>
     </button>
-    <div id="allmap" class="h_in"></div>
+    <div id="plug_allmap" class="h_in"></div>
   </dialog>
   <!----------Andrew_PopupWin End---------->
 
@@ -327,9 +327,9 @@
                                                         cache: true,
                                                         dataType:'script'
                                                     });
-                                                    $("#allmap").html("");
+                                                    $("#plug_allmap").html("");
                                                     setTimeout(function() {
-                                                        var map = new AMap.Map("allmap", {
+                                                        var map = new AMap.Map("plug_allmap", {
                                                             resizeEnable: true,
                                                             center: [116.397428, 39.90923],//地图中心点
                                                             zoom: 13 //地图显示的缩放级别
@@ -374,11 +374,11 @@
                                                         cache: true,
                                                         dataType:'script'
                                                     });
-                                                    $("#allmap").html("");
+                                                    $("#plug_allmap").html("");
                                                     setTimeout(function() {
                                                         var map, geolocation;
                                                         //加载地图，调用浏览器定位服务
-                                                        map = new AMap.Map('allmap', {
+                                                        map = new AMap.Map('plug_allmap', {
                                                             resizeEnable: true
                                                         });
                                                         map.plugin('AMap.Geolocation', function() {
@@ -407,7 +407,7 @@
                                                         //解析定位错误信息
                                                         function onError(data) {
                                                         }
-                                                    },500);
+                                                    },1000);
                                                     /*------------------------------------------高德地图API调用结束-----------------------------------------*/
                                                 }
                                             }
