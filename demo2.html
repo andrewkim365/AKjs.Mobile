@@ -317,9 +317,10 @@
                                                 ele.find("#plug_location").removeClass("ak-is_active");
                                                 if (toggle2) {
                                                     /*------------------------------------------高德地图API调用开始-----------------------------------------*/
+                                                    var jsurl = 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf';
                                                     $.ajax({
                                                         type:'GET',
-                                                        url: 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf',
+                                                        url: jsurl,
                                                         async: true,
                                                         cache: true,
                                                         dataType:'script'
