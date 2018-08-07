@@ -300,6 +300,14 @@
                                 //console.log($(ele1[0].dom)); //获取当前的弹窗元素
                                 $(ele1[0].dom).find("#plug_map").unbind("click");
                                 $(ele1[0].dom).find("#plug_livemap").unbind("click");
+                                var jsurl = 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf'; //通过ajax引入高德地图API
+                                $.ajax({
+                                    type:'GET',
+                                    url: jsurl,
+                                    async: true,
+                                    cache: true,
+                                    dataType:'script'
+                                });
                                 if (toggle1) {
                                     //发送位置
                                     $(ele1[0].dom).find("#plug_map").bind("click", function (cc) {
@@ -319,14 +327,6 @@
                                                 ele.find("#plug_location").removeClass("ak-is_active");
                                                 if (toggle2) {
                                                     /*------------------------------------------高德地图API调用开始-----------------------------------------*/
-                                                    var jsurl = 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf';
-                                                    $.ajax({
-                                                        type:'GET',
-                                                        url: jsurl,
-                                                        async: true,
-                                                        cache: true,
-                                                        dataType:'script'
-                                                    });
                                                     $("#plug_allmap").html("");
                                                     setTimeout(function() {
                                                         var map = new AMap.Map("plug_allmap", {
@@ -342,7 +342,7 @@
                                                             draggable: true,  //是否可拖动
                                                             content: '<div class="marker-route marker-marker-bus-from"></div>'   //自定义点标记覆盖物内容
                                                         });
-                                                    },500);
+                                                    },1000);
                                                     /*------------------------------------------高德地图API调用结束-----------------------------------------*/
                                                 }
                                             }
@@ -366,14 +366,6 @@
                                                 ele.find("#plug_location").removeClass("ak-is_active");
                                                 if (toggle2) {
                                                     /*------------------------------------------高德地图API调用开始-----------------------------------------*/
-                                                    var jsurl = 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf';
-                                                    $.ajax({
-                                                        type:'GET',
-                                                        url: jsurl,
-                                                        async: true,
-                                                        cache: true,
-                                                        dataType:'script'
-                                                    });
                                                     $("#plug_allmap").html("");
                                                     setTimeout(function() {
                                                         var map, geolocation;
@@ -407,7 +399,7 @@
                                                         //解析定位错误信息
                                                         function onError(data) {
                                                         }
-                                                    },1000);
+                                                    },500);
                                                     /*------------------------------------------高德地图API调用结束-----------------------------------------*/
                                                 }
                                             }
