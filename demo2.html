@@ -90,10 +90,29 @@
   <dialog id="plug_MyMenuWin" class="dis_none ovh left_au right_0 w_30 mr_05em mt_32em"> <!--顶部位置显示的弹窗-->
     <i class="abs right_0 top_0 dis_block minus_mt_01em mr_02em icon-ln_jiantoushang text_18em c_white"></i>
     <ul class="rel ovh list zindex_2 bg_white mt_08em list_h_3em bor_rad_03em">
-      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单A</li>
-      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单B</li>
-      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="demo.html">信息菜单C</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单A</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单B</li>
+      <li class="pl_1em c_gray_777 bor_bottom bor_gray_ddd active_title" data-href="/page1">信息菜单C</li>
     </ul>
+  </dialog>
+
+  <dialog id="plug_locationWin" class="dis_none w_100 bg_gray_eee"> <!--发送位置弹窗-->
+    <ul class="bg_white ovh list_h_36em list mb_2">
+      <li class="bor_bottom bor_gray_ddd touchstart">
+        <button type="button" class="dis_block ovh w_100 text_al_c line_h_36em" id="plug_map">发送位置</button>
+      </li>
+      <li class="bor_bottom bor_gray_ddd touchstart">
+        <button type="button" class="dis_block ovh w_100 text_al_c line_h_36em">共享实时位置</button>
+      </li>
+    </ul>
+    <button type="button" class="plug_closeIn w_100 h_32em text_12em bg_white c_title">取消</button>
+  </dialog>
+
+  <dialog id="plug_mapWin" class="dis_none fix wh_100 bg_white"> <!--显示地图弹窗-->
+    <button type="button" class="plug_back fix left_0 top_0 ml_1em mt_1em wh_28em text_al_c zindex_8 bg_title05 bor_rad_50">
+      <i class="text_14em icon-ln_zhixiangzuo c_white"></i>
+    </button>
+    <div id="allmap" class="h_in"></div>
   </dialog>
   <!----------Andrew_PopupWin End---------->
 
@@ -132,7 +151,7 @@
           <p class="text_al_c text_09em c_gray_777 line_h_24em">红包</p>
         </li>
         <li class="fl ovh mt_1em">
-          <label class="dis_block fn rel ovh center text_al_c wh_4em bor_rad_05em bg_white border bor_gray_ddd active_gray_f1f">
+          <label class="dis_block fn rel ovh center text_al_c wh_4em bor_rad_05em bg_white border bor_gray_ddd active_gray_f1f" id="plug_location">
             <i class="line_h_2em c_gray_777 text_2em icon-mn_weizhi_fill"></i>
           </label>
           <p class="text_al_c text_09em c_gray_777 line_h_24em">位置</p>
@@ -185,7 +204,7 @@
 
     /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
     $(function(){
-        $("#plug_MyMenu").bind("click", function (e) {
+        $("#plug_MyMenu").bind("click", function (aa) {
             Andrew_Popupwin({
                 dom: "#plug_MyMenuWin", //弹窗内容的布局
                 position: "top", //位置类型(top，bottom，left，right，middle)
@@ -194,7 +213,7 @@
                 hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition: 5, //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
-                OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                OneButton: aa.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                 toggleIcon: "text_14em icon-mn_wo", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     console.log($(ele[0].dom)); //获取当前的弹窗元素
@@ -260,7 +279,94 @@
                 },100);
             },
             optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
-                console.log(toggle)
+                ele.find("#plug_location").unbind("click");
+                if (toggle) {
+                    setTimeout(function() { //对方的聊天内容延迟执行
+                        var scrollH = $("#ak-main").prop("scrollHeight");
+                        $("#ak-main").addClass("scrolling").scrollTop(scrollH);
+                    },300);
+                    ele.find("#plug_location").bind("click", function (bb) {
+                        Andrew_Popupwin({
+                            dom: "#plug_locationWin", //弹窗内容的布局
+                            position: "bottom", //位置类型(top，bottom，left，right，middle)
+                            effectIn: "slideInUp ani_01s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                            effectOut: "slideOutDown ani_01s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                            hasMask: true, //是否开启遮罩层背景 (true / false)
+                            maskPosition: 8, //Mask的z-index数值
+                            closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                            OneButton: bb.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                            toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                            callback :function (ele1,toggle1) { //通过回调获取弹窗显示后的以上参数
+                                //console.log($(ele1[0].dom)); //获取当前的弹窗元素
+                                $(ele1[0].dom).find("#plug_map").unbind("click");
+                                if (toggle1) {
+                                    $(ele1[0].dom).find("#plug_map").bind("click", function (cc) {
+                                        Andrew_Popupwin({
+                                            dom: "#plug_mapWin", //弹窗内容的布局
+                                            position: "bottom", //位置类型(top，bottom，left，right，middle)
+                                            effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
+                                            effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                                            hasMask: true, //是否开启遮罩层背景 (true / false)
+                                            maskPosition: 8, //Mask的z-index数值
+                                            closeBtn: ".plug_back", //关闭弹窗按钮的Class名
+                                            OneButton: cc.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                                            toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                                            callback :function (ele2,toggle2) { //通过回调获取弹窗显示后的以上参数
+                                                console.log($(ele2[0].dom)); //获取当前的弹窗元素
+                                                $(ele1[0].dom).removeClass("slideInUp ani_05s").addClass("slideOutDown ani_05s dis_none");
+                                                ele.find("#plug_location").removeClass("ak-is_active");
+                                                if (toggle2) {
+                                                    /*------------------------------------------高德地图API调用开始-----------------------------------------*/
+                                                    $.ajax({
+                                                        type:'GET',
+                                                        url: 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf',
+                                                        async: true,
+                                                        cache: true,
+                                                        dataType:'script'
+                                                    });
+                                                    setTimeout(function() {
+                                                        var map, geolocation;
+                                                        //加载地图，调用浏览器定位服务
+                                                        map = new AMap.Map('allmap', {
+                                                            resizeEnable: true
+                                                        });
+                                                        map.plugin('AMap.Geolocation', function() {
+                                                            geolocation = new AMap.Geolocation({
+                                                                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                                                                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                                                                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                                                                zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                                                                buttonPosition:'RB'
+                                                            });
+                                                            map.addControl(geolocation);
+                                                            geolocation.getCurrentPosition();
+                                                            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                                                            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+                                                        });
+                                                        //解析定位结果
+                                                        function onComplete(data) {
+                                                            var str=['定位成功'];
+                                                            str.push('经度：' + data.position.getLng());
+                                                            str.push('纬度：' + data.position.getLat());
+                                                            if(data.accuracy){
+                                                                str.push('精度：' + data.accuracy + ' 米');
+                                                            }//如为IP精确定位结果则没有精度信息
+                                                            str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+                                                        }
+                                                        //解析定位错误信息
+                                                        function onError(data) {
+                                                        }
+                                                    },200);
+                                                    /*------------------------------------------高德地图API调用结束-----------------------------------------*/
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    });
+                }
             }
         });
     });
@@ -268,5 +374,8 @@
 </script>
 <style type="text/css">
   /*样式覆盖区域*/
+  .amap-logo, .amap-copyright {
+    display: none !important;
+  }
 </style>
 </html>

@@ -37,7 +37,7 @@
   <!--ak-main End-->
 
   <!----------Andrew_PopupWin Start---------->
-  <dialog id="plug_MenuWin" class="dis_none fix w_50 h_100 top_0 zindex_11">
+  <dialog id="plug_MenuWin" class="dis_none fix w_50 h_100 top_0">
     <nav class="module press bg_gray_333 h_in">
       <h3 class="dis_block text_hidden ovh w_97 c_gray_ccc pl_3 line_h_38em">菜单展示</h3>
       <ul>
@@ -193,7 +193,7 @@
             Andrew_Popupwin({
                 dom: "#plug_MenuWin", //弹窗内容的布局
                 hasMask: true, //是否开启遮罩层背景 (true / false)
-                maskPosition: "3", //Mask的z-index数值
+                maskPosition: 3, //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                 OneButton: el.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                 toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
@@ -236,7 +236,7 @@
             Andrew_Popupwin({
                 dom: "#plug_MenuWin", //弹窗内容的布局
                 hasMask: true, //是否开启遮罩层背景 (true / false)
-                maskPosition: "3", //Mask的z-index数值
+                maskPosition: 3, //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                 OneButton: er.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                 toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）

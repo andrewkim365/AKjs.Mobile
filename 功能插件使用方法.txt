@@ -362,7 +362,7 @@ $(function(){
             effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
             effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
             hasMask: true, //是否开启遮罩层背景 (true / false)
-            maskPosition:"4", //Mask的z-index数值
+            maskPosition: 4, //Mask的z-index数值
             closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
             OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
             toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
@@ -388,7 +388,7 @@ $(function(){
            effectIn: "bounceInDown", //弹窗显示效果
            effectOut: "bounceOutUp", //弹窗消失效果
            hasMask: true, //是否开启遮罩层背景 (true / false)
-           maskPosition:"11", //Mask的z-index数值
+           maskPosition: 11, //Mask的z-index数值
            closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
            callback :function (ele) { //通过回调获取弹窗显示后的以上参数
                console.log($(ele[0].dom)); //获取当前的弹窗元素
@@ -585,7 +585,7 @@ $(function(){
                     effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
                     effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
                     hasMask: true, //是否开启遮罩层背景 (true / false)
-                    maskPosition:"1", //Mask的z-index数值
+                    maskPosition: 1, //Mask的z-index数值
                     closeBtn: "#plug_filterWin", //关闭弹窗按钮
                     OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
                     callback :function (ele) { //通过回调获取弹窗显示后的参数
@@ -1238,7 +1238,7 @@ $(function(){
            effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
            effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
            hasMask: true, //是否开启遮罩层背景 (true / false)
-           maskPosition:"4", //Mask的z-index数值
+           maskPosition: 4, //Mask的z-index数值
            closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
            OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
            toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
