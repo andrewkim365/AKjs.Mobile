@@ -86,7 +86,7 @@
         <button type="button" class="plug_back fix left_0 top_0 ml_1em mt_1em wh_28em text_al_c zindex_8 bg_title05 bor_rad_50">
             <i class="text_14em icon-ln_zhixiangzuo c_white"></i>
         </button>
-        <div id="allmap" class="h_in"></div>
+        <div id="plug_allmap" class="h_in"></div>
     </dialog>
     <!----------Andrew_PopupWin End---------->
 
@@ -260,9 +260,9 @@
                                                         cache: true,
                                                         dataType:'script'
                                                     });
-                                                    $("#allmap").html("");
+                                                    $("#plug_allmap").html("");
                                                     setTimeout(function() {
-                                                        var map = new AMap.Map("allmap", {
+                                                        var map = new AMap.Map("plug_allmap", {
                                                             resizeEnable: true,
                                                             center: [116.397428, 39.90923],//地图中心点
                                                             zoom: 13 //地图显示的缩放级别
@@ -275,7 +275,7 @@
                                                             draggable: true,  //是否可拖动
                                                             content: '<div class="marker-route marker-marker-bus-from"></div>'   //自定义点标记覆盖物内容
                                                         });
-                                                    },500);
+                                                    },1000);
                                                     /*------------------------------------------高德地图API调用结束-----------------------------------------*/
                                                 }
                                             }
@@ -307,11 +307,11 @@
                                                         cache: true,
                                                         dataType:'script'
                                                     });
-                                                    $("#allmap").html("");
+                                                    $("#plug_allmap").html("");
                                                     setTimeout(function() {
                                                         var map, geolocation;
                                                         //加载地图，调用浏览器定位服务
-                                                        map = new AMap.Map('allmap', {
+                                                        map = new AMap.Map('plug_allmap', {
                                                             resizeEnable: true
                                                         });
                                                         map.plugin('AMap.Geolocation', function() {
