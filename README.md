@@ -67,6 +67,10 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.8版本；
 
 修改 js/plugin/Andrew_Popupwin.js 功能插件bug（遮挡层开关hasMask参数失效的问题）；
 
+修改 js/plugin/Andrew_MobileChat.js 功能插件bug；
+
+修改 js/plugin/Andrew_PreviewImage.js 功能插件bug；
+
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
 
