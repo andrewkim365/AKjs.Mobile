@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-06
+Modification Date: 2018-08-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------Andrew_Popupwin----------------------------------------*/
@@ -111,9 +111,15 @@ function Andrew_Popupwin (setting){
         });
     }
     function addModalMask() {
+        $('#popup_mask').remove();
         if ($("#popup_mask").length < 1) {
             $("main").append('<div id="popup_mask" class="ak-mask"></div>');
             $('#popup_mask').show();
+            $("#popup_mask").unbind("click");
+            $("#popup_mask").on('click', function() {
+                option.callback($(option),false);
+                ClickHideModal();
+            });
             $('#popup_mask').bind({
                 touchmove: function (e) {
                     e.preventDefault();
