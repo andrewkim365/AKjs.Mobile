@@ -5,7 +5,7 @@
         <button type="button" class="right_0 w_25 pr_3 text_al_r text_12em" id="plug_MyMenu"><i class="text_14em icon-mn_wo"></i></button>
     </ak-header>
 
-    <ak-main>
+    <ak-main data-bounce="true">
         <div class="wp_94 mb_5 ovh defer_15 plug_chatView">
             <ul>
                 <li class="ovh mt_1em">
@@ -18,7 +18,7 @@
                     </dl>
                 </li>
                 <li class="ovh mt_1em">
-                    <time class="defer_08">13:35</time>
+                    <time class="defer_1">13:35</time>
                 </li>
                 <li class="ovh mt_1em">
                     <dl class="ak-chat_right">
@@ -60,7 +60,7 @@
         </div>
     </ak-main>
 
-    <!----------Andrew_PopupWin Start---------->
+    <!----------AKjs_PopupWin Start---------->
     <dialog id="plug_MyMenuWin" class="dis_none ovh left_au right_0 w_30 mr_05em mt_32em"> <!--顶部位置显示的弹窗-->
         <i class="abs right_0 top_0 dis_block minus_mt_01em mr_02em icon-ln_jiantoushang text_18em c_white"></i>
         <ul class="rel ovh list zindex_2 bg_white mt_08em list_h_3em bor_rad_03em">
@@ -88,7 +88,7 @@
         </button>
         <div id="plug_allmap" class="h_in"></div>
     </dialog>
-    <!----------Andrew_PopupWin End---------->
+    <!----------AKjs_PopupWin End---------->
 
     <ak-footer data-display="true">
         <form action="#" method="get">
@@ -134,10 +134,10 @@
 
 <script type="text/javascript">
     //引入Andrew插件的区域
-    /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
     $(function(){
         $("#plug_MyMenu").bind("click", function (aa) {
-            Andrew_Popupwin({
+            AKjs_Popupwin({
                 dom: "#plug_MyMenuWin", //弹窗内容的布局
                 position: "top", //位置类型(top，bottom，left，right，middle)
                 effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -162,9 +162,9 @@
     });
 
 
-    /*-----------------------------------------------Andrew_MobileChat 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_MobileChat 使用方法-------------------------------------------*/
     $(function(){
-        $(".plug_chat").Andrew_MobileChat({
+        $(".plug_chat").AKjs_MobileChat({
             chat_view: ".plug_chatView", //聊天内容展示区域dom
             chat_optDom: ".plug_chatOption", //更多功能区域dom
             chat_optHeight: "8em", //更多功能选项的高度
@@ -204,22 +204,18 @@
                     "            </dl>\n" +
                     "        </li>";
                 $(chat_view_me).appendTo(container); //生成您的聊天元素
-                $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
 
                 setTimeout(function() { //对方的聊天内容延迟执行
                     $(chat_view_you).appendTo(container); //生成对方的聊天元素
-                    $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                    $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
                 },100);
             },
             optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
                 ele.find("#plug_location").unbind("click");
                 if (toggle) {
-                    setTimeout(function() { //对方的聊天内容延迟执行
-                        var scrollH = $("#ak-main").prop("scrollHeight");
-                        $("#ak-main").addClass("scrolling").scrollTop(scrollH);
-                    },300);
                     ele.find("#plug_location").bind("click", function (bb) {
-                        Andrew_Popupwin({
+                        AKjs_Popupwin({
                             dom: "#plug_locationWin", //弹窗内容的布局
                             position: "bottom", //位置类型(top，bottom，left，right，middle)
                             effectIn: "slideInUp ani_01s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -244,7 +240,7 @@
                                 if (toggle1) {
                                     //发送位置
                                     $(ele1[0].dom).find("#plug_map").bind("click", function (cc) {
-                                        Andrew_Popupwin({
+                                        AKjs_Popupwin({
                                             dom: "#plug_mapWin", //弹窗内容的布局
                                             position: "bottom", //位置类型(top，bottom，left，right，middle)
                                             effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -275,7 +271,7 @@
                                                             draggable: true,  //是否可拖动
                                                             content: '<div class="marker-route marker-marker-bus-from"></div>'   //自定义点标记覆盖物内容
                                                         });
-                                                    },1000);
+                                                    },500);
                                                     /*------------------------------------------高德地图API调用结束-----------------------------------------*/
                                                 }
                                             }
@@ -283,7 +279,7 @@
                                     });
                                     //共享实时位置
                                     $(ele1[0].dom).find("#plug_livemap").bind("click", function (cc) {
-                                        Andrew_Popupwin({
+                                        AKjs_Popupwin({
                                             dom: "#plug_mapWin", //弹窗内容的布局
                                             position: "bottom", //位置类型(top，bottom，left，right，middle)
                                             effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -369,13 +365,19 @@
 
 <!--
 * ak-header和ak-footer元素的data-display值是隐藏和显示APP的头部区域和底部菜单区域 (true / false)；
+ak-main和ak-scrollview元素的data-bounce值是滚动区域是否开启ios弹性效果的功能 (true / false)；
+button元素的data-back="true"值是识别为该按钮是返回键的意思
 //注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
 路由页面的布局结构使用方法（必须用以下的结构使用）：
 <template>
     <ak-header>头部区域</ak-header>
-    <ak-main><div>中间内容</div></ak-main>
+    <ak-main>
+        <ak-scrollview>
+            <div>中间内容</div>
+        </ak-scrollview>
+        <dialog>弹窗代码</dialog>
+    </ak-main>
     <ak-footer>底部区域</ak-footer>
-    <dialog>弹窗代码</dialog>
 </template>
 <script>
     //编写当前页面的脚本代码区域
