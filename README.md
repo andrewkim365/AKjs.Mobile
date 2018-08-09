@@ -78,8 +78,10 @@ button元素的data-back="true"值是识别为该按钮是返回键的意思
 
 //注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
 
+
 路由页面的布局结构使用方法（必须用以下的结构使用）：
 
+```shell
 <template>
     
     <ak-header>头部区域</ak-header>
@@ -112,3 +114,4 @@ button元素的data-back="true"值是识别为该按钮是返回键的意思
     
 </style>
 
+```
