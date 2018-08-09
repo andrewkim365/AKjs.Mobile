@@ -67,3 +67,29 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.9版本；
 
 4.最后一步把整个项目目录在webstorm软件中打开后键盘中按Ctrl+Shift+R进行路径中替换关键词。（所有的 Andrew_ 字符全部替换为 AKjs_ 即可。）
 
+
+* 新版的router页面代码结构说明：
+<!--
+* ak-header和ak-footer元素的data-display值是隐藏和显示APP的头部区域和底部菜单区域 (true / false)；
+ak-main和ak-scrollview元素的data-bounce值是滚动区域是否开启ios弹性效果的功能 (true / false)；
+button元素的data-back="true"值是识别为该按钮是返回键的意思
+//注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
+路由页面的布局结构使用方法（必须用以下的结构使用）：
+<template>
+    <ak-header>头部区域</ak-header>
+    <ak-main>
+        <ak-scrollview>
+            <div>中间内容</div>
+        </ak-scrollview>
+        <dialog>弹窗代码</dialog>
+    </ak-main>
+    <ak-footer>底部区域</ak-footer>
+</template>
+<script>
+    //编写当前页面的脚本代码区域
+</script>
+<style>
+    //覆盖当前界面的样式区域
+</style>
+-->
+
