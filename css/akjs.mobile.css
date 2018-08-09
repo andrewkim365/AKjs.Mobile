@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180803 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180809 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -46,23 +46,6 @@ html, html * {
 }
 .ak-screen, .ak-screen * {
     font-size:12px;
-}
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-main {
-    position: relative;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    -o-animation:defer_fadeIn 0.5s forwards;
-    -moz-animation:defer_fadeIn 0.5s forwards;
-    -webkit-animation:defer_fadeIn 0.5s forwards;
-    animation:defer_fadeIn 0.5s forwards;
-    background-color: inherit;
 }
 body,input,span,p,a {
     font-size:100%;
@@ -125,7 +108,7 @@ img {
     vert-align: top;
 }
 img:active {
-    opacity: 0.8;
+    opacity: 0.8 !important;
 }
 table {
     border-collapse: collapse;
@@ -365,7 +348,7 @@ legend {
     -o-transition-duration: 0s;
     -moz-transition-duration: 0s;
     -webkit-transition-duration: 0s;
-    transition-duration: 0ms;
+    transition-duration: 0s;
     background-color: #dddddd !important;
 }
 /*-----------Global Style-----------*/
@@ -560,6 +543,12 @@ legend {
 .bor_rad_03em {
     border-radius:0.3em !important;
 }
+.bor_rad_02em {
+    border-radius:0.2em !important;
+}
+.bor_rad_01em {
+    border-radius:0.1em !important;
+}
 .bor_rad_0 {
     border-radius:0 !important;
 }
@@ -675,6 +664,18 @@ legend {
     border-top-right-radius: 0.3em;
     border-bottom-right-radius: 0.3em;
 }
+.bor_rad_right_02em {
+    border-top-right-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+}
+.bor_rad_right_01em {
+    border-top-right-radius: 0.1em;
+    border-bottom-right-radius: 0.1em;
+}
+.bor_rad_right_0 {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
 .bor_rad_left_4em {
     border-top-left-radius: 4em;
     border-bottom-left-radius: 4em;
@@ -786,6 +787,18 @@ legend {
 .bor_rad_left_03em {
     border-top-left-radius: 0.3em;
     border-bottom-left-radius: 0.3em;
+}
+.bor_rad_left_02em {
+    border-top-left-radius: 0.2em;
+    border-bottom-left-radius: 0.2em;
+}
+.bor_rad_left_01em {
+    border-top-left-radius: 0.1em;
+    border-bottom-left-radius: 0.1em;
+}
+.bor_rad_left_0 {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
 .bor_rad_top_4em {
     border-top-left-radius: 4em;
@@ -899,6 +912,18 @@ legend {
     border-top-left-radius: 0.3em;
     border-top-right-radius: 0.3em;
 }
+.bor_rad_top_02em {
+    border-top-left-radius: 0.2em;
+    border-top-right-radius: 0.2em;
+}
+.bor_rad_top_01em {
+    border-top-left-radius: 0.1em;
+    border-top-right-radius: 0.1em;
+}
+.bor_rad_top_0 {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
 .bor_rad_bottom_4em {
     border-bottom-left-radius: 4em;
     border-bottom-right-radius: 4em;
@@ -1010,6 +1035,18 @@ legend {
 .bor_rad_bottom_03em {
     border-bottom-left-radius: 0.3em;
     border-bottom-right-radius: 0.3em;
+}
+.bor_rad_bottom_02em {
+    border-bottom-left-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+}
+.bor_rad_bottom_01em {
+    border-bottom-left-radius: 0.1em;
+    border-bottom-right-radius: 0.1em;
+}
+.bor_rad_bottom_0 {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
 .border {
     border: solid 1px;
@@ -2042,6 +2079,114 @@ text {
     -moz-animation: none !important;
     -webkit-animation: none !important;
     animation: none !important;
+}
+.defer_fadein_01 {
+    -o-animation:defer_fadeIn 0.1s forwards;
+    -moz-animation:defer_fadeIn 0.1s forwards;
+    -webkit-animation:defer_fadeIn 0.1s forwards;
+    animation:defer_fadeIn 0.1s forwards;
+}
+.defer_fadein_02 {
+    -o-animation:defer_fadeIn 0.2s forwards;
+    -moz-animation:defer_fadeIn 0.2s forwards;
+    -webkit-animation:defer_fadeIn 0.2s forwards;
+    animation:defer_fadeIn 0.2s forwards;
+}
+.defer_fadein_03 {
+    -o-animation:defer_fadeIn 0.3s forwards;
+    -moz-animation:defer_fadeIn 0.3s forwards;
+    -webkit-animation:defer_fadeIn 0.3s forwards;
+    animation:defer_fadeIn 0.3s forwards;
+}
+.defer_fadein_04 {
+    -o-animation:defer_fadeIn 0.4s forwards;
+    -moz-animation:defer_fadeIn 0.4s forwards;
+    -webkit-animation:defer_fadeIn 0.4s forwards;
+    animation:defer_fadeIn 0.4s forwards;
+}
+.defer_fadein_05 {
+    -o-animation:defer_fadeIn 0.5s forwards;
+    -moz-animation:defer_fadeIn 0.5s forwards;
+    -webkit-animation:defer_fadeIn 0.5s forwards;
+    animation:defer_fadeIn 0.5s forwards;
+}
+.defer_fadein_06 {
+    -o-animation:defer_fadeIn 0.6s forwards;
+    -moz-animation:defer_fadeIn 0.6s forwards;
+    -webkit-animation:defer_fadeIn 0.6s forwards;
+    animation:defer_fadeIn 0.6s forwards;
+}
+.defer_fadein_07 {
+    -o-animation:defer_fadeIn 0.7s forwards;
+    -moz-animation:defer_fadeIn 0.7s forwards;
+    -webkit-animation:defer_fadeIn 0.7s forwards;
+    animation:defer_fadeIn 0.7s forwards;
+}
+.defer_fadein_08 {
+    -o-animation:defer_fadeIn 0.8s forwards;
+    -moz-animation:defer_fadeIn 0.8s forwards;
+    -webkit-animation:defer_fadeIn 0.8s forwards;
+    animation:defer_fadeIn 0.8s forwards;
+}
+.defer_fadein_09 {
+    -o-animation:defer_fadeIn 0.9s forwards;
+    -moz-animation:defer_fadeIn 0.9s forwards;
+    -webkit-animation:defer_fadeIn 0.9s forwards;
+    animation:defer_fadeIn 0.9s forwards;
+}
+.defer_fadein_1 {
+    -o-animation:defer_fadeIn 1s forwards;
+    -moz-animation:defer_fadeIn 1s forwards;
+    -webkit-animation:defer_fadeIn 1s forwards;
+    animation:defer_fadeIn 1s forwards;
+}
+.defer_fadein_15 {
+    -o-animation:defer_fadeIn 1.5s forwards;
+    -moz-animation:defer_fadeIn 1.5s forwards;
+    -webkit-animation:defer_fadeIn 1.5s forwards;
+    animation:defer_fadeIn 1.5s forwards;
+}
+.defer_fadein_2 {
+    -o-animation:defer_fadeIn 2s forwards;
+    -moz-animation:defer_fadeIn 2s forwards;
+    -webkit-animation:defer_fadeIn 2s forwards;
+    animation:defer_fadeIn 2s forwards;
+}
+.defer_fadein_25 {
+    -o-animation:defer_fadeIn 2.5s forwards;
+    -moz-animation:defer_fadeIn 2.5s forwards;
+    -webkit-animation:defer_fadeIn 2.5s forwards;
+    animation:defer_fadeIn 2.5s forwards;
+}
+.defer_fadein_3 {
+    -o-animation:defer_fadeIn 3s forwards;
+    -moz-animation:defer_fadeIn 3s forwards;
+    -webkit-animation:defer_fadeIn 3s forwards;
+    animation:defer_fadeIn 3s forwards;
+}
+.defer_fadein_35 {
+    -o-animation:defer_fadeIn 3.5s forwards;
+    -moz-animation:defer_fadeIn 3.5s forwards;
+    -webkit-animation:defer_fadeIn 3.5s forwards;
+    animation:defer_fadeIn 3.5s forwards;
+}
+.defer_fadein_4 {
+    -o-animation:defer_fadeIn 4s forwards;
+    -moz-animation:defer_fadeIn 4s forwards;
+    -webkit-animation:defer_fadeIn 4s forwards;
+    animation:defer_fadeIn 4s forwards;
+}
+.defer_fadein_45 {
+    -o-animation:defer_fadeIn 4.5s forwards;
+    -moz-animation:defer_fadeIn 4.5s forwards;
+    -webkit-animation:defer_fadeIn 4.5s forwards;
+    animation:defer_fadeIn 4.5s forwards;
+}
+.defer_fadein_5 {
+    -o-animation:defer_fadeIn 5s forwards;
+    -moz-animation:defer_fadeIn 5s forwards;
+    -webkit-animation:defer_fadeIn 5s forwards;
+    animation:defer_fadeIn 5s forwards;
 }
 @keyframes defer {
     0% {opacity: 0;}
@@ -5496,6 +5641,15 @@ text {
     width: inherit;
     height: inherit;
 }
+.img_thumb {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
 .img_auto {
     position: relative;
     overflow: hidden;
@@ -5774,8 +5928,8 @@ text {
     -webkit-transition-property: all;
     transition-property: all;
     -webkit-touch-callout: none;
-    -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch !important;
+    overflow-scrolling: touch !important;
 }
 .slider_01 {
     -o-transition-duration: 0.1s;
@@ -12969,7 +13123,6 @@ filter_gray_0 {
 animation {
     display: block;
     position: fixed;
-    overflow: hidden;
     width: 100%;
     height: 100%;
     top: 0;
@@ -12977,22 +13130,13 @@ animation {
     z-index: 2;
     background-color: inherit;
 }
-main.ak-display, animation main {
-    opacity: 1 !important;
-    -o-animation: none !important;
-    -moz-animation: none !important;
-    -webkit-animation: none !important;
-    animation: none !important;
-    -webkit-overflow-scrolling: auto !important;
-    overflow-scrolling: auto !important;
-}
 animation img {
     border-radius: inherit;
     opacity: 0;
-    -o-animation:defer 1s forwards;
-    -moz-animation:defer 1s forwards;
-    -webkit-animation:defer 1s forwards;
-    animation:defer 1s forwards;
+    -o-animation:defer 2s forwards;
+    -moz-animation:defer 2s forwards;
+    -webkit-animation:defer 2s forwards;
+    animation:defer 2s forwards;
 }
 animation, header, footer {
     -o-transform: translateZ(0);
@@ -13008,19 +13152,22 @@ animation, header, footer {
     -webkit-animation: none !important;
     animation: none !important;
 }
-#ak-main, ak-main, scrollview {
+#ak-main, #ak-scrollview, ak-main, scrollview {
     display: block;
-    overflow: auto;
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: inherit !important;
-    background-color: inherit;
+    background-color: transparent;
 }
-.scrolling, .scrolling #ak-main, .scrolling scrollview {
-    -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch;
+#ak-main, ak-main {
+    width: 100%;
+    height: inherit;
+    min-height: calc(100% + 1px);
 }
-#ak-aside, #ak-aside > container {
+#ak-scrollview, scrollview {
+    overflow: auto;
+    z-index: 1;
+}
+#ak-aside, #ak-aside > #ak-main-record, #ak-aside, #ak-aside > container, #ak-aside > #ak-main-record > *:first-child, #ak-aside > container > *:first-child {
     display: block;
     position: relative;
     background-color: inherit;
@@ -13045,7 +13192,6 @@ animation, header, footer {
     margin: 15% auto 1em auto;
     border-radius: 50%;
     background-color:#f16a6a;
-
 }
 @media screen and (max-width:1024px) {
     .ak-ErrorPage > i {
