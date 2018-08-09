@@ -55,21 +55,17 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.8版本；
 
 解决了在安卓机上路由页面跳转时有卡顿的问题；
 
-修改js目录中的plugin.js和router.js文件（按需引入Andrew_EchartsRun插件以及cdn引入Echarts插件文件）
+修改js目录中的plugin.js和router.js文件（按需引入AKjs_EchartsRun插件以及cdn引入Echarts插件文件）
 
-修改js目录中的data.js文件和plugin.js文件（增加json_TimeAxis数据，Andrew_TimeAxis功能插件的按需引入）
+修改js目录中的data.js文件和plugin.js文件（增加json_TimeAxis数据，AKjs_TimeAxis功能插件的按需引入）
 
-新增 js/plugin/Andrew_EchartsRun.js 百度Echarts功能插件（使用方法请参考page4）；
+新增 js/plugin/AKjs_EchartsRun.js 百度Echarts功能插件（使用方法请参考page4）；
 
-新增 js/plugin/Andrew_TimeAxis.js 时间轴展示功能插件；
+新增 js/plugin/AKjs_TimeAxis.js 时间轴展示功能插件；
 
-新增 js/plugin/Andrew_MobileChat.js 移动端聊天功能插件；
+新增 js/plugin/AKjs_MobileChat.js 移动端聊天功能插件；
 
-修改 js/plugin/Andrew_Popupwin.js 功能插件bug（遮挡层开关hasMask参数失效的问题）；
-
-修改 js/plugin/Andrew_MobileChat.js 功能插件bug；
-
-修改 js/plugin/Andrew_PreviewImage.js 功能插件bug；
+修改 js/plugin/AKjs_Popupwin.js 功能插件bug（遮挡层开关hasMask参数失效的问题）；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
@@ -84,19 +80,19 @@ css目录中 akjs.animate.css 发布1.0.6版本 （修改slideUp和slideDown的�
 
 主要解决用户体验效果和router性能优化；
 
-演示版中大量的修改使用Andrew_Popupwin插件的页面；
+演示版中大量的修改使用AKjs_Popupwin插件的页面；
 
-修改 js/plugin/Andrew_Lazyload.js 功能插件bug（解决页面切换时影响上一个页面的图片闪烁的问题）；
+修改 js/plugin/AKjs_Lazyload.js 功能插件bug（解决页面切换时影响上一个页面的图片闪烁的问题）；
 
-修改 js/plugin/Andrew_Loader.js 功能插件bug（loading的位置重新计算）；
+修改 js/plugin/AKjs_Loader.js 功能插件bug（loading的位置重新计算）；
 
-修改 js/plugin/Andrew_Popupwin.js 功能插件bug（修改菜单功能在有些设备上闪屏的bug）；
+修改 js/plugin/AKjs_Popupwin.js 功能插件bug（修改菜单功能在有些设备上闪屏的bug）；
 
-修改 js/plugin/Andrew_ButtonSubmit.js 功能插件bug；
+修改 js/plugin/AKjs_ButtonSubmit.js 功能插件bug；
 
-修改 js/plugin/Andrew_Form.js 功能插件bug（增加键盘enter键的回调）；
+修改 js/plugin/AKjs_Form.js 功能插件bug（增加键盘enter键的回调）；
 
-修改 js/plugin/Andrew_Textarea.js 功能插件bug；
+修改 js/plugin/AKjs_Textarea.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo4.html /router/page1 ~ page4）
 
@@ -107,7 +103,7 @@ css目录中 akjs.animate.css 发布1.0.6版本 （修改slideUp和slideDown的�
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.6版本；
 
-修改 js/plugin.js文件中按需引入Andrew_ButtonSubmit功能插件；
+修改 js/plugin.js文件中按需引入AKjs_ButtonSubmit功能插件；
 
 修改根目录中的index.html文件（修改cdn引入部分代码）。
 
@@ -115,15 +111,15 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.6版本；
 
 解决akjs样式库在NodeJs环境中渐变样式无法编译的问题；
 
-新增 js/plugin/Andrew_ButtonSubmit.js以及对应的css文件（防止重复提交功能）；
+新增 js/plugin/AKjs_ButtonSubmit.js以及对应的css文件（防止重复提交功能）；
 
-修改 js/plugin/Andrew_Form.js以及对应的css 功能插件 （停用Andrew_Validate插件，跟Andrew_Form合并到一起）；
+修改 js/plugin/AKjs_Form.js以及对应的css 功能插件 （停用AKjs_Validate插件，跟AKjs_Form合并到一起）；
 
-修改 js/plugin/Andrew_Tabs.js 功能插件bug（增加change事件的回调）；
+修改 js/plugin/AKjs_Tabs.js 功能插件bug（增加change事件的回调）；
 
-修改 js/plugin/Andrew_Textarea.js 功能插件bug；
+修改 js/plugin/AKjs_Textarea.js 功能插件bug；
 
-修改 js/plugin/Andrew_SelectOption.js 功能插件bug；
+修改 js/plugin/AKjs_SelectOption.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
@@ -136,13 +132,13 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.5版本；
 
 修改 js目录中的router.js文件内容；
 
-修改Andrew_Location跳转方法（详情router.js文件中的102行代码）；
+修改AKjs_Location跳转方法（详情router.js文件中的102行代码）；
 
 解决打包APP时路由路径不对的问题；
 
 解决当点击手机物理返回键时可识别是返回页面，以下是使用方法；
 
-Andrew_Back.listen(function(){
+AKjs_Back.listen(function(){
     //您点击了物理返回按键
 });
 
@@ -155,11 +151,11 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.4版本；
 
 解决在移动端设备中的页面缓存问题；
 
-修改 js/plugin/Andrew_Loader.js以及对应的css 功能插件bug；
+修改 js/plugin/AKjs_Loader.js以及对应的css 功能插件bug；
 
-修改 js/plugin/Andrew_WebToast.js以及对应的css 功能插件bug；
+修改 js/plugin/AKjs_WebToast.js以及对应的css 功能插件bug；
 
-修改 js/plugin/Andrew_Lazyload.js 功能插件bug；
+修改 js/plugin/AKjs_Lazyload.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html 和 /router/page1）
 
@@ -170,19 +166,19 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.4版本；
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.3版本；
 
-修改 js目录中的router.js文件内容 （Andrew_Router功能中增加了ErrorMsg参数）；
+修改 js目录中的router.js文件内容 （AKjs_Router功能中增加了ErrorMsg参数）；
 
 新增了元素延迟显示的class名defer_* （*是延迟毫秒，可设置01~10）；
 
 新增了button元素中data-href指定路径时通过data-back="true"属性判断该按钮是不是返回按钮（判断页面切换效果）
 
-修改 js/plugin/Andrew_Loader.js以及对应的css 功能插件bug；
+修改 js/plugin/AKjs_Loader.js以及对应的css 功能插件bug；
 
-修改 js/plugin/Andrew_Waterfall.js以及对应的css 功能插件bug；
+修改 js/plugin/AKjs_Waterfall.js以及对应的css 功能插件bug；
 
-修改 js/plugin/Andrew_Lazyload.js 功能插件bug；
+修改 js/plugin/AKjs_Lazyload.js 功能插件bug；
 
-修改 js/plugin/Andrew_GoTop.js 功能插件bug；
+修改 js/plugin/AKjs_GoTop.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5 , start.html）
 
@@ -195,17 +191,17 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.2版本，akj
 
 修改 css目录中的style.css文件和js目录中的router.js文件内容；
 
-修改 js/plugin/Andrew_Loader.js以及对应的css 功能插件bug；
+修改 js/plugin/AKjs_Loader.js以及对应的css 功能插件bug；
 
-修改 js/plugin/Andrew_Waterfall.js以及对应的css 功能插件bug；
+修改 js/plugin/AKjs_Waterfall.js以及对应的css 功能插件bug；
 
-修改 js/plugin/Andrew_SelectOption.js 功能插件bug；
+修改 js/plugin/AKjs_SelectOption.js 功能插件bug；
 
-修改 js/plugin/Andrew_Popupwin.js 功能插件bug；
+修改 js/plugin/AKjs_Popupwin.js 功能插件bug；
 
-修改 js/plugin/Andrew_WebToast.js 功能插件bug；
+修改 js/plugin/AKjs_WebToast.js 功能插件bug；
 
-修改 js/plugin/Andrew_GoTop.js 功能插件bug；
+修改 js/plugin/AKjs_GoTop.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
@@ -216,40 +212,19 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.2版本，akj
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.1版本；
 
-修改 js/plugin/Andrew_Typeahead.js 功能插件bug；
+修改 js/plugin/AKjs_Typeahead.js 功能插件bug；
 
-修改 js/plugin/Andrew_ScrollFixed.js 功能插件bug；
+修改 js/plugin/AKjs_ScrollFixed.js 功能插件bug；
 
-修改 js/plugin/Andrew_Textarea.js 功能插件bug；
+修改 js/plugin/AKjs_Textarea.js 功能插件bug；
 
-修改 js/plugin/Andrew_Waterfall.js 功能插件bug；
+修改 js/plugin/AKjs_Waterfall.js 功能插件bug；
 
-修改 js/plugin/Andrew_Popupwin.js 功能插件bug；
+修改 js/plugin/AKjs_Popupwin.js 功能插件bug；
 
-修改 js/plugin/Andrew_SelectOption.js 功能插件bug；
+修改 js/plugin/AKjs_SelectOption.js 功能插件bug；
 
-修改 js/plugin/Andrew_Form.js 功能插件bug；
-
-修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
-
-
-#### 更新时间：2018/07/12 下午 23:35
-
-#### 更新说明：
-
-js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.0版本；
-
---- 主要解决路由切换页面时跟上一页的HTML代码冲突的问题；
-
-修改 js/plugin.js文件中按需引入Andrew_GoTop功能插件；
-
-增加 js/plugin/Andrew_GoTop.js 功能插件（返回顶部的功能）；
-
-修改 js/plugin/Andrew_Loader.js 功能插件bug；
-
-修改 js/plugin/Andrew_Textarea.js 功能插件bug；
-
-修改 js/plugin/Andrew_Popupwin.js 功能插件bug；
+修改 js/plugin/AKjs_Form.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
@@ -262,15 +237,36 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.0版本；
 
 --- 主要解决路由切换页面时跟上一页的HTML代码冲突的问题；
 
-修改 js/plugin.js文件中按需引入Andrew_GoTop功能插件；
+修改 js/plugin.js文件中按需引入AKjs_GoTop功能插件；
 
-增加 js/plugin/Andrew_GoTop.js 功能插件（返回顶部的功能）；
+增加 js/plugin/AKjs_GoTop.js 功能插件（返回顶部的功能）；
 
-修改 js/plugin/Andrew_Loader.js 功能插件bug；
+修改 js/plugin/AKjs_Loader.js 功能插件bug；
 
-修改 js/plugin/Andrew_Textarea.js 功能插件bug；
+修改 js/plugin/AKjs_Textarea.js 功能插件bug；
 
-修改 js/plugin/Andrew_Popupwin.js 功能插件bug；
+修改 js/plugin/AKjs_Popupwin.js 功能插件bug；
+
+修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
+
+
+#### 更新时间：2018/07/12 下午 23:35
+
+#### 更新说明：
+
+js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.0版本；
+
+--- 主要解决路由切换页面时跟上一页的HTML代码冲突的问题；
+
+修改 js/plugin.js文件中按需引入AKjs_GoTop功能插件；
+
+增加 js/plugin/AKjs_GoTop.js 功能插件（返回顶部的功能）；
+
+修改 js/plugin/AKjs_Loader.js 功能插件bug；
+
+修改 js/plugin/AKjs_Textarea.js 功能插件bug；
+
+修改 js/plugin/AKjs_Popupwin.js 功能插件bug；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
@@ -285,15 +281,15 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.9版本；
 
 需要更新 css/iconfont/ 目录中的所有文件（新增几个图标）；
 
-修改 js/plugin.js文件中按需引入了三个功能插件；（Andrew_Range，Andrew_Paginator，Andrew_Keyboard）
+修改 js/plugin.js文件中按需引入了三个功能插件；（AKjs_Range，AKjs_Paginator，AKjs_Keyboard）
 
-增加 js/plugin/Andrew_Range.js 功能插件（滑块功能：该插件在演示版中的page1）；
+增加 js/plugin/AKjs_Range.js 功能插件（滑块功能：该插件在演示版中的page1）；
 
-增加 js/plugin/Andrew_Paginator.js 功能插件（分页功能：该插件在演示版中的page4）；
+增加 js/plugin/AKjs_Paginator.js 功能插件（分页功能：该插件在演示版中的page4）；
 
-增加 js/plugin/Andrew_Keyboard.js 功能插件（安全键盘功能：该插件在演示版中的page5）；
+增加 js/plugin/AKjs_Keyboard.js 功能插件（安全键盘功能：该插件在演示版中的page5）；
 
-修改 js/plugin/Andrew_ChooseList 功能插件（增加选中后打钩符号）；
+修改 js/plugin/AKjs_ChooseList 功能插件（增加选中后打钩符号）；
 
 修改演示版中的几个demo文件。（demo.html ~ demo5.html /router/page1 ~ page5）
 
@@ -306,15 +302,15 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.8版本；
 
 修改css/style.css样式文件；增加animation元素的class样式设置（该样式用于页面切换效果）；
 
-js/router.js文件中Andrew_Router方法里增加record回调；该回调用于记忆上一个页面的html代码；
+js/router.js文件中AKjs_Router方法里增加record回调；该回调用于记忆上一个页面的html代码；
 
-js/router.js文件中Andrew_Router方法里Animate参数修正为true和false。该功能是启用和停用页面切换动画效果；
+js/router.js文件中AKjs_Router方法里Animate参数修正为true和false。该功能是启用和停用页面切换动画效果；
 
 -主要增加路由功能中页面切换时仿造原生APP的slide效果；
 
 （该功能的效果时智能识别slide效果：当点击返回按钮时左侧滑动；main原生里面的点击按钮都是右侧滑动，底部菜单的点击事件是fadein效果；）
 
-修改 js/plugin/Andrew_Viewer.js和该插件的相关样式 （图片滑动时屏幕闪的bug）；
+修改 js/plugin/AKjs_Viewer.js和该插件的相关样式 （图片滑动时屏幕闪的bug）；
 
 修改演示版中的几个demo文件。（/router/page1 ~ page5）-- 增加 <ak-main></ak-main>元素；
 
@@ -325,18 +321,18 @@ js/router.js文件中Andrew_Router方法里Animate参数修正为true和false。
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.2.7版本；
 
-修改 js/plugin/Andrew_Waterfall.js 功能插件bug （解决局部不能正常定位的问题）；
+修改 js/plugin/AKjs_Waterfall.js 功能插件bug （解决局部不能正常定位的问题）；
 
-修改 js/plugin/Andrew_ChooseList.js 功能插件bug （原先用的li标签改成button）；
+修改 js/plugin/AKjs_ChooseList.js 功能插件bug （原先用的li标签改成button）；
 
-增加 js/plugin/Andrew_SelectOption.js 功能插件以及该插件的css文件（下拉框插件）；
+增加 js/plugin/AKjs_SelectOption.js 功能插件以及该插件的css文件（下拉框插件）；
 
-修改 js/plugin/Andrew_ReadMore.js 功能插件bug （解决在安卓机不能展开的问题）；
+修改 js/plugin/AKjs_ReadMore.js 功能插件bug （解决在安卓机不能展开的问题）；
 
-修改 js/plugin/Andrew_Progress.js 功能插件以及该插件的css文件（微调布局样式）；
+修改 js/plugin/AKjs_Progress.js 功能插件以及该插件的css文件（微调布局样式）；
 
-修改 js/plugin/Andrew_DropLoad.js 功能插件bug；
+修改 js/plugin/AKjs_DropLoad.js 功能插件bug；
 
-修改 js/plugin.js 全局按需引入功能插件文件（增加 Andrew_SelectOption）；
+修改 js/plugin.js 全局按需引入功能插件文件（增加 AKjs_SelectOption）；
 
 修改演示版中的几个demo文件。（demo.html ~ demo4.html /router/page1 ~ page4）

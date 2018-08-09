@@ -1,7 +1,7 @@
 ﻿1.动画使用方法介绍：
 
 
-01.打开js/andrew.router.js文件找到Andrew_Config的animation参数设置为true；并且css目录中必须要有andrew.animate.css文件。
+01.打开js/router.js文件找到AKjs_Config的animation参数设置为true；并且css目录中必须要有akjs.animate.css文件。
 
 02.实现动画效果在元素中加data-animation属性，里面有三个参数name（动画名称），duration（动画毫秒），delay（动画延迟时间）。
 

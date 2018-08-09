@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<!----------Andrew_PopupWin---------->
+<!----------AKjs_PopupWin---------->
 <header class="press bor_bottom bor_gray_ddd bg_gray_f9f dis_block">
   <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" data-href="javascript:history.back();"><i class="text_14em icon-ln_fanhui_b"></i>返回</button>
   <h1 class="text_al_c">聊天展示</h1>
@@ -29,7 +29,7 @@
 
 <main>
 
-  <!--main元素里面必须有id="ak-main"才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main下面写（ak-main的上一级元素必须使用main元素）。-->
+  <!--main元素里面必须有id="ak-main"才能正常运行，当前元素是内容区域的容器。-->
   <div id="ak-main">
     <div class="wp_94 mb_5 ovh defer_15 plug_chatView">
       <ul>
@@ -43,7 +43,7 @@
           </dl>
         </li>
         <li class="ovh mt_1em">
-          <time class="defer_08">13:35</time>
+          <time class="defer_1">13:35</time>
         </li>
         <li class="ovh mt_1em">
           <dl class="ak-chat_right">
@@ -86,7 +86,7 @@
   </div>
   <!--ak-main End-->
 
-  <!----------Andrew_PopupWin Start---------->
+  <!----------AKjs_PopupWin Start---------->
   <dialog id="plug_MyMenuWin" class="dis_none ovh left_au right_0 w_30 mr_05em mt_32em"> <!--顶部位置显示的弹窗-->
     <i class="abs right_0 top_0 dis_block minus_mt_01em mr_02em icon-ln_jiantoushang text_18em c_white"></i>
     <ul class="rel ovh list zindex_2 bg_white mt_08em list_h_3em bor_rad_03em">
@@ -114,7 +114,7 @@
     </button>
     <div id="plug_allmap" class="h_in"></div>
   </dialog>
-  <!----------Andrew_PopupWin End---------->
+  <!----------AKjs_PopupWin End---------->
 
 </main>
 
@@ -164,14 +164,14 @@
 </body>
 <script type="text/javascript">
     //引入Andrew插件的区域
-    Andrew_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过Andrew_Include方式引入）
+    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
     if (window.location.protocol == "file:") {
         alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
         throw new Error();
     }
-    /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
     $(function () {
-        Andrew_Config({ //环境配置管理
+        AKjs_Config({ //环境配置管理
             MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
             Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
             touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
@@ -185,10 +185,10 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
     $(function () {
-        Andrew_Loader({
-            //ele: $("main").children("#ak-main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+        AKjs_Loader({
+            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
             autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
             timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
             iconColor:"#ffffff", //图标颜色设置
@@ -197,15 +197,15 @@
         });
         setTimeout(function() { //页面加载完5秒后执行
             if($(".ak-Loader").css('display') == 'none'){
-                Andrew_Loader("destroy"); //关闭loading窗
+                AKjs_Loader("destroy"); //关闭loading窗
             }
         },2000);
     });
 
-    /*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
     $(function(){
         $("#plug_MyMenu").bind("click", function (aa) {
-            Andrew_Popupwin({
+            AKjs_Popupwin({
                 dom: "#plug_MyMenuWin", //弹窗内容的布局
                 position: "top", //位置类型(top，bottom，left，right，middle)
                 effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -229,9 +229,9 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_MobileChat 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_MobileChat 使用方法-------------------------------------------*/
     $(function(){
-        $(".plug_chat").Andrew_MobileChat({
+        $(".plug_chat").AKjs_MobileChat({
             chat_view: ".plug_chatView", //聊天内容展示区域dom
             chat_optDom: ".plug_chatOption", //更多功能区域dom
             chat_optHeight: "8em", //更多功能选项的高度
@@ -271,22 +271,18 @@
                     "            </dl>\n" +
                     "        </li>";
                 $(chat_view_me).appendTo(container); //生成您的聊天元素
-                $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
 
                 setTimeout(function() { //对方的聊天内容延迟执行
                     $(chat_view_you).appendTo(container); //生成对方的聊天元素
-                    $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                    $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
                 },100);
             },
             optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
                 ele.find("#plug_location").unbind("click");
                 if (toggle) {
-                    setTimeout(function() { //对方的聊天内容延迟执行
-                        var scrollH = $("#ak-main").prop("scrollHeight");
-                        $("#ak-main").addClass("scrolling").scrollTop(scrollH);
-                    },300);
                     ele.find("#plug_location").bind("click", function (bb) {
-                        Andrew_Popupwin({
+                        AKjs_Popupwin({
                             dom: "#plug_locationWin", //弹窗内容的布局
                             position: "bottom", //位置类型(top，bottom，left，right，middle)
                             effectIn: "slideInUp ani_01s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -311,7 +307,7 @@
                                 if (toggle1) {
                                     //发送位置
                                     $(ele1[0].dom).find("#plug_map").bind("click", function (cc) {
-                                        Andrew_Popupwin({
+                                        AKjs_Popupwin({
                                             dom: "#plug_mapWin", //弹窗内容的布局
                                             position: "bottom", //位置类型(top，bottom，left，right，middle)
                                             effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -350,7 +346,7 @@
                                     });
                                     //共享实时位置
                                     $(ele1[0].dom).find("#plug_livemap").bind("click", function (cc) {
-                                        Andrew_Popupwin({
+                                        AKjs_Popupwin({
                                             dom: "#plug_mapWin", //弹窗内容的布局
                                             position: "bottom", //位置类型(top，bottom，left，right，middle)
                                             effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)

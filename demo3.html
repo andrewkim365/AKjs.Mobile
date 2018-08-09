@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<!----------Andrew_PopupWin---------->
+<!----------AKjs_PopupWin---------->
 <header class="press bor_bottom bor_gray_ddd bg_gray_f9f dis_block">
   <button type="button" class="left_0 w_25 pl_3 text_al_l text_12em" id="plug_menu_left"><i class="text_14em icon-im_fenlei"></i></button>
   <h1 class="text_al_c">瀑布流展示</h1>
@@ -29,14 +29,14 @@
 
 <main>
 
-  <!--main元素里面必须有id="ak-main"才能正常运行，该元素用于屏幕的滚动条。弹窗或固定元素的代码可以在ak-main元素的下面写（ak-main的上一级元素必须使用main元素）。-->
+  <!--main元素里面必须有id="ak-main"才能正常运行，当前元素是内容区域的容器。-->
   <scrollview id="ak-main">
-    <div class="plug_waterfall plug_lazyload module mt_3 mb_3 wm_96 h_fill defer_15">
+    <div class="plug_waterfall plug_lazyload module mt_3 mb_3 wm_96 defer_25">
     </div>
   </scrollview>
   <!--ak-main End-->
 
-  <!----------Andrew_PopupWin Start---------->
+  <!----------AKjs_PopupWin Start---------->
   <dialog id="plug_MenuWin" class="dis_none fix w_50 h_100 top_0">
     <nav class="module press bg_gray_333 h_in">
       <h3 class="dis_block text_hidden ovh w_97 c_gray_ccc pl_3 line_h_38em">菜单展示</h3>
@@ -99,7 +99,7 @@
       </ul>
     </nav>
   </dialog>
-  <!----------Andrew_PopupWin End---------->
+  <!----------AKjs_PopupWin End---------->
 
 </main>
 
@@ -131,14 +131,14 @@
 </body>
 <script type="text/javascript">
     //引入Andrew插件的区域
-    Andrew_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过Andrew_Include方式引入）
+    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
     if (window.location.protocol == "file:") {
         alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
         throw new Error();
     }
-    /*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
     $(function () {
-        Andrew_Config({ //环境配置管理
+        AKjs_Config({ //环境配置管理
             MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
             Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
             touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
@@ -152,10 +152,10 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
     $(function () {
-        Andrew_Loader({
-            //ele: $("main").children("#ak-main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+        AKjs_Loader({
+            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
             autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
             timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
             iconColor:"#ffffff", //图标颜色设置
@@ -164,15 +164,15 @@
         });
         setTimeout(function() { //页面加载完5秒后执行
             if($(".ak-Loader").css('display') == 'none'){
-                Andrew_Loader("destroy"); //关闭loading窗
+                AKjs_Loader("destroy"); //关闭loading窗
             }
         },2000);
     });
 
-    /*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
     $(function() {
-        $(".plug_lazyload img").Andrew_Lazyload({ //对所有的图片懒加载
-            scroll: $("main").children("#ak-main"), //滚动区域的容器
+        $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
+            scroll: $("#ak-scrollview"), //滚动区域的容器
             scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
             Img_Effect: "fadeIn", //图片加载动画效果
             Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
@@ -186,11 +186,11 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Popupwin (左侧方法)使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Popupwin (左侧方法)使用方法-------------------------------------------*/
     $(function(){
         $("#plug_menu_left").bind("click", function (el) {
             el.preventDefault();
-            Andrew_Popupwin({
+            AKjs_Popupwin({
                 dom: "#plug_MenuWin", //弹窗内容的布局
                 hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition: 3, //Mask的z-index数值
@@ -229,11 +229,11 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Popupwin (右侧方法)使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Popupwin (右侧方法)使用方法-------------------------------------------*/
     $(function(){
         $("#plug_menu_right").bind("click", function (er) {
             er.preventDefault();
-            Andrew_Popupwin({
+            AKjs_Popupwin({
                 dom: "#plug_MenuWin", //弹窗内容的布局
                 hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition: 3, //Mask的z-index数值
@@ -272,9 +272,9 @@
         });
     });
 
-    /*-----------------------------------------------Andrew_Waterfall 使用方法-------------------------------------------*/
+    /*-----------------------------------------------AKjs_Waterfall 使用方法-------------------------------------------*/
     $(function(){
-        $(".plug_waterfall").Andrew_Waterfall({
+        $(".plug_waterfall").AKjs_Waterfall({
             spacingWidth: 5, // 布局的元素水平间距设置
             spacingHeight: 5, // 布局的元素垂直间距设置
             minColCount: 2, // 最小一行显示几个？
@@ -295,7 +295,7 @@
                 ele.parent().append(wdropload);
                 $(str).appendTo(ele);
                 setTimeout(function() {
-                    ele.removeClass("defer_15");
+                    ele.removeClass("defer_25");
                     $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
                 },1000);
             },

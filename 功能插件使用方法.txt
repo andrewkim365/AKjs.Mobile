@@ -2,9 +2,9 @@
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
 //文档更新日期：2018-08-03
 
-/*-----------------------------------------------Andrew_Config (全局设置）使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
 $(function () {
-   Andrew_Config({ //环境配置管理
+   AKjs_Config({ //环境配置管理
        MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
        Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
        touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
@@ -18,9 +18,9 @@ $(function () {
    });
 });
 
-/*-----------------------------------------------Andrew_Form 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Form 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_form").Andrew_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
+    $(".plug_form").AKjs_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
         btn_delete: ".plug_Delete", //输入文字的删除按钮class名
         btn_delete_ico: "icon-ln_quxiao", //输入文字的删除按钮的图标
         btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
@@ -44,8 +44,8 @@ $(function(){
         butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
             //console.log(form);
             if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
-                form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
-                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+                form.find(":submit").AKjs_ButtonSubmit("数据正在提交中...",{
+                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
                     icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
                     callback: function(btn,disabled) { //回调入口
                         disabled(true); //把提交按钮设为disabled状态
@@ -59,7 +59,7 @@ $(function(){
         }
     });
 
-    $(".plug_formTextarea").Andrew_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
+    $(".plug_formTextarea").AKjs_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
         placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
         validate: true, //是否开启表单提交按钮的校验功能 （表单内的输入框有required属性代表必填项，所有的必填项全部输入完成才能提交的功能）
         valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
@@ -68,8 +68,8 @@ $(function(){
         butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
             //console.log(form);
             if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
-                form.find(":submit").Andrew_ButtonSubmit("数据正在提交中...",{
-                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+                form.find(":submit").AKjs_ButtonSubmit("数据正在提交中...",{
+                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
                     icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
                     callback: function(btn,disabled) { //回调入口
                         disabled(true); //把提交按钮设为disabled状态
@@ -85,10 +85,10 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_ButtonSubmit 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_ButtonSubmit 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_submit").Andrew_ButtonSubmit("数据正在提交中...",{
-        click: true, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在Andrew_Form功能插件中的butCallback回调里使用时请设为false）
+    $(".plug_submit").AKjs_ButtonSubmit("数据正在提交中...",{
+        click: true, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
         icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
         callback: function(btn,disabled) { //回调入口
             console.log(btn)
@@ -101,9 +101,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_Textarea 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Textarea 使用方法-------------------------------------------*/
 $(function () {
-   $(".plug_textarea").Andrew_Textarea({ //多行输入框设置
+   $(".plug_textarea").AKjs_Textarea({ //多行输入框设置
        maxlength:200, //文字最多输入限制
        rows:"6", //输入框的行高
        onTextVal:function(val){ //通过回调获取实时输入的值
@@ -112,10 +112,10 @@ $(function () {
    });
 });
 
-/*-----------------------------------------------Andrew_Lazyload 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
 $(function() {
-   $(".plug_lazyload img").Andrew_Lazyload({ //对所有的图片懒加载
-       scroll: $("main").children("#ak-main"), //滚动区域的容器
+   $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
+       scroll: $("#ak-scrollview"), //滚动区域的容器
        scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
        Img_Effect: "fadeIn", //图片加载动画效果
        Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
@@ -129,8 +129,8 @@ $(function() {
    });
 });
 $(function() {
-   $("*[data-animation]").Andrew_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
-       scroll: $("main").children("#ak-main"), //滚动区域的容器
+   $("*[data-animation]").AKjs_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
+       scroll: $("#ak-scrollview"), //滚动区域的容器
        scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
        Callback: function(ele) { //初始化回调入口
            //console.log(ele);
@@ -141,10 +141,10 @@ $(function() {
    });
 });
 
-/*-----------------------------------------------Andrew_Loader 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
 $(function () {
-   Andrew_Loader({
-       //ele: $("main").children("#ak-main"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+   AKjs_Loader({
+       //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
        timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
        iconColor:"#ffffff", //图标颜色设置
@@ -152,13 +152,13 @@ $(function () {
        Loader:"load_2" //loading效果选择（load_1~7）
    });
    $(".ak-loading").on("click", function () {
-       Andrew_Loader("destroy"); //关闭loading窗
+       AKjs_Loader("destroy"); //关闭loading窗
    });
 });
 
-/*-----------------------------------------------Andrew_Slider 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Slider 使用方法-------------------------------------------*/
 $(function() {
-   $(".plug_slider").Andrew_Slider({
+   $(".plug_slider").AKjs_Slider({
        start: 1, //默认显示的图片排号
        speed: 500, //图片切换的速度
        interval: 5000, //图片切换间隔毫秒
@@ -174,22 +174,13 @@ $(function() {
    });
 });
 
-/*-----------------------------------------------Andrew_ScrollFixed 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Tabs 使用方法-------------------------------------------*/
 $(function () {
-   $(".plug_tabs nav").Andrew_ScrollFixed({
-       ScrollFixed: false, //是否开启指定的元素区域固定在屏幕的上方位置 (开启 true, 关闭 false）
-       zPosition: "4", //浮动元素的z-index数值
-       animated: "slideInDown ani_05s", //滚动后的显示的动画效果 (css动画库：andrew.animate.css)
-       top: 0 //屏幕上方和滑动后的元素固定的上下间距
-   });
-});
-
-/*-----------------------------------------------Andrew_Tabs 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_tabs").Andrew_Tabs({
+    $(".plug_tabs").AKjs_Tabs({
         curDisplay: 1, //当前显示哪张
         autoPlay: false, //自动播放 (true/false)
         playDelay: 2000, //切换Tabs延迟时间
+        content_dom: ".plug_tabs_view", //内容区域的元素 （该参数是菜单区域使用屏幕固定时需要分开布局结构后指定元素的方法）
         boxheight: false, //切换内容区域的高度设置px；建议vertical方式时使用 （不使用高度：false）
         navlength: 4, //切换导航的数量设置（文字屏幕对齐）
         fullclass: "bor_bottom2 bor_title c_title minus_mt_1px", //被选中状态的class
@@ -198,18 +189,10 @@ $(function () {
         touchmode : true, //是否开启触屏滑动切换功能 (true/false)
         changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
         callback: function(ele,index) { //初始化回调入口
-            if (index == 0) {
-                var ajax_url = './router/tab_test1.html';
-            } else if (index == 1) {
-                var ajax_url = './router/tab_test2.html';
-            } else if (index == 2) {
-                var ajax_url = './router/tab_test3.html';
-            } else if (index == 3) {
-                var ajax_url = './router/tab_test4.html';
-            }
+            var ajax_url = './router/tab_test1.html';
             //console.log(ajax_url);
             /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
-            Andrew_Ajax({
+            AKjs_Ajax({
                 to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
                 type: "GET", //GET或POST
                 url: ajax_url, //需要加载的URL
@@ -227,13 +210,39 @@ $(function () {
         },
         changeback: function (ele,index) { //Tab切换回调入口
             console.log(index);
+            if (index == 0) {
+                var ajax_url = './router/tab_test1.html';
+            } else if (index == 1) {
+                var ajax_url = './router/tab_test2.html';
+            } else if (index == 2) {
+                var ajax_url = './router/tab_test3.html';
+            } else if (index == 3) {
+                var ajax_url = './router/tab_test4.html';
+            }
+            //console.log(ajax_url);
+            /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
+            AKjs_Ajax({
+                to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
+                type: "GET", //GET或POST
+                url: ajax_url, //需要加载的URL
+                data:{}, //传入参数
+                async: true, //异步方式：true，同步方式：false
+                success:function (result) { //ajax请求加载成功后的回调
+                    //console.log(result);
+                    //ak_webToast("请求加载数据成功！","middle",2000);
+                },
+                error:function (error) { //ajax请求加载失败后的回调
+                    //console.log(error);
+                    //ak_webToast("请求加载数据失败！","middle",2000);
+                }
+            });
         }
     });
 });
 
-/*-----------------------------------------------Andrew_Tabs (仿京东商品分类) 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Tabs (仿京东商品分类) 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_tabs_ud").Andrew_Tabs({
+    $(".plug_tabs_ud").AKjs_Tabs({
         curDisplay: 1, //当前显示哪张
         autoPlay: false, //自动播放 (true/false)
         playDelay: 1000, //切换Tabs延迟时间
@@ -253,7 +262,7 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_Dialog 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Dialog 使用方法-------------------------------------------*/
 $(function(){
    $("#plug_webToast").click(function(){
        ak_webToast("恭喜您，修改成功!","middle","mask",1000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
@@ -353,10 +362,10 @@ $(function(){
    });
 });
 
-/*-----------------------------------------------Andrew_Popupwin 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
 $(function(){
     $("#plug_NavMenu").bind("click", function (e) {
-        Andrew_Popupwin({
+        AKjs_Popupwin({
             dom: "#plug_NavMenuWin", //弹窗内容的布局
             position: "top", //位置类型(top，bottom，left，right，middle)
             effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -382,7 +391,7 @@ $(function(){
 
 $(function(){
    $("#plug_popup").click(function(){
-       Andrew_Popupwin({
+       AKjs_Popupwin({
            dom: "#plug_PopupWin", //弹窗内容的布局
            position: "middle", //位置类型(top，bottom，left，right，middle)
            effectIn: "bounceInDown", //弹窗显示效果
@@ -397,9 +406,9 @@ $(function(){
    });
 });
 
-/*-----------------------------------------------Andrew_Range  使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Range  使用方法-------------------------------------------*/
 $(function(){
-   $('.plug_range1').Andrew_Range({
+   $('.plug_range1').AKjs_Range({
        from: 0, //滑动范围的最小值，数字，如0
        to: 100, //滑动范围的最大值，数字，如100
        step: 1, //步长值，每次滑动大小
@@ -415,7 +424,7 @@ $(function(){
            //console.log(val);
        }
    });
-   $('.plug_range2').Andrew_Range({
+   $('.plug_range2').AKjs_Range({
        from: 0, //滑动范围的最小值，数字，如0
        to: 100, //滑动范围的最大值，数字，如100
        step: 1, //步长值，每次滑动大小
@@ -433,9 +442,9 @@ $(function(){
    });
 });
 
-/*-----------------------------------------------Andrew_ChooseList 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_ChooseList 使用方法-------------------------------------------*/
    $(function(){
-       $(".plug_choose").Andrew_ChooseList({
+       $(".plug_choose").AKjs_ChooseList({
            itemWidth: "", //自定义设置按钮宽度
            btnClass: "fl pl_5 pr_5 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em c_gray_777 rel ovh", //按钮的class名称设置
            btnIcon: true, //是否开启被选中时显示打钩符号 (true/false)
@@ -452,9 +461,9 @@ $(function(){
        });
    });
 
-/*-----------------------------------------------Andrew_ChangeInput 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_ChangeInput 使用方法-------------------------------------------*/
 $(function(){
-   $(".plug_change_btn").Andrew_ChangeInput({
+   $(".plug_change_btn").AKjs_ChangeInput({
        text_input: new Array( //两个左侧和右侧的输入框设置
            ".plug_change_text1", //切换按钮的“左侧”输入框Class
            ".plug_change_text2" //切换按钮的“右侧”输入框Class
@@ -466,9 +475,9 @@ $(function(){
    });
 });
 
-/*-----------------------------------------------Andrew_ChangeIcon 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_ChangeIcon 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_sort_btn1").Andrew_ChangeIcon({
+    $(".plug_sort_btn1").AKjs_ChangeIcon({
         multi_icon: false, //是否控制的图标是多个
         text_color: new Array( //文字颜色设置（最多两个）
             "c_gray_777", //默认颜色
@@ -490,7 +499,7 @@ $(function(){
                 $(".plug_sort_btn4").removeClass("ak-is_active");
                 $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
                 setTimeout(function() {
-                    $("main").addClass("scrolling");
+                    $("#ak-scrollview").addClass("scrolling_touch");;
                     $('#popup_mask').fadeOut().remove();
                 },500);
             }
@@ -498,7 +507,7 @@ $(function(){
     });
 });
 $(function(){
-    $(".plug_sort_btn2").Andrew_ChangeIcon({
+    $(".plug_sort_btn2").AKjs_ChangeIcon({
         multi_icon: true, //是否控制的图标是多个
         text_color: new Array( //文字颜色设置（最多两个）
             "c_gray_777", //默认颜色
@@ -519,7 +528,7 @@ $(function(){
                 $(".plug_sort_btn4").removeClass("ak-is_active");
                 $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
                 setTimeout(function() {
-                    $("main").addClass("scrolling");
+                    $("#ak-scrollview").addClass("scrolling_touch");;
                     $('#popup_mask').fadeOut().remove();
                 },500);
             }
@@ -527,7 +536,7 @@ $(function(){
     });
 });
 $(function(){
-    $(".plug_sort_btn3").Andrew_ChangeIcon({
+    $(".plug_sort_btn3").AKjs_ChangeIcon({
         multi_icon: true, //是否控制的图标是多个
         text_color: new Array( //文字颜色设置（最多两个）
             "c_gray_777", //默认颜色
@@ -548,7 +557,7 @@ $(function(){
                 $(".plug_sort_btn4").removeClass("ak-is_active");
                 $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
                 setTimeout(function() {
-                    $("main").addClass("scrolling");
+                    $("#ak-scrollview").addClass("scrolling_touch");;
                     $('#popup_mask').fadeOut().remove();
                 },500);
             }
@@ -556,7 +565,7 @@ $(function(){
     });
 });
 $(function(){
-    $(".plug_sort_btn4").Andrew_ChangeIcon({
+    $(".plug_sort_btn4").AKjs_ChangeIcon({
         multi_icon: false, //是否控制的图标是多个
         text_color: new Array( //文字颜色设置（最多两个）
             "c_gray_777", //默认颜色
@@ -579,7 +588,7 @@ $(function(){
             }
             $(".plug_sort_btn4").each(function(){
                 var _this = $(this);
-                Andrew_Popupwin({ //调用弹窗插件
+                AKjs_Popupwin({ //调用弹窗插件
                     dom: "#plug_filterWin", //弹窗内容的布局
                     position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
                     effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
@@ -612,10 +621,10 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_Radio&Andrew_Checkbox&Andrew_Switch 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Radio&AKjs_Checkbox&AKjs_Switch 使用方法-------------------------------------------*/
 $(function(){
    //单选按钮样式
-   $(".plug_Radio").Andrew_Radio({
+   $(".plug_Radio").AKjs_Radio({
        checkedClass: "icon-ln_zhengque c_title", //选中后的样式
        onChange:function(chk){ //回调获取当前的选中状态
            console.log(chk);
@@ -625,7 +634,7 @@ $(function(){
 
 $(function(){
    //多选按钮样式
-   $(".plug_Checkbox").Andrew_Checkbox({
+   $(".plug_Checkbox").AKjs_Checkbox({
        checkedClass: "icon-ln_zhengque bg_title bor_title c_white", //选中后的样式
        disabledClass: "icon-ln_zhengque bg_gray_ccc bor_gray_ccc c_white", //不能选择的样式
        onChange:function(chk){ //回调获取当前的选中状态
@@ -636,7 +645,7 @@ $(function(){
 
 $(function(){
    //开关按钮样式
-   $(".plug_Switch").Andrew_Switch({
+   $(".plug_Switch").AKjs_Switch({
        checkedClass: "bg_title", //选中后的样式
        disabledClass: "dis_opa_05", //不能选择的样式
        onChange:function(chk){ //回调获取当前的选中状态
@@ -645,9 +654,9 @@ $(function(){
    });
 });
 
-/*-----------------------------------------------Andrew_GetVerifyCode 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_GetVerifyCode 使用方法-------------------------------------------*/
 $(function (){
-   Andrew_GetVerifyCode.verify("#plug_getVerifyCode", {
+   AKjs_GetVerifyCode.verify("#plug_getVerifyCode", {
        time: 10, //倒计时时间
        event: "click", //事件触发方式
        phone: "#plug_phone", //绑定设置输入手机号的输入框
@@ -657,7 +666,7 @@ $(function (){
        condition: function (phone) {
            /*var phoneReg = /^1[345789]\d{9}$/,*/
            //var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/
-           Andrew_RegsInput();
+           AKjs_RegsInput();
            var flag = Regs_mobile.test($(phone).val());
            if ($(phone).val() != "") {
                if(!flag){
@@ -713,24 +722,24 @@ $(function (){
 });
 
 
-/*-----------------------------------------------Andrew_Codeval 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Codeval 使用方法-------------------------------------------*/
 $(function () {
     $("#plug_codeInput").each(function(){ //默认显示Ajax请求后的页面
-        $.Andrew_Codeval.ak_setCode({
+        $.AKjs_Codeval.ak_setCode({
             inputEle: '#plug_codeInput', //输入验证码的输入框
             codeView: '#plug_codeView', //显示验证码的元素
             codeLength: '5' //显示验证码的字数
         });
     });
     $("#plug_codeView").parents("form").find(":submit").click(function (){ //点击提交按钮获取输入的验证码是否正确
-    var flag = $.Andrew_Codeval.ak_validateCode();
+    var flag = $.AKjs_Codeval.ak_validateCode();
     console.log(flag); //flag的值true可以通过，false是输入的验证码有误
     });
 });
 
-/*-----------------------------------------------Andrew_AllChecked 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_AllChecked 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_allchk").Andrew_AllChecked({
+    $(".plug_allchk").AKjs_AllChecked({
         toggleClass: 'bg_title bor_title c_white icon-ln_zhengque',//改变的样式名，针对例子中的复选框样式美化
         callback :function(array) { //通过回调函数获取数组状态
             $(array).each(function(){ //对选中的元素可进行控制和获取值
@@ -742,9 +751,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_DropUpDown 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_DropUpDown 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_dropbutton").Andrew_DropUpDown({
+    $(".plug_dropbutton").AKjs_DropUpDown({
         curDisplay: 2, //当前显示哪个(不展开设置为0)
         active_toggle: "bor_bottom_dashed bor_gray_ddd", //展开后的线条切换（实线切换虚线）
         up_ico: "icon-ln_jiantoushang", //展开后的图标（上箭头）
@@ -755,9 +764,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_TouchDelete 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_TouchDelete 使用方法-------------------------------------------*/
 $(function() {
-    $(".plug_touchdel").Andrew_TouchDelete({
+    $(".plug_touchdel").AKjs_TouchDelete({
         UpDownTouch: false, //是否开启上下滑动功能 (开启 true, 关闭 false）
         DelText: "删除", //删除按钮中显示的文字
         DelClass: "abs bg_close c_white w_4em h_in top_0", //删除按钮的Class样式
@@ -790,9 +799,9 @@ $(function() {
     });
 });
 
-/*-----------------------------------------------Andrew_intlTelInput 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_intlTelInput 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_mobileNum").Andrew_IntlTelInput({
+    $(".plug_mobileNum").AKjs_IntlTelInput({
         Title_Text: "选择国家和地区", //头部的标题文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
         Close_btn: "left_0 w_25 pl_3 text_al_l text_12em", //关闭按钮的样式设置
         Close_Text: "关闭", //头部的关闭按钮文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
@@ -811,21 +820,21 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_NowTime 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_NowTime 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_nowtime").Andrew_NowTime({
+    $(".plug_nowtime").AKjs_NowTime({
         dateStyle: "yyyy年MM月dd日 hh:mm:ss" //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
     });
 });
 
-/*-----------------------------------------------Andrew_Substring 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Substring 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_RMBoutput").Andrew_Substring(); //数字RMB格式
+    $(".plug_RMBoutput").AKjs_Substring(); //数字RMB格式
 });
 
-/*-----------------------------------------------Andrew_Spinner 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Spinner 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_spinner").Andrew_Spinner({//数量加减功能
+    $(".plug_spinner").AKjs_Spinner({//数量加减功能
         input_width: "20%", //输入框宽度 （px,%,em）
         btn_wrap: "fr rel ovh border bor_gray_ddd w_100 bg_gray_f9f", //数量加减输入框的外框样式
         btn_left: "abs top_0 left_0 bor_right bor_gray_ddd bg_white wh_24em icon-ln_jian_a", //数量减少按钮Class
@@ -837,11 +846,11 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_CountTo 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_CountTo 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_count").Andrew_CountTo(); //数字加动画变化效果
+    $(".plug_count").AKjs_CountTo(); //数字加动画变化效果
     $(".plug_count").click(function(){ //点击后数字加动画变化效果
-        $(this).Andrew_CountTo({
+        $(this).AKjs_CountTo({
             onUpdate: function(count){ //回调获取实时变化的数据
                console.log(count);
             },
@@ -852,10 +861,10 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_CountDown 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_CountDown 使用方法-------------------------------------------*/
 $(function(){
     $(".plug_Countdown").click(function () {
-        Andrew_CountDown($(this),{
+        AKjs_CountDown($(this),{
             wait: 10, //默认秒数
             Start_text: "秒", //倒计时开始文字
             End_Text: "时间到！", //倒计时结束后的文字
@@ -867,9 +876,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_Progress 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Progress 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_progress").Andrew_Progress({
+    $(".plug_progress").AKjs_Progress({
         goalAmount: 100, //总进度数值
         currentAmount: 60, //当前进度数值 （也可以元素里加data-to参数设置, 初始化开始参数设置属性为元素里加data-from即可）
         milestoneNumber: 90, //数字达到当前设置的参数后进度条的颜色变化
@@ -883,9 +892,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_StepOrder 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_StepOrder 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_step").Andrew_StepOrder({
+    $(".plug_step").AKjs_StepOrder({
         stepNum: 2, //步骤里要选前几个
         stepClass:  new Array( //被选中的样式
             "bg_title c_yellow", //被选中的数字框样式
@@ -899,9 +908,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_Ratyli 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Ratyli 使用方法-------------------------------------------*/
 $(function() {
-    $("#plug_ratyli1").Andrew_Ratyli({
+    $("#plug_ratyli1").AKjs_Ratyli({
         rate:1, //当前被选中的数量
         ratemax:5, //总数量
         disable:false, //是否能点击(不可点击：true，可点击：false)
@@ -915,7 +924,7 @@ $(function() {
 });
 
 $(function(){
-    $("#plug_ratyli2").Andrew_Ratyli({
+    $("#plug_ratyli2").AKjs_Ratyli({
         rate:4, //当前被选中的数量
         ratemax:5, //总数量
         disable:true, //是否能点击(不可点击：true，可点击：false)
@@ -928,9 +937,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_Favorite 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Favorite 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_like").Andrew_Favorite({
+    $(".plug_like").AKjs_Favorite({
         likeMode: true, //是否开启点赞模式 （设置false为收藏模式）
         str: "+1",  //字符串，要显示的内容;也可以传一段html
         icon_defaultClass: "text_al_m text_14em icon-mn_shoucang", //默认图标样式
@@ -949,7 +958,7 @@ $(function(){
 });
 
 $(function(){
-    $(".plug_collect").Andrew_Favorite({
+    $(".plug_collect").AKjs_Favorite({
         likeMode: false, //是否开启点赞模式 （设置false为收藏模式）
         icon_defaultClass: "text_al_m text_14em icon-mn_xingxing", //默认图标样式
         icon_changeClass: "text_al_m text_14em icon-mn_xingxing_fill c_title", //点击后的图标样式
@@ -963,9 +972,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_SnInput 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_SnInput 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_sn_input").Andrew_SnInput({
+    $(".plug_sn_input").AKjs_SnInput({
         default_active: false, //是否开启默认选择第一个输入框
         input_length: "1", //每个输入框限制的字数
         callback:function(sn){ //回调获取全部输入的值
@@ -974,16 +983,16 @@ $(function(){
     })
 });
 
-/*-----------------------------------------------Andrew_Typeahead 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Typeahead 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_Typeahead").Andrew_Typeahead({
+    $(".plug_Typeahead").AKjs_Typeahead({
         items: 20, //最多显示的数据
         source: json_searchData, //Json获取data数据(data.js)
         showCallBack:function(ele){ //回调获取被展开后显示的元素
             $(".plug_Typeahead").parent().append('<i class="dis_none_im abs left_0 ml_03em text_14em c_gray_999 line_h_18em iconfont icon-sousuo1"></i>');
             if ($(".ak-typeahead").children("ol").length < 1) {
                $(".ak-typeahead").append(
-                   "<ol class=\"scrolling list ovs_y h_100\">\n" +
+                   "<ol class=\"scrolling_touch list ovs_y h_100\">\n" +
                    "<li class=\"touchstart\" data-value=\"BJ\">北京</li>\n" +
                    "<li class=\"touchstart\" data-value=\"SH\">上海</li>\n" +
                    "<li class=\"touchstart\" data-value=\"GZ\">广州</li>\n" +
@@ -1007,9 +1016,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_lightSlider 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_lightSlider 使用方法-------------------------------------------*/
 $(function(){
-    $("#plug_photo_slider").Andrew_lightSlider({
+    $("#plug_photo_slider").AKjs_lightSlider({
         item:3, //默认显示几张
         activeClass: '', //图片点击后的class样式(建议在左右能滑动的Tabs功能时使用)
         loop:true, //是否重复联播（true，false）
@@ -1031,9 +1040,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_PreviewImage 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_PreviewImage 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_previewImage").Andrew_PreviewImage({ //删除图片提示设置
+    $(".plug_previewImage").AKjs_PreviewImage({ //删除图片提示设置
         messege: "确认要删除当前的图片吗？", //弹窗中的提示文字
         btn_ok: "确定", //弹窗中的确定按钮文字
         btn_cancel: "取消", //弹窗中的取消按钮文字
@@ -1060,9 +1069,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_PortraitImage 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_PortraitImage 使用方法-------------------------------------------*/
 $(function () {
-    $(".plug_PortraitImage").Andrew_PortraitImage({
+    $(".plug_PortraitImage").AKjs_PortraitImage({
         errorTip:"图片上传格式不正确！", //图片上传格式有误时提示的文字
         btn_ok: "确定", //弹窗中的确定按钮文字
         box_title: "提示", //弹窗中的标题名称文字
@@ -1072,16 +1081,16 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_Viewer 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Viewer 使用方法-------------------------------------------*/
 $(function() {
-    $(".plug_viewer").Andrew_Viewer({
+    $(".plug_viewer").AKjs_Viewer({
         url: "data-url" //图片放大后的高清图片URL设置
     });
 });
 
-/*-----------------------------------------------Andrew_DateTime 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_DateTime 使用方法-------------------------------------------*/
 $(function () {
-    $("#plug_datetime").Andrew_DateTime({
+    $("#plug_datetime").AKjs_DateTime({
         showNowTime:true, //默认当前时间
         Year:true, //是否显示年（true，false）
         Month:true, //是否显示月（true，false）
@@ -1108,9 +1117,9 @@ $(function () {
     })
 });
 
-/*-----------------------------------------------Andrew_MultiDate 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_MultiDate 使用方法-------------------------------------------*/
 $(function(){
-    $("#plug_multidate").Andrew_MultiDate({
+    $("#plug_multidate").AKjs_MultiDate({
         language:{
             month : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
             weeks : [ "日", "一", "二", "三", "四", "五", "六" ]
@@ -1136,9 +1145,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_Select 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Select 使用方法-------------------------------------------*/
 $(function () {
-    new Andrew_Select({
+    new AKjs_Select({
         trigger: "#plug_trigger1", //需要绑定的元素
         title: "选择星期", //弹窗标题文字
         ensure: "确定", //弹窗的确定按钮文字
@@ -1155,7 +1164,7 @@ $(function () {
 });
 
 $(function () {
-    new Andrew_Select({
+    new AKjs_Select({
         trigger: "#plug_trigger2",  //需要绑定的元素
         title: "选择地区", //弹窗标题文字
         ensure: "确定", //弹窗的确定按钮文字
@@ -1170,9 +1179,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_Vticker 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Vticker 使用方法-------------------------------------------*/
 $(function(){
-    $('.plug_vticker').Andrew_Vticker({
+    $('.plug_vticker').AKjs_Vticker({
         showItems : 4, //显示多少行
         pause : 3000, //滚动间隔，单位为毫秒
         speed : 500, //每次滚动持续时间，单位为毫秒
@@ -1183,9 +1192,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_TypeIt 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_TypeIt 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_TypeIt").Andrew_TypeIt({
+    $(".plug_TypeIt").AKjs_TypeIt({
         strings: [
            "欢迎使用AKjs移动端前端UI框架。",
            "AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。"
@@ -1206,7 +1215,7 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_Template 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Template 使用方法-------------------------------------------*/
 var list_data = [
     {
         Image: "<img src=\"./img/tibet-1.jpg\">",
@@ -1227,12 +1236,12 @@ var list_data = [
         Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
     }
 ];
-$(".plug_for").Andrew_Template(list_data);
+$(".plug_for").AKjs_Template(list_data);
 
-/*-----------------------------------------------Andrew_Popupwin (分享功能) 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Popupwin (分享功能) 使用方法-------------------------------------------*/
 $(function(){
     $("#plug_Share").bind("click", function (c) {
-       Andrew_Popupwin({
+       AKjs_Popupwin({
            dom: "#plug_ShareWin", //弹窗内容的布局
            position: "bottom", //位置类型(top，bottom，left，right，middle)
            effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
@@ -1249,9 +1258,9 @@ $(function(){
    });
 });
 
-/*-----------------------------------------------Andrew_Marquee 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Marquee 使用方法-------------------------------------------*/
 $(function(){
-    $('.plug_marquee').Andrew_Marquee({
+    $('.plug_marquee').AKjs_Marquee({
         direction: 'up', //滚动方向设置 （可选 left / right / up / down）
         loop: -1, //是否重复循环 （0 = 不重复，-1 = 重复）
         scrolldelay: 0, //每次重复之前的延迟
@@ -1265,9 +1274,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_QRcode 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_QRcode 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_qrcode").Andrew_QRcode({
+    $(".plug_qrcode").AKjs_QRcode({
         width: 200, //宽度
         height:200, //高度
         background: "#ffffff", //背景色
@@ -1276,20 +1285,21 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_NavScroll 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_NavScroll 使用方法-------------------------------------------*/
 $(function() {
-    $(".plug_tabs_find").Andrew_NavScroll({
-        line_style: "dis_block abs bor_top2 bor_title",
-        active_corlor: "c_title",
+    $(".plug_tabs_find").AKjs_NavScroll({
+        content_dom: ".plug_tabs_findview", //内容区域的元素 （该参数是菜单区域使用屏幕固定时需要分开布局结构后指定元素的方法）
+        line_style: "dis_block abs bor_top2 bor_title", //选中状态的线条样式设置
+        active_corlor: "c_title",  //选中状态的文字颜色
         ClickCallback: function(ele,index) { //回调获取点击后的元素和元素的index
-           console.log(ele);
+            console.log(ele);
         }
     });
 });
 
-/*-----------------------------------------------Andrew_Circliful 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Circliful 使用方法-------------------------------------------*/
 $(function(){
-    $('.plug_circliful').Andrew_Circliful({
+    $('.plug_circliful').AKjs_Circliful({
         animationStep: 0.2 //动画毫秒设置
     });
     /*
@@ -1308,9 +1318,9 @@ $(function(){
     */
 });
 
-/*-----------------------------------------------Andrew_Paginator  使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Paginator  使用方法-------------------------------------------*/
 $(function(){
-    $("#plug_page").Andrew_Paginator({
+    $("#plug_page").AKjs_Paginator({
         totalPages: 20, //设置分页的总页数
         totalCounts: 200, //设置分页的总条目数
         pageSize: 10, //设置每一页的条目数
@@ -1330,9 +1340,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_Waterfall 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Waterfall 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_waterfall").Andrew_Waterfall({
+    $(".plug_waterfall").AKjs_Waterfall({
         spacingWidth: 5, // 布局的元素水平间距设置
         spacingHeight: 5, // 布局的元素垂直间距设置
         minColCount: 2, // 最小一行显示几个？
@@ -1353,7 +1363,7 @@ $(function(){
             ele.parent().append(wdropload);
             $(str).appendTo(ele);
             setTimeout(function() {
-                ele.removeClass("defer_15");
+                ele.removeClass("defer_25");
                 $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
             },1000);
         },
@@ -1388,9 +1398,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_Keyboard 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_Keyboard 使用方法-------------------------------------------*/
 $(function() {
-    var plug_keyboard = $.Andrew_Keyboard({
+    var plug_keyboard = $.AKjs_Keyboard({
        num: 6, //密码输入框需要几位数?
        title: "请输入支付密码", //安全键盘标题
        msg: "正在验证支付密码", //输入密码后的loading文字
@@ -1409,7 +1419,7 @@ $(function() {
                    plug_keyboard.akjs_hideKeyBoard(); //隐藏安全键盘
                }, 2000);
                setTimeout(function() {
-                   Andrew_Location("/page1");
+                   AKjs_Location("/page1");
                }, 3000);
            }
        }
@@ -1421,9 +1431,9 @@ $(function() {
     });
 });
 
-/*-----------------------------------------------Andrew_ReadMore 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_ReadMore 使用方法-------------------------------------------*/
 $(function () {
-    $('.plug_readmore').Andrew_ReadMore({
+    $('.plug_readmore').AKjs_ReadMore({
         speed: 500, //展开折叠毫秒速度
         maxHeight: 200, //被隐藏更多的内容时的高度（px）
         heightMargin: 16, //以像素为单位，以避免倒塌是比仅稍大块了maxHeight
@@ -1433,7 +1443,7 @@ $(function () {
         afterToggle: function(trigger, element, expanded) { //称为后，该块被折叠或展开
             if(!expanded) {
                 $('main').animate({
-                    scrollTop: element.offset().top + $("#ak-main").scrollTop() - element.next("button").height()
+                    scrollTop: element.offset().top + $("#ak-scrollview").scrollTop() - element.next("button").height()
                 }, {duration: 500 } );
             }
         },
@@ -1444,9 +1454,9 @@ $(function () {
     });
 });
 
-/*-----------------------------------------------Andrew_SelectOption 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_SelectOption 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_select").Andrew_SelectOption({
+    $(".plug_select").AKjs_SelectOption({
         active: "bg_title c_white", //下拉列表被选中时样式
         boxheight: "12.6em", //下拉框展开后的列表区域的最大高度
         speed: 300, //下拉框展开和折叠毫秒时间
@@ -1465,13 +1475,13 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_DropLoad 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_DropLoad 使用方法-------------------------------------------*/
 $(function(){
     // 页数
     var page = 0;
     // 每页展示5个
     var size = 5;
-    $('.plug_DropLoad').Andrew_DropLoad({
+    $('.plug_DropLoad').AKjs_DropLoad({
        scrollArea : window, // 滑动区域
        domUp : { // 上方DOM
            domRefresh : '↓ 下拉刷新',
@@ -1557,9 +1567,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_GoTop (全局) 使用方法-------------------------------------------*/
-Andrew_GoTop({
-    dom: $("main").children("#ak-main"), // 滑动区域
+/*-----------------------------------------------AKjs_GoTop (全局) 使用方法-------------------------------------------*/
+AKjs_GoTop({
+    dom: $("#ak-scrollview"), // 滑动区域
     hide: true, //当页面不滚动时是否隐藏(true,false)
     url: "./img/gotop.png", //图片路径
     icon: "", //图标的Class
@@ -1584,9 +1594,9 @@ Andrew_GoTop({
     }
 });
 
-/*-----------------------------------------------Andrew_MobileChat 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_MobileChat 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_chat").Andrew_MobileChat({
+    $(".plug_chat").AKjs_MobileChat({
         chat_view: ".plug_chatView", //聊天内容展示区域dom
         chat_optDom: ".plug_chatOption", //更多功能区域dom
         chat_optHeight: "8em", //更多功能选项的高度
@@ -1626,11 +1636,11 @@ $(function(){
                 "            </dl>\n" +
                 "        </li>";
             $(chat_view_me).appendTo(container); //生成您的聊天元素
-            $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+            $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
 
             setTimeout(function() { //对方的聊天内容延迟执行
                 $(chat_view_you).appendTo(container); //生成对方的聊天元素
-                $("#ak-main").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
             },100);
         },
         optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
@@ -1639,9 +1649,9 @@ $(function(){
     });
 });
 
-/*-----------------------------------------------Andrew_TimeAxis 使用方法-------------------------------------------*/
+/*-----------------------------------------------AKjs_TimeAxis 使用方法-------------------------------------------*/
 $(function(){
-    $(".plug_timeaxis").Andrew_TimeAxis({
+    $(".plug_timeaxis").AKjs_TimeAxis({
         firstbox: "bg_title", //第一个圆框的样式
         boxsize: "3em", //圆框大小设置
         textstyle: "text_06em c_white", //圆框内的文字样式

@@ -21,7 +21,7 @@ js/data.js --- Json数据文件
 
 css/iconfont --- 图标库 (AK图标库地址：http://www.iconfont.cn/collections/detail?cid=8740)
 
-css/akjs.mobile.css --- AKjs全局公共样式库（初始使用本插件的开发者们尽量都看看里面的class命名）
+css/akjs.mobile.css --- AKjs全局公共样式库[初始使用本插件的开发者们尽量都看看里面的class命名]（在项目中建议使用压缩版akjs.mobile.min.css）
 
 css/akjs.animate.css --- AKjs动画库（在animated.css基础上增加了更多的动画效果）
 
@@ -30,10 +30,28 @@ css/theme.default.css --- 所有颜色相关的样式文件
 css/style.css --- 自定义样式文件（引入第三方插件时通过该css文件进行覆盖样式）
 
 
-
-
-
-
-
-
 -----------------------------------------------------------------------------------------------
+router页面的代码结构说明：
+<!--
+* ak-header和ak-footer元素的data-display值是隐藏和显示APP的头部区域和底部菜单区域 (true / false)；
+ak-main和ak-scrollview元素的data-bounce值是滚动区域是否开启ios弹性效果的功能 (true / false)；
+button元素的data-back="true"值是识别为该按钮是返回键的意思
+//注：template，ak-header，ak-footer，script，style等这些元素在页面中不能多个使用否则代码无效；
+路由页面的布局结构使用方法（必须用以下的结构使用）：
+<template>
+    <ak-header>头部区域</ak-header>
+    <ak-main>
+        <ak-scrollview>
+            <div>中间内容</div>
+        </ak-scrollview>
+        <dialog>弹窗代码</dialog>
+    </ak-main>
+    <ak-footer>底部区域</ak-footer>
+</template>
+<script>
+    //编写当前页面的脚本代码区域
+</script>
+<style>
+    //覆盖当前界面的样式区域
+</style>
+-->
