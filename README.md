@@ -88,8 +88,12 @@ button元素的data-back="true"值是识别为该按钮是返回键的意思
     
     <ak-main>
     
+    //main元素里面必须有ak-main才能正常运行，当前元素是内容区域的容器。
+    
         <ak-scrollview>
         
+         //main元素里面的ak-scrollview是用于屏幕的滚动条，不使用当前元素时ak-main自动识别为屏幕的滚动条。弹窗或固定元素的代码在ak-scrollview的外面写才能不飘动。
+         
             <div>中间内容</div>
             
         </ak-scrollview>
