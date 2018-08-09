@@ -1,0 +1,43 @@
+﻿.ak-marquee_wrap {
+    overflow:hidden;
+    position:relative;
+    -moz-user-select: none;
+    user-select: none;
+    white-space:nowrap;
+}
+
+.ak-marquee_move {
+    white-space:nowrap;
+    position:absolute;
+    top:0;
+    left:0;
+    cursor:move;
+}
+.ak-marquee_move_clone {
+    display:inline-block;
+    vertical-align:top;
+    position:absolute;
+    left:100%;
+    top:0;
+}
+.ak-marquee_vertical .ak-marquee_move_clone {
+    left:0;
+    top:100%;
+}
+.ak-marquee_down .ak-marquee_move_clone {
+    left:0;
+    bottom:100%;
+}
+.ak-marquee_vertical .ak-marquee_move,
+.ak-marquee_down .ak-marquee_move {
+    white-space:normal;
+    width:100%;
+}
+.ak-marquee_static .ak-marquee_move,
+.no_drag .ak-marquee_move,
+.noStop .ak-marquee_move{
+    cursor:inherit;
+}
+.ak-marquee_wrap img {
+    max-width:none !important;
+}

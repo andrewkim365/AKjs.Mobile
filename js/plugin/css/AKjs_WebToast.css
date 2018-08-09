@@ -1,0 +1,25 @@
+/*-----------------------------------------------AKjs_WebToast-------------------------------------------*/
+.ak-webtoast {
+    position:fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    z-index:999;
+    display:none;
+}
+.ak-webtoast h3 {
+    display: block;
+    position:absolute;
+    z-index:8;
+    color:#ffffff;
+    background:rgba(0,0,0,0.7);
+    text-align:center;
+    border-radius:0.3em;
+    padding:0.5em;
+}
+@media screen and (min-width:1025px) {
+    .ak-webtoast h3 {
+        font-size: 1.2em;
+    }
+}

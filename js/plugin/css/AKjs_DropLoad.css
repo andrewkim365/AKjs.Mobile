@@ -1,15 +1,28 @@
-.ak-submit-loading, .ak-submit-loading > * {
-    vertical-align: middle;
-    display: inline-block;
+/*-----------------------------------------------AKjs_DropLoad-------------------------------------------*/
+.ak-dropload-up,.ak-dropload-down{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
 }
-.ak-submit-loading i{
+.ak-dropload-down{
+    height: 4em;
+}
+.ak-dropload-refresh,.ak-dropload-update,.ak-dropload-load,.ak-dropload-noData{
+    height: 4em;
+    line-height: 4em;
+    text-align: center;
+}
+.ak-dropload-load .loading{
     display: inline-block;
+    height: 1.2em;
+    width: 1.2em;
     border-radius: 100%;
     margin: 0.5em;
-    border-width: 2px;
-    border-style: solid;
-    border-color: inherit;
+    border: 2px solid #777777;
     border-bottom-color: transparent;
+    vertical-align: middle;
     -webkit-animation: rotate 0.75s linear infinite;
     animation: rotate 0.75s linear infinite;
 }
