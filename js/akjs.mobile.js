@@ -1,10 +1,10 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180803 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180809 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
 
-/*-----------------------------------------------Andrew_Config------------------------------------------*/
-function Andrew_Config(setting) {
+/*-----------------------------------------------AKjs_Config------------------------------------------*/
+function AKjs_Config(setting) {
     var option = $.extend({
             MaskStyle: [],
             Responsive: true,
@@ -18,9 +18,9 @@ function Andrew_Config(setting) {
             animation: true
         },
         setting);
-    Andrew_UserAgent();
-    Andrew_RegsInput();
-    Andrew_RegularExpression();
+    AKjs_UserAgent();
+    AKjs_RegsInput();
+    AKjs_RegularExp();
     if(option.MaskStyle) {
         $("body").addClass("ak-mask_" + option.MaskStyle[0]+" ak-mask_"+option.MaskStyle[1]);
     }
@@ -34,10 +34,10 @@ function Andrew_Config(setting) {
         } else {
             var delegate = "click";
         }
-        $("header h1").bind(delegate, function (andrew) {
-            andrew.preventDefault();
+        $("header h1").bind(delegate, function (ak) {
+            ak.preventDefault();
             if( new Date().getTime() - touchtime < 500 ){
-                $("#ak-main").animate({scrollTop:0},1000);
+                $("#ak-scrollview").animate({scrollTop:0},1000);
             }else{
                 touchtime = new Date().getTime();
             }
@@ -46,12 +46,12 @@ function Andrew_Config(setting) {
     if(option.Orientation== true) {
         window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
             if (window.orientation === 180 || window.orientation === 0) {
-                $("main").not("aside main").addClass("scrolling");
+                $("#ak-scrollview").addClass("scrolling_touch");;
                 $(".ak-landscape").hide().remove();
             } else if (window.orientation === 90 || window.orientation === -90 ){
                 $("input").blur();
                 $("textarea").blur();
-                $("main").not("aside main").removeClass("scrolling");
+                $("#ak-scrollview").removeClass("scrolling_touch");
                 $("body").append("<div class=\"ak-landscape\">"+option.Prompt+"</div>");
             }
         }, false);
@@ -59,7 +59,7 @@ function Andrew_Config(setting) {
     if(option.touchstart== true) {
         document.body.addEventListener('touchstart', function () {
         });
-        $("main").not("aside main").addClass("scrolling");
+        $("#ak-scrollview").addClass("scrolling_touch");;
     } else {
         $("*").removeClass("touchstart");
     }
@@ -82,29 +82,26 @@ function Andrew_Config(setting) {
         }
     }
     if(option.ButtonLink== true) {
-        Andrew_HashSharp(false,false);
+        AKjs_HashSharp(false,false);
     } else {
         $("*").removeAttr("data-href");
     }
     if(option.animation) {
-        Andrew_Animation();
+        AKjs_Animation();
     } else {
         $("*").removeAttr("data-animation");
     }
     if(option.fixedBar== true) {
-        Andrew_InputFocus();
+        AKjs_InputFocus();
     }
-    Andrew_mainHeight();
+    AKjs_mainHeight();
     $(window).resize(function(){
-        Andrew_mainHeight();
+        AKjs_mainHeight();
     });
-    setTimeout(function () {
-        $("main").not("aside main").addClass("ak-display");
-    }, 500);
 }
 
-/*-----------------------------------------------Andrew_Router------------------------------------------*/
-function Andrew_Router(setting) {
+/*-----------------------------------------------AKjs_Router------------------------------------------*/
+function AKjs_Router(setting) {
     var option = $.extend({
             Router: false,
             FileFormat: ".html",
@@ -139,8 +136,9 @@ function Andrew_Router(setting) {
         });
         $(window).bind('hashchange', function () {
             var page = "hashchange";
+            var PrevScrollTop = $("#ak-scrollview").scrollTop();
             Router_Ajax(option,page);
-            Andrew_mainHeight();
+            AKjs_mainHeight();
             if (option.Animate) {
                 $("animation").after("<aside id='ak-aside' class='fix_full' />");
                 var asideEle = $("#ak-aside");
@@ -163,6 +161,7 @@ function Andrew_Router(setting) {
                     $("animation").removeClass();
                     asideEle.html($(animationEle).html());
                 }
+                asideEle.find("scrollview").scrollTop(PrevScrollTop);
                 asideEle.find('[class^="defer_"]').addClass("defer_none");
                 asideEle.find('[class*=" defer_"]').addClass("defer_none");
                 asideEle.find("footer").addClass("dis_opa_0");
@@ -181,7 +180,7 @@ function Andrew_Router(setting) {
                     "top": "auto",
                     "bottom": 0,
                 });
-                $("footer").find(".h_au").removeClass("h_au");
+                $("footer").not("aside footer").find(".h_au").removeClass("h_au");
                 setTimeout(function () {
                     $("header, footer").not("aside header, aside footer").removeAttr("style");
                     asideEle.find("footer").removeClass("dis_opa_0");
@@ -200,12 +199,12 @@ function Andrew_Router(setting) {
             }
         });
         function Router_Ajax(option,page) {
-            Andrew_UserAgent();
-            Andrew_RegsInput();
-            Andrew_RegularExpression();
+            AKjs_UserAgent();
+            AKjs_RegsInput();
+            AKjs_RegularExp();
             if (document.location.hash.substring(1) != "") {
                 if (page == "hashchange") {
-                    $("#ak-main").animate({"scrollTop": 0}, 100);
+                    $("#ak-scrollview").animate({"scrollTop": 0}, 100);
                     $("body").children("div").remove();
                     setTimeout(function () {
                         $("main .ak-mask").not("aside main .ak-mask").remove();
@@ -250,7 +249,14 @@ function Andrew_Router(setting) {
                 });
                 var htmlobj_text = $(htmlobj.responseText);
                 if (htmlobj_text.prop("localName") == "template") {
-                    var main_tmpl = htmlobj_text.html().replace('<ak-main', '<scrollview id="ak-main"').replace('</ak-main>', '</scrollview>').replace(/class=/g, 'data-temp='+new Date().getTime()+' class=');
+                    main_tmpl = htmlobj_text.html().replace(/class=/g, 'data-temp='+new Date().getTime()+' class=');
+                    var tmpl_scrollview = new RegExp("\\<ak-scrollview");
+                    if (tmpl_scrollview.test(main_tmpl)) {
+                        main_tmpl = htmlobj_text.html().replace('<ak-scrollview', '<scrollview id="ak-scrollview"').replace('</ak-scrollview>', '</scrollview>').replace('<ak-main', '<div id="ak-main"').replace('</ak-main>', '</div>');
+                    } else {
+                        main_tmpl = htmlobj_text.html().replace('<ak-main', '<div id="ak-main"><scrollview id="ak-scrollview"').replace('</ak-main>', '</scrollview></div>');
+                    }
+
                     if (typeof(Storage) !== "undefined") {
                         localStorage.setItem("Retrieve", $("body").html());
                         record = localStorage.getItem("Retrieve");
@@ -296,15 +302,15 @@ function Andrew_Router(setting) {
                         $("<style id='akjs_style' data-temp='"+new Date().getTime()+"' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
                     }
                     if (option.Parameter) {
-                        Andrew_HashSharp(true,true);
+                        AKjs_HashSharp(true,true);
                     } else {
-                        Andrew_HashSharp(true,false);
+                        AKjs_HashSharp(true,false);
                     }
                 },1000);
             }
         }
         function Router_Settings() {
-            Andrew_Animation();
+            AKjs_Animation();
             $("form").each(function(){
                 if ($(this).attr("data-submit") != "true") {
                     $(this).attr("onsubmit","return false");
@@ -367,8 +373,8 @@ function Andrew_Router(setting) {
     }
 }
 
-/*-----------------------------------------------Andrew_Menu--------------------------------------------*/
-function Andrew_Menu(setting) {
+/*-----------------------------------------------AKjs_Menu--------------------------------------------*/
+function AKjs_Menu(setting) {
     var option = $.extend({
             active_color: "",
             menu_icon: new Array(),
@@ -415,8 +421,8 @@ function Andrew_Menu(setting) {
     }
 }
 
-/*-----------------------------------------------Andrew_UserAgent------------------------------------------*/
-function Andrew_UserAgent() {
+/*-----------------------------------------------AKjs_UserAgent------------------------------------------*/
+function AKjs_UserAgent() {
     var terminal = navigator.userAgent.toLowerCase();
     var browser = window.navigator.userAgent;
     var explorer = window.navigator.appVersion;
@@ -441,8 +447,8 @@ function Andrew_UserAgent() {
     Oslanguage = (navigator.browserLanguage || navigator.language).toLowerCase();
 }
 
-/*-----------------------------------------------Andrew_RegsInput------------------------------------------*/
-function Andrew_RegsInput() {
+/*-----------------------------------------------AKjs_RegsInput------------------------------------------*/
+function AKjs_RegsInput() {
     Regs_email = /^[0-9a-zA-Z_]+@[0-9a-zA-Z_]+[\.]{1}[0-9a-zA-Z]+[\.]?[0-9a-zA-Z]+$/;
     Regs_mobile = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/;
     Regs_url = /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i;
@@ -455,9 +461,9 @@ function Andrew_RegsInput() {
     Regs_pwdBefit = /^\w+$/;
 }
 
-/*-----------------------------------------------Andrew_InputFocus--------------------------------------*/
-function Andrew_InputFocus() {
-    Andrew_UserAgent();
+/*-----------------------------------------------AKjs_InputFocus--------------------------------------*/
+function AKjs_InputFocus() {
+    AKjs_UserAgent();
     $('main input[type="text"],main input[type="password"],main input[type="number"], main input[type="tel"], main input[type="email"],main textarea').on('focus', function() {
         var focus = this;
         header_scrollIntoView(focus);
@@ -499,7 +505,7 @@ function Andrew_InputFocus() {
             }
             if ($("footer").not("aside footer").length > 0) {
                 $("footer").not("aside footer").css({
-                    "margin-bottom": Andrew_GetScrollTop()
+                    "margin-bottom": AKjs_GetScrollTop()
                 });
             }
         }
@@ -529,8 +535,8 @@ function Andrew_InputFocus() {
     function header_scrollIntoView(focus) {
         if (IsIphone || IsIpad) {
             setTimeout(function () {
-                $('#ak-main').animate({
-                    scrollTop: $('#ak-main').scrollTop()
+                $('#ak-scrollview').animate({
+                    scrollTop: $('#ak-scrollview').scrollTop()
                 },100);
                 $("main").not("aside main").addClass("vh_100");
                 $("footer").not("aside footer").addClass("dis_opa_0");
@@ -538,7 +544,7 @@ function Andrew_InputFocus() {
             if ($("header").not("aside header").length > 0) {
                 setTimeout(function () {
                     $("header").not("aside header").animate({
-                        "margin-top": Andrew_GetScrollTop()
+                        "margin-top": AKjs_GetScrollTop()
                     });
                 }, 300);
                 $("main").not("aside main").on({
@@ -563,8 +569,8 @@ function Andrew_InputFocus() {
     }
 }
 
-/*-----------------------------------------------Andrew_GetScrollTop--------------------------------------*/
-function Andrew_GetScrollTop() {
+/*-----------------------------------------------AKjs_GetScrollTop--------------------------------------*/
+function AKjs_GetScrollTop() {
     var scrollTop=0;
     if(document.documentElement&&document.documentElement.scrollTop){
         scrollTop=document.documentElement.scrollTop;
@@ -574,8 +580,8 @@ function Andrew_GetScrollTop() {
     return scrollTop;
 }
 
-/*-----------------------------------------------Andrew_Responsive------------------------------------------*/
-function Andrew_Responsive(setting) {
+/*-----------------------------------------------AKjs_Responsive------------------------------------------*/
+function AKjs_Responsive(setting) {
     var option = $.extend({
             resizeCallback: function () {
             }
@@ -603,14 +609,14 @@ function Andrew_Responsive(setting) {
     };
 }
 
-/*-----------------------------------------------Andrew_mainHeight--------------------------------------*/
-function Andrew_mainHeight() {
-    Andrew_Back.listen(function(){
+/*-----------------------------------------------AKjs_mainHeight--------------------------------------*/
+function AKjs_mainHeight() {
+    AKjs_Back.listen(function(){
         if ($("animation").length > 0) {
             $("animation").attr("data-router", "slideLeft");
         }
     });
-    Andrew_UserAgent();
+    AKjs_UserAgent();
     $("form").each(function(){
         if ($(this).attr("data-submit") == "false") {
             $(this).attr("onsubmit","return false");
@@ -618,10 +624,31 @@ function Andrew_mainHeight() {
         $(this).removeAttr("data-submit");
     });
     if ($("main").not("aside main").children("#ak-main").length === 0) {
-        $("main").not("aside main").children().not("dialog").wrapAll("<scrollview id=\"ak-main\"></scrollview>");
+        $("main").not("aside main").children().not("dialog").wrapAll("<div id=\"ak-main\"><scrollview id=\"ak-scrollview\"></scrollview></div>");
+    } else {
+        if ($("#ak-scrollview").length < 1) {
+            $("main").not("aside main").children("#ak-main").children().wrapAll("<scrollview id=\"ak-scrollview\"></scrollview>");
+        }
+    }
+    if ($("#ak-scrollview").length > 0) {
+        if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
+            var header_h = 0;
+        } else {
+            var header_h = $("header").not("aside header").outerHeight();
+        }
+        if ($("footer").not("aside footer").hasClass("dis_none_im") || $("footer").not("aside footer").length === 0) {
+            var footer_h = 0;
+        } else {
+            var footer_h = $("footer").not("aside footer").outerHeight();
+        }
+        setTimeout(function() {
+            $("#ak-scrollview").css({
+                "height": $(window).height() - $("#ak-scrollview").offset().top - footer_h
+            });
+        },300);
     }
     if (IsMobile) {
-        $("#ak-main, textarea").removeClass("scrollbar");
+        $("#ak-scrollview, textarea").removeClass("scrollbar");
         $(".bar_hide").removeClass("scrollbar_hide");
         $("body").addClass("fix_full");
         document.oncontextmenu = function(){
@@ -629,7 +656,7 @@ function Andrew_mainHeight() {
             return false;
         };
     } else {
-        $("#ak-main, textarea").addClass("scrollbar");
+        $("#ak-scrollview, textarea").addClass("scrollbar");
         $(".bar_hide").addClass("scrollbar_hide");
         $("body").removeClass("fix_full");
         document.oncontextmenu = function(){
@@ -637,12 +664,12 @@ function Andrew_mainHeight() {
             return true;
         };
     }
-    $("#ak-main").on({
-        touchstart: function(ak) {
+    $("*[data-bounce=true]").on({
+        touchstart: function (ak) {
             touchStartY = ak.originalEvent.touches[0].clientY;
             touchStartX = ak.originalEvent.touches[0].clientX;
         },
-        touchmove: function(ak) {
+        touchmove: function (ak) {
             var touchEndY = ak.originalEvent.changedTouches[0].clientY,
                 touchEndX = ak.originalEvent.changedTouches[0].clientX,
                 yDiff = touchStartY - touchEndY,
@@ -650,22 +677,22 @@ function Andrew_mainHeight() {
             if (Math.abs(xDiff) < Math.abs(yDiff)) {
                 if ($(this).scrollTop() === 0) {
                     if (yDiff < 5) {
-                        $("main").not("aside main").css({
-                            "transform": "translate3d(0,"+Math.abs(yDiff)/4+"px,0)"
+                        $(this).css({
+                            "transform": "translate3d(0," + Math.abs(yDiff) / 4 + "px,0)"
                         });
                     }
-                } else if($(this).scrollTop() === $(this).prop("scrollHeight") - $(this).height()) {
+                } else if ($(this).scrollTop() === $(this).prop("scrollHeight") - $(this).height()) {
                     if (yDiff > 5) {
-                        $("main").not("aside main").css({
-                            "transform": "translate3d(0,-"+Math.abs(yDiff)/4+"px,0)"
+                        $(this).css({
+                            "transform": "translate3d(0,-" + Math.abs(yDiff) / 4 + "px,0)"
                         });
                     }
                 }
             }
         },
-        touchend: function(ak) {
-            $("main").not("aside main").css({
-                "transform": "none"
+        touchend: function (ak) {
+            $(this).css({
+                "transform": "translate3d(0,0,0)"
             });
         }
     });
@@ -725,8 +752,8 @@ function Andrew_mainHeight() {
     },10000);
 }
 
-/*-----------------------------------------------Andrew_Ajax--------------------------------------------*/
-function Andrew_Ajax(setting) {
+/*-----------------------------------------------AKjs_Ajax--------------------------------------------*/
+function AKjs_Ajax(setting) {
     var option = $.extend({
             to: "",
             type: "POST",
@@ -751,8 +778,8 @@ function Andrew_Ajax(setting) {
             if ($(option.to)) {
                 $(option.to).html(htmlobj.responseText);
             }
-            Andrew_HashSharp(true,false);
-            Andrew_Animation();
+            AKjs_HashSharp(true,false);
+            AKjs_Animation();
         },
         error: function (error) {
             if ($(option.to)) {
@@ -763,8 +790,8 @@ function Andrew_Ajax(setting) {
     });
 }
 
-/*-----------------------------------------------Andrew_Animation------------------------------------------*/
-function Andrew_Animation() {
+/*-----------------------------------------------AKjs_Animation------------------------------------------*/
+function AKjs_Animation() {
     $('*[data-animation]').each(function(){
         var ani_ele = $(this);
         var ani_s = new RegExp("s");
@@ -799,118 +826,120 @@ function Andrew_Animation() {
     });
 }
 
-/*-----------------------------------------------Andrew_HashSharp------------------------------------------*/
-function Andrew_HashSharp(form,key) {
+/*-----------------------------------------------AKjs_HashSharp------------------------------------------*/
+function AKjs_HashSharp(form,key) {
     var hash_sharp = new RegExp("#");
     var hash_dot = new RegExp("./");
     var hash_sharps = new RegExp("\\?#");
     var hash_script = new RegExp("javascript");
     var question_mark =  new RegExp("\\?");
     var akTime =  new RegExp("akjs=");
-    var href = $('*[data-href]');
-    Andrew_UserAgent();
-    href.addClass("pointer");
-    if (Andrew_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
-        if (IsIphone || IsIpad) {
-            href.unbind('touchstart');
-            delegate = "touchstart";
-        } else {
-            href.unbind('click');
-            delegate = "click";
-        }
-        href.bind(delegate, function (andrew) {
-            andrew.preventDefault();
-            var _this = $(this);
-            if ($("animation").length > 0) {
-                $("animation").attr("data-router","");
-                if (_this.parents("footer")[0] != undefined) {
-                    $("animation").attr("data-router","");
-                } else if (_this.attr("data-back") === "true" || hash_script.test(_this.attr("data-href"))){
-                    $("animation").attr("data-router","slideLeft");
-                } else {
-                    $("animation").attr("data-router","slideRight");
-                }
-            }
-            if (_this.parents("header")[0] != undefined || _this.parents("footer")[0] != undefined) {
-                data_href();
-            } else {
-                setTimeout(function() {
-                    data_href();
-                },100);
-            }
-            function data_href() {
-                if (hash_sharp.test(_this.attr("data-href"))) {
-                    if(question_mark.test(_this.attr("data-href"))){
-                        if(akTime.test(_this.attr("data-href"))){
-                            if (key) {
-                                document.location.href=Andrew_changeURLArg(_this.attr("data-href"),"akjs",new Date().getTime());
-                            } else {
-                                document.location.href=_this.attr("data-href");
-                            }
-                        }else{
-                            if (key) {
-                                document.location.href=_this.attr("data-href") + '&akjs=' + new Date().getTime();
-                            } else {
-                                document.location.href=_this.attr("data-href");
-                            }
-                        }
-                    }else{
-                        if (key) {
-                            document.location.href=_this.attr("data-href") + '?akjs=' + new Date().getTime();
-                        } else {
-                            document.location.href=_this.attr("data-href");
-                        }
-                    }
-                    _this.attr("data-href",_this.attr("data-href").replace("#",""));
-                } else if (hash_script.test(_this.attr("data-href"))){
-                    document.location.replace(_this.attr("data-href"));
-                } else if (hash_sharps.test(document.location.href)) {
-                    document.location.replace(document.location.href.replace("?#", "#"));
-                } else {
-                    if(question_mark.test(_this.attr("data-href"))){
-                        if(akTime.test(_this.attr("data-href"))){
-                            if (key) {
-                                document.location.href=Andrew_changeURLArg("#"+_this.attr("data-href"),"akjs",new Date().getTime());
-                            } else {
-                                document.location.href="#"+_this.attr("data-href");
-                            }
-                        }else{
-                            if (key) {
-                                document.location.href="#"+_this.attr("data-href") + '&akjs=' + new Date().getTime();
-                            } else {
-                                document.location.href="#"+_this.attr("data-href");
-                            }
-                        }
-                    } else if (hash_dot.test(_this.attr("data-href"))) {
-                        var str = document.location.hash;
-                        var index = str.lastIndexOf("\/");
-                        str = str.substring(0,index)+"/";
-                        str = str.replace("#","");
-                        if (key) {
-                            document.location.href="#"+_this.attr("data-href").replace("./", str) + '?akjs=' + new Date().getTime();
-                        } else {
-                            document.location.href="#"+_this.attr("data-href").replace("./", str);
-                        }
-                    } else {
-                        if (key) {
-                            document.location.href="#"+_this.attr("data-href") + '?akjs=' + new Date().getTime();
-                        } else {
-                            document.location.href="#"+_this.attr("data-href");
-                        }
-                    }
-                }
-            }
-        });
+    var href_main = $("main *[data-href]");
+    var href_not_main = $('*[data-href]').not("main *[data-href]");
+    AKjs_UserAgent();
+    $('*[data-href]').addClass("pointer");
+    if (IsIphone || IsIpad) {
+        href_not_main.unbind('touchstart');
+        delegate = "touchstart";
     } else {
-        href.bind('click',function(andrew) {
-            andrew.preventDefault();
-            document.location.href= $(this).attr("data-href");
-        });
+        href_not_main.unbind('click');
+        delegate = "click";
+    }
+    href_main.bind("click", function (andrew) {
+        andrew.preventDefault();
+        var _this = $(this);
+        if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
+            data_href(_this);
+        } else {
+            document.location.href= _this.attr("data-href");
+        }
+    });
+    href_not_main.bind(delegate, function (andrew) {
+        andrew.preventDefault();
+        var _this = $(this);
+        if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
+            data_href(_this);
+        } else {
+            document.location.href= _this.attr("data-href");
+        }
+    });
+    function data_href(_this) {
+        var $this = _this;
+        if ($("animation").length > 0) {
+            $("animation").attr("data-router","");
+            if (_this.parents("footer")[0] != undefined) {
+                $("animation").attr("data-router","");
+            } else if (_this.attr("data-back") === "true" || hash_script.test(_this.attr("data-href"))){
+                $("animation").attr("data-router","slideLeft");
+            } else {
+                $("animation").attr("data-router","slideRight");
+            }
+        }
+        if (hash_sharp.test($this.attr("data-href"))) {
+            if(question_mark.test($this.attr("data-href"))){
+                if(akTime.test($this.attr("data-href"))){
+                    if (key) {
+                        document.location.href=AKjs_changeURLArg($this.attr("data-href"),"akjs",new Date().getTime());
+                    } else {
+                        document.location.href=$this.attr("data-href");
+                    }
+                }else{
+                    if (key) {
+                        document.location.href=$this.attr("data-href") + '&akjs=' + new Date().getTime();
+                    } else {
+                        document.location.href=$this.attr("data-href");
+                    }
+                }
+            }else{
+                if (key) {
+                    document.location.href=$this.attr("data-href") + '?akjs=' + new Date().getTime();
+                } else {
+                    document.location.href=$this.attr("data-href");
+                }
+            }
+            $this.attr("data-href",$this.attr("data-href").replace("#",""));
+        } else if (hash_script.test($this.attr("data-href"))){
+            document.location.replace($this.attr("data-href"));
+        } else if (hash_sharps.test(document.location.href)) {
+            document.location.replace(document.location.href.replace("?#", "#"));
+        } else {
+            if(question_mark.test($this.attr("data-href"))){
+                if(akTime.test($this.attr("data-href"))){
+                    if (key) {
+                        document.location.href=AKjs_changeURLArg("#"+$this.attr("data-href"),"akjs",new Date().getTime());
+                    } else {
+                        document.location.href="#"+$this.attr("data-href");
+                    }
+                }else{
+                    if (key) {
+                        document.location.href="#"+$this.attr("data-href") + '&akjs=' + new Date().getTime();
+                    } else {
+                        document.location.href="#"+$this.attr("data-href");
+                    }
+                }
+            } else if (hash_dot.test($this.attr("data-href"))) {
+                var str = document.location.hash;
+                var index = str.lastIndexOf("\/");
+                str = str.substring(0,index)+"/";
+                str = str.replace("#","");
+                if (key) {
+                    document.location.href="#"+$this.attr("data-href").replace("./", str) + '?akjs=' + new Date().getTime();
+                } else {
+                    document.location.href="#"+$this.attr("data-href").replace("./", str);
+                }
+            } else {
+                if (key) {
+                    document.location.href="#"+$this.attr("data-href") + '?akjs=' + new Date().getTime();
+                } else {
+                    document.location.href="#"+$this.attr("data-href");
+                }
+            }
+        }
     }
     if (form == true) {
         $('form[action]').each(function () {
             var hash_sharp = new RegExp("#");
-            if (Andrew_getUrlParam('akjs') && hash_sharp.test(document.location.hash)) {
+            if (AKjs_getUrlParam('akjs') && hash_sharp.test(document.location.hash)) {
                 if (!hash_sharp.test($(this).attr("action"))) {
                     if (key) {
                         $(this).attr("action", "#/" + $(this).attr("action") + '?akjs=' + new Date().getTime());
@@ -923,8 +952,8 @@ function Andrew_HashSharp(form,key) {
     }
 }
 
-/*-----------------------------------------------Andrew_RegularExpression------------------------------------------*/
-function Andrew_RegularExpression() {
+/*-----------------------------------------------AKjs_RegularExp------------------------------------------*/
+function AKjs_RegularExp() {
     $('input[data-type]').each(function(){
         if ($(this).prop("dataset").type == "number") {
             $(this).attr("pattern","[0-9]*");
@@ -982,9 +1011,9 @@ function Andrew_RegularExpression() {
     });
 }
 
-/*-----------------------------------------------Andrew_Include------------------------------------------*/
-function Andrew_Include(url,important) {
-    Andrew_pathURL();
+/*-----------------------------------------------Include------------------------------------------*/
+function AKjs_Include(url,important) {
+    AKjs_pathURL();
     var type_js = new RegExp(".js");
     var type_css = new RegExp(".css");
     var type_remote = new RegExp("http");
@@ -1033,15 +1062,15 @@ function Andrew_Include(url,important) {
     }
 }
 
-/*-----------------------------------------------Andrew_Location-------------------------------------------*/
-function Andrew_Location(url,setting) {
+/*-----------------------------------------------AKjs_Location-------------------------------------------*/
+function AKjs_Location(url,setting) {
     var option = $.extend({
             type: "",
             time: 0,
             router:""
         },
         setting);
-    Andrew_UserAgent();
+    AKjs_UserAgent();
     function AniSetting() {
         if ($("animation").length > 0) {
             if (option.router === "right") {
@@ -1133,8 +1162,8 @@ function Andrew_Location(url,setting) {
     }
 }
 
-/*-----------------------------------------------Andrew_getUrlParam-------------------------------------------*/
-function Andrew_getUrlParam(name) {
+/*-----------------------------------------------AKjs_getUrlParam-------------------------------------------*/
+function AKjs_getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var u = document.location.search.substr(1);
     //if(u == ''){
@@ -1147,8 +1176,8 @@ function Andrew_getUrlParam(name) {
     if (r != null) return unescape(r[2]); return null;
 }
 
-/*-----------------------------------------------Andrew_changeURLArg-------------------------------------------*/
-function Andrew_changeURLArg(url,arg,val) {
+/*-----------------------------------------------AKjs_changeURLArg-------------------------------------------*/
+function AKjs_changeURLArg(url,arg,val) {
     var pattern = arg + '=([^&]*)';
     var replaceText = arg + '=' + val;
     if (url.match(pattern)) {
@@ -1165,8 +1194,8 @@ function Andrew_changeURLArg(url,arg,val) {
     return url + '\n' + arg + '\n' + val;
 }
 
-/*-----------------------------------------------Andrew_Params------------------------------------------*/
-function Andrew_Params(number) {
+/*-----------------------------------------------AKjs_Params------------------------------------------*/
+function AKjs_Params(number) {
     var hash_sharp = new RegExp("\\#/");
     if (hash_sharp.test(document.location.hash)) {
         hash_arr = (location.hash || "").replace(/^\#/, '').split("&");
@@ -1180,17 +1209,17 @@ function Andrew_Params(number) {
     return params[0][number];
 }
 
-/*-----------------------------------------------Andrew_setCookie------------------------------------------*/
-function Andrew_setCookie(cname,cvalue,exdays) {
+/*-----------------------------------------------AKjs_setCookie------------------------------------------*/
+function AKjs_setCookie(cname,cvalue,exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
-    //Andrew_setCookie("username", user, 365);
+    //AKjs_setCookie("username", user, 365);
 }
 
-/*-----------------------------------------------Andrew_getCookie------------------------------------------*/
-function Andrew_getCookie(cname) {
+/*-----------------------------------------------AKjs_getCookie------------------------------------------*/
+function AKjs_getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i=0; i<ca.length; i++) {
@@ -1199,16 +1228,16 @@ function Andrew_getCookie(cname) {
         if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
     }
     return "";
-    //var user = Andrew_getCookie("username");
+    //var user = AKjs_getCookie("username");
 }
 
-/*-----------------------------------------------Andrew_delCookie------------------------------------------*/
-function Andrew_delCookie(name) {
-    Andrew_setCookie(name, "", -1);
+/*-----------------------------------------------AKjs_delCookie------------------------------------------*/
+function AKjs_delCookie(name) {
+    AKjs_setCookie(name, "", -1);
 }
 
-/*-----------------------------------------------Andrew_Unicode------------------------------------------*/
-function Andrew_Unicode(str) {
+/*-----------------------------------------------AKjs_Unicode------------------------------------------*/
+function AKjs_Unicode(str) {
     var out, i, len, c;
     out = "";
     len = str.length;
@@ -1228,8 +1257,8 @@ function Andrew_Unicode(str) {
     return out;
 }
 
-/*-----------------------------------------------Andrew_htmlEncode------------------------------------------*/
-function Andrew_htmlEncode(str) {
+/*-----------------------------------------------AKjs_htmlEncode------------------------------------------*/
+function AKjs_htmlEncode(str) {
     var s = "";
     if (str.length == 0) return "";
     s = str.replace(/&/g, ">");
@@ -1242,8 +1271,8 @@ function Andrew_htmlEncode(str) {
     return s;
 }
 
-/*-----------------------------------------------Andrew_htmlDecode------------------------------------------*/
-function Andrew_htmlDecode(str) {
+/*-----------------------------------------------AKjs_htmlDecode------------------------------------------*/
+function AKjs_htmlDecode(str) {
     var s = "";
     if (str.length == 0) return "";
     s = str.replace(/>/g, "&");
@@ -1256,16 +1285,16 @@ function Andrew_htmlDecode(str) {
     return s;
 }
 
-/*-----------------------------------------------Andrew_FileFormat------------------------------------------*/
-function Andrew_FileFormat(filename) {
+/*-----------------------------------------------AKjs_FileFormat------------------------------------------*/
+function AKjs_FileFormat(filename) {
     var d=/\.[^\.]+$/.exec(filename);
     var ext = new String(d);
     var s = ext.toLowerCase();
     return s;
 }
 
-/*-----------------------------------------------Andrew_DateFormat------------------------------------------*/
-function Andrew_DateFormat(date,format) {
+/*-----------------------------------------------AKjs_DateFormat------------------------------------------*/
+function AKjs_DateFormat(date,format) {
     if (date.constructor === Date) {
         var d = date;
     }else if (date.constructor === String) {
@@ -1314,8 +1343,8 @@ function Andrew_DateFormat(date,format) {
     });
 }
 
-/*-----------------------------------------------Andrew_Plugin------------------------------------------*/
-function Andrew_Plugin(setting,css) {
+/*-----------------------------------------------AKjs_Plugin------------------------------------------*/
+function AKjs_Plugin(setting,css) {
     $.ajax({
         type:'GET',
         url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
@@ -1330,8 +1359,8 @@ function Andrew_Plugin(setting,css) {
     }
 }
 
-/*-----------------------------------------------Andrew_pathURL------------------------------------------*/
-function Andrew_pathURL() {
+/*-----------------------------------------------AKjs_pathURL------------------------------------------*/
+function AKjs_pathURL() {
     var js_index = js_folder.lastIndexOf("\/");
     var js_Path = js_folder.substring(0, js_index);
     var real_index = js_Path.lastIndexOf("\/");
@@ -1340,8 +1369,8 @@ function Andrew_pathURL() {
 ak_scripts = document.scripts;
 js_folder = ak_scripts[ak_scripts.length - 1].src.substring(0, ak_scripts[ak_scripts.length - 1].src.lastIndexOf("/") + 1);
 
-/*-----------------------------------------------Andrew_Back------------------------------------------*/
-!function(Andrew_Back){
+/*-----------------------------------------------AKjs_Back------------------------------------------*/
+(function(AKjs_Back){
     var STATE = 'ak-back';
     var element;
     var onPopState = function(event){
@@ -1363,5 +1392,5 @@ js_folder = ak_scripts[ak_scripts.length - 1].src.substring(0, ak_scripts[ak_scr
         window.addEventListener('popstate', onPopState);
         this.listen = listen;
         record(STATE);
-    }.call(window[Andrew_Back] = window[Andrew_Back] || {});
-}('Andrew_Back');
+    }.call(window[AKjs_Back] = window[AKjs_Back] || {});
+}('AKjs_Back'));
