@@ -236,7 +236,6 @@ function AKjs_Router(setting) {
                     cache: false,
                     success: function () {
                         option.success(document.location.hash.substring(1));
-                        $("header, aside, footer").removeClass("dis_none_im");
                     },
                     error: function () {
                         option.error(document.location.hash.substring(1));
