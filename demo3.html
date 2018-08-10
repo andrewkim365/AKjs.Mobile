@@ -31,7 +31,7 @@
 
   <!--main元素里面必须有id="ak-main"才能正常运行，当前元素是内容区域的容器。-->
   <scrollview id="ak-main">
-    <div class="plug_waterfall plug_lazyload module mt_3 mb_3 wm_96 defer_25">
+    <div class="plug_waterfall module mt_3 mb_3 wm_96">
     </div>
   </scrollview>
   <!--ak-main End-->
@@ -282,10 +282,10 @@
             isFadeIn: true, //是否开启浅入效果 （追加元素中的class必须有ak-fadeIn才有效果）
             Callback: function(ele) {
                 var data = {"data": [
-                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
-                ]};
+                        { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
+                    ]};
                 var str = "";
-                var templ = '<figure class="ak-fadeIn"><img src="./img/{{src}}" /></figure>'
+                var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
 
                 for(var i = 0; i < data.data.length; i++) {
                     str += templ.replace("{{src}}", data.data[i].src);
@@ -294,19 +294,15 @@
                 var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
                 ele.parent().append(wdropload);
                 $(str).appendTo(ele);
-                setTimeout(function() {
-                    ele.removeClass("defer_25");
-                    $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
-                },1000);
             },
             ajaxCallback: function(ele, success, end) { //数据加载回调入口
                 success();
                 /*数据设置*/
                 var data = {"data": [
-                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
-                ]};
+                        { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
+                    ]};
                 var str = "";
-                var templ = '<figure class="ak-fadeIn"><img src="./img/{{src}}" /></figure>'
+                var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
 
                 for(var i = 0; i < data.data.length; i++) {
                     str += templ.replace("{{src}}", data.data[i].src);
