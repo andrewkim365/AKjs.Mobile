@@ -138,6 +138,7 @@ function AKjs_Router(setting) {
             var page = "hashchange";
             var PrevScrollTop = $("#ak-scrollview").scrollTop();
             Router_Ajax(option,page);
+            AKjs_mainHeight();
             if (option.Animate) {
                 $("animation").after("<aside id='ak-aside' class='fix_full' />");
                 var asideEle = $("#ak-aside");
@@ -271,7 +272,6 @@ function AKjs_Router(setting) {
                         $("#ak-main").remove();
                         throw new Error("Sorry! The outer layer of the \"<ak-main></ak-main>\" element can not have other elements!");
                     }
-                    AKjs_mainHeight();
                 } else {
                     throw new Error("Sorry! The lack of \"<template></template>\" elements!");
                 }
