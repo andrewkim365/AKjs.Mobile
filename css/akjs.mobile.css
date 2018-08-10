@@ -13125,6 +13125,7 @@ animation {
     position: fixed;
     width: 100%;
     height: 100%;
+    min-height: calc(100% + 1px);
     top: 0;
     left: 0;
     z-index: 2;
@@ -13161,7 +13162,6 @@ animation, header, footer {
 #ak-main, ak-main {
     width: 100%;
     height: inherit;
-    min-height: calc(100% + 1px);
 }
 #ak-scrollview, scrollview {
     overflow: auto;
