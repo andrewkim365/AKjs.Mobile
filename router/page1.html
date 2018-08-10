@@ -903,7 +903,7 @@
 </template>
 
 <script type="text/javascript">
-    //引入Andrew插件的区域
+    //引入AKjs功能插件的区域
 
     /*-----------------------------------------------AKjs_Slider 使用方法-------------------------------------------*/
     $(function() {
@@ -1147,8 +1147,8 @@
                 title: "提示", //弹窗的标题文字
                 button_ok: "确定", //弹窗的确定按钮文字
                 icon: "warning", //图标类型（warning，error，info，question，success）
-                animateIn: "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn: "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     console.log(res);
                 }
@@ -1163,8 +1163,8 @@
                 button_ok: "确定", //弹窗的确定按钮文字
                 button_cancel: "取消", //弹窗的取消按钮文字
                 icon: "question", //图标类型（warning，error，info，question，success）
-                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     console.log(res);
@@ -1193,8 +1193,8 @@
                 inputClass: "c_gray_777 border bor_gray_ddd h_3em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
                 placeholder:"请输入姓名", //设置输入框的提示文字
                 required: true, //弹窗后的输入框设置为是否必填（true，false）
-                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     input.val(res); //插入内容
@@ -1219,8 +1219,8 @@
                 inputClass: "c_gray_777 border bor_gray_ddd h_6em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
                 placeholder:"请输入提问内容", //设置输入框的提示文字
                 required: true, //弹窗后的输入框设置为是否必填（true，false）
-                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
                     ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置，耗时)
                     $("#plug_prompt_textarea_view ul").append("<li  class=\"c_gray_777 bor_bottom bor_gray_ddd\">"+res+"</li>"); //插入内容
@@ -1240,8 +1240,8 @@
             AKjs_Popupwin({
                 dom: "#plug_NavMenuWin", //弹窗内容的布局
                 position: "top", //位置类型(top，bottom，left，right，middle)
-                effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
-                effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+                effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+                effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
                 hasMask: true, //是否开启遮罩层背景 (true / false)
                 maskPosition: 4, //Mask的z-index数值
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
@@ -1463,8 +1463,8 @@
                     AKjs_Popupwin({ //调用弹窗插件
                         dom: "#plug_filterWin", //弹窗内容的布局
                         position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
-                        effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
-                        effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
+                        effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：akjs.animate.css)
+                        effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：akjs.animate.css)
                         hasMask: true, //是否开启遮罩层背景 (true / false)
                         maskPosition: 1, //Mask的z-index数值
                         closeBtn: "#plug_filterWin", //关闭弹窗按钮
@@ -1648,8 +1648,8 @@
                     button_ok: "确定", //弹窗的确定按钮文字
                     button_cancel: "取消", //弹窗的取消按钮文字
                     icon: "question", //图标类型（warning，error，info，question，success）
-                    animateIn : "slideInDown ani_05s", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-                    animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+                    animateIn : "slideInDown ani_05s", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                    animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                     onSubmit:function(){
                         ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                         ele.remove();//删除当前元素
