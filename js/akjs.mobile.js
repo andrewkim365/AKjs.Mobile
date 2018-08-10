@@ -1012,7 +1012,7 @@ function AKjs_RegularExp() {
     });
 }
 
-/*-----------------------------------------------Include------------------------------------------*/
+/*-----------------------------------------------AKjs_Include------------------------------------------*/
 function AKjs_Include(url,important) {
     AKjs_pathURL();
     var type_js = new RegExp(".js");
