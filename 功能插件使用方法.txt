@@ -12,7 +12,7 @@ $(function () {
        WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
        Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
        fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
-       animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：andrew.animate.css
+       animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
        Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
        Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
    });
@@ -275,8 +275,8 @@ $(function(){
            title: "提示", //弹窗的标题文字
            button_ok: "确定", //弹窗的确定按钮文字
            icon: "warning", //图标类型（warning，error，info，question，success）
-           animateIn: "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+           animateIn: "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
            onSubmit:function(res){ //点击确定按钮后的回调
                console.log(res);
            }
@@ -291,8 +291,8 @@ $(function(){
            button_ok: "确定", //弹窗的确定按钮文字
            button_cancel: "取消", //弹窗的取消按钮文字
            icon: "question", //图标类型（warning，error，info，question，success）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
            onSubmit:function(res){ //点击确定按钮后的回调
                ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                console.log(res);
@@ -321,8 +321,8 @@ $(function(){
            inputClass: "c_gray_777 border bor_gray_ddd h_3em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
            placeholder:"请输入姓名", //设置输入框的提示文字
            required: true, //弹窗后的输入框设置为是否必填（true，false）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
            onSubmit:function(res){ //点击确定按钮后的回调
                ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                input.val(res); //插入内容
@@ -347,8 +347,8 @@ $(function(){
            inputClass: "c_gray_777 border bor_gray_ddd h_6em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
            placeholder:"请输入提问内容", //设置输入框的提示文字
            required: true, //弹窗后的输入框设置为是否必填（true，false）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
            onSubmit:function(res){ //点击确定按钮后的回调
                ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置，耗时)
                $("#plug_prompt_textarea_view ul").append("<li  class=\"c_gray_777 bor_bottom bor_gray_ddd\">"+res+"</li>"); //插入内容
@@ -368,8 +368,8 @@ $(function(){
         AKjs_Popupwin({
             dom: "#plug_NavMenuWin", //弹窗内容的布局
             position: "top", //位置类型(top，bottom，left，right，middle)
-            effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
-            effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+            effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+            effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
             hasMask: true, //是否开启遮罩层背景 (true / false)
             maskPosition: 4, //Mask的z-index数值
             closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
@@ -591,8 +591,8 @@ $(function(){
                 AKjs_Popupwin({ //调用弹窗插件
                     dom: "#plug_filterWin", //弹窗内容的布局
                     position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
-                    effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：andrew.animate.css)
-                    effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：andrew.animate.css)
+                    effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：akjs.animate.css)
+                    effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：akjs.animate.css)
                     hasMask: true, //是否开启遮罩层背景 (true / false)
                     maskPosition: 1, //Mask的z-index数值
                     closeBtn: "#plug_filterWin", //关闭弹窗按钮
@@ -777,8 +777,8 @@ $(function() {
            button_ok: "确定", //弹窗的确定按钮文字
            button_cancel: "取消", //弹窗的取消按钮文字
            icon: "question", //图标类型（warning，error，info，question，success）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：andrew.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：andrew.animate.css)
+           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
            onSubmit:function(){
                ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                ele.remove();//删除当前元素
@@ -1244,8 +1244,8 @@ $(function(){
        AKjs_Popupwin({
            dom: "#plug_ShareWin", //弹窗内容的布局
            position: "bottom", //位置类型(top，bottom，left，right，middle)
-           effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：andrew.animate.css)
-           effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：andrew.animate.css)
+           effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+           effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
            hasMask: true, //是否开启遮罩层背景 (true / false)
            maskPosition: 4, //Mask的z-index数值
            closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
