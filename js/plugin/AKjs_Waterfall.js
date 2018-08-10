@@ -28,8 +28,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         _init: function () {
             var $this = this;
             this.options.Callback(this.$element);
+            this.$element.addClass("dis_opa_0");
             setTimeout(function() {
                 $this._positionAll();
+                if (!$this.$element.hasClass("dis_opa_0")) {
+                    $(".ak-waterfall-down").addClass("dis_none").removeClass("abs top_0 w_100").remove();
+                }
             },1000);
             $(window).resize(function(){
                 $this._positionAll();
@@ -58,7 +62,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 minHeight,
                 minIndex;
             this.colHeightArray = [];
-            this.$element.addClass("ak-waterfall");
+            this.$element.addClass("ak-waterfall").removeClass("dis_opa_0");
             this._getColumnCount();
             $item.each(function(index) {
                     if(index < $this.cols) {
