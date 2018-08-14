@@ -13139,7 +13139,7 @@ animation img {
     -webkit-animation:defer 2s forwards;
     animation:defer 2s forwards;
 }
-animation, header, footer {
+animation, header, footer, main, #ak-main, scrollview, #ak-scrollview, #ak-aside, #ak-main-record, .ak-ErrorPage {
     -o-transform: translateZ(0);
     -ms-transform: translateZ(0);
     -moz-transform: translateZ(0);
