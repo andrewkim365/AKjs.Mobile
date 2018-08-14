@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Slider------------------------------------------*/
@@ -18,6 +18,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 arrShow: true,
                 dotClass:"",
                 arrClass:"",
+                CustomHeight: false,
                 ActiveClass: "bg_title",
                 afterSlider: function() {}
             },
@@ -51,7 +52,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
                 for (i = 1; i <= SliderSize; i++) {
                     if (index == i) {
-                        SliderLi.eq(index - 1).addClass("dis_block_im")
+                        SliderLi.eq(index - 1).addClass("dis_block_im");
+                        if (self.options.CustomHeight) {
+                            setTimeout(function () {
+                                if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
+                                } else {
+                                    var img_h = SliderLi.eq(index - 1).find("img").prop("height");
+                                    SliderLi.eq(index - 1).css({"height": img_h});
+                                    SliderLi.eq(index - 1).find("*").css({"height": img_h});
+                                    sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                                    ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                                }
+                            }, 200);
+                        }
                     }
                 }
                 if (self.options.dotShow) {
@@ -290,6 +303,16 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 function() {
                     self.clickable = true
                 });
+                if (self.options.CustomHeight) {
+                    if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
+                    } else {
+                        var img_h = SliderLi.eq(index - 1).find("img").prop("height");
+                        SliderLi.eq(index - 1).css({"height": img_h});
+                        SliderLi.eq(index - 1).find("*").css({"height": img_h});
+                        sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                        ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                    }
+                }
                 self.options.afterSlider(index);
                 dots_li.removeClass(self.options.ActiveClass);
                 dots_li.eq(index - 1).addClass(self.options.ActiveClass);
