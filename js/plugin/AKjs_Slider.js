@@ -9,6 +9,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         self.$element = ele,
             self.defaults = {
                 fullpage: false,
+                UpDown: false,
                 start: 1,
                 speed: 500,
                 interval: 5000,
@@ -38,17 +39,30 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var index = self.options.start;
             var styleSetting = function() {
                 if (self.options.arrShow) {
-                    var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
+                    if (self.options.UpDown) {
+                        var arrElement = '<button type="button" class="ak-arr_prev">&and;</button><button type="button" class="ak-arr_next">&or;</button>';
+                    } else {
+                        var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
+                    }
                     if ($(ele).children("button").length < 1) {
                         ele.append(arrElement);
                     }
                     ele.find("button").addClass(self.options.arrClass);
-                    ele.find("button.ak-arr_prev").css({
-                        "left": ele.find("button.ak-arr_prev").outerWidth()/2
-                    });
-                    ele.find("button.ak-arr_next").css({
-                        "right": ele.find("button.ak-arr_next").outerWidth()/2
-                    });
+                    if (self.options.UpDown) {
+                        ele.find("button.ak-arr_prev").css({
+                            "top": ele.find("button.ak-arr_prev").outerWidth()/2
+                        });
+                        ele.find("button.ak-arr_next").css({
+                            "bottom": ele.find("button.ak-arr_next").outerWidth()/2
+                        });
+                    } else {
+                        ele.find("button.ak-arr_prev").css({
+                            "left": ele.find("button.ak-arr_prev").outerWidth()/2
+                        });
+                        ele.find("button.ak-arr_next").css({
+                            "right": ele.find("button.ak-arr_next").outerWidth()/2
+                        });
+                    }
                 }
                 for (i = 1; i <= SliderSize; i++) {
                     if (index == i) {
@@ -79,26 +93,45 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     var dotElement = '<ol>' + dot + "</ol>";
                     if ($(ele).children("ol").length < 1) {
                         ele.append(dotElement);
+                        if (self.options.UpDown) {
+                            $(ele).children("ol").addClass("bottom_au right_0 mr_1em");
+                        } else {
+                            $(ele).children("ol").find("li").addClass("fl");
+                        }
                     }
                 }
                 ele.addClass("ak-Slider");
                 setTimeout(function () {
                     if (self.options.arrShow) {
-                        var arrOffset = (ele.outerHeight() - ele.find("button").outerHeight()) / 2;
-                        if (ele.hasClass("h_fill")) {
-                            ele.find("button").css("top", $(window).height()/2 - ele.find("button").outerHeight() / 2+ "px");
+                        if (self.options.UpDown) {
+                            var arrOffset = (ele.outerWidth() - ele.find("button").outerWidth()) / 2;
+                            ele.find("button").css("left", arrOffset + "px");
                         } else {
-                            ele.find("button").css("top", arrOffset + "px");
+                            var arrOffset = (ele.outerHeight() - ele.find("button").outerHeight()) / 2;
+                            if (ele.hasClass("h_fill")) {
+                                ele.find("button").css("top", $(window).height()/2 - ele.find("button").outerHeight() / 2+ "px");
+                            } else {
+                                ele.find("button").css("top", arrOffset + "px");
+                            }
                         }
                     }
                     if (self.options.dotShow) {
                         var dots = ele.children("ol");
-                        dots.find("li").addClass(self.options.dotClass);
-                        var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
-                        var dotOffset = (ele.outerWidth() - dotWidth) / 2;
-                        dots.css({
-                            "left": dotOffset + "px"
-                        });
+                        if (self.options.UpDown) {
+                            dots.find("li").addClass(self.options.dotClass).removeClass("fl");
+                            var dotHeight = (SliderSize + 1) * dots.find("li").eq(0).outerHeight();
+                            var dotOffset = (ele.outerHeight() - dotHeight) / 2;
+                            dots.css({
+                                "top": dotOffset + "px"
+                            });
+                        } else {
+                            dots.find("li").addClass(self.options.dotClass);
+                            var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
+                            var dotOffset = (ele.outerWidth() - dotWidth) / 2;
+                            dots.css({
+                                "left": dotOffset + "px"
+                            });
+                        }
                     }
                 }, 200);
             };
@@ -177,6 +210,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         return false;
                     }
                 });
+                var win_h = $(window).height();
+                SliderLi.css({"height": win_h});
+                sliderInder.css({"height": win_h});
+                ele.css({"height": win_h});
             }
             SliderLi.on({
                 touchstart: function(es) {
@@ -188,35 +225,61 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         touchEndX = es.originalEvent.changedTouches[0].clientX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
-                    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                        if (xDiff > 10) {
-                            if (index >= SliderSize) {
-                                if (self.options.loopPlay) {
-                                    index = 1;
+                    if (self.options.UpDown) {
+                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                            if (yDiff > 10) {
+                                if (index >= SliderSize) {
+                                    if (self.options.loopPlay) {
+                                        index = 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    index += 1;
                                     self.moveTo(index, "ak-arr_next");
                                 }
                             } else {
-                                index += 1;
-                                self.moveTo(index, "ak-arr_next");
-                            }
-                        } else {
-                            if (index == 1) {
-                                if (self.options.loopPlay) {
-                                    index = SliderSize;
+                                if (index == 1) {
+                                    if (self.options.loopPlay) {
+                                        index = SliderSize;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                } else {
+                                    index -= 1;
                                     self.moveTo(index, "ak-arr_prev");
                                 }
-                            } else {
-                                index -= 1;
-                                self.moveTo(index, "ak-arr_prev");
                             }
                         }
-                    }
-                    if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                        /*if (yDiff > 5) {
-                            es.preventDefault();
-                        } else {
-                            es.preventDefault();
-                        }*/
+                    } else {
+                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                            if (xDiff > 10) {
+                                if (index >= SliderSize) {
+                                    if (self.options.loopPlay) {
+                                        index = 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    index += 1;
+                                    self.moveTo(index, "ak-arr_next");
+                                }
+                            } else {
+                                if (index == 1) {
+                                    if (self.options.loopPlay) {
+                                        index = SliderSize;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                } else {
+                                    index -= 1;
+                                    self.moveTo(index, "ak-arr_prev");
+                                }
+                            }
+                        }
+                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                            /*if (yDiff > 5) {
+                                es.preventDefault();
+                            } else {
+                                es.preventDefault();
+                            }*/
+                        }
                     }
                     touchStartY = null;
                     touchStartX = null
@@ -226,6 +289,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         touchEndX = es.originalEvent.changedTouches[0].clientX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
+                    if (self.options.UpDown) {
+                        es.preventDefault();
+                    }
                     /*if (self.options.loopPlay) {
                         if (Math.abs(xDiff) > Math.abs(yDiff)) {
                             es.preventDefault()
@@ -245,26 +311,52 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         touchEndX = es.screenX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
-                    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                        if (xDiff > 10) {
-                            if (index >= SliderSize) {
-                                if (self.options.loopPlay) {
-                                    index = 1;
+                    if (self.options.UpDown) {
+                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                            if (yDiff > 10) {
+                                if (index >= SliderSize) {
+                                    if (self.options.loopPlay) {
+                                        index = 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    index += 1;
                                     self.moveTo(index, "ak-arr_next");
                                 }
                             } else {
-                                index += 1;
-                                self.moveTo(index, "ak-arr_next");
-                            }
-                        } else {
-                            if (index == 1) {
-                                if (self.options.loopPlay) {
-                                    index = SliderSize;
+                                if (index == 1) {
+                                    if (self.options.loopPlay) {
+                                        index = SliderSize;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                } else {
+                                    index -= 1;
                                     self.moveTo(index, "ak-arr_prev");
                                 }
+                            }
+                        }
+                    } else {
+                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                            if (xDiff > 10) {
+                                if (index >= SliderSize) {
+                                    if (self.options.loopPlay) {
+                                        index = 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    index += 1;
+                                    self.moveTo(index, "ak-arr_next");
+                                }
                             } else {
-                                index -= 1;
-                                self.moveTo(index, "ak-arr_prev");
+                                if (index == 1) {
+                                    if (self.options.loopPlay) {
+                                        index = SliderSize;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                } else {
+                                    index -= 1;
+                                    self.moveTo(index, "ak-arr_prev");
+                                }
                             }
                         }
                     }
@@ -285,24 +377,45 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var SliderLi = sliderInder.children("li");
             if (clickable) {
                 //self.clickable = false;
-                var offset = ele.width();
+                if (self.options.UpDown) {
+                    var offset = ele.height();
+                } else {
+                    var offset = ele.width();
+                }
                 if (dir == "ak-arr_prev") {
                     offset = -1 * offset
                 }
-                sliderInder.children(".dis_block_im").stop().animate({
-                    left: -offset
-                },
-                self.options.speed,
-                function() {
-                    $(this).removeClass("dis_block_im")
-                });
-                SliderLi.eq(index - 1).css("left", offset + "px").addClass("dis_block_im").stop().animate({
-                    left: 0
-                },
-                self.options.speed,
-                function() {
-                    self.clickable = true
-                });
+                if (self.options.UpDown) {
+                    sliderInder.children(".dis_block_im").stop().animate({
+                            top: -offset
+                        },
+                        self.options.speed,
+                        function() {
+                            $(this).removeClass("dis_block_im")
+                        });
+                    SliderLi.eq(index - 1).css("top", offset + "px").addClass("dis_block_im").stop().animate({
+                            top: 0
+                        },
+                        self.options.speed,
+                        function() {
+                            self.clickable = true
+                        });
+                } else {
+                    sliderInder.children(".dis_block_im").stop().animate({
+                            left: -offset
+                        },
+                        self.options.speed,
+                        function() {
+                            $(this).removeClass("dis_block_im")
+                        });
+                    SliderLi.eq(index - 1).css("left", offset + "px").addClass("dis_block_im").stop().animate({
+                            left: 0
+                        },
+                        self.options.speed,
+                        function() {
+                            self.clickable = true
+                        });
+                }
                 if (self.options.CustomHeight) {
                     if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
                     } else {
