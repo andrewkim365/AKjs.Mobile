@@ -57,9 +57,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             setTimeout(function () {
                                 if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
                                 } else {
-                                    var img_h = SliderLi.eq(index - 1).find("img").prop("height");
-                                    SliderLi.eq(index - 1).css({"height": img_h});
-                                    SliderLi.eq(index - 1).find("*").css({"height": img_h});
+                                    var custom_h = SliderLi.eq(index - 1).find("*[data-height=true]").prop("height");
+                                    SliderLi.eq(index - 1).css({"height": custom_h});
+                                    SliderLi.eq(index - 1).find("*").css({"height": custom_h});
                                     sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
                                     ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
                                 }
@@ -306,9 +306,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (self.options.CustomHeight) {
                     if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
                     } else {
-                        var img_h = SliderLi.eq(index - 1).find("img").prop("height");
-                        SliderLi.eq(index - 1).css({"height": img_h});
-                        SliderLi.eq(index - 1).find("*").css({"height": img_h});
+                        var custom_h = SliderLi.eq(index - 1).find("*[data-height=true]").prop("height");
+                        SliderLi.eq(index - 1).css({"height": custom_h});
+                        SliderLi.eq(index - 1).find("*").css({"height": custom_h});
                         sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
                         ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
                     }
