@@ -471,12 +471,12 @@ function AKjs_InputFocus() {
     $('main input[type="text"],main input[type="password"],main input[type="number"], main input[type="tel"], main input[type="email"],main textarea').on('blur', function() {
         Input_BlurScrollTop();
     });
-    $("footer input").focus(function (andrew) {
-        andrew.preventDefault();
+    $("footer input").focus(function (ak) {
+        ak.preventDefault();
         $("header, footer").bind({
-            touchmove: function (andrew) {
-                andrew.preventDefault();
-                andrew.stopPropagation();
+            touchmove: function (ak) {
+                ak.preventDefault();
+                ak.stopPropagation();
             }
         });
         if (IsIphone || IsIpad) {
@@ -617,6 +617,7 @@ function AKjs_mainHeight() {
         }
     });
     AKjs_UserAgent();
+    AKjs_stopElastic();
     $("form").each(function(){
         if ($(this).attr("data-submit") == "false") {
             $(this).attr("onsubmit","return false");
@@ -750,6 +751,26 @@ function AKjs_mainHeight() {
         $('[class^="defer_"]').addClass("defer_none");
         $('[class*=" defer_"]').addClass("defer_none");
     },10000);
+    function AKjs_stopElastic() {
+        $(document).not("#ak-scrollview").on('scroll.elasticity', function (ak) {
+            ak.preventDefault();
+        }).on('touchmove.elasticity', function (ak) {
+            ak.preventDefault();
+        });
+        var lastY;
+        $("#ak-scrollview").on('touchstart', function (ak) {
+            lastY = ak.originalEvent.changedTouches[0].clientY;
+        });
+        $("#ak-scrollview").on('touchmove', function (ak) {
+            var y = ak.originalEvent.changedTouches[0].clientY;
+            var st = $(this).scrollTop();
+            if (y >= lastY && st <= 10) {
+                lastY = y;
+                ak.preventDefault();
+            }
+            lastY = y;
+        });
+    }
 }
 
 /*-----------------------------------------------AKjs_Ajax--------------------------------------------*/
@@ -845,8 +866,8 @@ function AKjs_HashSharp(form,key) {
         href_not_main.unbind('click');
         delegate = "click";
     }
-    href_main.bind("click", function (andrew) {
-        andrew.preventDefault();
+    href_main.bind("click", function (ak) {
+        ak.preventDefault();
         var _this = $(this);
         if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
             data_href(_this);
@@ -854,8 +875,8 @@ function AKjs_HashSharp(form,key) {
             document.location.href= _this.attr("data-href");
         }
     });
-    href_not_main.bind(delegate, function (andrew) {
-        andrew.preventDefault();
+    href_not_main.bind(delegate, function (ak) {
+        ak.preventDefault();
         var _this = $(this);
         if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
             data_href(_this);
