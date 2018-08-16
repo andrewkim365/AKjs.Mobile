@@ -4,7 +4,7 @@
         <button type="button" class="right_0 w_25 pr_3 text_al_r text_12em" id="plug_NavMenu"><i class="text_14em icon-zy_shaixuan"></i></button>
     </ak-header>
 
-    <ak-main data-bounce="true">
+    <ak-main data-bounce="false">
 
         <!----------AKjs_Typeahead---------->
         <form action="#" method="get">
@@ -1992,29 +1992,26 @@
 
     /*-----------------------------------------------AKjs_MultiDate 使用方法-------------------------------------------*/
     $(function(){
-        $("#plug_multidate").AKjs_MultiDate({
-            language:{
-                month : ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
-                weeks : [ "日", "一", "二", "三", "四", "五", "六" ]
+        $('#plug_multidate').AKjs_MultiDate({
+            format: 'yyyy-mm-dd hh:ii', //日期格式
+            closeBtn: "关闭", //关闭按钮 （不输入代表不显示该按钮）
+            todayBtn: "", //今天按钮 （不输入代表不显示该按钮）
+            isMask: true,
+            pickTime: true, //是否开启时间功能
+            language: {
+                month: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
+                weeks: ["日", "一", "二", "三", "四", "五", "六"],
             },
-            format:"YYYY-MM-DD", //日期格式
-            minDate: $.nowDate(0), //0代表今天，-1代表昨天，-2代表前天，以此类推
-            okfun: function(obj){//点击确定后的回调,obj包含{ elem当前输入框ID, val当前选择的值, date当前的日期值}
-                console.log(obj.elem);     //得到当前输入框的ID
-                console.log(obj.val);      //得到日期生成的值，如：2017-06-16
-
-                //得到日期时间对象，range为false
-                console.log(obj.date);    //这里是对象
-                obj.date = {YYYY: 2017, MM: 10, DD: 18}
-
-                //开启区域选择，range为字符串 时才会返回一个日期时间数组对象。
-                console.log(obj.date);    //这里是数组
-                obj.date = [
-                    {YYYY: 2017, MM: 10, DD: 18},
-                    {YYYY: 2019, MM: 11, DD: 25}
-                ]
+            onRender: function (date,now) { //逻辑处理回调
+                return date.valueOf() < now.valueOf() ? 'disabled' : '';
             },
-            success:function(elem) {}//层弹出后的成功回调方法, elem当前输入框ID
+            okfun: function(val,elem){//val当前选择的值, elem当前输入框
+                console.log(val);
+                console.log(elem);
+            },
+            success:function(elem) {//层弹出后的成功回调方法, elem当前输入框
+                //console.log(elem);
+            }
         });
     });
 
