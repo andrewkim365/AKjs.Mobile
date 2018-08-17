@@ -27,6 +27,7 @@
 }
 .ak-MultiDate.ak-isMobile {
     width: 100%;
+    border:0;
 }
 .ak-MultiDate.ak-isMobile thead th, .ak-MultiDate.ak-isMobile thead td {
     height: 3em;
