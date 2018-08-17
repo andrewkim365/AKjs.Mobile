@@ -94,6 +94,6 @@
 .ak-MultiDate thead tr:first-child th, .ak-MultiDate tfoot tr:first-child th {
     cursor: pointer;
 }
-.ak-MultiDate thead tr:first-child th:active, .ak-MultiDate tfoot tr:first-child th:active, .ak-MultiDate tfoot button:active {
+.ak-MultiDate thead tr:first-child th:active, .ak-MultiDate tfoot button:active {
     background-color: #f9f9f9;
 }
