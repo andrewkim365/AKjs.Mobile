@@ -15,7 +15,7 @@ html, html * {
     font-size:12px;
 }
 .wrap {
-    width: 100%;
+    width: 94%;
     margin: 0 auto;
     position: relative;
 }
@@ -37,11 +37,6 @@ html, html * {
 @media screen and (min-width:1025px) {
     html, html * {
         font-size:24px;
-    }
-    .wrap {
-        width: 94%;
-        margin: 0 auto;
-        position: relative;
     }
 }
 .ak-screen, .ak-screen * {
