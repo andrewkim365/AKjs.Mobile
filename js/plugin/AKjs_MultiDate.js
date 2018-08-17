@@ -136,6 +136,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         if (this.isInline) {
             this.show();
         }
+        if (!this.closeBtn && !this.todayBtn) {
+            this.picker.find('tfoot').hide();
+        }
     };
     ak_MultiDate.prototype = {
         constructor: ak_MultiDate,
@@ -190,6 +193,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this.picker.slideDown();
                 $('#multi_mask').show();
                 this.success(this.element);
+                this.picker.bind({
+                    touchmove: function (e) {
+                        e.preventDefault();
+                    }
+                });
             }
             this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
             this.update();
@@ -336,6 +344,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             that.hide();
                         });
                     }
+                    $('#multi_mask').bind({
+                        touchmove: function (e) {
+                            e.preventDefault();
+                        }
+                    });
                 }
             } else {
                 this.picker.removeClass("ak-isMobile").css({
@@ -411,9 +424,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 today = new Date(),
                 titleFormat = this.language.titleFormat;
             // this.picker.find('.days thead th.date-switch').text(DateTimeGlobal.formatDate(new ak_UTCDate(year, month), titleFormat, this.language));
-            this.picker.find('.days thead th:eq(1)').text(year + ' / ' + this.language.month[month]);
-            this.picker.find('.hours thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
-            this.picker.find('.minutes thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
+            this.picker.find('.days thead th:eq(1) span').text(year + ' / ' + this.language.month[month]);
+            this.picker.find('.hours thead th:eq(1) span').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
+            this.picker.find('.minutes thead th:eq(1) span').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
             if (this.todayBtn) {
                 this.picker.find('tfoot .today').show().html(this.todayBtn);
             } else {
@@ -1192,12 +1205,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         headTemplate: '<thead>' +
             '<tr>' +
             '<th class="prev"><i class="icon-ln_fanhui_a"/></th>' +
-            '<th colspan="5" class="date-switch"></th>' +
+            '<th colspan="5" class="date-switch"><span class="c_title"></span></th>' +
             '<th class="next"><i class="icon-ln_qianjin_a"/></th>' +
             '</tr>' +
             '</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
-        footTemplate: '<tfoot><tr><th colspan="7"><button type="button" class="today c_title"></button><button type="button" class="close c_title"></button></th></tr></tfoot>'
+        footTemplate: '<tfoot><tr><th colspan="7"><fieldset><button type="button" class="close c_gray_777"></button><button type="button" class="today c_title"></button></fieldset></th></tr></tfoot>'
     };
     DateTimeGlobal.template = '<div class="ak-MultiDate">' +
         '<div class="minutes">' +
