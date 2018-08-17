@@ -88,7 +88,7 @@
 .ak-MultiDate thead tr:first-child {
     border-bottom: dashed 1px #dddddd;
 }
-.ak-MultiDate thead tr:first-child th.date-switch {
+.ak-MultiDate thead tr:first-child th.c_title {
     font-weight: normal;
 }
 .ak-MultiDate thead tr:first-child th, .ak-MultiDate tfoot tr:first-child th {
@@ -96,4 +96,7 @@
 }
 .ak-MultiDate thead tr:first-child th:active, .ak-MultiDate tfoot button:active {
     background-color: #f9f9f9;
+}
+.ak-MultiDate thead tr:first-child th.press:active {
+    background-color: transparent;
 }
