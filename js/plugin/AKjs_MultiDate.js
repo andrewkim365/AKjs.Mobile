@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-16
+Modification Date: 2018-08-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
@@ -388,7 +388,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var dowCnt = this.weekStart,
                 html = '<tr>';
             if (this.calendarWeeks) {
-                var cell = '<th class="cw">&nbsp;</th>';
+                var cell = '<th>&nbsp;</th>';
                 html += cell;
                 this.picker.find('.days thead tr:first-child').prepend(cell);
             }
@@ -423,10 +423,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 currentDate = this.date && this.date.valueOf(),
                 today = new Date(),
                 titleFormat = this.language.titleFormat;
-            // this.picker.find('.days thead th.date-switch').text(DateTimeGlobal.formatDate(new ak_UTCDate(year, month), titleFormat, this.language));
-            this.picker.find('.days thead th:eq(1) span').text(year + ' / ' + this.language.month[month]);
-            this.picker.find('.hours thead th:eq(1) span').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
-            this.picker.find('.minutes thead th:eq(1) span').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
+            // this.picker.find('.days thead th.c_title').text(DateTimeGlobal.formatDate(new ak_UTCDate(year, month), titleFormat, this.language));
+            this.picker.find('.days thead th:eq(1)').text(year + ' / ' + this.language.month[month]);
+            this.picker.find('.hours thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
+            this.picker.find('.minutes thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
             if (this.todayBtn) {
                 this.picker.find('tfoot .today').show().html(this.todayBtn);
             } else {
@@ -450,7 +450,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         var a = new Date(prevMonth.getUTCFullYear(), prevMonth.getUTCMonth(), prevMonth.getUTCDate() - prevMonth.getDay() + 10 - (this.weekStart && this.weekStart % 7 < 5 && 7)),
                             b = new Date(a.getFullYear(), 0, 4),
                             calWeek = ~~((a - b) / 864e5 / 7 + 1.5);
-                        html.push('<td class="cw">' + calWeek + '</td>');
+                        html.push('<td>' + calWeek + '</td>');
                     }
                 }
                 var nowTemp = new Date();
@@ -521,7 +521,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             html = '';
             year = parseInt(year / 10, 10) * 10;
-            var yearCont = this.picker.find('.years').find('th:eq(1)').text(year + '-' + (year + 9)).end().find('td');
+            var yearCont = this.picker.find('.years').find('th:eq(1)').addClass("press").text(year + '-' + (year + 9)).end().find('td');
             year -= 1;
             for (var i = -1; i < 11; i++) {
                 html += '<span class="year' + (i == -1 || i == 10 ? ' c_gray_ccc' : '') + (currentYear == year ? ' bg_title c_white' : '') + (year < startYear || year > endYear ? ' disabled' : '') + '">' + year + '</span>';
@@ -647,7 +647,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 switch (target[0].nodeName.toLowerCase()) {
                     case 'th':
                         switch (target[0].className) {
-                            case 'date-switch':
+                            case 'c_title':
                                 this.showMode(1);
                                 break;
                             case 'prev':
@@ -1205,7 +1205,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         headTemplate: '<thead>' +
             '<tr>' +
             '<th class="prev"><i class="icon-ln_fanhui_a"/></th>' +
-            '<th colspan="5" class="date-switch"><span class="c_title"></span></th>' +
+            '<th colspan="5" class="c_title"></th>' +
             '<th class="next"><i class="icon-ln_qianjin_a"/></th>' +
             '</tr>' +
             '</thead>',
