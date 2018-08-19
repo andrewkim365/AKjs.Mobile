@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180809 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180819 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -125,7 +125,7 @@ function AKjs_Router(setting) {
         });
         $(document).ready(function(){
             if (option.Animate) {
-                $("body").html("<animation>"+layout.responseText+"</animation>");
+                $("body").html("<animation id='ak-animation'>"+layout.responseText+"</animation>");
             } else {
                 $("body").html(layout.responseText);
             }
@@ -140,7 +140,7 @@ function AKjs_Router(setting) {
             Router_Ajax(option,page);
             AKjs_mainHeight();
             if (option.Animate) {
-                $("animation").after("<aside id='ak-aside' class='fix_full' />");
+                $("#ak-animation").after("<aside id='ak-aside' class='fix_full' />");
                 var asideEle = $("#ak-aside");
                 var asideRecord = $(aside_record);
                 var animationEle = {};
@@ -149,16 +149,16 @@ function AKjs_Router(setting) {
                         animationEle = asideRecord[i];
                     }
                 }
-                if ($("animation").prop("dataset").router == "slideLeft") {
+                if ($("#ak-animation").prop("dataset").router == "slideLeft") {
                     asideEle.addClass("animated slideOutRight ani_04s zindex_3");
-                    $("animation").addClass("filter_brig_096");
+                    $("#ak-animation").addClass("filter_brig_096");
                     asideEle.html($(animationEle).html());
-                } else if ($("animation").prop("dataset").router == "slideRight") {
+                } else if ($("#ak-animation").prop("dataset").router == "slideRight") {
                     asideEle.addClass("filter_brig_096");
-                    $("animation").addClass("animated slideInRight ani_05s");
+                    $("#ak-animation").addClass("animated slideInRight ani_05s");
                     asideEle.html($(animationEle).html());
                 } else {
-                    $("animation").removeClass();
+                    $("#ak-animation").removeClass();
                     asideEle.html($(animationEle).html());
                 }
                 asideEle.find("scrollview").scrollTop(PrevScrollTop);
@@ -186,8 +186,8 @@ function AKjs_Router(setting) {
                     asideEle.find("footer").removeClass("dis_opa_0");
                     asideEle.removeClass();
                     asideEle.remove();
-                    $("animation").removeClass();
-                    $("animation").attr("data-router","");
+                    $("#ak-animation").removeClass();
+                    $("#ak-animation").attr("data-router","");
                 }, 500);
                 option.changePage(document.location.hash.substring(1),$(animationEle).html());
             } else {
@@ -524,23 +524,23 @@ function AKjs_InputFocus() {
     function Input_BlurScrollTop(){
         $("main").not("aside main").unbind('touchstart');
         $("main").not("aside main").unbind('touchmove');
-        $("main").not("aside main").removeClass("vh_100");
-        $("footer").not("aside footer").removeClass("dis_opa_0");
         if ($("header").not("aside header").length > 0) {
             $("header").not("aside header").css({
                 "margin-top": 0
             });
         }
+        if (IsIphone || IsIpad) {
+            $("footer").not("aside footer").removeClass("dis_opa_0");
+            $("main").not("aside main").removeClass("h_100 mb_0");
+            $("#ak-animation").removeClass("abs w_100 ovh").removeAttr("style");
+            focus_Setting_mainHeight();
+        }
     }
     function header_scrollIntoView(focus) {
         if (IsIphone || IsIpad) {
-            setTimeout(function () {
-                $('#ak-scrollview').animate({
-                    scrollTop: $('#ak-scrollview').scrollTop()
-                },100);
-                $("main").not("aside main").addClass("vh_100");
-                $("footer").not("aside footer").addClass("dis_opa_0");
-            }, 100);
+            $("#ak-scrollview").animate({
+                scrollTop: $('#ak-scrollview').scrollTop()
+            },100);
             if ($("header").not("aside header").length > 0) {
                 setTimeout(function () {
                     $("header").not("aside header").animate({
@@ -555,6 +555,15 @@ function AKjs_InputFocus() {
                     }
                 });
             }
+            $("footer").not("aside footer").addClass("dis_opa_0");
+            $("main").not("aside main").addClass("h_100 mb_0");
+            $("#ak-animation").addClass("abs w_100 ovh").css({
+                height: $("#ak-scrollview").height() *2
+            });
+            focus_Setting_mainHeight();
+            $(window).animate({
+                scrollTop: 0
+            },100);
         } else if (IsAndroid) {
             if ($("header").not("aside header").length > 0) {
                 $("header").not("aside header").css({
@@ -566,6 +575,18 @@ function AKjs_InputFocus() {
                 //focus.scrollIntoViewIfNeeded();
             }, 100);
         }
+    }
+    function focus_Setting_mainHeight() {
+        if ($("footer").not("aside footer").hasClass("dis_opa_0") || $("footer").not("aside footer").hasClass("dis_none_im") || $("footer").not("aside footer").length === 0) {
+            var footer_h = 0;
+        } else {
+            var footer_h = $("footer").not("aside footer").outerHeight();
+        }
+        setTimeout(function() {
+            $("#ak-scrollview").css({
+                "height": $(window).height() - $("#ak-scrollview").offset().top - footer_h
+            });
+        },100);
     }
 }
 
@@ -612,8 +633,8 @@ function AKjs_Responsive(setting) {
 /*-----------------------------------------------AKjs_mainHeight--------------------------------------*/
 function AKjs_mainHeight() {
     AKjs_Back.listen(function(){
-        if ($("animation").length > 0) {
-            $("animation").attr("data-router", "slideLeft");
+        if ($("#ak-animation").length > 0) {
+            $("#ak-animation").attr("data-router", "slideLeft");
         }
     });
     AKjs_UserAgent();
@@ -886,14 +907,14 @@ function AKjs_HashSharp(form,key) {
     });
     function data_href(_this) {
         var $this = _this;
-        if ($("animation").length > 0) {
-            $("animation").attr("data-router","");
+        if ($("#ak-animation").length > 0) {
+            $("#ak-animation").attr("data-router","");
             if (_this.parents("footer")[0] != undefined) {
-                $("animation").attr("data-router","");
+                $("#ak-animation").attr("data-router","");
             } else if (_this.attr("data-back") === "true" || hash_script.test(_this.attr("data-href"))){
-                $("animation").attr("data-router","slideLeft");
+                $("#ak-animation").attr("data-router","slideLeft");
             } else {
-                $("animation").attr("data-router","slideRight");
+                $("#ak-animation").attr("data-router","slideRight");
             }
         }
         if (hash_sharp.test($this.attr("data-href"))) {
@@ -1093,11 +1114,11 @@ function AKjs_Location(url,setting) {
         setting);
     AKjs_UserAgent();
     function AniSetting() {
-        if ($("animation").length > 0) {
+        if ($("#ak-animation").length > 0) {
             if (option.router === "right") {
-                $("animation").attr("data-router","slideRight");
+                $("#ak-animation").attr("data-router","slideRight");
             } else if (option.router === "left") {
-                $("animation").attr("data-router","slideLeft");
+                $("#ak-animation").attr("data-router","slideLeft");
             }
         }
     }
@@ -1124,8 +1145,8 @@ function AKjs_Location(url,setting) {
         case 'history':
             if (option.time) {
                 setTimeout(function () {
-                    if ($("animation").length > 0) {
-                        $("animation").attr("data-router", "slideLeft");
+                    if ($("#ak-animation").length > 0) {
+                        $("#ak-animation").attr("data-router", "slideLeft");
                     }
                     if (IsIphone || IsIpad) {
                         history.back(url);
@@ -1134,8 +1155,8 @@ function AKjs_Location(url,setting) {
                     }
                 }, option.time);
             } else {
-                if ($("animation").length > 0) {
-                    $("animation").attr("data-router", "slideLeft");
+                if ($("#ak-animation").length > 0) {
+                    $("#ak-animation").attr("data-router", "slideLeft");
                 }
                 if (IsIphone || IsIpad) {
                     history.back(url);

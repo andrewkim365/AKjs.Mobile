@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.3.9 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180809 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180819 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -13115,7 +13115,7 @@ filter_gray_0 {
 .ak-for >*:first-child, ak-header, ak-footer, ak-title, ak-menu-code, ak-page-code  {
     display: none !important;
 }
-animation {
+animation, #ak-animation {
     display: block;
     position: fixed;
     width: 100%;
@@ -13126,7 +13126,7 @@ animation {
     z-index: 2;
     background-color: inherit;
 }
-animation img {
+animation img, #ak-animation img {
     border-radius: inherit;
     opacity: 0;
     -o-animation:defer 2s forwards;
@@ -13134,7 +13134,7 @@ animation img {
     -webkit-animation:defer 2s forwards;
     animation:defer 2s forwards;
 }
-animation, header, footer, #ak-main, scrollview, #ak-scrollview, #ak-aside, #ak-main-record, .ak-ErrorPage {
+animation, #ak-animation, #ak-main, scrollview, #ak-scrollview, #ak-aside, #ak-main-record, header, footer, .ak-ErrorPage {
     -o-transform: translateZ(0);
     -ms-transform: translateZ(0);
     -moz-transform: translateZ(0);
