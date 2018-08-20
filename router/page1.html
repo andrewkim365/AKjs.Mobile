@@ -1712,6 +1712,9 @@
             btn_left: "abs top_0 left_0 bor_right bor_gray_ddd bg_white wh_24em icon-ln_jian_a", //数量减少按钮Class
             btn_right: "abs top_0 right_0 bor_left bor_gray_ddd bg_white wh_24em icon-ln_jia_a", //数量增加按钮Class
             maxNumber: 5, //设置最大数量限制(不使用限制请设为空值)
+            changeBack:function(val){ //回调获取实时输入的值
+                console.log(val);
+            },
             clickBack:function(num){ //回调获取当前的值
                 console.log(num);
             }

@@ -327,7 +327,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 offsetLeft = (offset.left + width) - this.picker.width();
             }
             if (IsMobile) {
-                this.picker.addClass("ak-isMobile").css({
+                this.picker.removeClass("dis_none").addClass("ak-isMobile").css({
                     bottom: 0,
                     top: "auto",
                     left: 0,
@@ -1212,7 +1212,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
         footTemplate: '<tfoot><tr><th colspan="7"><fieldset><button type="button" class="close c_gray_777"></button><button type="button" class="today c_title"></button></fieldset></th></tr></tfoot>'
     };
-    DateTimeGlobal.template = '<div class="ak-MultiDate">' +
+    DateTimeGlobal.template = '<div class="ak-MultiDate dis_none">' +
         '<div class="minutes">' +
         '<table>' +
         DateTimeGlobal.headTemplate +

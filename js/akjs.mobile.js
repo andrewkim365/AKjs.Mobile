@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180819 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180820 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -129,8 +129,6 @@ function AKjs_Router(setting) {
             } else {
                 $("body").html(layout.responseText);
             }
-        });
-        $("main").not("aside main").ready(function(){
             Router_Ajax(option);
             option.changePage(document.location.hash.substring(1));
         });
@@ -370,6 +368,9 @@ function AKjs_Router(setting) {
                 $("footer").not("aside footer").addClass("dis_none_im").removeClass("dis_block_im");
             }
         }
+        $("html").attr("data-router","akjs");
+    } else {
+        $("html").removeAttr("data-router");
     }
 }
 
@@ -561,9 +562,6 @@ function AKjs_InputFocus() {
                 height: $("#ak-scrollview").height() *2
             });
             focus_Setting_mainHeight();
-            $(window).animate({
-                scrollTop: 0
-            },100);
         } else if (IsAndroid) {
             if ($("header").not("aside header").length > 0) {
                 $("header").not("aside header").css({
@@ -1387,18 +1385,20 @@ function AKjs_DateFormat(date,format) {
 
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
-    $.ajax({
-        type:'GET',
-        url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
-        async: false,
-        cache: false,
-        dataType:'script'
+    $(function () {
+        $.ajax({
+            type:'GET',
+            url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
+            async: false,
+            cache: false,
+            dataType:'script'
+        });
+        if (css) {
+            var css_url = js_folder + "plugin/css/" + setting + ".css";
+            $("head").find("link").filter("#"+setting).remove();
+            $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href='"+css_url+"?akjs="+new Date().getTime()+"' />");
+        }
     });
-    if (css) {
-        var css_url = js_folder + "plugin/css/" + setting + ".css";
-        $("head").find("link").filter("#"+setting).remove();
-        $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href='"+css_url+"?akjs="+new Date().getTime()+"' />");
-    }
 }
 
 /*-----------------------------------------------AKjs_pathURL------------------------------------------*/

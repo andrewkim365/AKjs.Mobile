@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Spinner-------------------------------------------*/
@@ -11,6 +11,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 btn_left: "",
                 btn_right: "",
                 maxNumber: 999,
+                changeBack: function() {},
                 clickBack:function(){
                 }
             },
@@ -51,6 +52,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (parseInt(it.val())<=1){
                     $(this).parent().children(".minus").attr("disabled",'disabled');
                 }
+                $(this).bind('input propertychange', function (e) {
+                    e.preventDefault();
+                    var lengthNum= parseInt(it.val());
+                    option.changeBack(lengthNum);
+                });
                 $(this).parent().children(".plus").unbind("click");
                 $(this).parent().children(".plus").on('click', function (e) {
                     e.preventDefault();

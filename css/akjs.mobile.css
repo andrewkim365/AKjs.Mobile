@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180819 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180820 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -41,6 +41,9 @@ html, html * {
 }
 .ak-screen, .ak-screen * {
     font-size:12px;
+}
+html, body, main {
+    height: 100%;
 }
 body,input,span,p,a {
     font-size:100%;
