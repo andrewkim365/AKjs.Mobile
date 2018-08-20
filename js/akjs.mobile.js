@@ -1395,8 +1395,8 @@ function AKjs_Plugin(setting,css) {
         });
         if (css) {
             var css_url = js_folder + "plugin/css/" + setting + ".css";
-            $("head").find("style").filter("#"+setting).remove();
-            $("head").find("link:first").before("<style type='text/css' id='"+setting+"'>@import url("+css_url+"?akjs="+new Date().getTime()+");</style>");
+            $("html").children("link").filter("#"+setting).remove();
+            $("html").append("<link rel='stylesheet' type='text/css' id='"+setting+"' href='"+css_url+"?akjs="+new Date().getTime()+"' />");
         }
     });
 }
