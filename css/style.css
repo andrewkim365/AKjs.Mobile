@@ -208,6 +208,7 @@ button.c_delete.bor_delete:active {
 body {
     background-color:#eeeeee;
     color:#333333;
+    overflow: hidden;
 }
 /*********************头部区域*********************/
 header {
@@ -243,6 +244,7 @@ header > button, header>* i {
 /******内容区域样式******/
 main {
     margin-top: 3.3em;
+    overflow: hidden;
 }
 
 /*********************模块布局结构*********************/
