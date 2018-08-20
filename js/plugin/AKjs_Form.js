@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Form--------------------------------------------*/
@@ -41,6 +41,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 }
                 option.butCallback(mbf,false);
+                document.activeElement.blur();
                 return false;
             });
             mbf.keyup(function (event) {

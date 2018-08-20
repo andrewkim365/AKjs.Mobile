@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_ButtonSubmit--------------------------------------------*/
@@ -22,6 +22,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (!_this.attr("disabled")) {
                         submit_setting(_this);
                     }
+                    document.activeElement.blur();
                 });
             } else {
                 btn.each(function(){
