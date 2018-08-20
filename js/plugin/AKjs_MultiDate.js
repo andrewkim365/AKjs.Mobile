@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-17
+Modification Date: 2018-08-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
@@ -230,7 +230,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this.isInput && this.element.val() ||
                 this.hasInput && this.element.find('input').val()
             ))
-            this.setValue();
+                this.setValue();
             this.element.trigger({
                 type: 'hide',
                 date: this.date
@@ -314,12 +314,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var fullOffsetTop = offset.top + height;
             } else {
                 if ($("#ak-scrollview").scrollTop() > 0) {
-                    var fullOffsetTop = offset.top + $("#ak-scrollview").scrollTop();
+                    var fullOffsetTop = offset.top + $("#ak-scrollview").scrollTop() - $("#ak-scrollview").offset().top;
                 } else {
-                    var fullOffsetTop = offset.top + height;
+                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top;
                 }
             }
-            var offsetLeft = offset.left;
+            var offsetLeft = offset.left - $("#ak-scrollview").offset().left;
             if ((fullOffsetTop + this.picker.outerHeight()) >= $("#ak-scrollview").scrollTop() + $(window).height()) {
                 fullOffsetTop = offset.top - this.picker.outerHeight();
             }
@@ -825,10 +825,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             dir = dir > 0 ? 1 : -1;
             if (mag == 1) {
                 test = dir == -1 ? function() {
-                        return new_date.getUTCMonth() == month;
-                    }: function() {
-                        return new_date.getUTCMonth() != new_month;
-                    };
+                    return new_date.getUTCMonth() == month;
+                }: function() {
+                    return new_date.getUTCMonth() != new_month;
+                };
                 new_month = month + dir;
                 new_date.setUTCMonth(new_month);
                 if (new_month < 0 || new_month > 11)

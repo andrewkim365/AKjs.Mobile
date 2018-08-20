@@ -12372,6 +12372,9 @@ text {
 .bor_in, .bor_ab_in:after, .bor_ab_in:before, .bor_cd_in > *, .bor_abcd_in > *:after, .bor_abcd_in > *:before {
     border-color:inherit !important;
 }
+.bor_tr, .bor_ab_tr:after, .bor_ab_tr:before, .bor_cd_tr > *, .bor_abcd_tr > *:after, .bor_abcd_tr > *:before {
+    border-color:transparent !important;
+}
 
 /*button background-color setting*/
 button.bg_gray_aaa:active {
