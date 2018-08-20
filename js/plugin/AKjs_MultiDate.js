@@ -84,9 +84,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             mousedown: $.proxy(this.mousedown, this)
         });
         if (this.closeBtn) {
-            this.picker.find('.close').show().html(this.closeBtn);
+            this.picker.find('.close').addClass("dis_block_im").text(this.closeBtn);
         } else {
-            this.picker.find('.close').hide().remove();
+            this.picker.find('.close').removeClass("dis_block_im").remove();
         }
         if (this.isInline) {
             this.picker.addClass('dis_block_im');
@@ -428,9 +428,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this.picker.find('.hours thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
             this.picker.find('.minutes thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
             if (this.todayBtn) {
-                this.picker.find('tfoot .today').show().html(this.todayBtn);
+                this.picker.find('tfoot .today').addClass("dis_block_im").text(this.todayBtn);
             } else {
-                this.picker.find('tfoot .today').hide().remove();
+                this.picker.find('tfoot .today').removeClass("dis_block_im").remove();
             }
             this.updateNavArrows();
             this.fillMonths();
@@ -1210,7 +1210,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             '</tr>' +
             '</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
-        footTemplate: '<tfoot><tr><th colspan="7"><fieldset><button type="button" class="close c_gray_777"></button><button type="button" class="today c_title"></button></fieldset></th></tr></tfoot>'
+        footTemplate: '<tfoot><tr><th colspan="7"><fieldset><button type="button" class="fl close c_gray_777"></button><button type="button" class="fr today c_title"></button></fieldset></th></tr></tfoot>'
     };
     DateTimeGlobal.template = '<div class="ak-MultiDate dis_none">' +
         '<div class="minutes">' +

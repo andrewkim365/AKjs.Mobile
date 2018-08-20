@@ -61,6 +61,7 @@
     line-height: 3.4em;
 }
 .ak-MultiDate tfoot button {
+    width: 100%;
     height: 100%;
     display: none;
     border-color: #dddddd;
