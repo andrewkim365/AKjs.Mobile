@@ -1390,13 +1390,13 @@ function AKjs_Plugin(setting,css) {
             type:'GET',
             url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
             async: false,
-            cache: false,
+            cache: true,
             dataType:'script'
         });
         if (css) {
             var css_url = js_folder + "plugin/css/" + setting + ".css";
-            $("head").find("link").filter("#"+setting).remove();
-            $("head").find("link:first").before("<link rel='stylesheet' type='text/css' id='"+setting+"' href='"+css_url+"?akjs="+new Date().getTime()+"' />");
+            $("head").find("style").filter("#"+setting).remove();
+            $("head").find("link:first").before("<style type='text/css' id='"+setting+"'>@import url("+css_url+"?akjs="+new Date().getTime()+");</style>");
         }
     });
 }
