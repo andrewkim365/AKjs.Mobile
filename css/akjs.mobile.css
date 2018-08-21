@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180820 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180821 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -44,6 +44,7 @@ html, html * {
 }
 html, body, main {
     overflow: hidden;
+    width: 100%;
     height: 100%;
 }
 body,input,span,p,a {
@@ -105,6 +106,7 @@ hr {
 img {
     border:0;
     vert-align: top;
+    vertical-align: middle;
 }
 img:active {
     opacity: 0.8 !important;

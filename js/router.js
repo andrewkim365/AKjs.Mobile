@@ -37,22 +37,7 @@ $(document).ready(function(){
                 AKjs_Include("http://echarts.baidu.com/dist/echarts.min.js"); //Echarts插件全局引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
                 AKjs_Include("js/data.js",true); //Json数据文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能。后面加 true 代表优先级引入的意思（important））
                 AKjs_Include("js/plugin.js"); //功能插件按需引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
-            }
-            $(function() {
-                /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
-                AKjs_Config({ //环境配置管理
-                    MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
-                    Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
-                    touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
-                    ButtonLink: true, //通过元素中加data-href属性的方式跳转界面。(使用超链接 true,不使用超链接 false）
-                    WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
-                    Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
-                    fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 (开启 true, 停用 false）
-                    animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
-                    Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
-                    Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-                });
-
+            } else {
                 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
                 if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
                     AKjs_Loader({
@@ -69,6 +54,21 @@ $(document).ready(function(){
                         //AKjs_Loader("destroy"); //关闭loading窗
                     }
                 },2000);
+            }
+            $(function() {
+                /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
+                AKjs_Config({ //环境配置管理
+                    MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
+                    Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
+                    touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
+                    ButtonLink: true, //通过元素中加data-href属性的方式跳转界面。(使用超链接 true,不使用超链接 false）
+                    WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
+                    Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
+                    fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 (开启 true, 停用 false）
+                    animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
+                    Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
+                    Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
+                });
 
                 /*-----------------------------------------------AKjs_Menu (底部菜单图标设置）使用方法-------------------------------------------*/
                 AKjs_Menu({ //底部菜单的图标以及文字样式变化设置

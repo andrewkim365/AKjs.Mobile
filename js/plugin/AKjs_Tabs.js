@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Tabs--------------------------------------------*/
@@ -35,10 +35,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 self.setData();
                 self.tabInital();
             },100);
-            $(window).resize(function(){
-                self.setData();
-                self.tabInital();
-            });
+            AKjs_UserAgent();
+            if (!IsMobile) {
+                $(window).resize(function(){
+                    self.setData();
+                    self.tabInital();
+                });
+            }
 
             this.$tab_list = this.$wrapper.children('nav').children('ul').children('li');
 

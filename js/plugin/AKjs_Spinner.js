@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-20
+Modification Date: 2018-08-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Spinner-------------------------------------------*/
@@ -33,10 +33,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
         function ak_sptFun() {
             spt.each(function(i) {
-                spt.wrap('<div class="'+option.btn_wrap+'"></div>');
-                spt.before('<button type="button" class="minus '+option.btn_left+'"></button>');
-                spt.before('<button type="button" class="plus '+option.btn_right+'"></button>');
-                spt.parent().css({
+                $(this).wrap('<div class="'+option.btn_wrap+'"></div>');
+                $(this).before('<button type="button" class="minus '+option.btn_left+'"></button>');
+                $(this).before('<button type="button" class="plus '+option.btn_right+'"></button>');
+                $(this).parent().css({
                     "overflow": "hidden",
                     "width": option.input_width,
                     "height": spt.parent().children("button").height(),
