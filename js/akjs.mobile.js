@@ -1385,7 +1385,14 @@ function AKjs_DateFormat(date,format) {
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
     $(function () {
-        setTimeout(function() {
+        if ($("html").attr("data-router")) {
+            setTimeout(function() {
+                jscssSetting();
+            },500);
+        } else {
+            jscssSetting();
+        }
+        function jscssSetting() {
             $.ajax({
                 type:'GET',
                 url: js_folder+"plugin/"+setting+".js?akjs="+new Date().getTime(),
@@ -1398,7 +1405,7 @@ function AKjs_Plugin(setting,css) {
                 $("head").children("style").filter("#"+setting).remove();
                 $("head").append("<style type='text/css' id='"+setting+"'>@import url('"+css_url+"?akjs="+new Date().getTime()+"');</style>");
             }
-        },500);
+        }
     });
 }
 
