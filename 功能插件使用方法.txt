@@ -1567,30 +1567,32 @@ $(function(){
 });
 
 /*-----------------------------------------------AKjs_GoTop (全局) 使用方法-------------------------------------------*/
-AKjs_GoTop({
-    dom: $("#ak-scrollview"), // 滑动区域
-    hide: true, //当页面不滚动时是否隐藏(true,false)
-    url: "./img/gotop.png", //图片路径
-    icon: "", //图标的Class
-    state: "bottom", //出现的位置(center, bottom)
-    height: "auto", //高 默认40px
-    width: "2.4em", //宽 默认40px
-    scrollTop: 50, //滚到什么位置出现 px
-    time: 500, //返回顶部多长时间 ms 默认500ms
-    hidetime: 1000, //图标隐藏的时间&刚开始淡入的时间 ms 默认1000ms
-    aimation: "animated bounceInDown", //出场动画 默认show（没有出场动画） 这个可以自定义
-    toTop: function () { //返回最顶部后的回调
-       //console.log("toTop");
-    },
-    toShow: function () { //按钮显示后的回调
-       //console.log("toShow");
-    },
-    toHide: function () { //按钮隐藏后的回调
-       //console.log("toHide");
-    },
-    toClick: function () { //按钮点击后的回调
-       //console.log("toClick");
-    }
+$(function () {
+  AKjs_GoTop({
+      dom: $("#ak-scrollview"), // 滑动区域
+      hide: true, //当页面不滚动时是否隐藏(true,false)
+      url: "./img/gotop.png", //图片路径
+      icon: "", //图标的Class
+      state: "bottom", //出现的位置(center, bottom)
+      height: "auto", //高 默认40px
+      width: "2.4em", //宽 默认40px
+      scrollTop: 50, //滚到什么位置出现 px
+      time: 500, //返回顶部多长时间 ms 默认500ms
+      hidetime: 1000, //图标隐藏的时间&刚开始淡入的时间 ms 默认1000ms
+      aimation: "animated bounceInDown", //出场动画 默认show（没有出场动画） 这个可以自定义
+      toTop: function () { //返回最顶部后的回调
+          //console.log("toTop");
+      },
+      toShow: function () { //按钮显示后的回调
+          //console.log("toShow");
+      },
+      toHide: function () { //按钮隐藏后的回调
+          //console.log("toHide");
+      },
+      toClick: function () { //按钮点击后的回调
+          //console.log("toClick");
+      }
+  });
 });
 
 /*-----------------------------------------------AKjs_MobileChat 使用方法-------------------------------------------*/
