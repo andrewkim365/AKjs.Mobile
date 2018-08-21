@@ -43,6 +43,7 @@ html, html * {
     font-size:12px;
 }
 html, body, main {
+    overflow: hidden;
     height: 100%;
 }
 body,input,span,p,a {

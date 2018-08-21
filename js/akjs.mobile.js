@@ -46,7 +46,7 @@ function AKjs_Config(setting) {
     if(option.Orientation== true) {
         window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
             if (window.orientation === 180 || window.orientation === 0) {
-                $("#ak-scrollview").addClass("scrolling_touch");;
+                $("#ak-scrollview").addClass("scrolling_touch");
                 $(".ak-landscape").hide().remove();
             } else if (window.orientation === 90 || window.orientation === -90 ){
                 $("input").blur();
@@ -59,7 +59,7 @@ function AKjs_Config(setting) {
     if(option.touchstart== true) {
         document.body.addEventListener('touchstart', function () {
         });
-        $("#ak-scrollview").addClass("scrolling_touch");;
+        $("#ak-scrollview").addClass("scrolling_touch");
     } else {
         $("*").removeClass("touchstart");
     }
@@ -130,7 +130,7 @@ function AKjs_Router(setting) {
                 $("body").html(layout.responseText);
             }
             Router_Ajax(option);
-            option.changePage(document.location.hash.substring(1));
+            option.changePage(document.location.hash.substring(1),false);
         });
         $(window).bind('hashchange', function () {
             var page = "hashchange";
@@ -187,14 +187,13 @@ function AKjs_Router(setting) {
                     $("#ak-animation").removeClass();
                     $("#ak-animation").attr("data-router","");
                 }, 500);
-                option.changePage(document.location.hash.substring(1),$(animationEle).html());
             } else {
                 $("header, main, footer").css({
                     "left": 0,
                     "right": 0
                 });
-                option.changePage(document.location.hash.substring(1),record);
             }
+            option.changePage(document.location.hash.substring(1),true);
         });
         function Router_Ajax(option,page) {
             AKjs_UserAgent();
