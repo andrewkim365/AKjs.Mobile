@@ -1,6 +1,6 @@
 //引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-08-10
+//文档更新日期：2018-08-22
 
 /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
 $(function () {
@@ -22,7 +22,7 @@ $(function () {
 $(function(){
     $(".plug_form").AKjs_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
         btn_delete: ".plug_Delete", //输入文字的删除按钮class名
-        btn_delete_ico: "icon-ln_quxiao", //输入文字的删除按钮的图标
+        btn_delete_ico: "icon-yk_guanbi_fill", //输入文字的删除按钮的图标
         btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
         btn_password_ico_hide: "icon-in_biyan_fill", //输入的密码可显示和隐藏功能的按钮(隐藏按钮图标)
         btn_password_ico_show: "icon-in_zhengyan_fill", //输入的密码可显示和隐藏功能的按钮(显示按钮图标)
