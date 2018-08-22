@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-22
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
@@ -87,9 +87,8 @@ function AKjs_Popupwin (setting){
                 }
                 if (option.toggleIcon) {
                     if (option.position != 'offset') {
-                        $(option.OneButton).append("<i />");
-                        $(option.OneButton).children("i").eq(0).hide();
-                        $(option.OneButton).children("i").eq(1).addClass(option.toggleIcon);
+                        $(option.OneButton).find("i").attr("data-icon",$(option.OneButton).find("i").attr("class"));
+                        $(option.OneButton).find("i").removeClass($(option.OneButton).find("i").attr("class")).addClass(option.toggleIcon);
                     }
                 }
             },300);
@@ -192,6 +191,11 @@ function AKjs_Popupwin (setting){
         } else {
             if (option.effectIn || option.effectOut) {
                 $(option.dom).removeClass("animated " + option.effectIn).addClass("animated " + option.effectOut);
+            }
+        }
+        if (option.toggleIcon) {
+            if (option.position != 'offset') {
+                $(option.OneButton).find("i").removeClass(option.toggleIcon).addClass($(option.OneButton).find("i").attr("data-icon"));
             }
         }
         setTimeout(function() {
