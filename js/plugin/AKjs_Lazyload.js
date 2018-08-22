@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-22
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Lazyload-------------------------------------------*/
@@ -21,12 +21,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var gif_regexp = new RegExp("\\.gif");
             setTimeout(function () {
                 option.Callback(option.scroll.find(ele));
-                if (ele.prop('tagName') == "IMG") {
+                if (ele.prop('tagName') == "IMG" || ele.prop('tagName') == "img") {
                     if (option.Img_LoadStyle) {
                         ele.each(function () {
                             var view_img = $(this);
                             if (view_img.length > 0) {
-                                if (view_img.parent().prop('tagName') != "FIGURE") {
+                                if (view_img.parent().prop('tagName') != "FIGURE" || view_img.parent().prop('tagName') != "figure") {
                                     view_img.wrap("<figure />");
                                 }
                             }
@@ -98,7 +98,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     for(var i = 0; i < ele.length; i++) {
                         arr[i] = ele.eq(i).offset().top + scrollTop + (ele.eq(i).prop('offsetHeight') / 2);
                         if(arr[i] >= scrollTop && arr[i] <= clientHeight){
-                            if (ele.eq(i).prop('tagName') == "IMG") {
+                            if (ele.eq(i).prop('tagName') == "IMG" || ele.eq(i).prop('tagName') == "img") {
                                 ele.eq(i).attr("src", ele.eq(i).data("src"));
                                 ele.eq(i).addClass("animated " + option.Img_Effect);
                             } else if (ele.eq(i).attr("data-animation")){
@@ -136,7 +136,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     option.Scrollback(option.scroll.find(ele),scrollTop);
                     ele.each(function () {
                         var view_ele = $(this);
-                        if (view_ele.prop('tagName') == "IMG") {
+                        if (view_ele.prop('tagName') == "IMG" || view_ele.prop('tagName') == "img") {
                             if (view_ele.offset().top < view_h) {
                                 if (option.scrollTop >= scrollTop) {
                                     setTimeout(function () {

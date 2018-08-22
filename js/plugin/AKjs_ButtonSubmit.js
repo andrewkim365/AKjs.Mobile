@@ -1,18 +1,18 @@
 /*
-Modification Date: 2018-08-20
+Modification Date: 2018-08-22
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_ButtonSubmit--------------------------------------------*/
 (function($){
     $.fn.AKjs_ButtonSubmit = function(msg,setting) {
         var option = $.extend({
-            click: false,
-            icon: ["1.2em","#ffffff"],
-            callback: function() {}
-        },
-        setting);
+                click: false,
+                icon: ["1.2em","#ffffff"],
+                callback: function() {}
+            },
+            setting);
         var btn = $(this);
-        if (btn.prop("localName") == "button") {
+        if (btn.prop("tagName") == "button" || btn.prop("tagName") == "BUTTON") {
             if (option.click) {
                 btn.click(function(){
                     var _this = $(this);
@@ -41,6 +41,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
                 option.callback(_this, ak_disabled);
                 function ak_disabled(state) {
+                    AKjs_UserAgent();
                     if (state) {
                         _this.addClass("disabled").attr("disabled", "disabled").html("<em class='ak-submit-loading'><i></i><span>" + msg + "</span></em>");
                         _this.find(".ak-submit-loading").css({
@@ -50,6 +51,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             'width': option.icon[0],
                             'height': option.icon[0]
                         });
+                        if (IsIE8) {
+                            _this.find(".ak-submit-loading i").hide();
+                        }
                     } else {
                         _this.removeClass("disabled").removeAttr("disabled").html(_this.attr("data-text"));
                     }
