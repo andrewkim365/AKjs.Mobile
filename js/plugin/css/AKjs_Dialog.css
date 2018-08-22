@@ -17,16 +17,16 @@
 .ak-dialog .ak-dialog_container {
     box-sizing:border-box;
     margin:0 auto;
-    width:90%;
+    width:30%;
     height:auto;
     background-color:#ffffff;
     border-radius:0.3em;
     box-shadow:0 0 1em rgba(0,0,0,0.2);
     overflow:hidden;
 }
-@media screen and (min-width:640px) and (max-width:1024px) {
+@media screen and (max-width:1024px) {
     .ak-dialog .ak-dialog_container {
-        width:40%;
+        width:90%;
     }
 }
 @media screen and (min-width:1025px) {
