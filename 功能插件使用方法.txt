@@ -840,6 +840,7 @@ $(function () {
         btn_wrap: "fr rel ovh border bor_gray_ddd w_100 bg_gray_f9f", //数量加减输入框的外框样式
         btn_left: "abs top_0 left_0 bor_right bor_gray_ddd bg_white wh_24em icon-ln_jian_a", //数量减少按钮Class
         btn_right: "abs top_0 right_0 bor_left bor_gray_ddd bg_white wh_24em icon-ln_jia_a", //数量增加按钮Class
+        spacing: 1, //每次累加数量（步长）
         maxNumber: 5, //设置最大数量限制(不使用限制请设为空值)
         changeBack:function(val){ //回调获取实时输入的值
             console.log(val);

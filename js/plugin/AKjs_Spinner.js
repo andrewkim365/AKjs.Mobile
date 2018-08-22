@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-21
+Modification Date: 2018-08-22
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Spinner-------------------------------------------*/
@@ -10,6 +10,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 btn_wrap: "",
                 btn_left: "",
                 btn_right: "",
+                spacing: 1,
                 maxNumber: 999,
                 changeBack: function() {},
                 clickBack:function(){
@@ -68,10 +69,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     var lengthNum= parseInt(it.val());
                     if (maxNumber > lengthNum) {
                         $(this).parent().children(".minus").removeAttr("disabled",'disabled');
-                        it.val(lengthNum+1);
+                        it.val(lengthNum+parseInt(option.spacing));
                     } else if (maxNumber == lengthNum) {
                         $(this).attr("disabled", 'disabled');
-                        it.val(lengthNum + 1);
+                        it.val(lengthNum + parseInt(option.spacing));
                     } else if (maxNumber < lengthNum) {
                         it.parent().children(".minus").attr("disabled",'disabled');
                         it.parent().children(".plus").removeAttr("disabled",'disabled');
@@ -79,7 +80,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     } else {
                         $(this).attr("disabled", 'disabled');
                     }
-                    option.clickBack(lengthNum+1);
+                    option.clickBack(lengthNum+parseInt(option.spacing));
                 });
                 $(this).parent().children(".minus").unbind("click");
                 $(this).parent().children(".minus").on('click', function (e) {
@@ -92,7 +93,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     var lengthNum= parseInt(it.val());
                     if (maxNumber >= lengthNum){
                         $(this).parent().children(".plus").removeAttr("disabled",'disabled');
-                        it.val(lengthNum-1);
+                        it.val(lengthNum-parseInt(option.spacing));
                     } else if (maxNumber < lengthNum) {
                         it.parent().children(".minus").attr("disabled",'disabled');
                         it.parent().children(".plus").removeAttr("disabled",'disabled');
@@ -104,7 +105,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         it.val(parseInt(1));
                         $(this).attr("disabled",'disabled');
                     }
-                    option.clickBack(lengthNum-1);
+                    option.clickBack(lengthNum-parseInt(option.spacing));
                 })
             });
         }
