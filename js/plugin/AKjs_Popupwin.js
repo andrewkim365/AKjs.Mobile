@@ -185,17 +185,10 @@ function AKjs_Popupwin (setting){
             if (option.effectIn || option.effectOut) {
                 $(option.dom).removeClass("animated " + option.effectIn).addClass("animated " + option.effectOut);
             }
-            $(option.OneButton).children("i").eq(0).show();
-            $(option.OneButton).children("i").eq(1).remove();
-            $(option.OneButton).removeClass(option.toggleIcon);
+            $(option.OneButton).find("i").removeClass(option.toggleIcon).addClass($(option.OneButton).find("i").attr("data-icon"));
         } else {
             if (option.effectIn || option.effectOut) {
                 $(option.dom).removeClass("animated " + option.effectIn).addClass("animated " + option.effectOut);
-            }
-        }
-        if (option.toggleIcon) {
-            if (option.position != 'offset') {
-                $(option.OneButton).find("i").removeClass(option.toggleIcon).addClass($(option.OneButton).find("i").attr("data-icon"));
             }
         }
         setTimeout(function() {
