@@ -57,6 +57,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.4.1版本；
 
 修改 js/plugin/AKjs_Lazyload.js 文件；（解决bug）
 
+修改 js/plugin/AKjs_MultiDate.js 文件；（解决bug）
+
 修改 js/plugin/AKjs_Spinner.js 文件；（解决bug）
 
 

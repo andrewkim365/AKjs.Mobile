@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-20
+Modification Date: 2018-08-23
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
@@ -314,7 +314,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var fullOffsetTop = offset.top + height;
             } else {
                 if ($("#ak-scrollview").scrollTop() > 0) {
-                    var fullOffsetTop = offset.top + $("#ak-scrollview").scrollTop() - $("#ak-scrollview").offset().top;
+                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top + $("#ak-scrollview").scrollTop();
                 } else {
                     var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top;
                 }
