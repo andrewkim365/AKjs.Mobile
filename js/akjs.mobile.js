@@ -1456,11 +1456,16 @@ function AKjs_DateFormat(date,format) {
 
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
+    AKjs_UserAgent();
     $(function () {
-        if ($("html").attr("data-router") == "akjs") {
-            setTimeout(function() {
+        if (IsMobile) {
+            if ($("html").attr("data-router") == "akjs") {
+                setTimeout(function() {
+                    jscssSetting();
+                },500);
+            } else {
                 jscssSetting();
-            },500);
+            }
         } else {
             jscssSetting();
         }
