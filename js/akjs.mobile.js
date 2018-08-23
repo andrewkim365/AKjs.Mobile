@@ -253,7 +253,8 @@ function AKjs_Router(setting) {
                         option.error(document.location.hash.substring(1));
                         $("header, aside, footer").removeClass("dis_block_im").addClass("dis_none_im");
                         setTimeout(function () {
-                            $("main").not("aside main").html('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
+                            $(".ak-ErrorPage").remove();
+                            $("body").append('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
                             AKjs_mainHeight();
                         }, 100);
                         throw new Error("Sorry! Document not found!");
