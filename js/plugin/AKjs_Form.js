@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-22
+Modification Date: 2018-08-23
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Form--------------------------------------------*/
@@ -20,38 +20,38 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 butCallback: function() {}
             },
             setting);
-        var mbf = $(this);
-        if (option.validate == true) {
-            mbf.find(":submit").addClass("disabled").attr("disabled", "disabled");
-        }
-        //对比两次输入的密码
-        var password = mbf.find(option.PassCheck);
-        mbf.find(":submit").addClass("mb_5");
-        mbf.find(":submit").unbind("click");
+            var mbf = $(this);
+            if (option.validate == true) {
+                mbf.find(":submit").addClass("disabled").attr("disabled", "disabled");
+            }
+            //对比两次输入的密码
+            var password = mbf.find(option.PassCheck);
+            mbf.find(":submit").addClass("mb_5");
+            mbf.find(":submit").unbind("click");
 
-        mbf.find(":submit").click(function () {
-            if (option.PassCheck) {
-                if(password.length > 1){
-                    if (password[0].value != password[1].value){
-                        if (mbf.find(option.PassCheck).length > 0) {
-                            option.passCallback();
-                            return false;
+            mbf.find(":submit").click(function () {
+                if (option.PassCheck) {
+                    if(password.length > 1){
+                        if (password[0].value != password[1].value){
+                            if (mbf.find(option.PassCheck).length > 0) {
+                                option.passCallback();
+                                return false;
+                            }
                         }
                     }
                 }
-            }
-            option.butCallback(mbf,false);
-            document.activeElement.blur();
-            return false;
-        });
-        mbf.keyup(function (event) {
+                option.butCallback(mbf,false);
+                document.activeElement.blur();
+                return false;
+            });
+            mbf.keyup(function (event) {
             event.preventDefault();
             if (option.validate == true) {
-                var inputs = $(this).find(":required");
+                var inputs = $(this).find("input[required]");
                 var submits = $(this).find(":submit");
-                if (mbf.find("textarea:required").length > 0) {
+                if (mbf.find("textarea[required]").length > 0) {
                     // 取出回车字符
-                    var textareaVal = (mbf.find("textarea:required").val().replace(/<(.+?)>/gi,"&lt;$1&gt;")).replace(/\n/gi,"|");
+                    var textareaVal = (mbf.find("textarea[required]").val().replace(/<(.+?)>/gi,"&lt;$1&gt;")).replace(/\n/gi,"|");
                     // 不包含回车的数量
                     var strLen = textareaVal.split('|').join('').length;
                 } else {
@@ -93,7 +93,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 option.butCallback(mbf,true);
             }
         });
-        //密码（显示/隐藏）
+            //密码（显示/隐藏）
         var btn_password = mbf.find(option.btn_password);
         btn_password.each(function(){
             var pass_btn = $(this);
@@ -119,34 +119,34 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
             });
         });
-        //输入的文字删除按钮
-        var btn_delete = mbf.find(option.btn_delete);
-        btn_delete.bind('input propertychange', function () {
-            var del_btn = $(this);
-            if ($(this).val() > 0) {
-                if ($(this).next("button[type=reset]").length < 1) {
-                    $(this).after("<button type=\"reset\" class='press top_0 right_0 abs text_al_r text_18em c_gray_ccc'></button>");
-                    $(this).next("button[type=reset]").css({
-                        "height": del_btn.outerHeight(),
-                        "margin-left": del_btn.width() - del_btn.next("button").width()
-                    });
-                    $(window).resize(function () {
-                        del_btn.next("button[type=reset]").css({
+            //输入的文字删除按钮
+            var btn_delete = mbf.find(option.btn_delete);
+            btn_delete.bind('input propertychange', function () {
+                var del_btn = $(this);
+                if ($(this).val() > 0) {
+                    if ($(this).next("button[type=reset]").length < 1) {
+                        $(this).after("<button type=\"reset\" class='press top_0 right_0 abs text_al_r text_18em c_gray_ccc'></button>");
+                        $(this).next("button[type=reset]").css({
                             "height": del_btn.outerHeight(),
                             "margin-left": del_btn.width() - del_btn.next("button").width()
                         });
+                        $(window).resize(function () {
+                            del_btn.next("button[type=reset]").css({
+                                "height": del_btn.outerHeight(),
+                                "margin-left": del_btn.width() - del_btn.next("button").width()
+                            });
+                        });
+                        $(this).next("button[type=reset]").addClass(option.btn_delete_ico);
+                    }
+                    $(this).next("button[type=reset]").unbind("click");
+                    $(this).next("button[type=reset]").click(function () {
+                        $(this).prev("input").val("");
+                        $(this).remove();
                     });
-                    $(this).next("button[type=reset]").addClass(option.btn_delete_ico);
+                } else {
+                    $(this).next("button[type=reset]").remove();
                 }
-                $(this).next("button[type=reset]").unbind("click");
-                $(this).next("button[type=reset]").click(function () {
-                    $(this).prev("input").val("");
-                    $(this).remove();
-                });
-            } else {
-                $(this).next("button[type=reset]").remove();
-            }
-        });
+            });
         if(option.placeholder== true) {
             var placeholder_tmp ="";
             mbf.find('*[placeholder]').focus(function() { //input元素加placeholder属性的文字点击后消失
