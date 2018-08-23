@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180821 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180823 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -82,7 +82,7 @@ function AKjs_Config(setting) {
         }
     }
     if(option.ButtonLink== true) {
-        AKjs_HashSharp(false,false);
+        AKjs_HashSharp(false);
     } else {
         $("*").removeAttr("data-href");
     }
@@ -98,6 +98,21 @@ function AKjs_Config(setting) {
     $(window).resize(function(){
         AKjs_mainHeight();
     });
+    if (IsIE6) {
+        $("html").addClass("akjs_ie6");
+        AKjs_placeholder();
+        AKjs_InputLineHeight();
+    } else if (IsIE7) {
+        $("html").addClass("akjs_ie7");
+        AKjs_placeholder();
+        AKjs_InputLineHeight();
+    } else if (IsIE8) {
+        $("html").addClass("akjs_ie8");
+        AKjs_placeholder();
+        AKjs_InputLineHeight();
+    } else if (IsIE) {
+        $("html").addClass("akjs_ie");
+    }
 }
 
 /*-----------------------------------------------AKjs_Router------------------------------------------*/
@@ -299,9 +314,9 @@ function AKjs_Router(setting) {
                         $("<style id='akjs_style' data-temp='"+new Date().getTime()+"' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
                     }
                     if (option.Parameter) {
-                        AKjs_HashSharp(true,true);
+                        AKjs_HashSharp(true);
                     } else {
-                        AKjs_HashSharp(true,false);
+                        AKjs_HashSharp(false);
                     }
                 },1000);
             }
@@ -459,6 +474,17 @@ function AKjs_RegsInput() {
     Regs_numAll = /"^\d+$/;
     Regs_userBefit = /^[a-z0-9]+$/i;
     Regs_pwdBefit = /^\w+$/;
+}
+
+/*-----------------------------------------------AKjs_InputLineHeight--------------------------------------*/
+function AKjs_InputLineHeight() {
+    AKjs_UserAgent();
+    $("input").each(function(){
+        var inputs = $(this);
+        inputs.css({
+            "line-height": inputs.outerHeight()+"px"
+        });
+    });
 }
 
 /*-----------------------------------------------AKjs_InputFocus--------------------------------------*/
@@ -625,6 +651,54 @@ function AKjs_Responsive(setting) {
     window.onresize = function() {
         ak_WindowSize();
     };
+}
+
+/*-----------------------------------------------AKjs_placeholder--------------------------------------*/
+function AKjs_placeholder() {
+    $("input[placeholder]").each(function(){
+        var place = $(this);
+        if (place.attr("placeholder") && place.val()=='') {
+            if (place.parent().prop('tagName') != "LABEL") {
+                place.wrap("<label class='dis_block ovh rel h_in c_gray_ccc'></label>");
+                place.parent("label").append("<span>" + place.attr('placeholder') + "</span>");
+            }
+            place.parent("label").children("span").css({
+                "display": "block",
+                "position": "absolute",
+                "top": 0,
+                "left": 0,
+                "width": "100%",
+                "height": place.outerHeight(),
+                "line-height": place.outerHeight()+"px",
+                "text-indent": "1em"
+            });
+            $(window).resize(function(){
+                place.parent("label").children("span").css({
+                    "display": "block",
+                    "position": "absolute",
+                    "top": 0,
+                    "left": 0,
+                    "width": "100%",
+                    "height": place.outerHeight(),
+                    "line-height": place.outerHeight()+"px",
+                    "text-indent": "1em"
+                });
+            });
+            place.on('focus', function() {
+                $(this).parent("label").children("span").addClass("dis_none_im");
+            });
+            place.on('blur', function() {
+                $(this).parent("label").children("span").removeClass("dis_none_im");
+            });
+            place.bind('input propertychange', function () {
+                if ($(this).val() > 0) {
+                    $(this).parent("label").children("span").addClass("dis_none_im");
+                } else {
+                    $(this).parent("label").children("span").removeClass("dis_none_im");
+                }
+            });
+        }
+    });
 }
 
 /*-----------------------------------------------AKjs_mainHeight--------------------------------------*/
@@ -817,7 +891,7 @@ function AKjs_Ajax(setting) {
             if ($(option.to)) {
                 $(option.to).html(htmlobj.responseText);
             }
-            AKjs_HashSharp(true,false);
+            AKjs_HashSharp(false);
             AKjs_Animation();
         },
         error: function (error) {
@@ -866,7 +940,7 @@ function AKjs_Animation() {
 }
 
 /*-----------------------------------------------AKjs_HashSharp------------------------------------------*/
-function AKjs_HashSharp(form,key) {
+function AKjs_HashSharp(key) {
     var hash_sharp = new RegExp("#");
     var hash_dot = new RegExp("./");
     var hash_sharps = new RegExp("\\?#");
@@ -975,16 +1049,14 @@ function AKjs_HashSharp(form,key) {
             }
         }
     }
-    if (form == true) {
+    if ($("html").attr("data-router") == "akjs") {
         $('form[action]').each(function () {
             var hash_sharp = new RegExp("#");
-            if (AKjs_getUrlParam('akjs') && hash_sharp.test(document.location.hash)) {
-                if (!hash_sharp.test($(this).attr("action"))) {
-                    if (key) {
-                        $(this).attr("action", "#/" + $(this).attr("action") + '?akjs=' + new Date().getTime());
-                    } else {
-                        $(this).attr("action", "#/" + $(this).attr("action"));
-                    }
+            if (!hash_sharp.test($(this).attr("action"))) {
+                if (key) {
+                    $(this).attr("action", "#/" + $(this).attr("action") + '?akjs=' + new Date().getTime());
+                } else {
+                    $(this).attr("action", "#/" + $(this).attr("action"));
                 }
             }
         });
@@ -1385,7 +1457,7 @@ function AKjs_DateFormat(date,format) {
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
     $(function () {
-        if ($("html").attr("data-router")) {
+        if ($("html").attr("data-router") == "akjs") {
             setTimeout(function() {
                 jscssSetting();
             },500);
