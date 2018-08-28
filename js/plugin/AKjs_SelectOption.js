@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-28
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_SelectOption-------------------------------------------*/
@@ -58,11 +58,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 select.unbind("click");
                 select.click(function (andrew) {
                     andrew.preventDefault();
-                    if (IsMobile) {
-                        var pa_num = 4;
-                    } else {
-                        var pa_num = 8;
-                    }
+                    var this_h = $(this).outerHeight();
                     $(this).toggleClass("ak-open");
                     select_list.css({
                         "width": $(this).innerWidth(),
@@ -71,7 +67,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if ($(this).offset().top + $(this).innerHeight()+ select_list.innerHeight() > $(window).height()) {
                         select_list.css({
                             "top": "auto",
-                            "bottom": $("#ak-scrollview").outerHeight() - ($(this).offset().top + $('#ak-scrollview').scrollTop() - pa_num) + $(this).innerHeight() - 1,
+                            "bottom": $("#ak-scrollview").outerHeight() - ($(this).offset().top + $('#ak-scrollview').scrollTop() - this_h) + $(this).innerHeight() - 1,
                             "left": $(this).offset().left - $("#ak-scrollview").offset().left
                         });
                     } else {
@@ -82,11 +78,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         if ($('#ak-scrollview').length > 0) {
                             if (select.parents("dialog")[0] != undefined) {
                                 select_list.css({
-                                    "top": $(this).offset().top - pa_num
+                                    "top": $(this).offset().top -$("#ak-scrollview").offset().top + this_h
                                 });
                             } else {
                                 select_list.css({
-                                    "top": $(this).offset().top + $('#ak-scrollview').scrollTop() - pa_num
+                                    "top": $(this).offset().top + $('#ak-scrollview').scrollTop() - $("#ak-scrollview").offset().top + this_h
                                 });
                             }
                         } else {

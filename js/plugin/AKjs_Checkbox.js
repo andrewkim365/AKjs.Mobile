@@ -39,11 +39,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             checkboxes.addClass("bor_rad_0");
         }
         checkboxes.attr("data-name",self.attr("name"));
-        checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
-        checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
+        //checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
+        //checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
         $(window).resize(function(){
-            checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
-            checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
+            //checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
+            //checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
         });
         checkboxes.each(function(ev) {
             if ($(this).find('input[type="checkbox"]').attr("multiple")) {
