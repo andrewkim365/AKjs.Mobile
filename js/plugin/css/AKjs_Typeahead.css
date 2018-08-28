@@ -24,3 +24,6 @@
 .ak-typeahead li:last-child {
     margin-bottom: 50%;
 }
+.ak-typeahead li strong {
+    font-weight: bold;
+}

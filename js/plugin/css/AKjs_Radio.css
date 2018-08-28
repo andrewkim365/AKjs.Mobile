@@ -9,6 +9,7 @@
 }
 .ak-Radio input {
     opacity:0 !important;
+    filter:alpha(opacity=0);
     width:100%;
     position:absolute;
     top:0;

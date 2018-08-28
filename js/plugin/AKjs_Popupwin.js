@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-22
+Modification Date: 2018-08-27
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
@@ -104,7 +104,7 @@ function AKjs_Popupwin (setting){
             addModalMask();
             $("#ak-scrollview").removeClass("scrolling_touch");
         }
-        option.callback($(option));
+        option.callback($(option),true);
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function(ec) {
             ec.preventDefault();
