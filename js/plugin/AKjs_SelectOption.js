@@ -24,7 +24,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var _html = [];
                 _html.push("<section class=\"" + $this.attr('class') + "\">");
                 _html.push("<var>" + $this.find(":selected").text() + "</var>");
-                _html.push("<cite class='ak-SelectList'><ul>");
+                _html.push("<cite class='ak-SelectList scrollbar'><ul>");
                 $this.children("option").each(function () {
                     var opts = $(this);
                     _html.push("<li title='"+opts.text()+"' data-value=\"" + opts.val() + "\">" + opts.text() + "</li>");
@@ -67,7 +67,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if ($(this).offset().top + $(this).innerHeight()+ select_list.innerHeight() > $(window).height()) {
                         select_list.css({
                             "top": "auto",
-                            "bottom": $("#ak-scrollview").outerHeight() - ($(this).offset().top + $('#ak-scrollview').scrollTop() - this_h) + $(this).innerHeight() - 1,
+                            "bottom": $("#ak-scrollview").outerHeight() - ($(this).offset().top + $('#ak-scrollview').scrollTop()) + $(this).innerHeight() + $("#ak-scrollview").offset().top - this_h + 2,
                             "left": $(this).offset().left - $("#ak-scrollview").offset().left
                         });
                     } else {
