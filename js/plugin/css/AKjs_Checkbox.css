@@ -1,14 +1,13 @@
 /*-----------------------------------------------AKjs_Checkbox-------------------------------------------*/
 .ak-Checkbox {
-    display:block;
+    display: inline-block;
     overflow:hidden;
-    float:left;
     border:solid 1px;
     border-color:#dddddd;
     background-color: #ffffff;
     width:1.88em;
     height:1.88em;
-    line-height:1.88em !important;
+    line-height:1.88em;
     border-radius:50%;
     text-align:center;
 }
@@ -23,5 +22,5 @@
 }
 .ak-Checkbox:before {
     border-color:inherit;
-    font-size:1.2em;
+    font-size:90%;
 }

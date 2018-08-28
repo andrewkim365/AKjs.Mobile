@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-08-27
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Checkbox--------------------------------------*/
@@ -11,6 +11,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     $.fn.AKjs_Checkbox = function(settings) {
         /* 默认参数 */
         var _defaults = {
+            boxSize: "",
             checkedClass: "bg_title bor_title c_white",
             disabledClass: "bg_gray_ccc bor_gray_ccc c_white",
             // 选中状态类名
@@ -24,6 +25,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
         var checkboxes = self.parent("label");
         checkboxes.addClass("ak-Checkbox");
+        if (options.boxSize) {
+            checkboxes.css({
+                "width": options.boxSize,
+                "height": options.boxSize,
+                "line-height": options.boxSize
+            });
+        }
+        AKjs_UserAgent();
+        if (IsMobile) {
+            checkboxes.removeClass("bor_rad_0");
+        } else {
+            checkboxes.addClass("bor_rad_0");
+        }
         checkboxes.attr("data-name",self.attr("name"));
         checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
         checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
