@@ -35,7 +35,7 @@ $(document).ready(function(){
             if (!change) { //change是用于判断hash模式是否跳页
                 AKjs_Include("css/theme.default.css"); //颜色相关样式文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
                 AKjs_Include("http://echarts.baidu.com/dist/echarts.min.js"); //Echarts插件全局引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
-                AKjs_Include("js/data.js",true); //Json数据文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能。后面加 true 代表优先级引入的意思（important））
+                AKjs_Include("js/data.js"); //Json数据文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
                 AKjs_Include("js/plugin.js"); //功能插件按需引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
             } else {
                 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
@@ -70,7 +70,8 @@ $(document).ready(function(){
                     fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 (开启 true, 停用 false）
                     animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
                     Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
-                    Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
+                    Prompt: "为了更好的视觉体验，请在竖屏下进行操作。", //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
+                    pluginPath: "./js/plugin/" //功能插件文件所在的目录设置
                 });
             });
 
