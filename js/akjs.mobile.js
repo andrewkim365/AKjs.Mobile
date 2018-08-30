@@ -258,17 +258,20 @@ function AKjs_Router(setting) {
                     async: false,
                     cache: false,
                     success: function () {
-                        option.success(document.location.hash.substring(1));
+                        $("html").attr("data-router","akjs");
+                        setTimeout(function () {
+                            option.success(document.location.hash.substring(1));
+                        },100);
                     },
                     error: function () {
-                        option.error(document.location.hash.substring(1));
+                        $("html").attr("data-router","error");
                         $("header, aside, footer").removeClass("dis_block_im").addClass("dis_none_im");
-                        $(function () {
-                            $(".ak-ErrorPage").remove();
-                            $("body").append('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
-                            AKjs_mainHeight();
-                        });
-                        throw new Error("Sorry! Document not found!");
+                        $(".ak-ErrorPage").remove();
+                        $("body").append('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
+                        AKjs_mainHeight();
+                        setTimeout(function () {
+                            option.error(document.location.hash.substring(1));
+                        },100);
                     }
                 });
                 var htmlobj_text = $(htmlobj.responseText);
@@ -296,7 +299,9 @@ function AKjs_Router(setting) {
                         throw new Error("Sorry! The outer layer of the \"<ak-main></ak-main>\" element can not have other elements!");
                     }
                 } else {
-                    throw new Error("Sorry! The lack of \"<template></template>\" elements!");
+                    if ($("html").attr("data-router") != "error") {
+                        throw new Error("Sorry! The lack of \"<template></template>\" elements!");
+                    }
                 }
 
                 if ($(htmlobj_text).next().length > 0 && $(htmlobj_text).next().next().length < 1) {
@@ -418,7 +423,9 @@ function AKjs_Menu(setting) {
     } else {
         ak_menu.addClass("length"+ak_menu_btn.length);
     }
-    ak_menu_setting();
+    $(function () {
+        ak_menu_setting();
+    });
     $(window).bind('hashchange', function () {
         ak_menu_setting();
     });

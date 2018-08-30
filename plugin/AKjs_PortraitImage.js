@@ -15,7 +15,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             setting);
         option = op;
         var pimg = $(this);
-        $(function() {
+        setTimeout(function() {
             pimg.each(function(){
                 $(this).addClass("ak-PortraitImage");
                 $(this).find("input[type=file]").attr("accept","image/*");
@@ -27,7 +27,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     "margin-top": (pimg.outerWidth() / 3 / 2)
                 });
             });
-        });
+        },200);
 
         $(window).resize(function(){
             pimg.children("figure").css({

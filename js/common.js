@@ -24,20 +24,84 @@ AKjs_Config({ //环境配置管理
 AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
 
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
-if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
-    $(function() {
-        AKjs_Loader({
-            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-            autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-            timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
-            iconColor: "#ffffff", //图标颜色设置
-            maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-            Loader: "load_2" //loading效果选择（load_1~7）
-        });
+$(function() {
+    AKjs_Loader({
+        //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+        timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
+        iconColor: "#ffffff", //图标颜色设置
+        maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
+        Loader: "load_2" //loading效果选择（load_1~7）
     });
-}
+});
 setTimeout(function() { //页面加载完5秒后执行
     if($(".ak-Loader").css('display') == 'none'){
         //AKjs_Loader("destroy"); //关闭loading窗
     }
 },2000);
+
+/*-----------------------------------------------AKjs_Responsive 使用方法-------------------------------------------*/
+$(function() {
+    AKjs_Responsive({ //实时监听窗口大小变化的功能
+        resizeCallback: function (deviceW, deviceH, viewportW, viewportH) {
+            //console.log("屏幕宽度: "+deviceW);
+            //console.log("屏幕高度: "+deviceH);
+            //console.log("实时窗口宽度: "+viewportW);
+            //console.log("实时窗口高度: "+viewportH);
+        }
+    });
+});
+
+/*
+AKjs_Location 使用方法：
+//url=跳转路径，{type=跳转类型（href,history,reload），time=延迟时间，router=页面切换效果（left,right）}
+
+AKjs_Location("url",{type:"", time: "", router:""}); //参数设置结构
+AKjs_Location("/start"); //location.replace 跳转模式(第二个参数默认识别time参数)
+AKjs_Location("/start",{type:"href"}); //location.href 跳转模式
+AKjs_Location("/",{type:"reload"}); //location.reload() 刷新当前页
+AKjs_Location("-1",{type:"history"}); //history.back(-1) 跳转返回上一页,也可以设置0，-2 等数值
+AKjs_Location("/start",{time:1000}); //location.replace 跳转模式 (延迟1秒后跳转)
+AKjs_Location("/start",{router:left}); //location.replace 跳转模式 (router参数是页面切换效果，left是左滑[返回效果]，right是右滑[进入效果])
+
+AKjs_getUrlParam &  AKjs_changeURLArg 使用方法：
+console.log("GET_ak: "+AKjs_getUrlParam('ak')); //获取URL中的参数值
+console.log(AKjs_changeURLArg(location.hash,"ak","change"+AKjs_getUrlParam('ak'))); //更改URL中的参数值
+
+AKjs_Unicode 使用方法：
+console.log(AKjs_Unicode("中文字符"));
+
+AKjs_setCookie & AKjs_getCookie & AKjs_delCookie 使用方法：
+AKjs_setCookie("username", user, 365); //设置cookie
+var user = AKjs_getCookie("username"); //获取cookie
+AKjs_delCookie(name) //删除cookie
+
+AKjs_htmlEncode & AKjs_htmlDecode 使用方法：
+AKjs_htmlEncode(str); //把TEXT转换HTML
+AKjs_htmlDecode(str); //把HTML转换TEXT
+
+AKjs_DateFormat & AKjs_FileFormat 使用方法：
+console.log(AKjs_DateFormat("2018/03/30 17:50","yyyy-MM-dd HH:mm"));
+console.log(AKjs_DateFormat(new Date(),"yyyy-MM-dd HH:mm"));
+AKjs_FileFormat(filename) //获取文件的扩展名
+*/
+
+/*
+$(window).resize(function () {
+    if ($(window).height() - $(this).height() > 140) {
+        //安卓软键盘弹出
+    } else {
+        //安卓软键盘收起
+    }
+});
+
+$(document).on('focusin', function () {
+    //IOS软键盘弹出的事件处理
+});
+
+$(document).on('focusout', function () {
+    //IOS软键盘收起的事件处理
+});
+
+document.activeElement.blur(); //强制隐藏软键盘
+*/
