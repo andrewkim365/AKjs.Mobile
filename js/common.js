@@ -42,31 +42,6 @@ setTimeout(function() { //页面加载完5秒后执行
     }
 },2000);
 
-
-/*-----------------------------------------------AKjs_Menu (底部菜单图标设置）使用方法-------------------------------------------*/
-$(function() {
-    AKjs_Menu({ //底部菜单的图标以及文字样式变化设置
-        active_color: "c_title", //被选中的文字和图标的颜色
-        menu_icon: new Array( //每个菜单的默认显示图标设置 （为了正常的显示布局最多设置5个）
-            "icon-mn_gongneng", //第1个按钮的图标
-            "icon-mn_hudong", //第2个按钮的图标
-            "icon-mn_huodong", //第3个按钮的图标
-            "icon-mn_kuangjia", //第4个按钮的图标
-            "icon-mn_kongjian" //第5个按钮的图标
-        ),
-        menu_icon_active: new Array( //每个菜单的被选中后的图标设置 （为了正常的显示布局最多设置5个）
-            "icon-mn_gongneng_fill", //第1个按钮的图标
-            "icon-mn_hudong_fill", //第2个按钮的图标
-            "icon-mn_huodong_fill", //第3个按钮的图标
-            "icon-mn_kuangjia_fill", //第4个按钮的图标
-            "icon-mn_kongjian_fill" //第5个按钮的图标
-        ),
-        Callback: function (ele, index) { //回调入口
-            //console.log(ele, index);
-        }
-    });
-});
-
 /*-----------------------------------------------AKjs_Responsive 使用方法-------------------------------------------*/
 $(function() {
     AKjs_Responsive({ //实时监听窗口大小变化的功能
