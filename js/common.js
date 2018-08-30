@@ -24,21 +24,48 @@ AKjs_Config({ //环境配置管理
 AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
 
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
-$(function() {
-    AKjs_Loader({
-        //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-        timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
-        iconColor: "#ffffff", //图标颜色设置
-        maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-        Loader: "load_2" //loading效果选择（load_1~7）
+if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
+    $(function() {
+        AKjs_Loader({
+            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+            autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+            timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
+            iconColor: "#ffffff", //图标颜色设置
+            maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
+            Loader: "load_2" //loading效果选择（load_1~7）
+        });
     });
-});
+}
 setTimeout(function() { //页面加载完5秒后执行
     if($(".ak-Loader").css('display') == 'none'){
         //AKjs_Loader("destroy"); //关闭loading窗
     }
 },2000);
+
+
+/*-----------------------------------------------AKjs_Menu (底部菜单图标设置）使用方法-------------------------------------------*/
+$(function() {
+    AKjs_Menu({ //底部菜单的图标以及文字样式变化设置
+        active_color: "c_title", //被选中的文字和图标的颜色
+        menu_icon: new Array( //每个菜单的默认显示图标设置 （为了正常的显示布局最多设置5个）
+            "icon-mn_gongneng", //第1个按钮的图标
+            "icon-mn_hudong", //第2个按钮的图标
+            "icon-mn_huodong", //第3个按钮的图标
+            "icon-mn_kuangjia", //第4个按钮的图标
+            "icon-mn_kongjian" //第5个按钮的图标
+        ),
+        menu_icon_active: new Array( //每个菜单的被选中后的图标设置 （为了正常的显示布局最多设置5个）
+            "icon-mn_gongneng_fill", //第1个按钮的图标
+            "icon-mn_hudong_fill", //第2个按钮的图标
+            "icon-mn_huodong_fill", //第3个按钮的图标
+            "icon-mn_kuangjia_fill", //第4个按钮的图标
+            "icon-mn_kongjian_fill" //第5个按钮的图标
+        ),
+        Callback: function (ele, index) { //回调入口
+            //console.log(ele, index);
+        }
+    });
+});
 
 /*-----------------------------------------------AKjs_Responsive 使用方法-------------------------------------------*/
 $(function() {

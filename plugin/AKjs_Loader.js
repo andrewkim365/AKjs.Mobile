@@ -117,10 +117,15 @@ function AKjs_Loader(setting){
             } else {
                 var heh = $("header").outerHeight();
             }
+            if ($("footer").not("aside footer").hasClass("dis_none_im") || $("footer").length === 0) {
+                var foh = 0;
+            } else {
+                var foh = $("footer").outerHeight();
+            }
             var yy = {
                 position: "absolute",
                 left: (ww / 2) - (lw / 2),
-                top: (wh / 2) - (lh / 2) - heh
+                top: (wh / 2) - (lh / 2) - heh - foh
             };
         } else {
             var yy = {

@@ -2232,19 +2232,6 @@
                         setTimeout(function(){
                             // 插入数据到页面，放到最后面
                             $('.plug_DropLoad').children("ul").append(result);
-                            $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
-                                scroll: $("#ak-scrollview"), //滚动区域的容器
-                                scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
-                                Img_Effect: "fadeIn", //图片加载动画效果
-                                Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
-                                Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
-                                Callback: function(ele) { //初始化回调入口
-                                    //console.log(ele);
-                                },
-                                Scrollback: function(ele,scroll) { //页面滚动后的回调
-                                    //console.log(ele);
-                                }
-                            });
                             // 每次数据插入，必须重置
                             me.resetload(); //重新初始化控件以及标识量
                         },1000);

@@ -164,55 +164,57 @@ function AKjs_Router(setting) {
             Router_Ajax(option,page);
             AKjs_mainHeight();
             if (option.Animate) {
-                $("#ak-animation").after("<aside id='ak-aside' class='fix_full' />");
-                var asideEle = $("#ak-aside");
-                var asideRecord = $(aside_record);
-                var animationEle = {};
-                for (var i = 0; i < asideRecord.length; i++) {
-                    if (asideRecord[i].localName === 'animation') {
-                        animationEle = asideRecord[i];
+                $(function () {
+                    $("#ak-animation").after("<aside id='ak-aside' class='fix_full' />");
+                    var asideEle = $("#ak-aside");
+                    var asideRecord = $(aside_record);
+                    var animationEle = {};
+                    for (var i = 0; i < asideRecord.length; i++) {
+                        if (asideRecord[i].localName === 'animation') {
+                            animationEle = asideRecord[i];
+                        }
                     }
-                }
-                if ($("#ak-animation").prop("dataset").router == "slideLeft") {
-                    asideEle.addClass("animated slideOutRight ani_04s zindex_3");
-                    $("#ak-animation").addClass("filter_brig_096");
-                    asideEle.html($(animationEle).html());
-                } else if ($("#ak-animation").prop("dataset").router == "slideRight") {
-                    asideEle.addClass("filter_brig_096");
-                    $("#ak-animation").addClass("animated slideInRight ani_05s");
-                    asideEle.html($(animationEle).html());
-                } else {
-                    $("#ak-animation").removeClass();
-                    asideEle.html($(animationEle).html());
-                }
-                asideEle.find("scrollview").scrollTop(PrevScrollTop);
-                asideEle.find('[class^="defer_"]').addClass("defer_none");
-                asideEle.find('[class*=" defer_"]').addClass("defer_none");
-                asideEle.find("footer").addClass("dis_opa_0");
-                asideEle.find(".animated").removeClass("animated");
-                asideEle.find(".dis_opa_0").removeClass("dis_opa_0");
-                asideEle.find("#ak-main-record").addClass("rel ova");
-                $("header, footer").not("aside header, aside footer").css({
-                    "left": 0,
-                    "right": 0
+                    if ($("#ak-animation").prop("dataset").router == "slideLeft") {
+                        asideEle.addClass("animated slideOutRight ani_04s zindex_3");
+                        $("#ak-animation").addClass("filter_brig_096");
+                        asideEle.html($(animationEle).html());
+                    } else if ($("#ak-animation").prop("dataset").router == "slideRight") {
+                        asideEle.addClass("filter_brig_096");
+                        $("#ak-animation").addClass("animated slideInRight ani_05s");
+                        asideEle.html($(animationEle).html());
+                    } else {
+                        $("#ak-animation").removeClass();
+                        asideEle.html($(animationEle).html());
+                    }
+                    asideEle.find("scrollview").scrollTop(PrevScrollTop);
+                    asideEle.find('[class^="defer_"]').addClass("defer_none");
+                    asideEle.find('[class*=" defer_"]').addClass("defer_none");
+                    asideEle.find("footer").addClass("dis_opa_0");
+                    asideEle.find(".animated").removeClass("animated");
+                    asideEle.find(".dis_opa_0").removeClass("dis_opa_0");
+                    asideEle.find("#ak-main-record").addClass("rel ova");
+                    $("header, footer").not("aside header, aside footer").css({
+                        "left": 0,
+                        "right": 0
+                    });
+                    $("header").not("aside header").css({
+                        "top": 0,
+                        "bottom":"auto",
+                    });
+                    $("footer").not("aside footer").css({
+                        "top": "auto",
+                        "bottom": 0,
+                    });
+                    $("footer").not("aside footer").find(".h_au").removeClass("h_au");
+                    setTimeout(function () {
+                        $("header, footer").not("aside header, aside footer").removeAttr("style");
+                        asideEle.find("footer").removeClass("dis_opa_0");
+                        asideEle.removeClass();
+                        asideEle.remove();
+                        $("#ak-animation").removeClass();
+                        $("#ak-animation").attr("data-router","");
+                    }, 300);
                 });
-                $("header").not("aside header").css({
-                    "top": 0,
-                    "bottom":"auto",
-                });
-                $("footer").not("aside footer").css({
-                    "top": "auto",
-                    "bottom": 0,
-                });
-                $("footer").not("aside footer").find(".h_au").removeClass("h_au");
-                setTimeout(function () {
-                    $("header, footer").not("aside header, aside footer").removeAttr("style");
-                    asideEle.find("footer").removeClass("dis_opa_0");
-                    asideEle.removeClass();
-                    asideEle.remove();
-                    $("#ak-animation").removeClass();
-                    $("#ak-animation").attr("data-router","");
-                }, 500);
             } else {
                 $("header, main, footer").css({
                     "left": 0,
@@ -259,9 +261,9 @@ function AKjs_Router(setting) {
                     cache: false,
                     success: function () {
                         $("html").attr("data-router","akjs");
-                        setTimeout(function () {
+                        $(function () {
                             option.success(document.location.hash.substring(1));
-                        },100);
+                        });
                     },
                     error: function () {
                         $("html").attr("data-router","error");
@@ -269,9 +271,9 @@ function AKjs_Router(setting) {
                         $(".ak-ErrorPage").remove();
                         $("body").append('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
                         AKjs_mainHeight();
-                        setTimeout(function () {
+                        $(function () {
                             option.error(document.location.hash.substring(1));
-                        },100);
+                        });
                     }
                 });
                 var htmlobj_text = $(htmlobj.responseText);
@@ -293,7 +295,11 @@ function AKjs_Router(setting) {
                         }
                     }
                     main_tmpl = main_tmpl.replace(/class=/g,"data-temp="+new Date().getTime()+" class=");
-                    $("main").not("aside main").html(main_tmpl);
+
+                    $(function () {
+                        $("main").not("aside main").html(main_tmpl);
+                    });
+
                     if ($("#ak-main").parentsUntil("main").length > 0) {
                         $("#ak-main").remove();
                         throw new Error("Sorry! The outer layer of the \"<ak-main></ak-main>\" element can not have other elements!");
@@ -322,20 +328,23 @@ function AKjs_Router(setting) {
                 }
                 $("html").children("script").html("").remove();
                 $("html").children("style").html("").remove();
-                Router_Settings();
-                setTimeout(function() {
-                    if (jsText != undefined) {
-                        $("<script id='akjs_script' data-temp='"+new Date().getTime()+"' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
-                    }
-                    if (cssText != undefined) {
-                        $("<style id='akjs_style' data-temp='"+new Date().getTime()+"' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
-                    }
-                    if (option.Parameter) {
-                        AKjs_HashSharp(true);
-                    } else {
-                        AKjs_HashSharp(false);
-                    }
-                },1000);
+
+                $(function () {
+                    Router_Settings();
+                    setTimeout(function() {
+                        if (jsText != undefined) {
+                            $("<script id='akjs_script' data-temp='"+new Date().getTime()+"' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
+                        }
+                        if (cssText != undefined) {
+                            $("<style id='akjs_style' data-temp='"+new Date().getTime()+"' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
+                        }
+                        if (option.Parameter) {
+                            AKjs_HashSharp(true);
+                        } else {
+                            AKjs_HashSharp(false);
+                        }
+                    },1000);
+                });
             }
         }
         function Router_Settings() {
@@ -724,93 +733,93 @@ function AKjs_placeholder() {
 
 /*-----------------------------------------------AKjs_mainHeight--------------------------------------*/
 function AKjs_mainHeight() {
-    AKjs_Back.listen(function(){
-        if ($("#ak-animation").length > 0) {
-            $("#ak-animation").attr("data-router", "slideLeft");
-        }
-    });
-    AKjs_UserAgent();
-    AKjs_stopElastic();
-    $("form").each(function(){
-        if ($(this).attr("data-submit") == "false") {
-            $(this).attr("onsubmit","return false");
-        }
-        $(this).removeAttr("data-submit");
-    });
-    if ($("main").not("aside main").children("#ak-main").length === 0) {
-        $("main").not("aside main").children().not("dialog").wrapAll("<div id=\"ak-main\"><scrollview id=\"ak-scrollview\"></scrollview></div>");
-    } else {
-        if ($("#ak-scrollview").length < 1) {
-            $("main").not("aside main").children("#ak-main").children().wrapAll("<scrollview id=\"ak-scrollview\"></scrollview>");
-        }
-    }
-    if ($("#ak-scrollview").length > 0) {
-        if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
-            var header_h = 0;
+    $(function() {
+        AKjs_Back.listen(function(){
+            if ($("#ak-animation").length > 0) {
+                $("#ak-animation").attr("data-router", "slideLeft");
+            }
+        });
+        AKjs_UserAgent();
+        AKjs_stopElastic();
+        $("form").each(function(){
+            if ($(this).attr("data-submit") == "false") {
+                $(this).attr("onsubmit","return false");
+            }
+            $(this).removeAttr("data-submit");
+        });
+        if ($("main").not("aside main").children("#ak-main").length === 0) {
+            $("main").not("aside main").children().not("dialog").wrapAll("<div id=\"ak-main\"><scrollview id=\"ak-scrollview\"></scrollview></div>");
         } else {
-            var header_h = $("header").not("aside header").outerHeight();
+            if ($("#ak-scrollview").length < 1) {
+                $("main").not("aside main").children("#ak-main").children().wrapAll("<scrollview id=\"ak-scrollview\"></scrollview>");
+            }
         }
-        if ($("footer").not("aside footer").hasClass("dis_none_im") || $("footer").not("aside footer").length === 0) {
-            var footer_h = 0;
-        } else {
-            var footer_h = $("footer").not("aside footer").outerHeight();
-        }
-        setTimeout(function() {
-            $("#ak-scrollview").css({
-                "height": $(window).height() - $("#ak-scrollview").offset().top - footer_h
+        if ($("#ak-scrollview").length > 0) {
+            if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
+                var header_h = 0;
+            } else {
+                var header_h = $("header").not("aside header").outerHeight();
+            }
+            if ($("footer").not("aside footer").hasClass("dis_none_im") || $("footer").not("aside footer").length === 0) {
+                var footer_h = 0;
+            } else {
+                var footer_h = $("footer").not("aside footer").outerHeight();
+            }
+            $(function () {
+                $("#ak-scrollview").css({
+                    "height": $(window).height() - $("#ak-scrollview").offset().top - footer_h
+                });
             });
-        },300);
-    }
-    if (IsMobile) {
-        $("#ak-scrollview, textarea").removeClass("scrollbar");
-        $(".bar_hide").removeClass("scrollbar_hide");
-        $("body").addClass("fix_full");
-        document.oncontextmenu = function(){
-            event.returnValue = false;
-            return false;
-        };
-    } else {
-        $("#ak-scrollview, textarea").addClass("scrollbar");
-        $(".bar_hide").addClass("scrollbar_hide");
-        $("body").removeClass("fix_full");
-        document.oncontextmenu = function(){
-            event.returnValue = true;
-            return true;
-        };
-    }
-    $("*[data-bounce=true]").on({
-        touchstart: function (ak) {
-            touchStartY = ak.originalEvent.touches[0].clientY;
-            touchStartX = ak.originalEvent.touches[0].clientX;
-        },
-        touchmove: function (ak) {
-            var touchEndY = ak.originalEvent.changedTouches[0].clientY,
-                touchEndX = ak.originalEvent.changedTouches[0].clientX,
-                yDiff = touchStartY - touchEndY,
-                xDiff = touchStartX - touchEndX;
-            if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                if ($(this).scrollTop() === 0) {
-                    if (yDiff < 5) {
-                        $(this).css({
-                            "transform": "translate3d(0," + Math.abs(yDiff) / 4 + "px,0)"
-                        });
-                    }
-                } else if ($(this).scrollTop() === $(this).prop("scrollHeight") - $(this).height()) {
-                    if (yDiff > 5) {
-                        $(this).css({
-                            "transform": "translate3d(0,-" + Math.abs(yDiff) / 4 + "px,0)"
-                        });
+        }
+        if (IsMobile) {
+            $("#ak-scrollview, textarea").removeClass("scrollbar");
+            $(".bar_hide").removeClass("scrollbar_hide");
+            $("body").addClass("fix_full");
+            document.oncontextmenu = function(){
+                event.returnValue = false;
+                return false;
+            };
+        } else {
+            $("#ak-scrollview, textarea").addClass("scrollbar");
+            $(".bar_hide").addClass("scrollbar_hide");
+            $("body").removeClass("fix_full");
+            document.oncontextmenu = function(){
+                event.returnValue = true;
+                return true;
+            };
+        }
+        $("*[data-bounce=true]").on({
+            touchstart: function (ak) {
+                touchStartY = ak.originalEvent.touches[0].clientY;
+                touchStartX = ak.originalEvent.touches[0].clientX;
+            },
+            touchmove: function (ak) {
+                var touchEndY = ak.originalEvent.changedTouches[0].clientY,
+                    touchEndX = ak.originalEvent.changedTouches[0].clientX,
+                    yDiff = touchStartY - touchEndY,
+                    xDiff = touchStartX - touchEndX;
+                if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                    if ($(this).scrollTop() === 0) {
+                        if (yDiff < 5) {
+                            $(this).css({
+                                "transform": "translate3d(0," + Math.abs(yDiff) / 4 + "px,0)"
+                            });
+                        }
+                    } else if ($(this).scrollTop() === $(this).prop("scrollHeight") - $(this).height()) {
+                        if (yDiff > 5) {
+                            $(this).css({
+                                "transform": "translate3d(0,-" + Math.abs(yDiff) / 4 + "px,0)"
+                            });
+                        }
                     }
                 }
+            },
+            touchend: function (ak) {
+                $(this).css({
+                    "transform": "translate3d(0,0,0)"
+                });
             }
-        },
-        touchend: function (ak) {
-            $(this).css({
-                "transform": "translate3d(0,0,0)"
-            });
-        }
-    });
-    $(function() {
+        });
         if ($("header").not("aside header").hasClass("dis_none_im") && $("footer").not("aside footer").hasClass("dis_none_im")) {
             $("main").not("aside main").css({
                 "margin-top": 0,
@@ -1167,7 +1176,7 @@ function AKjs_Include(url) {
 function AKjs_Location(url,setting) {
     var option = $.extend({
             type: "",
-            time: 100,
+            time: 0,
             router:""
         },
         setting);

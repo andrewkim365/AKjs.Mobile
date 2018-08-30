@@ -7,7 +7,7 @@
             <i class="text_14em icon-ln_zhixiangzuo c_white"></i>
         </button>
         <ak-scrollview data-bounce="true">
-            <div class="module list press plug_DropLoad plug_lazyload">
+            <div class="module list press plug_DropLoad">
                 <ul>
                 </ul>
             </div>
@@ -29,7 +29,6 @@
     AKjs_Plugin("AKjs_GoTop"); //返回页面顶部插件
     AKjs_Plugin("AKjs_Keyboard", "css"); //安全键盘
     AKjs_Plugin("AKjs_DropLoad", "css"); //上拉刷新和下拉加载更多功能
-    AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
 
     /*-----------------------------------------------AKjs_GoTop (全局) 使用方法-------------------------------------------*/
     $(function() {
@@ -150,7 +149,7 @@
                                     +='     <li class="bg_white ovh mb_5">'
                                     + '        <article class="rel w_100 ovh line_h_18em">'
                                     + '            <div class="ovh wp_94 mt_1em mb_05em pb_05em">'
-                                    + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32em bg_gray_eee bor_rad_50" />'
+                                    + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32em bg_gray_eee bor_rad_50 defer_none" />'
                                     + '                <h3 class="fl ovh w_80 ml_05em">'+data[i].title+'</h3>'
                                     + '            </div>'
                                     + '            <ol class="w_100 ovh bor_top_dashed bor_gray_ddd length2 list_h_3em">'
@@ -171,19 +170,6 @@
                         setTimeout(function(){
                             // 插入数据到页面，放到最后面
                             $('.plug_DropLoad').children("ul").append(result);
-                            $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
-                                scroll: $("#ak-scrollview"), //滚动区域的容器
-                                scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
-                                Img_Effect: "fadeIn", //图片加载动画效果
-                                Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
-                                Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
-                                Callback: function(ele) { //初始化回调入口
-                                    //console.log(ele);
-                                },
-                                Scrollback: function(ele,scroll) { //页面滚动后的回调
-                                    //console.log(ele);
-                                }
-                            });
                             // 每次数据插入，必须重置
                             me.resetload(); //重新初始化控件以及标识量
                         },1000);
