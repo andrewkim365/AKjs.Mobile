@@ -1,4 +1,4 @@
-# AKjs.Mobile v 1.4.2 (20180829)
+# AKjs.Mobile v 1.4.2 (20180830)
 
 AKjs前端框架是Andrew.Kim和他的团队一起研发的基于jQuery的一个轻量级前端框架。它是只要懂jQuery的语法很容易上手的框架。该框架里面现在发布了很多移动端常用的功能效果；开发者们使用过程中功能插件也可以自己扩展增加。另一方面，它是相当于一个丰富的组件化UI框架，优点是开发要前后端分离，项目开发过程中后端通过ajax调用数据的机制。
 
@@ -15,11 +15,9 @@ layout/main.html --- 整个界面的布局；（该文件夹和文件名可以�
 
 router/ --- 通过路由访问的html界面，该文件夹也在路由管理器文件中配置（里面的所有html文件中最底部都调用功能插件的方法）
 
-js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版akjs.mobile.min.js）
+js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版akjs.mobile.js）
 
 js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
-
-js/plugin.js --- 按需引入功能插件（按需引入功能插件时后面带css的意思是相关插件有对应的css文件）
 
 js/plugin/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件
 
@@ -45,13 +43,24 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 * AKjs前端技术支持QQ群：724501394
 
 -----------------------------------------------------------------------------------------------------------------------
-#### 更新时间：2018/08/29 上午 11:35
+#### 更新时间：2018/08/30 上午 11:35
 
 #### 更新说明：
 
-js目录和css目中 akjs.mobile.js 发布 1.4.2版本；
+js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.4.2版本；
 
 AKjs_Config增加pluginPath参数让功能插件目录可自行设置；
+
+解决AKjs_Unicode方法的bug;
+
+为了解决刚打开页面时加载很慢的问题，所以把原先使用的plugin.js删除并所有演示版页面全部改成按需引入功能插件；
+
+js目录中增加了common.js文件；（该文件可以放全局使用的功能插件）
+
+请替换router目录中的所有演示版文件；
+
+修改js目录中的router.js文件（把AKjs_Config方法转移到common.js文件中）；
+
 
 #### 更新时间：2018/08/23 下午 08:35
 
@@ -103,7 +112,7 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.3.9版本；
 
 1.首先把js目录中的plugin文件夹删除，包括里面的所有文件。然后下载最新版的plugin文件夹放到js目录中即可。
 
-2.在GitHub下载最新版后js目录中的plugin.js、router.js、akjs.mobile.js 等文件进行替换最新版。
+2.在GitHub下载最新版后js目录中的router.js、akjs.mobile.js 等文件进行替换最新版。
 
 3.css目录中的akjs.mobile.css文件进行替换最新版。
 

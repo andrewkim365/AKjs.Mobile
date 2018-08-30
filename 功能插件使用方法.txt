@@ -1,1130 +1,1183 @@
-//引入插件：请打开js目录中plugin.js文件进行按需引入功能插件。
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-08-22
+//文档更新日期：2018-08-30
 
-/*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
-$(function () {
-   AKjs_Config({ //环境配置管理
-       MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
-       Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
-       touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
-       ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
-       WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
-       Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
-       fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
-       animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
-       Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
-       Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-   });
-});
+//按需引入方法：
+/******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
+/*
+参数说明：AKjs_Plugin("插件名称或插件的js文件名","该插件是否存在相关css文件？存在写css，不存在设为空。");
+* 做项目时不必要的插件可以注释处理。
+* 注：调用插件的地方在router目录里的相关html文件中的最底部。
+*/
+    AKjs_Plugin("AKjs_AllChecked"); //全选功能
+    AKjs_Plugin("AKjs_ButtonSubmit","css"); //防止重复提交功能
+    AKjs_Plugin("AKjs_ChangeIcon"); //图标切换功能
+    AKjs_Plugin("AKjs_ChangeInput"); //输入框值互换功能
+    AKjs_Plugin("AKjs_Checkbox","css"); //复选框美化
+    AKjs_Plugin("AKjs_ChooseList"); //按钮模式复选和单选功能
+    AKjs_Plugin("AKjs_Circliful"); //圆形统计插件
+    AKjs_Plugin("AKjs_Codeval","css"); //图片验证功能
+    AKjs_Plugin("AKjs_CountDown"); //倒计时功能
+    AKjs_Plugin("AKjs_CountTo"); //数字动画效果
+    AKjs_Plugin("AKjs_DateTime","css"); //日期和时间插件
+    AKjs_Plugin("AKjs_Dialog","css"); //alert，confirm，prompt等弹出层功能
+    AKjs_Plugin("AKjs_DropLoad","css"); //上拉刷新和下拉加载更多功能
+    AKjs_Plugin("AKjs_DropUpDown"); //列表展开和收起功能
+    AKjs_Plugin("AKjs_EchartsRun"); //百度Echarts运行功能
+    AKjs_Plugin("AKjs_Favorite"); //点赞或收藏功能
+    AKjs_Plugin("AKjs_Form"); //表单提交相关效果
+    AKjs_Plugin("AKjs_GetVerifyCode"); //手机短信验证码认证功能
+    AKjs_Plugin("AKjs_GoTop"); //返回页面顶部插件
+    AKjs_Plugin("AKjs_IntlTelInput","css"); //国际区号选择功能
+    AKjs_Plugin("AKjs_Keyboard","css"); //安全键盘
+    AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
+    AKjs_Plugin("AKjs_lightSlider","css"); //图片列表左右滑动功能
+    AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
+    AKjs_Plugin("AKjs_Marquee","css"); //上下左右滚动插件
+    AKjs_Plugin("AKjs_MobileChat","css"); //移动端聊天功能插件
+    AKjs_Plugin("AKjs_MultiDate","css"); //多功能日期和时间插件
+    AKjs_Plugin("AKjs_NavScroll"); //导航滑动功能（今日头条）
+    AKjs_Plugin("AKjs_NowTime"); //获取当前时间的功能
+    AKjs_Plugin("AKjs_Paginator","css"); //分页插件
+    AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
+    AKjs_Plugin("AKjs_PortraitImage","css"); //头像上传功能
+    AKjs_Plugin("AKjs_PreviewImage","css"); //同时上传多个图片的功能
+    AKjs_Plugin("AKjs_Progress","css"); //进度条插件
+    AKjs_Plugin("AKjs_QRcode"); //二维码生成插件
+    AKjs_Plugin("AKjs_Radio","css"); //单选框美化
+    AKjs_Plugin("AKjs_Range","css"); //滑块功能插件
+    AKjs_Plugin("AKjs_Ratyli"); //星级评价功能
+    AKjs_Plugin("AKjs_Select","css"); //移动端专用下拉菜单功能
+    AKjs_Plugin("AKjs_SelectOption","css"); //pc端专用select下拉框插件
+    AKjs_Plugin("AKjs_Slider","css"); //欢迎页和联播图功能
+    AKjs_Plugin("AKjs_Spinner"); //数量控制功能
+    AKjs_Plugin("AKjs_StepOrder"); //步骤插件
+    AKjs_Plugin("AKjs_Substring"); //输入框里输入的数字强行转换为人民币格式的插件
+    AKjs_Plugin("AKjs_Switch","css"); //开关按钮美化
+    AKjs_Plugin("AKjs_Tabs"); //TABS切换内容功能
+    AKjs_Plugin("AKjs_Template"); //模板引擎插件
+    AKjs_Plugin("AKjs_Textarea"); //多行输入框实时查询字符数的功能
+    AKjs_Plugin("AKjs_TouchDelete","css"); //列表滑动删除功能
+    AKjs_Plugin("AKjs_TimeAxis","css"); //时间轴展示功能
+    AKjs_Plugin("AKjs_Typeahead","css"); //模糊搜索功能
+    AKjs_Plugin("AKjs_TypeIt","css"); //文字打字效果
+    AKjs_Plugin("AKjs_Viewer","css"); //图片放大预览功能
+    AKjs_Plugin("AKjs_Vticker"); //列表垂直滚动插件
+    AKjs_Plugin("AKjs_Waterfall","css"); //瀑布流展示功能
+    AKjs_Plugin("AKjs_WebToast","css"); //提示框效果
+    AKjs_Plugin("AKjs_ReadMore"); //查看更多插件
 
-/*-----------------------------------------------AKjs_Form 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_form").AKjs_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
-        btn_delete: ".plug_Delete", //输入文字的删除按钮class名
-        btn_delete_ico: "icon-yk_guanbi_fill", //输入文字的删除按钮的图标
-        btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
-        btn_password_ico_hide: "icon-in_biyan_fill", //输入的密码可显示和隐藏功能的按钮(隐藏按钮图标)
-        btn_password_ico_show: "icon-in_zhengyan_fill", //输入的密码可显示和隐藏功能的按钮(显示按钮图标)
-        placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
-        keyboard: true, //是否输入框内设置的maxlength自定的限制字数后手机键盘自动消失或者input元素加readonly属性不显示键盘，建议开启 (开启 true, 停用 false）
-        PassCheck: ".plug_PassCheck", //两次输入密码确认时需要加的class名
-        validate: true, //是否开启表单提交按钮的校验功能 （表单内的输入框有required属性代表必填项，所有的必填项全部输入完成才能提交的功能）
-        valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
-            console.log(flag)
-        },
-        passCallback: function() { //通过回调进入两次输入的密码不一致状态 （PassCheck的参数空值时不走当前的回调）
-            console.log("两次输入的密码不一致");
-            $ak.alert("两次输入的密码必须一致！", {
-                icon: "error", //图标类型（warning，error，info，question，success）
-                button_ok: "确定", //弹窗的确定按钮文字
-                title: "提示" //弹窗的标题文字
-            });
-        },
-        butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
-            //console.log(form);
-            if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
-                form.find(":submit").AKjs_ButtonSubmit("数据正在提交中...",{
-                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
-                    icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
-                    callback: function(btn,disabled) { //回调入口
-                        disabled(true); //把提交按钮设为disabled状态
-                        setTimeout(function () {
-                            disabled(false); //把提交按钮解除disabled状态
-                            //btn.html("提交成功");
-                        }, 3000);
-                    }
-                });
-            }
-        }
+    /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
+    AKjs_Config({ //环境配置管理
+        MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
+        Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
+        touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
+        ButtonLink: true, //通过元素中加data-href属性的方式跳转界面。(使用超链接 true,不使用超链接 false）
+        WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
+        Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
+        fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 (开启 true, 停用 false）
+        animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
+        Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
+        Prompt: "为了更好的视觉体验，请在竖屏下进行操作。", //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
+        pluginPath: "./js/plugin/" //功能插件文件所在的目录设置
     });
 
-    $(".plug_formTextarea").AKjs_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
-        placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
-        validate: true, //是否开启表单提交按钮的校验功能 （表单内的输入框有required属性代表必填项，所有的必填项全部输入完成才能提交的功能）
-        valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
-            console.log(flag)
-        },
-        butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
-            //console.log(form);
-            if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
-                form.find(":submit").AKjs_ButtonSubmit("数据正在提交中...",{
-                    click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
-                    icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
-                    callback: function(btn,disabled) { //回调入口
-                        disabled(true); //把提交按钮设为disabled状态
-                        setTimeout(function () {
-                            disabled(false); //把提交按钮解除disabled状态
-                            //btn.html("提交成功");
-                        }, 3000);
-                    }
-                });
-            }
-
-        }
+    /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
+    AKjs_Loader({
+        //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+        timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
+        iconColor:"#ffffff", //图标颜色设置
+        maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
+        Loader:"load_2" //loading效果选择（load_1~7）
     });
-});
-
-/*-----------------------------------------------AKjs_ButtonSubmit 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_submit").AKjs_ButtonSubmit("数据正在提交中...",{
-        click: true, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
-        icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
-        callback: function(btn,disabled) { //回调入口
-            console.log(btn)
-            disabled(true); //把提交按钮设为disabled状态
-            setTimeout(function () {
-                disabled(false); //把提交按钮解除disabled状态
-                //btn.html("提交成功");
-            }, 3000);
+    setTimeout(function() { //页面加载完5秒后执行
+        if($(".ak-Loader").css('display') == 'none'){
+            //AKjs_Loader("destroy"); //关闭loading窗
         }
-    });
-});
+    },2000);
 
-/*-----------------------------------------------AKjs_Textarea 使用方法-------------------------------------------*/
-$(function () {
-   $(".plug_textarea").AKjs_Textarea({ //多行输入框设置
-       maxlength:200, //文字最多输入限制
-       rows:"6", //输入框的行高
-       onTextVal:function(val){ //通过回调获取实时输入的值
-           console.log(val);
-       }
-   });
-});
-
-/*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
-$(function() {
-   $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
-       scroll: $("#ak-scrollview"), //滚动区域的容器
-       scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
-       Img_Effect: "fadeIn", //图片加载动画效果
-       Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
-       Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
-       Callback: function(ele) { //初始化回调入口
-           //console.log(ele);
-       },
-       Scrollback: function(ele,scroll) { //页面滚动后的回调
-           //console.log(ele);
-       }
-   });
-});
-$(function() {
-   $("*[data-animation]").AKjs_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
-       scroll: $("#ak-scrollview"), //滚动区域的容器
-       scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
-       Callback: function(ele) { //初始化回调入口
-           //console.log(ele);
-       },
-       Scrollback: function(ele,scroll) { //页面滚动后的回调
-           //console.log(scroll);
-       }
-   });
-});
-
-/*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
-$(function () {
-   AKjs_Loader({
-       //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-       autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-       timeToHide:500, //毫秒时间设置 (automode必须开启才能有效)
-       iconColor:"#ffffff", //图标颜色设置
-       maskBG: true, //是否开启遮挡背景 (开启 true, 关闭 false）
-       Loader:"load_2" //loading效果选择（load_1~7）
-   });
-   $(".ak-loading").on("click", function () {
-       AKjs_Loader("destroy"); //关闭loading窗
-   });
-});
-
-/*-----------------------------------------------AKjs_Slider 使用方法-------------------------------------------*/
-$(function() {
-   $(".plug_slider").AKjs_Slider({
-       start: 1, //默认显示的图片排号
-       speed: 500, //图片切换的速度
-       interval: 5000, //图片切换间隔毫秒
-       autoPlay: true, //幻灯片是否自动播放（true，false）
-       dotShow: true, //是否显示幻灯片位置按钮（true，false）
-       arrShow: false, //是否显示左右切换按钮（true，false）
-       CustomHeight: false, //是否启用自定义高度，随着带[data-height=true]属性的元素高度进行设置（true，false）
-       dotClass: "fl wh_08em bg_gray_333 border bor_white mr_05em bor_rad_50 pointer", //底部图片位置的样式设置
-       arrClass:"wh_24em c_white bg_black05 bor_rad_50 pointer", //左右切换按钮的样式设置
-       ActiveClass: "bg_title", //底部图片位置的当前样式
-       afterSlider: function(num) { //回调获取当前的数
-           //console.log(num);
-       }
-   });
-});
-
-/*-----------------------------------------------AKjs_Tabs 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_tabs").AKjs_Tabs({
-        curDisplay: 1, //当前显示哪张
-        autoPlay: false, //自动播放 (true/false)
-        playDelay: 2000, //切换Tabs延迟时间
-        content_dom: ".plug_tabs_view", //内容区域的元素 （该参数是菜单区域使用屏幕固定时需要分开布局结构后指定元素的方法）
-        boxheight: false, //切换内容区域的高度设置px；建议vertical方式时使用 （不使用高度：false）
-        navlength: 4, //切换导航的数量设置（文字屏幕对齐）
-        fullclass: "bor_bottom2 bor_title c_title minus_mt_1px", //被选中状态的class
-        emptyclass: "bor_bottom bor_gray_ddd", //未选中状态的class
-        mouse: "click", //鼠标事件 (click/hover)
-        touchmode : true, //是否开启触屏滑动切换功能 (true/false)
-        changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
-        callback: function(ele,index) { //初始化回调入口
-            var ajax_url = './router/tab_test1.html';
-            //console.log(ajax_url);
-            /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
-            AKjs_Ajax({
-                to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-                type: "GET", //GET或POST
-                url: ajax_url, //需要加载的URL
-                data:{}, //传入参数
-                async: true, //异步方式：true，同步方式：false
-                success:function (result) { //ajax请求加载成功后的回调
-                    //console.log(result);
-                    //ak_webToast("请求加载数据成功！","middle",2000);
-                },
-                error:function (error) { //ajax请求加载失败后的回调
-                    //console.log(error);
-                    //ak_webToast("请求加载数据失败！","middle",2000);
-                }
-            });
-        },
-        changeback: function (ele,index) { //Tab切换回调入口
-            console.log(index);
-            if (index == 0) {
-                var ajax_url = './router/tab_test1.html';
-            } else if (index == 1) {
-                var ajax_url = './router/tab_test2.html';
-            } else if (index == 2) {
-                var ajax_url = './router/tab_test3.html';
-            } else if (index == 3) {
-                var ajax_url = './router/tab_test4.html';
-            }
-            //console.log(ajax_url);
-            /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
-            AKjs_Ajax({
-                to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
-                type: "GET", //GET或POST
-                url: ajax_url, //需要加载的URL
-                data:{}, //传入参数
-                async: true, //异步方式：true，同步方式：false
-                success:function (result) { //ajax请求加载成功后的回调
-                    //console.log(result);
-                    //ak_webToast("请求加载数据成功！","middle",2000);
-                },
-                error:function (error) { //ajax请求加载失败后的回调
-                    //console.log(error);
-                    //ak_webToast("请求加载数据失败！","middle",2000);
-                }
-            });
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Tabs (仿京东商品分类) 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_tabs_ud").AKjs_Tabs({
-        curDisplay: 1, //当前显示哪张
-        autoPlay: false, //自动播放 (true/false)
-        playDelay: 1000, //切换Tabs延迟时间
-        boxheight: "12em", //切换内容区域的高度设置px （不使用高度：false）
-        navlength: 1, //切换导航的数量设置（文字屏幕对齐）
-        fullclass: "bg_white c_title bor_right_none", //被选中状态的class
-        emptyclass: "bg_gray_f5f", //未选中状态的class
-        mouse: "click", //鼠标事件 (click/hover)
-        touchmode : false, //是否开启触屏滑动切换功能 (true/false)
-        changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
-        callback: function(ele,index) { //初始化回调入口
-            //console.log(ele);
-        },
-        changeback: function (ele,index) { //Tab切换回调入口
-            console.log(index);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Dialog 使用方法-------------------------------------------*/
-$(function(){
-   $("#plug_webToast").click(function(){
-       ak_webToast("恭喜您，修改成功!","middle","mask",1000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
-   });
-});
-
-$(function(){
-   $("#plug_alert").click(function(){
-       $ak.alert("请输入密码！", { //(标准的H5使用方法 $ak.alert)
-           title: "提示", //弹窗的标题文字
-           button_ok: "确定", //弹窗的确定按钮文字
-           icon: "warning", //图标类型（warning，error，info，question，success）
-           animateIn: "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
-           onSubmit:function(res){ //点击确定按钮后的回调
-               console.log(res);
-           }
-       });
-   });
-});
-
-$(function(){
-   $("#plug_confirm").click(function(){
-       $ak.confirm("确认要删除当前的信息吗？", { //(标准的H5使用方法 $ak.confirm)
-           title: "确认", //弹窗的标题文字
-           button_ok: "确定", //弹窗的确定按钮文字
-           button_cancel: "取消", //弹窗的取消按钮文字
-           icon: "question", //图标类型（warning，error，info，question，success）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
-           onSubmit:function(res){ //点击确定按钮后的回调
-               ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
-               console.log(res);
-           },
-           onCancel:function (res) { //点击取消按钮后的回调
-               ak_webToast("取消删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
-               console.log(res);
-           }
-       });
-   });
-});
-
-$(function(){
-   $("#plug_prompt_input").click(function(){
-       var input = $(this); //获取当前的输入框
-       if (input.val().length > 0 ) {
-           var input_val = input.val();
-       }
-       $ak.prompt("姓名", input_val, { //(标准的H5使用方法 $ak.prompt)
-           title: "输入", //弹窗的标题文字
-           button_ok: "确定", //弹窗的确定按钮文字
-           button_cancel: "取消", //弹窗的取消按钮文字
-           icon: "info", //图标类型（warning，error，info，question，success）
-           inputbox: "input", //输入框类型(input,textarea)
-           inputType: "text",//输入框类型 (text,password,number,tel,search)
-           inputClass: "c_gray_777 border bor_gray_ddd h_3em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
-           placeholder:"请输入姓名", //设置输入框的提示文字
-           required: true, //弹窗后的输入框设置为是否必填（true，false）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
-           onSubmit:function(res){ //点击确定按钮后的回调
-               ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
-               input.val(res); //插入内容
-               console.log(res);
-           },
-           onCancel:function (res) { //点击取消按钮后的回调
-               ak_webToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
-               console.log(res);
-           }
-       });
-   });
-});
-
-$(function(){
-   $("#plug_prompt_textarea").click(function(){
-       $ak.prompt("内容", "", { //(标准的H5使用方法 $ak.prompt)
-           title: "提问", //弹窗的标题文字
-           button_ok: "提交", //弹窗的确定按钮文字
-           button_cancel: "取消", //弹窗的取消按钮文字
-           icon: "info", //图标类型（warning，error，info，question，success）
-           inputbox: "textarea", //输入框类型(input,textarea)
-           inputClass: "c_gray_777 border bor_gray_ddd h_6em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
-           placeholder:"请输入提问内容", //设置输入框的提示文字
-           required: true, //弹窗后的输入框设置为是否必填（true，false）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
-           onSubmit:function(res){ //点击确定按钮后的回调
-               ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置，耗时)
-               $("#plug_prompt_textarea_view ul").append("<li  class=\"c_gray_777 bor_bottom bor_gray_ddd\">"+res+"</li>"); //插入内容
-               console.log(res);
-           },
-           onCancel:function (res) { //点击取消按钮后的回调
-               ak_webToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
-               console.log(res);
-           }
-       });
-   });
-});
-
-/*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
-$(function(){
-    $("#plug_NavMenu").bind("click", function (e) {
-        AKjs_Popupwin({
-            dom: "#plug_NavMenuWin", //弹窗内容的布局
-            position: "top", //位置类型(top，bottom，left，right，middle)
-            effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
-            effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
-            hasMask: true, //是否开启遮罩层背景 (true / false)
-            maskPosition: 4, //Mask的z-index数值
-            closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
-            OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-            toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-            callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
-                console.log($(ele[0].dom)); //获取当前的弹窗元素
-                if (toggle) { //判断是否弹出弹窗
-                    $("footer").addClass("zindex_0");
-                } else {
-                    setTimeout(function() {
-                        $("footer").removeClass("zindex_0");
-                    },1000);
-                }
+    /*-----------------------------------------------AKjs_Slider 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_slider").AKjs_Slider({
+            start: 1, //默认显示的图片排号
+            speed: 500, //图片切换的速度
+            interval: 5000, //图片切换间隔毫秒
+            autoPlay: true, //幻灯片是否自动播放（true，false）
+            dotShow: true, //是否显示幻灯片位置按钮（true，false）
+            arrShow: false, //是否显示左右切换按钮（true，false）
+            CustomHeight: false, //是否启用自定义高度，随着带[data-height=true]属性的元素高度进行设置（true，false）
+            dotClass: "fl wh_08em bg_gray_333 border bor_white mr_05em bor_rad_50 pointer", //底部图片位置的样式设置
+            arrClass:"wh_24em c_white bg_black05 bor_rad_50 pointer", //左右切换按钮的样式设置
+            ActiveClass: "bg_title", //底部图片位置的当前样式
+            afterSlider: function(num) { //回调获取当前的数
+                //console.log(num);
             }
         });
     });
-});
 
-$(function(){
-   $("#plug_popup").click(function(){
-       AKjs_Popupwin({
-           dom: "#plug_PopupWin", //弹窗内容的布局
-           position: "middle", //位置类型(top，bottom，left，right，middle)
-           effectIn: "bounceInDown", //弹窗显示效果
-           effectOut: "bounceOutUp", //弹窗消失效果
-           hasMask: true, //是否开启遮罩层背景 (true / false)
-           maskPosition: 11, //Mask的z-index数值
-           closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
-           callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-               console.log($(ele[0].dom)); //获取当前的弹窗元素
-           }
-       });
-   });
-});
-
-/*-----------------------------------------------AKjs_Range  使用方法-------------------------------------------*/
-$(function(){
-   $('.plug_range1').AKjs_Range({
-       from: 0, //滑动范围的最小值，数字，如0
-       to: 100, //滑动范围的最大值，数字，如100
-       step: 1, //步长值，每次滑动大小
-       scale: [0,25,50,75,100], //滑动条下方的尺度标签，数组类型，如[0,50,100] 	[from,to]
-       format: '%s', //数值格式
-       width: "90%", //滑动条宽度
-       ProgClass: "bg_title", //选取范围内的样式（可设置背景颜色）
-       showLabels: true, //布尔型，是否显示滑块上方的数值标签
-       showScale: false, //布尔型，是否显示滑动条下方的尺寸标签
-       isRange : false, //是否为选取范围。
-       onstatechange: function(ele,val){
-           //console.log(ele);
-           //console.log(val);
-       }
-   });
-   $('.plug_range2').AKjs_Range({
-       from: 0, //滑动范围的最小值，数字，如0
-       to: 100, //滑动范围的最大值，数字，如100
-       step: 1, //步长值，每次滑动大小
-       scale: [0,25,50,75,100], //滑动条下方的尺度标签，数组类型，如[0,50,100] 	[from,to]
-       format: '%s', //数值格式
-       width: "90%", //滑动条宽度
-       ProgClass: "bg_title", //选取范围内的样式（可设置背景颜色）
-       showLabels: true, //布尔型，是否显示滑块上方的数值标签
-       showScale: true, //布尔型，是否显示滑动条下方的尺寸标签
-       isRange : true, //是否为选取范围。
-       onstatechange: function(ele,val){
-           //console.log(ele);
-           //console.log(val);
-       }
-   });
-});
-
-/*-----------------------------------------------AKjs_ChooseList 使用方法-------------------------------------------*/
-   $(function(){
-       $(".plug_choose").AKjs_ChooseList({
-           itemWidth: "", //自定义设置按钮宽度
-           btnClass: "fl pl_5 pr_5 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em c_gray_777 rel ovh", //按钮的class名称设置
-           btnIcon: true, //是否开启被选中时显示打钩符号 (true/false)
-           active: "c_title bor_title", //选中后的样式
-           multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
-           full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
-           dataKey: '', //实例化后的data键值，方便后续通过data('dataKey')取出；
-           click: function(index, item) { //Choose元素点击时的回调，diabled时不发生。
-               console.log("click", index, item.text());
-           },
-           change: function(index, item) { //choose值改变时的回调；
-               console.log("change", index, item.text());
-           }
-       });
-   });
-
-/*-----------------------------------------------AKjs_ChangeInput 使用方法-------------------------------------------*/
-$(function(){
-   $(".plug_change_btn").AKjs_ChangeInput({
-       text_input: new Array( //两个左侧和右侧的输入框设置
-           ".plug_change_text1", //切换按钮的“左侧”输入框Class
-           ".plug_change_text2" //切换按钮的“右侧”输入框Class
-       ),
-       onChange:function(l_val,r_val){ //回调获取当前实时变化的左右两个值
-           console.log("左侧："+l_val);
-           console.log("右侧："+r_val);
-       }
-   });
-});
-
-/*-----------------------------------------------AKjs_ChangeIcon 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_sort_btn1").AKjs_ChangeIcon({
-        multi_icon: false, //是否控制的图标是多个
-        text_color: new Array( //文字颜色设置（最多两个）
-            "c_gray_777", //默认颜色
-            "c_title" //点击后的颜色
-        ),
-        clickBack:function(state,op){ //回调获取当前的值和option参数
-            var text_color1 = $(this)[0].text_color[0]; //默认颜色
-            var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-            if (state == true) { //是否被开启
-                $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第2个的文字样式
-                $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第2个的图标样式
-                $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
-                $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
-
-                /*把筛选功能中的弹窗关闭处理*/
-                $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
-                $(".plug_sort_btn4").removeClass("ak-is_active");
-                $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
-                setTimeout(function() {
-                    $("#ak-scrollview").addClass("scrolling_touch");;
-                    $('#popup_mask').fadeOut().remove();
-                },500);
-            }
-        }
-    });
-});
-$(function(){
-    $(".plug_sort_btn2").AKjs_ChangeIcon({
-        multi_icon: true, //是否控制的图标是多个
-        text_color: new Array( //文字颜色设置（最多两个）
-            "c_gray_777", //默认颜色
-            "c_title" //点击后的颜色
-        ),
-        clickBack:function(state,op){ //回调获取当前的值和option参数
-            var text_color1 = $(this)[0].text_color[0]; //默认颜色
-            var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-            if (state) { //是否被开启
-                $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
-                $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
-                $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
-
-                /*把筛选功能中的弹窗关闭处理*/
-                $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
-                $(".plug_sort_btn4").removeClass("ak-is_active");
-                $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
-                setTimeout(function() {
-                    $("#ak-scrollview").addClass("scrolling_touch");;
-                    $('#popup_mask').fadeOut().remove();
-                },500);
-            }
-        }
-    });
-});
-$(function(){
-    $(".plug_sort_btn3").AKjs_ChangeIcon({
-        multi_icon: true, //是否控制的图标是多个
-        text_color: new Array( //文字颜色设置（最多两个）
-            "c_gray_777", //默认颜色
-            "c_title" //点击后的颜色
-        ),
-        clickBack:function(state,op){ //回调获取当前的值和option参数
-            var text_color1 = $(this)[0].text_color[0]; //默认颜色
-            var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-            if (state) { //是否被开启
-                $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
-                $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
-                $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
-
-                /*把筛选功能中的弹窗关闭处理*/
-                $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
-                $(".plug_sort_btn4").removeClass("ak-is_active");
-                $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
-                setTimeout(function() {
-                    $("#ak-scrollview").addClass("scrolling_touch");;
-                    $('#popup_mask').fadeOut().remove();
-                },500);
-            }
-        }
-    });
-});
-$(function(){
-    $(".plug_sort_btn4").AKjs_ChangeIcon({
-        multi_icon: false, //是否控制的图标是多个
-        text_color: new Array( //文字颜色设置（最多两个）
-            "c_gray_777", //默认颜色
-            "c_title" //点击后的颜色
-        ),
-        Change_icon: new Array( //文字颜色设置（最多两个）
-            "icon-ln_xiangxia", //默认显示图标
-            "icon-ln_xiangshang" //切换后显示的图标
-        ),
-        clickBack:function(state,op){ //回调获取当前的值和option参数
-            console.log(op);
-            var text_color1 = $(this)[0].text_color[0]; //默认颜色
-            var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
-            if (state == true) { //是否被开启
-                $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
-                $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-                $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
-                $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
-            }
-            $(".plug_sort_btn4").each(function(){
-                var _this = $(this);
-                AKjs_Popupwin({ //调用弹窗插件
-                    dom: "#plug_filterWin", //弹窗内容的布局
-                    position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
-                    effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：akjs.animate.css)
-                    effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：akjs.animate.css)
-                    hasMask: true, //是否开启遮罩层背景 (true / false)
-                    maskPosition: 1, //Mask的z-index数值
-                    closeBtn: "#plug_filterWin", //关闭弹窗按钮
-                    OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
-                    callback :function (ele) { //通过回调获取弹窗显示后的参数
-                        var modal =$(ele[0].dom); //获取弹窗元素
-                        $(modal).click(function(){ //点击弹窗内容区域后关闭当前被展开的弹窗
-                            initialize_btn(); //调用按钮样式初始化功能
-                        });
-                    },
-                    scrollback :function (ele) { //页面滑动时的回调获取参数
-                        initialize_btn(); //调用按钮样式初始化功能
-                    }
-                });
-                function initialize_btn(){ //按钮的样式初始化
-                    var text_color1 = op.text_color[0]; //默认颜色
-                    var text_color2 = op.text_color[1]; //点击后的颜色
-                    var Change_icon1 = op.Change_icon[0]; //默认图标
-                    var Change_icon2 = op.Change_icon[1]; //点击后的图标
-                    _this.children().removeClass(text_color2).addClass(text_color1); //把文字颜色切换为默认颜色
-                    _this.children().find("i").removeClass(text_color2).addClass(text_color1); //把图标颜色切换为默认颜色
-                    _this.children().find("i").removeClass(Change_icon2).addClass(Change_icon1); //把图标切换为默认显示的图标
-                }
-            });
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Radio&AKjs_Checkbox&AKjs_Switch 使用方法-------------------------------------------*/
-$(function(){
-   //单选按钮样式
-   $(".plug_Radio").AKjs_Radio({
-       checkedClass: "icon-ln_zhengque c_title", //选中后的样式
-       onChange:function(chk){ //回调获取当前的选中状态
-           console.log(chk);
-       }
-   });
-});
-
-$(function(){
-   //多选按钮样式
-   $(".plug_Checkbox").AKjs_Checkbox({
-       checkedClass: "icon-ln_zhengque bg_title bor_title c_white", //选中后的样式
-       disabledClass: "icon-ln_zhengque bg_gray_ccc bor_gray_ccc c_white", //不能选择的样式
-       onChange:function(chk){ //回调获取当前的选中状态
-           console.log(chk);
-       }
-   });
-});
-
-$(function(){
-   //开关按钮样式
-   $(".plug_Switch").AKjs_Switch({
-       checkedClass: "bg_title", //选中后的样式
-       disabledClass: "dis_opa_05", //不能选择的样式
-       onChange:function(chk){ //回调获取当前的选中状态
-           console.log(chk);
-       }
-   });
-});
-
-/*-----------------------------------------------AKjs_GetVerifyCode 使用方法-------------------------------------------*/
-$(function (){
-   AKjs_GetVerifyCode.verify("#plug_getVerifyCode", {
-       time: 10, //倒计时时间
-       event: "click", //事件触发方式
-       phone: "#plug_phone", //绑定设置输入手机号的输入框
-       ableClass: "c_title", //按钮可以使用时的class
-       unableClass: "c_gray_999", //按钮不能使用时的class
-       //执行条件，可以是function也可以是Boolean值，如果是函数则需返回true才会执行
-       condition: function (phone) {
-           /*var phoneReg = /^1[345789]\d{9}$/,*/
-           //var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/
-           AKjs_RegsInput();
-           var flag = Regs_mobile.test($(phone).val());
-           if ($(phone).val() != "") {
-               if(!flag){
-                   $ak.alert("您输入的手机号码有误！", {
-                       icon: "error", //图标类型（warning，error，info，question，success）
-                       button_ok: "确定", //弹窗中的确定按钮文字
-                       button_cancel: "取消", //弹窗中的取消按钮文字
-                       title: "提示" //弹窗中的标题名称文字
-                   });
-                   return false;
-               } else {
-                   $ak.alert("验证码发送成功！", {
-                       icon: "success", //图标类型（warning，error，info，question，success）
-                       button_ok: "确定", //弹窗中的确定按钮文字
-                       button_cancel: "取消", //弹窗中的取消按钮文字
-                       title: "提示" //弹窗中的标题名称文字
-                   });
-                   return true;
-               }
-           } else {
-               $ak.alert("请输入手机号码！", {
-                   icon: "error", //图标类型（warning，error，info，question，success）
-                   button_ok: "确定", //弹窗中的确定按钮文字
-                   button_cancel: "取消", //弹窗中的取消按钮文字
-                   title: "提示" //弹窗中的标题名称文字
-               });
-               return false;
-           }
-       },
-       progress: function (time,phone) {//计时正在进行中时的回调
-           $(this).html(time + "s后重新获取");//这里的this指向验证按钮
-           console.log(this.timedown); //这个timedown就是计时器
-           //console.log($(phone)); //这里获取输入手机号的输入框
-       },
-       timeUp: function (time,phone) {//计时结束时执行的回调
-           $(this).html("重新获取"); //这里的this指向验证按钮
-           console.log("时间到了！");
-           //console.log($(phone)); //这里获取输入手机号的输入框
-       },
-       abort: function (phone) {//中断计时
-           $(this).html("重新获取");//这里的this指向验证按钮
-           console.log("我被中断了！");
-           //$(phone).timedown.abort(); //通过click事件执行中断语句
-           //console.log($(phone)); //这里获取输入手机号的输入框
-       },
-       eventFn: function (phone) {//事件执行后的回调
-           console.log("执行了");
-           console.log(this);//这里的this指向验证按钮
-           console.log($(phone)); //这里获取输入手机号的输入框
-           console.log($(phone).prev("label").find("input"))//获取国家区号的输入框
-       }
-   });
-});
-
-
-/*-----------------------------------------------AKjs_Codeval 使用方法-------------------------------------------*/
-$(function () {
-    $("#plug_codeInput").each(function(){
-        $.AKjs_Codeval.ak_setCode({
-            inputEle: '#plug_codeInput', //输入验证码的输入框
-            codeView: '#plug_codeView', //显示验证码的元素
-            codeLength: '5' //显示验证码的字数
-        });
-    });
-    $("#plug_codeView").parents("form").find(":submit").click(function (){ //点击提交按钮获取输入的验证码是否正确
-    var flag = $.AKjs_Codeval.ak_validateCode();
-    console.log(flag); //flag的值true可以通过，false是输入的验证码有误
-    });
-});
-
-/*-----------------------------------------------AKjs_AllChecked 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_allchk").AKjs_AllChecked({
-        toggleClass: 'bg_title bor_title c_white icon-ln_zhengque',//改变的样式名，针对例子中的复选框样式美化
-        callback :function(array) { //通过回调函数获取数组状态
-            $(array).each(function(){ //对选中的元素可进行控制和获取值
-               console.log($(this).parent("label").parent("dt").parent("dl").children("dd").last().find("span").text()); //获取指定元素的数字
-               console.log($(this)[0].checked);  //获取每个复选框的状态
-               console.log($(this));
-            });
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_DropUpDown 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_dropbutton").AKjs_DropUpDown({
-        curDisplay: 2, //当前显示哪个(不展开设置为0)
-        active_toggle: "bor_bottom_dashed bor_gray_ddd", //展开后的线条切换（实线切换虚线）
-        up_ico: "icon-ln_jiantoushang", //展开后的图标（上箭头）
-        down_ico: "icon-ln_jiantouxia", //展开前的图标（下箭头）
-        callback:function(ele){ //回调获取展开后的元素
-            console.log(ele);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_TouchDelete 使用方法-------------------------------------------*/
-$(function() {
-    $(".plug_touchdel").AKjs_TouchDelete({
-        UpDownTouch: false, //是否开启上下滑动功能 (开启 true, 关闭 false）
-        DelText: "删除", //删除按钮中显示的文字
-        DelClass: "abs bg_close c_white w_4em h_in top_0", //删除按钮的Class样式
-        ClickDelete: function(btn,ele,index) { //回调获取当点击删除按钮后的删除按钮和当前的区域元素 （btn：删除按钮，ele：当前区域元素，index：当前元素的排号）
-        console.log("index: "+index);
-        $ak.confirm("确认要删除当前的信息吗？", { //(标准的H5使用方法 $ak.confirm)
-           title: "确认", //弹窗的标题文字
-           button_ok: "确定", //弹窗的确定按钮文字
-           button_cancel: "取消", //弹窗的取消按钮文字
-           icon: "question", //图标类型（warning，error，info，question，success）
-           animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
-           animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
-           onSubmit:function(){
-               ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
-               ele.remove();//删除当前元素
-           }
-        });
-        },
-        UpTouch: function(ele) { //开启UpDownTouch的参数后执行的回调(上滑)
-            console.log("我往上滑了！");
-            console.log(ele);
-            /*ele.append("<li class=\"rel ovh bor_bottom bor_gray_ddd bg_white touchstart\">\n" +
-               "        <article class=\"ml_3 ak_delete_art\">X.当前显示的是列表展示内容</article>\n" +
-               "</li>");*/
-        },
-        DownTouch: function(ele) { //开启UpDownTouch的参数后执行的回调(下滑)
-            console.log("我往下滑了！");
-            console.log(ele);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_intlTelInput 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_mobileNum").AKjs_IntlTelInput({
-        Title_Text: "选择国家和地区", //头部的标题文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
-        Close_btn: "left_0 w_25 pl_3 text_al_l text_12em", //关闭按钮的样式设置
-        Close_Text: "关闭", //头部的关闭按钮文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
-        Close_Icon:"text_12em icon-bt_quxiao_a", //头部的关闭按钮图标  （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
-        list_Class: "bg_white bor_bottom bor_gray_ddd c_gray_777 touchstart", //数据列表的Class样式
-        Nav_active: "c_title text_bold", //右侧固定字母菜单的选中样式
-        show_color: "c_title text_bold text_4em", //右侧固定字母点击后中间淡入字母效果的样式
-        data: json_countryData, //Json获取data数据(data.js)
-        showBack:function(ele){ //回调获取被展开后显示的元素
-            console.log("选择区域的元素被显示了。您可以对该元素进行操作。");
-            console.log(ele);
-        },
-        clickBack:function(num){ //回调获取当前的值
-            console.log($(num)[0].dataset);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_NowTime 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_nowtime").AKjs_NowTime({
-        dateStyle: "yyyy年MM月dd日 hh:mm:ss" //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
-    });
-});
-
-/*-----------------------------------------------AKjs_Substring 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_RMBoutput").AKjs_Substring(); //数字RMB格式
-});
-
-/*-----------------------------------------------AKjs_Spinner 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_spinner").AKjs_Spinner({//数量加减功能
-        input_width: "20%", //输入框宽度 （px,%,em）
-        btn_wrap: "fr rel ovh border bor_gray_ddd w_100 bg_gray_f9f", //数量加减输入框的外框样式
-        btn_left: "abs top_0 left_0 bor_right bor_gray_ddd bg_white wh_24em icon-ln_jian_a", //数量减少按钮Class
-        btn_right: "abs top_0 right_0 bor_left bor_gray_ddd bg_white wh_24em icon-ln_jia_a", //数量增加按钮Class
-        spacing: 1, //每次累加数量（步长）
-        maxNumber: 5, //设置最大数量限制(不使用限制请设为空值)
-        changeBack:function(val){ //回调获取实时输入的值
-            console.log(val);
-        },
-        clickBack:function(num){ //回调获取当前的值
-            console.log(num);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_CountTo 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_count").AKjs_CountTo(); //数字加动画变化效果
-    $(".plug_count").click(function(){ //点击后数字加动画变化效果
-        $(this).AKjs_CountTo({
-            onUpdate: function(count){ //回调获取实时变化的数据
-               console.log(count);
+    /*-----------------------------------------------AKjs_Form 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_form").AKjs_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
+            btn_delete: ".plug_Delete", //输入文字的删除按钮class名
+            btn_delete_ico: "icon-yk_guanbi_fill", //输入文字的删除按钮的图标
+            btn_password: ".plug_Password", //输入的密码可显示和隐藏功能的按钮class名
+            btn_password_ico_hide: "icon-in_biyan_fill", //输入的密码可显示和隐藏功能的按钮(隐藏按钮图标)
+            btn_password_ico_show: "icon-in_zhengyan_fill", //输入的密码可显示和隐藏功能的按钮(显示按钮图标)
+            placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
+            keyboard: true, //是否输入框内设置的maxlength自定的限制字数后手机键盘自动消失或者input元素加readonly属性不显示键盘，建议开启 (开启 true, 停用 false）
+            PassCheck: ".plug_PassCheck", //两次输入密码确认时需要加的class名
+            validate: true, //是否开启表单提交按钮的校验功能 （表单内的输入框有required属性代表必填项，所有的必填项全部输入完成才能提交的功能）
+            valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
+                console.log(flag)
             },
-            onComplete: function(count){ //回调获取最终的数据
-               console.log(count);
+            passCallback: function() { //通过回调进入两次输入的密码不一致状态 （PassCheck的参数空值时不走当前的回调）
+                console.log("两次输入的密码不一致");
+                $ak.alert("两次输入的密码必须一致！", {
+                    icon: "error", //图标类型（warning，error，info，question，success）
+                    button_ok: "确定", //弹窗的确定按钮文字
+                    title: "提示" //弹窗的标题文字
+                });
+            },
+            butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
+                //console.log(form);
+                if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
+                    form.find(":submit").AKjs_ButtonSubmit("数据正在提交中...",{
+                        click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
+                        icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+                        callback: function(btn,disabled) { //回调入口
+                            disabled(true); //把提交按钮设为disabled状态
+                            setTimeout(function () {
+                                disabled(false); //把提交按钮解除disabled状态
+                                //btn.html("提交成功");
+                            }, 3000);
+                        }
+                    });
+                }
+            }
+        });
+
+        $(".plug_formTextarea").AKjs_Form({ //表单专用插件 （默认禁止使用form元素的action提交功能。开启action功能的方法：<form action="url" data-submit="true">）
+            placeholder: true, //是否开启点击输入框后提示文字消失功能，建议开启 (开启 true, 停用 false）
+            validate: true, //是否开启表单提交按钮的校验功能 （表单内的输入框有required属性代表必填项，所有的必填项全部输入完成才能提交的功能）
+            valCallback:function (flag) { //提交验证回调 （通过flag值判断是否全部输入完成必填项。 true 必填项输入完成, false 必填项未输入完成）
+                console.log(flag)
+            },
+            butCallback: function(form,enter) { //点击提交按钮后的回调，获取当前表单的元素
+                //console.log(form);
+                if (!enter) { //是否按键盘的Enter键？(建议在会员登录功能中使用)
+                    form.find(":submit").AKjs_ButtonSubmit("数据正在提交中...",{
+                        click: false, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
+                        icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+                        callback: function(btn,disabled) { //回调入口
+                            disabled(true); //把提交按钮设为disabled状态
+                            setTimeout(function () {
+                                disabled(false); //把提交按钮解除disabled状态
+                                //btn.html("提交成功");
+                            }, 3000);
+                        }
+                    });
+                }
+
             }
         });
     });
-});
 
-/*-----------------------------------------------AKjs_CountDown 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_Countdown").click(function () {
-        AKjs_CountDown($(this),{
-            wait: 10, //默认秒数
-            Start_text: "秒", //倒计时开始文字
-            End_Text: "时间到！", //倒计时结束后的文字
-            callback:function(waits){ //回调
-               console.log("each --- "+waits);
-               console.log("倒计时已结束，请控制下一步");
+    /*-----------------------------------------------AKjs_ButtonSubmit 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_submit").AKjs_ButtonSubmit("数据正在提交中...",{
+            click: true, //是否提交按钮点击事件后触发（为了重复防止重复点击事件在AKjs_Form功能插件中的butCallback回调里使用时请设为false）
+            icon: ["1em","#ffffff"], //loading图标样式设置 ["图标大小","图标颜色"]
+            callback: function(btn,disabled) { //回调入口
+                console.log(btn);
+                disabled(true); //把提交按钮设为disabled状态
+                setTimeout(function () {
+                    disabled(false); //把提交按钮解除disabled状态
+                    //btn.html("提交成功");
+                }, 3000);
             }
         });
     });
-});
 
-/*-----------------------------------------------AKjs_Progress 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_progress").AKjs_Progress({
-        goalAmount: 100, //总进度数值
-        currentAmount: 60, //当前进度数值 （也可以元素里加data-to参数设置, 初始化开始参数设置属性为元素里加data-from即可）
-        milestoneNumber: 90, //数字达到当前设置的参数后进度条的颜色变化
-        milestoneClass:"bg_orange", //milestoneNumber参数背景颜色
-        ColorStyle: "bg_title c_white", //进度条样式设置
-        textBefore: "当前进度：", //当前进度文字
-        textAfter: "%", //当前进度百分比文字
-        callback: function() { //通过回调获取元素
-            //console.log(this);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_StepOrder 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_step").AKjs_StepOrder({
-        stepNum: 2, //步骤里要选前几个
-        stepClass:  new Array( //被选中的样式
-            "bg_title c_yellow", //被选中的数字框样式
-            "c_title" //被选中的标题文字颜色
-        ),
-        dashed_line: "bor_gray_ccc bor_bottom_dashed2", //线条的颜色样式
-        progress: "bor_title bor_bottom2", //到达的线条颜色样式
-        callback: function(ele) { //加载完后的回调
-            //console.log(ele);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Ratyli 使用方法-------------------------------------------*/
-$(function() {
-    $("#plug_ratyli1").AKjs_Ratyli({
-        rate:1, //当前被选中的数量
-        ratemax:5, //总数量
-        disable:false, //是否能点击(不可点击：true，可点击：false)
-        full:"<i class='c_title text_18em line_h_2em icon-mn_xingxing_fill mr_05em'></i>", //被选中状态
-        empty:"<i class='c_title text_18em line_h_2em icon-mn_xingxing mr_05em'></i>", //未选中状态
-        onRated:function(value,init){ //init是默认触发事件
-            if(!init) console.log(value); // 获取点击后的值
-            if(!init) console.log(this); //这里的this指向对象
-        }
-    });
-});
-
-$(function(){
-    $("#plug_ratyli2").AKjs_Ratyli({
-        rate:4, //当前被选中的数量
-        ratemax:5, //总数量
-        disable:true, //是否能点击(不可点击：true，可点击：false)
-        full:"<i class='c_gray_ccc text_18em line_h_2em icon-mn_xingxing_fill mr_05em'></i>", //被选中状态
-        empty:"<i class='c_gray_ccc text_18em line_h_2em icon-mn_xingxing mr_05em'></i>", //未选中状态
-        onRated:function(value,init){ //init是默认触发事件
-            if(!init) console.log(value); //获取点击后的值
-            if(!init) console.log(this); //这里的this指向对象
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Favorite 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_like").AKjs_Favorite({
-        likeMode: true, //是否开启点赞模式 （设置false为收藏模式）
-        str: "+1",  //字符串，要显示的内容;也可以传一段html
-        icon_defaultClass: "text_al_m text_14em icon-mn_shoucang", //默认图标样式
-        icon_changeClass: "text_al_m text_14em icon-mn_shoucang_fill c_title", //点击后的图标样式
-        textClass: "c_gray_777 ml_03em text_al_m", //文字样式
-        text_default: "点赞", //默认显示的文字
-        startSize: "12px",  //动画开始的文字大小
-        endSize: "30px",    //动画结束的文字大小
-        interval: 600,  //动画时间间隔
-        color: "red",    //文字颜色
-        callback:function(length,ele){ //通过回调获取数量和元素
-            console.log(length);
-            console.log(ele);
-        }
-    });
-});
-
-$(function(){
-    $(".plug_collect").AKjs_Favorite({
-        likeMode: false, //是否开启点赞模式 （设置false为收藏模式）
-        icon_defaultClass: "text_al_m text_14em icon-mn_xingxing", //默认图标样式
-        icon_changeClass: "text_al_m text_14em icon-mn_xingxing_fill c_title", //点击后的图标样式
-        textClass: "c_gray_777 ml_03em text_al_m", //文字样式
-        text_default: "关注", //默认显示的文字
-        text_change: "取消关注", //点击后显示的文字
-        callback:function(length,ele){ //通过回调获取数量和元素
-            console.log(length);
-            console.log(ele);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_SnInput 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_sn_input").AKjs_SnInput({
-        default_active: false, //是否开启默认选择第一个输入框
-        input_length: "1", //每个输入框限制的字数
-        callback:function(sn){ //回调获取全部输入的值
-            console.log(sn);
-        }
-    })
-});
-
-/*-----------------------------------------------AKjs_Typeahead 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_Typeahead").AKjs_Typeahead({
-        items: 20, //最多显示的数据
-        source: json_searchData, //Json获取data数据(data.js)
-        showCallBack:function(ele){ //回调获取被展开后显示的元素
-            $(".plug_Typeahead").parent().append('<i class="dis_none_im abs left_0 ml_03em text_14em c_gray_999 line_h_18em iconfont icon-sousuo1"></i>');
-            if ($(".ak-typeahead").children("ol").length < 1) {
-               $(".ak-typeahead").append(
-                   "<ol class=\"scrolling_touch list ovs_y h_100\">\n" +
-                   "<li class=\"touchstart\" data-value=\"BJ\">北京</li>\n" +
-                   "<li class=\"touchstart\" data-value=\"SH\">上海</li>\n" +
-                   "<li class=\"touchstart\" data-value=\"GZ\">广州</li>\n" +
-                   "<li class=\"touchstart\" data-value=\"SZ\">深圳</li>\n" +
-                   "<li class=\"touchstart\" data-value=\"QD\">青岛</li>\n" +
-                   "</ol>"
-               );
-               $(".ak-typeahead").children("ol").find("li").bind("touchstart", function() {
-                   console.log($(this).text());
-                   $(".plug_Typeahead").val($(this).text());
-                   document.activeElement.blur();//隐藏键盘
-               });
+    /*-----------------------------------------------AKjs_Textarea 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_textarea").AKjs_Textarea({ //多行输入框设置
+            maxlength:200, //文字最多输入限制
+            rows:"6", //输入框的行高
+            onTextVal:function(val){ //通过回调获取实时输入的值
+                console.log(val);
             }
-            console.log("搜索区域的元素被显示了。您可以对该元素进行操作。");
-            console.log(ele);
-        },
-        itemSelected: function (ele,id,name) { //通过回调获取点击选择后的值（ele：当前元素，id：数据编号，name：选择的值）
-            console.log(ele);
-            console.log("id: "+id+", name: "+name);
-        }
+        });
     });
-});
 
-/*-----------------------------------------------AKjs_lightSlider 使用方法-------------------------------------------*/
-$(function(){
-    $("#plug_photo_slider").AKjs_lightSlider({
-        item:3, //默认显示几张
-        activeClass: '', //图片点击后的class样式(建议在左右能滑动的Tabs功能时使用)
-        loop:true, //是否重复联播（true，false）
-        autoWidth: false, //是否开启自定义宽度（true：不设置自动宽度可以手动设置宽度，false:自动比率加宽度）
-        auto:false, //是否自动播放（true，false）
-        slideMargin: 10, //每张图的右侧间距 （输入数字自动识别为px）
-        speed:1000, //自动播放速度
-        pager: false, //是否显示联播图位置按钮（true，false）
-        dotClass: new Array( //底部图片位置的样式设置（开启pager的参数才有效）
-            "bg_gray_777 wh_08em bor_rad_50 ml_02em mr_02em", //默认样式
-            "bg_title" //点击后的样式
-        ),
-        onSliderClick: function($el,num) { //通过回调获取点击事件 （$el：当前元素，num：当前点击的序号）
-            console.log(num)
-        },
-        onSliderLoad: function ($el) { //加载后的回调 （$el：当前元素）
-            //console.log($el)
-        }
+    /*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
+            scroll: $("#ak-scrollview"), //滚动区域的容器
+            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+            Img_Effect: "fadeIn", //图片加载动画效果
+            Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
+            Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
+            Callback: function(ele) { //初始化回调入口
+                //console.log(ele);
+            },
+            Scrollback: function(ele,scroll) { //页面滚动后的回调
+                //console.log(ele);
+            }
+        });
     });
-});
-
-/*-----------------------------------------------AKjs_PreviewImage 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_previewImage").AKjs_PreviewImage({ //删除图片提示设置
-        messege: "确认要删除当前的图片吗？", //弹窗中的提示文字
-        btn_ok: "确定", //弹窗中的确定按钮文字
-        btn_cancel: "取消", //弹窗中的取消按钮文字
-        box_title: new Array(//弹窗中的标题名称文字
-            "确认", //confirm
-            "提示" //alert
-        ),
-        delbtnClass: ".plug_DelImage", //设置控制显示和隐藏删除按钮的控制按钮
-        ak_webToast: "成功删除!", //删除图片后提示的文字
-        Class:"bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd", //图片列表边框样式
-        Del_icon:"icon-bt_quxiao_a", //图片删除图标样式
-        length:4, //默认允许上传多少照片
-        length_title:"最大支持上传图片数量为：", //超出上传限制数量后提示的文字
-        size: 5, //上传的文件大小限制 (MB)
-        size_title:"最大支持上传图片大小为：",  //超出上传限制的文件大小后提示的文字
-        errorTip:"图片上传格式不正确！", //图片上传格式有误时提示的文字
-        addCallbak: function(imglist) { //上传图片后的回调（获取图片列表元素）
-            console.log(imglist)
-        },
-        delCallbak: function(image) { //点击删除按钮后的回调，获取要删除的图片元素
-            console.log(image);
-            image.remove();
-        }
+    $(function() {
+        $("*[data-animation]").AKjs_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
+            scroll: $("#ak-scrollview"), //滚动区域的容器
+            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+            Callback: function(ele) { //初始化回调入口
+                //console.log(ele);
+            },
+            Scrollback: function(ele,scroll) { //页面滚动后的回调
+                //console.log(scroll);
+            }
+        });
     });
-});
 
-/*-----------------------------------------------AKjs_PortraitImage 使用方法-------------------------------------------*/
-$(function () {
-    $(".plug_PortraitImage").AKjs_PortraitImage({
-        errorTip:"图片上传格式不正确！", //图片上传格式有误时提示的文字
-        btn_ok: "确定", //弹窗中的确定按钮文字
-        box_title: "提示", //弹窗中的标题名称文字
-        addCallbak: function(img) { //上传图片后的回调（获取图片元素）
-            console.log(img)
-        }
+    /*-----------------------------------------------AKjs_Tabs 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_tabs").AKjs_Tabs({
+            curDisplay: 1, //当前显示哪张
+            autoPlay: false, //自动播放 (true/false)
+            playDelay: 2000, //切换Tabs延迟时间
+            content_dom: ".plug_tabs_view", //内容区域的元素 （该参数是菜单区域使用屏幕固定时需要分开布局结构后指定元素的方法）
+            boxheight: false, //切换内容区域的高度设置px；建议vertical方式时使用 （不使用高度：false）
+            navlength: 4, //切换导航的数量设置（文字屏幕对齐）
+            fullclass: "bor_bottom2 bor_title c_title minus_mt_1px", //被选中状态的class
+            emptyclass: "bor_bottom bor_gray_ddd", //未选中状态的class
+            mouse: "click", //鼠标事件 (click/hover)
+            touchmode : true, //是否开启触屏滑动切换功能 (true/false)
+            changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
+            callback: function(ele,index) { //初始化回调入口
+                var ajax_url = './router/tab_test1.html';
+                //console.log(ajax_url);
+                /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
+                AKjs_Ajax({
+                    to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
+                    type: "GET", //GET或POST
+                    url: ajax_url, //需要加载的URL
+                    data:{}, //传入参数
+                    async: true, //异步方式：true，同步方式：false
+                    success:function (result) { //ajax请求加载成功后的回调
+                        //console.log(result);
+                        //ak_webToast("请求加载数据成功！","middle",2000);
+                    },
+                    error:function (error) { //ajax请求加载失败后的回调
+                        //console.log(error);
+                        //ak_webToast("请求加载数据失败！","middle",2000);
+                    }
+                });
+            },
+            changeback: function (ele,index) { //Tab切换回调入口
+                console.log(index);
+                if (index == 0) {
+                    var ajax_url = './router/tab_test1.html';
+                } else if (index == 1) {
+                    var ajax_url = './router/tab_test2.html';
+                } else if (index == 2) {
+                    var ajax_url = './router/tab_test3.html';
+                } else if (index == 3) {
+                    var ajax_url = './router/tab_test4.html';
+                }
+                //console.log(ajax_url);
+                /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
+                AKjs_Ajax({
+                    to: ele.children(), //加载内容的区域(定义ID)，如果只加载数据不加载HTML页面，把这个to参数设为空。
+                    type: "GET", //GET或POST
+                    url: ajax_url, //需要加载的URL
+                    data:{}, //传入参数
+                    async: true, //异步方式：true，同步方式：false
+                    success:function (result) { //ajax请求加载成功后的回调
+                        //console.log(result);
+                        //ak_webToast("请求加载数据成功！","middle",2000);
+                    },
+                    error:function (error) { //ajax请求加载失败后的回调
+                        //console.log(error);
+                        //ak_webToast("请求加载数据失败！","middle",2000);
+                    }
+                });
+            }
+        });
     });
-});
 
-/*-----------------------------------------------AKjs_Viewer 使用方法-------------------------------------------*/
-$(function() {
-    $(".plug_viewer").AKjs_Viewer({
-        url: "data-url" //图片放大后的高清图片URL设置
+    /*-----------------------------------------------AKjs_Tabs (仿京东商品分类) 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_tabs_ud").AKjs_Tabs({
+            curDisplay: 1, //当前显示哪张
+            autoPlay: false, //自动播放 (true/false)
+            playDelay: 1000, //切换Tabs延迟时间
+            boxheight: "12em", //切换内容区域的高度设置px （不使用高度：false）
+            navlength: 1, //切换导航的数量设置（文字屏幕对齐）
+            fullclass: "bg_white c_title bor_right_none", //被选中状态的class
+            emptyclass: "bg_gray_f5f", //未选中状态的class
+            mouse: "click", //鼠标事件 (click/hover)
+            touchmode : false, //是否开启触屏滑动切换功能 (true/false)
+            changeMethod: "vertical", //切换方式 (default/vertical/horizontal/opacity)
+            callback: function(ele,index) { //初始化回调入口
+                //console.log(ele);
+            },
+            changeback: function (ele,index) { //Tab切换回调入口
+                console.log(index);
+            }
+        });
     });
-});
 
-/*-----------------------------------------------AKjs_DateTime 使用方法-------------------------------------------*/
-$(function () {
-    $("#plug_datetime").AKjs_DateTime({
-        showNowTime:true, //默认当前时间
-        Year:true, //是否显示年（true，false）
-        Month:true, //是否显示月（true，false）
-        Day:true, //是否显示日（true，false）
-        Hour:false, //是否显示小时（true，false）
-        Minute:false, //是否显示分钟（true，false）
-        Seconds:false, //是否显示秒数（true，false）
-        startYear:2005, //开始年份
-        endYear:2050, //结束年份
-        yearText:"年", //顶部时间“年单位” 文字
-        monthText:"月", //顶部时间“月单位” 文字
-        dayText: "日", //顶部时间“日单位” 文字
-        hourText: "时", //顶部时间“时单位” 文字
-        minuteText: "分", //顶部时间“分单位” 文字
-        secondsText: "秒", //顶部时间“秒单位” 文字
-        okText:"确认", //按钮确认键文字
-        cancelText:"取消", //按钮取消键文字
-        okfun: function(sjObj) { //确认时间时候执行事件
-            console.log(sjObj);
-        },
-        onfun: function(sjObj) { //取消改变时间时候执行事件
-            console.log(sjObj);
-        }
-    })
-});
+    /*-----------------------------------------------AKjs_Dialog 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_webToast").click(function(){
+            ak_webToast("恭喜您，修改成功!","middle","mask",1000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时[不设置代表不关闭])
+        });
+        //ak_webToast("destroy"); //关闭方法 （未设置毫秒时间可用该方法）
+    });
 
-/*-----------------------------------------------AKjs_MultiDate 使用方法-------------------------------------------*/
-$(function(){
-    $('#plug_multidate').AKjs_MultiDate({
+    $(function() {
+        $("#plug_alert").click(function(){
+            $ak.alert("请输入密码！", { //(标准的H5使用方法 $ak.alert)
+                title: "提示", //弹窗的标题文字
+                button_ok: "确定", //弹窗的确定按钮文字
+                icon: "warning", //图标类型（warning，error，info，question，success）
+                animateIn: "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
+                onSubmit:function(res){ //点击确定按钮后的回调
+                    console.log(res);
+                }
+            });
+        });
+    });
+
+    $(function() {
+        $("#plug_confirm").click(function(){
+            $ak.confirm("确认要删除当前的信息吗？", { //(标准的H5使用方法 $ak.confirm)
+                title: "确认", //弹窗的标题文字
+                button_ok: "确定", //弹窗的确定按钮文字
+                button_cancel: "取消", //弹窗的取消按钮文字
+                icon: "question", //图标类型（warning，error，info，question，success）
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
+                onSubmit:function(res){ //点击确定按钮后的回调
+                    ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    console.log(res);
+                },
+                onCancel:function (res) { //点击取消按钮后的回调
+                    ak_webToast("取消删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    console.log(res);
+                }
+            });
+        });
+    });
+
+    $(function() {
+        $("#plug_prompt_input").click(function(){
+            var input = $(this); //获取当前的输入框
+            if (input.val().length > 0 ) {
+                var input_val = input.val();
+            }
+            $ak.prompt("姓名", input_val, { //(标准的H5使用方法 $ak.prompt)
+                title: "输入", //弹窗的标题文字
+                button_ok: "确定", //弹窗的确定按钮文字
+                button_cancel: "取消", //弹窗的取消按钮文字
+                icon: "info", //图标类型（warning，error，info，question，success）
+                inputbox: "input", //输入框类型(input,textarea)
+                inputType: "text",//输入框类型 (text,password,number,tel,search)
+                inputClass: "c_gray_777 border bor_gray_ddd h_3em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
+                placeholder:"请输入姓名", //设置输入框的提示文字
+                required: true, //弹窗后的输入框设置为是否必填（true，false）
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
+                onSubmit:function(res){ //点击确定按钮后的回调
+                    ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    input.val(res); //插入内容
+                    console.log(res);
+                },
+                onCancel:function (res) { //点击取消按钮后的回调
+                    ak_webToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    console.log(res);
+                }
+            });
+        });
+    });
+
+    $(function() {
+        $("#plug_prompt_textarea").click(function(){
+            $ak.prompt("内容", "", { //(标准的H5使用方法 $ak.prompt)
+                title: "提问", //弹窗的标题文字
+                button_ok: "提交", //弹窗的确定按钮文字
+                button_cancel: "取消", //弹窗的取消按钮文字
+                icon: "info", //图标类型（warning，error，info，question，success）
+                inputbox: "textarea", //输入框类型(input,textarea)
+                inputClass: "c_gray_777 border bor_gray_ddd h_6em bor_rad_0", //输入框的Class样式设置 （inputbox的参数有值才生效）
+                placeholder:"请输入提问内容", //设置输入框的提示文字
+                required: true, //弹窗后的输入框设置为是否必填（true，false）
+                animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
+                onSubmit:function(res){ //点击确定按钮后的回调
+                    ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置，耗时)
+                    $("#plug_prompt_textarea_view ul").append("<li  class=\"c_gray_777 bor_bottom bor_gray_ddd\">"+res+"</li>"); //插入内容
+                    console.log(res);
+                },
+                onCancel:function (res) { //点击取消按钮后的回调
+                    ak_webToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    console.log(res);
+                }
+            });
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_NavMenu").bind("click", function (e) {
+            AKjs_Popupwin({
+                dom: "#plug_NavMenuWin", //弹窗内容的布局
+                position: "top", //位置类型(top，bottom，left，right，middle)
+                effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+                effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
+                hasMask: true, //是否开启遮罩层背景 (true / false)
+                maskPosition: 4, //Mask的z-index数值
+                closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    if (toggle) { //判断是否弹出弹窗
+                        $("footer").addClass("zindex_0");
+                    } else {
+                        setTimeout(function() {
+                            $("footer").removeClass("zindex_0");
+                        },1000);
+                    }
+                }
+            });
+        });
+    });
+
+    $(function() {
+        $("#plug_popup").click(function(){
+            AKjs_Popupwin({
+                dom: "#plug_PopupWin", //弹窗内容的布局
+                position: "middle", //位置类型(top，bottom，left，right，middle)
+                effectIn: "bounceInDown", //弹窗显示效果
+                effectOut: "bounceOutUp", //弹窗消失效果
+                hasMask: true, //是否开启遮罩层背景 (true / false)
+                maskPosition: 11, //Mask的z-index数值
+                closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                }
+            });
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Range  使用方法-------------------------------------------*/
+    $(function() {
+        $('.plug_range1').AKjs_Range({
+            from: 0, //滑动范围的最小值，数字，如0
+            to: 100, //滑动范围的最大值，数字，如100
+            step: 1, //步长值，每次滑动大小
+            scale: [0,25,50,75,100], //滑动条下方的尺度标签，数组类型，如[0,50,100] 	[from,to]
+            format: '%s', //数值格式
+            width: "90%", //滑动条宽度
+            ProgClass: "bg_title", //选取范围内的样式（可设置背景颜色）
+            showLabels: true, //布尔型，是否显示滑块上方的数值标签
+            showScale: false, //布尔型，是否显示滑动条下方的尺寸标签
+            isRange : false, //是否为选取范围。
+            onstatechange: function(ele,val){
+                //console.log(ele);
+                //console.log(val);
+            }
+        });
+        $('.plug_range2').AKjs_Range({
+            from: 0, //滑动范围的最小值，数字，如0
+            to: 100, //滑动范围的最大值，数字，如100
+            step: 1, //步长值，每次滑动大小
+            scale: [0,25,50,75,100], //滑动条下方的尺度标签，数组类型，如[0,50,100] 	[from,to]
+            format: '%s', //数值格式
+            width: "90%", //滑动条宽度
+            ProgClass: "bg_title", //选取范围内的样式（可设置背景颜色）
+            showLabels: true, //布尔型，是否显示滑块上方的数值标签
+            showScale: true, //布尔型，是否显示滑动条下方的尺寸标签
+            isRange : true, //是否为选取范围。
+            onstatechange: function(ele,val){
+                //console.log(ele);
+                //console.log(val);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_ChooseList 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_choose").AKjs_ChooseList({
+            itemWidth: "", //自定义设置按钮宽度
+            btnClass: "fl pl_5 pr_5 mr_05em border bg_white bor_rad_03em bor_gray_ddd line_h_24em c_gray_777 rel ovh", //按钮的class名称设置
+            btnIcon: true, //是否开启被选中时显示打钩符号 (true/false)
+            active: "c_title bor_title", //选中后的样式
+            multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
+            full: false, //Choose的宽度，默认为null将自动获取Choose的宽度；
+            dataKey: '', //实例化后的data键值，方便后续通过data('dataKey')取出；
+            click: function(index, item) { //Choose元素点击时的回调，diabled时不发生。
+                console.log("click", index, item.text());
+            },
+            change: function(index, item) { //choose值改变时的回调；
+                console.log("change", index, item.text());
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_ChangeInput 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_change_btn").AKjs_ChangeInput({
+            text_input: new Array( //两个左侧和右侧的输入框设置
+                ".plug_change_text1", //切换按钮的“左侧”输入框Class
+                ".plug_change_text2" //切换按钮的“右侧”输入框Class
+            ),
+            onChange:function(l_val,r_val){ //回调获取当前实时变化的左右两个值
+                console.log("左侧："+l_val);
+                console.log("右侧："+r_val);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_ChangeIcon 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_sort_btn1").AKjs_ChangeIcon({
+            multi_icon: false, //是否控制的图标是多个
+            text_color: new Array( //文字颜色设置（最多两个）
+                "c_gray_777", //默认颜色
+                "c_title" //点击后的颜色
+            ),
+            clickBack:function(state,op){ //回调获取当前的值和option参数
+                var text_color1 = $(this)[0].text_color[0]; //默认颜色
+                var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+                if (state == true) { //是否被开启
+                    $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第2个的文字样式
+                    $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第2个的图标样式
+                    $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+                    $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+                    $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
+                    $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+                    /*把筛选功能中的弹窗关闭处理*/
+                    $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+                    $(".plug_sort_btn4").removeClass("ak-is_active");
+                    $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+                    setTimeout(function() {
+                        $("#ak-scrollview").addClass("scrolling_touch");;
+                        $('#popup_mask').fadeOut().remove();
+                    },500);
+                }
+            }
+        });
+    });
+    $(function() {
+        $(".plug_sort_btn2").AKjs_ChangeIcon({
+            multi_icon: true, //是否控制的图标是多个
+            text_color: new Array( //文字颜色设置（最多两个）
+                "c_gray_777", //默认颜色
+                "c_title" //点击后的颜色
+            ),
+            clickBack:function(state,op){ //回调获取当前的值和option参数
+                var text_color1 = $(this)[0].text_color[0]; //默认颜色
+                var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+                if (state) { //是否被开启
+                    $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
+                    $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+                    $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+                    $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
+                    $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+                    /*把筛选功能中的弹窗关闭处理*/
+                    $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+                    $(".plug_sort_btn4").removeClass("ak-is_active");
+                    $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+                    setTimeout(function() {
+                        $("#ak-scrollview").addClass("scrolling_touch");;
+                        $('#popup_mask').fadeOut().remove();
+                    },500);
+                }
+            }
+        });
+    });
+    $(function() {
+        $(".plug_sort_btn3").AKjs_ChangeIcon({
+            multi_icon: true, //是否控制的图标是多个
+            text_color: new Array( //文字颜色设置（最多两个）
+                "c_gray_777", //默认颜色
+                "c_title" //点击后的颜色
+            ),
+            clickBack:function(state,op){ //回调获取当前的值和option参数
+                var text_color1 = $(this)[0].text_color[0]; //默认颜色
+                var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+                if (state) { //是否被开启
+                    $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
+                    $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+                    $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+                    $(".plug_sort_btn4").children().removeClass(text_color2).addClass(text_color1); //清理第4个的文字样式
+                    $(".plug_sort_btn4").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第4个的图标样式
+
+                    /*把筛选功能中的弹窗关闭处理*/
+                    $(".plug_sort_btn4").children().find("i").removeClass("icon-ln_xiangshang").addClass("icon-ln_xiangxia"); //把图标切换为默认显示的图标
+                    $(".plug_sort_btn4").removeClass("ak-is_active");
+                    $("#plug_filterWin").removeClass("slideDown ani_1s").addClass("slideUp ani_05s");
+                    setTimeout(function() {
+                        $("#ak-scrollview").addClass("scrolling_touch");;
+                        $('#popup_mask').fadeOut().remove();
+                    },500);
+                }
+            }
+        });
+    });
+    $(function() {
+        $(".plug_sort_btn4").AKjs_ChangeIcon({
+            multi_icon: false, //是否控制的图标是多个
+            text_color: new Array( //文字颜色设置（最多两个）
+                "c_gray_777", //默认颜色
+                "c_title" //点击后的颜色
+            ),
+            Change_icon: new Array( //文字颜色设置（最多两个）
+                "icon-ln_xiangxia", //默认显示图标
+                "icon-ln_xiangshang" //切换后显示的图标
+            ),
+            clickBack:function(state,op){ //回调获取当前的值和option参数
+                console.log(op);
+                var text_color1 = $(this)[0].text_color[0]; //默认颜色
+                var text_color2 = $(this)[0].text_color[1]; //点击后的颜色
+                if (state == true) { //是否被开启
+                    $(".plug_sort_btn1").children().removeClass(text_color2).addClass(text_color1); //清理第1个的文字样式
+                    $(".plug_sort_btn2").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+                    $(".plug_sort_btn2").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+                    $(".plug_sort_btn3").children().removeClass(text_color2).addClass(text_color1); //清理第3个的文字样式
+                    $(".plug_sort_btn3").children().find("i").removeClass(text_color2).addClass(text_color1); //清理第3个的图标样式
+                }
+                $(".plug_sort_btn4").each(function(){
+                    var _this = $(this);
+                    AKjs_Popupwin({ //调用弹窗插件
+                        dom: "#plug_filterWin", //弹窗内容的布局
+                        position: "offset", //位置类型(top，bottom，left，right，middle, default, offset)
+                        effectIn: "slideDown ani_1s", //弹窗显示效果，动画秒数 (css动画库：akjs.animate.css)
+                        effectOut: "slideUp ani_05s", //弹窗消失效果，动画秒数 (css动画库：akjs.animate.css)
+                        hasMask: true, //是否开启遮罩层背景 (true / false)
+                        maskPosition: 1, //Mask的z-index数值
+                        closeBtn: "#plug_filterWin", //关闭弹窗按钮
+                        OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
+                        callback :function (ele) { //通过回调获取弹窗显示后的参数
+                            var modal =$(ele[0].dom); //获取弹窗元素
+                            $(modal).click(function(){ //点击弹窗内容区域后关闭当前被展开的弹窗
+                                initialize_btn(); //调用按钮样式初始化功能
+                            });
+                        },
+                        scrollback :function (ele) { //页面滑动时的回调获取参数
+                            initialize_btn(); //调用按钮样式初始化功能
+                        }
+                    });
+                    function initialize_btn(){ //按钮的样式初始化
+                        var text_color1 = op.text_color[0]; //默认颜色
+                        var text_color2 = op.text_color[1]; //点击后的颜色
+                        var Change_icon1 = op.Change_icon[0]; //默认图标
+                        var Change_icon2 = op.Change_icon[1]; //点击后的图标
+                        _this.children().removeClass(text_color2).addClass(text_color1); //把文字颜色切换为默认颜色
+                        _this.children().find("i").removeClass(text_color2).addClass(text_color1); //把图标颜色切换为默认颜色
+                        _this.children().find("i").removeClass(Change_icon2).addClass(Change_icon1); //把图标切换为默认显示的图标
+                    }
+                });
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Radio&AKjs_Checkbox&AKjs_Switch 使用方法-------------------------------------------*/
+    $(function() {
+        //单选按钮样式
+        $(".plug_Radio").AKjs_Radio({
+            checkedClass: "icon-ln_zhengque c_title", //选中后的样式
+            onChange:function(chk){ //回调获取当前的选中状态
+                console.log(chk);
+            }
+        });
+    });
+
+    $(function() {
+        //多选按钮样式
+        $(".plug_Checkbox").AKjs_Checkbox({
+            checkedClass: "icon-ln_zhengque bg_title bor_title c_white", //选中后的样式
+            disabledClass: "icon-ln_zhengque bg_gray_ccc bor_gray_ccc c_white", //不能选择的样式
+            onChange:function(chk){ //回调获取当前的选中状态
+                console.log(chk);
+            }
+        });
+    });
+
+    $(function() {
+        //开关按钮样式
+        $(".plug_Switch").AKjs_Switch({
+            checkedClass: "bg_title", //选中后的样式
+            disabledClass: "dis_opa_05", //不能选择的样式
+            onChange:function(chk){ //回调获取当前的选中状态
+                console.log(chk);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_GetVerifyCode 使用方法-------------------------------------------*/
+    $(function(){
+        AKjs_GetVerifyCode.verify("#plug_getVerifyCode", {
+            time: 10, //倒计时时间
+            event: "click", //事件触发方式
+            phone: "#plug_phone", //绑定设置输入手机号的输入框
+            ableClass: "c_title", //按钮可以使用时的class
+            unableClass: "c_gray_999", //按钮不能使用时的class
+            //执行条件，可以是function也可以是Boolean值，如果是函数则需返回true才会执行
+            condition: function (phone) {
+                /*var phoneReg = /^1[345789]\d{9}$/,*/
+                //var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1})|(19[0-9]{1}))\d{8})$/
+                AKjs_RegsInput();
+                var flag = Regs_mobile.test($(phone).val());
+                if ($(phone).val() != "") {
+                    if(!flag){
+                        $ak.alert("您输入的手机号码有误！", {
+                            icon: "error", //图标类型（warning，error，info，question，success）
+                            button_ok: "确定", //弹窗中的确定按钮文字
+                            button_cancel: "取消", //弹窗中的取消按钮文字
+                            title: "提示" //弹窗中的标题名称文字
+                        });
+                        return false;
+                    } else {
+                        $ak.alert("验证码发送成功！", {
+                            icon: "success", //图标类型（warning，error，info，question，success）
+                            button_ok: "确定", //弹窗中的确定按钮文字
+                            button_cancel: "取消", //弹窗中的取消按钮文字
+                            title: "提示" //弹窗中的标题名称文字
+                        });
+                        return true;
+                    }
+                } else {
+                    $ak.alert("请输入手机号码！", {
+                        icon: "error", //图标类型（warning，error，info，question，success）
+                        button_ok: "确定", //弹窗中的确定按钮文字
+                        button_cancel: "取消", //弹窗中的取消按钮文字
+                        title: "提示" //弹窗中的标题名称文字
+                    });
+                    return false;
+                }
+            },
+            progress: function (time,phone) {//计时正在进行中时的回调
+                $(this).html(time + "s后重新获取");//这里的this指向验证按钮
+                console.log(this.timedown); //这个timedown就是计时器
+                //console.log($(phone)); //这里获取输入手机号的输入框
+            },
+            timeUp: function (time,phone) {//计时结束时执行的回调
+                $(this).html("重新获取"); //这里的this指向验证按钮
+                console.log("时间到了！");
+                //console.log($(phone)); //这里获取输入手机号的输入框
+            },
+            abort: function (phone) {//中断计时
+                $(this).html("重新获取");//这里的this指向验证按钮
+                console.log("我被中断了！");
+                //$(phone).timedown.abort(); //通过click事件执行中断语句
+                //console.log($(phone)); //这里获取输入手机号的输入框
+            },
+            eventFn: function (phone) {//事件执行后的回调
+                console.log("执行了");
+                console.log(this);//这里的this指向验证按钮
+                console.log($(phone)); //这里获取输入手机号的输入框
+                console.log($(phone).prev("label").find("input"))//获取国家区号的输入框
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Codeval 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_codeInput").each(function(){
+            $.AKjs_Codeval.ak_setCode({
+                inputEle: '#plug_codeInput', //输入验证码的输入框
+                codeView: '#plug_codeView', //显示验证码的元素
+                codeLength: '5' //显示验证码的字数
+            });
+        });
+        $("#plug_codeView").parents("form").find(":submit").click(function (){ //点击提交按钮获取输入的验证码是否正确
+            var flag = $.AKjs_Codeval.ak_validateCode();
+            console.log(flag); //flag的值true可以通过，false是输入的验证码有误
+        });
+    });
+
+    /*-----------------------------------------------AKjs_AllChecked 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_allchk").AKjs_AllChecked({
+            toggleClass: 'bg_title bor_title c_white icon-ln_zhengque',//改变的样式名，针对例子中的复选框样式美化
+            callback :function(array) { //通过回调函数获取数组状态
+                $(array).each(function(){ //对选中的元素可进行控制和获取值
+                    console.log($(this).parent("label").parent("dt").parent("dl").children("dd").last().find("span").text()); //获取指定元素的数字
+                    console.log($(this)[0].checked);  //获取每个复选框的状态
+                    console.log($(this));
+                });
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_DropUpDown 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_dropbutton").AKjs_DropUpDown({
+            curDisplay: 2, //当前显示哪个(不展开设置为0)
+            active_toggle: "bor_bottom_dashed bor_gray_ddd", //展开后的线条切换（实线切换虚线）
+            up_ico: "icon-ln_jiantoushang", //展开后的图标（上箭头）
+            down_ico: "icon-ln_jiantouxia", //展开前的图标（下箭头）
+            callback:function(ele){ //回调获取展开后的元素
+                console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_TouchDelete 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_touchdel").AKjs_TouchDelete({
+            UpDownTouch: false, //是否开启上下滑动功能 (开启 true, 关闭 false）
+            DelText: "删除", //删除按钮中显示的文字
+            DelClass: "abs bg_close c_white w_4em h_in top_0", //删除按钮的Class样式
+            ClickDelete: function(btn,ele,index) { //回调获取当点击删除按钮后的删除按钮和当前的区域元素 （btn：删除按钮，ele：当前区域元素，index：当前元素的排号）
+                console.log("index: "+index);
+                $ak.confirm("确认要删除当前的信息吗？", { //(标准的H5使用方法 $ak.confirm)
+                    title: "确认", //弹窗的标题文字
+                    button_ok: "确定", //弹窗的确定按钮文字
+                    button_cancel: "取消", //弹窗的取消按钮文字
+                    icon: "question", //图标类型（warning，error，info，question，success）
+                    animateIn : "slideInDown ani_05s", //弹窗显示动画效果 (css动画库：akjs.animate.css)
+                    animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
+                    onSubmit:function(){
+                        ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                        ele.remove();//删除当前元素
+                    }
+                });
+            },
+            UpTouch: function(ele) { //开启UpDownTouch的参数后执行的回调(上滑)
+                console.log("我往上滑了！");
+                console.log(ele);
+                /*ele.append("<li class=\"rel ovh bor_bottom bor_gray_ddd bg_white touchstart\">\n" +
+                    "        <article class=\"ml_3 ak_delete_art\">X.当前显示的是列表展示内容</article>\n" +
+                    "</li>");*/
+            },
+            DownTouch: function(ele) { //开启UpDownTouch的参数后执行的回调(下滑)
+                console.log("我往下滑了！");
+                console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_intlTelInput 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_mobileNum").AKjs_IntlTelInput({
+            Title_Text: "选择国家和地区", //头部的标题文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
+            Close_btn: "left_0 w_25 pl_3 text_al_l text_12em", //关闭按钮的样式设置
+            Close_Text: "关闭", //头部的关闭按钮文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
+            Close_Icon:"text_12em icon-bt_quxiao_a", //头部的关闭按钮图标  （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
+            list_Class: "bg_white bor_bottom bor_gray_ddd c_gray_777 touchstart", //数据列表的Class样式
+            Nav_active: "c_title text_bold", //右侧固定字母菜单的选中样式
+            show_color: "c_title text_bold text_4em", //右侧固定字母点击后中间淡入字母效果的样式
+            data: json_countryData, //Json获取data数据(data.js)
+            showBack:function(ele){ //回调获取被展开后显示的元素
+                console.log("选择区域的元素被显示了。您可以对该元素进行操作。");
+                console.log(ele);
+            },
+            clickBack:function(num){ //回调获取当前的值
+                console.log($(num)[0].dataset);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_NowTime 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_nowtime").AKjs_NowTime({
+            dateStyle: "yyyy年MM月dd日 hh:mm:ss" //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Substring 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_RMBoutput").AKjs_Substring(); //数字RMB格式
+    });
+
+    /*-----------------------------------------------AKjs_Spinner 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_spinner").AKjs_Spinner({//数量加减功能
+            input_width: "20%", //输入框宽度 （px,%,em）
+            btn_wrap: "fr rel ovh border bor_gray_ddd w_100 bg_gray_f9f", //数量加减输入框的外框样式
+            btn_left: "abs top_0 left_0 bor_right bor_gray_ddd bg_white wh_24em icon-ln_jian_a", //数量减少按钮Class
+            btn_right: "abs top_0 right_0 bor_left bor_gray_ddd bg_white wh_24em icon-ln_jia_a", //数量增加按钮Class
+            spacing: 1, //每次累加数量（步长）
+            maxNumber: 5, //设置最大数量限制(不使用限制请设为空值)
+            changeBack:function(val){ //回调获取实时输入的值
+                console.log(val);
+            },
+            clickBack:function(num){ //回调获取当前的值
+                console.log(num);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_CountTo 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_count").AKjs_CountTo(); //数字加动画变化效果
+        $(".plug_count").click(function(){ //点击后数字加动画变化效果
+            $(this).AKjs_CountTo({
+                onUpdate: function(count){ //回调获取实时变化的数据
+                    console.log(count);
+                },
+                onComplete: function(count){ //回调获取最终的数据
+                    console.log(count);
+                }
+            });
+        });
+    });
+
+    /*-----------------------------------------------AKjs_CountDown 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_Countdown").click(function () {
+            AKjs_CountDown($(this),{
+                wait: 10, //默认秒数
+                Start_text: "秒", //倒计时开始文字
+                End_Text: "时间到！", //倒计时结束后的文字
+                callback:function(waits){ //回调
+                    console.log("each --- "+waits);
+                    console.log("倒计时已结束，请控制下一步");
+                }
+            });
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Progress 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_progress").AKjs_Progress({
+            goalAmount: 100, //总进度数值
+            currentAmount: 60, //当前进度数值 （也可以元素里加data-to参数设置, 初始化开始参数设置属性为元素里加data-from即可）
+            milestoneNumber: 90, //数字达到当前设置的参数后进度条的颜色变化
+            milestoneClass:"bg_orange", //milestoneNumber参数背景颜色
+            ColorStyle: "bg_title c_white", //进度条样式设置
+            textBefore: "当前进度：", //当前进度文字
+            textAfter: "%", //当前进度百分比文字
+            callback: function() { //通过回调获取元素
+                //console.log(this);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_StepOrder 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_step").AKjs_StepOrder({
+            stepNum: 2, //步骤里要选前几个
+            stepClass:  new Array( //被选中的样式
+                "bg_title c_yellow", //被选中的数字框样式
+                "c_title" //被选中的标题文字颜色
+            ),
+            dashed_line: "bor_gray_ccc bor_bottom_dashed2", //线条的颜色样式
+            progress: "bor_title bor_bottom2", //到达的线条颜色样式
+            callback: function(ele) { //加载完后的回调
+                //console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Ratyli 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_ratyli1").AKjs_Ratyli({
+            rate:1, //当前被选中的数量
+            ratemax:5, //总数量
+            disable:false, //是否能点击(不可点击：true，可点击：false)
+            full:"<i class='c_title text_18em line_h_2em icon-mn_xingxing_fill mr_05em'></i>", //被选中状态
+            empty:"<i class='c_title text_18em line_h_2em icon-mn_xingxing mr_05em'></i>", //未选中状态
+            onRated:function(value,init){ //init是默认触发事件
+                if(!init) console.log(value); // 获取点击后的值
+                if(!init) console.log(this); //这里的this指向对象
+            }
+        });
+    });
+
+    $(function() {
+        $("#plug_ratyli2").AKjs_Ratyli({
+            rate:4, //当前被选中的数量
+            ratemax:5, //总数量
+            disable:true, //是否能点击(不可点击：true，可点击：false)
+            full:"<i class='c_gray_ccc text_18em line_h_2em icon-mn_xingxing_fill mr_05em'></i>", //被选中状态
+            empty:"<i class='c_gray_ccc text_18em line_h_2em icon-mn_xingxing mr_05em'></i>", //未选中状态
+            onRated:function(value,init){ //init是默认触发事件
+                if(!init) console.log(value); //获取点击后的值
+                if(!init) console.log(this); //这里的this指向对象
+            }
+        });
+
+    });
+
+    /*-----------------------------------------------AKjs_Favorite 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_like").AKjs_Favorite({
+            likeMode: true, //是否开启点赞模式 （设置false为收藏模式）
+            str: "+1",  //字符串，要显示的内容;也可以传一段html
+            icon_defaultClass: "text_al_m text_14em icon-mn_shoucang", //默认图标样式
+            icon_changeClass: "text_al_m text_14em icon-mn_shoucang_fill c_title", //点击后的图标样式
+            textClass: "c_gray_777 ml_03em text_al_m", //文字样式
+            text_default: "点赞", //默认显示的文字
+            startSize: "12px",  //动画开始的文字大小
+            endSize: "30px",    //动画结束的文字大小
+            interval: 600,  //动画时间间隔
+            color: "red",    //文字颜色
+            callback:function(length,ele){ //通过回调获取数量和元素
+                console.log(length);
+                console.log(ele);
+            }
+        });
+    });
+
+    $(function() {
+        $(".plug_collect").AKjs_Favorite({
+            likeMode: false, //是否开启点赞模式 （设置false为收藏模式）
+            icon_defaultClass: "text_al_m text_14em icon-mn_xingxing", //默认图标样式
+            icon_changeClass: "text_al_m text_14em icon-mn_xingxing_fill c_title", //点击后的图标样式
+            textClass: "c_gray_777 ml_03em text_al_m", //文字样式
+            text_default: "关注", //默认显示的文字
+            text_change: "取消关注", //点击后显示的文字
+            callback:function(length,ele){ //通过回调获取数量和元素
+                console.log(length);
+                console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Typeahead 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_Typeahead").AKjs_Typeahead({
+            items: 20, //最多显示的数据
+            source: json_searchData, //Json获取data数据(data.js)
+            showCallBack:function(ele){ //回调获取被展开后显示的元素
+                $(".plug_Typeahead").parent().append('<i class="dis_none_im abs left_0 ml_03em text_14em c_gray_999 line_h_18em iconfont icon-sousuo1"></i>');
+                if ($(".ak-typeahead").children("ol").length < 1) {
+                    $(".ak-typeahead").append(
+                        "<ol class=\"scrolling_touch list ovs_y h_100\">\n" +
+                        "<li class=\"touchstart\" data-value=\"BJ\">北京</li>\n" +
+                        "<li class=\"touchstart\" data-value=\"SH\">上海</li>\n" +
+                        "<li class=\"touchstart\" data-value=\"GZ\">广州</li>\n" +
+                        "<li class=\"touchstart\" data-value=\"SZ\">深圳</li>\n" +
+                        "<li class=\"touchstart\" data-value=\"QD\">青岛</li>\n" +
+                        "</ol>"
+                    );
+                    $(".ak-typeahead").children("ol").find("li").bind("touchstart", function() {
+                        console.log($(this).text());
+                        $(".plug_Typeahead").val($(this).text());
+                        document.activeElement.blur();//隐藏键盘
+                    });
+                }
+                console.log("搜索区域的元素被显示了。您可以对该元素进行操作。");
+                console.log(ele);
+            },
+            itemSelected: function (ele,id,name) { //通过回调获取点击选择后的值（ele：当前元素，id：数据编号，name：选择的值）
+                console.log(ele);
+                console.log("id: "+id+", name: "+name);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_lightSlider 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_photo_slider").AKjs_lightSlider({
+            item:3, //默认显示几张
+            activeClass: '', //图片点击后的class样式(建议在左右能滑动的Tabs功能时使用)
+            loop:true, //是否重复联播（true，false）
+            autoWidth: false, //是否开启自定义宽度（true：不设置自动宽度可以手动设置宽度，false:自动比率加宽度）
+            auto:false, //是否自动播放（true，false）
+            slideMargin: 10, //每张图的右侧间距 （输入数字自动识别为px）
+            speed:1000, //自动播放速度
+            pager: false, //是否显示联播图位置按钮（true，false）
+            dotClass: new Array( //底部图片位置的样式设置（开启pager的参数才有效）
+                "bg_gray_777 wh_08em bor_rad_50 ml_02em mr_02em", //默认样式
+                "bg_title" //点击后的样式
+            ),
+            onSliderClick: function($el,num) { //通过回调获取点击事件 （$el：当前元素，num：当前点击的序号）
+                console.log(num)
+            },
+            onSliderLoad: function ($el) { //加载后的回调 （$el：当前元素）
+                //console.log($el)
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_PreviewImage 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_previewImage").AKjs_PreviewImage({ //删除图片提示设置
+            messege: "确认要删除当前的图片吗？", //弹窗中的提示文字
+            btn_ok: "确定", //弹窗中的确定按钮文字
+            btn_cancel: "取消", //弹窗中的取消按钮文字
+            box_title: new Array(//弹窗中的标题名称文字
+                "确认", //confirm
+                "提示" //alert
+            ),
+            delbtnClass: ".plug_DelImage", //设置控制显示和隐藏删除按钮的控制按钮
+            webToast: "成功删除!", //删除图片后提示的文字
+            Class:"bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd", //图片列表边框样式
+            Del_icon:"icon-bt_quxiao_a", //图片删除图标样式
+            length:4, //默认允许上传多少照片
+            length_title:"最大支持上传图片数量为：", //超出上传限制数量后提示的文字
+            size: 5, //上传的文件大小限制 (MB)
+            size_title:"最大支持上传图片大小为：",  //超出上传限制的文件大小后提示的文字
+            errorTip:"图片上传格式不正确！", //图片上传格式有误时提示的文字
+            addCallbak: function(imglist) { //上传图片后的回调（获取图片列表元素）
+                console.log(imglist)
+            },
+            delCallbak: function(image) { //点击删除按钮后的回调，获取要删除的图片元素
+                console.log(image);
+                image.remove();
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_PortraitImage 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_PortraitImage").AKjs_PortraitImage({
+            errorTip:"图片上传格式不正确！", //图片上传格式有误时提示的文字
+            btn_ok: "确定", //弹窗中的确定按钮文字
+            box_title: "提示", //弹窗中的标题名称文字
+            addCallbak: function(img) { //上传图片后的回调（获取图片元素）
+                console.log(img)
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Viewer 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_viewer").AKjs_Viewer({
+            url: "data-url" //图片放大后的高清图片URL设置
+        });
+    });
+
+    /*-----------------------------------------------AKjs_DateTime 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_datetime").AKjs_DateTime({
+            showNowTime:true, //默认当前时间
+            Year:true, //是否显示年（true，false）
+            Month:true, //是否显示月（true，false）
+            Day:true, //是否显示日（true，false）
+            Hour:false, //是否显示小时（true，false）
+            Minute:false, //是否显示分钟（true，false）
+            Seconds:false, //是否显示秒数（true，false）
+            startYear:2005, //开始年份
+            endYear:2050, //结束年份
+            yearText:"年", //顶部时间“年单位” 文字
+            monthText:"月", //顶部时间“月单位” 文字
+            dayText: "日", //顶部时间“日单位” 文字
+            hourText: "时", //顶部时间“时单位” 文字
+            minuteText: "分", //顶部时间“分单位” 文字
+            secondsText: "秒", //顶部时间“秒单位” 文字
+            okText:"确认", //按钮确认键文字
+            cancelText:"取消", //按钮取消键文字
+            okfun: function(sjObj) { //确认时间时候执行事件
+                console.log(sjObj);
+            },
+            onfun: function(sjObj) { //取消改变时间时候执行事件
+                console.log(sjObj);
+            }
+        })
+    });
+
+    /*-----------------------------------------------AKjs_MultiDate 使用方法-------------------------------------------*/
+    $(function() {
+        $('#plug_multidate').AKjs_MultiDate({
             format: 'yyyy-mm-dd hh:ii', //日期格式
             closeBtn: "取消", //关闭按钮 （不输入代表不显示该按钮）
             todayBtn: "今天", //今天按钮 （不输入代表不显示该按钮）
@@ -1147,518 +1200,1061 @@ $(function(){
                 //console.log(elem);
             }
         });
-});
-
-/*-----------------------------------------------AKjs_Select 使用方法-------------------------------------------*/
-$(function () {
-    new AKjs_Select({
-        trigger: "#plug_trigger1", //需要绑定的元素
-        title: "选择星期", //弹窗标题文字
-        ensure: "确定", //弹窗的确定按钮文字
-        cancel: "取消", //弹窗的取消按钮文字
-        wheels: [
-            {data: json_weekData} //Json获取data数据(data.js)
-        ],
-        position:[0], //初始化定位，打开时默认选中的哪个。如果不填默认为0
-        callback: function (val,length) { //回调获取当前的值（val是值,length是数量以及数组）
-            console.log($(val));
-            console.log($(length));
-        }
     });
-});
 
-$(function () {
-    new AKjs_Select({
-        trigger: "#plug_trigger2",  //需要绑定的元素
-        title: "选择地区", //弹窗标题文字
-        ensure: "确定", //弹窗的确定按钮文字
-        cancel: "取消", //弹窗的取消按钮文字
-        wheels: [
-            {data : json_cityData} //Json获取data数据(data.js)
-        ],
-        callback: function (val,length) { //回调获取当前的值（val是值,length是数量以及数组）
-            console.log($(val));
-            console.log($(length));
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Vticker 使用方法-------------------------------------------*/
-$(function(){
-    $('.plug_vticker').AKjs_Vticker({
-        showItems : 4, //显示多少行
-        pause : 3000, //滚动间隔，单位为毫秒
-        speed : 500, //每次滚动持续时间，单位为毫秒
-        mousePause : false, //鼠标悬停是否停止滚动
-        direction : "up", //滚动方向，可选 ‘up’ / ‘down’
-        isPaused: false, //默认是否暂停
-        height: 0 //容器高度，默认为 0，即根据 showItems 个数自动计算
-    });
-});
-
-/*-----------------------------------------------AKjs_TypeIt 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_TypeIt").AKjs_TypeIt({
-        strings: [
-           "欢迎使用AKjs移动端前端UI框架。",
-           "AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。"
-        ],
-        typeSpeed: 10, //打字速度
-        backDelay: 50, //删除文字速度
-        contentType: 'html', // html or text
-        loop: true, //是否重复循环 （true,false）
-        callback: function(fun){ //结束后的回调
-           //console.log("已结束")
-        },
-        preString: function(array) {
-           //console.log("准备就绪")
-        },
-        onString: function(array) {
-           //console.log("进行中")
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Template 使用方法-------------------------------------------*/
-var list_data = [
-    {
-        Image: "<img src=\"./img/tibet-1.jpg\">",
-        Title: "产品名称001",
-        Price: "￥400.00",
-        Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
-    },
-    {
-        Image: "<img src=\"./img/tibet-2.jpg\">",
-        Title: "产品名称002",
-        Price: "￥500.00",
-        Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
-    },
-    {
-        Image: "<img src=\"./img/tibet-3.jpg\">",
-        Title: "产品名称003",
-        Price: "￥250.00",
-        Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
-    }
-];
-$(".plug_for").AKjs_Template(list_data);
-
-/*-----------------------------------------------AKjs_Popupwin (分享功能) 使用方法-------------------------------------------*/
-$(function(){
-    $("#plug_Share").bind("click", function (c) {
-       AKjs_Popupwin({
-           dom: "#plug_ShareWin", //弹窗内容的布局
-           position: "bottom", //位置类型(top，bottom，left，right，middle)
-           effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
-           effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
-           hasMask: true, //是否开启遮罩层背景 (true / false)
-           maskPosition: 4, //Mask的z-index数值
-           closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
-           OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-           toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-           callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-               console.log($(ele[0].dom)); //获取当前的弹窗元素
-           }
-       });
-   });
-});
-
-/*-----------------------------------------------AKjs_Marquee 使用方法-------------------------------------------*/
-$(function(){
-    $('.plug_marquee').AKjs_Marquee({
-        direction: 'up', //滚动方向设置 （可选 left / right / up / down）
-        loop: -1, //是否重复循环 （0 = 不重复，-1 = 重复）
-        scrolldelay: 0, //每次重复之前的延迟
-        scrollamount: 10, //滚动速度 （数字越大速度越快）
-        circular: true, //无缝滚动，如果为 false，则和 marquee 效果一样
-        drag: true, //鼠标拖动 (true / false)
-        runshort: true, //内容不足是否滚动 (true / false)
-        hoverstop: true, //鼠标悬停暂停 (true / false)
-        inverthover: false, //反向，即默认不滚动，鼠标悬停滚动 (true / false)
-        xml: false //加载 xml 文件 (false 或 xml:'text.xml')
-    });
-});
-
-/*-----------------------------------------------AKjs_QRcode 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_qrcode").AKjs_QRcode({
-        width: 200, //宽度
-        height:200, //高度
-        background: "#ffffff", //背景色
-        foreground: "#000000", //前景色
-        text: "http://m.baidu.com" //任意内容
-    });
-});
-
-/*-----------------------------------------------AKjs_NavScroll 使用方法-------------------------------------------*/
-$(function() {
-    $(".plug_tabs_find").AKjs_NavScroll({
-        content_dom: ".plug_tabs_findview", //内容区域的元素 （该参数是菜单区域使用屏幕固定时需要分开布局结构后指定元素的方法）
-        line_style: "dis_block abs bor_top2 bor_title", //选中状态的线条样式设置
-        active_corlor: "c_title",  //选中状态的文字颜色
-        ClickCallback: function(ele,index) { //回调获取点击后的元素和元素的index
-            console.log(ele);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Circliful 使用方法-------------------------------------------*/
-$(function(){
-    $('.plug_circliful').AKjs_Circliful({
-        animationStep: 0.2 //动画毫秒设置
-    });
-    /*
-    data-dimension === 整个圆形的宽高
-    data-text === 圆形里的大标题
-    data-info === 圆形里的小标题
-    data-width="30" === 当前参数进度条边框宽度设置
-    data-prog_color === 当前参数进度条边框颜色设置
-    data-font_size  === 圆形里的大标题文字大小（px）
-    data-percent  === 当前参数设置（百分比）
-    data-font_color === 大标题和小标题文字颜色设置
-    data-bg_color === 整个圆形的边框颜色
-    data-fill_color === 里面填充颜色设置
-    data-spacing_color === 整个圆形的边框颜色
-    data-type="spacing" === 饼图类型设置 （half, spacing）；空值代表默认类型
-    */
-});
-
-/*-----------------------------------------------AKjs_Paginator  使用方法-------------------------------------------*/
-$(function(){
-    $("#plug_page").AKjs_Paginator({
-        totalPages: 20, //设置分页的总页数
-        totalCounts: 200, //设置分页的总条目数
-        pageSize: 10, //设置每一页的条目数
-        currentPage: 1, //设置当前的页码
-        visiblePages: 3, //设置最多显示的页码数
-        disableClass: 'disabled', //设置首页，上一页，下一页，末页的“禁用状态”样式
-        activeClass: 'bor_title bg_title c_white cur_default', //设置当前页码样式
-        //first_text: '首页', //设置“首页”的文字
-        prev_text: '<i class="arrow-left"><\/i>上一页', //设置“上一页”的文字
-        next_text: '下一页<i class="arrow-right"><\/i>', //设置“下一页”的文字
-        //last_text: '末页', //设置“末页”的文字
-        onPageChange: function (n,type,ele) { //回调入口（当前的页码，回调状态）
-            console.log(n);
-            console.log(type);
-            console.log(ele);
-        }
-    });
-});
-
-/*-----------------------------------------------AKjs_Waterfall 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_waterfall").AKjs_Waterfall({
-        spacingWidth: 5, // 布局的元素水平间距设置
-        spacingHeight: 5, // 布局的元素垂直间距设置
-        minColCount: 2, // 最小一行显示几个？
-        itemAlign: "center", // 布局排列方式 (center|left)
-        isFadeIn: true, //是否开启浅入效果 （追加元素中的class必须有ak-fadeIn才有效果）
-        Callback: function(ele) {
-            var data = {"data": [
-                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
-                ]};
-            var str = "";
-            var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
-
-            for(var i = 0; i < data.data.length; i++) {
-                str += templ.replace("{{src}}", data.data[i].src);
+    /*-----------------------------------------------AKjs_Select 使用方法-------------------------------------------*/
+    $(function() {
+        new AKjs_Select({
+            trigger: "#plug_trigger1", //需要绑定的元素
+            title: "选择星期", //弹窗标题文字
+            ensure: "确定", //弹窗的确定按钮文字
+            cancel: "取消", //弹窗的取消按钮文字
+            wheels: [
+                {data: json_weekData} //Json获取data数据(data.js)
+            ],
+            position:[0], //初始化定位，打开时默认选中的哪个。如果不填默认为0
+            callback: function (val,length) { //回调获取当前的值（val是值,length是数量以及数组）
+                console.log($(val));
+                console.log($(length));
             }
-            /*元素设置*/
-            var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
-            ele.parent().append(wdropload);
-            $(str).appendTo(ele);
-        },
-        ajaxCallback: function(ele, success, end) { //数据加载回调入口
-            success();
-            /*数据设置*/
-            var data = {"data": [
-                    { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
-                ]};
-            var str = "";
-            var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
+        });
+    });
 
-            for(var i = 0; i < data.data.length; i++) {
-                str += templ.replace("{{src}}", data.data[i].src);
+    $(function() {
+        new AKjs_Select({
+            trigger: "#plug_trigger2",  //需要绑定的元素
+            title: "请选择地区", //弹窗标题文字
+            ensure: "确定", //弹窗的确定按钮文字
+            cancel: "取消", //弹窗的取消按钮文字
+            wheels: [
+                {data : json_cityData} //Json获取data数据(data.js)
+            ],
+            callback: function (val,length) { //回调获取当前的值（val是值,length是数量以及数组）
+                console.log($(val));
+                console.log($(length));
             }
-            /*元素设置*/
-            var wdropload = "<div class=\"ak-waterfall-down dis_none\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>\n" +
-                "    <div class=\"ak-waterfall-down dis_none\"><div class=\"ak-waterfall-noData\">暂无数据</div></div>";
-            if ($(".ak-waterfall-down").length < 3) {
-                ele.parent().append(wdropload);
-            }
-            if (ele.children().length < 200) {
-                $(".ak-waterfall-down").eq(0).removeClass("dis_none");
-                $(".ak-waterfall-down").eq(1).addClass("dis_none");
-                $(str).appendTo(ele);
-            } else {
-                $(".ak-waterfall-down").eq(0).addClass("dis_none");
-                $(".ak-waterfall-down").eq(1).removeClass("dis_none");
-            }
-            end();
-        }
+        });
     });
-});
 
-/*-----------------------------------------------AKjs_Keyboard 使用方法-------------------------------------------*/
-$(function() {
-    var plug_keyboard = $.AKjs_Keyboard({
-       num: 6, //密码输入框需要几位数?
-       title: "请输入支付密码", //安全键盘标题
-       msg: "正在验证支付密码", //输入密码后的loading文字
-       cancel: "取消", //取消按钮的文字
-       callback: function(data,ele) {
-           //console.log(ele); //安全键盘的元素
-           //console.log(data); //密码数组
-           if (data.join('') != "123456") {
-               setTimeout(function() {
-                   plug_keyboard.akjs_reset("支付密码错误，请重新输入！"); //密码错误提示
-               }, 2000);
-           } else {
-               setTimeout(function() {
-                   ele.find("figure img").remove();
-                   ele.find("figure em").text("恭喜您！您支付成功了!");
-                   plug_keyboard.akjs_hideKeyBoard(); //隐藏安全键盘
-               }, 2000);
-               setTimeout(function() {
-                   AKjs_Location("/page1");
-               }, 3000);
-           }
-       }
+    /*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_MyMenu").bind("click", function (aa) {
+            AKjs_Popupwin({
+                dom: "#plug_MyMenuWin", //弹窗内容的布局
+                position: "top", //位置类型(top，bottom，left，right，middle)
+                effectIn: "slideDown ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+                effectOut: "slideUp ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
+                hasMask: true, //是否开启遮罩层背景 (true / false)
+                maskPosition: 5, //Mask的z-index数值
+                closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
+                OneButton: aa.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "text_14em icon-mn_wo", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    if (toggle) { //判断是否弹出弹窗
+                        $("footer").addClass("zindex_0");
+                    } else {
+                        setTimeout(function() {
+                            $("footer").removeClass("zindex_0");
+                        },1000);
+                    }
+                }
+            });
+        });
     });
-    /*ak-header和ak-footer里面的所有DOM元素操作请使用以下的“delegate”方法*/
-    $(document).delegate("fieldset button","click", function(e){
-       e.preventDefault();
-       plug_keyboard.akjs_showKeyBoard(); //展开安全键盘
-    });
-});
 
-/*-----------------------------------------------AKjs_ReadMore 使用方法-------------------------------------------*/
-$(function () {
-    $('.plug_readmore').AKjs_ReadMore({
-        speed: 500, //展开折叠毫秒速度
-        maxHeight: 200, //被隐藏更多的内容时的高度（px）
-        heightMargin: 16, //以像素为单位，以避免倒塌是比仅稍大块了maxHeight
-        moreLink: '<button class="bg_white c_gray_333 w_100 h_36em bor_top bor_gray_ddd">查看更多 <i class="icon-ln_xiangxia"></i></button>', //展开按钮HTML
-        lessLink: '<button class="bg_white c_gray_333 w_100 h_36em bor_top bor_gray_ddd">收起内容 <i class="icon-ln_xiangshang"></i></button>', //收起按钮HTML
-        startOpen: false, //不要立即截断，开始在全开位置
-        afterToggle: function(trigger, element, expanded) { //称为后，该块被折叠或展开
-            if(!expanded) {
-                $('main').animate({
-                    scrollTop: element.offset().top + $("#ak-scrollview").scrollTop() - element.next("button").height()
-                }, {duration: 500 } );
-            }
-        },
-        beforeToggle: function(trigger, element, expanded) { //称为或多或少链接被点击后，但之前的块被折叠或展开
-            if(!expanded) {
-            }
-        }
-    });
-});
+    /*-----------------------------------------------AKjs_MobileChat 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_chat").AKjs_MobileChat({
+            chat_view: ".plug_chatView", //聊天内容展示区域dom
+            chat_optDom: ".plug_chatOption", //更多功能区域dom
+            chat_optHeight: "8em", //更多功能选项的高度
+            callback: function(ele,container,scrollHeight) { //初始化回调入口
 
-/*-----------------------------------------------AKjs_SelectOption 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_select").AKjs_SelectOption({
-        active: "bg_title c_white", //下拉列表被选中时样式
-        boxheight: "12.6em", //下拉框展开后的列表区域的最大高度
-        speed: 300, //下拉框展开和折叠毫秒时间
-        callback:function(ele,list,val,text){ //初始化回调
-            //console.log(ele);
-            //console.log(list);
-            //console.log(val);
-            //console.log(text);
-        },
-        clickback:function(ele,list,val,text){ //选中回调函数获取值
-            console.log(ele);
-            console.log(list);
-            console.log(val);
-            console.log(text);
-        }
-    });
-});
+            },
+            chatcallback: function(ele,val) { //实时输入的回调入口
+                console.log(val)
+            },
+            btncallback: function(str,container,scrollHeight) { //聊天内容提交后的回调（输入内容，聊天内容生成区域，聊天内容区域实时的高度）
 
-/*-----------------------------------------------AKjs_DropLoad 使用方法-------------------------------------------*/
-$(function(){
-    // 页数
-    var page = 0;
-    // 每页展示5个
-    var size = 5;
-    $('.plug_DropLoad').AKjs_DropLoad({
-       scrollArea : window, // 滑动区域
-       domUp : { // 上方DOM
-           domRefresh : '↓ 下拉刷新',
-           domUpdate  : '↑ 释放更新',
-           domLoad    : '刷新中...'
-       },
-       domDown : { // 下方DOM
-           domRefresh : '↑ 上拉加载更多',
-           domLoad    : '加载中...',
-           domNoData  : '暂无数据'
-       },
-       autoLoad : true,// 自动加载
-       distance : 20,// 拉动距离
-       loadUpFn : function(me){ //上方function
-           $.ajax({
-               type: 'GET',
-               url: 'http://ons.me/tools/dropload/json.php',
-               dataType: 'json',
-               success: function(data){
-                   // 为了测试，延迟3秒加载
-                   setTimeout(function(){
-                       // 每次数据加载完，必须重置
-                       me.resetload(); //重新初始化控件以及标识量
-                       me.unlock(); //解除锁定允许数据继续加载
-                       me.noData(false); //是否有数据（false代表有数据）
-                   },1000);
-               },
-               error: function(xhr, type){
-                   ak_webToast("数据请求加载失败！请稍后再试。!","middle",3000);
-                   // 即使加载出错，也得重置
-                   //me.resetload(); //重新初始化控件以及标识量
-               }
-           });
-       },
-       loadDownFn : function(me){ //下方function
-           page++;
-           // 拼接HTML
-           var result = '';
-           $.ajax({
-               type: 'GET',
-               url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
-               dataType: 'json',
-               success: function(data){
-                   var arrLen = data.length;
-                   if(arrLen > 0){
-                       for(var i=0; i<arrLen; i++){
-                           result
-                               +='     <li class="bg_white ovh mb_5">'
-                               + '        <article class="rel w_100 ovh line_h_18em">'
-                               + '            <div class="ovh wp_94 mt_1em mb_05em pb_05em">'
-                               + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32em bg_title bor_rad_50" />'
-                               + '                <h3 class="fl ovh w_80 ml_05em">'+data[i].title+'</h3>'
-                               + '            </div>'
-                               + '            <ol class="w_100 ovh bor_top_dashed bor_gray_ddd length2 list_h_3em">'
-                               + '                <li class="fl text_al_c">订单价格：<em class="c_orange text_12em">待定</em></li>'
-                               + '                <li class="fr text_al_c">上市日期：<em class="c_jd">'+data[i].date+'</em></li>'
-                               + '            </ol>'
-                               + '        </article>'
-                               + '     </li>';
-                       }
-                       // 如果没有数据
-                   }else{
-                       // 数据锁定
-                       me.lock();
-                       // 无数据
-                       me.noData();
-                   }
-                   // 为了测试，延迟3秒加载
-                   setTimeout(function(){
-                       // 插入数据到页面，放到最后面
-                       $('.plug_DropLoad').children("ul").append(result);
-                       // 每次数据插入，必须重置
-                       me.resetload(); //重新初始化控件以及标识量
-                   },1000);
-               },
-               error: function(xhr, type){
-                   ak_webToast("数据请求加载失败！请稍后再试。!","middle",3000);
-                   // 即使加载出错，也得重置
-                   //me.resetload(); //重新初始化控件以及标识量
-               }
-           });
-       }
-    });
-});
+                var chat_portrait_me = "img/tibet-2.jpg"; //您的头像图片地址
+                var chat_name_me = "安德鲁"; //您的聊天名称
+                var chat_portrait_you = "img/tibet-1.jpg"; //对方的头像图片地址
+                var chat_name_you = "KIM"; //对方的聊天名称
+                var chat_auto = "很高兴认识你！我是自动回复机器人！"; //对方的自动回复消息
 
-/*-----------------------------------------------AKjs_GoTop (全局) 使用方法-------------------------------------------*/
-$(function () {
-  AKjs_GoTop({
-      dom: $("#ak-scrollview"), // 滑动区域
-      hide: true, //当页面不滚动时是否隐藏(true,false)
-      url: "./img/gotop.png", //图片路径
-      icon: "", //图标的Class
-      state: "bottom", //出现的位置(center, bottom)
-      height: "auto", //高 默认40px
-      width: "2.4em", //宽 默认40px
-      scrollTop: 50, //滚到什么位置出现 px
-      time: 500, //返回顶部多长时间 ms 默认500ms
-      hidetime: 1000, //图标隐藏的时间&刚开始淡入的时间 ms 默认1000ms
-      aimation: "animated bounceInDown", //出场动画 默认show（没有出场动画） 这个可以自定义
-      toTop: function () { //返回最顶部后的回调
-          //console.log("toTop");
-      },
-      toShow: function () { //按钮显示后的回调
-          //console.log("toShow");
-      },
-      toHide: function () { //按钮隐藏后的回调
-          //console.log("toHide");
-      },
-      toClick: function () { //按钮点击后的回调
-          //console.log("toClick");
-      }
-  });
-});
+                //您的聊天元素设置
+                var chat_view_me = "<li class=\"ovh mt_1em\">\n" +
+                    "            <dl class=\"ak-chat_right\">\n" +
+                    "                <dt>\n" +
+                    "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_me+" class=\"defer_none\"></figure>\n" +
+                    "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_me+"</span>\n" +
+                    "                </dt>\n" +
+                    "                <dd class=\"border bg_title bor_title c_white\">"+str+"</dd>\n" +
+                    "            </dl>\n" +
+                    "        </li>";
 
-/*-----------------------------------------------AKjs_MobileChat 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_chat").AKjs_MobileChat({
-        chat_view: ".plug_chatView", //聊天内容展示区域dom
-        chat_optDom: ".plug_chatOption", //更多功能区域dom
-        chat_optHeight: "8em", //更多功能选项的高度
-        callback: function(ele,container,scrollHeight) { //初始化回调入口
-
-        },
-        chatcallback: function(ele,val) { //实时输入的回调入口
-            console.log(val)
-        },
-        btncallback: function(str,container,scrollHeight) { //聊天内容提交后的回调（输入内容，聊天内容生成区域，聊天内容区域实时的高度）
-
-            var chat_portrait_me = "img/tibet-2.jpg"; //您的头像图片地址
-            var chat_name_me = "安德鲁"; //您的聊天名称
-            var chat_portrait_you = "img/tibet-1.jpg"; //对方的头像图片地址
-            var chat_name_you = "KIM"; //对方的聊天名称
-            var chat_auto = "很高兴认识你！我是自动回复机器人！"; //对方的自动回复消息
-
-            //您的聊天元素设置
-            var chat_view_me = "<li class=\"ovh mt_1em\">\n" +
-                "            <dl class=\"ak-chat_right\">\n" +
-                "                <dt>\n" +
-                "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_me+" class=\"defer_none\"></figure>\n" +
-                "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_me+"</span>\n" +
-                "                </dt>\n" +
-                "                <dd class=\"border bg_title bor_title c_white\">"+str+"</dd>\n" +
-                "            </dl>\n" +
-                "        </li>";
-
-            //对方的聊天元素设置
-            var chat_view_you = "<li class=\"ovh mt_1em\">\n" +
-                "            <dl class=\"ak-chat_left\">\n" +
-                "                <dt>\n" +
-                "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_you+" class=\"defer_none\"></figure>\n" +
-                "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_you+"</span>\n" +
-                "                </dt>\n" +
-                "                <dd>"+chat_auto+"</dd>\n" +
-                "            </dl>\n" +
-                "        </li>";
-            $(chat_view_me).appendTo(container); //生成您的聊天元素
-            $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
-
-            setTimeout(function() { //对方的聊天内容延迟执行
-                $(chat_view_you).appendTo(container); //生成对方的聊天元素
+                //对方的聊天元素设置
+                var chat_view_you = "<li class=\"ovh mt_1em\">\n" +
+                    "            <dl class=\"ak-chat_left\">\n" +
+                    "                <dt>\n" +
+                    "                    <figure class=\"wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_you+" class=\"defer_none\"></figure>\n" +
+                    "                    <span class=\"center text_08em c_gray_777 text_al_c\">"+chat_name_you+"</span>\n" +
+                    "                </dt>\n" +
+                    "                <dd>"+chat_auto+"</dd>\n" +
+                    "            </dl>\n" +
+                    "        </li>";
+                $(chat_view_me).appendTo(container); //生成您的聊天元素
                 $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
-            },100);
-        },
-        optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
-            console.log(toggle)
-        }
-    });
-});
 
-/*-----------------------------------------------AKjs_TimeAxis 使用方法-------------------------------------------*/
-$(function(){
-    $(".plug_timeaxis").AKjs_TimeAxis({
-        firstbox: "bg_title", //第一个圆框的样式
-        boxsize: "3em", //圆框大小设置
-        textstyle: "text_06em c_white", //圆框内的文字样式
-        data: json_TimeAxis, //Json获取data数据(data.js)
-        callback:function(ele){ //初始化回调入口
-        }
+                setTimeout(function() { //对方的聊天内容延迟执行
+                    $(chat_view_you).appendTo(container); //生成对方的聊天元素
+                    $("#ak-scrollview").scrollTop(scrollHeight); //发送消息后让滚动调自动滚到最底部
+                },100);
+            },
+            optcallback: function(ele,toggle) { //更多功能展示和隐藏的回调入口
+                ele.find("#plug_location").unbind("click");
+                if (toggle) {
+                    ele.find("#plug_location").bind("click", function (bb) {
+                        AKjs_Popupwin({
+                            dom: "#plug_locationWin", //弹窗内容的布局
+                            position: "bottom", //位置类型(top，bottom，left，right，middle)
+                            effectIn: "slideInUp ani_01s", //弹窗显示效果 (css动画库：akjs.animate.css)
+                            effectOut: "slideOutDown ani_01s", //弹窗消失效果 (css动画库：akjs.animate.css)
+                            hasMask: true, //是否开启遮罩层背景 (true / false)
+                            maskPosition: 8, //Mask的z-index数值
+                            closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
+                            OneButton: bb.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                            toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                            callback :function (ele1,toggle1) { //通过回调获取弹窗显示后的以上参数
+                                //console.log($(ele1[0].dom)); //获取当前的弹窗元素
+                                $(ele1[0].dom).find("#plug_map").unbind("click");
+                                $(ele1[0].dom).find("#plug_livemap").unbind("click");
+                                var jsurl = 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf'; //通过ajax引入高德地图API
+                                $.ajax({
+                                    type:'GET',
+                                    url: jsurl,
+                                    async: true,
+                                    cache: true,
+                                    dataType:'script'
+                                });
+                                if (toggle1) {
+                                    //发送位置
+                                    $(ele1[0].dom).find("#plug_map").bind("click", function (cc) {
+                                        AKjs_Popupwin({
+                                            dom: "#plug_mapWin", //弹窗内容的布局
+                                            position: "bottom", //位置类型(top，bottom，left，right，middle)
+                                            effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+                                            effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
+                                            hasMask: true, //是否开启遮罩层背景 (true / false)
+                                            maskPosition: 8, //Mask的z-index数值
+                                            closeBtn: ".plug_back", //关闭弹窗按钮的Class名
+                                            OneButton: cc.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                                            toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                                            callback :function (ele2,toggle2) { //通过回调获取弹窗显示后的以上参数
+                                                console.log($(ele2[0].dom)); //获取当前的弹窗元素
+                                                $(ele1[0].dom).removeClass("slideInUp ani_05s").addClass("slideOutDown ani_05s dis_none");
+                                                ele.find("#plug_location").removeClass("ak-is_active");
+                                                if (toggle2) {
+                                                    /*------------------------------------------高德地图API调用开始-----------------------------------------*/
+                                                    $("#plug_allmap").html("");
+                                                    setTimeout(function() {
+                                                        var map = new AMap.Map("plug_allmap", {
+                                                            resizeEnable: true,
+                                                            center: [116.397428, 39.90923],//地图中心点
+                                                            zoom: 13 //地图显示的缩放级别
+                                                        });
+                                                        var marker = new AMap.Marker({ //添加自定义点标记
+                                                            map: map,
+                                                            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                                                            position: [116.397428, 39.90923], //基点位置
+                                                            offset: new AMap.Pixel(-17, -42), //相对于基点的偏移位置
+                                                            draggable: true,  //是否可拖动
+                                                            content: '<div class="marker-route marker-marker-bus-from"></div>'   //自定义点标记覆盖物内容
+                                                        });
+                                                    },500);
+                                                    /*------------------------------------------高德地图API调用结束-----------------------------------------*/
+                                                }
+                                            }
+                                        });
+                                    });
+                                    //共享实时位置
+                                    $(ele1[0].dom).find("#plug_livemap").bind("click", function (cc) {
+                                        AKjs_Popupwin({
+                                            dom: "#plug_mapWin", //弹窗内容的布局
+                                            position: "bottom", //位置类型(top，bottom，left，right，middle)
+                                            effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+                                            effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
+                                            hasMask: true, //是否开启遮罩层背景 (true / false)
+                                            maskPosition: 8, //Mask的z-index数值
+                                            closeBtn: ".plug_back", //关闭弹窗按钮的Class名
+                                            OneButton: cc.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                                            toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                                            callback :function (ele2,toggle2) { //通过回调获取弹窗显示后的以上参数
+                                                console.log($(ele2[0].dom)); //获取当前的弹窗元素
+                                                $(ele1[0].dom).removeClass("slideInUp ani_05s").addClass("slideOutDown ani_05s dis_none");
+                                                ele.find("#plug_location").removeClass("ak-is_active");
+                                                if (toggle2) {
+                                                    /*------------------------------------------高德地图API调用开始-----------------------------------------*/
+                                                    $("#plug_allmap").html("");
+                                                    setTimeout(function() {
+                                                        var map, geolocation;
+                                                        //加载地图，调用浏览器定位服务
+                                                        map = new AMap.Map('plug_allmap', {
+                                                            resizeEnable: true
+                                                        });
+                                                        map.plugin('AMap.Geolocation', function() {
+                                                            geolocation = new AMap.Geolocation({
+                                                                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                                                                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                                                                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                                                                zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                                                                buttonPosition:'RB'
+                                                            });
+                                                            map.addControl(geolocation);
+                                                            geolocation.getCurrentPosition();
+                                                            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                                                            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+                                                        });
+                                                        //解析定位结果
+                                                        function onComplete(data) {
+                                                            var str=['定位成功'];
+                                                            str.push('经度：' + data.position.getLng());
+                                                            str.push('纬度：' + data.position.getLat());
+                                                            if(data.accuracy){
+                                                                str.push('精度：' + data.accuracy + ' 米');
+                                                            }//如为IP精确定位结果则没有精度信息
+                                                            str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+                                                        }
+                                                        //解析定位错误信息
+                                                        function onError(data) {
+                                                        }
+                                                    },500);
+                                                    /*------------------------------------------高德地图API调用结束-----------------------------------------*/
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+        });
     });
-});
+
+    /*-----------------------------------------------AKjs_Popupwin (左侧方法)使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_menu_left").bind("click", function (el) {
+            el.preventDefault();
+            AKjs_Popupwin({
+                dom: "#plug_MenuWin", //弹窗内容的布局
+                hasMask: true, //是否开启遮罩层背景 (true / false)
+                maskPosition: 3, //Mask的z-index数值
+                closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
+                OneButton: el.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                    if (toggle) { //判断是否弹出弹窗
+                        $("footer").addClass("zindex_2");
+                        $("header, #ak-main, footer").removeClass("left_au").addClass("right_au");
+                        $(ele[0].dom).removeClass("dis_none").removeClass("left_au").addClass("right_au").css({"left": parseInt(-$(ele[0].dom).outerWidth())+"px"});
+                        $("header, #ak-main, footer").animate({
+                            "left": parseInt($(ele[0].dom).outerWidth())+"px"
+                        },500);
+                        $(ele[0].dom).animate({
+                            "left": 0
+                        },500);
+                    } else {
+                        $("header, #ak-main, footer").animate({
+                            "left": 0
+                        },500);
+                        $(ele[0].dom).animate({
+                            "left": parseInt(-$(ele[0].dom).outerWidth())+"px"
+                        },500);
+                        setTimeout(function() {
+                            $(ele[0].dom).addClass("dis_none");
+                        },500);
+                        setTimeout(function() {
+                            $("header, #ak-main, footer").removeClass("right_au");
+                            $(ele[0].dom).removeClass("right_au");
+                            $("footer").removeClass("zindex_2");
+                        },1000);
+                    }
+                }
+            });
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Popupwin (右侧方法)使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_menu_right").bind("click", function (er) {
+            er.preventDefault();
+            AKjs_Popupwin({
+                dom: "#plug_MenuWin", //弹窗内容的布局
+                hasMask: true, //是否开启遮罩层背景 (true / false)
+                maskPosition: 3, //Mask的z-index数值
+                closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
+                OneButton: er.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "text_14em icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                    if (toggle) { //判断是否弹出弹窗
+                        $("footer").addClass("zindex_2");
+                        $("header, #ak-main, footer").removeClass("right_au").addClass("left_au");
+                        $(ele[0].dom).removeClass("dis_none").removeClass("right_au").addClass("left_au").css({"right": parseInt(-$(ele[0].dom).outerWidth())+"px"});
+                        $("header, #ak-main, footer").animate({
+                            "right": parseInt($(ele[0].dom).outerWidth())+"px"
+                        },500);
+                        $(ele[0].dom).animate({
+                            "right": 0
+                        },500);
+                    } else {
+                        $("header, #ak-main, footer").animate({
+                            "right": 0
+                        },500);
+                        $(ele[0].dom).animate({
+                            "right": parseInt(-$(ele[0].dom).outerWidth())+"px"
+                        },500);
+                        setTimeout(function() {
+                            $(ele[0].dom).addClass("dis_none");
+                        },500);
+                        setTimeout(function() {
+                            $("header, #ak-main, footer").removeClass("left_au");
+                            $(ele[0].dom).removeClass("left_au");
+                            $("footer").removeClass("zindex_2");
+                        },1000);
+                    }
+                }
+            });
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Waterfall 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_waterfall").AKjs_Waterfall({
+            spacingWidth: 5, // 布局的元素水平间距设置
+            spacingHeight: 5, // 布局的元素垂直间距设置
+            minColCount: 2, // 最小一行显示几个？
+            itemAlign: "center", // 布局排列方式 (center|left)
+            isFadeIn: true, //是否开启浅入效果 （追加元素中的class必须有ak-fadeIn才有效果）
+            Callback: function(ele) {
+                var data = {"data": [
+                        { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
+                    ]};
+                var str = "";
+                var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
+
+                for(var i = 0; i < data.data.length; i++) {
+                    str += templ.replace("{{src}}", data.data[i].src);
+                }
+                /*元素设置*/
+                var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
+                ele.parent().append(wdropload);
+                $(str).appendTo(ele);
+            },
+            ajaxCallback: function(ele, success, end) { //数据加载回调入口
+                success();
+                /*数据设置*/
+                var data = {"data": [
+                        { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
+                    ]};
+                var str = "";
+                var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
+
+                for(var i = 0; i < data.data.length; i++) {
+                    str += templ.replace("{{src}}", data.data[i].src);
+                }
+                /*元素设置*/
+                var wdropload = "<div class=\"ak-waterfall-down dis_none\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>\n" +
+                    "    <div class=\"ak-waterfall-down dis_none\"><div class=\"ak-waterfall-noData\">暂无数据</div></div>";
+                if ($(".ak-waterfall-down").length < 3) {
+                    ele.parent().append(wdropload);
+                }
+                if (ele.children().length < 200) {
+                    $(".ak-waterfall-down").eq(0).removeClass("dis_none");
+                    $(".ak-waterfall-down").eq(1).addClass("dis_none");
+                    $(str).appendTo(ele);
+                } else {
+                    $(".ak-waterfall-down").eq(0).addClass("dis_none");
+                    $(".ak-waterfall-down").eq(1).removeClass("dis_none");
+                }
+                end();
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_SelectOption 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_select").AKjs_SelectOption({
+            active: "bg_title c_white", //下拉列表被选中时样式
+            boxheight: "12.6em", //下拉框展开后的列表区域的最大高度
+            speed: 300, //下拉框展开和折叠毫秒时间
+            callback:function(ele,list,val,text){ //初始化回调
+                //console.log(ele);
+                //console.log(list);
+                //console.log(val);
+                //console.log(text);
+            },
+            clickback:function(ele,list,val,text){ //选中回调函数获取值
+                console.log(ele);
+                console.log(list);
+                console.log(val);
+                console.log(text);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Paginator  使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_page").AKjs_Paginator({
+            totalPages: 20, //设置分页的总页数
+            totalCounts: 200, //设置分页的总条目数
+            pageSize: 10, //设置每一页的条目数
+            currentPage: 1, //设置当前的页码
+            visiblePages: 3, //设置最多显示的页码数
+            disableClass: 'disabled', //设置首页，上一页，下一页，末页的“禁用状态”样式
+            activeClass: 'bor_title bg_title c_white cur_default', //设置当前页码样式
+            //first_text: '首页', //设置“首页”的文字
+            prev_text: '<i class="arrow-left"><\/i>上一页', //设置“上一页”的文字
+            next_text: '下一页<i class="arrow-right"><\/i>', //设置“下一页”的文字
+            //last_text: '末页', //设置“末页”的文字
+            onPageChange: function (n,type,ele) { //回调入口（当前的页码，回调状态）
+                console.log(n);
+                console.log(type);
+                console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_ReadMore 使用方法-------------------------------------------*/
+    $(function() {
+        $('.plug_readmore').AKjs_ReadMore({
+            speed: 500, //展开折叠毫秒速度
+            maxHeight: 200, //被隐藏更多的内容时的高度（px）
+            heightMargin: 16, //以像素为单位，以避免倒塌是比仅稍大块了maxHeight
+            moreLink: '<button class="bg_white c_gray_333 w_100 h_36em bor_top bor_gray_ddd">查看更多 <i class="icon-ln_xiangxia"></i></button>', //展开按钮HTML
+            lessLink: '<button class="bg_white c_gray_333 w_100 h_36em bor_top bor_gray_ddd">收起内容 <i class="icon-ln_xiangshang"></i></button>', //收起按钮HTML
+            startOpen: false, //不要立即截断，开始在全开位置
+            afterToggle: function(trigger, element, expanded) { //称为后，该块被折叠或展开
+                if(!expanded) {
+                    $("#ak-scrollview").animate({
+                        scrollTop: element.offset().top + $("#ak-scrollview").scrollTop() - element.next("button").height()
+                    }, {duration: 500 } );
+                }
+            },
+            beforeToggle: function(trigger, element, expanded) { //称为或多或少链接被点击后，但之前的块被折叠或展开
+                if(!expanded) {
+                }
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Vticker 使用方法-------------------------------------------*/
+    $(function() {
+        $('.plug_vticker').AKjs_Vticker({
+            showItems : 4, //显示多少行
+            pause : 3000, //滚动间隔，单位为毫秒
+            speed : 500, //每次滚动持续时间，单位为毫秒
+            mousePause : false, //鼠标悬停是否停止滚动
+            direction : "up", //滚动方向，可选 ‘up’ / ‘down’
+            isPaused: false, //默认是否暂停
+            height: 0 //容器高度，默认为 0，即根据 showItems 个数自动计算
+        });
+    });
+
+    /*-----------------------------------------------AKjs_TypeIt 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_TypeIt").AKjs_TypeIt({
+            strings: [
+                "欢迎使用AKjs移动端前端UI框架。",
+                "AKjs移动端插件是一个基于JQuery的一套构建用户界面的前端框架插件里包含着移动端常用的功能效果以及简单明亮的CSS样式库对IOS和安卓系统的微站兼容性很完美。"
+            ],
+            typeSpeed: 10, //打字速度
+            backDelay: 50, //删除文字速度
+            contentType: 'html', // html or text
+            loop: true, //是否重复循环 （true,false）
+            callback: function(fun){ //结束后的回调
+                //console.log("已结束")
+            },
+            preString: function(array) {
+                //console.log("准备就绪")
+            },
+            onString: function(array) {
+                //console.log("进行中")
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Template 使用方法-------------------------------------------*/
+    $(function() {
+        var list_data = [
+            {
+                Image: "<img src=\"./img/tibet-1.jpg\">",
+                Title: "产品名称001",
+                Price: "￥400.00",
+                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+            },
+            {
+                Image: "<img src=\"./img/tibet-2.jpg\">",
+                Title: "产品名称002",
+                Price: "￥500.00",
+                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+            },
+            {
+                Image: "<img src=\"./img/tibet-3.jpg\">",
+                Title: "产品名称003",
+                Price: "￥250.00",
+                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+            }
+        ];
+        $(".plug_for").AKjs_Template(list_data);
+    });
+
+    /*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
+            scroll: $("#ak-scrollview"), //滚动区域的容器
+            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+            Img_Effect: "fadeIn", //图片加载动画效果
+            Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
+            Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
+            Callback: function(ele) { //初始化回调入口
+                //console.log(ele);
+            },
+            Scrollback: function(ele,scroll) { //页面滚动后的回调
+                //console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Popupwin (分享功能) 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_Share").bind("click", function (c) {
+            AKjs_Popupwin({
+                dom: "#plug_ShareWin", //弹窗内容的布局
+                position: "bottom", //位置类型(top，bottom，left，right，middle)
+                effectIn: "slideInUp ani_05s", //弹窗显示效果 (css动画库：akjs.animate.css)
+                effectOut: "slideOutDown ani_05s", //弹窗消失效果 (css动画库：akjs.animate.css)
+                hasMask: true, //是否开启遮罩层背景 (true / false)
+                maskPosition: 4, //Mask的z-index数值
+                closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
+                OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
+                toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
+                    console.log($(ele[0].dom)); //获取当前的弹窗元素
+                    $(ele[0].dom).find("button").click(function () {
+                        $(".ak-mask").click();
+                    })
+                }
+            });
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Marquee 使用方法-------------------------------------------*/
+    $(function() {
+        $('.plug_marquee').AKjs_Marquee({
+            direction: 'up', //滚动方向设置 （可选 left / right / up / down）
+            loop: -1, //是否重复循环 （0 = 不重复，-1 = 重复）
+            scrolldelay: 0, //每次重复之前的延迟
+            scrollamount: 10, //滚动速度 （数字越大速度越快）
+            circular: true, //无缝滚动，如果为 false，则和 marquee 效果一样
+            drag: true, //鼠标拖动 (true / false)
+            runshort: true, //内容不足是否滚动 (true / false)
+            hoverstop: true, //鼠标悬停暂停 (true / false)
+            inverthover: false, //反向，即默认不滚动，鼠标悬停滚动 (true / false)
+            xml: false //加载 xml 文件 (false 或 xml:'text.xml')
+        });
+    });
+
+    /*-----------------------------------------------AKjs_QRcode 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_qrcode").AKjs_QRcode({
+            width: 200, //宽度
+            height:200, //高度
+            background: "#ffffff", //背景色
+            foreground: "#000000", //前景色
+            text: "http://m.baidu.com" //任意内容
+        });
+    });
+
+    /*-----------------------------------------------AKjs_NavScroll 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_tabs_find").AKjs_NavScroll({
+            content_dom: ".plug_tabs_findview", //内容区域的元素 （该参数是菜单区域使用屏幕固定时需要分开布局结构后指定元素的方法）
+            line_style: "dis_block abs bor_top2 bor_title", //选中状态的线条样式设置
+            active_corlor: "c_title",  //选中状态的文字颜色
+            ClickCallback: function(ele,index) { //回调获取点击后的元素和元素的index
+                console.log(ele);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Circliful 使用方法-------------------------------------------*/
+    $(function() {
+        $('.plug_circliful').AKjs_Circliful({
+            animationStep: 0.2 //动画毫秒设置
+        });
+        /*
+        data-dimension === 整个圆形的宽高
+        data-text === 圆形里的大标题
+        data-info === 圆形里的小标题
+        data-width="30" === 当前参数进度条边框宽度设置
+        data-prog_color === 当前参数进度条边框颜色设置
+        data-font_size  === 圆形里的大标题文字大小（px）
+        data-percent  === 当前参数设置（百分比）
+        data-font_color === 大标题和小标题文字颜色设置
+        data-bg_color === 整个圆形的边框颜色
+        data-fill_color === 里面填充颜色设置
+        data-spacing_color === 整个圆形的边框颜色
+        data-type="spacing" === 饼图类型设置 （half, spacing）；空值代表默认类型
+        */
+    });
+
+    /*-----------------------------------------------AKjs_TimeAxis 使用方法-------------------------------------------*/
+    $(function() {
+        $(".plug_timeaxis").AKjs_TimeAxis({
+            firstbox: "bg_title", //第一个圆框的样式
+            boxsize: "3em", //圆框大小设置
+            textstyle: "text_06em c_white", //圆框内的文字样式
+            data: json_TimeAxis, //Json获取data数据(data.js)
+            callback:function(ele){ //初始化回调入口
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_EchartsRun 使用方法-------------------------------------------*/
+    $(function() {
+        $("#plug_echarts1").AKjs_EchartsRun({
+            width: "100%", //宽度
+            height: 320, //高度
+            option: { //Echarts的option数据结构（Echarts官网：http://echarts.baidu.com/examples/）
+                title: {
+                    text: 'Echarts1',
+                    subtext: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['使用情况', '当前数量']
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: false
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                dataZoom: {
+                    show: false,
+                    start: 0,
+                    end: 100
+                },
+                xAxis: [{
+                    type: 'category',
+                    boundaryGap: false,
+                    data: (function() {
+                        var now = new Date();
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                }],
+                yAxis: [{
+                    type: 'value',
+                    //scale: true,
+                    name: '使用情况',
+                    max: 20,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }, {
+                    type: 'value',
+                    scale: true,
+                    name: '当前数量',
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }],
+                series: [{
+                    name: '当前数量',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    itemStyle: {
+                        normal: {
+                            color:'#d71b1c',
+                            lineStyle:{
+                                color:'#d71b1c'
+                            }
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.push(null);
+                        }
+                        return res;
+                    })()
+                }, {
+                    name: '使用情况',
+                    type: 'line',
+                    smooth:true,
+                    // itemStyle areaStyle 成为面积图的关键。
+                    itemStyle: {
+                        normal: {
+                            color:'#79c34a',
+                            areaStyle: {
+                                type: 'default'
+                            },
+                            lineStyle:{
+                                color:'#79c34a'
+                            }
+                        }
+                    },
+                    areaStyle: {// 实现蓝白渐变色
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgba(121,195,74,0.8)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255,255,255)'
+                            }])
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 0;
+                        while (len < 10) {
+                            res.push(null);
+                            len++;
+                        }
+                        return res;
+                    })()
+                }]
+            },
+            callback:function(myChart,option){ //初始化回调入口
+                setInterval(function() {
+                    axisData = (new Date()).toLocaleTimeString().replace(/^\D*!/, '');
+                    var data0 = option.series[0].data;
+                    var data1 = option.series[1].data;
+                    data0.shift();
+                    data0.push(Math.round(Math.random() * 10000));
+                    data1.shift();
+                    data1.push(Math.round(Math.random() * 20));
+                    option.xAxis[0].data.shift();
+                    option.xAxis[0].data.push(axisData);
+                    myChart.setOption(option);
+                }, 1000);
+            }
+        });
+    });
+
+    $(function() {
+        $("#plug_echarts2").AKjs_EchartsRun({
+            width: "100%", //宽度
+            height: 320, //高度
+            option: { //Echarts的option数据结构（Echarts官网：http://echarts.baidu.com/examples/）
+                title: {
+                    text: 'Echarts2',
+                    subtext: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['使用情况', '当前数量']
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: false
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                dataZoom: {
+                    show: false,
+                    start: 0,
+                    end: 100
+                },
+                xAxis: [{
+                    type: 'category',
+                    boundaryGap: true,
+                    data: (function() {
+                        var now = new Date();
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                }],
+                yAxis: [{
+                    type: 'value',
+                    scale: true,
+                    name: '使用情况',
+                    max: 20,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }, {
+                    type: 'value',
+                    scale: true,
+                    name: '当前数量',
+                    max: 1200,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }],
+                series: [{
+                    name: '当前数量',
+                    type: 'bar',
+                    xAxisIndex: 0,
+                    yAxisIndex: 1,
+                    itemStyle: {
+                        normal: {
+                            color:'#CCCCCC',
+                            lineStyle:{
+                                color:'#CCCCCC'
+                            }
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 10;
+                        while (len--) {
+                            res.push(null);
+                        }
+                        return res;
+                    })()
+                }, {
+                    name: '使用情况',
+                    type: 'line',
+                    smooth:true,
+                    // itemStyle成为面积图的关键。
+                    itemStyle: {
+                        normal: {
+                            color:'#79c34a',
+                            areaStyle: {
+                                type: 'default'
+                            },
+                            lineStyle:{
+                                color:'#79c34a'
+                            }
+                        }
+                    },
+                    areaStyle: {// 实现蓝白渐变色
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgba(121,195,74,0.8)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255,255,255)'
+                            }])
+                        }
+                    },
+                    data: (function() {
+                        var res = [];
+                        var len = 0;
+                        while (len < 10) {
+                            res.push(null);
+                            len++;
+                        }
+                        return res;
+                    })()
+                }]
+            },
+            callback:function(myChart,option){ //初始化回调入口
+                setInterval(function() {
+                    axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+                    var data0 = option.series[0].data;
+                    var data1 = option.series[1].data;
+                    data0.shift();
+                    data0.push(Math.round(Math.random() * 1000));
+                    data1.shift();
+                    data1.push((Math.random() * 10 + 5).toFixed(1) - 0);
+                    option.xAxis[0].data.shift();
+                    option.xAxis[0].data.push(axisData);
+                    myChart.setOption(option);
+                }, 2000);
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_GoTop (全局) 使用方法-------------------------------------------*/
+    $(function() {
+        AKjs_GoTop({
+            dom: $("#ak-scrollview"), // 滑动区域
+            hide: true, //当页面不滚动时是否隐藏(true,false)
+            url: "./img/gotop.png", //图片路径
+            icon: "", //图标的Class
+            state: "bottom", //出现的位置(center, bottom)
+            height: "auto", //高 默认40px
+            width: "2.4em", //宽 默认40px
+            scrollTop: 50, //滚到什么位置出现 px
+            time: 500, //返回顶部多长时间 ms 默认500ms
+            hidetime: 1000, //图标隐藏的时间&刚开始淡入的时间 ms 默认1000ms
+            aimation: "animated bounceInDown", //出场动画 默认show（没有出场动画） 这个可以自定义
+            toTop: function () { //返回最顶部后的回调
+                //console.log("toTop");
+            },
+            toShow: function () { //按钮显示后的回调
+                //console.log("toShow");
+            },
+            toHide: function () { //按钮隐藏后的回调
+                //console.log("toHide");
+            },
+            toClick: function () { //按钮点击后的回调
+                //console.log("toClick");
+            }
+        });
+    });
+
+    /*-----------------------------------------------AKjs_Keyboard 使用方法-------------------------------------------*/
+    $(function() {
+        var plug_keyboard = $.AKjs_Keyboard({
+            num: 6, //密码输入框需要几位数?
+            title: "请输入支付密码", //安全键盘标题
+            msg: "正在验证支付密码", //输入密码后的loading文字
+            cancel: "取消", //取消按钮的文字
+            callback: function(data,ele) {
+                //console.log(ele); //安全键盘的元素
+                //console.log(data); //密码数组
+                if (data.join('') != "123456") {
+                    setTimeout(function() {
+                        plug_keyboard.akjs_reset("支付密码错误，请重新输入！"); //密码错误提示
+                    }, 2000);
+                } else {
+                    setTimeout(function() {
+                        ele.find("figure img").remove();
+                        ele.find("figure em").text("恭喜您！您支付成功了!");
+                        plug_keyboard.akjs_hideKeyBoard(); //隐藏安全键盘
+                    }, 2000);
+                    setTimeout(function() {
+                        AKjs_Location("/page1");
+                    }, 3000);
+                }
+            }
+        });
+        /*ak-header和ak-footer里面的所有DOM元素操作请使用以下的“delegate”方法*/
+        $(document).delegate("fieldset button","click", function(e){
+            e.preventDefault();
+            plug_keyboard.akjs_showKeyBoard(); //展开安全键盘
+        });
+    });
+
+    /*-----------------------------------------------AKjs_DropLoad 使用方法-------------------------------------------*/
+    $(function() {
+        // 页数
+        var page = 0;
+        // 每页展示20个
+        var size = 20;
+        $('.plug_DropLoad').AKjs_DropLoad({
+            scrollArea : window, // 滑动区域
+            domUp : { // 上方DOM
+                domRefresh : '↓ 下拉刷新',
+                domUpdate  : '↑ 释放更新',
+                domLoad    : '刷新中...'
+            },
+            domDown : { // 下方DOM
+                domRefresh : '↑ 上拉加载更多',
+                domLoad    : '加载中...',
+                domNoData  : '暂无数据'
+            },
+            autoLoad : true,// 自动加载
+            distance : 20,// 拉动距离
+            loadUpFn : function(me){ //上方function
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://ons.me/tools/dropload/json.php',
+                    dataType: 'json',
+                    success: function(data){
+                        // 为了测试，延迟3秒加载
+                        setTimeout(function(){
+                            // 每次数据加载完，必须重置
+                            me.resetload(); //重新初始化控件以及标识量
+                            me.unlock(); //解除锁定允许数据继续加载
+                            me.noData(false); //是否有数据（false代表有数据）
+                        },1000);
+                    },
+                    error: function(xhr, type){
+                        ak_webToast("数据请求加载失败！请稍后再试。!","middle",3000);
+                        // 即使加载出错，也得重置
+                        //me.resetload(); //重新初始化控件以及标识量
+                    }
+                });
+            },
+            loadDownFn : function(me){ //下方function
+                page++;
+                // 拼接HTML
+                var result = '';
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
+                    dataType: 'json',
+                    success: function(data){
+                        var arrLen = data.length;
+                        if(arrLen > 0){
+                            for(var i=0; i<arrLen; i++){
+                                result
+                                    +='     <li class="bg_white ovh mb_5">'
+                                    + '        <article class="rel w_100 ovh line_h_18em">'
+                                    + '            <div class="ovh wp_94 mt_1em mb_05em pb_05em">'
+                                    + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32em bg_gray_eee bor_rad_50" />'
+                                    + '                <h3 class="fl ovh w_80 ml_05em">'+data[i].title+'</h3>'
+                                    + '            </div>'
+                                    + '            <ol class="w_100 ovh bor_top_dashed bor_gray_ddd length2 list_h_3em">'
+                                    + '                <li class="fl text_al_c">订单价格：<em class="c_orange text_12em">待定</em></li>'
+                                    + '                <li class="fr text_al_c">上市日期：<em class="c_jd">'+data[i].date+'</em></li>'
+                                    + '            </ol>'
+                                    + '        </article>'
+                                    + '     </li>';
+                            }
+                            // 如果没有数据
+                        }else{
+                            // 数据锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }
+                        // 为了测试，延迟3秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('.plug_DropLoad').children("ul").append(result);
+                            $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
+                                scroll: $("#ak-scrollview"), //滚动区域的容器
+                                scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
+                                Img_Effect: "fadeIn", //图片加载动画效果
+                                Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
+                                Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
+                                Callback: function(ele) { //初始化回调入口
+                                    //console.log(ele);
+                                },
+                                Scrollback: function(ele,scroll) { //页面滚动后的回调
+                                    //console.log(ele);
+                                }
+                            });
+                            // 每次数据插入，必须重置
+                            me.resetload(); //重新初始化控件以及标识量
+                        },1000);
+                    },
+                    error: function(xhr, type){
+                        ak_webToast("数据请求加载失败！请稍后再试。!","middle",3000);
+                        // 即使加载出错，也得重置
+                        //me.resetload(); //重新初始化控件以及标识量
+                    }
+                });
+            }
+        });
+    });

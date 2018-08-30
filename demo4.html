@@ -17,7 +17,7 @@
   <script type="text/javascript" language="javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
   <script type="text/javascript" language="javascript" src="http://echarts.baidu.com/dist/echarts.min.js"></script><!--Echarts插件引入-->
-  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
+  <script type="text/javascript" language="javascript" src="js/akjs.mobile.js"></script><!--AKjs引入-->
 </head>
 <body>
 
@@ -588,27 +588,27 @@
 </body>
 <script type="text/javascript">
     //引入AKjs功能插件的区域
-    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
+
     if (window.location.protocol == "file:") {
         alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
         throw new Error();
     }
 
-    /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
-    $(function () {
-        AKjs_Config({ //环境配置管理
-            MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
-            Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
-            touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
-            ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
-            WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
-            Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
-            fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
-            animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
-            Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
-            Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-        });
-    });
+    /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
+    AKjs_Include("js/common.js"); //全局功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
+    AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
+    AKjs_Plugin("AKjs_SelectOption","css"); //pc端专用select下拉框插件
+    AKjs_Plugin("AKjs_Paginator","css"); //分页插件
+    AKjs_Plugin("AKjs_ReadMore"); //查看更多插件
+    AKjs_Plugin("AKjs_Vticker"); //列表垂直滚动插件
+    AKjs_Plugin("AKjs_TypeIt","css"); //文字打字效果
+    AKjs_Plugin("AKjs_Template"); //模板引擎插件
+    AKjs_Plugin("AKjs_Marquee","css"); //上下左右滚动插件
+    AKjs_Plugin("AKjs_QRcode"); //二维码生成插件
+    AKjs_Plugin("AKjs_NavScroll"); //导航滑动功能（今日头条）
+    AKjs_Plugin("AKjs_Circliful"); //圆形统计插件
+    AKjs_Plugin("AKjs_TimeAxis","css"); //时间轴展示功能
+    AKjs_Plugin("AKjs_EchartsRun"); //百度Echarts运行功能
 
     /*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
     $(function() {
@@ -627,25 +627,8 @@
         });
     });
 
-    /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
-    $(function () {
-        AKjs_Loader({
-            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-            autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-            timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
-            iconColor:"#ffffff", //图标颜色设置
-            maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-            Loader:"load_2" //loading效果选择（load_1~7）
-        });
-        setTimeout(function() { //页面加载完5秒后执行
-            if($(".ak-Loader").css('display') == 'none'){
-                AKjs_Loader("destroy"); //关闭loading窗
-            }
-        },2000);
-    });
-
     /*-----------------------------------------------AKjs_SelectOption 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $(".plug_select").AKjs_SelectOption({
             active: "bg_title c_white", //下拉列表被选中时样式
             boxheight: "12.6em", //下拉框展开后的列表区域的最大高度
@@ -666,7 +649,7 @@
     });
 
     /*-----------------------------------------------AKjs_Paginator  使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $("#plug_page").AKjs_Paginator({
             wrapper: '',
             totalPages: 50, //设置分页的总页数
@@ -688,7 +671,7 @@
     });
 
     /*-----------------------------------------------AKjs_ReadMore 使用方法-------------------------------------------*/
-    $(function () {
+    $(function() {
         $('.plug_readmore').AKjs_ReadMore({
             speed: 500, //展开折叠毫秒速度
             maxHeight: 200, //被隐藏更多的内容时的高度（px）
@@ -711,7 +694,7 @@
     });
 
     /*-----------------------------------------------AKjs_Vticker 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $('.plug_vticker').AKjs_Vticker({
             showItems : 4, //显示多少行
             pause : 3000, //滚动间隔，单位为毫秒
@@ -724,7 +707,7 @@
     });
 
     /*-----------------------------------------------AKjs_TypeIt 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $(".plug_TypeIt").AKjs_TypeIt({
             strings: [
                 "欢迎使用AKjs移动端前端UI框架。",
@@ -747,30 +730,32 @@
     });
 
     /*-----------------------------------------------AKjs_Template 使用方法-------------------------------------------*/
-    var list_data = [
-        {
-            Image: "<img src=\"./img/tibet-1.jpg\">",
-            Title: "产品名称001",
-            Price: "￥400.00",
-            Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
-        },
-        {
-            Image: "<img src=\"./img/tibet-2.jpg\">",
-            Title: "产品名称002",
-            Price: "￥500.00",
-            Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
-        },
-        {
-            Image: "<img src=\"./img/tibet-3.jpg\">",
-            Title: "产品名称003",
-            Price: "￥250.00",
-            Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
-        }
-    ];
-    $(".plug_for").AKjs_Template(list_data);
+    $(function() {
+        var list_data = [
+            {
+                Image: "<img src=\"./img/tibet-1.jpg\">",
+                Title: "产品名称001",
+                Price: "￥400.00",
+                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+            },
+            {
+                Image: "<img src=\"./img/tibet-2.jpg\">",
+                Title: "产品名称002",
+                Price: "￥500.00",
+                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+            },
+            {
+                Image: "<img src=\"./img/tibet-3.jpg\">",
+                Title: "产品名称003",
+                Price: "￥250.00",
+                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+            }
+        ];
+        $(".plug_for").AKjs_Template(list_data);
+    });
 
     /*-----------------------------------------------AKjs_Popupwin (分享功能) 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $("#plug_Share").bind("click", function (c) {
             AKjs_Popupwin({
                 dom: "#plug_ShareWin", //弹窗内容的布局
@@ -793,7 +778,7 @@
     });
 
     /*-----------------------------------------------AKjs_Marquee 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $('.plug_marquee').AKjs_Marquee({
             direction: 'up', //滚动方向设置 （可选 left / right / up / down）
             loop: -1, //是否重复循环 （0 = 不重复，-1 = 重复）
@@ -809,7 +794,7 @@
     });
 
     /*-----------------------------------------------AKjs_QRcode 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $(".plug_qrcode").AKjs_QRcode({
             width: 200, //宽度
             height:200, //高度
@@ -832,7 +817,7 @@
     });
 
     /*-----------------------------------------------AKjs_Circliful 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $('.plug_circliful').AKjs_Circliful({
             animationStep: 0.2 //动画毫秒设置
         });
@@ -853,7 +838,7 @@
     });
 
     /*-----------------------------------------------AKjs_TimeAxis 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $(".plug_timeaxis").AKjs_TimeAxis({
             firstbox: "bg_title", //第一个圆框的样式
             boxsize: "3em", //圆框大小设置
@@ -1132,6 +1117,7 @@
             }
         });
     });
+
 </script>
 <style type="text/css">
     /*样式覆盖区域*/

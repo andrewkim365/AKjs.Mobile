@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
   <script type="text/javascript" language="javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
-  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
+  <script type="text/javascript" language="javascript" src="js/akjs.mobile.js"></script><!--AKjs引入-->
 </head>
 <body>
 
@@ -131,63 +131,19 @@
 </body>
 <script type="text/javascript">
     //引入AKjs功能插件的区域
-    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
+
     if (window.location.protocol == "file:") {
         alert("AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！");
         throw new Error();
     }
-    /*-----------------------------------------------AKjs_Config (全局设置）使用方法-------------------------------------------*/
-    $(function () {
-        AKjs_Config({ //环境配置管理
-            MaskStyle: ["style3","opacity05"], //1.所有弹窗背景图案选择（样式style1~8）、2.遮挡层背景的透明度（opacity01~09）
-            Responsive: true, //是否开启文字大小按屏幕尺寸自适应变化，考虑到兼容平板电脑建议开启 (开启 true, 停用 false）
-            touchstart: true, //是否开启移动端active效果, 建议开启 （元素的class里加touchstart即可用）(使用 true,不使用 false）
-            ButtonLink: true, //通过元素中加data-href属性的方式跳转界面, 建议开启路由功能后使用。(使用button超链接 true,不使用button超链接 false）
-            WechatHeader: true, //是否通过微信浏览器访问时自动隐藏应用的头部区域, 可以通用建议开启 (使用隐藏 true, 不使用隐藏 false）
-            Topdblclick: true, //是否开启点击应用的头部让页面回头顶部 (开启 true, 停用 false）
-            fixedBar: true, //输入信息时应用的头部绝对固定在屏幕最上方，底部有输入框时不被虚拟键盘遮挡 （不通过微信访问才生效，开启WechatHeader的参数时请关闭该参数）
-            animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
-            Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
-            Prompt: "为了更好的视觉体验，请在竖屏下进行操作。" //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-        });
-    });
 
-    /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
-    $(function () {
-        AKjs_Loader({
-            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-            autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-            timeToHide:1000, //毫秒时间设置 (automode必须开启才能有效)
-            iconColor:"#ffffff", //图标颜色设置
-            maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-            Loader:"load_2" //loading效果选择（load_1~7）
-        });
-        setTimeout(function() { //页面加载完5秒后执行
-            if($(".ak-Loader").css('display') == 'none'){
-                AKjs_Loader("destroy"); //关闭loading窗
-            }
-        },2000);
-    });
-
-    /*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
-    $(function() {
-        $(".plug_lazyload img").AKjs_Lazyload({ //对所有的图片懒加载
-            scroll: $("#ak-scrollview"), //滚动区域的容器
-            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
-            Img_Effect: "fadeIn", //图片加载动画效果
-            Img_LoadStyle: "loading01", //图片加载之前显示的Loading效果 （loading01~05）注：Img_Effect，Img_LoadStyle，Img_Error 三个参数是图片懒加载专用参数；
-            Img_Error: "./img/noimage.png", //图片加载失败时默认显示图片URL
-            Callback: function(ele) { //初始化回调入口
-                //console.log(ele);
-            },
-            Scrollback: function(ele,scroll) { //页面滚动后的回调
-                //console.log(ele);
-            }
-        });
-    });
+    /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
+    AKjs_Include("js/common.js"); //全局功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
+    AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
+    AKjs_Plugin("AKjs_Waterfall", "css"); //瀑布流展示功能
 
     /*-----------------------------------------------AKjs_Popupwin (左侧方法)使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $("#plug_menu_left").bind("click", function (el) {
             el.preventDefault();
             AKjs_Popupwin({
@@ -230,7 +186,7 @@
     });
 
     /*-----------------------------------------------AKjs_Popupwin (右侧方法)使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $("#plug_menu_right").bind("click", function (er) {
             er.preventDefault();
             AKjs_Popupwin({
@@ -273,7 +229,7 @@
     });
 
     /*-----------------------------------------------AKjs_Waterfall 使用方法-------------------------------------------*/
-    $(function(){
+    $(function() {
         $(".plug_waterfall").AKjs_Waterfall({
             spacingWidth: 5, // 布局的元素水平间距设置
             spacingHeight: 5, // 布局的元素垂直间距设置
