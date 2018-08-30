@@ -19,9 +19,11 @@ js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版
 
 js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
 
-js/plugin/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件
+js/common.js --- 全局调用功能插件
 
 js/data.js --- Json数据文件
+
+plugin/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件（该路径可在AKjs_Config方法中参数设置）
 
 css/iconfont --- 图标库 (AK图标库地址：http://www.iconfont.cn/collections/detail?cid=8740)
 
@@ -43,13 +45,15 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 * AKjs前端技术支持QQ群：724501394
 
 -----------------------------------------------------------------------------------------------------------------------
-#### 更新时间：2018/08/30 上午 11:35
+#### 更新时间：2018/08/30 下午 14:45
 
 #### 更新说明：
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.4.2版本；
 
 AKjs_Config增加pluginPath参数让功能插件目录可自行设置；
+
+演示版的js/plugin/文件夹移动到根目录，而且plugin目录中的文件需要全部替换更新。
 
 解决AKjs_Unicode方法的bug;
 

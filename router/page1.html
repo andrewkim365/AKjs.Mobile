@@ -1075,18 +1075,6 @@
             }
         });
     });
-    $(function() {
-        $("*[data-animation]").AKjs_Lazyload({ //对所有带data-animation属性的元素进行懒加载，让滚动条位置到达该元素区域时动画播放；
-            scroll: $("#ak-scrollview"), //滚动区域的容器
-            scrollTop: 100, //设置初始化滚动条位置（当滚动条滚动到当前设置的位置时所有效果将进行初始化）
-            Callback: function(ele) { //初始化回调入口
-                //console.log(ele);
-            },
-            Scrollback: function(ele,scroll) { //页面滚动后的回调
-                //console.log(scroll);
-            }
-        });
-    });
 
     /*-----------------------------------------------AKjs_Tabs 使用方法-------------------------------------------*/
     $(function() {

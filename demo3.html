@@ -247,7 +247,7 @@
                     str += templ.replace("{{src}}", data.data[i].src);
                 }
                 /*元素设置*/
-                var wdropload = "<div class=\"ak-waterfall-down abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
+                var wdropload = "<div class=\"ak-waterfall-down defer_01 abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
                 ele.parent().append(wdropload);
                 $(str).appendTo(ele);
             },

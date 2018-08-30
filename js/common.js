@@ -10,7 +10,7 @@ AKjs_Config({ //环境配置管理
     animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
     Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
     Prompt: "为了更好的视觉体验，请在竖屏下进行操作。", //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-    pluginPath: "./js/plugin/" //功能插件文件所在的目录设置
+    pluginPath: "./plugin/" //功能插件文件所在的目录设置
 });
 
 /******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
@@ -25,13 +25,15 @@ AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
 
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
 if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
-    AKjs_Loader({
-        //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-        timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
-        iconColor: "#ffffff", //图标颜色设置
-        maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-        Loader: "load_2" //loading效果选择（load_1~7）
+    $(function() {
+        AKjs_Loader({
+            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+            autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+            timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
+            iconColor: "#ffffff", //图标颜色设置
+            maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
+            Loader: "load_2" //loading效果选择（load_1~7）
+        });
     });
 }
 setTimeout(function() { //页面加载完5秒后执行

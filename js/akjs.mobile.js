@@ -263,11 +263,11 @@ function AKjs_Router(setting) {
                     error: function () {
                         option.error(document.location.hash.substring(1));
                         $("header, aside, footer").removeClass("dis_block_im").addClass("dis_none_im");
-                        setTimeout(function () {
+                        $(function () {
                             $(".ak-ErrorPage").remove();
                             $("body").append('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
                             AKjs_mainHeight();
-                        }, 100);
+                        });
                         throw new Error("Sorry! Document not found!");
                     }
                 });
@@ -605,10 +605,10 @@ function AKjs_InputFocus() {
                     "margin-top": 0
                 });
             }
-            setTimeout(function () {
+            $(function () {
                 focus.scrollIntoView(true);
                 //focus.scrollIntoViewIfNeeded();
-            }, 100);
+            });
         }
     }
     function focus_Setting_mainHeight() {
@@ -617,11 +617,11 @@ function AKjs_InputFocus() {
         } else {
             var footer_h = $("footer").not("aside footer").outerHeight();
         }
-        setTimeout(function() {
+        $(function() {
             $("#ak-scrollview").css({
                 "height": $(window).height() - $("#ak-scrollview").offset().top - footer_h
             });
-        },100);
+        });
     }
 }
 
@@ -803,7 +803,7 @@ function AKjs_mainHeight() {
             });
         }
     });
-    setTimeout(function() {
+    $(function() {
         if ($("header").not("aside header").hasClass("dis_none_im") && $("footer").not("aside footer").hasClass("dis_none_im")) {
             $("main").not("aside main").css({
                 "margin-top": 0,
@@ -852,11 +852,7 @@ function AKjs_mainHeight() {
             "height": $(window).height()
         });
         $(".ud_text_c").wrap("<text />");
-    },100);
-    setTimeout(function() {
-        $('[class^="defer_"]').addClass("defer_none");
-        $('[class*=" defer_"]').addClass("defer_none");
-    },10000);
+    });
     function AKjs_stopElastic() {
         $(document).not("#ak-scrollview").on('scroll.elasticity', function (ak) {
             ak.preventDefault();
@@ -1164,7 +1160,7 @@ function AKjs_Include(url) {
 function AKjs_Location(url,setting) {
     var option = $.extend({
             type: "",
-            time: 0,
+            time: 100,
             router:""
         },
         setting);

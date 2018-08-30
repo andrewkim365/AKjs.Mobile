@@ -1,0 +1,90 @@
+.ak-waterfall {
+    background-color: inherit;
+    position: relative;
+    z-index: 2;
+}
+.ak-waterfall figure {
+    float: left;
+    border: solid 1px #dddddd;
+    padding: 0.5em;
+    height: auto;
+    position: absolute;
+    height: -moz-max-content !important;
+    height: -webkit-max-content !important;
+    height: max-content !important;
+}
+.ak-waterfall figure img {
+    width: 10em;
+}
+@media screen and (min-width:321px) and (max-width:410px) {
+    .ak-waterfall figure img {
+        width: 11em;
+    }
+}
+@media screen and (min-width:411px) and (max-width:482px) {
+    .ak-waterfall figure img {
+        width: 12em;
+    }
+}
+@media screen and (min-width:483px) and (max-width:680px) {
+    .ak-waterfall figure img {
+        width: 14em;
+    }
+}
+@media screen and (min-width:681px) {
+    .ak-waterfall figure img {
+        width: 10em;
+    }
+}
+.ak-waterfall .ak-fadeIn {
+    opacity: 0;
+}
+.ak-waterfall-down{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+}
+.ak-waterfall-down{
+    height: 4em;
+}
+.ak-waterfall-load,.ak-waterfall-noData{
+    height: 4em;
+    line-height: 4em;
+    text-align: center;
+}
+.ak-waterfall-load .ak-waterfall-loading{
+    display: inline-block;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    margin: 0.5em;
+    border: 2px solid #777777;
+    border-bottom-color: transparent;
+    vertical-align: middle;
+    -webkit-animation: rotate 0.75s linear infinite;
+    animation: rotate 0.75s linear infinite;
+}
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

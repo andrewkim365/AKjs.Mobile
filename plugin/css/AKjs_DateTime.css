@@ -1,0 +1,159 @@
+/*-----------------------------------------------AKjs_Datetime-------------------------------------------*/
+.ak-datetime {
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:6000;
+    pointer-events:auto;
+}
+.ak-datetime .alwaysShow td {
+    position:relative;
+}
+.ak-datetime .alwaysShow td {
+    position:absolute;
+    z-index:1;
+    top:50%;
+    left:100%;
+    transform:translate(-50%,-50%);
+}
+.ak-datetime .jdt_box {
+    -webkit-animation-duration:.4s;
+    animation-duration:.4s;
+    min-width:100%;
+    background:#ffffff;
+    text-shadow:none;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    z-index:8;
+    position:absolute;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -ms-touch-action:none;
+    overflow:hidden;
+    text-align:center;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    bottom: -0.1em;
+}
+.ak-datetime .jdt_box .jdt_final {
+    text-align:center;
+    line-height:3em;
+    border-bottom:dashed 1px #dddddd;
+}
+.ak-datetime .jdt_box .jdt_item {
+    position:relative;
+    overflow:hidden;
+}
+.ak-datetime .jdt_box .jdt_item .jdt_bg {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+}
+.ak-datetime .jdt_box .jdt_top {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    background:linear-gradient(#fff 0%,rgba(255,255,255,.85)45%,rgba(255,255,255,.6) 75%,rgba(255,255,255,.4) 100%);
+    background:-webkit-gradient(linear,left top,left bottom,from(#fff),color-stop(0.45,rgba(255,255,255,.85)),color-stop(0.75,rgba(255,255,255,.6)),to(rgba(255,255,255,.4)));
+    background:-moz-linear-gradient(#fff 0%,rgba(255,255,255,.85) 45%,rgba(255,255,255,.6) 75%,rgba(255,255,255,.4) 100%);
+    background:-o-linear-gradient(#fff 0%,rgba(255,255,255,.85) 45%,rgba(255,255,255,.6) 75%,rgba(255,255,255,.4) 100%);
+}
+.ak-datetime .jdt_box .jdt_mid {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+.ak-datetime .jdt_box .jdt_btm {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    background:linear-gradient(rgba(255,255,255,.4) 0%,rgba(255,255,255,.6)25%,rgba(255,255,255,.85) 65%,#fff 100%);
+    background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,.4)),color-stop(0.25,rgba(255,255,255,.6)),color-stop(0.65,rgba(255,255,255,.85)),to(#fff));
+    background:-moz-linear-gradient(rgba(255,255,255,.4) 0%,rgba(255,255,255,.6) 25%,rgba(255,255,255,.85) 48%,#fff 100%);
+    background:-o-linear-gradient(rgba(255,255,255,.4) 0%,rgba(255,255,255,.6) 25%,rgba(255,255,255,.85) 48%,#fff 100%);
+}
+.ak-datetime .jdt_box .jdt_ctn {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0 .2em;
+    position:relative;
+    background:#000000;
+    zoom:1;
+}
+.ak-datetime .jdt_box .jdt_wrap {
+    display: block;
+    width: 100%;
+    border-top: solid 0.5em #eeeeee;
+}
+.ak-datetime .jdt_box .jdt_wrap:first-child {
+    border-top:none;
+}
+.ak-datetime .jdt_box .jdt_wrap .jdt_active {
+    width:100%;
+    border-top:solid 1px #dddddd;
+    border-bottom:solid 1px #dddddd;
+    position:absolute;
+    z-index:-1;
+}
+.ak-datetime .jdt_box .jdt_wrap table {
+    width:100%;
+}
+.ak-datetime .jdt_box .jdt_strip {
+    position:relative;
+    z-index:2;
+}
+.ak-datetime .jdt_box .jdt_ul {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-backface-visibility:hidden;
+    text-decoration:none;
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+.ak-datetime .jdt_box .jdt_li {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    padding:0 .5em;
+    display:block;
+    text-align:center;
+    vertical-align:bottom;
+    filter:Alpha(Opacity=90);
+    white-space:nowrap;
+}
+.ak-datetime .jdt_box .jdt_class {
+    font-weight:bold;
+}
+.ak-datetime .jdt_box .jdt_btn {
+    display:block;
+    border-top:0.5em solid #eeeeee;
+    height: 3.6em;
+    line-height: 3.4em;
+}
+.ak-datetime .jdt_box .jdt_btn button {
+    display:inline-block;
+    width:50%;
+    height:100%;
+    cursor:pointer;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.ak-datetime .jdt_box .jdt_btn button:first-child {
+    border-right:solid 1px #dddddd;
+}
+.ak-datetime .jdt_hide {
+    visibility:hidden;
+}
