@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-27
+Modification Date: 2018-09-01
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Checkbox--------------------------------------*/
@@ -74,7 +74,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $checkbox.find('input[type="checkbox"]').attr("checked","checked");
                     $checkbox.addClass(options.checkedClass);
                 }
-                options.onChange($(this).children()[0].checked); // 回调
+                options.onChange($($(this).children()[0])); // 回调
             });
         });
     };

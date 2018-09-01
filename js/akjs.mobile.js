@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180830 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180901 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -296,9 +296,7 @@ function AKjs_Router(setting) {
                     }
                     main_tmpl = main_tmpl.replace(/class=/g,"data-temp="+new Date().getTime()+" class=");
 
-                    $(function () {
-                        $("main").not("aside main").html(main_tmpl);
-                    });
+                    $("main").not("aside main").html(main_tmpl);
 
                     if ($("#ak-main").parentsUntil("main").length > 0) {
                         $("#ak-main").remove();
