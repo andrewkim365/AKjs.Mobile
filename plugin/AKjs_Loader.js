@@ -71,6 +71,12 @@ function AKjs_Loader(setting){
         var load_ele = $(".ak-Loader");
         if (IsMobile) {
             load_ele.attr("style",$("main").attr("style"));
+            load_ele.bind({
+                touchmove: function (ak) {
+                    ak.preventDefault();
+                    ak.stopPropagation();
+                }
+            });
         }
         if (option.maskBG == true) {
             load_ele.addClass("ak-mask");

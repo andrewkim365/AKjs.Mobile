@@ -13154,6 +13154,13 @@ animation, #ak-animation, #ak-main, scrollview, #ak-scrollview, #ak-aside, #ak-m
     width: 100%;
     background-color: transparent;
 }
+animation #ak-main, #ak-animation #ak-main, animation ak-main, #ak-animation ak-main {
+    opacity: 0;
+    -o-animation:defer 0.3s forwards;
+    -moz-animation:defer 0.3s forwards;
+    -webkit-animation:defer 0.3s forwards;
+    animation:defer 0.3s forwards;
+}
 #ak-main, ak-main {
     width: 100%;
     height: inherit;
