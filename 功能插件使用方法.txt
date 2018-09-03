@@ -1690,25 +1690,37 @@
     $(function() {
         var list_data = [
             {
+                id: 1,
                 Image: "<img src=\"./img/tibet-1.jpg\">",
                 Title: "产品名称001",
                 Price: "￥400.00",
-                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+                Content: ['01', '该产品的简介和描述该产品的简介和描述该产品的简介和描述']
             },
             {
+                id: 2,
                 Image: "<img src=\"./img/tibet-2.jpg\">",
                 Title: "产品名称002",
                 Price: "￥500.00",
-                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+                Content: ['02', '该产品的简介和描述该产品的简介和描述该产品的简介和描述']
             },
             {
+                id: 3,
                 Image: "<img src=\"./img/tibet-3.jpg\">",
                 Title: "产品名称003",
                 Price: "￥250.00",
-                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+                Content: ['03', '该产品的简介和描述该产品的简介和描述该产品的简介和描述']
             }
         ];
-        $(".plug_for").AKjs_Template(list_data);
+        $(".plug_for").AKjs_Template(list_data, {
+            callback: function (ele,ret) {
+                //console.log(ele); //获取元素
+                //console.log(ret); //获取数组元素
+                ele.empty(); //页面初始化清空数据
+            },
+            getContent: function (str) {
+                return this.data.Content.join(str); //子数据设置
+            }
+        });
     });
 
     /*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/

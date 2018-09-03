@@ -312,16 +312,24 @@
             <div class="module list mt_5 ovh rel">
                 <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片列表展示</h3>
                 <ul class="plug_for ak-for"><!--加ak-for让加载体验效果更加的完美-->
-                    <li class="rel ovh bg_white pa_3 bor_bottom bor_gray_ddd touchstart" data-href="demo3.html">
+                    <li class="rel ovh bg_white pa_3 bor_bottom bor_gray_ddd touchstart" data-href="/page3">
                         <figure class="fl bg_gray_f5f border bor_gray_ddd wh_6em img_auto">
                             {{html Image}}
                         </figure>
                         <div class="fl list_h_18em ml_1em ovh w_65">
-                            <h3 class="text_12em">${Title}</h3>
+                            <h3 class="text_12em">
+                                ${ID}
+                                {{if Title}}
+                                ${$data.Title}
+                                {{else}}
+                                无标题
+                                {{/if}}
+                            </h3>
                             <p class="c_gray_777">
                                 <del class="text_al_t">${Price}</del>
                             </p>
-                            <p class="c_gray_999 text_hidden">{{html Content}}</p>
+                            <p class="c_gray_999 text_hidden">${$item.getContent('--')}</p>
+                            <p class="c_gray_999 text_hidden">{{each Content}} ${$value}  {{/each}}</p>
                         </div>
                     </li>
                 </ul>
@@ -734,25 +742,37 @@
     $(function() {
         var list_data = [
             {
+                id: 1,
                 Image: "<img src=\"./img/tibet-1.jpg\">",
                 Title: "产品名称001",
                 Price: "￥400.00",
-                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+                Content: ['01', '该产品的简介和描述该产品的简介和描述该产品的简介和描述']
             },
             {
+                id: 2,
                 Image: "<img src=\"./img/tibet-2.jpg\">",
                 Title: "产品名称002",
                 Price: "￥500.00",
-                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+                Content: ['02', '该产品的简介和描述该产品的简介和描述该产品的简介和描述']
             },
             {
+                id: 3,
                 Image: "<img src=\"./img/tibet-3.jpg\">",
                 Title: "产品名称003",
                 Price: "￥250.00",
-                Content: "该产品的简介和描述该产品的简介和描述该产品的简介和描述"
+                Content: ['03', '该产品的简介和描述该产品的简介和描述该产品的简介和描述']
             }
         ];
-        $(".plug_for").AKjs_Template(list_data);
+        $(".plug_for").AKjs_Template(list_data, {
+            callback: function (ele,ret) {
+                //console.log(ele); //获取元素
+                //console.log(ret); //获取数组元素
+                ele.empty(); //页面初始化清空数据
+            },
+            getContent: function (str) {
+                return this.data.Content.join(str); //子数据设置
+            }
+        });
     });
 
     /*-----------------------------------------------AKjs_Popupwin (分享功能) 使用方法-------------------------------------------*/
