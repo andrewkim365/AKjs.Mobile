@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180901 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180903 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -1519,6 +1519,11 @@ function AKjs_DateFormat(date,format) {
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
     $(function() {
+        if ($("html").attr("data-router") == "akjs") {
+            Timeout = 50;
+        } else {
+            Timeout = 0;
+        }
         var AKjsPath = localStorage.AKjsPath;
         $.ajax({
             type:'GET',
@@ -1529,8 +1534,10 @@ function AKjs_Plugin(setting,css) {
         });
         if (css) {
             var css_url = AKjsPath + "/css/" + setting + ".css";
-            $("head").children("style").filter("#"+setting).remove();
-            $("head").append("<style type='text/css' id='"+setting+"'>@import url('"+css_url+"?akjs="+new Date().getTime()+"');</style>");
+            setTimeout(function () {
+                $("head").children("style").filter("#"+setting).remove();
+                $("head").append("<style type='text/css' id='"+setting+"'>@import url('"+css_url+"?akjs="+new Date().getTime()+"');</style>");
+            },Timeout);
         }
     });
 }

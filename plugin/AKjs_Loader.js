@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-30
+Modification Date: 2018-09-03
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Loader------------------------------------------*/
@@ -61,11 +61,12 @@ function AKjs_Loader(setting){
         '</div>';
     AKjs_UserAgent();
     $(function() {
-        $(".ak-Loader").remove();
-        if (option.ele) {
-            $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 zindex_22'></div>");
-        } else {
-            $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 zindex_22'></div>");
+        if ($(".ak-Loader").length < 1) {
+            if (option.ele) {
+                $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 zindex_22'></div>");
+            } else {
+                $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 zindex_22'></div>");
+            }
         }
         var load_ele = $(".ak-Loader");
         if (IsMobile) {
