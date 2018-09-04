@@ -174,7 +174,7 @@ function AKjs_Router(setting) {
                         }
                     }
                     if ($("#ak-animation").prop("dataset").router == "slideLeft") {
-                        asideEle.html($(animationEle).html()).addClass("animated slideOutRight ani_05s zindex_show");
+                        asideEle.html($(animationEle).html()).addClass("animated slideOutRight ani_delay_01s ani_05s zindex_show");
                         $("#ak-animation").addClass("filter_brig_096");
                     } else if ($("#ak-animation").prop("dataset").router == "slideRight") {
                         asideEle.html($(animationEle).html()).addClass("filter_brig_096");
