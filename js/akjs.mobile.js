@@ -210,7 +210,7 @@ function AKjs_Router(setting) {
                         asideEle.html("");
                         $("#ak-animation").removeClass();
                         $("#ak-animation").attr("data-router","");
-                    }, 500);
+                    }, 1000);
                 });
             } else {
                 $("header, main, footer").css({
