@@ -5659,7 +5659,6 @@ text {
     display: flex;
 }
 .img_auto img, .img_auto video {
-    display: contents;
     width: auto !important;
     height: auto;
     max-width: 100%;

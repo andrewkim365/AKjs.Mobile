@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-03
+Modification Date: 2018-09-04
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 (function($, undefined) {
@@ -90,7 +90,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var ele = $(this[0]);
             ele.addClass("ak-for");
             var ret = $.AKjs_Template(ele, data, options, parentItem);
-            newTmplItem(options.callback(ele,ret));
+            if (options.callback != undefined) {
+                newTmplItem(options.callback(ele,ret));
+            }
             $(function() {
                 ele.removeClass("ak-for");
                 ele.children().eq(0).remove();
