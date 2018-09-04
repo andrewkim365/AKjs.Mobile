@@ -33,12 +33,12 @@
       <i class="text_14em icon-ln_fanhui_b c_white"></i>
     </button>
     <!--main元素里面的id="ak-scrollview"是用于屏幕的滚动条，不使用当前元素时ak-main自动识别为屏幕的滚动条。弹窗或固定元素的代码在ak-scrollview的外面写才能不飘动。-->
-    <div id="ak-scrollview">
+    <scrollview id="ak-scrollview">
       <div class="module list press plug_DropLoad">
         <ul>
         </ul>
       </div>
-    </div>
+    </scrollview>
   </div>
   <!--ak-main End-->
 
@@ -63,11 +63,7 @@
     }
 
     /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Include("js/common.js"); //全局功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
-    AKjs_Plugin("AKjs_GoTop"); //返回页面顶部插件
-    AKjs_Plugin("AKjs_Keyboard", "css"); //安全键盘
-    AKjs_Plugin("AKjs_DropLoad", "css"); //上拉刷新和下拉加载更多功能
-    AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
+    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
     /*-----------------------------------------------AKjs_GoTop (全局) 使用方法-------------------------------------------*/
     $(function() {

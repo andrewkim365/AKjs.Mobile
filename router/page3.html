@@ -83,10 +83,6 @@
 <script type="text/javascript">
     //引入AKjs功能插件的区域
 
-    /*-----------------------------------------------AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
-    AKjs_Plugin("AKjs_Waterfall", "css"); //瀑布流展示功能
-
     /*-----------------------------------------------AKjs_Popupwin (左侧方法)使用方法-------------------------------------------*/
     $(function() {
         $("#plug_menu_left").bind("click", function (el) {
@@ -192,7 +188,7 @@
                     str += templ.replace("{{src}}", data.data[i].src);
                 }
                 /*元素设置*/
-                var wdropload = "<div class=\"ak-waterfall-down defer_03 abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
+                var wdropload = "<div class=\"ak-waterfall-down defer_01 abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
                 ele.parent().append(wdropload);
                 $(str).appendTo(ele);
             },

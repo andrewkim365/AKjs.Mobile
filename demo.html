@@ -30,852 +30,853 @@
 
     <!--main元素里面必须有id="ak-main"才能正常运行，当前元素是内容区域的容器。-->
     <div id="ak-main" class="defer_fadein_05">
+        <scrollview id="ak-scrollview">
 
-        <!----------AKjs_Typeahead---------->
-        <form action="#" method="get" data-submit="false">
-            <div class="module press ovh bg_white bor_bottom bor_gray_ddd">
-                <fieldset class="ml_3 mr_3 pl_2em rel h_24em mt_05em mb_05em ovh bor_rad_05em border bor_gray_ddd bg_gray_f9f">
-                    <i class="abs left_0 ml_03em text_14em c_gray_999 line_h_18em icon-im_sousuo_b"></i>
-                    <input type="search" class="plug_Typeahead c_gray_777 w_100 h_in" placeholder="请输入搜索关键词（例：北京）" value="" />
-                </fieldset>
-            </div>
-        </form>
-
-        <!----------AKjs_Slider---------->
-        <div class="plug_slider plug_lazyload w_100 h_12_em ovh rel bg_gray_f5f">
-            <ul class="defer_05">
-                <li><img src="img/tibet-1.jpg" class="dis_none"></li><!--使用AKjs_lazyload懒加载功能后给img元素加dis_none或dis_none_im样式时图片自动转换为背景模式（避免图片压扁的情况）-->
-                <li><img src="img/tibet-2.jpg" class="dis_none"></li>
-                <li><img src="img/tibet-3.jpg" class="dis_none"></li>
-            </ul>
-        </div>
-
-        <!----------AKjs_Tabs---------->
-        <div class="plug_tabs mt_5">
-            <nav class="ovh press bg_white">
-                <ul class="ovh list_h_3em nav_line_c length4">
-                    <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart bor_bottom2 bor_title c_title minus_mt_1px">Tab-1</li>
-                    <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-2</li>
-                    <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-3</li>
-                    <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-4</li>
-                </ul>
-            </nav>
-        </div>
-        <div class="module press">
-            <article class="plug_tabs_view rel ovh h_8em">
-                <div class="rel ovh bg_white">
-                    <section class="rel ovh">
-                        <div class="ma_3 c_gray_777 line_h_18em">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请左右滑动该区域切换Tabs的内容。<br>
-                            当前内容是Tabs的第一个页面1。
-                        </div>
-                    </section>
-                    <section class="rel ovh">
-                        <div class="ma_3 c_gray_777 line_h_18em">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请左右滑动该区域切换Tabs的内容。<br>
-                            当前内容是Tabs的第二个页面2。
-                        </div>
-                    </section>
-                    <section class="rel ovh">
-                        <div class="ma_3 c_gray_777 line_h_18em">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请左右滑动该区域切换Tabs的内容。<br>
-                            当前内容是Tabs的第三个页面3。
-                        </div>
-                    </section>
-                    <section class="rel ovh">
-                        <div class="ma_3 c_gray_777 line_h_18em">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请左右滑动该区域切换Tabs的内容。<br>
-                            当前内容是Tabs的第四个页面4。
-                        </div>
-                    </section>
+            <!----------AKjs_Typeahead---------->
+            <form action="#" method="get" data-submit="false">
+                <div class="module press ovh bg_white bor_bottom bor_gray_ddd">
+                    <fieldset class="ml_3 mr_3 pl_2em rel h_24em mt_05em mb_05em ovh bor_rad_05em border bor_gray_ddd bg_gray_f9f">
+                        <i class="abs left_0 ml_03em text_14em c_gray_999 line_h_18em icon-im_sousuo_b"></i>
+                        <input type="search" class="plug_Typeahead c_gray_777 w_100 h_in" placeholder="请输入搜索关键词（例：北京）" value="" />
+                    </fieldset>
                 </div>
-            </article>
-        </div>
+            </form>
 
-        <div class="plug_tabs_ud mt_5 module bg_white h_12_em">
-            <nav class="abs left_0 ova bar_hide press list bg_white w_25 h_in">
-                <ul class="bg_gray_f5f list_h_3em">
-                    <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart bg_white c_title bor_right_none">Tabs-1</li>
-                    <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-2</li>
-                    <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-3</li>
-                    <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-4</li>
-                    <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-5</li>
-                    <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-6</li>
-                </ul>
-            </nav>
-            <article class="fr rel ovh w_75">
-                <div class="rel">
-                    <section class="rel ova bar_hide">
-                        <div class="ma_3 c_gray_777 line_h_18em h_in">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请点击左侧菜单列表进行切换Tabs的内容。<br>
-                            当前内容是Tabs的第一个页面1。<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                        </div>
-                    </section>
-                    <section class="rel ova bar_hide">
-                        <div class="ma_3 c_gray_777 line_h_18em h_in">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请左右滑动该区域切换Tabs的内容。<br>
-                            当前内容是Tabs的第二个页面2。<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                        </div>
-                    </section>
-                    <section class="rel ova bar_hide">
-                        <div class="ma_3 c_gray_777 line_h_18em h_in">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请点击左侧菜单列表进行切换Tabs的内容。<br>
-                            当前内容是Tabs的第三个页面3。<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                        </div>
-                    </section>
-                    <section class="rel ova bar_hide">
-                        <div class="ma_3 c_gray_777 line_h_18em h_in">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请点击左侧菜单列表进行切换Tabs的内容。<br>
-                            当前内容是Tabs的第四个页面4。<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                        </div>
-                    </section>
-                    <section class="rel ova bar_hide">
-                        <div class="ma_3 c_gray_777 line_h_18em h_in">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请点击左侧菜单列表进行切换Tabs的内容。<br>
-                            当前内容是Tabs的第五个页面5。<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                        </div>
-                    </section>
-                    <section class="rel ova bar_hide">
-                        <div class="ma_3 c_gray_777 line_h_18em h_in">
-                            欢迎使用AKjs移动端前端UI框架。<br>
-                            请点击左侧菜单列表进行切换Tabs的内容。<br>
-                            当前内容是Tabs的第六个页面6。<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                            ... ...<br>
-                        </div>
-                    </section>
-                </div>
-            </article>
-        </div>
-
-        <!----------AKjs_StepOrder---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd"><span class="zoom_1">步骤效果</span></h3>
-            <article class="plug_step pa_3 bg_white dis_none">
-                <ul class="length4">
-                    <li>
-                        <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">1</strong>
-                        <h6 class="c_gray_777 line_h_24em">同意条款</h6>
-                    </li>
-                    <li>
-                        <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">2</strong>
-                        <h6 class="c_gray_777 line_h_24em">提交信息</h6>
-                    </li>
-                    <li>
-                        <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">3</strong>
-                        <h6 class="c_gray_777 line_h_24em">验证信息</h6>
-                    </li>
-                    <li>
-                        <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">4</strong>
-                        <h6 class="c_gray_777 line_h_24em">已完成</h6>
-                    </li>
-                </ul>
-            </article>
-        </div>
-
-        <!----------AKjs_Dialog & AKjs_PopupWin---------->
-        <div class="module press bg_white mt_5 pb_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">按钮效果</h3>
-            <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_popup">Popup Window</button>
-            <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_webToast">Webtoast</button>
-            <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_alert">Alert Dialog Box</button>
-            <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_confirm">Confirm Dialog Box</button>
-            <button type="submit" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em plug_submit">Submit Button</button>
-        </div>
-        <div class="module press mt_5">
-            <ul class="list_h_36em">
-                <li class="rel bg_white touchstart">
-                    <dl class="rel h_in list_h_36em wm_94">
-                        <dt class="fl">姓名</dt>
-                        <dd class="fr rel w_70 mr_7">
-                            <input class="fr bg_white c_gray_777" id="plug_prompt_input" type="button" value="" readonly />
-                        </dd>
-                        <dd class="abs top_0 right_0">
-                            <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-        <div class="module list press mt_5" id="plug_prompt_textarea_view">
-            <h3 class="wp_94 bg_white line_h_36em text_bold bor_bottom_dashed bor_gray_ddd">提问内容</h3>
-            <ul class="wp_94 bg_white list_h_36em">
-            </ul>
-            <button type="button" class="btn_h_au wm_94 bg_title c_white h_32em mt_5 mb_5" id="plug_prompt_textarea">继续提问</button>
-        </div>
-
-        <!----------AKjs_Radio&AKjs_Checkbox&AKjs_Switch---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">复选展示</h3>
-            <ul class="list_h_36em">
-                <li class="bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="h_in">
-                        <dt class="fl ml_3 h_in">
-                            <input type="checkbox" name="checkbox1" class="plug_Checkbox" />
-                        </dt>
-                        <dd class="fl h_in ml_05em">选项1</dd>
-                    </dl>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="h_in">
-                        <dt class="fl ml_3 h_in">
-                            <input type="checkbox" name="checkbox2" class="plug_Checkbox" checked />
-                        </dt>
-                        <dd class="fl h_in ml_05em">选项2</dd>
-                    </dl>
-                </li>
-                <li class="bg_white bor_bottom bor_gray_ddd">
-                    <dl class="h_in">
-                        <dt class="fl ml_3 h_in">
-                            <input type="checkbox" name="checkbox3" class="plug_Checkbox" disabled />
-                        </dt>
-                        <dd class="fl h_in ml_05em">选项3</dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">单选展示</h3>
-            <ul class="list_h_36em">
-                <li class="bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="h_in">
-                        <dt class="fl ovh ml_3 h_in">选项1</dt>
-                        <dd class="fr mr_3 h_in text_14em">
-                            <input type="radio" name="radio" value="1" class="plug_Radio" checked />
-                        </dd>
-                    </dl>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="h_in">
-                        <dt class="fl ovh ml_3 h_in">选项2</dt>
-                        <dd class="fr mr_3 h_in text_14em">
-                            <input type="radio" name="radio" value="2" class="plug_Radio" />
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">开关按钮</h3>
-            <ul class="list_h_36em">
-                <li class="bor_bottom bor_gray_ddd bg_white">
-                    <dl class="h_in">
-                        <dt class="fl ovh ml_3 h_in">选项1</dt>
-                        <dd class="fr mr_3 h_in">
-                            <input type="checkbox" name="switch1" class="plug_Switch" checked />
-                        </dd>
-                    </dl>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white">
-                    <dl class="h_in">
-                        <dt class="fl ovh ml_3 h_in">选项2</dt>
-                        <dd class="fr mr_3 h_in">
-                            <input type="checkbox" name="switch2" class="plug_Switch" />
-                        </dd>
-                    </dl>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white">
-                    <dl class="h_in">
-                        <dt class="fl ovh ml_3 h_in">选项3</dt>
-                        <dd class="fr mr_3 h_in">
-                            <input type="checkbox" name="switch3" class="plug_Switch" checked disabled />
-                        </dd>
-                    </dl>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white">
-                    <dl class="h_in">
-                        <dt class="fl ovh ml_3 h_in">选项4</dt>
-                        <dd class="fr mr_3 h_in">
-                            <input type="checkbox" name="switch4" class="plug_Switch" disabled />
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_Range---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">滑块功能</h3>
-            <ul>
-                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_5">
-                    <input type="range" class="plug_range1" value="23" />
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_5">
-                    <input type="range" class="plug_range1" value="45" disabled />
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_10">
-                    <input type="range" class="plug_range2" value="25,75" />
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_10">
-                    <input type="range" class="plug_range2" value="45,85" disabled />
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_ChooseList---------->
-        <div class="module press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em">品牌选择</h3>
-            <ul class="list_h_36em">
-                <li class="bor_top bor_gray_ddd bg_white">
-                    <dl class="ovh list_h_36em">
-                        <dt class="fl ovh ml_3 mr_03em">单选：</dt>
-                        <dd class="plug_choose fl ovh w_80 mt_05em defer_1">
-                            <button type="button" data-checked="true">戴尔</button>
-                            <button type="button">三星</button>
-                            <button type="button">惠普</button>
-                            <button type="button">微软</button>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="bor_top bor_gray_ddd bg_white">
-                    <dl class="ovh list_h_36em">
-                        <dt class="fl ovh ml_3 mr_03em">多选：</dt>
-                        <dd class="plug_choose fl ovh w_80 mt_05em defer_1" data-multiple="multiple">
-                            <button type="button" data-checked="true">东芝</button>
-                            <button type="button" data-checked="true">松下</button>
-                            <button type="button">苹果</button>
-                            <button type="button">联想</button>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_TouchDelete---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">滑动删除</h3>
-            <ul class="plug_touchdel bg_white ovh">
-                <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
-                    <article class="ml_3">
-                        <h3 class="mt_05em c_gray_333">1.这里是文章的标题</h3>
-                        <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
-                    </article>
-                </li>
-                <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
-                    <article class="ml_3">
-                        <h3 class="mt_05em c_gray_333">2.这里是文章的标题</h3>
-                        <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
-                    </article>
-                </li>
-                <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
-                    <article class="ml_3">
-                        <h3 class="mt_05em c_gray_333">3.这里是文章的标题</h3>
-                        <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
-                    </article>
-                </li>
-                <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
-                    <article class="ml_3">
-                        <h3 class="mt_05em c_gray_333">4.这里是文章的标题</h3>
-                        <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
-                    </article>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_ChangeIcon---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">排序和筛选</h3>
-            <div class="plug_filter rel ovh bg_white wp_94 h_32em bor_bottom bor_gray_ddd">
-                <ul class="length4 list_h_32em h_in">
-                    <li class="fl text_al_c touchstart plug_sort_btn1">
-                        <strong class="text_al_t c_gray_777">智能排序</strong>
-                    </li>
-                    <li class="fl text_al_c touchstart plug_sort_btn2">
-                        <strong class="text_al_t c_gray_777">销量</strong>
-                        <button type="button" class="line_h_in text_al_t text_al_c c_gray_777">
-                            <i class="abs minus_mt_01em icon-px_zhengxu"></i>
-                            <i class="icon-px_daoxu"></i>
-                        </button>
-                    </li>
-                    <li class="fl text_al_c touchstart plug_sort_btn3">
-                        <strong class="text_al_t c_gray_777">价格</strong>
-                        <button type="button" class="line_h_in text_al_t text_al_c c_gray_777">
-                            <i class="abs minus_mt_01em icon-px_zhengxu"></i>
-                            <i class="icon-px_daoxu"></i>
-                        </button>
-                    </li>
-                    <li class="fl text_al_c touchstart plug_sort_btn4">
-                        <strong class="text_al_t c_gray_777">筛选</strong>
-                        <button type="button" class="line_h_in text_al_m text_al_c c_gray_777">
-                            <i class="icon-ln_xiangxia text_12em"></i>
-                        </button>
-                    </li>
+            <!----------AKjs_Slider---------->
+            <div class="plug_slider plug_lazyload w_100 h_12_em ovh rel bg_gray_f5f">
+                <ul class="defer_05">
+                    <li><img src="img/tibet-1.jpg" class="dis_none"></li><!--使用AKjs_lazyload懒加载功能后给img元素加dis_none或dis_none_im样式时图片自动转换为背景模式（避免图片压扁的情况）-->
+                    <li><img src="img/tibet-2.jpg" class="dis_none"></li>
+                    <li><img src="img/tibet-3.jpg" class="dis_none"></li>
                 </ul>
             </div>
-        </div>
 
-        <!----------AKjs_Ratyli---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">星级评分</h3>
-            <ul class="list_h_36em">
-                <li class="bor_bottom bor_gray_ddd bg_white">
-                    <dl class="ovh h_in">
-                        <dt class="fl ovh ml_3 mr_03em">可选评价：</dt>
-                        <dd class="fl ovh">
-                            <div class="line_h_in ovh">
-                                <span id="plug_ratyli1" data-rate="1" data-ratemax="5"></span>
-                            </div>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white">
-                    <dl class="ovh h_in">
-                        <dt class="fl ovh ml_3 mr_03em">展示评价：</dt>
-                        <dd class="fl ovh">
-                            <div class="line_h_in ovh">
-                                <span id="plug_ratyli2" data-rate="4" data-ratemax="5"></span>
-                            </div>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_Progress---------->
-        <div class="module press mt_5">
-            <ul class="list_h_36em">
-                <li class="ovh rel bg_white">
-                    <dl class="ovh h_in">
-                        <dt class="fl ovh ml_3 mr_03em line_h_38em">当前进度：</dt>
-                        <dd class="fl ovh w_70 h_in defer_1">
-                            <div class="plug_progress h_2em bg_gray_ddd" data-from="0" data-to="70"></div>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_NowTime---------->
-        <!----------AKjs_CountTo---------->
-        <!----------AKjs_Countdown---------->
-        <div class="module list press mt_5">
-            <ul class="list_h_36em">
-                <li class="bor_bottom bor_gray_ddd bg_white">
-                    <span class="fl ml_3 mr_03em">当前时间：</span>
-                    <em class="plug_nowtime c_gray_777"></em>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white touchstart">
-                    <span class="fl ml_3 mr_03em">点击开始：</span>
-                    <em class="plug_count c_title" data-from="0" data-to="999.00" data-speed="1500" data-decimals="2"></em>
-                </li>
-                <li class="bor_bottom bor_gray_ddd bg_white touchstart">
-                    <span class="fl ml_3 mr_03em">点击倒计时：</span>
-                    <em class="plug_Countdown c_title">10秒</em>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_Favorite---------->
-        <div class="module bg_white press mt_5">
-            <ul class="wm_94 list_h_36em length2">
-                <li class="fl">
-                    <button type="button" class="fl pl_1em pr_1em plug_like c_gray_777 line_h_36em touchstart" data-value="500"></button>
-                </li>
-                <li class="fr">
-                    <button type="button" class="fr pl_1em pr_1em plug_collect c_gray_777 line_h_36em touchstart" data-value="0"></button>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_Substring---------->
-        <div class="module press mt_5">
-            <ul class="list_h_36em">
-                <li class="ovh rel bg_white touchstart">
-                    <dl class="rel h_in list_h_36em wm_94">
-                        <dt class="fl">产品价格</dt>
-                        <dd class="fr rel w_70 mr_7">
-                            <span class="fr c_gray_777 ml_05em">元</span>
-                            <input type="number" class="plug_RMBoutput fr bg_white c_gray_777" required value="" data-type="number_symbol" />
-                        </dd>
-                        <dd class="abs top_0 right_0">
-                            <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_Spinner---------->
-        <div class="module press mt_5">
-            <ul class="list_h_36em">
-                <li class="rel bg_white">
-                    <dl class="h_in">
-                        <dt class="fl ml_3">产品数量</dt>
-                        <dd class="fr w_35 mr_3 h_in defer_1">
-                            <input type="number" class="plug_spinner text_al_c c_gray_777 bor_rad_0" value="1" data-type="number" />
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_ChangeInput---------->
-        <div class="module press mt_5">
-            <ul class="list_h_36em">
-                <li class="rel bg_white">
-                    <dl class="h_in">
-                        <dt class="fl ml_3">切换城市</dt>
-                        <dd class="fr w_60 mr_3 h_in">
-                            <div class="rel mt_06em h_24em border bor_gray_ddd w_100 bg_gray_f9f">
-                                <input type="text" class="plug_change_text1 fl w_35 h_in text_al_c c_gray_777 bor_rad_0" value="北京市">
-                                <button type="button" class="plug_change_btn fl w_30 h_in bor_left bor_right bor_gray_ddd bg_white icon-ly_qiehuan"></button>
-                                <input type="text" class="plug_change_text2 fl w_35 h_in text_al_c c_gray_777 bor_rad_0" value="上海市">
-                            </div>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_Form---------->
-        <!----------AKjs_GetVerifyCode---------->
-        <!----------AKjs_intlTelInput---------->
-        <!----------AKjs_Codeval---------->
-        <form action="#" method="get" data-submit="false">
-            <div class="module list mt_5 plug_form">
-                <ul class="wp_94 press bg_white list_h_36em">
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mb_shouji c_title text_16em"></i>
-                        <label class="plug_mobileNum dis_block rel ovh fl ml_8 mr_05em line_h_in bor_right bor_gray_eee touchstart">
-                            <input type="button" class="fl c_gray_777" value="+86" />
-                            <i class="fl icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </label>
-                        <input type="tel" id="plug_phone" class="fl w_70 plug_Delete c_gray_777" required value="" maxlength="11" placeholder="请输入手机号码" data-type="number" />
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-im_yanzhengma c_title text_16em"></i>
-                        <input type="text" class="fl ml_8 w_92 c_gray_777" required value="" maxlength="6" placeholder="请输入手机短信验证码" />
-                        <button type="button" id="plug_getVerifyCode" class="press abs h_100 bg_white press top_0 right_0 c_title">获取验证码</button>
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mn_dunpai c_title text_16em"></i>
-                        <input type="text" id="plug_codeInput" class="fl ml_8 w_92 c_gray_777" required value="" placeholder="请输入右侧验证码" />
-                        <code id="plug_codeView" class="defer_1 press ovh abs right_0 bg_white w_20 line_h_2em border bor_gray_ddd touchstart"></code>
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
-                        <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入新密码" />
-                    </li>
-                    <li class="rel bor_bottom bor_gray_ddd">
-                        <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
-                        <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入确认密码" />
-                    </li>
-                </ul>
-                <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
+            <!----------AKjs_Tabs---------->
+            <div class="plug_tabs mt_5">
+                <nav class="ovh press bg_white">
+                    <ul class="ovh list_h_3em nav_line_c length4">
+                        <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart bor_bottom2 bor_title c_title minus_mt_1px">Tab-1</li>
+                        <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-2</li>
+                        <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-3</li>
+                        <li class="fl rel text_al_c bor_bottom bor_gray_ddd pointer touchstart">Tab-4</li>
+                    </ul>
+                </nav>
             </div>
-        </form>
-
-        <!----------AKjs_PortraitImage---------->
-        <!----------AKjs_Select---------->
-        <!----------AKjs_Datetime---------->
-        <div class="module list press mt_5">
-            <ul class="list_h_36em">
-                <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="rel h_in list_h_36em wm_94">
-                        <dt class="fl w_22 text_hidden">上传头像</dt>
-                        <dd class="fr rel w_70 mr_7">
-                            <label class="fr rel plug_PortraitImage pointer">
-                                <input type="file" />
-                                <figure class="img_auto ovh wh_24em line_h_24em text_al_c bg_gray_ddd border bor_gray_ddd">
-                                    <i class="icon-mn_wo_fill c_white text_18em text_al_t center"></i>
-                                </figure>
-                            </label>
-                        </dd>
-                        <dd class="abs top_0 right_0">
-                            <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="rel h_in list_h_36em wm_94">
-                        <dt class="fl w_22 text_hidden">选择星期</dt>
-                        <dd class="fr rel w_70 mr_7">
-                            <input type="button" id="plug_trigger1" class="fr bg_white c_gray_777" name="plug_trigger1" readonly value="星期日" placeholder="请选择星期" />
-                        </dd>
-                        <dd class="abs top_0 right_0">
-                            <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="rel h_in list_h_36em wm_94">
-                        <dt class="fl w_22 text_hidden">选择地区</dt>
-                        <dd class="fr rel w_70 mr_7">
-                            <input type="button" id="plug_trigger2" class="fr bg_white c_gray_777" name="plug_trigger2" readonly value="" placeholder="请选择地区" />
-                        </dd>
-                        <dd class="abs top_0 right_0">
-                            <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="rel h_in list_h_36em wm_94">
-                        <dt class="fl w_22 text_hidden">选择日期</dt>
-                        <dd class="fr rel w_70 mr_7">
-                            <input type="button" id="plug_datetime" class="fr bg_white c_gray_777" readonly value="" placeholder="请选择日期" />
-                        </dd>
-                        <dd class="abs top_0 right_0">
-                            <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </dd>
-                    </dl>
-                </li>
-                <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
-                    <dl class="rel h_in list_h_36em wm_94">
-                        <dt class="fl w_22 text_hidden">多功能日期</dt>
-                        <dd class="fr rel w_70 mr_7">
-                            <input type="button" id="plug_multidate" class="fr bg_white c_gray_777" readonly value="" placeholder="请选择多功能日期" />
-                        </dd>
-                        <dd class="abs top_0 right_0">
-                            <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_PreviewImage---------->
-        <div class="rel press bg_white mt_5 clear">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">上传凭证</h3>
-            <ul class="w_94 center length4 pt_5">
-                <li class="rel fl mb_5">
-                    <label class="plug_previewImage bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd">
-                        <i class="icon-ln_jia_a text_24em line_h_16em text_bold c_gray_ddd text_al_m"></i>
-                        <input multiple type="file" />
-                    </label>
-                </li>
-                <li class="rel fl mb_5 defer_2">
-                    <button type="button" class="plug_DelImage bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd">
-                        <i class="icon-ln_jian_a text_24em line_h_16em text_bold c_gray_ddd text_al_m"></i>
-                    </button>
-                </li>
-            </ul>
-        </div>
-
-        <!----------AKjs_SnInput (已被AKjs_Keyboard 取代 page5.html)---------->
-        <!--<div class="module press mt_5 ovh bg_white">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">支付密码</h3>
-            <fieldset class="plug_sn_input pt_5 pb_5 ml_3 ovh">
-                <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
-                <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
-                <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
-                <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
-                <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
-                <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
-            </fieldset>
-        </div>-->
-
-        <!----------AKjs_Textarea---------->
-        <div class="module mt_5 plug_formTextarea">
-            <dl class="ovh bg_white">
-                <dt class="press c_title bg_white pl_3 h_3em line_h_3em">感谢您为我提出宝贵意见</dt>
-                <dd class="rel minus_mt_05em pb_12em">
-                    <textarea class="plug_textarea ml_3 mr_3 w_94 h_12_em c_gray_777" placeholder="请输入遇到的问题或者意见..." required></textarea>
-                </dd>
-            </dl>
-            <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
-        </div>
-
-        <!----------AKjs_lightSlider---------->
-        <div class="module bg_white press mt_5">
-            <h3 class="bg_white c_title pl_3 mb_1em line_h_36em bor_bottom bor_gray_ddd">图片滑动展示</h3>
-            <div class="wm_94 plug_lazyload ovh rel h_9em">
-                <ul id="plug_photo_slider" class="defer_1">
-                    <li class="fl h_8em ovi_im">
-                        <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
-                            <img src="./img/tibet-1.jpg" />
-                        </figure>
-                    </li>
-                    <li class="fl h_8em ovi_im">
-                        <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
-                            <img src="./img/tibet-2.jpg" />
-                        </figure>
-                    </li>
-                    <li class="fl h_8em ovi_im">
-                        <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
-                            <img src="./img/tibet-3.jpg" />
-                        </figure>
-                    </li>
-                    <li class="fl h_8em ovi_im">
-                        <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
-                            <img src="./img/tibet-4.jpg" />
-                        </figure>
-                    </li>
-                    <li class="fl h_8em ovi_im">
-                        <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
-                            <img src="./img/tibet-5.jpg" />
-                        </figure>
-                    </li>
-                    <li class="fl h_8em ovi_im">
-                        <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
-                            <img src="./img/tibet-6.jpg" />
-                        </figure>
-                    </li>
-                </ul>
+            <div class="module press">
+                <article class="plug_tabs_view rel ovh h_8em">
+                    <div class="rel ovh bg_white">
+                        <section class="rel ovh">
+                            <div class="ma_3 c_gray_777 line_h_18em">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请左右滑动该区域切换Tabs的内容。<br>
+                                当前内容是Tabs的第一个页面1。
+                            </div>
+                        </section>
+                        <section class="rel ovh">
+                            <div class="ma_3 c_gray_777 line_h_18em">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请左右滑动该区域切换Tabs的内容。<br>
+                                当前内容是Tabs的第二个页面2。
+                            </div>
+                        </section>
+                        <section class="rel ovh">
+                            <div class="ma_3 c_gray_777 line_h_18em">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请左右滑动该区域切换Tabs的内容。<br>
+                                当前内容是Tabs的第三个页面3。
+                            </div>
+                        </section>
+                        <section class="rel ovh">
+                            <div class="ma_3 c_gray_777 line_h_18em">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请左右滑动该区域切换Tabs的内容。<br>
+                                当前内容是Tabs的第四个页面4。
+                            </div>
+                        </section>
+                    </div>
+                </article>
             </div>
-        </div>
 
-        <!----------AKjs_DropUpDown---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">手风琴效果</h3>
-            <ul class="plug_dropbutton">
-                <li class="bg_white ovh bor_bottom bor_gray_ddd">
-                    <dl class="rel pl_3 ovh touchstart list_h_36em">
-                        <dt class="fl ovh">
-                            点击展开查看更多的内容1
-                        </dt>
-                        <dd class="abs wm_94 left_0 c_gray_999 text_al_r">
-                            <i class="text_14em icon-ln_jiantouxia"></i>
-                        </dd>
-                    </dl>
-                    <article class="dis_none ma_3 c_gray_777 line_h_18em">
-                        欢迎使用AKjs移动端前端UI框架。<br>
-                        当前内容是点击查看更多后的详情信息。
-                    </article>
-                </li>
-                <li class="bg_white ovh bor_bottom bor_gray_ddd">
-                    <dl class="rel pl_3 ovh touchstart list_h_36em">
-                        <dt class="fl ovh">
-                            点击展开查看更多的内容2
-                        </dt>
-                        <dd class="abs wm_94 left_0 c_gray_999 text_al_r">
-                            <i class="text_14em icon-ln_jiantouxia"></i>
-                        </dd>
-                    </dl>
-                    <article class="dis_none ma_3 c_gray_777 line_h_18em">
-                        欢迎使用AKjs移动端前端UI框架。<br>
-                        当前内容是点击查看更多后的详情信息。
-                    </article>
-                </li>
-                <li class="bg_white ovh bor_bottom bor_gray_ddd">
-                    <dl class="rel pl_3 ovh touchstart list_h_36em">
-                        <dt class="fl ovh">
-                            点击展开查看更多的内容3
-                        </dt>
-                        <dd class="abs wm_94 left_0 c_gray_999 text_al_r">
-                            <i class="text_14em icon-ln_jiantouxia"></i>
-                        </dd>
-                    </dl>
-                    <article class="dis_none ma_3 c_gray_777 line_h_18em">
-                        欢迎使用AKjs移动端前端UI框架。<br>
-                        当前内容是点击查看更多后的详情信息。
-                    </article>
-                </li>
-            </ul>
-        </div>
+            <div class="plug_tabs_ud mt_5 module bg_white h_12_em">
+                <nav class="abs left_0 ova bar_hide press list bg_white w_25 h_in">
+                    <ul class="bg_gray_f5f list_h_3em">
+                        <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart bg_white c_title bor_right_none">Tabs-1</li>
+                        <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-2</li>
+                        <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-3</li>
+                        <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-4</li>
+                        <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-5</li>
+                        <li class="mt_0 text_al_c rel bg_gray_f5f bor_right bor_bottom bor_gray_ddd pointer touchstart">Tabs-6</li>
+                    </ul>
+                </nav>
+                <article class="fr rel ovh w_75">
+                    <div class="rel">
+                        <section class="rel ova bar_hide">
+                            <div class="ma_3 c_gray_777 line_h_18em h_in">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请点击左侧菜单列表进行切换Tabs的内容。<br>
+                                当前内容是Tabs的第一个页面1。<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                            </div>
+                        </section>
+                        <section class="rel ova bar_hide">
+                            <div class="ma_3 c_gray_777 line_h_18em h_in">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请左右滑动该区域切换Tabs的内容。<br>
+                                当前内容是Tabs的第二个页面2。<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                            </div>
+                        </section>
+                        <section class="rel ova bar_hide">
+                            <div class="ma_3 c_gray_777 line_h_18em h_in">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请点击左侧菜单列表进行切换Tabs的内容。<br>
+                                当前内容是Tabs的第三个页面3。<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                            </div>
+                        </section>
+                        <section class="rel ova bar_hide">
+                            <div class="ma_3 c_gray_777 line_h_18em h_in">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请点击左侧菜单列表进行切换Tabs的内容。<br>
+                                当前内容是Tabs的第四个页面4。<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                            </div>
+                        </section>
+                        <section class="rel ova bar_hide">
+                            <div class="ma_3 c_gray_777 line_h_18em h_in">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请点击左侧菜单列表进行切换Tabs的内容。<br>
+                                当前内容是Tabs的第五个页面5。<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                            </div>
+                        </section>
+                        <section class="rel ova bar_hide">
+                            <div class="ma_3 c_gray_777 line_h_18em h_in">
+                                欢迎使用AKjs移动端前端UI框架。<br>
+                                请点击左侧菜单列表进行切换Tabs的内容。<br>
+                                当前内容是Tabs的第六个页面6。<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                                ... ...<br>
+                            </div>
+                        </section>
+                    </div>
+                </article>
+            </div>
 
-        <!----------AKjs_AllChecked---------->
-        <div class="module list press mt_5">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">全选功能</h3>
-            <ul class="plug_allchk">
-                <li class="bg_white">
-                    <dl class="rel h_36em list_h_36em ovh touchstart bor_bottom_dashed bor_gray_ddd">
-                        <dt class="fl ml_3 h_in">
-                            <input type="checkbox" name="checkbox2-2" class="plug_Checkbox" multiple value="0202" />
-                        </dt>
-                        <dd class="fl h_in ml_05em">全选/反选</dd>
-                    </dl>
-                    <ul class="ml_1em list_h_36em">
-                        <li class="bg_white ovh touchstart bor_bottom bor_gray_ddd">
-                            <dl class="rel h_in ovh">
-                                <dt class="fl ml_3 h_in">
-                                    <input type="checkbox" name="checkbox2-2-1" class="plug_Checkbox" multiple value="020201" />
-                                </dt>
-                                <dd class="fl h_in ml_05em c_gray_777">笔记本电脑</dd>
-                                <dd class="fr mr_3 c_gray_999">￥<span class="c_in">4999.00</span></dd>
-                            </dl>
+            <!----------AKjs_StepOrder---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd"><span class="zoom_1">步骤效果</span></h3>
+                <article class="plug_step pa_3 bg_white dis_none">
+                    <ul class="length4">
+                        <li>
+                            <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">1</strong>
+                            <h6 class="c_gray_777 line_h_24em">同意条款</h6>
                         </li>
-                        <li class="bg_white ovh touchstart bor_bottom bor_gray_ddd">
-                            <dl class="rel h_in ovh">
-                                <dt class="fl ml_3 h_in">
-                                    <input type="checkbox" name="checkbox2-2-2" class="plug_Checkbox" checked multiple value="020202" />
-                                </dt>
-                                <dd class="fl h_in ml_05em c_gray_777">台式机电脑</dd>
-                                <dd class="fr mr_3 c_gray_999">￥<span class="c_in">3999.00</span></dd>
-                            </dl>
+                        <li>
+                            <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">2</strong>
+                            <h6 class="c_gray_777 line_h_24em">提交信息</h6>
                         </li>
-                        <li class="bg_white ovh touchstart bor_bottom bor_gray_ddd">
-                            <dl class="rel h_in ovh">
-                                <dt class="fl ml_3 h_in">
-                                    <input type="checkbox" name="checkbox2-2-2" class="plug_Checkbox" multiple value="020202" />
-                                </dt>
-                                <dd class="fl h_in ml_05em c_gray_777">苹果手机</dd>
-                                <dd class="fr mr_3 c_gray_999">￥<span class="c_in">5999.00</span></dd>
-                            </dl>
+                        <li>
+                            <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">3</strong>
+                            <h6 class="c_gray_777 line_h_24em">验证信息</h6>
+                        </li>
+                        <li>
+                            <strong class="wh_3em line_h_3em bg_gray_ccc c_white border2 bor_white bor_rad_50">4</strong>
+                            <h6 class="c_gray_777 line_h_24em">已完成</h6>
                         </li>
                     </ul>
-                </li>
-            </ul>
-        </div>
+                </article>
+            </div>
 
-        <!----------AKjs_Viewer---------->
-        <!----------AKjs_lazyload---------->
-        <div class="module press mt_5 bg_white">
-            <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片放大展示</h3>
-            <ul class="plug_viewer plug_lazyload ml_3 mt_1em length2">
-                <li class="fl h_8em mb_1em">
-                    <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                        <img src="./img/tibet-1.jpg" data-url="./img/thumbnails/tibet-1.jpg" alt="图片1" />
-                    </figure>
-                </li>
-                <li class="fl h_8em mb_1em">
-                    <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                        <img src="./img/tibet-2.jpg" data-url="./img/thumbnails/tibet-2.jpg" alt="图片2" />
-                    </figure>
-                </li>
-                <li class="fl h_8em mb_1em">
-                    <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                        <img src="./img/tibet-3.jpg" data-url="./img/thumbnails/tibet-3.jpg" alt="图片3" />
-                    </figure>
-                </li>
-                <li class="fl h_8em mb_1em">
-                    <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                        <img src="./img/tibet-4.jpg" data-url="./img/thumbnails/tibet-4.jpg" alt="图片4" />
-                    </figure>
-                </li>
-                <li class="fl h_8em mb_1em">
-                    <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                        <img src="./img/tibet-5.jpg" data-url="./img/thumbnails/tibet-5.jpg" alt="图片5" />
-                    </figure>
-                </li>
-                <li class="fl h_8em mb_1em">
-                    <figure class="w_94 border bor_gray_ddd img_auto h_in">
-                        <img src="./img/tibet-6.jpg" data-url="./img/thumbnails/tibet-6.jpg" alt="图片6" />
-                    </figure>
-                </li>
-            </ul>
-        </div>
+            <!----------AKjs_Dialog & AKjs_PopupWin---------->
+            <div class="module press bg_white mt_5 pb_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">按钮效果</h3>
+                <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_popup">Popup Window</button>
+                <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_webToast">Webtoast</button>
+                <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_alert">Alert Dialog Box</button>
+                <button type="button" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em" id="plug_confirm">Confirm Dialog Box</button>
+                <button type="submit" class="mt_5 btn_h_au wm_94 bg_title c_white h_32em plug_submit">Submit Button</button>
+            </div>
+            <div class="module press mt_5">
+                <ul class="list_h_36em">
+                    <li class="rel bg_white touchstart">
+                        <dl class="rel h_in list_h_36em wm_94">
+                            <dt class="fl">姓名</dt>
+                            <dd class="fr rel w_70 mr_7">
+                                <input class="fr bg_white c_gray_777" id="plug_prompt_input" type="button" value="" readonly />
+                            </dd>
+                            <dd class="abs top_0 right_0">
+                                <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="module list press mt_5" id="plug_prompt_textarea_view">
+                <h3 class="wp_94 bg_white line_h_36em text_bold bor_bottom_dashed bor_gray_ddd">提问内容</h3>
+                <ul class="wp_94 bg_white list_h_36em">
+                </ul>
+                <button type="button" class="btn_h_au wm_94 bg_title c_white h_32em mt_5 mb_5" id="plug_prompt_textarea">继续提问</button>
+            </div>
 
+            <!----------AKjs_Radio&AKjs_Checkbox&AKjs_Switch---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">复选展示</h3>
+                <ul class="list_h_36em">
+                    <li class="bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="h_in">
+                            <dt class="fl ml_3 h_in">
+                                <input type="checkbox" name="checkbox1" class="plug_Checkbox" />
+                            </dt>
+                            <dd class="fl h_in ml_05em">选项1</dd>
+                        </dl>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="h_in">
+                            <dt class="fl ml_3 h_in">
+                                <input type="checkbox" name="checkbox2" class="plug_Checkbox" checked />
+                            </dt>
+                            <dd class="fl h_in ml_05em">选项2</dd>
+                        </dl>
+                    </li>
+                    <li class="bg_white bor_bottom bor_gray_ddd">
+                        <dl class="h_in">
+                            <dt class="fl ml_3 h_in">
+                                <input type="checkbox" name="checkbox3" class="plug_Checkbox" disabled />
+                            </dt>
+                            <dd class="fl h_in ml_05em">选项3</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">单选展示</h3>
+                <ul class="list_h_36em">
+                    <li class="bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="h_in">
+                            <dt class="fl ovh ml_3 h_in">选项1</dt>
+                            <dd class="fr mr_3 h_in text_14em">
+                                <input type="radio" name="radio" value="1" class="plug_Radio" checked />
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="h_in">
+                            <dt class="fl ovh ml_3 h_in">选项2</dt>
+                            <dd class="fr mr_3 h_in text_14em">
+                                <input type="radio" name="radio" value="2" class="plug_Radio" />
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">开关按钮</h3>
+                <ul class="list_h_36em">
+                    <li class="bor_bottom bor_gray_ddd bg_white">
+                        <dl class="h_in">
+                            <dt class="fl ovh ml_3 h_in">选项1</dt>
+                            <dd class="fr mr_3 h_in">
+                                <input type="checkbox" name="switch1" class="plug_Switch" checked />
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white">
+                        <dl class="h_in">
+                            <dt class="fl ovh ml_3 h_in">选项2</dt>
+                            <dd class="fr mr_3 h_in">
+                                <input type="checkbox" name="switch2" class="plug_Switch" />
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white">
+                        <dl class="h_in">
+                            <dt class="fl ovh ml_3 h_in">选项3</dt>
+                            <dd class="fr mr_3 h_in">
+                                <input type="checkbox" name="switch3" class="plug_Switch" checked disabled />
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white">
+                        <dl class="h_in">
+                            <dt class="fl ovh ml_3 h_in">选项4</dt>
+                            <dd class="fr mr_3 h_in">
+                                <input type="checkbox" name="switch4" class="plug_Switch" disabled />
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_Range---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">滑块功能</h3>
+                <ul>
+                    <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_5">
+                        <input type="range" class="plug_range1" value="23" />
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_5">
+                        <input type="range" class="plug_range1" value="45" disabled />
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_10">
+                        <input type="range" class="plug_range2" value="25,75" />
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white pt_10 pb_10">
+                        <input type="range" class="plug_range2" value="45,85" disabled />
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_ChooseList---------->
+            <div class="module press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em">品牌选择</h3>
+                <ul class="list_h_36em">
+                    <li class="bor_top bor_gray_ddd bg_white">
+                        <dl class="ovh list_h_36em">
+                            <dt class="fl ovh ml_3 mr_03em">单选：</dt>
+                            <dd class="plug_choose fl ovh w_80 mt_05em defer_1">
+                                <button type="button" data-checked="true">戴尔</button>
+                                <button type="button">三星</button>
+                                <button type="button">惠普</button>
+                                <button type="button">微软</button>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="bor_top bor_gray_ddd bg_white">
+                        <dl class="ovh list_h_36em">
+                            <dt class="fl ovh ml_3 mr_03em">多选：</dt>
+                            <dd class="plug_choose fl ovh w_80 mt_05em defer_1" data-multiple="multiple">
+                                <button type="button" data-checked="true">东芝</button>
+                                <button type="button" data-checked="true">松下</button>
+                                <button type="button">苹果</button>
+                                <button type="button">联想</button>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_TouchDelete---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">滑动删除</h3>
+                <ul class="plug_touchdel bg_white ovh">
+                    <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
+                        <article class="ml_3">
+                            <h3 class="mt_05em c_gray_333">1.这里是文章的标题</h3>
+                            <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
+                        </article>
+                    </li>
+                    <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
+                        <article class="ml_3">
+                            <h3 class="mt_05em c_gray_333">2.这里是文章的标题</h3>
+                            <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
+                        </article>
+                    </li>
+                    <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
+                        <article class="ml_3">
+                            <h3 class="mt_05em c_gray_333">3.这里是文章的标题</h3>
+                            <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
+                        </article>
+                    </li>
+                    <li class="h_42em rel ovh bor_bottom bor_gray_ddd bg_white touchstart">
+                        <article class="ml_3">
+                            <h3 class="mt_05em c_gray_333">4.这里是文章的标题</h3>
+                            <p class="line_h_18em c_gray_777">当前显示的是列表展示内容</p>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_ChangeIcon---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">排序和筛选</h3>
+                <div class="plug_filter rel ovh bg_white wp_94 h_32em bor_bottom bor_gray_ddd">
+                    <ul class="length4 list_h_32em h_in">
+                        <li class="fl text_al_c touchstart plug_sort_btn1">
+                            <strong class="text_al_t c_gray_777">智能排序</strong>
+                        </li>
+                        <li class="fl text_al_c touchstart plug_sort_btn2">
+                            <strong class="text_al_t c_gray_777">销量</strong>
+                            <button type="button" class="line_h_in text_al_t text_al_c c_gray_777">
+                                <i class="abs minus_mt_01em icon-px_zhengxu"></i>
+                                <i class="icon-px_daoxu"></i>
+                            </button>
+                        </li>
+                        <li class="fl text_al_c touchstart plug_sort_btn3">
+                            <strong class="text_al_t c_gray_777">价格</strong>
+                            <button type="button" class="line_h_in text_al_t text_al_c c_gray_777">
+                                <i class="abs minus_mt_01em icon-px_zhengxu"></i>
+                                <i class="icon-px_daoxu"></i>
+                            </button>
+                        </li>
+                        <li class="fl text_al_c touchstart plug_sort_btn4">
+                            <strong class="text_al_t c_gray_777">筛选</strong>
+                            <button type="button" class="line_h_in text_al_m text_al_c c_gray_777">
+                                <i class="icon-ln_xiangxia text_12em"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!----------AKjs_Ratyli---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">星级评分</h3>
+                <ul class="list_h_36em">
+                    <li class="bor_bottom bor_gray_ddd bg_white">
+                        <dl class="ovh h_in">
+                            <dt class="fl ovh ml_3 mr_03em">可选评价：</dt>
+                            <dd class="fl ovh">
+                                <div class="line_h_in ovh">
+                                    <span id="plug_ratyli1" data-rate="1" data-ratemax="5"></span>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white">
+                        <dl class="ovh h_in">
+                            <dt class="fl ovh ml_3 mr_03em">展示评价：</dt>
+                            <dd class="fl ovh">
+                                <div class="line_h_in ovh">
+                                    <span id="plug_ratyli2" data-rate="4" data-ratemax="5"></span>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_Progress---------->
+            <div class="module press mt_5">
+                <ul class="list_h_36em">
+                    <li class="ovh rel bg_white">
+                        <dl class="ovh h_in">
+                            <dt class="fl ovh ml_3 mr_03em line_h_38em">当前进度：</dt>
+                            <dd class="fl ovh w_70 h_in defer_1">
+                                <div class="plug_progress h_2em bg_gray_ddd" data-from="0" data-to="70"></div>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_NowTime---------->
+            <!----------AKjs_CountTo---------->
+            <!----------AKjs_Countdown---------->
+            <div class="module list press mt_5">
+                <ul class="list_h_36em">
+                    <li class="bor_bottom bor_gray_ddd bg_white">
+                        <span class="fl ml_3 mr_03em">当前时间：</span>
+                        <em class="plug_nowtime c_gray_777"></em>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white touchstart">
+                        <span class="fl ml_3 mr_03em">点击开始：</span>
+                        <em class="plug_count c_title" data-from="0" data-to="999.00" data-speed="1500" data-decimals="2"></em>
+                    </li>
+                    <li class="bor_bottom bor_gray_ddd bg_white touchstart">
+                        <span class="fl ml_3 mr_03em">点击倒计时：</span>
+                        <em class="plug_Countdown c_title">10秒</em>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_Favorite---------->
+            <div class="module bg_white press mt_5">
+                <ul class="wm_94 list_h_36em length2">
+                    <li class="fl">
+                        <button type="button" class="fl pl_1em pr_1em plug_like c_gray_777 line_h_36em touchstart" data-value="500"></button>
+                    </li>
+                    <li class="fr">
+                        <button type="button" class="fr pl_1em pr_1em plug_collect c_gray_777 line_h_36em touchstart" data-value="0"></button>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_Substring---------->
+            <div class="module press mt_5">
+                <ul class="list_h_36em">
+                    <li class="ovh rel bg_white touchstart">
+                        <dl class="rel h_in list_h_36em wm_94">
+                            <dt class="fl">产品价格</dt>
+                            <dd class="fr rel w_70 mr_7">
+                                <span class="fr c_gray_777 ml_05em">元</span>
+                                <input type="number" class="plug_RMBoutput fr bg_white c_gray_777" required value="" data-type="number_symbol" />
+                            </dd>
+                            <dd class="abs top_0 right_0">
+                                <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_Spinner---------->
+            <div class="module press mt_5">
+                <ul class="list_h_36em">
+                    <li class="rel bg_white">
+                        <dl class="h_in">
+                            <dt class="fl ml_3">产品数量</dt>
+                            <dd class="fr w_35 mr_3 h_in defer_1">
+                                <input type="number" class="plug_spinner text_al_c c_gray_777 bor_rad_0" value="1" data-type="number" />
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_ChangeInput---------->
+            <div class="module press mt_5">
+                <ul class="list_h_36em">
+                    <li class="rel bg_white">
+                        <dl class="h_in">
+                            <dt class="fl ml_3">切换城市</dt>
+                            <dd class="fr w_60 mr_3 h_in">
+                                <div class="rel mt_06em h_24em border bor_gray_ddd w_100 bg_gray_f9f">
+                                    <input type="text" class="plug_change_text1 fl w_35 h_in text_al_c c_gray_777 bor_rad_0" value="北京市">
+                                    <button type="button" class="plug_change_btn fl w_30 h_in bor_left bor_right bor_gray_ddd bg_white icon-ly_qiehuan"></button>
+                                    <input type="text" class="plug_change_text2 fl w_35 h_in text_al_c c_gray_777 bor_rad_0" value="上海市">
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_Form---------->
+            <!----------AKjs_GetVerifyCode---------->
+            <!----------AKjs_intlTelInput---------->
+            <!----------AKjs_Codeval---------->
+            <form action="#" method="get" data-submit="false">
+                <div class="module list mt_5 plug_form">
+                    <ul class="wp_94 press bg_white list_h_36em">
+                        <li class="rel bor_bottom bor_gray_ddd">
+                            <i class="abs left_0 icon-mb_shouji c_title text_16em"></i>
+                            <label class="plug_mobileNum dis_block rel ovh fl ml_8 mr_05em line_h_in bor_right bor_gray_eee touchstart">
+                                <input type="button" class="fl c_gray_777" value="+86" />
+                                <i class="fl icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </label>
+                            <input type="tel" id="plug_phone" class="fl w_70 plug_Delete c_gray_777" required value="" maxlength="11" placeholder="请输入手机号码" data-type="number" />
+                        </li>
+                        <li class="rel bor_bottom bor_gray_ddd">
+                            <i class="abs left_0 icon-im_yanzhengma c_title text_16em"></i>
+                            <input type="text" class="fl ml_8 w_92 c_gray_777" required value="" maxlength="6" placeholder="请输入手机短信验证码" />
+                            <button type="button" id="plug_getVerifyCode" class="press abs h_100 bg_white press top_0 right_0 c_title">获取验证码</button>
+                        </li>
+                        <li class="rel bor_bottom bor_gray_ddd">
+                            <i class="abs left_0 icon-mn_dunpai c_title text_16em"></i>
+                            <input type="text" id="plug_codeInput" class="fl ml_8 w_92 c_gray_777" required value="" placeholder="请输入右侧验证码" />
+                            <code id="plug_codeView" class="defer_1 press ovh abs right_0 bg_white w_20 line_h_2em border bor_gray_ddd touchstart"></code>
+                        </li>
+                        <li class="rel bor_bottom bor_gray_ddd">
+                            <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
+                            <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入新密码" />
+                        </li>
+                        <li class="rel bor_bottom bor_gray_ddd">
+                            <i class="abs left_0 icon-mb_suoding c_title text_16em"></i>
+                            <input type="password" class="fl ml_8 w_92 c_gray_777 plug_PassCheck plug_Password" required value="" maxlength="16" placeholder="请输入确认密码" />
+                        </li>
+                    </ul>
+                    <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
+                </div>
+            </form>
+
+            <!----------AKjs_PortraitImage---------->
+            <!----------AKjs_Select---------->
+            <!----------AKjs_Datetime---------->
+            <div class="module list press mt_5">
+                <ul class="list_h_36em">
+                    <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="rel h_in list_h_36em wm_94">
+                            <dt class="fl w_22 text_hidden">上传头像</dt>
+                            <dd class="fr rel w_70 mr_7">
+                                <label class="fr rel plug_PortraitImage pointer">
+                                    <input type="file" />
+                                    <figure class="img_auto ovh wh_24em line_h_24em text_al_c bg_gray_ddd border bor_gray_ddd">
+                                        <i class="icon-mn_wo_fill c_white text_18em text_al_t center"></i>
+                                    </figure>
+                                </label>
+                            </dd>
+                            <dd class="abs top_0 right_0">
+                                <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="rel h_in list_h_36em wm_94">
+                            <dt class="fl w_22 text_hidden">选择星期</dt>
+                            <dd class="fr rel w_70 mr_7">
+                                <input type="button" id="plug_trigger1" class="fr bg_white c_gray_777" name="plug_trigger1" readonly value="星期日" placeholder="请选择星期" />
+                            </dd>
+                            <dd class="abs top_0 right_0">
+                                <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="rel h_in list_h_36em wm_94">
+                            <dt class="fl w_22 text_hidden">选择地区</dt>
+                            <dd class="fr rel w_70 mr_7">
+                                <input type="button" id="plug_trigger2" class="fr bg_white c_gray_777" name="plug_trigger2" readonly value="" placeholder="请选择地区" />
+                            </dd>
+                            <dd class="abs top_0 right_0">
+                                <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="rel h_in list_h_36em wm_94">
+                            <dt class="fl w_22 text_hidden">选择日期</dt>
+                            <dd class="fr rel w_70 mr_7">
+                                <input type="button" id="plug_datetime" class="fr bg_white c_gray_777" readonly value="" placeholder="请选择日期" />
+                            </dd>
+                            <dd class="abs top_0 right_0">
+                                <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="rel bor_bottom bor_gray_ddd bg_white touchstart">
+                        <dl class="rel h_in list_h_36em wm_94">
+                            <dt class="fl w_22 text_hidden">多功能日期</dt>
+                            <dd class="fr rel w_70 mr_7">
+                                <input type="button" id="plug_multidate" class="fr bg_white c_gray_777" readonly value="" placeholder="请选择多功能日期" />
+                            </dd>
+                            <dd class="abs top_0 right_0">
+                                <i class="fr icon-ln_qianjin_b text_16em c_gray_777"></i>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_PreviewImage---------->
+            <div class="rel press bg_white mt_5 clear">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">上传凭证</h3>
+                <ul class="w_94 center length4 pt_5">
+                    <li class="rel fl mb_5">
+                        <label class="plug_previewImage bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd">
+                            <i class="icon-ln_jia_a text_24em line_h_16em text_bold c_gray_ddd text_al_m"></i>
+                            <input multiple type="file" />
+                        </label>
+                    </li>
+                    <li class="rel fl mb_5 defer_2">
+                        <button type="button" class="plug_DelImage bg_white dis_block text_al_c ovh rel w_80 h_5em line_h_5em border bor_gray_ddd">
+                            <i class="icon-ln_jian_a text_24em line_h_16em text_bold c_gray_ddd text_al_m"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_SnInput (已被AKjs_Keyboard 取代 page5.html)---------->
+            <!--<div class="module press mt_5 ovh bg_white">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">支付密码</h3>
+                <fieldset class="plug_sn_input pt_5 pb_5 ml_3 ovh">
+                    <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
+                    <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
+                    <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
+                    <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
+                    <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
+                    <input type="password" multiple class="wh_3em mr_05em bg_gray_f9f bor_gray_ddd c_gray_777 border bor_rad_0" />
+                </fieldset>
+            </div>-->
+
+            <!----------AKjs_Textarea---------->
+            <div class="module mt_5 plug_formTextarea">
+                <dl class="ovh bg_white">
+                    <dt class="press c_title bg_white pl_3 h_3em line_h_3em">感谢您为我提出宝贵意见</dt>
+                    <dd class="rel minus_mt_05em pb_12em">
+                        <textarea class="plug_textarea ml_3 mr_3 w_94 h_12_em c_gray_777" placeholder="请输入遇到的问题或者意见..." required></textarea>
+                    </dd>
+                </dl>
+                <button type="submit" class="btn_h_32em wm_94 bg_title c_white mt_5">提交</button>
+            </div>
+
+            <!----------AKjs_lightSlider---------->
+            <div class="module bg_white press mt_5">
+                <h3 class="bg_white c_title pl_3 mb_1em line_h_36em bor_bottom bor_gray_ddd">图片滑动展示</h3>
+                <div class="wm_94 plug_lazyload ovh rel h_9em">
+                    <ul id="plug_photo_slider" class="defer_1">
+                        <li class="fl h_8em ovi_im">
+                            <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
+                                <img src="./img/tibet-1.jpg" />
+                            </figure>
+                        </li>
+                        <li class="fl h_8em ovi_im">
+                            <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
+                                <img src="./img/tibet-2.jpg" />
+                            </figure>
+                        </li>
+                        <li class="fl h_8em ovi_im">
+                            <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
+                                <img src="./img/tibet-3.jpg" />
+                            </figure>
+                        </li>
+                        <li class="fl h_8em ovi_im">
+                            <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
+                                <img src="./img/tibet-4.jpg" />
+                            </figure>
+                        </li>
+                        <li class="fl h_8em ovi_im">
+                            <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
+                                <img src="./img/tibet-5.jpg" />
+                            </figure>
+                        </li>
+                        <li class="fl h_8em ovi_im">
+                            <figure class="bg_gray_f5f border bor_gray_ddd h_in img_auto">
+                                <img src="./img/tibet-6.jpg" />
+                            </figure>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!----------AKjs_DropUpDown---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">手风琴效果</h3>
+                <ul class="plug_dropbutton">
+                    <li class="bg_white ovh bor_bottom bor_gray_ddd">
+                        <dl class="rel pl_3 ovh touchstart list_h_36em">
+                            <dt class="fl ovh">
+                                点击展开查看更多的内容1
+                            </dt>
+                            <dd class="abs wm_94 left_0 c_gray_999 text_al_r">
+                                <i class="text_14em icon-ln_jiantouxia"></i>
+                            </dd>
+                        </dl>
+                        <article class="dis_none ma_3 c_gray_777 line_h_18em">
+                            欢迎使用AKjs移动端前端UI框架。<br>
+                            当前内容是点击查看更多后的详情信息。
+                        </article>
+                    </li>
+                    <li class="bg_white ovh bor_bottom bor_gray_ddd">
+                        <dl class="rel pl_3 ovh touchstart list_h_36em">
+                            <dt class="fl ovh">
+                                点击展开查看更多的内容2
+                            </dt>
+                            <dd class="abs wm_94 left_0 c_gray_999 text_al_r">
+                                <i class="text_14em icon-ln_jiantouxia"></i>
+                            </dd>
+                        </dl>
+                        <article class="dis_none ma_3 c_gray_777 line_h_18em">
+                            欢迎使用AKjs移动端前端UI框架。<br>
+                            当前内容是点击查看更多后的详情信息。
+                        </article>
+                    </li>
+                    <li class="bg_white ovh bor_bottom bor_gray_ddd">
+                        <dl class="rel pl_3 ovh touchstart list_h_36em">
+                            <dt class="fl ovh">
+                                点击展开查看更多的内容3
+                            </dt>
+                            <dd class="abs wm_94 left_0 c_gray_999 text_al_r">
+                                <i class="text_14em icon-ln_jiantouxia"></i>
+                            </dd>
+                        </dl>
+                        <article class="dis_none ma_3 c_gray_777 line_h_18em">
+                            欢迎使用AKjs移动端前端UI框架。<br>
+                            当前内容是点击查看更多后的详情信息。
+                        </article>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_AllChecked---------->
+            <div class="module list press mt_5">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">全选功能</h3>
+                <ul class="plug_allchk">
+                    <li class="bg_white">
+                        <dl class="rel h_36em list_h_36em ovh touchstart bor_bottom_dashed bor_gray_ddd">
+                            <dt class="fl ml_3 h_in">
+                                <input type="checkbox" name="checkbox2-2" class="plug_Checkbox" multiple value="0202" />
+                            </dt>
+                            <dd class="fl h_in ml_05em">全选/反选</dd>
+                        </dl>
+                        <ul class="ml_1em list_h_36em">
+                            <li class="bg_white ovh touchstart bor_bottom bor_gray_ddd">
+                                <dl class="rel h_in ovh">
+                                    <dt class="fl ml_3 h_in">
+                                        <input type="checkbox" name="checkbox2-2-1" class="plug_Checkbox" multiple value="020201" />
+                                    </dt>
+                                    <dd class="fl h_in ml_05em c_gray_777">笔记本电脑</dd>
+                                    <dd class="fr mr_3 c_gray_999">￥<span class="c_in">4999.00</span></dd>
+                                </dl>
+                            </li>
+                            <li class="bg_white ovh touchstart bor_bottom bor_gray_ddd">
+                                <dl class="rel h_in ovh">
+                                    <dt class="fl ml_3 h_in">
+                                        <input type="checkbox" name="checkbox2-2-2" class="plug_Checkbox" checked multiple value="020202" />
+                                    </dt>
+                                    <dd class="fl h_in ml_05em c_gray_777">台式机电脑</dd>
+                                    <dd class="fr mr_3 c_gray_999">￥<span class="c_in">3999.00</span></dd>
+                                </dl>
+                            </li>
+                            <li class="bg_white ovh touchstart bor_bottom bor_gray_ddd">
+                                <dl class="rel h_in ovh">
+                                    <dt class="fl ml_3 h_in">
+                                        <input type="checkbox" name="checkbox2-2-2" class="plug_Checkbox" multiple value="020202" />
+                                    </dt>
+                                    <dd class="fl h_in ml_05em c_gray_777">苹果手机</dd>
+                                    <dd class="fr mr_3 c_gray_999">￥<span class="c_in">5999.00</span></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!----------AKjs_Viewer---------->
+            <!----------AKjs_lazyload---------->
+            <div class="module press mt_5 bg_white">
+                <h3 class="bg_white c_title pl_3 line_h_36em bor_bottom bor_gray_ddd">图片放大展示</h3>
+                <ul class="plug_viewer plug_lazyload ml_3 mt_1em length2">
+                    <li class="fl h_8em mb_1em">
+                        <figure class="w_94 border bor_gray_ddd img_auto h_in">
+                            <img src="./img/tibet-1.jpg" data-url="./img/thumbnails/tibet-1.jpg" alt="图片1" />
+                        </figure>
+                    </li>
+                    <li class="fl h_8em mb_1em">
+                        <figure class="w_94 border bor_gray_ddd img_auto h_in">
+                            <img src="./img/tibet-2.jpg" data-url="./img/thumbnails/tibet-2.jpg" alt="图片2" />
+                        </figure>
+                    </li>
+                    <li class="fl h_8em mb_1em">
+                        <figure class="w_94 border bor_gray_ddd img_auto h_in">
+                            <img src="./img/tibet-3.jpg" data-url="./img/thumbnails/tibet-3.jpg" alt="图片3" />
+                        </figure>
+                    </li>
+                    <li class="fl h_8em mb_1em">
+                        <figure class="w_94 border bor_gray_ddd img_auto h_in">
+                            <img src="./img/tibet-4.jpg" data-url="./img/thumbnails/tibet-4.jpg" alt="图片4" />
+                        </figure>
+                    </li>
+                    <li class="fl h_8em mb_1em">
+                        <figure class="w_94 border bor_gray_ddd img_auto h_in">
+                            <img src="./img/tibet-5.jpg" data-url="./img/thumbnails/tibet-5.jpg" alt="图片5" />
+                        </figure>
+                    </li>
+                    <li class="fl h_8em mb_1em">
+                        <figure class="w_94 border bor_gray_ddd img_auto h_in">
+                            <img src="./img/tibet-6.jpg" data-url="./img/thumbnails/tibet-6.jpg" alt="图片6" />
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </scrollview>
     </div>
     <!--ak-main End-->
 
@@ -963,47 +964,7 @@
     }
 
     /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Include("js/common.js"); //全局功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
-    AKjs_Plugin("AKjs_AllChecked"); //全选功能
-    AKjs_Plugin("AKjs_ButtonSubmit", "css"); //防止重复提交功能
-    AKjs_Plugin("AKjs_ChangeIcon"); //图标切换功能
-    AKjs_Plugin("AKjs_ChangeInput"); //输入框值互换功能
-    AKjs_Plugin("AKjs_Checkbox", "css"); //复选框美化
-    AKjs_Plugin("AKjs_ChooseList"); //按钮模式复选和单选功能
-    AKjs_Plugin("AKjs_Codeval", "css"); //图片验证功能
-    AKjs_Plugin("AKjs_CountDown"); //倒计时功能
-    AKjs_Plugin("AKjs_CountTo"); //数字动画效果
-    AKjs_Plugin("AKjs_DateTime", "css"); //日期和时间插件
-    AKjs_Plugin("AKjs_Dialog", "css"); //alert，confirm，prompt等弹出层功能
-    AKjs_Plugin("AKjs_DropLoad", "css"); //上拉刷新和下拉加载更多功能
-    AKjs_Plugin("AKjs_DropUpDown"); //列表展开和收起功能
-    AKjs_Plugin("AKjs_Favorite"); //点赞或收藏功能
-    AKjs_Plugin("AKjs_Form"); //表单提交相关效果
-    AKjs_Plugin("AKjs_GetVerifyCode"); //手机短信验证码认证功能
-    AKjs_Plugin("AKjs_IntlTelInput", "css"); //国际区号选择功能
-    AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
-    AKjs_Plugin("AKjs_lightSlider", "css"); //图片列表左右滑动功能
-    AKjs_Plugin("AKjs_MultiDate", "css"); //多功能日期和时间插件
-    AKjs_Plugin("AKjs_NowTime"); //获取当前时间的功能
-    AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
-    AKjs_Plugin("AKjs_PortraitImage", "css"); //头像上传功能
-    AKjs_Plugin("AKjs_PreviewImage", "css"); //同时上传多个图片的功能
-    AKjs_Plugin("AKjs_Progress", "css"); //进度条插件
-    AKjs_Plugin("AKjs_Radio", "css"); //单选框美化
-    AKjs_Plugin("AKjs_Range", "css"); //滑块功能插件
-    AKjs_Plugin("AKjs_Ratyli"); //星级评价功能
-    AKjs_Plugin("AKjs_Select", "css"); //移动端专用下拉菜单功能
-    AKjs_Plugin("AKjs_Slider", "css"); //欢迎页和联播图功能
-    AKjs_Plugin("AKjs_Spinner"); //数量控制功能
-    AKjs_Plugin("AKjs_StepOrder"); //步骤插件
-    AKjs_Plugin("AKjs_Substring"); //输入框里输入的数字强行转换为人民币格式的插件
-    AKjs_Plugin("AKjs_Switch", "css"); //开关按钮美化
-    AKjs_Plugin("AKjs_Tabs"); //TABS切换内容功能
-    AKjs_Plugin("AKjs_Textarea"); //多行输入框实时查询字符数的功能
-    AKjs_Plugin("AKjs_TouchDelete", "css"); //列表滑动删除功能
-    AKjs_Plugin("AKjs_Typeahead", "css"); //模糊搜索功能
-    AKjs_Plugin("AKjs_Viewer", "css"); //图片放大预览功能
-    AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
+    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
     /*-----------------------------------------------AKjs_Form 使用方法-------------------------------------------*/
     $(function() {

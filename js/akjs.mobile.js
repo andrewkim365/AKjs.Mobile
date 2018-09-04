@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180903 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180904 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -163,6 +163,7 @@ function AKjs_Router(setting) {
             var PrevScrollTop = $("#ak-scrollview").scrollTop();
             Router_Ajax(option,page);
             AKjs_mainHeight();
+            option.changePage(document.location.hash.substring(1),true);
             if (option.Animate) {
                 $(function () {
                     var asideEle = $("#ak-aside");
@@ -174,11 +175,11 @@ function AKjs_Router(setting) {
                         }
                     }
                     if ($("#ak-animation").prop("dataset").router == "slideLeft") {
-                        asideEle.html($(animationEle).html()).addClass("animated slideOutRight ani_delay_01s ani_05s zindex_show");
+                        asideEle.html($(animationEle).html()).addClass("animated slideOutRight ani_delay_01s ani_05s zindex_10");
                         $("#ak-animation").addClass("filter_brig_096");
                     } else if ($("#ak-animation").prop("dataset").router == "slideRight") {
                         asideEle.html($(animationEle).html()).addClass("filter_brig_096");
-                        $("#ak-animation").addClass("animated slideInRight ani_delay_01s ani_05s zindex_show");
+                        $("#ak-animation").addClass("animated slideInRight ani_delay_01s ani_05s zindex_10");
                     } else {
                         asideEle.html("");
                         $("#ak-animation").removeClass();
@@ -218,13 +219,13 @@ function AKjs_Router(setting) {
                     "right": 0
                 });
             }
-            option.changePage(document.location.hash.substring(1),true);
         });
         function Router_Ajax(option,page) {
             AKjs_UserAgent();
             AKjs_RegsInput();
             AKjs_RegularExp();
             if (document.location.hash.substring(1) != "") {
+                $("#ak-animation").find("img").hide().show();
                 if (page == "hashchange") {
                     $("#ak-scrollview").animate({"scrollTop": 0}, 100);
                     $("body").children("div").remove();
@@ -1147,24 +1148,22 @@ function AKjs_RegularExp() {
 function AKjs_Include(url) {
     var type_js = new RegExp(".js");
     var type_css = new RegExp(".css");
-    $(function() {
-        if(type_js.test(url)) {
-            $.ajax({
-                type: 'GET',
-                url: url + "?akjs=" + new Date().getTime(),
-                async: false,
-                cache: true,
-                dataType: 'script'
-            });
-        } else if(type_css.test(url)) {
-            var valarr = url.split(".css");
-            valarr = valarr.join();
-            valarr = valarr.substring(0, valarr.length-1);
-            valarr = valarr.substring(valarr.lastIndexOf('/') + 1, valarr.length).replace(".","_");
-            $("head").children("style").filter("#include_"+valarr).remove();
-            $("head").append("<style type='text/css' id='include_"+valarr+"'>@import url('"+url+"?akjs="+new Date().getTime()+"');</style>");
-        }
-    });
+    if(type_js.test(url)) {
+        $.ajax({
+            type: 'GET',
+            url: url + "?akjs=" + new Date().getTime(),
+            async: false,
+            cache: true,
+            dataType: 'script'
+        });
+    } else if(type_css.test(url)) {
+        var valarr = url.split(".css");
+        valarr = valarr.join();
+        valarr = valarr.substring(0, valarr.length-1);
+        valarr = valarr.substring(valarr.lastIndexOf('/') + 1, valarr.length).replace(".","_");
+        $("head").children("style").filter("#include_"+valarr).remove();
+        $("head").append("<style type='text/css' id='include_"+valarr+"'>@import url('"+url+"?akjs="+new Date().getTime()+"');</style>");
+    }
 }
 
 /*-----------------------------------------------AKjs_Location-------------------------------------------*/
@@ -1312,6 +1311,14 @@ function AKjs_Params(number) {
         params.push(hash_arr[i].split("/"));
     }
     return params[0][number];
+}
+
+/*-----------------------------------------------AKjs_Pathname------------------------------------------*/
+function AKjs_Pathname() {
+    var strUrl=window.location.href;
+    var arrUrl=strUrl.split("/");
+    var strPage=arrUrl[arrUrl.length-1];
+    return strPage.split("?")[0];
 }
 
 /*-----------------------------------------------AKjs_setCookie------------------------------------------*/
@@ -1515,28 +1522,19 @@ function AKjs_DateFormat(date,format) {
 
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
-    $(function() {
-        if ($("html").attr("data-router") == "akjs") {
-            Timeout = 50;
-        } else {
-            Timeout = 0;
-        }
-        var AKjsPath = localStorage.AKjsPath;
-        $.ajax({
-            type:'GET',
-            url: AKjsPath+"/"+setting+".js?akjs="+new Date().getTime(),
-            async: false,
-            cache: true,
-            dataType:'script'
-        });
-        if (css) {
-            var css_url = AKjsPath + "/css/" + setting + ".css";
-            setTimeout(function () {
-                $("head").children("style").filter("#"+setting).remove();
-                $("head").append("<style type='text/css' id='"+setting+"'>@import url('"+css_url+"?akjs="+new Date().getTime()+"');</style>");
-            },Timeout);
-        }
+    var AKjsPath = localStorage.AKjsPath;
+    $.ajax({
+        type:'GET',
+        url: AKjsPath+"/"+setting+".js?akjs="+new Date().getTime(),
+        async: false,
+        cache: true,
+        dataType:'script'
     });
+    if (css) {
+        var css_url = AKjsPath + "/css/" + setting + ".css";
+        $("head").children("style").filter("#"+setting).remove();
+        $("head").append("<style type='text/css' id='"+setting+"'>@import url('"+css_url+"?akjs="+new Date().getTime()+"');</style>");
+    }
 }
 
 /*-----------------------------------------------AKjs_Back------------------------------------------*/

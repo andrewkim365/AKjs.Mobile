@@ -30,7 +30,8 @@
 
   <!--main元素里面必须有id="ak-main"才能正常运行，当前元素是内容区域的容器。-->
   <div id="ak-main" class="defer_fadein_05">
-    <div class="wp_94 mb_5 ovh defer_15 plug_chatView">
+    <scrollview id="ak-scrollview">
+      <div class="wp_94 mb_5 ovh defer_15 plug_chatView">
       <ul>
         <li class="ovh mt_1em">
           <dl class="ak-chat_left">
@@ -82,6 +83,7 @@
         </li>
       </ul>
     </div>
+    </scrollview>
   </div>
   <!--ak-main End-->
 
@@ -170,9 +172,7 @@
     }
 
     /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Include("js/common.js"); //全局功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
-    AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
-    AKjs_Plugin("AKjs_MobileChat", "css"); //移动端聊天功能插件
+    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
     /*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
     $(function() {

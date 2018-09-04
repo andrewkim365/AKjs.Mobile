@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
   <script type="text/javascript" language="javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
-  <script type="text/javascript" language="javascript" src="http://echarts.baidu.com/dist/echarts.min.js"></script><!--Echarts插件引入-->
+  <script type="text/javascript" language="javascript" src="js/echarts.min.js"></script><!--Echarts插件引入-->
   <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
 </head>
 <body>
@@ -50,7 +50,7 @@
             </nav>
         </div>
         <!--main元素里面的id="ak-scrollview"是用于屏幕的滚动条，不使用当前元素时ak-main自动识别为屏幕的滚动条。弹窗或固定元素的代码在ak-scrollview的外面写才能不飘动。-->
-        <div id="ak-scrollview">
+        <scrollview id="ak-scrollview">
             <div class="module press">
                 <article class="plug_tabs_findview rel ovh bg_white h_8em">
                     <div class="fl">
@@ -90,7 +90,7 @@
                 <ul>
                     <li class="bg_white rel ovh"><!--可循环-->
                         <dl class="rel h_in ovh list_h_36em wp_94 bor_bottom bor_gray_ddd touchstart" data-href="demo3.html">
-                            <dt class="fl">列表布局展示</dt>
+                            <dt class="fl c_title">列表布局展示</dt>
                             <dd class="fr rel mr_7">
                                 <span class="fr c_orange ml_05em">状态</span>
                             </dd>
@@ -530,7 +530,7 @@
                     </ul>
                 </section>
             </div>
-        </div>
+        </scrollview>
     </div>
     <!--ak-main End-->
 
@@ -603,21 +603,7 @@
     }
 
     /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Include("js/common.js"); //全局功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
-    AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
-    AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
-    AKjs_Plugin("AKjs_SelectOption","css"); //pc端专用select下拉框插件
-    AKjs_Plugin("AKjs_Paginator","css"); //分页插件
-    AKjs_Plugin("AKjs_ReadMore"); //查看更多插件
-    AKjs_Plugin("AKjs_Vticker"); //列表垂直滚动插件
-    AKjs_Plugin("AKjs_TypeIt","css"); //文字打字效果
-    AKjs_Plugin("AKjs_Template"); //模板引擎插件
-    AKjs_Plugin("AKjs_Marquee","css"); //上下左右滚动插件
-    AKjs_Plugin("AKjs_QRcode"); //二维码生成插件
-    AKjs_Plugin("AKjs_NavScroll"); //导航滑动功能（今日头条）
-    AKjs_Plugin("AKjs_Circliful"); //圆形统计插件
-    AKjs_Plugin("AKjs_TimeAxis","css"); //时间轴展示功能
-    AKjs_Plugin("AKjs_EchartsRun"); //百度Echarts运行功能
+    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
     /*-----------------------------------------------AKjs_Lazyload 使用方法-------------------------------------------*/
     $(function() {

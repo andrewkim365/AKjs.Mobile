@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180903 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180904 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -226,11 +226,6 @@ div,header,section,footer,aside,nav,article,figure,figcaption,details,main,dialo
 figure {
     height: 100%;
     max-height: inherit;
-}
-figure img {
-    height: auto;
-    max-width: inherit;
-    min-height: inherit;
 }
 label,button,input,select,textarea {
     font-size:100%;
@@ -5664,6 +5659,7 @@ text {
     display: flex;
 }
 .img_auto img, .img_auto video {
+    display: contents;
     width: auto !important;
     height: auto;
     max-width: 100%;
@@ -13126,27 +13122,12 @@ animation, #ak-animation {
     z-index: 2;
     background-color: inherit;
 }
-animation img, #ak-animation img {
-    border-radius: inherit;
-    opacity: 0;
-    -o-animation:defer 2s forwards;
-    -moz-animation:defer 2s forwards;
-    -webkit-animation:defer 2s forwards;
-    animation:defer 2s forwards;
-}
 animation, #ak-animation, #ak-main, scrollview, #ak-scrollview, #ak-aside, #ak-main-record, header, footer, .ak-ErrorPage {
     -o-transform: translateZ(0);
     -ms-transform: translateZ(0);
     -moz-transform: translateZ(0);
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-}
-#ak-aside figure, #ak-aside img {
-    opacity: 1 !important;
-    -o-animation: none !important;
-    -moz-animation: none !important;
-    -webkit-animation: none !important;
-    animation: none !important;
 }
 #ak-main, #ak-scrollview, ak-main, scrollview {
     display: block;

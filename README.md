@@ -19,7 +19,7 @@ js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版
 
 js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
 
-js/common.js --- 全局调用功能插件
+js/plugin.js --- 全局方法设置以及功能插件按需引入
 
 js/data.js --- Json数据文件
 
@@ -45,7 +45,7 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 * AKjs前端技术支持QQ群：724501394
 
 -----------------------------------------------------------------------------------------------------------------------
-#### 更新时间：2018/09/03 下午 16:55
+#### 更新时间：2018/09/04 下午 16:55
 
 #### 更新说明：
 
@@ -57,19 +57,19 @@ AKjs_Config增加pluginPath参数让功能插件目录可自行设置；
 
 解决AKjs_Unicode方法的bug;
 
-为了解决刚打开页面时加载很慢的问题，所以把原先使用的plugin.js删除并所有演示版页面全部改成按需引入功能插件；
-
-js目录中增加了common.js文件；（该文件可以放全局使用的功能插件）
+为了解决刚打开页面时加载很慢的问题，对plugin.js文件进行优化；
 
 请替换router目录中的所有演示版文件；
 
-修改js目录中的router.js文件（把AKjs_Config方法转移到common.js文件中）；
+修改js目录中的router.js文件（把AKjs_Config方法转移到plugin.js文件中）；
 
 修改 js/plugin/AKjs_Loader.js 文件；（解决bug）
 
 修改 js/plugin/AKjs_Template.js 文件；（解决bug）
 
 修改 js/plugin/AKjs_DropLoad.js 文件；（解决bug）
+
+修改 js/plugin/AKjs_Lazyload.js 文件；（解决bug）
 
 
 #### 更新时间：2018/08/23 下午 08:35

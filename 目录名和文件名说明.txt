@@ -12,7 +12,7 @@ js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版
 
 js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
 
-js/common.js --- 全局调用功能插件
+js/plugin.js --- 全局方法设置以及功能插件按需引入
 
 js/data.js --- Json数据文件
 

@@ -14,14 +14,14 @@
             if (!change) { //change是用于判断hash模式是否跳页
                 AKjs_Include("css/theme.default.css"); //颜色相关样式文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
             }
-            if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值
-                AKjs_Include("js/common.js"); //全局功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
-            }
+
+            AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
+
             if (AKjs_Params(1) === "page1" || AKjs_Params(1) === "page3" || AKjs_Params(1) === "page4") { //通过AKjs_Params获取hash的第一个值
                 AKjs_Include("js/data.js"); //Json数据文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
             }
             if (AKjs_Params(1) === "page4") { //通过AKjs_Params获取hash的第一个值
-                AKjs_Include("http://echarts.baidu.com/dist/echarts.min.js"); //Echarts插件全局引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
+                AKjs_Include("js/echarts.min.js"); //Echarts插件全局引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
             }
             /*-----------------------------------------------AKjs_Menu (底部菜单图标设置Router专用）使用方法-------------------------------------------*/
             $(function() {
