@@ -63,9 +63,9 @@ function AKjs_Loader(setting){
     $(function() {
         if ($(".ak-Loader").length < 1) {
             if (option.ele) {
-                $(option.ele).append("<div class='ak-Loader press abs top_0 left_0 w_100 zindex_22'></div>");
+                $(option.ele).append("<div class='ak-Loader animated fadeIn press abs top_0 left_0 w_100 zindex_22'></div>");
             } else {
-                $("body").append("<div class='ak-Loader press fix top_0 left_0 w_100 zindex_22'></div>");
+                $("body").append("<div class='ak-Loader animated fadeIn press fix top_0 left_0 w_100 zindex_22'></div>");
             }
         }
         var load_ele = $(".ak-Loader");

@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-30
+Modification Date: 2018-09-04
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_DropLoad------------------------------------------*/
@@ -60,7 +60,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         // 如果加载下方，事先在下方插入DOM
         if(me.opts.loadDownFn != ''){
             $("."+ me.opts.domDown.domClass).remove();
-            me.$element.append('<div class="'+me.opts.domDown.domClass+'"><div class="ak-dropload-refresh defer_01">'+me.opts.domDown.domRefresh+'</div></div>');
+            me.$element.append('<div class="'+me.opts.domDown.domClass+'"><div class="ak-dropload-refresh defer_03">'+me.opts.domDown.domRefresh+'</div></div>');
             me.$domDown = $('.'+me.opts.domDown.domClass);
         }
 
@@ -180,11 +180,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if(_absMoveY <= me.opts.distance){
                     me._offsetY = _absMoveY;
                     //todo：move时会不断清空、增加dom，有可能影响性能，下同
-                    me.$domUp.html('<div class="ak-dropload-refresh defer_01">'+me.opts.domUp.domRefresh+'</div>');
+                    me.$domUp.html('<div class="ak-dropload-refresh defer_03">'+me.opts.domUp.domRefresh+'</div>');
                     // 指定距离 < 下拉距离 < 指定距离*2
                 }else if(_absMoveY > me.opts.distance && _absMoveY <= me.opts.distance*2){
                     me._offsetY = me.opts.distance+(_absMoveY-me.opts.distance)*0.5;
-                    me.$domUp.html('<div class="ak-dropload-update defer_01">'+me.opts.domUp.domUpdate+'</div>');
+                    me.$domUp.html('<div class="ak-dropload-update defer_03">'+me.opts.domUp.domUpdate+'</div>');
                     // 下拉距离 > 指定距离*2
                 }else{
                     me._offsetY = me.opts.distance+me.opts.distance*0.5+(_absMoveY-me.opts.distance*2)*0.2;
@@ -204,7 +204,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 fnTransition(me.$domUp,300);
                 if(_absMoveY > me.opts.distance){
                     me.$domUp.css({'height':me.$domUp.children().height()});
-                    me.$domUp.html('<div class="ak-dropload-load defer_01"><span class="loading"></span>'+me.opts.domUp.domLoad+'</div>');
+                    me.$domUp.html('<div class="ak-dropload-load defer_03"><span class="loading"></span>'+me.opts.domUp.domLoad+'</div>');
                     me.loading = true;
                     me.opts.loadUpFn(me);
                 }else{
@@ -263,7 +263,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     function loadDown(me){
         me.direction = 'up';
         if (me.$domDown) {
-            me.$domDown.html('<div class="ak-dropload-load defer_01"><span class="loading"></span>'+me.opts.domDown.domLoad+'</div>');
+            me.$domDown.html('<div class="ak-dropload-load defer_03"><span class="loading"></span>'+me.opts.domDown.domLoad+'</div>');
             me.loading = true;
             me.opts.loadDownFn(me);
         }
@@ -332,12 +332,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             // 如果有数据
             if(me.isData){
                 // 加载区修改样式
-                me.$domDown.html('<div class="ak-dropload-refresh defer_01">'+me.opts.domDown.domRefresh+'</div>');
+                me.$domDown.html('<div class="ak-dropload-refresh defer_03">'+me.opts.domDown.domRefresh+'</div>');
                 fnRecoverContentHeight(me);
                 fnAutoLoad(me);
             }else{
                 // 如果没数据
-                me.$domDown.html('<div class="ak-dropload-noData defer_01">'+me.opts.domDown.domNoData+'</div>');
+                me.$domDown.html('<div class="ak-dropload-noData defer_03">'+me.opts.domDown.domNoData+'</div>');
             }
         }
     };

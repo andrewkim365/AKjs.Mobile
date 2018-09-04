@@ -69,6 +69,8 @@ js目录中增加了common.js文件；（该文件可以放全局使用的功能
 
 修改 js/plugin/AKjs_Template.js 文件；（解决bug）
 
+修改 js/plugin/AKjs_DropLoad.js 文件；（解决bug）
+
 
 #### 更新时间：2018/08/23 下午 08:35
 

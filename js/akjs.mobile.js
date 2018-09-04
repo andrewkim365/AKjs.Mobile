@@ -150,7 +150,7 @@ function AKjs_Router(setting) {
         });
         $(document).ready(function(){
             if (option.Animate) {
-                $("body").html("<animation id='ak-animation'>"+layout.responseText+"</animation>");
+                $("body").html("<animation id='ak-animation'>"+layout.responseText+"</animation><aside id='ak-aside' class='fix_full' />");
             } else {
                 $("body").html(layout.responseText);
             }
@@ -165,7 +165,6 @@ function AKjs_Router(setting) {
             AKjs_mainHeight();
             if (option.Animate) {
                 $(function () {
-                    $("#ak-animation").after("<aside id='ak-aside' class='fix_full' />");
                     var asideEle = $("#ak-aside");
                     var asideRecord = $(aside_record);
                     var animationEle = {};
@@ -175,16 +174,14 @@ function AKjs_Router(setting) {
                         }
                     }
                     if ($("#ak-animation").prop("dataset").router == "slideLeft") {
-                        asideEle.addClass("animated slideOutRight ani_04s zindex_3");
+                        asideEle.html($(animationEle).html()).addClass("animated slideOutRight ani_05s zindex_show");
                         $("#ak-animation").addClass("filter_brig_096");
-                        asideEle.html($(animationEle).html());
                     } else if ($("#ak-animation").prop("dataset").router == "slideRight") {
-                        asideEle.addClass("filter_brig_096");
-                        $("#ak-animation").addClass("animated slideInRight ani_05s");
-                        asideEle.html($(animationEle).html());
+                        asideEle.html($(animationEle).html()).addClass("filter_brig_096");
+                        $("#ak-animation").addClass("animated slideInRight ani_delay_01s ani_05s zindex_show");
                     } else {
+                        asideEle.html("");
                         $("#ak-animation").removeClass();
-                        asideEle.html($(animationEle).html());
                     }
                     asideEle.find("scrollview").scrollTop(PrevScrollTop);
                     asideEle.find('[class^="defer_"]').addClass("defer_none");
@@ -209,11 +206,11 @@ function AKjs_Router(setting) {
                     setTimeout(function () {
                         $("header, footer").not("aside header, aside footer").removeAttr("style");
                         asideEle.find("footer").removeClass("dis_opa_0");
-                        asideEle.removeClass();
-                        asideEle.remove();
+                        asideEle.removeClass().addClass("fix_full");
+                        asideEle.html("");
                         $("#ak-animation").removeClass();
                         $("#ak-animation").attr("data-router","");
-                    }, 300);
+                    }, 500);
                 });
             } else {
                 $("header, main, footer").css({
