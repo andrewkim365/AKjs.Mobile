@@ -1318,6 +1318,7 @@ function AKjs_changeURLArg(url,arg,val) {
 
 /*-----------------------------------------------AKjs_Params------------------------------------------*/
 function AKjs_Params(number) {
+    var hash_question = new RegExp("\\?");
     var hash_sharp = new RegExp("\\#/");
     if (hash_sharp.test(document.location.hash)) {
         hash_arr = (location.hash || "").replace(/^\#/, '').split("&");
@@ -1328,15 +1329,27 @@ function AKjs_Params(number) {
     for(var i=0; i<hash_arr.length; i++){
         params.push(hash_arr[i].split("/"));
     }
-    return params[0][number].split("?")[0];
+    if (hash_question.test(params[0][number])) {
+        var ak_params = params[0][number].split("?")[0];
+    } else {
+        var ak_params = params[0][number];
+    }
+    return ak_params;
+
 }
 
 /*-----------------------------------------------AKjs_Pathname------------------------------------------*/
 function AKjs_Pathname() {
+    var question = new RegExp("\\?");
     var strUrl=window.location.href;
     var arrUrl=strUrl.split("/");
     var strPage=arrUrl[arrUrl.length-1];
-    return strPage.split("?")[0];
+    if (question.test(strPage)) {
+        var ak_strPage = strPage.split("?")[0];
+    } else {
+        var ak_strPage = strPage;
+    }
+    return ak_strPage;
 }
 
 /*-----------------------------------------------AKjs_setCookie------------------------------------------*/
@@ -1345,7 +1358,6 @@ function AKjs_setCookie(cname,cvalue,exdays) {
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
-    //AKjs_setCookie("username", user, 365);
 }
 
 /*-----------------------------------------------AKjs_getCookie------------------------------------------*/
@@ -1358,7 +1370,6 @@ function AKjs_getCookie(cname) {
         if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
     }
     return "";
-    //var user = AKjs_getCookie("username");
 }
 
 /*-----------------------------------------------AKjs_delCookie------------------------------------------*/
