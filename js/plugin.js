@@ -44,11 +44,11 @@ if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后
 }
 
 $(function () {
-    if (AKjs_Params(1) == "start") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
+    if (AKjs_Params(1) === "start") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_Slider", "css"); //欢迎页和联播图功能
 
-    } else if (AKjs_Params(1) == "page1" || AKjs_Pathname() == "demo.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
+    } else if (AKjs_Params(1) === "page1" || AKjs_Pathname() === "demo.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_AllChecked"); //全选功能
         AKjs_Plugin("AKjs_ButtonSubmit", "css"); //防止重复提交功能
@@ -91,17 +91,17 @@ $(function () {
         AKjs_Plugin("AKjs_Viewer", "css"); //图片放大预览功能
         AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
 
-    } else if (AKjs_Params(1) == "page2" || AKjs_Pathname() == "demo2.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
+    } else if (AKjs_Params(1) === "page2" || AKjs_Pathname() === "demo2.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
         AKjs_Plugin("AKjs_MobileChat", "css"); //移动端聊天功能插件
 
-    } else if (AKjs_Params(1) == "page3" || AKjs_Pathname() == "demo3.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
+    } else if (AKjs_Params(1) === "page3" || AKjs_Pathname() === "demo3.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
         AKjs_Plugin("AKjs_Waterfall", "css"); //瀑布流展示功能
 
-    } else if (AKjs_Params(1) == "page4" || AKjs_Pathname() == "demo4.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
+    } else if (AKjs_Params(1) === "page4" || AKjs_Pathname() === "demo4.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
@@ -118,7 +118,7 @@ $(function () {
         AKjs_Plugin("AKjs_TimeAxis","css"); //时间轴展示功能
         AKjs_Plugin("AKjs_EchartsRun"); //百度Echarts运行功能
 
-    } else if (AKjs_Params(1) == "page5" || AKjs_Pathname() == "demo5.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
+    } else if (AKjs_Params(1) === "page5" || AKjs_Pathname() === "demo5.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_GoTop"); //返回页面顶部插件
         AKjs_Plugin("AKjs_Keyboard", "css"); //安全键盘

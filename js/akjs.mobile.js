@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180904 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180905 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -81,7 +81,9 @@ function AKjs_Config(setting) {
         }
     }
     if(option.ButtonLink== true) {
-        AKjs_HashSharp(false);
+        if (!$("html").attr("data-router")) {
+            AKjs_HashSharp();
+        }
     } else {
         $("*").removeAttr("data-href");
     }
@@ -335,9 +337,11 @@ function AKjs_Router(setting) {
                             $("<style id='akjs_style' data-temp='"+new Date().getTime()+"' type=\"text/css\">"+cssText+"</style>").appendTo($("html"));
                         }
                         if (option.Parameter) {
-                            AKjs_HashSharp(true);
+                            localStorage.HashSharp = true;
+                            AKjs_HashSharp();
                         } else {
-                            AKjs_HashSharp(false);
+                            localStorage.HashSharp = false;
+                            AKjs_HashSharp();
                         }
                     },1000);
                 });
@@ -910,19 +914,16 @@ function AKjs_Ajax(setting) {
         cache: option.cache,
         success: function (result) {
             option.success(result);
-            if ($(option.to)) {
-                $(option.to).html(htmlobj.responseText);
-            }
-            AKjs_HashSharp(false);
+            AKjs_HashSharp();
             AKjs_Animation();
         },
         error: function (error) {
-            if ($(option.to)) {
-                $(option.to).html(htmlobj.responseText);
-            }
             option.error(error);
         }
     });
+    if ($(option.to)) {
+        $(option.to).html(htmlobj.responseText);
+    }
 }
 
 /*-----------------------------------------------AKjs_Animation------------------------------------------*/
@@ -962,7 +963,7 @@ function AKjs_Animation() {
 }
 
 /*-----------------------------------------------AKjs_HashSharp------------------------------------------*/
-function AKjs_HashSharp(key) {
+function AKjs_HashSharp() {
     var hash_sharp = new RegExp("#");
     var hash_dot = new RegExp("./");
     var hash_sharps = new RegExp("\\?#");
@@ -983,8 +984,9 @@ function AKjs_HashSharp(key) {
     href_main.bind("click", function (ak) {
         ak.preventDefault();
         var _this = $(this);
+        var _HashSharp = localStorage.HashSharp;
         if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
-            data_href(_this);
+            data_href(_this,_HashSharp);
         } else {
             document.location.href= _this.attr("data-href");
         }
@@ -992,14 +994,16 @@ function AKjs_HashSharp(key) {
     href_not_main.bind(delegate, function (ak) {
         ak.preventDefault();
         var _this = $(this);
+        var _HashSharp = localStorage.HashSharp;
         if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
-            data_href(_this);
+            data_href(_this,_HashSharp);
         } else {
             document.location.href= _this.attr("data-href");
         }
     });
-    function data_href(_this) {
+    function data_href(_this,_HashSharp) {
         var $this = _this;
+        var akKey = _HashSharp;
         if ($("#ak-animation").length > 0) {
             $("#ak-animation").attr("data-router","");
             if (_this.parents("footer")[0] != undefined) {
@@ -1013,20 +1017,20 @@ function AKjs_HashSharp(key) {
         if (hash_sharp.test($this.attr("data-href"))) {
             if(question_mark.test($this.attr("data-href"))){
                 if(akTime.test($this.attr("data-href"))){
-                    if (key) {
+                    if (akKey === "true") {
                         document.location.href=AKjs_changeURLArg($this.attr("data-href"),"akjs",new Date().getTime());
                     } else {
                         document.location.href=$this.attr("data-href");
                     }
                 }else{
-                    if (key) {
+                    if (akKey === "true") {
                         document.location.href=$this.attr("data-href") + '&akjs=' + new Date().getTime();
                     } else {
                         document.location.href=$this.attr("data-href");
                     }
                 }
             }else{
-                if (key) {
+                if (akKey === "true") {
                     document.location.href=$this.attr("data-href") + '?akjs=' + new Date().getTime();
                 } else {
                     document.location.href=$this.attr("data-href");
@@ -1040,13 +1044,13 @@ function AKjs_HashSharp(key) {
         } else {
             if(question_mark.test($this.attr("data-href"))){
                 if(akTime.test($this.attr("data-href"))){
-                    if (key) {
+                    if (akKey === "true") {
                         document.location.href=AKjs_changeURLArg("#"+$this.attr("data-href"),"akjs",new Date().getTime());
                     } else {
                         document.location.href="#"+$this.attr("data-href");
                     }
                 }else{
-                    if (key) {
+                    if (akKey === "true") {
                         document.location.href="#"+$this.attr("data-href") + '&akjs=' + new Date().getTime();
                     } else {
                         document.location.href="#"+$this.attr("data-href");
@@ -1057,13 +1061,13 @@ function AKjs_HashSharp(key) {
                 var index = str.lastIndexOf("\/");
                 str = str.substring(0,index)+"/";
                 str = str.replace("#","");
-                if (key) {
+                if (akKey === "true") {
                     document.location.href="#"+$this.attr("data-href").replace("./", str) + '?akjs=' + new Date().getTime();
                 } else {
                     document.location.href="#"+$this.attr("data-href").replace("./", str);
                 }
             } else {
-                if (key) {
+                if (akKey === "true") {
                     document.location.href="#"+$this.attr("data-href") + '?akjs=' + new Date().getTime();
                 } else {
                     document.location.href="#"+$this.attr("data-href");
@@ -1073,9 +1077,10 @@ function AKjs_HashSharp(key) {
     }
     if ($("html").attr("data-router") == "akjs") {
         $('form[action]').each(function () {
+            var akKey = localStorage.HashSharp;
             var hash_sharp = new RegExp("#");
             if (!hash_sharp.test($(this).attr("action"))) {
-                if (key) {
+                if (akKey === "true") {
                     $(this).attr("action", "#/" + $(this).attr("action") + '?akjs=' + new Date().getTime());
                 } else {
                     $(this).attr("action", "#/" + $(this).attr("action"));
@@ -1157,12 +1162,25 @@ function AKjs_Include(url) {
             dataType: 'script'
         });
     } else if(type_css.test(url)) {
-        var valarr = url.split(".css");
-        valarr = valarr.join();
-        valarr = valarr.substring(0, valarr.length-1);
-        valarr = valarr.substring(valarr.lastIndexOf('/') + 1, valarr.length).replace(".","_");
-        $("head").children("style").filter("#include_"+valarr).remove();
-        $("head").append("<style type='text/css' id='include_"+valarr+"'>@import url('"+url+"?akjs="+new Date().getTime()+"');</style>");
+        var css_valarr = url.split(".css");
+        css_valarr = css_valarr.join();
+        css_valarr = css_valarr.substring(0, css_valarr.length-1);
+        css_valarr = css_valarr.substring(css_valarr.lastIndexOf('/') + 1, css_valarr.length).replace(".","_");
+        if ($("head").children("style").filter("#include_"+css_valarr+"_css").length == 0) {
+            if (localStorage.getItem("include_"+css_valarr + "_css") === null) {
+                css_incobj = $.ajax({
+                    type: 'GET',
+                    url: url + "?akjs=" + new Date().getTime(),
+                    async: false,
+                    cache: true,
+                    dataType: 'text'
+                });
+                localStorage.setItem("include_" + css_valarr + "_css", css_incobj.responseText);
+            } else {
+                localStorage.setItem("include_" + css_valarr + "_css", localStorage.getItem("include_" + css_valarr + "_css"));
+            }
+            $("head").append("<style type='text/css' id='include_" + css_valarr + "_css'>" + localStorage.getItem("include_" + css_valarr + "_css") + "</style>");
+        }
     }
 }
 
@@ -1310,7 +1328,7 @@ function AKjs_Params(number) {
     for(var i=0; i<hash_arr.length; i++){
         params.push(hash_arr[i].split("/"));
     }
-    return params[0][number];
+    return params[0][number].split("?")[0];
 }
 
 /*-----------------------------------------------AKjs_Pathname------------------------------------------*/
@@ -1523,17 +1541,37 @@ function AKjs_DateFormat(date,format) {
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
     var AKjsPath = localStorage.AKjsPath;
-    $.ajax({
-        type:'GET',
-        url: AKjsPath+"/"+setting+".js?akjs="+new Date().getTime(),
-        async: false,
-        cache: true,
-        dataType:'script'
-    });
     if (css) {
-        var css_url = AKjsPath + "/css/" + setting + ".css";
-        $("head").children("style").filter("#"+setting).remove();
-        $("head").append("<style type='text/css' id='"+setting+"'>@import url('"+css_url+"?akjs="+new Date().getTime()+"');</style>");
+        if ($("head").children("style").filter("#" + setting + "_css").length == 0) {
+            if (localStorage.getItem(setting + "_css") === null) {
+                css_plugobj = $.ajax({
+                    type: 'GET',
+                    url: AKjsPath + "/css/" + setting + ".css?akjs=" + new Date().getTime(),
+                    async: false,
+                    cache: true,
+                    dataType: 'text'
+                });
+                localStorage.setItem(setting + "_css", css_plugobj.responseText);
+            } else {
+                localStorage.setItem(setting + "_css", localStorage.getItem(setting + "_css"));
+            }
+            $("head").append("<style type='text/css' id='" + setting + "_css'>"+localStorage.getItem(setting+"_css")+"</style>");
+        }
+    }
+    if ($("head").children("script").filter("#"+setting+"_js").length == 0) {
+        if (localStorage.getItem(setting+"_js") === null) {
+            js_plugobj = $.ajax({
+                type: 'GET',
+                url: AKjsPath + "/" + setting + ".js?akjs=" + new Date().getTime(),
+                async: false,
+                cache: true,
+                dataType: 'text'
+            });
+            localStorage.setItem(setting+"_js", js_plugobj.responseText);
+        } else {
+            localStorage.setItem(setting+"_js", localStorage.getItem(setting+"_js"));
+        }
+        $("head").append("<script type='text/javascript' language='javascript' id='"+setting+"_js'>"+localStorage.getItem(setting+"_js")+"</script>");
     }
 }
 
