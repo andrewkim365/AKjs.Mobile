@@ -1162,24 +1162,12 @@ function AKjs_Include(url) {
             dataType: 'script'
         });
     } else if(type_css.test(url)) {
-        var css_valarr = url.split(".css");
-        css_valarr = css_valarr.join();
-        css_valarr = css_valarr.substring(0, css_valarr.length-1);
-        css_valarr = css_valarr.substring(css_valarr.lastIndexOf('/') + 1, css_valarr.length).replace(".","_");
-        if ($("head").children("style").filter("#include_"+css_valarr+"_css").length == 0) {
-            if (localStorage.getItem("include_"+css_valarr + "_css") === null) {
-                css_incobj = $.ajax({
-                    type: 'GET',
-                    url: url + "?akjs=" + new Date().getTime(),
-                    async: false,
-                    cache: true,
-                    dataType: 'text'
-                });
-                localStorage.setItem("include_" + css_valarr + "_css", css_incobj.responseText);
-            } else {
-                localStorage.setItem("include_" + css_valarr + "_css", localStorage.getItem("include_" + css_valarr + "_css"));
-            }
-            $("head").append("<style type='text/css' id='include_" + css_valarr + "_css'>" + localStorage.getItem("include_" + css_valarr + "_css") + "</style>");
+        var valarr = url.split(".css");
+        valarr = valarr.join();
+        valarr = valarr.substring(0, valarr.length-1);
+        valarr = valarr.substring(valarr.lastIndexOf('/') + 1, valarr.length).replace(".","_");
+        if ($("head").children("style").filter("#include_"+valarr).length == 0) {
+            $("head").append("<style type='text/css' id='include_" + valarr + "'>@import url('" + url + "?akjs=" + new Date().getTime() + "');</style>");
         }
     }
 }
