@@ -9,22 +9,16 @@
         RouterPath:["router","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
         changePage: function (hash,change) { //路由初始化调用和页面变化时的回调（公共插件引入的区域）
             if (!hash) { //首次访问的界面您要跳转到哪个界面？
-                AKjs_Location("/start",{time:500}); //location.replace 跳转模式 (延迟跳转)
+                AKjs_Location("/start"); //location.replace 跳转模式 (延迟跳转)
             }
             if (!change) { //change是用于判断hash模式是否跳页
                 AKjs_Include("css/theme.default.css"); //颜色相关样式文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
+                AKjs_Include("js/data.js"); //Json数据文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
+                AKjs_Include("js/echarts.min.js"); //Echarts插件全局引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
             }
 
             AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
-            //console.log(AKjs_Params(1))
-
-            if (AKjs_Params(1) === "page1" || AKjs_Params(1) === "page3" || AKjs_Params(1) === "page4") { //通过AKjs_Params获取hash的第一个值
-                AKjs_Include("js/data.js"); //Json数据文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
-            }
-            if (AKjs_Params(1) === "page4") { //通过AKjs_Params获取hash的第一个值
-                AKjs_Include("js/echarts.min.js"); //Echarts插件全局引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
-            }
             /*-----------------------------------------------AKjs_Menu (底部菜单图标设置Router专用）使用方法-------------------------------------------*/
             $(function() {
                 AKjs_Menu({ //底部菜单的图标以及文字样式变化设置
@@ -53,7 +47,7 @@
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况
                 AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
                 ak_webToast("您访问的界面加载失败,请稍后再试!","middle",3000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
-                AKjs_Location("/page1",{time:500}); //location.replace 跳转模式 (延迟跳转)
+                AKjs_Location("/page1"); //location.replace 跳转模式 (延迟跳转)
             }
         }
     });

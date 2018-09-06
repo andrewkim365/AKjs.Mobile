@@ -1190,29 +1190,40 @@ function AKjs_Location(url,setting) {
             }
         }
     }
-    switch (option.type) {
-        case 'href':
-            if (option.time) {
-                setTimeout(function () {
+    $(function () {
+        switch (option.type) {
+            case 'href':
+                if (option.time) {
+                    setTimeout(function () {
+                        AniSetting();
+                        if (IsIphone || IsIpad) {
+                            document.location.href="#"+url;
+                        } else {
+                            window.location.href="#"+url;
+                        }
+                    }, option.time);
+                } else {
                     AniSetting();
                     if (IsIphone || IsIpad) {
                         document.location.href="#"+url;
                     } else {
                         window.location.href="#"+url;
                     }
-                }, option.time);
-            } else {
-                AniSetting();
-                if (IsIphone || IsIpad) {
-                    document.location.href="#"+url;
-                } else {
-                    window.location.href="#"+url;
                 }
-            }
-            break;
-        case 'history':
-            if (option.time) {
-                setTimeout(function () {
+                break;
+            case 'history':
+                if (option.time) {
+                    setTimeout(function () {
+                        if ($("#ak-animation").length > 0) {
+                            $("#ak-animation").attr("data-router", "slideLeft");
+                        }
+                        if (IsIphone || IsIpad) {
+                            history.back(url);
+                        } else {
+                            window.back(url);
+                        }
+                    }, option.time);
+                } else {
                     if ($("#ak-animation").length > 0) {
                         $("#ak-animation").attr("data-router", "slideLeft");
                     }
@@ -1221,55 +1232,46 @@ function AKjs_Location(url,setting) {
                     } else {
                         window.back(url);
                     }
-                }, option.time);
-            } else {
-                if ($("#ak-animation").length > 0) {
-                    $("#ak-animation").attr("data-router", "slideLeft");
                 }
-                if (IsIphone || IsIpad) {
-                    history.back(url);
+                break;
+            case 'reload':
+                if (option.time) {
+                    setTimeout(function () {
+                        if (IsIphone || IsIpad) {
+                            document.location.reload();
+                        } else {
+                            window.location.reload();
+                        }
+                    }, option.time);
                 } else {
-                    window.back(url);
-                }
-            }
-            break;
-        case 'reload':
-            if (option.time) {
-                setTimeout(function () {
                     if (IsIphone || IsIpad) {
                         document.location.reload();
                     } else {
                         window.location.reload();
                     }
-                }, option.time);
-            } else {
-                if (IsIphone || IsIpad) {
-                    document.location.reload();
-                } else {
-                    window.location.reload();
                 }
-            }
-            break;
-        default:
-            if (option.time) {
-                setTimeout(function () {
+                break;
+            default:
+                if (option.time) {
+                    setTimeout(function () {
+                        AniSetting();
+                        if (IsIphone || IsIpad) {
+                            document.location.replace("#"+url);
+                        } else {
+                            window.location.replace("#"+url);
+                        }
+                    }, option.time);
+                } else {
                     AniSetting();
                     if (IsIphone || IsIpad) {
                         document.location.replace("#"+url);
                     } else {
                         window.location.replace("#"+url);
                     }
-                }, option.time);
-            } else {
-                AniSetting();
-                if (IsIphone || IsIpad) {
-                    document.location.replace("#"+url);
-                } else {
-                    window.location.replace("#"+url);
                 }
-            }
-            break;
-    }
+                break;
+        }
+    });
 }
 
 /*-----------------------------------------------AKjs_getUrlParam-------------------------------------------*/
