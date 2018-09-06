@@ -2265,7 +2265,7 @@
         $(".plug_print").click(function(){
             $("#ak-scrollview").AKjs_Print({
                 noPrint: ".plug_print", //打印过滤元素设置 （设置指定元素打印区域不显示该元素）
-                iframe : false, //是否打印功能启动在本窗口中运行？（本窗: true, 新窗: false）
+                iframe : true, //是否打印功能启动在本窗口中运行？（本窗: true, 新窗: false）
             });
         });
     });
