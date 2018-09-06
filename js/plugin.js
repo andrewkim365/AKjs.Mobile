@@ -117,6 +117,7 @@ $(function () {
         AKjs_Plugin("AKjs_Circliful"); //圆形统计插件
         AKjs_Plugin("AKjs_TimeAxis","css"); //时间轴展示功能
         AKjs_Plugin("AKjs_EchartsRun"); //百度Echarts运行功能
+        AKjs_Plugin("AKjs_Print"); //局部打印插件
 
     } else if (AKjs_Params(1) === "page5" || AKjs_Pathname() === "demo5.html") { //通过AKjs_Params获取hash的第一个值, AKjs_Pathname获取路径的文件名
 

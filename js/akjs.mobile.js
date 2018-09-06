@@ -734,13 +734,15 @@ function AKjs_placeholder() {
 /*-----------------------------------------------AKjs_mainHeight--------------------------------------*/
 function AKjs_mainHeight() {
     $(function() {
-        AKjs_Back.listen(function(){
-            if ($("#ak-animation").length > 0) {
-                $("#ak-animation").attr("data-router", "slideLeft");
-            }
-        });
         AKjs_UserAgent();
         AKjs_stopElastic();
+        if (IsMobile) {
+            AKjs_Back.listen(function(){
+                if ($("#ak-animation").length > 0) {
+                    $("#ak-animation").attr("data-router", "slideLeft");
+                }
+            });
+        }
         $("form").each(function(){
             if ($(this).attr("data-submit") == "false") {
                 $(this).attr("onsubmit","return false");
@@ -1151,6 +1153,7 @@ function AKjs_RegularExp() {
 
 /*-----------------------------------------------AKjs_Include------------------------------------------*/
 function AKjs_Include(url) {
+    AKjs_UserAgent();
     var type_js = new RegExp(".js");
     var type_css = new RegExp(".css");
     if(type_js.test(url)) {
@@ -1167,7 +1170,11 @@ function AKjs_Include(url) {
         valarr = valarr.substring(0, valarr.length-1);
         valarr = valarr.substring(valarr.lastIndexOf('/') + 1, valarr.length).replace(".","_");
         if ($("head").children("style").filter("#include_"+valarr).length == 0) {
-            $("head").append("<style type='text/css' id='include_" + valarr + "'>@import url('" + url + "?akjs=" + new Date().getTime() + "');</style>");
+            if (IsIE8 || IsIE7 || IsIE6) {
+                $("head").append("<link rel='stylesheet' type='text/css' id='include_" + valarr + "' href='" + url + "?akjs=" + new Date().getTime() + "' />");
+            } else {
+                $("head").append("<style type='text/css' id='include_" + valarr + "'>@import url('" + url + "?akjs=" + new Date().getTime() + "');</style>");
+            }
         }
     }
 }
@@ -1569,7 +1576,11 @@ function AKjs_Plugin(setting,css) {
                 }
                 var css_source = localStorage.getItem(setting+"_css");
             }
-            $("head").append("<style type='text/css' id='" + setting + "_css'>"+css_source+"</style>");
+            if (IsIE8 || IsIE7 || IsIE6) {
+                $("head").append("<link rel='stylesheet' type='text/css'  id='" + setting + "_css' href='" + AKjsPath + "/css/" + setting + ".css?akjs=" + new Date().getTime() + "' />");
+            } else {
+                $("head").append("<style type='text/css' id='" + setting + "_css'>"+css_source+"</style>");
+            }
         }
     }
     if ($("head").children("script").filter("#"+setting+"_js").length == 0) {
@@ -1601,28 +1612,31 @@ function AKjs_Plugin(setting,css) {
 
 /*-----------------------------------------------AKjs_Back------------------------------------------*/
 (function(AKjs_Back){
-    $(function () {
-        var STATE = 'ak-back';
-        var element;
-        var onPopState = function(event){
-            event.state === STATE && fire();
-        };
-        var record = function(state){
-            history.pushState(state, null, location.href);
-        };
-        var fire = function(){
-            var event = document.createEvent('Events');
-            event.initEvent(STATE, false, false);
-            element.dispatchEvent(event);
-        };
-        var listen = function(listener){
-            element.addEventListener(STATE, listener, false);
-        };
-        !function(){
-            element = document.createElement('span');
-            window.addEventListener('popstate', onPopState);
-            this.listen = listen;
-            record(STATE);
-        }.call(window[AKjs_Back] = window[AKjs_Back] || {});
-    });
+    AKjs_UserAgent();
+    if (IsMobile) {
+        $(function () {
+            var STATE = 'ak-back';
+            var element;
+            var onPopState = function(event){
+                event.state === STATE && fire();
+            };
+            var record = function(state){
+                history.pushState(state, null, location.href);
+            };
+            var fire = function(){
+                var event = document.createEvent('Events');
+                event.initEvent(STATE, false, false);
+                element.dispatchEvent(event);
+            };
+            var listen = function(listener){
+                element.addEventListener(STATE, listener, false);
+            };
+            !function(){
+                element = document.createElement('span');
+                window.addEventListener('popstate', onPopState);
+                this.listen = listen;
+                record(STATE);
+            }.call(window[AKjs_Back] = window[AKjs_Back] || {});
+        });
+    }
 }('AKjs_Back'));
