@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-04
+Modification Date: 2018-09-06
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Lazyload-------------------------------------------*/
@@ -26,14 +26,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         ele.each(function () {
                             var view_img = $(this);
                             if (view_img.length > 0) {
-                                if (view_img.parent().prop('tagName') != "FIGURE" || view_img.parent().prop('tagName') != "figure") {
+                                if (view_img.parent().prop('tagName') != "FIGURE" && view_img.parent().prop('tagName') != "figure") {
                                     view_img.wrap("<figure />");
                                 }
                             }
                             if (png_regexp.test(view_img.attr("src")) || gif_regexp.test(view_img.attr("src"))) {
-                                view_img.parents("figure").addClass("bg_none ak_img_" + option.Img_LoadStyle);
+                                view_img.parents("figure").addClass("bg_none img_auto ak_img_" + option.Img_LoadStyle);
                             } else {
-                                view_img.parents("figure").addClass("ak_img_" + option.Img_LoadStyle);
+                                view_img.parents("figure").addClass("img_auto ak_img_" + option.Img_LoadStyle);
                             }
                             setTimeout(function () {
                                 if (view_img.hasClass("dis_none") || view_img.hasClass("dis_none_im") || view_img.hasClass("dis_opa_0")) {
