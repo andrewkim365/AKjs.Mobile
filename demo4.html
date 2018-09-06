@@ -863,6 +863,12 @@
             $("#ak-scrollview").AKjs_Print({
                 noPrint: ".plug_print", //打印过滤元素设置 （设置指定元素打印区域不显示该元素）
                 iframe : true, //是否打印功能启动在本窗口中运行？（本窗: true, 新窗: false）
+                callback:function(ele){ //打印页面回调入口（获取打印区域的元素）
+                    ele.find("main").addClass("h_100");
+                    ele.find("#ak-scrollview").addClass("h_100");
+                    $(".ak-Loader").remove();
+                    $(".ak-mask").remove();
+                }
             });
         });
     });

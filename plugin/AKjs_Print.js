@@ -32,6 +32,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var defaults = {
             iframe: false,
             noPrint: "",
+            callback: function() {},
             deferred: $.Deferred()
         };
         options = $.extend({},
@@ -40,8 +41,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var copy = $this.clone();
         copy = $("<span/>").append(copy);
         copy.find(options.noPrint).remove();
-        $(".ak-Loader").remove();
-        $(".ak-mask").remove();
+        options.callback(copy);
         copy.append($styles.clone());
         var content = copy.html();
         copy.remove();
