@@ -736,13 +736,6 @@ function AKjs_mainHeight() {
     $(function() {
         AKjs_UserAgent();
         AKjs_stopElastic();
-        if (IsMobile) {
-            AKjs_Back.listen(function(){
-                if ($("#ak-animation").length > 0) {
-                    $("#ak-animation").attr("data-router", "slideLeft");
-                }
-            });
-        }
         $("form").each(function(){
             if ($(this).attr("data-submit") == "false") {
                 $(this).attr("onsubmit","return false");
@@ -1609,34 +1602,3 @@ function AKjs_Plugin(setting,css) {
         }
     }
 }
-
-/*-----------------------------------------------AKjs_Back------------------------------------------*/
-(function(AKjs_Back){
-    AKjs_UserAgent();
-    if (IsMobile) {
-        $(function () {
-            var STATE = 'ak-back';
-            var element;
-            var onPopState = function(event){
-                event.state === STATE && fire();
-            };
-            var record = function(state){
-                history.pushState(state, null, location.href);
-            };
-            var fire = function(){
-                var event = document.createEvent('Events');
-                event.initEvent(STATE, false, false);
-                element.dispatchEvent(event);
-            };
-            var listen = function(listener){
-                element.addEventListener(STATE, listener, false);
-            };
-            !function(){
-                element = document.createElement('span');
-                window.addEventListener('popstate', onPopState);
-                this.listen = listen;
-                record(STATE);
-            }.call(window[AKjs_Back] = window[AKjs_Back] || {});
-        });
-    }
-}('AKjs_Back'));
