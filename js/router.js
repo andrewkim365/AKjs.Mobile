@@ -6,17 +6,15 @@
         Parameter: false, //是否开启URL的akjs参数，启用该功能可以解决浏览器缓存问题 （开启 true, 停用 false）
         Animate: true, //是否开启切换页面时带动画效果。通过data-href跳页的方式识别（仿原生APP的页面切换效果）。 (开启 true, 停用 false）
         ErrorMsg: "很抱歉，您要访问的界面加载失败！请稍后再试。", //界面加载失败时提示的信息 （找不到相关页面或者网络环境不稳定时提示的信息）
-        RouterPath:["router","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
+        RouterPath: ["router","layout/main.html"], //路由目录和界面布局文件设置（第1个参数是路由目录文件夹名，第2个参数是指定整个界面布局的文件）
+        startPage: "/start", //首次访问的界面您要跳转到哪个界面？
         changePage: function (hash,change) { //路由初始化调用和页面变化时的回调（公共插件引入的区域）
-            if (!hash) { //首次访问的界面您要跳转到哪个界面？
-                AKjs_Location("/start"); //location.replace 跳转模式
-            }
             if (!change) { //change是用于判断hash模式是否跳页
-                AKjs_Include("css/theme.default.css"); //颜色相关样式文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
                 AKjs_Include("js/data.js"); //Json数据文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
                 AKjs_Include("js/echarts.min.js"); //Echarts插件全局引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
             }
 
+            AKjs_Include("css/theme.default.css"); //颜色相关样式文件引入（AKjs_Include是js文件中引入另一个js或css文件的功能）
             AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
             /*-----------------------------------------------AKjs_Menu (底部菜单图标设置Router专用）使用方法-------------------------------------------*/

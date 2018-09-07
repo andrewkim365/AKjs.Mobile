@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-06
+Modification Date: 2018-09-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Lazyload-------------------------------------------*/
@@ -21,36 +21,32 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var gif_regexp = new RegExp("\\.gif");
             $(function () {
                 option.Callback(option.scroll.find(ele));
-                if (ele.prop('tagName') == "IMG" || ele.prop('tagName') == "img") {
+                if (ele.prop('tagName') == "img" || ele.prop('tagName') == "IMG") {
                     if (option.Img_LoadStyle) {
                         ele.each(function () {
                             var view_img = $(this);
                             if (view_img.length > 0) {
-                                if (view_img.parent().prop('tagName') != "FIGURE" && view_img.parent().prop('tagName') != "figure") {
+                                if (view_img.parent().prop('tagName') != "figure" && view_img.parent().prop('tagName') != "FIGURE") {
                                     view_img.wrap("<figure />");
                                 }
                             }
                             if (png_regexp.test(view_img.attr("src")) || gif_regexp.test(view_img.attr("src"))) {
-                                view_img.parents("figure").addClass("bg_none img_auto ak_img_" + option.Img_LoadStyle);
+                                view_img.parents("figure").addClass("bg_none ak_img_" + option.Img_LoadStyle);
                             } else {
-                                view_img.parents("figure").addClass("img_auto ak_img_" + option.Img_LoadStyle);
+                                view_img.parents("figure").addClass("ak_img_" + option.Img_LoadStyle);
                             }
                             setTimeout(function () {
                                 if (view_img.hasClass("dis_none") || view_img.hasClass("dis_none_im") || view_img.hasClass("dis_opa_0")) {
-                                    setTimeout(function () {
-                                        view_img.wrap("<label class='img_thumb'></label>");
-                                        view_img.parent(".img_thumb").css({
-                                            "background-image": 'url("' + view_img.attr("src") + '")'
-                                        });
-                                        view_img.remove();
-                                    }, 200);
+                                    view_img.wrap("<label class='wh_in img_thumb'></label>");
+                                    view_img.parent(".img_thumb").css({
+                                        "background-image": 'url("' + view_img.attr("src") + '")'
+                                    });
+                                    view_img.remove();
                                 } else {
                                     if (view_img.offset().top < view_h) {
                                         view_img.attr("data-src", view_img.attr("src"));
                                         view_img.attr("src",TransparentImage);
-                                        setTimeout(function () {
-                                            view_img.attr("src", view_img.data("src"));
-                                        }, 200);
+                                        view_img.attr("src", view_img.data("src"));
                                         if (option.Img_Effect) {
                                             view_img.addClass("animated "+option.Img_Effect);
                                         }
@@ -62,7 +58,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         }
                                     }
                                 }
-                            }, 100);
+                            },500);
                         });
                     }
                     if (option.Img_Error) {
@@ -98,7 +94,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     for(var i = 0; i < ele.length; i++) {
                         arr[i] = ele.eq(i).offset().top + scrollTop + (ele.eq(i).prop('offsetHeight') / 2);
                         if(arr[i] >= scrollTop && arr[i] <= clientHeight){
-                            if (ele.eq(i).prop('tagName') == "IMG" || ele.eq(i).prop('tagName') == "img") {
+                            if (ele.eq(i).prop('tagName') == "img" || ele.eq(i).prop('tagName') == "IMG") {
                                 ele.eq(i).attr("src", ele.eq(i).data("src"));
                                 ele.eq(i).addClass("animated " + option.Img_Effect);
                             } else if (ele.eq(i).attr("data-animation")){
@@ -136,13 +132,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     option.Scrollback(option.scroll.find(ele),scrollTop);
                     ele.each(function () {
                         var view_ele = $(this);
-                        if (view_ele.prop('tagName') == "IMG" || view_ele.prop('tagName') == "img") {
+                        if (view_ele.prop('tagName') == "img" || view_ele.prop('tagName') == "IMG") {
                             if (view_ele.offset().top < view_h) {
                                 if (option.scrollTop >= scrollTop) {
-                                    setTimeout(function () {
+                                    $(function () {
                                         view_ele.addClass("animated "+option.Img_Effect);
                                         view_ele.attr("src", view_ele.data("src"));
-                                    }, 200);
+                                    });
                                 }
                             } else {
                                 if (option.scrollTop >= scrollTop) {

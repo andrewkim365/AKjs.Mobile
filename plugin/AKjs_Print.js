@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-06
+Modification Date: 2018-09-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Print-------------------------------------------*/
@@ -37,7 +37,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         };
         options = $.extend({},
             defaults, (options || {}));
-        var $styles = $("style, link, meta, title, script");
+        var $styles = $("style, link, meta, title");
         var copy = $this.clone();
         copy = $("<span/>").append(copy);
         copy.find(options.noPrint).remove();

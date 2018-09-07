@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-30
+Modification Date: 2018-09-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MobileChat--------------------------------------------*/
@@ -61,10 +61,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $(option.chat_optDom).removeClass("dis_none").animate({
                 "height": option.chat_optHeight
             },200);
-            $(function() {
+            setTimeout(function() {
                 ChatCssSetting();
-                var scrollHeight = $("#ak-scrollview").prop("scrollHeight");
-                $("#ak-scrollview").scrollTop(scrollHeight); //展开更多功能后让滚动调自动滚到最底部
+            },200);
+            $(function() {
                 option.optcallback($(option.chat_optDom),true);
                 $chat_plugin.find("input").on('focus', function() {
                     ChatOption_hide();
@@ -76,12 +76,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $(option.chat_optDom).animate({
                 "height": 0
             },200);
+            setTimeout(function() {
+                ChatCssSetting();
+            },200);
             $(function() {
                 $("footer").children().removeClass("h_au");
                 $(option.chat_optDom).addClass("dis_none");
-                ChatCssSetting();
-                var scrollHeight = $("#ak-scrollview").prop("scrollHeight");
-                $("#ak-scrollview").scrollTop(scrollHeight); //隐藏更多功能后让滚动调自动滚到最底部
                 option.optcallback($(option.chat_optDom),false);
             });
         }
@@ -89,12 +89,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
                 var header_h = 0;
             } else {
-                var header_h = $("header").not("aside header").outerHeight();
+                var header_h = $("header").prop("clientHeight");
             }
             if ($("footer").not("aside footer").hasClass("dis_none_im") || $("footer").not("aside footer").length === 0) {
                 var footer_h = 0;
             } else {
-                var footer_h = $("footer").not("aside footer").outerHeight();
+                var footer_h = $("footer").children().prop("clientHeight");
             }
             $("main").css({
                 "height": $(window).height() - header_h - footer_h,
@@ -103,6 +103,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $("#ak-scrollview").css({
                 "height": $(window).height() - $("#ak-scrollview").offset().top - footer_h
             });
+            var scrollHeight = $("#ak-scrollview").prop("scrollHeight");
+            $("#ak-scrollview").scrollTop(scrollHeight);
         }
     };
 }(jQuery));

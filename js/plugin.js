@@ -10,7 +10,8 @@ AKjs_Config({ //环境配置管理
     animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
     Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
     Prompt: "为了更好的视觉体验，请在竖屏下进行操作。", //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-    pluginPath: "./plugin/" //功能插件文件所在的目录设置
+    pluginPath: "./plugin/", //功能插件文件所在的目录设置
+    pluginVersion: 201809071822 //插件版本管理（替换最新功能插件代码后，改变该参数后才能提取最新代码）
 });
 
 /******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
