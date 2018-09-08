@@ -17,7 +17,7 @@ function AKjs_Config(setting) {
             Topdblclick: true,
             animation: true,
             pluginPath: "js/plugin/",
-            pluginClear: {days: "", hours: "", minutes: "", seconds: ""}
+            pluginClear: {days: 0, hours: 0, minutes: 0, seconds: 0}
         },
         setting);
     AKjs_UserAgent();
@@ -46,13 +46,13 @@ function AKjs_Config(setting) {
         });
     }
     if(option.pluginClear) {
-        if (option.pluginClear.days != undefined) {
+        if (option.pluginClear.days != undefined && option.pluginClear.days != 0) {
             localStorage.setItem("pluginClear_days", option.pluginClear.days);
-        } else if (option.pluginClear.hours != undefined) {
+        } else if (option.pluginClear.hours != undefined && option.pluginClear.hours != 0) {
             localStorage.setItem("pluginClear_hours", option.pluginClear.hours);
-        } else if (option.pluginClear.minutes != undefined) {
+        } else if (option.pluginClear.minutes != undefined && option.pluginClear.minutes != 0) {
             localStorage.setItem("pluginClear_minutes", option.pluginClear.minutes);
-        } else if (option.pluginClear.seconds != undefined) {
+        } else if (option.pluginClear.seconds != undefined && option.pluginClear.seconds != 0) {
             localStorage.setItem("pluginClear_seconds", option.pluginClear.seconds);
         }
     }
@@ -1576,33 +1576,29 @@ function AKjs_DateFormat(date,format) {
 function AKjs_Plugin(setting,css) {
     AKjs_UserAgent();
     var AKjsPath = localStorage.AKjsPath;
-    if (localStorage.getItem("pluginDate") === null) {
-        var StartDate = new Date().getTime();
-    } else {
-        var StartDate = localStorage.getItem("pluginDate");
-    }
-    var EndDate = new Date().getTime() - StartDate;
-    var leave1=EndDate%(24*3600*1000);
-    var leave2=leave1%(3600*1000);
-    var leave3=leave2%(60*1000);
-    var days=Math.floor(EndDate/(24*3600*1000));
-    var hours=Math.floor(leave1/(3600*1000));
-    var minutes=Math.floor(leave2/(60*1000));
-    var seconds=Math.round(leave3/1000);
 
     if (!IsIE8 && !IsIE7 && !IsIE6) {
-        if (localStorage.getItem("pluginClear_days") != "undefined" && localStorage.getItem("pluginClear_days") != 0) {
+        if (localStorage.getItem("pluginDate") === null) {
+            var StartDate = new Date().getTime();
+        } else {
+            var StartDate = localStorage.getItem("pluginDate");
+        }
+        var EndDate = new Date().getTime() - StartDate;
+        var leave1=EndDate%(24*3600*1000);
+        var leave2=leave1%(3600*1000);
+        var leave3=leave2%(60*1000);
+        if (localStorage.getItem("pluginClear_days") != null && localStorage.getItem("pluginClear_days") != 0) {
             var plugTime = localStorage.getItem("pluginClear_days");
-            var plugType = days;
-        } else if (localStorage.getItem("pluginClear_hours") != "undefined" && localStorage.getItem("pluginClear_hours") != 0) {
+            var plugType = Math.floor(EndDate/(24*3600*1000));
+        } else if (localStorage.getItem("pluginClear_hours") != null && localStorage.getItem("pluginClear_hours") != 0) {
             var plugTime = localStorage.getItem("pluginClear_hours");
-            var plugType = hours;
-        } else if (localStorage.getItem("pluginClear_minutes") != "undefined" && localStorage.getItem("pluginClear_minutes") != 0) {
+            var plugType = Math.floor(leave1/(3600*1000));
+        } else if (localStorage.getItem("pluginClear_minutes") != null && localStorage.getItem("pluginClear_minutes") != 0) {
             var plugTime = localStorage.getItem("pluginClear_minutes");
-            var plugType = minutes;
-        } else if (localStorage.getItem("pluginClear_seconds") != "undefined" && localStorage.getItem("pluginClear_seconds") != 0) {
+            var plugType = Math.floor(leave2/(60*1000));
+        } else if (localStorage.getItem("pluginClear_seconds") != null && localStorage.getItem("pluginClear_seconds") != 0) {
             var plugTime = localStorage.getItem("pluginClear_seconds");
-            var plugType = seconds;
+            var plugType = Math.round(leave3/1000);
         }
         if (plugType > plugTime) {
             sessionStorage.clear();
