@@ -164,7 +164,6 @@ function AKjs_Router(setting) {
             Router_Ajax(option);
             AKjs_mainHeight();
             if (!document.location.hash.substring(1) && option.startPage) {
-                //localStorage.clear();
                 AKjs_Location(option.startPage);
             }
             option.changePage(document.location.hash.substring(1),false);
