@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180908 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180911 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -11922,6 +11922,9 @@ text {
 .active_white:active {
     background-color:#ffffff !important;
 }
+.hover_none:active {
+    background-color: transparent !important;
+}
 
 /*white color list Style*/
 .list_f1f_white > *:nth-child(even) {
@@ -13229,6 +13232,9 @@ animation, #ak-animation, #ak-main, scrollview, #ak-scrollview, #ak-aside, #ak-m
     left:0;
     width:100%;
     height:100%;
+}
+#ak-scrollview .ak-mask {
+    height: 200%;
 }
 .ak-mask_style1 .ak-mask, .ak-pattern1 {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFNzE4MUUxNzk0NDIxMUU3Qjc4Rjk4MTU5QkM4RUI2NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFNzE4MUUxODk0NDIxMUU3Qjc4Rjk4MTU5QkM4RUI2NiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkU3MTgxRTE1OTQ0MjExRTdCNzhGOTgxNTlCQzhFQjY2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU3MTgxRTE2OTQ0MjExRTdCNzhGOTgxNTlCQzhFQjY2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+z3W0nAAAAEBJREFUeNpiZGBgkGLAD57BGP///8eQZBz8BgA1PcMnP2oAxAB0DQhJRrC0FNEGYI0mRkYaG4BN06gBpBkAEGAAZTg4yVYBUjQAAAAASUVORK5CYII=) !important;

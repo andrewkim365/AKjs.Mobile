@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-07
+Modification Date: 2018-09-11
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MobileChat--------------------------------------------*/
@@ -23,8 +23,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var container = $(option.chat_view).children("ul");
         var scrollHeight = $("#ak-scrollview").prop("scrollHeight");
         option.callback($chat_plugin,container,scrollHeight);
-        $chat_plugin.find("input").on("input propertychange", function(e){
-            e.preventDefault();
+        $chat_plugin.find("input").keyup(function() {
             if ($(this).prop("value").length > 0) {
                 //console.log($(this).prop("value")) //实时监听输入框值的变化
                 option.chatcallback($chat_plugin,$(this).prop("value"))

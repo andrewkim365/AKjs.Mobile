@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-23
+Modification Date: 2018-09-11
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
@@ -311,22 +311,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var height = textbox.outerHeight() + parseInt(textbox.css('margin-top'));
             var width = textbox.outerWidth() + parseInt(textbox.css('margin-left'));
             if (IsMobile) {
-                var fullOffsetTop = offset.top + height;
-            } else {
-                if ($("#ak-scrollview").scrollTop() > 0) {
-                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top + $("#ak-scrollview").scrollTop();
-                } else {
-                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top;
-                }
-            }
-            var offsetLeft = offset.left - $("#ak-scrollview").offset().left;
-            if ((fullOffsetTop + this.picker.outerHeight()) >= $("#ak-scrollview").scrollTop() + $(window).height()) {
-                fullOffsetTop = offset.top - this.picker.outerHeight();
-            }
-            if (offset.left + this.picker.width() >= $(window).width()) {
-                offsetLeft = (offset.left + width) - this.picker.width();
-            }
-            if (IsMobile) {
                 this.picker.removeClass("dis_none").addClass("ak-isMobile").css({
                     bottom: 0,
                     top: "auto",
@@ -351,6 +335,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     });
                 }
             } else {
+                //debugger
+                if ($("#ak-scrollview").scrollTop() > 0) {
+                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top + $("#ak-scrollview").scrollTop();
+                } else {
+                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top;
+                }
+                if (offset.left + this.picker.width() > $(window).width()) {
+                    offsetLeft = offset.left - $("#ak-scrollview").offset().left - this.picker.width() + width;
+                } else {
+                    offsetLeft = offset.left - $("#ak-scrollview").offset().left
+                }
                 this.picker.removeClass("ak-isMobile").css({
                     bottom: "auto",
                     top: fullOffsetTop,

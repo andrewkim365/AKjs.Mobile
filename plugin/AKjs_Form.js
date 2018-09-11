@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-23
+Modification Date: 2018-09-11
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Form--------------------------------------------*/
@@ -121,7 +121,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
         //输入的文字删除按钮
         var btn_delete = mbf.find(option.btn_delete);
-        btn_delete.bind('input propertychange', function () {
+        btn_delete.keyup(function() {
             var del_btn = $(this);
             if ($(this).val() > 0) {
                 if ($(this).next("button[type=reset]").length < 1) {

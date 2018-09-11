@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.4.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180908 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180911 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -770,6 +770,9 @@ function AKjs_mainHeight() {
             }
             $(this).removeAttr("data-submit");
         });
+        if ($("main").length === 0) {
+            $("body").children().not("header").not("footer").not("aside").wrapAll("<main />");
+        }
         if ($("main").not("aside main").children("#ak-main").length === 0) {
             $("main").not("aside main").children().not("dialog").wrapAll("<div id=\"ak-main\"><scrollview id=\"ak-scrollview\"></scrollview></div>");
         } else {
