@@ -66,6 +66,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.0版本；
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.4.3版本；
 
+css目录中的iconfont文件夹需要全部替换；
+
 AKjs_Config增加pluginClearn参数定期清理功能插件的缓存问题；
 
 AKjs_Router增加startPage参数，指定首次访问后的页面；
