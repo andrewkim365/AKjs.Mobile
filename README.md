@@ -51,13 +51,13 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.0版本；
 
-修改 js/plugin/AKjs_MultiDate.js 文件；（解决bug）
+修改 plugin/AKjs_MultiDate.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_Spinner.js 文件；（解决bug）
+修改 plugin/AKjs_Spinner.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_Form.js 文件；（解决bug）
+修改 plugin/AKjs_Form.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_MobileChat.js 文件；（解决bug）
+修改 plugin/AKjs_MobileChat.js 文件；（解决bug）
 
 -----------------------------------------------------------------------------------------------------------------------
 #### 更新时间：2018/09/08 下午 18:25
@@ -74,13 +74,13 @@ AKjs_Router增加startPage参数，指定首次访问后的页面；
 
 修改js目录中的router.js文件（把AKjs_Config方法转移到plugin.js文件中）；
 
-修改 js/plugin/AKjs_Lazyload.js 文件；（解决bug）
+修改 plugin/AKjs_Lazyload.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_MobileChat.js 文件；（解决bug）
+修改 plugin/AKjs_MobileChat.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_Print.js 文件；（解决bug）
+修改 plugin/AKjs_Print.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_Spinner.js 文件；（解决bug）
+修改 plugin/AKjs_Spinner.js 文件；（解决bug）
 
 
 #### 更新时间：2018/09/05 下午 16:55
@@ -103,13 +103,13 @@ AKjs_Config增加pluginPath参数让功能插件目录可自行设置；
 
 修改js目录中的router.js文件（把AKjs_Config方法转移到plugin.js文件中）；
 
-修改 js/plugin/AKjs_Loader.js 文件；（解决bug）
+修改 plugin/AKjs_Loader.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_Template.js 文件；（解决bug）
+修改 plugin/AKjs_Template.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_DropLoad.js 文件；（解决bug）
+修改 plugin/AKjs_DropLoad.js 文件；（解决bug）
 
-修改 js/plugin/AKjs_Lazyload.js 文件；（解决bug）
+修改 plugin/AKjs_Lazyload.js 文件；（解决bug）
 
 
 #### 更新时间：2018/08/23 下午 08:35
