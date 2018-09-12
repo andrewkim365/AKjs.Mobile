@@ -11,12 +11,12 @@
   <meta name="format-detection" content="telphone=no, email=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>AKjs移动端框架</title>
-  <link rel="stylesheet" type="text/css" href="css/akjs.mobile.min.css" /><!--AKjs公共样式库引入-->
-  <link rel="stylesheet" type="text/css" href="css/style.css" /><!--布局相关样式-->
-  <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
-  <script type="text/javascript" language="javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="js/data.js"></script><!--Json数据-->
-  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
+  <link rel="stylesheet" type="text/css" href="../css/akjs.mobile.min.css" /><!--AKjs公共样式库引入-->
+  <link rel="stylesheet" type="text/css" href="../css/style.css" /><!--布局相关样式-->
+  <link rel="stylesheet" type="text/css" href="../css/theme.default.css" /><!--颜色相关样式-->
+  <script type="text/javascript" language="javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" src="../js/data.js"></script><!--Json数据-->
+  <script type="text/javascript" language="javascript" src="../js/akjs.mobile.min.js"></script><!--AKjs引入-->
 </head>
 <body>
 
@@ -140,7 +140,7 @@
     }
 
     /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
+    AKjs_Include("js/common.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
     /*-----------------------------------------------AKjs_Popupwin (左侧方法)使用方法-------------------------------------------*/
     $(function() {
@@ -241,7 +241,7 @@
                         { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }, { "src": "tibet-3.jpg" }, { "src": "tibet-5.jpg" }
                     ]};
                 var str = "";
-                var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
+                var templ = '<figure class="bg_white ak-fadeIn"><img src="../img/{{src}}" class="defer_none" /></figure>'
 
                 for(var i = 0; i < data.data.length; i++) {
                     str += templ.replace("{{src}}", data.data[i].src);
@@ -258,7 +258,7 @@
                         { "src": "tibet-3.jpg" }, { "src": "tibet-2.jpg" }, { "src": "tibet-1.jpg" }, { "src": "tibet-5.jpg" }, { "src": "tibet-4.jpg" }, { "src": "tibet-6.jpg" }
                     ]};
                 var str = "";
-                var templ = '<figure class="bg_white ak-fadeIn"><img src="./img/{{src}}" class="defer_none" /></figure>'
+                var templ = '<figure class="bg_white ak-fadeIn"><img src="../img/{{src}}" class="defer_none" /></figure>'
 
                 for(var i = 0; i < data.data.length; i++) {
                     str += templ.replace("{{src}}", data.data[i].src);

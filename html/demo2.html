@@ -11,11 +11,11 @@
   <meta name="format-detection" content="telphone=no, email=no" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>AKjs移动端框架</title>
-  <link rel="stylesheet" type="text/css" href="css/akjs.mobile.min.css" /><!--AKjs公共样式库引入-->
-  <link rel="stylesheet" type="text/css" href="css/style.css" /><!--布局相关样式-->
-  <link rel="stylesheet" type="text/css" href="css/theme.default.css" /><!--颜色相关样式-->
-  <script type="text/javascript" language="javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="js/akjs.mobile.min.js"></script><!--AKjs引入-->
+  <link rel="stylesheet" type="text/css" href="../css/akjs.mobile.min.css" /><!--AKjs公共样式库引入-->
+  <link rel="stylesheet" type="text/css" href="../css/style.css" /><!--布局相关样式-->
+  <link rel="stylesheet" type="text/css" href="../css/theme.default.css" /><!--颜色相关样式-->
+  <script type="text/javascript" language="javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" src="../js/akjs.mobile.min.js"></script><!--AKjs引入-->
 </head>
 <body>
 
@@ -36,7 +36,7 @@
         <li class="ovh mt_1em">
           <dl class="ak-chat_left">
             <dt>
-              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="img/tibet-1.jpg" class="defer_none"></figure>
+              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="../img/tibet-1.jpg" class="defer_none"></figure>
               <span class="center text_08em c_gray_777 text_al_c">KIM</span>
             </dt>
             <dd>您好，我想要咨询一下一个问题。</dd>
@@ -48,7 +48,7 @@
         <li class="ovh mt_1em">
           <dl class="ak-chat_right">
             <dt>
-              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="img/tibet-2.jpg" class="defer_none"></figure>
+              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="../img/tibet-2.jpg" class="defer_none"></figure>
               <span class="center text_08em c_gray_777 text_al_c">安德鲁</span>
             </dt>
             <dd class="border bg_title bor_title c_white">好，您请说</dd>
@@ -57,7 +57,7 @@
         <li class="ovh mt_1em">
           <dl class="ak-chat_left">
             <dt>
-              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="img/tibet-1.jpg" class="defer_none"></figure>
+              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="../img/tibet-1.jpg" class="defer_none"></figure>
               <span class="center text_08em c_gray_777 text_al_c">KIM</span>
             </dt>
             <dd>AKjs移动端插件是依赖于jquery插件的吗？</dd>
@@ -66,7 +66,7 @@
         <li class="ovh mt_1em">
           <dl class="ak-chat_right">
             <dt>
-              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="img/tibet-2.jpg" class="defer_none"></figure>
+              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="../img/tibet-2.jpg" class="defer_none"></figure>
               <span class="center text_08em c_gray_777 text_al_c">安德鲁</span>
             </dt>
             <dd class="border bg_title bor_title c_white">是的，必须引入jquery插件才能正常运行。</dd>
@@ -75,7 +75,7 @@
         <li class="ovh mt_1em">
           <dl class="ak-chat_left">
             <dt>
-              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="img/tibet-1.jpg" class="defer_none"></figure>
+              <figure class="wh_3em bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto"><img src="../img/tibet-1.jpg" class="defer_none"></figure>
               <span class="center text_08em c_gray_777 text_al_c">KIM</span>
             </dt>
             <dd>好的。明白了</dd>
@@ -172,7 +172,7 @@
     }
 
     /*-----------------------------------------------AKjs_Include & AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
+    AKjs_Include("js/common.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
 
     /*-----------------------------------------------AKjs_Popupwin 使用方法-------------------------------------------*/
     $(function() {
@@ -215,9 +215,9 @@
             },
             btncallback: function(str,container,scrollHeight) { //聊天内容提交后的回调（输入内容，聊天内容生成区域，聊天内容区域实时的高度）
 
-                var chat_portrait_me = "img/tibet-2.jpg"; //您的头像图片地址
+                var chat_portrait_me = "../img/tibet-2.jpg"; //您的头像图片地址
                 var chat_name_me = "安德鲁"; //您的聊天名称
-                var chat_portrait_you = "img/tibet-1.jpg"; //对方的头像图片地址
+                var chat_portrait_you = "../img/tibet-1.jpg"; //对方的头像图片地址
                 var chat_name_you = "KIM"; //对方的聊天名称
                 var chat_auto = "很高兴认识你！我是自动回复机器人！"; //对方的自动回复消息
 

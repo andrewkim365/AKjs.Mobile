@@ -10,7 +10,7 @@ AKjs_Config({ //环境配置管理
     animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
     Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
     Prompt: "为了更好的视觉体验，请在竖屏下进行操作。", //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-    pluginPath: "./plugin/", //功能插件文件所在的目录设置
+    pluginPath: "../plugin/", //功能插件文件所在的目录设置
     pluginClear: { //定期清理功能插件的缓存 【days=天数, hours=小时, minutes=分钟，seconds=秒数 （当前提供的四个参数中任意抽选一个设置时间清理功能插件的缓存。四个参数不能同时设置）】
         /*使用帮助：项目开发阶段建议使用秒数间隔清理缓存，项目正式上线后不经常改动插件所以建议使用天数间隔清理缓存。*/
         /*注意：清理缓存时按需引入的功能插件将重新网络请求所以会影响到页面加载速度。*/
@@ -25,35 +25,28 @@ AKjs_Config({ //环境配置管理
 * 注：调用插件的地方在router目录里的相关html文件中的最底部。
 */
 
+/*-----------------------------------------------AKjs_Plugin 插件按需引入区域-------------------------------------------*/
+AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
+
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
-if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
-
-    /*-----------------------------------------------AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
-
-    $(function() {
-        AKjs_Loader({
-            //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-            autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
-            timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
-            iconColor: "#ffffff", //图标颜色设置
-            maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-            Loader: "load_2" //loading效果选择（load_1~7）
-        });
+$(function() {
+    AKjs_Loader({
+        //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
+        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+        timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
+        iconColor: "#ffffff", //图标颜色设置
+        maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
+        Loader: "load_2" //loading效果选择（load_1~7）
     });
-    setTimeout(function() { //页面加载完5秒后执行
-        if($(".ak-Loader").css('display') == 'none'){
-            //AKjs_Loader("destroy"); //关闭loading窗
-        }
-    },2000);
-}
+});
+setTimeout(function() { //页面加载完5秒后执行
+    if($(".ak-Loader").css('display') == 'none'){
+        //AKjs_Loader("destroy"); //关闭loading窗
+    }
+},2000);
 
 $(function () {
-    if (AKjs_Params(1) === "start") { //通过AKjs_Params获取hash的第一个值
-
-        AKjs_Plugin("AKjs_Slider", "css"); //欢迎页和联播图功能
-
-    } else if (AKjs_Params(1) === "page1") { //通过AKjs_Params获取hash的第一个值
+    if (AKjs_Pathname() === "demo.html") { //AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_AllChecked"); //全选功能
         AKjs_Plugin("AKjs_ButtonSubmit", "css"); //防止重复提交功能
@@ -96,17 +89,17 @@ $(function () {
         AKjs_Plugin("AKjs_Viewer", "css"); //图片放大预览功能
         AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
 
-    } else if (AKjs_Params(1) === "page2") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Pathname() === "demo2.html") { //AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
         AKjs_Plugin("AKjs_MobileChat", "css"); //移动端聊天功能插件
 
-    } else if (AKjs_Params(1) === "page3") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Pathname() === "demo3.html") { //AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
         AKjs_Plugin("AKjs_Waterfall", "css"); //瀑布流展示功能
 
-    } else if (AKjs_Params(1) === "page4") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Pathname() === "demo4.html") { //AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
@@ -124,7 +117,7 @@ $(function () {
         AKjs_Plugin("AKjs_EchartsRun"); //百度Echarts运行功能
         AKjs_Plugin("AKjs_Print"); //局部打印插件
 
-    } else if (AKjs_Params(1) === "page5") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Pathname() === "demo5.html") { //AKjs_Pathname获取路径的文件名
 
         AKjs_Plugin("AKjs_GoTop"); //返回页面顶部插件
         AKjs_Plugin("AKjs_Keyboard", "css"); //安全键盘

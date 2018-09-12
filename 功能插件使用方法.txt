@@ -1,5 +1,5 @@
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-09-06
+//文档更新日期：2018-09-11
 
 //按需引入方法：
 /******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
@@ -255,7 +255,7 @@
             touchmode : true, //是否开启触屏滑动切换功能 (true/false)
             changeMethod: "horizontal", //切换方式 (default/vertical/horizontal/opacity)
             callback: function(ele,index) { //初始化回调入口
-                var ajax_url = './router/tab_test1.html';
+                var ajax_url = './router/ajax/tab_ajax1.html';
                 //console.log(ajax_url);
                 /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
                 AKjs_Ajax({
@@ -277,13 +277,13 @@
             changeback: function (ele,index) { //Tab切换回调入口
                 console.log(index);
                 if (index == 0) {
-                    var ajax_url = './router/tab_test1.html';
+                    var ajax_url = './router/ajax/tab_ajax1.html';
                 } else if (index == 1) {
-                    var ajax_url = './router/tab_test2.html';
+                    var ajax_url = './router/ajax/tab_ajax2.html';
                 } else if (index == 2) {
-                    var ajax_url = './router/tab_test3.html';
+                    var ajax_url = './router/ajax/tab_ajax3.html';
                 } else if (index == 3) {
-                    var ajax_url = './router/tab_test4.html';
+                    var ajax_url = './router/ajax/tab_ajax4.html';
                 }
                 //console.log(ajax_url);
                 /* 以下代码是Tabs内容可以通过ajax请求界面内容的方法 */
@@ -1279,9 +1279,9 @@
             },
             btncallback: function(str,container,scrollHeight) { //聊天内容提交后的回调（输入内容，聊天内容生成区域，聊天内容区域实时的高度）
 
-                var chat_portrait_me = "img/tibet-2.jpg"; //您的头像图片地址
+                var chat_portrait_me = "./img/tibet-2.jpg"; //您的头像图片地址
                 var chat_name_me = "安德鲁"; //您的聊天名称
-                var chat_portrait_you = "img/tibet-1.jpg"; //对方的头像图片地址
+                var chat_portrait_you = "./img/tibet-1.jpg"; //对方的头像图片地址
                 var chat_name_you = "KIM"; //对方的聊天名称
                 var chat_auto = "很高兴认识你！我是自动回复机器人！"; //对方的自动回复消息
 

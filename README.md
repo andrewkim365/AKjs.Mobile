@@ -9,9 +9,13 @@ AKjs是一个基于jQuery的一套构建用户界面的前端框架，插件里�
 ```shell
 index.html --- 走路由模式的DEMO页面 （可查看页面切换效果）
 
-demo.html --- 未开启路由模式的DEMO页面
+html/demo.html --- 未开启路由模式的DEMO页面
 
 layout/main.html --- 整个界面的布局；（该文件夹和文件名可以在路由管理器文件中配置）
+
+html/ --- 该目录是未开启路由模式的演示版文件；
+
+html/js/common.js --- 未开启路由模式全局方法设置以及功能插件按需引入
 
 router/ --- 通过路由访问的html界面，该文件夹也在路由管理器文件中配置（里面的所有html文件中最底部都调用功能插件的方法）
 
@@ -50,6 +54,8 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 #### 更新说明：
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.0版本；
+
+根目录中的无路由模式的演示版文件demo.html~demo5.html 等文件移动到html目录中，并且该文件夹中增加了js/common.js文件；
 
 修改 plugin/AKjs_MultiDate.js 文件；（解决bug）
 
