@@ -4,23 +4,23 @@ index.html --- 走路由模式的DEMO页面 （可查看页面切换效果）
 
 html/demo.html --- 未开启路由模式的DEMO页面
 
-layout/main.html --- 整个界面的布局；（该文件夹和文件名可以在路由管理器文件中配置）
+layout/main.html --- 路由模式中整个界面的布局；（该文件夹和文件名可以在路由管理器文件中配置）
+
+router/ --- 通过路由访问的html界面，该文件夹也在路由管理器文件中配置（里面的所有html文件中最底部都调用功能插件的方法）
+
+js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
 
 html/ --- 该目录是未开启路由模式的演示版文件；
 
 html/js/common.js --- 未开启路由模式全局方法设置以及功能插件按需引入
-
-router/ --- 通过路由访问的html界面，该文件夹也在路由管理器文件中配置（里面的所有html文件中最底部都调用功能插件的方法）
-
-js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版akjs.mobile.js）
-
-js/router.js --- 路由管理器（该功能切换页面时无刷新跳页的功能，不使用路由功能时可删除该文件。）
 
 js/plugin.js --- 全局方法设置以及功能插件按需引入
 
 js/data.js --- Json数据文件
 
 plugin/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件（该路径可在AKjs_Config方法中参数设置）
+
+js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版akjs.mobile.min.js）
 
 css/iconfont --- 图标库 (AK图标库地址：http://www.iconfont.cn/collections/detail?cid=8740)
 
