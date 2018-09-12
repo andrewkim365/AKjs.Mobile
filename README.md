@@ -55,6 +55,8 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.0版本；
 
+css目录中的iconfont文件夹需要全部替换；
+
 根目录中的无路由模式的演示版文件demo.html~demo5.html 等文件移动到html目录中，并且该文件夹中增加了js/common.js文件；
 
 router目录中tab_test开头的几个文件移动到router/ajax/文件夹，并且重名为tab_ajax开头的文件名；
@@ -73,8 +75,6 @@ router目录中tab_test开头的几个文件移动到router/ajax/文件夹，并
 #### 更新说明：
 
 js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.4.3版本；
-
-css目录中的iconfont文件夹需要全部替换；
 
 AKjs_Config增加pluginClearn参数定期清理功能插件的缓存问题；
 
