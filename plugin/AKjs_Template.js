@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-04
+Modification Date: 2018-09-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 (function($, undefined) {
@@ -95,6 +95,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             $(function() {
                 ele.removeClass("ak-for");
+                $(".ak-for").removeClass("ak-for");
                 ele.children().eq(0).remove();
                 ret.appendTo(ele);
             });

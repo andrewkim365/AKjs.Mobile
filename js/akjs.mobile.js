@@ -534,11 +534,15 @@ function AKjs_RegsInput() {
 
 /*-----------------------------------------------AKjs_InputLineHeight--------------------------------------*/
 function AKjs_InputLineHeight() {
-    AKjs_UserAgent();
-    $("input").each(function(){
+    $('input[type="text"],input[type="password"],input[type="number"], input[type="tel"], input[type="email"]').each(function(){
         var inputs = $(this);
+        if (inputs.outerHeight() <1) {
+            var inp_h = inputs.parent().outerHeight();
+        } else {
+            var inp_h = inputs.outerHeight();
+        }
         inputs.css({
-            "line-height": inputs.outerHeight()+"px"
+            "line-height": inp_h+"px"
         });
     });
 }
@@ -713,6 +717,11 @@ function AKjs_Responsive(setting) {
 function AKjs_placeholder() {
     $("input[placeholder]").each(function(){
         var place = $(this);
+        if (place.outerHeight() <1) {
+            var place_h = place.parent().outerHeight();
+        } else {
+            var place_h = place.outerHeight();
+        }
         if (place.attr("placeholder") && place.val()=='') {
             if (place.parent().prop('tagName') != "LABEL") {
                 place.wrap("<label class='dis_block ovh rel h_in c_gray_ccc'></label>");
@@ -724,8 +733,8 @@ function AKjs_placeholder() {
                 "top": 0,
                 "left": 0,
                 "width": "100%",
-                "height": place.outerHeight(),
-                "line-height": place.outerHeight()+"px",
+                "height": place_h,
+                "line-height": place_h+"px",
                 "text-indent": "1em"
             });
             $(window).resize(function(){
@@ -735,8 +744,8 @@ function AKjs_placeholder() {
                     "top": 0,
                     "left": 0,
                     "width": "100%",
-                    "height": place.outerHeight(),
-                    "line-height": place.outerHeight()+"px",
+                    "height": place_h,
+                    "line-height": place_h+"px",
                     "text-indent": "1em"
                 });
             });

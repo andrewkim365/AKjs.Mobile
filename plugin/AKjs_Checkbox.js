@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-01
+Modification Date: 2018-09-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Checkbox--------------------------------------*/
@@ -15,7 +15,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             checkedClass: "bg_title bor_title c_white",
             disabledClass: "bg_gray_ccc bor_gray_ccc c_white",
             // 选中状态类名
-            onChange: function(element) {} // onchange回调，返回当前选中项DOM元素组
+            onChange: function(element) {} //onchange回调，返回当前选中项DOM元素组
         };
 
         var options = $.extend(_defaults, settings || {});
@@ -34,17 +34,28 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
         AKjs_UserAgent();
         if (IsMobile) {
+            checkboxes.addClass("sta");
+            checkboxes.find('input[type="checkbox"]').addClass("top_0");
             checkboxes.removeClass("bor_rad_0");
         } else {
             checkboxes.addClass("bor_rad_0");
+            checkboxes.removeClass("sta");
+            checkboxes.find('input[type="checkbox"]').removeClass("top_0");
         }
+        $(window).resize(function(){
+            if (IsMobile) {
+                checkboxes.addClass("sta");
+                checkboxes.find('input[type="checkbox"]').addClass("top_0");
+                checkboxes.removeClass("bor_rad_0");
+            } else {
+                checkboxes.addClass("bor_rad_0");
+                checkboxes.removeClass("sta");
+                checkboxes.find('input[type="checkbox"]').removeClass("top_0");
+            }
+        });
         checkboxes.attr("data-name",self.attr("name"));
         //checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
         //checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
-        $(window).resize(function(){
-            //checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
-            //checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
-        });
         checkboxes.each(function(ev) {
             if ($(this).find('input[type="checkbox"]').attr("multiple")) {
                 var $checkbox = $(ev.target);

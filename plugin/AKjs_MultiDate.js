@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-11
+Modification Date: 2018-09-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
@@ -18,6 +18,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         this.isInline = options.isInline || false;
         this.isMask = options.isMask || false;
         this.isInput = this.element.is('input');
+        if (!this.isInput && this.element.find('input').length <1) {
+            $("<input type='text' class='ak-multiDate-input' />").appendTo(this.element);
+            this.element.addClass("ak-multiDate-parent");
+        }
         this.component = this.element ? this.element.find('input') : false;
         this.hasInput = this.component && this.element.find('input').length;
         this.disableDblClickSelection = options.disableDblClickSelection;

@@ -62,13 +62,19 @@ css目录中的iconfont文件夹需要全部替换；
 
 router目录中tab_test开头的几个文件移动到router/ajax/文件夹，并且重名为tab_ajax开头的文件名；
 
-修改 plugin/AKjs_MultiDate.js 文件；（解决bug）
-
 修改 plugin/AKjs_Spinner.js 文件；（解决bug）
 
 修改 plugin/AKjs_Form.js 文件；（解决bug）
 
 修改 plugin/AKjs_MobileChat.js 文件；（解决bug）
+
+修改 plugin/AKjs_MultiDate.js 文件；（解决bug）
+
+修改 plugin/AKjs_Checkbox.js 文件；（解决IE兼容性问题）
+
+修改 plugin/AKjs_Radio.js 文件；（解决IE兼容性问题）
+
+修改 plugin/AKjs_Template.js 文件；（解决bug）
 
 -----------------------------------------------------------------------------------------------------------------------
 #### 更新时间：2018/09/08 下午 18:25

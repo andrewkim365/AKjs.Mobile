@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Radio--------------------------------------*/
@@ -11,6 +11,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     $.fn.AKjs_Radio = function(settings) {
         /* 默认参数 */
         var _defaults = {
+            boxSize: "2.6em",
             checkedClass: "bor_title border8",
             // 选中状态类名
             onChange: function(element) {} // onchange回调，返回当前选中项DOM元素
@@ -22,6 +23,33 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
         var radios = this.parent("label");
         radios.addClass("ak-Radio");
+        AKjs_UserAgent();
+        if (!IsMobile) {
+            if (options.boxSize) {
+                radios.css({
+                    "width": options.boxSize,
+                    "height": options.boxSize,
+                    "line-height": options.boxSize
+                });
+            }
+            radios.addClass("rel text_al_c");
+        } else {
+            radios.removeClass("rel text_al_c").removeAttr("style");
+        }
+        $(window).resize(function(){
+            if (!IsMobile) {
+                if (options.boxSize) {
+                    radios.css({
+                        "width": options.boxSize,
+                        "height": options.boxSize,
+                        "line-height": options.boxSize
+                    });
+                }
+                radios.addClass("rel text_al_c");
+            } else {
+                radios.removeClass("rel text_al_c").removeAttr("style");
+            }
+        });
         radios.attr("data-name",this.attr("name"));
         radios.each(function() {
             var $radio = $(this);
