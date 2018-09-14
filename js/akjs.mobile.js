@@ -305,10 +305,10 @@ function AKjs_Router(setting) {
                     }
 
                     if (typeof(Storage) !== "undefined") {
-                        localStorage.setItem("Retrieve", $("body").html());
+                        localStorage.setItem("Retrieve", AKjs_CompressWhiteSpace($("body").html()));
                         record = localStorage.getItem("Retrieve");
                         if (option.Animate) {
-                            localStorage.setItem("aside_Retrieve", $("body").html().replace('<main', '<container id="ak-main-record"').replace('</main>', '</container>'));
+                            localStorage.setItem("aside_Retrieve", AKjs_CompressWhiteSpace($("body").html()).replace('<main', '<container id="ak-main-record"').replace('</main>', '</container>'));
                         }
                     }
                     main_tmpl = main_tmpl.replace(/class=/g,"data-temp="+new Date().getTime()+" class=");
