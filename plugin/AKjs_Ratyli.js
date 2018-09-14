@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Ratyli-------------------------------------------*/
@@ -63,7 +63,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 i++;
             }
             if(!init && !base.options.disable){
-                //base.$el.addClass("rated");
+                /*base.$el.addClass("rated");*/
                 base.$el.attr("data-rate",val);
             }
             base.options.onRated.call(base,val,init);

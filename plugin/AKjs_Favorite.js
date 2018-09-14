@@ -1,23 +1,23 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Favorite-------------------------------------------*/
 (function($){
     $.fn.AKjs_Favorite = function(setting) {
         var options = $.extend({
-                likeMode: true, //是否开启点赞模式 （设置false为收藏模式）
-                str: "+1",  //字符串，要显示的内容;也可以传一段html
-                icon_defaultClass: '', //default 类样式定义
-                icon_changeClass: '', //change 类样式定义
-                textClass: "c_white text_12em ml_02em mr_02em", //文字样式
-                text_default: "Favorite", //默认显示的文字
-                text_change: "Cancel", //点击后显示的文字
-                startSize: "12px",  //动画开始的文字大小
-                endSize: "30px",    //动画结束的文字大小
-                interval: 600,  //动画时间间隔
-                color: "red",    //文字颜色
-                callback: function () { } //回调函数
+                likeMode: true, /*是否开启点赞模式 （设置false为收藏模式）*/
+                str: "+1",  /*字符串，要显示的内容;也可以传一段html*/
+                icon_defaultClass: '', /*default 类样式定义*/
+                icon_changeClass: '', /*change 类样式定义*/
+                textClass: "c_white text_12em ml_02em mr_02em", /*文字样式*/
+                text_default: "Favorite", /*默认显示的文字*/
+                text_change: "Cancel", /*点击后显示的文字*/
+                startSize: "12px",  /*动画开始的文字大小*/
+                endSize: "30px",    /*动画结束的文字大小*/
+                interval: 600,  /*动画时间间隔*/
+                color: "red",    /*文字颜色*/
+                callback: function () { } /*回调函数*/
             },
             setting);
         var that = $(this);

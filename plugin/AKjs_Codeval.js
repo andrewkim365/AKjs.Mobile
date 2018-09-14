@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-30
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Codeval-----------------------------------------*/
@@ -27,7 +27,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             _commSetting(option);
             var inputV;
             inputV=$(settings.inputEle).val();
-            if(inputV.toUpperCase() == _storeData(_set.storeLable, null).toUpperCase()){//修改的不区分大小写
+            if(inputV.toUpperCase() == _storeData(_set.storeLable, null).toUpperCase()){
                 return true;
             }else{
                 _setCodeStyle(settings.codeView, settings.codeLength);

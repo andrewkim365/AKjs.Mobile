@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Dialog------------------------------------------*/
@@ -199,7 +199,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         return o;
     };
 
-    //global functions
+    /*global functions*/
     var isIE = function () {
         var U = navigator.userAgent,
             IsIE = U.indexOf('MSIE') > -1,
@@ -225,19 +225,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             dialog.init('prompt', message, userOptions, defaultValue);
         };
     }
-    g.alert = function(message, userOptions){ //解决微信不支持问题
+    g.alert = function(message, userOptions){ /*解决微信不支持问题*/
         var message = message || "";
         var userOptions = userOptions || {};
         var dialog = new m.Dialog;
         dialog.init('alert', message, userOptions);
     };
-    g.confirm = function(message, userOptions){ //解决微信不支持问题
+    g.confirm = function(message, userOptions){ /*解决微信不支持问题*/
         var message = message || "";
         var userOptions = userOptions || {};
         var dialog = new m.Dialog;
         dialog.init('confirm', message, userOptions);
     };
-    g.prompt = function(message, defaultValue, userOptions){ //解决微信不支持问题
+    g.prompt = function(message, defaultValue, userOptions){ /*解决微信不支持问题*/
         var message = message || "";
         var userOptions = userOptions || {};
         var dialog = new m.Dialog;

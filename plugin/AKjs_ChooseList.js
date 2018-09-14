@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_ChooseList--------------------------------------*/
@@ -18,17 +18,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     $.fn.AKjs_ChooseList = function(options) {
         var _this = $(this),
             _num = _this.length;
-        // 当要实例的对象只有一个时，直接实例化返回对象；
+        /* 当要实例的对象只有一个时，直接实例化返回对象；*/
         if (_num === 1) {
             return new ak_Choose(_this, options);
         }
-        // 当要实例的对象有多个时，循环实例化，不返回对象；
+        /* 当要实例的对象有多个时，循环实例化，不返回对象；*/
         if (_num > 1) {
             _this.each(function(index, el) {
                 new ak_Choose($(el), options);
             })
         }
-        // 当元素个数为0时，不执行实例化。
+        /* 当元素个数为0时，不执行实例化。*/
     };
     /**
      * @param {[jQuery]} el  [jQuery选择后的对象，此处传入的为单个元素]
@@ -41,21 +41,21 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
         return this._init();
     }
-    // 原型链扩展。
+    /* 原型链扩展。*/
     ak_Choose.prototype = {
-        // init初始化;
+        /* init初始化;*/
         _init: function() {
             var _data = this.el.data(this._opt.dataKey);
-            // 如果已经实例化了，则直接返回
+            /* 如果已经实例化了，则直接返回*/
             if (_data)
                 return _data;
             else
                 this.el.data(this._opt.dataKey, this);
 
-            // 设置是否多选
+            /* 设置是否多选*/
             this.multi = this.el.attr('data-multiple') ? !!this.el.attr('data-multiple') : this._opt.multi;
 
-            // 根据不同的标签进行不同的元素组建
+            /* 根据不同的标签进行不同的元素组建*/
             var _setFunc = this['_setHtml_btn'];
             if (_setFunc) {
                 _setFunc.call(this);
@@ -81,9 +81,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     _self.removeClass(option.active);
                 }
             });
-            this._bindEvent(); // 绑定事件
+            this._bindEvent(); /* 绑定事件*/
         },
-        // 组建并获取相关的dom元素-btn;
+        /* 组建并获取相关的dom元素-btn;*/
         _setHtml_btn: function() {
             this._wrap = this.el;
             this._items = this.el.children('button');
@@ -91,7 +91,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this._items.css('width', this._opt.itemWidth);
             }
         },
-        // 绑定事件；
+        /* 绑定事件；*/
         _bindEvent: function() {
             var _this = this;
             this._items.unbind("click");
@@ -99,7 +99,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var _self = $(this);
                 if (_self.hasClass('disabled'))
                     return;
-                if (!_this.multi) { // single Choose
+                if (!_this.multi) { /* single Choose*/
                     var _val = _self.attr('data-value') || _self.index();
                     _this.val(_val);
                     _this._triggerClick(_val, _self);
@@ -111,7 +111,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             _el.children("i").addClass("dis_none_im");
                         }
                     });
-                } else { // multiple
+                } else { /* multiple*/
                     _self.toggleClass(_this._opt.active);
                     var _val = [];
                     _this._items.each(function(index, el) {
@@ -132,7 +132,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             return _this;
         },
 
-        // change 触发；value：值 ；
+        /* change 触发；value：值 ；*/
         _triggerChange: function(value, item) {
             item = item || this._wrap;
             this.change(value, item);
@@ -140,21 +140,21 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this._opt.change.call(this, value, item);
         },
 
-        // click 触发；value：值 ；item：选中的option；
+        /* click 触发；value：值 ；item：选中的option；*/
         _triggerClick: function(value, item) {
             this.click(value, item);
             if (typeof this._opt.click == 'function')
                 this._opt.click.call(this, value, item);
         },
 
-        // 获取或设置值:btn
+        /* 获取或设置值:btn*/
         _val_btn: function(index) {
-            // getValue
+            /* getValue*/
             if (arguments.length === 0) {
                 var _oActive = this._wrap.children('button.' + this._opt.active);
-                if (!this.multi) { // single Choose
+                if (!this.multi) { /* single Choose*/
                     return _oActive.index() == -1 ? null : _oActive.index();
-                } else { // single Choose
+                } else { /* single Choose*/
                     if (_oActive.length == 0) {
                         return null;
                     }
@@ -170,9 +170,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     return _val;
                 }
             }
-            // setValue
+            /* setValue*/
             var _oIndex = this._val_btn();
-            if (!this.multi) { // single Choose
+            if (!this.multi) { /* single Choose*/
                 var _ChooseItem = this._wrap.children('button').eq(index);
                 if (!_ChooseItem.length)
                     return this;
@@ -181,7 +181,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (index !== _oIndex) {
                     this._triggerChange(index, _ChooseItem);
                 }
-            } else { // multiple Choose
+            } else { /* multiple Choose*/
                 if (index == null || index == '' || index == []) {
                     this._items.removeClass(this._opt.active);
                     this._items.removeAttr("data-checked");
@@ -199,28 +199,28 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     this._triggerChange(index);
                 }
             }
-            // multiple
+            /* multiple*/
             return this;
         },
 
-        // 获取或设置值
+        /* 获取或设置值*/
         val: function() {
             return this['_val_btn'].apply(this, arguments);
         },
 
-        // 值改变事件；
+        /* 值改变事件；*/
         change: function(value, item) {},
 
-        // 点击事件；
+        /* 点击事件；*/
         click: function(value, item) {},
 
-        // 隐藏
+        /* 隐藏*/
         hide: function() {
             this._wrap.hide();
             return this;
         },
 
-        // 显示
+        /* 显示*/
         show: function() {
             this._wrap.show();
             return this;

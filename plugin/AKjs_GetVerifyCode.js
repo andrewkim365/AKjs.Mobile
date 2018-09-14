@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_GetVerifyCode-----------------------------------*/
@@ -10,27 +10,27 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     AKjs_GetVerifyCode.prototype.SecondCountDown = function (options) {
         var countDown = {};
         countDown.options = {
-            time: 60,//总时间
-            progress: function () { },//计时正在进行中
-            started: function () { },//计时开始
-            breaked: function () { },//计时中断
-            end: function (){}//计时结束
+            time: 60,/*总时间*/
+            progress: function () { },/*计时正在进行中*/
+            started: function () { },/*计时开始*/
+            breaked: function () { },/*计时中断*/
+            end: function (){}/*计时结束*/
         };
         for (var i in options) {
             countDown.options[i] = options[i];
         }
-        countDown.timer = null;//存储计时器
-        countDown.time = 0;//当前时间
-        countDown._continueRun = true;//是否继续
+        countDown.timer = null;/*存储计时器*/
+        countDown.time = 0;/*当前时间*/
+        countDown._continueRun = true;/*是否继续*/
 
-        //开始计时
+        /*开始计时*/
         countDown.start = function () {
             var that = this,
                 time = that.options.time || 60,
-                count = 0,//记录定时器执行了多少次
-                interval = 1000,//每次执行间隔
-                start = new Date().getTime(),//开始执行时间
-                targetTime = that.options.time * 1000;//目标时间
+                count = 0,/*记录定时器执行了多少次*/
+                interval = 1000,/*每次执行间隔*/
+                start = new Date().getTime(),/*开始执行时间*/
+                targetTime = that.options.time * 1000;/*目标时间*/
             clearTimeout(that.timer);
 
             if (that.options.started && (({}).toString.call(that.options.started) == "[object Function]")) {
@@ -39,8 +39,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this._continueRun = true;
             that.timer = setTimeout(function () {
                 if (that._continueRun) {
-                    var wucha = 0,//计算误差
-                        //下一次执行时间,下一次执行时间 = 每次执行间隔 - 误差
+                    var wucha = 0,/*计算误差*/
+                        /*下一次执行时间,下一次执行时间 = 每次执行间隔 - 误差*/
                         nextRunTime = interval,
                         currentFn = arguments.callee;
                     count++;
@@ -51,14 +51,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
 
                     time--;
-                    //在外部可以获取到倒计时当前时间
+                    /*在外部可以获取到倒计时当前时间*/
                     if (that.options.progress && (({}).toString.call(that.options.progress) == "[object Function]")) {
                         that.options.progress(time);
                     }
                     that.time = time;
                     that.timer = setTimeout(currentFn, nextRunTime);
 
-                    //console.log("误差：" + wucha + "，下一次执行时间：" + nextRunTime);
+                    /*console.log("误差：" + wucha + "，下一次执行时间：" + nextRunTime);*/
                     if ((targetTime -= interval) <= 0) {
                         clearTimeout(that.timer);
                         /*time = 60;*/
@@ -72,8 +72,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     clearTimeout(that.timer);
                 }
             }, interval);
-        }
-        //中断计时
+        };
+        /*中断计时*/
         countDown.abort = function () {
             this._continueRun = false;
             clearTimeout(this.timer);
@@ -81,9 +81,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             if (this.options.breaked && (({}).toString.call(this.options.breaked) == "[object Function]")) {
                 this.options.breaked(this.time);
             }
-        }
+        };
         return countDown;
-    }
+    };
     /*按钮倒计时功能，如发送验证码按钮
         param { eles: dom、jQuery object } [必填] 发送验证码的按钮
         param { options: object } [必填] 发送验证码相关配置
@@ -98,19 +98,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     time: 60,
                     event: "click",
                     phone: "",
-                    ableClass: "c_title",//按钮可以使用时的class
-                    unableClass: "c_gray_999",//按钮不能使用时的class
+                    ableClass: "c_title",/*按钮可以使用时的class*/
+                    unableClass: "c_gray_999",/*按钮不能使用时的class*/
                     condition: function () {
-                    },//执行条件，若condition为true则会执行
+                    },/*执行条件，若condition为true则会执行*/
                     progress: function () {
-                    },//计时正在进行中时的回调
+                    },/*计时正在进行中时的回调*/
                     timeUp: function () {
-                    },//计时结束时执行的回调
+                    },/*计时结束时执行的回调*/
                     abort: function () {
-                    },//中断计时
+                    },/*中断计时*/
                     eventFn: function () {
-                    }//事件执行后的回调
-                }
+                    }/*事件执行后的回调*/
+                };
             $.extend(_options, options);
 
             eles.on(_options.event, function () {
@@ -156,6 +156,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 _options.eventFn.call(this,phone);
             });
         }
-    }
+    };
     window.AKjs_GetVerifyCode = new AKjs_GetVerifyCode();
 }(jQuery));

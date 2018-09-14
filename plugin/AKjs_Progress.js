@@ -28,7 +28,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
 
                 var percentage = (currentAmountParsed / goalAmountParsed) * 100;
-                var milestoneNumberClass = (percentage > defaults.milestoneNumber) ? ' ' + defaults.milestoneClass : ''
+                var milestoneNumberClass = (percentage > defaults.milestoneNumber) ? ' ' + defaults.milestoneClass : '';
                 if (defaults.textAfter) {
                     var progressBar = '<li class="ak-progressBar"><span>' + defaults.textBefore + '<em>'+currentAmountParsed+'</em>' + defaults.textAfter + '</span></li>';
                 } else {

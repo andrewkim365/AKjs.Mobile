@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180911 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180914 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -1585,12 +1585,24 @@ function AKjs_DateFormat(date,format) {
 }
 
 /*-----------------------------------------------AKjs_Plugin------------------------------------------*/
+function AKjs_CompressWhiteSpace(s) {
+    s = s.replace(/(?:^|\n|\r)\s*\/\*[\s\S]*?\*\/\s*(?:\r|\n|$)/g, " ");
+    s = s.replace(/(?:^|\n|\r)\s*\/\*[\s\S]*?\*\/\s*(?:\r|\n|$)/g, '\n').replace(/(?:^|\n|\r)\s*\/\/.*(?:\r|\n|$)/g, '\n');
+    s = s.replace(/\s+/g, " ");
+    s = s.replace(/^\s(.*)/, "$1");
+    s = s.replace(/(.*)\s$/, "$1");
+    s = s.replace(/\s([\x21\x25\x26\x28\x29\x2a\x2b\x2c\x2d\x2f\x3a\x3b\x3c\x3d\x3e\x3f\x5b\x5d\x5c\x7b\x7c\x7d\x7e])/g, "$1");
+    s = s.replace(/([\x21\x25\x26\x28\x29\x2a\x2b\x2c\x2d\x2f\x3a\x3b\x3c\x3d\x3e\x3f\x5b\x5d\x5c\x7b\x7c\x7d\x7e])\s/g, "$1");
+    return s;
+}
+
+/*-----------------------------------------------AKjs_Plugin------------------------------------------*/
 function AKjs_Plugin(setting,css) {
     AKjs_UserAgent();
     var AKjsPath = localStorage.AKjsPath;
 
     if (!IsIE8 && !IsIE7 && !IsIE6) {
-        if (localStorage.getItem("pluginDate") === null) {
+        if (localStorage.getItem("pluginDate") === null || localStorage.getItem("pluginDate").trim() == "") {
             var StartDate = new Date().getTime();
         } else {
             var StartDate = localStorage.getItem("pluginDate");
@@ -1615,6 +1627,42 @@ function AKjs_Plugin(setting,css) {
         if (plugType > plugTime) {
             sessionStorage.clear();
             js_css_Setting();
+        } else if (localStorage.getItem("pluginClear_days") != localStorage.getItem("pluginUpdate_days")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_hours");
+            localStorage.removeItem("pluginUpdate_hours");
+            localStorage.removeItem("pluginClear_minutes");
+            localStorage.removeItem("pluginUpdate_minutes");
+            localStorage.removeItem("pluginClear_seconds");
+            localStorage.removeItem("pluginUpdate_seconds");
+            js_css_Setting();
+        } else if (localStorage.getItem("pluginClear_hours") != localStorage.getItem("pluginUpdate_hours")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_days");
+            localStorage.removeItem("pluginUpdate_days");
+            localStorage.removeItem("pluginClear_minutes");
+            localStorage.removeItem("pluginUpdate_minutes");
+            localStorage.removeItem("pluginClear_seconds");
+            localStorage.removeItem("pluginUpdate_seconds");
+            js_css_Setting();
+        } else if (localStorage.getItem("pluginClear_minutes") != localStorage.getItem("pluginUpdate_minutes")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_days");
+            localStorage.removeItem("pluginUpdate_days");
+            localStorage.removeItem("pluginClear_hours");
+            localStorage.removeItem("pluginUpdate_hours");
+            localStorage.removeItem("pluginClear_seconds");
+            localStorage.removeItem("pluginUpdate_seconds");
+            js_css_Setting();
+        } else if (localStorage.getItem("pluginClear_seconds") != localStorage.getItem("pluginUpdate_seconds")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_days");
+            localStorage.removeItem("pluginUpdate_days");
+            localStorage.removeItem("pluginClear_hours");
+            localStorage.removeItem("pluginUpdate_hours");
+            localStorage.removeItem("pluginClear_minutes");
+            localStorage.removeItem("pluginUpdate_minutes");
+            js_css_Setting();
         } else {
             js_css_Setting();
         }
@@ -1627,7 +1675,7 @@ function AKjs_Plugin(setting,css) {
                 if (IsIE8 || IsIE7 || IsIE6) {
                     $("head").append("<link rel='stylesheet' type='text/css'  id='" + setting + "_css' href='" + AKjsPath + "/css/" + setting + ".css?akjs=" + new Date().getTime() + "' />");
                 } else {
-                    if (sessionStorage.getItem(setting + "_css") === null) {
+                    if (sessionStorage.getItem(setting + "_css") === null || sessionStorage.getItem(setting + "_css").trim() == "") {
                         css_plugobj = $.ajax({
                             type: 'GET',
                             url: AKjsPath + "/css/" + setting + ".css?akjs=" + new Date().getTime(),
@@ -1635,8 +1683,7 @@ function AKjs_Plugin(setting,css) {
                             cache: false,
                             dataType: 'text'
                         });
-                        sessionStorage.setItem(setting + "_css", css_plugobj.responseText);
-
+                        sessionStorage.setItem(setting + "_css", AKjs_CompressWhiteSpace(css_plugobj.responseText));
                     }
                     $("head").append("<style type='text/css' id='" + setting + "_css'>"+sessionStorage.getItem(setting+"_css")+"</style>");
                 }
@@ -1652,7 +1699,7 @@ function AKjs_Plugin(setting,css) {
                     dataType: 'script'
                 });
             } else {
-                if (sessionStorage.getItem(setting + "_js") === null) {
+                if (sessionStorage.getItem(setting + "_js") === null || sessionStorage.getItem(setting + "_js").trim() == "") {
                     js_plugobj = $.ajax({
                         type: 'GET',
                         url: AKjsPath + "/" + setting + ".js?akjs=" + new Date().getTime(),
@@ -1661,7 +1708,16 @@ function AKjs_Plugin(setting,css) {
                         dataType: 'text'
                     });
                     localStorage.setItem("pluginDate",new Date().getTime());
-                    sessionStorage.setItem(setting + "_js", js_plugobj.responseText);
+                    if (localStorage.getItem("pluginClear_days") != null && localStorage.getItem("pluginClear_days") != 0) {
+                        localStorage.setItem("pluginUpdate_days",localStorage.getItem("pluginClear_days"))
+                    } else if (localStorage.getItem("pluginClear_hours") != null && localStorage.getItem("pluginClear_hours") != 0) {
+                        localStorage.setItem("pluginUpdate_hours",localStorage.getItem("pluginClear_hours"))
+                    } else if (localStorage.getItem("pluginClear_minutes") != null && localStorage.getItem("pluginClear_minutes") != 0) {
+                        localStorage.setItem("pluginUpdate_minutes",localStorage.getItem("pluginClear_minutes"))
+                    } else if (localStorage.getItem("pluginClear_seconds") != null && localStorage.getItem("pluginClear_seconds") != 0) {
+                        localStorage.setItem("pluginUpdate_seconds",localStorage.getItem("pluginClear_seconds"))
+                    }
+                    sessionStorage.setItem(setting + "_js", AKjs_CompressWhiteSpace(js_plugobj.responseText));
                 }
                 $("head").append("<script type='text/javascript' language='javascript' id='" + setting + "_js'>" + sessionStorage.getItem(setting + "_js") + "</script>");
             }

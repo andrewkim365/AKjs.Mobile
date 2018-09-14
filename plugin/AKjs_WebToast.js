@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_WebToast-------------------------------------------*/
@@ -15,15 +15,15 @@ function ak_webToast(){
     var len = arguments.length;
 
     if (len > 0) {
-        var arg0 = arguments[0]; //message
-        var arg1 = arguments[1]; //position
-        var arg2 = arguments[2]; //mask
-        var arg3 = arguments[3]; //time
+        var arg0 = arguments[0]; /*message*/
+        var arg1 = arguments[1]; /*position*/
+        var arg2 = arguments[2]; /*mask*/
+        var arg3 = arguments[3]; /*time*/
         var regx = /(bottom|top|middle)/i;
         var regy = /(mask)/i;
         var numRegx = /[1-9]\d*/;
-        //debugger;
-        //console.log(regy.test(arg2))
+        /*debugger;*/
+        /*console.log(regy.test(arg2))*/
         if (arg0) {
             dcfg.message = arg0;
         }

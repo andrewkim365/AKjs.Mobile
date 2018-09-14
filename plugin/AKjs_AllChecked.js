@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_AllChecked--------------------------------------*/
@@ -43,7 +43,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         /* 监听全选事件 */
         checks.unbind("click");
         checks.click(function(){
-            //debugger;
             var leng = $(this).parents("dl").parent().parent().find(':checkbox:checked').length;
             /*勾选后该行active*/
             if($(this).prop('checked')){

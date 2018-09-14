@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Marquee--------------------------------------*/
@@ -149,17 +149,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         if(p.inverthover){
                                             strMove.stop(true);
                                         }
-                                        //drag
+                                        
                                         var dragLeft;
                                         var dir = 1;
                                         var newX;
                                         var oldX = e.clientX;
-                                        //drag
+                                        
                                         strMoveLeft = strMove.position().left;
                                         k1 = strMoveLeft - (e.clientX - strWrap.offset().left);
                                         $(this).on('mousemove', function (e) {
                                             fMove = true;
-                                            //drag
+                                            
                                             newX = e.clientX;
                                             if(newX > oldX){
                                                 dir = 1
@@ -194,7 +194,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             strMove.stop(true).css({
                                                 left: dragLeft
                                             });
-                                            //drag
+                                            
                                         }).on('mouseup', function () {
                                             $(this).off('mousemove');
                                             if(p.inverthover){
@@ -262,17 +262,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             if(p.inverthover){
                                                 strMove.stop(true);
                                             }
-                                            //drag
+                                            
                                             var dragLeft;
                                             var dir = 1;
                                             var newX;
                                             var oldX = e.clientX;
-                                            //drag
+                                            
                                             strMoveLeft = strMove.position().left;
                                             k1 = strMoveLeft - (e.clientX - strWrap.offset().left);
                                             $(this).on('mousemove', function (e) {
                                                 fMove = true;
-                                                //drag
+                                                
                                                 newX = e.clientX;
                                                 if(newX > oldX){
                                                     dir = 1
@@ -383,24 +383,24 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         if(p.inverthover){
                                             strMove.stop(true);
                                         }
-                                        //drag
+                                        
                                         var dragLeft;
                                         var dir = 1;
                                         var newX;
                                         var oldX = e.clientX;
-                                        //drag
+                                        
                                         strMoveLeft = strMove.position().left;
                                         k2 = strMoveLeft - (e.clientX - strWrap.offset().left);
                                         $(this).on('mousemove', function (e) {
                                             fMove = true;
-                                            //drag
+                                            
                                             newX = e.clientX;
                                             if(newX > oldX){
                                                 dir = 1
                                             }else{
                                                 dir = -1
                                             }
-                                            oldX = newX
+                                            oldX = newX;
                                             dragLeft = k2 + (e.clientX - strWrap.offset().left);
                                             if (!p.circular) {
                                                 if(dragLeft < -strMove.width() && dir < 0){
@@ -490,17 +490,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             if(p.inverthover){
                                                 strMove.stop(true);
                                             }
-                                            //drag
+                                            
                                             var dragLeft;
                                             var dir = 1;
                                             var newX;
                                             var oldX = e.clientX;
-                                            //drag
+                                            
                                             strMoveLeft = strMove.position().left;
                                             k2 = strMoveLeft - (e.clientX - strWrap.offset().left);
                                             $(this).on('mousemove', function (e) {
                                                 fMove = true;
-                                                //drag
+                                                
                                                 newX = e.clientX;
                                                 if(newX > oldX){
                                                     dir = 1
@@ -610,17 +610,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         if(p.inverthover){
                                             strMove.stop(true);
                                         }
-                                        //drag
+                                        
                                         var dragTop;
                                         var dir = 1;
                                         var newY;
                                         var oldY = e.clientY;
-                                        //drag
+                                        
                                         strMoveTop = strMove.position().top;
                                         k2 = strMoveTop - (e.clientY - strWrap.offset().top);
                                         $(this).on('mousemove', function (e) {
                                             fMove = true;
-                                            //drag
+                                            
                                             newY = e.clientY;
                                             if(newY > oldY){
                                                 dir = 1
@@ -657,7 +657,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             strMove.stop(true).css({
                                                 top: dragTop
                                             });
-                                            //drag
+                                            
                                         }).on('mouseup', function () {
                                             if(p.inverthover){
                                                 strMove.trigger('mouseenter')
@@ -724,17 +724,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             if(p.inverthover){
                                                 strMove.stop(true);
                                             }
-                                            //drag
+                                            
                                             var dragTop;
                                             var dir = 1;
                                             var newY;
                                             var oldY = e.clientY;
-                                            //drag
+                                            
                                             strMoveTop = strMove.position().top;
                                             k2 = strMoveTop - (e.clientY - strWrap.offset().top);
                                             $(this).on('mousemove', function (e) {
                                                 fMove = true;
-                                                //drag
+                                                
                                                 newY = e.clientY;
                                                 if(newY > oldY){
                                                     dir = 1
@@ -755,7 +755,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     strMoveTop = strMove.position().top;
                                                     k2 = strMoveTop - (e.clientY - strWrap.offset().top);
                                                 }
-                                                //*drag
                                                 strMove.stop(true).css({
                                                     top: dragTop
                                                 });
@@ -804,8 +803,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             }
                             var k2 = 0;
                             timeFunc = function () {
-                                var fullS = strWrap.height(), //крайняя точка
-                                    time = (fullS / strWrap.data('scrollamount')) * 1000; //время
+                                var fullS = strWrap.height(),
+                                    time = (fullS / strWrap.data('scrollamount')) * 1000;
                                 if (parseFloat(strMove.css('top')) != 0) {
                                     fullS = (strMove.height() + strWrap.height());
                                     time = (fullS - (strMove.height() + parseFloat(strMove.css('top')))) / strWrap.data('scrollamount') * 1000;
@@ -849,17 +848,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         if(p.inverthover){
                                             strMove.stop(true);
                                         }
-                                        //drag
+                                        
                                         var dragTop;
                                         var dir = 1;
                                         var newY;
                                         var oldY = e.clientY;
-                                        //drag
+                                        
                                         strMoveTop = strMove.position().top;
                                         k2 = strMoveTop - (e.clientY - strWrap.offset().top);
                                         $(this).on('mousemove', function (e) {
                                             fMove = true;
-                                            //drag
+                                            
                                             newY = e.clientY;
                                             if(newY > oldY){
                                                 dir = 1
@@ -896,7 +895,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             strMove.stop(true).css({
                                                 top: dragTop
                                             });
-                                            //drag
+                                            
                                         }).on('mouseup', function () {
                                             if(p.inverthover){
                                                 strMove.trigger('mouseenter')
@@ -959,17 +958,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             if(p.inverthover){
                                                 strMove.stop(true);
                                             }
-                                            //drag
+                                            
                                             var dragTop;
                                             var dir = 1;
                                             var newY;
                                             var oldY = e.clientY;
-                                            //drag
+                                            
                                             strMoveTop = strMove.position().top;
                                             k2 = strMoveTop - (e.clientY - strWrap.offset().top);
                                             $(this).on('mousemove', function (e) {
                                                 fMove = true;
-                                                //drag
+                                                
                                                 newY = e.clientY;
                                                 if(newY > oldY){
                                                     dir = 1
@@ -990,7 +989,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     strMoveTop = strMove.position().top;
                                                     k2 = strMoveTop - (e.clientY - strWrap.offset().top);
                                                 }
-                                                //*drag
                                                 strMove.stop(true).css({
                                                     top: dragTop
                                                 });

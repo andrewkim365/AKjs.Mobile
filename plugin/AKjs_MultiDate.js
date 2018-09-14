@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-13
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
@@ -149,7 +149,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         _events: [],
         _attachEvents: function() {
             this._detachEvents();
-            if (this.isInput) { // single input
+            if (this.isInput) { /* single input*/
                 this._events = [
                     [this.element, {
                         click: (this.autoShow) ? $.proxy(this.show, this) : function() {},
@@ -339,7 +339,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     });
                 }
             } else {
-                //debugger
+                /*debugger*/
                 if ($("#ak-scrollview").scrollTop() > 0) {
                     var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top + $("#ak-scrollview").scrollTop();
                 } else {
@@ -422,7 +422,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 currentDate = this.date && this.date.valueOf(),
                 today = new Date(),
                 titleFormat = this.language.titleFormat;
-            // this.picker.find('.days thead th.c_title').text(DateTimeGlobal.formatDate(new ak_UTCDate(year, month), titleFormat, this.language));
+            /* this.picker.find('.days thead th.c_title').text(DateTimeGlobal.formatDate(new ak_UTCDate(year, month), titleFormat, this.language));*/
             this.picker.find('.days thead th:eq(1)').text(year + ' / ' + this.language.month[month]);
             this.picker.find('.hours thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
             this.picker.find('.minutes thead th:eq(1)').text(year + ' / ' + this.language.month[month] + ' / ' + dayMonth);
@@ -796,7 +796,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             if (element) {
                 element.change();
                 if (this.autoclose && (!which || which == 'date')) {
-                    // this.hide();
+                    /* this.hide();*/
                 }
             }
         },
@@ -863,12 +863,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 dir, day, month,
                 newDate, newViewDate;
             switch (e.keyCode) {
-                case 27: // escape
+                case 27: /* escape*/
                     this.hide();
                     e.preventDefault();
                     break;
-                case 37: // left
-                case 39: // right
+                case 37: /* left*/
+                case 39: /* right*/
                     if (!this.keyboardNavigation) break;
                     dir = e.keyCode == 37 ? -1 : 1;
                     if (e.ctrlKey) {
@@ -892,8 +892,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         dateChanged = true;
                     }
                     break;
-                case 38: // up
-                case 40: // down
+                case 38: /* up*/
+                case 40: /* down*/
                     if (!this.keyboardNavigation) break;
                     dir = e.keyCode == 38 ? -1 : 1;
                     if (e.ctrlKey) {
@@ -917,11 +917,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         dateChanged = true;
                     }
                     break;
-                case 13: // enter
+                case 13: /* enter*/
                     this.hide();
                     e.preventDefault();
                     break;
-                case 9: // tab
+                case 9: /* tab*/
                     this.hide();
                     break;
             }
@@ -1112,7 +1112,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 val, filtered, part;
             setters_map['M'] = setters_map['MM'] = setters_map['mm'] = setters_map['m'];
             setters_map['dd'] = setters_map['d'];
-            date = ak_UTCDate(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0); //date.getHours(), date.getMinutes(), date.getSeconds());
+            date = ak_UTCDate(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0); /*date.getHours(), date.getMinutes(), date.getSeconds());*/
             if (parts.length == format.parts.length) {
                 for (var i = 0, cnt = format.parts.length; i < cnt; i++) {
                     val = parseInt(parts[i], 10);
@@ -1171,7 +1171,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 seps = $.extend([], format.separators);
             for (var i = 0, cnt = format.parts.length; i < cnt; i++) {
                 if (seps.length)
-                    date.push(seps.shift())
+                    date.push(seps.shift());
                 date.push(val[format.parts[i]]);
             }
             return date.join('');

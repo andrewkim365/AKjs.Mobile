@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-11
+Modification Date: 2018-09-14
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Form--------------------------------------------*/
@@ -24,7 +24,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         if (option.validate == true) {
             mbf.find(":submit").addClass("disabled").attr("disabled", "disabled");
         }
-        //对比两次输入的密码
+        /*对比两次输入的密码*/
         var password = mbf.find(option.PassCheck);
         mbf.find(":submit").addClass("mb_5");
         mbf.find(":submit").unbind("click");
@@ -50,9 +50,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var inputs = $(this).find("input[required]");
                 var submits = $(this).find(":submit");
                 if (mbf.find("textarea[required]").length > 0) {
-                    // 取出回车字符
+                    /* 取出回车字符*/
                     var textareaVal = (mbf.find("textarea[required]").val().replace(/<(.+?)>/gi,"&lt;$1&gt;")).replace(/\n/gi,"|");
-                    // 不包含回车的数量
+                    /* 不包含回车的数量*/
                     var strLen = textareaVal.split('|').join('').length;
                 } else {
                     var strLen =2;
@@ -62,7 +62,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     var tmpFlag = inputs[i].value == "" ? false : true;
                     arr.push(tmpFlag);
                 }
-                //console.log(arr);
+                /*console.log(arr);*/
                 var flag = false;
                 if (arr.length == 1) {
                     flag = arr[0];
@@ -70,7 +70,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     flag = arr[0];
                     for (var i = 1; i < arr.length; i++) {
                         flag = flag && arr[i];
-                        //console.log("flag:"+flag);
+                        /*console.log("flag:"+flag);*/
                     }
                 } else {
                     flag = true;
@@ -81,7 +81,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         submits.attr("disabled", "disabled");
                         option.valCallback(flag);
                     } else {
-                        //$(this).find(":required").removeAttr("required");
+                        /*$(this).find(":required").removeAttr("required");*/
                         submits.removeClass("disabled");
                         submits.removeAttr("disabled");
                         option.valCallback(flag);
@@ -93,7 +93,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 option.butCallback(mbf,true);
             }
         });
-        //密码（显示/隐藏）
+        /*密码（显示/隐藏）*/
         var btn_password = mbf.find(option.btn_password);
         btn_password.each(function(){
             var pass_btn = $(this);
@@ -119,7 +119,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
             });
         });
-        //输入的文字删除按钮
+        /*输入的文字删除按钮*/
         var btn_delete = mbf.find(option.btn_delete);
         btn_delete.keyup(function() {
             var del_btn = $(this);
@@ -155,7 +155,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
         if(option.placeholder== true) {
             var placeholder_tmp ="";
-            mbf.find('*[placeholder]').focus(function() { //input元素加placeholder属性的文字点击后消失
+            mbf.find('*[placeholder]').focus(function() { /*input元素加placeholder属性的文字点击后消失*/
                 placeholder_tmp = $(this).attr("placeholder");
                 if ($(this)[0].type !="search") {
                     $(this).removeAttr('placeholder');
@@ -164,7 +164,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $(this).attr("placeholder",placeholder_tmp);
                 });
             });
-            $("input[type=button]").each(function(){//解决input的button不支持placeholder属性
+            $("input[type=button]").each(function(){/*解决input的button不支持placeholder属性*/
                 var place = $(this);
                 if ($(this).attr("placeholder") && $(this).val()=='') {
                     $(this).parent().append("<label class='top_0  abs c_gray_ccc'></label>");
@@ -191,15 +191,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         }
         if(option.keyboard== true) {
-            mbf.find("*[readonly]").focus(function(){ //input元素加readonly属性不显示键盘
-                document.activeElement.blur();//隐藏键盘
+            mbf.find("*[readonly]").focus(function(){ /*input元素加readonly属性不显示键盘*/
+                document.activeElement.blur();/*隐藏键盘*/
             });
-            mbf.find("*[maxlength]").each(function(){ //input元素加maxlength属性后控制自定义字数
+            mbf.find("*[maxlength]").each(function(){ /*input元素加maxlength属性后控制自定义字数*/
                 $(this).attr("oninput",'if(value.length>'+$(this).attr("maxlength")+')value=value.slice(0,'+$(this).attr("maxlength")+')');
                 $(this).on('input',function(){
                     var maxlength = $(this).val();
-                    if(maxlength.length == $(this).attr("maxlength")) { //输入自定的限制字数后手机键盘自动消失
-                        document.activeElement.blur();//隐藏键盘
+                    if(maxlength.length == $(this).attr("maxlength")) { /*输入自定的限制字数后手机键盘自动消失*/
+                        document.activeElement.blur();/*隐藏键盘*/
                     }
                 });
             });
