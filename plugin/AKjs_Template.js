@@ -95,7 +95,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             $(function() {
                 ele.removeClass("ak-for");
-                $(".ak-for").removeClass("ak-for");
+                ele.find(".ak-for").removeClass("ak-for");
                 ele.children().eq(0).remove();
                 ret.appendTo(ele);
             });
