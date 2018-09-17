@@ -162,7 +162,6 @@ function AKjs_Loader(setting){
         if (option.text) {
             load_ele.append("<span class='animated flash infinite ani_2s'>"+option.text+"</span>");
             load_ele.children("span").css({
-                left: (ww / 2) - (load_ele.children("span").outerWidth() / 2),
                 top: (wh / 2) + load_ele.children("span").outerHeight()/2
             });
         }
@@ -192,7 +191,6 @@ function AKjs_Loader(setting){
             loading.css(yy);
             if (option.text) {
                 load_ele.children("span").css({
-                    left: (ww / 2) - (load_ele.children("span").outerWidth() / 2),
                     top: (wh / 2) + load_ele.children("span").outerHeight()/2
                 });
             }

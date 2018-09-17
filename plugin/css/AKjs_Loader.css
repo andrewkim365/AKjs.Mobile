@@ -1,8 +1,9 @@
 /*-----------------------------------------------AKjs_Loader-------------------------------------------*/
 .ak-Loader {width: 100%;height:100%;left: 0;top: 0;position: fixed;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none; z-index: 2}
 .ak-Loader figure.ak-loading {border-radius: 50%;padding: 0.5em;}
+.ak-Loader .ak-mask {position: absolute}
 .ak-Loader figure.ak-loading img {position: relative;z-index: 2;}
-.ak-Loader > span {position: absolute;z-index: 12; padding-right: 0.5em; margin-top: 0.5em; color: inherit;}
+.ak-Loader > span {position: absolute;z-index: 12; padding-right: 0.5em; margin-top: 0.5em; color: inherit;width: 100%; text-align: center;}
 .ak-Loader1{width:4em; height:4em; position:relative;}
 .ak-Loader1 .ak-Loader-double-bounce1,.ak-Loader-double-bounce2{width:100%; height:100%; border-radius:50%; opacity:0.6; position:absolute; top:0; left:0; -webkit-animation:bounce 2.0s infinite ease-in-out; animation:bounce 2.0s infinite ease-in-out;}
 .ak-Loader1 .ak-Loader-double-bounce2{-webkit-animation-delay:-1.0s; animation-delay:-1.0s;}
