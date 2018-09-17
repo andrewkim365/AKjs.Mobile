@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Tabs--------------------------------------------*/
@@ -54,7 +54,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 
             this.$tab_cont = this.$tabCont_wrap.find('section');
             if (this.opts.mouse === 'click') {
-                /*this.$tab_list.unbind("click");*/
+                //this.$tab_list.unbind("click");
                 this.$tab_list.click(function() {
                     self.changeTab($(this).index());
                     self.iNow = $(this).index();
@@ -72,7 +72,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         clearTimeout(self.timer);
                     });
             } else {
-                /*this.$tab_list.unbind("click");*/
+                //this.$tab_list.unbind("click");
                 this.$tab_list.click(function() {
                     self.changeTab($(this).index());
                     self.iNow = $(this).index();
@@ -85,7 +85,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }, this.opts.playDelay);
 
                 this.$wrapper.hover(function() {
-                        /*clearInterval(self.playTimer); /*鼠标滑动后自动播放将会停止*/
+                        //clearInterval(self.playTimer); //鼠标滑动后自动播放将会停止
                     },
                     function() {
                         self.playTimer = setInterval(function() {
@@ -112,15 +112,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 if (tmp > tabsize) {
                                     tmp = 1
                                 }
-                                /*console.log("right==="+tmp)*/
+                                //console.log("right==="+tmp)
                                 self.$tab_list.eq(tmp - 1).click();
                             } else {
                                 --tmp;
-                                /*console.log("tmp==="+tmp)*/
+                                //console.log("tmp==="+tmp)
                                 if (tmp == 0) {
                                     tmp = tabsize
                                 }
-                                /*/console.log("left==="+tmp)*/
+                                ///console.log("left==="+tmp)
                                 self.$tab_list.eq(tmp - 1).click();
                             }
                         }
@@ -152,15 +152,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 if (tmp > tabsize) {
                                     tmp = 1
                                 }
-                                /*console.log("right==="+tmp)*/
+                                //console.log("right==="+tmp)
                                 self.$tab_list.eq(tmp - 1).click();
                             } else {
                                 --tmp;
-                                /*console.log("tmp==="+tmp)*/
+                                //console.log("tmp==="+tmp)
                                 if (tmp == 0) {
                                     tmp = tabsize
                                 }
-                                /*/console.log("left==="+tmp)*/
+                                ///console.log("left==="+tmp)
                                 self.$tab_list.eq(tmp - 1).click();
                             }
                         }
@@ -173,7 +173,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 });
             }
         },
-        setData: function() { /* 设置样式*/
+        setData: function() { // 设置样式
             if (this.$tab_list.length == this.opts.navlength) {
                 this.$tab_list.removeClass("pl_1em pr_1em");
                 this.$tab_list.parent("ul").removeClass("nav_line").addClass("nav_line_c");
@@ -228,7 +228,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     break;
             }
         },
-        tabInital: function() { /* 初始化当前显示*/
+        tabInital: function() { // 初始化当前显示
             var curNum = this.opts.curDisplay - 1;
             this.$tab_list.removeClass(this.opts.fullclass);
             this.$tab_list.eq(curNum).addClass(this.opts.fullclass);
@@ -381,7 +381,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     break;
             }
         },
-        autoPlay: function() { /* 自动播放*/
+        autoPlay: function() { // 自动播放
             if (this.iNow === this.$tab_list.length - 1) {
                 this.iNow = 0;
             } else {

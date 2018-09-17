@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Select-------------------------------------------*/
@@ -8,6 +8,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         function getClass(dom, string) {
             return dom.getElementsByClassName(string);
         }
+        //构造器
         function AKjs_Select(config) {
             this.AKjs_Select;
             this.wheelsData = config.wheels;
@@ -39,10 +40,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 $(function() {
                     $("body").append(_this.AKjs_Select);
                 });
-                document.activeElement.blur();
-                _this.wheel = getClass(_this.AKjs_Select, 'wheel');
-                _this.slider = getClass(_this.AKjs_Select, 'selectContainer');
-                _this.wheels = _this.AKjs_Select.querySelector('.wheels');
+                document.activeElement.blur();//隐藏键盘
+                _this.wheel = getClass(_this.AKjs_Select, 'wheel'); //wheel 数组
+                _this.slider = getClass(_this.AKjs_Select, 'selectContainer'); // slider 数组
+                _this.wheels = _this.AKjs_Select.querySelector('.wheels'); //wheels
                 _this.ensureBtn = _this.AKjs_Select.querySelector('.ensure');
                 _this.closeBtn = _this.AKjs_Select.querySelector('.cancel');
                 _this.grayLayer = _this.AKjs_Select.querySelector('.ak-mask');
@@ -76,7 +77,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (_this.cascade) {
                     _this.initCascade();
                 }
-                /*定位 初始位置*/
+                //定位 初始位置
                 if (_this.initPosition.length == 0) {
                     for (var i = 0; i < _this.slider.length; i++) {
                         _this.initPosition.push(0);
@@ -85,8 +86,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 _this.setCurDistance(_this.initPosition);
                 _this.addListenerAll();
 
-                /*按钮监听
-                $(_this.closeBtn).unbind("click");*/
+                //按钮监听
+                //$(_this.closeBtn).unbind("click");
                 _this.closeBtn.addEventListener('click',function () {
                     $(_this.AKjs_Select).removeClass('ak-Select-show');
                     setTimeout(function(){
@@ -96,7 +97,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         500);
                     $("#ak-scrollview").addClass("scrolling_touch");;
                 });
-                /*$(_this.ensureBtn).unbind("click");*/
+                //$(_this.ensureBtn).unbind("click");
                 _this.ensureBtn.addEventListener('click',function () {
                     $(_this.AKjs_Select).removeClass('ak-Select-show');
                     setTimeout(function(){
@@ -122,7 +123,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         $(_this.popUp).children().removeClass('dis_opa_0');
                     }
                 });
-                /*$(_this.grayLayer).unbind("click");*/
+                //$(_this.grayLayer).unbind("click");
                 _this.grayLayer.addEventListener('click',function () {
                     $(_this.AKjs_Select).removeClass('ak-Select-show');
                     setTimeout(function(){
@@ -132,12 +133,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         500);
                     $("#ak-scrollview").addClass("scrolling_touch");;
                 });
-                /*$(_this.popUp).unbind("click");*/
+                //$(_this.popUp).unbind("click");
                 _this.popUp.addEventListener('click',function (event) {
                     event.stopPropagation();
                     $("#ak-scrollview").addClass("scrolling_touch");;
                 });
-                _this.fixRowStyle(); /*修正列数*/
+                _this.fixRowStyle(); //修正列数
             },
             setTitle: function (string) {
                 var _this = this;
@@ -159,18 +160,18 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 _this.AKjs_Select = document.createElement("div");
                 $(_this.AKjs_Select).addClass("ak-Select");
                 $(_this.AKjs_Select).html('<div id="select_mask" class="ak-mask dis_none_im"></div>' + '<div class="content">' + '<div class="panel dis_opa_0">' + '<div class="title c_title"></div>' + '<div class="fixWidth">' + '<div class="wheels">' + '</div>' + '<div class="selectLine"></div>' + '<div class="shadowMask"></div>' + '</div>' + '</div>' + '<div class="btnBar dis_opa_0">' + '<div class="fixWidth">' + '<button type="button" class="cancel bg_white c_gray_777"></button>' + '<button type="button" class="ensure bg_white c_title"></button>' + '</div>' + '</div>' + '</div>');
-                /*根据数据长度来渲染*/
+                //根据数据长度来渲染
                 var tempHTML = '';
 
-                for (var i = 0; i < wheelsData.length; i++) { /*列*/
+                for (var i = 0; i < wheelsData.length; i++) { //列
                     tempHTML += '<div class="wheel"><ul class="selectContainer">';
-                    /*console.log(wheelsData[i]);*/
+                    //console.log(wheelsData[i]);
                     if (_this.jsonType) {
-                        for (var j = 0; j < wheelsData[i].data.length; j++) { /*行*/
+                        for (var j = 0; j < wheelsData[i].data.length; j++) { //行
                             tempHTML += '<li data-id="' + wheelsData[i].data[j].id + '">' + wheelsData[i].data[j].value + '</li>';
                         }
                     } else {
-                        for (var j = 0; j < wheelsData[i].data.length; j++) { /*行*/
+                        for (var j = 0; j < wheelsData[i].data.length; j++) { //行
                             tempHTML += '<li>' + wheelsData[i].data[j] + '</li>';
                         }
                     }
@@ -181,7 +182,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             addListenerAll: function () {
                 var _this = this;
                 for (var i = 0; i < _this.slider.length; i++) {
-                    /*手势监听*/
+                    //手势监听
                     (function (i) {
                         _this.addListenerWheel(_this.wheel[i], i);
                         _this.addListenerLi(i);
@@ -205,6 +206,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         _this.touch(event, this.firstChild, index);
                     },
                     false);
+
+                //PC拖拽监听
                 theWheel.addEventListener('mousedown',
                     function () {
                         _this.dragClick(event, this.firstChild, index);
@@ -272,18 +275,18 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
                 return tempArr;
             },
-            checkArrDeep: function (parent) { /*检测子节点深度  修改 displayJson*/
+            checkArrDeep: function (parent) { //检测子节点深度  修改 displayJson
                 var _this = this;
                 if ('childs' in parent && parent.childs.length > 0) {
-                    _this.displayJson.push(_this.generateArrData(parent.childs)); /*生成子节点数组*/
-                    _this.checkArrDeep(parent.childs[0]); /*检测下一个子节点*/
+                    _this.displayJson.push(_this.generateArrData(parent.childs)); //生成子节点数组
+                    _this.checkArrDeep(parent.childs[0]); //检测下一个子节点
                 }
             },
             checkRange: function (index, posIndexArr) {
                 var _this = this;
                 var deleteNum = _this.displayJson.length - 1 - index;
                 for (var i = 0; i < deleteNum; i++) {
-                    _this.displayJson.pop(); /*修改 displayJson*/
+                    _this.displayJson.pop(); //修改 displayJson
                 }
                 var resultNode;
                 for (var i = 0; i <= index; i++) {
@@ -293,7 +296,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 }
                 _this.checkArrDeep(resultNode);
-                /*console.log(_this.displayJson);*/
+                //console.log(_this.displayJson);
                 _this.updateWheels();
                 _this.fixRowStyle();
                 _this.setCurDistance(_this.resetPostion(index, posIndexArr));
@@ -320,7 +323,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             },
             updateWheels: function () {
                 var _this = this;
-                /*删除多余的wheel*/
+                //删除多余的wheel
                 if (_this.wheel.length > _this.displayJson.length) {
                     var count = _this.wheel.length - _this.displayJson.length;
                     for (var i = 0; i < count; i++) {
@@ -328,12 +331,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 }
 
-                for (var i = 0; i < _this.displayJson.length; i++) { /*列*/
+                for (var i = 0; i < _this.displayJson.length; i++) { //列
                     (function (i) {
                         var tempHTML = '';
                         if (_this.wheel[i]) {
-                            /*console.log('插入Li');*/
-                            for (var j = 0; j < _this.displayJson[i].length; j++) { /*行*/
+                            //console.log('插入Li');
+                            for (var j = 0; j < _this.displayJson[i].length; j++) { //行
                                 tempHTML += '<li data-id="' + _this.displayJson[i][j].id + '">' + _this.displayJson[i][j].value + '</li>';
                             }
                             _this.slider[i].innerHTML = tempHTML;
@@ -342,7 +345,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             var tempWheel = document.createElement("div");
                             $(tempWheel).addClass("wheel");
                             tempHTML = '<ul class="selectContainer">';
-                            for (var j = 0; j < _this.displayJson[i].length; j++) { /*行*/
+                            for (var j = 0; j < _this.displayJson[i].length; j++) { //行
                                 tempHTML += '<li data-id="' + _this.displayJson[i][j].id + '">' + _this.displayJson[i][j].value + '</li>';
                             }
                             tempHTML += '</ul>';
@@ -449,13 +452,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         _this.moveEndY = event.changedTouches[0].clientY;
                         _this.offsetSum = _this.moveEndY - _this.startY;
 
-                        /*修正位置*/
+                        //修正位置
                         _this.updateCurDistance(theSlider, index);
                         _this.curDistance[index] = _this.fixPosition(_this.curDistance[index]);
                         _this.movePosition(theSlider, _this.curDistance[index]);
                         _this.oversizeBorder = -(theSlider.getElementsByTagName('li').length - 3) * _this.liHeight;
 
-                        /*反弹*/
+                        //反弹
                         if (_this.curDistance[index] + _this.offsetSum > 2 * _this.liHeight) {
                             _this.curDistance[index] = 2 * _this.liHeight;
                             setTimeout(function () {
@@ -509,12 +512,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             _this.moveEndY = event.clientY;
                             _this.offsetSum = _this.moveEndY - _this.startY;
 
-                            /*修正位置*/
+                            //修正位置
                             _this.updateCurDistance(theSlider, index);
                             _this.curDistance[index] = _this.fixPosition(_this.curDistance[index]);
                             _this.movePosition(theSlider, _this.curDistance[index]);
                             _this.oversizeBorder = -(theSlider.getElementsByTagName('li').length - 3) * _this.liHeight;
-                            /*反弹*/
+                            //反弹
                             if (_this.curDistance[index] + _this.offsetSum > 2 * _this.liHeight) {
                                 _this.curDistance[index] = 2 * _this.liHeight;
                                 setTimeout(function () {

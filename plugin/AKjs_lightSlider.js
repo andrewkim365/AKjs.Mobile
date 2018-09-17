@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_lightSlider---------------------------------------*/
@@ -148,7 +148,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     refresh.calSW();
                     refresh.clone = function () {
                         if (refresh.calWidth(true) > elSize) {
-                            
+                            /**/
                             var tWr = 0,
                                 tI = 0;
                             for (var k = 0; k < $children.length; k++) {
@@ -160,7 +160,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             }
                             var tItem = settings.autoWidth === true ? tI : settings.item;
 
-                            
+                            /**/
                             if (tItem < $el.find('.ak-lSSclone.ak-lSSleft').length) {
                                 for (var i = 0; i < $el.find('.ak-lSSclone.ak-lSSleft').length - tItem; i++) {
                                     $children.eq(i).remove();
@@ -172,7 +172,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                     $children.eq(j).remove();
                                 }
                             }
-                            
+                            /**/
                             for (var n = $el.find('.ak-lSSclone.ak-lSSright').length; n < tItem; n++) {
                                 $el.find('.ak-lslide').eq(n).clone().removeClass('ak-lslide').addClass('ak-lSSclone ak-lSSright').appendTo($el);
                                 scene++;
@@ -254,7 +254,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         pagers = '',
                         v = 0;
                     for (i = 0; i < length; i++) {
-                        /* calculate scene * slide value*/
+                        // calculate scene * slide value
                         if (!settings.autoWidth) {
                             v = i * ((slideWidth + settings.slideMargin) * settings.slideMove);
                         } else {
@@ -352,7 +352,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     } else {
                         sc = scene * settings.slideMove;
                     }
-                    /*t === true ? sc = scene : sc = scene * settings.slideMove;*/
+                    //t === true ? sc = scene : sc = scene * settings.slideMove;
                     var l, nl;
                     if (t === true) {
                         l = ob.length;
@@ -539,8 +539,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             } else {
                                 e.returnValue = false;
                             }
+                            // ** Fix for webkit cursor issue https://code.google.com/p/chromium/issues/detail?id=26723
                             $slide.scrollLeft += 1;
                             $slide.scrollLeft -= 1;
+                            // *
                             clearInterval(interval);
                         }
                     });

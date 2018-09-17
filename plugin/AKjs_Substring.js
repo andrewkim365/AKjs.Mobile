@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-09
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Substring-----------------------------------------*/
@@ -9,7 +9,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this.value = outputmoney(this.value);
         });
     };
-    /*金额字符串设置*/
+    //金额字符串设置
     function outputdollars(number) {
         if (number.length <= 3) return (number == '' ? '0': number);
         else {
@@ -26,7 +26,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         amount = Math.round(((amount) - Math.floor(amount)) * 100);
         return (amount < 10 ? '.0' + amount: '.' + amount);
     }
-    /*金额字符格式化（RMB）*/
+    //金额字符格式化（RMB）
     function outputmoney(number) {
         number = number.replace(/\,/g, "");
         if (isNaN(number) || number == "") return "";

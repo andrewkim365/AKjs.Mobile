@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-09
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Switch--------------------------------------*/
@@ -13,8 +13,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var _defaults = {
             checkedClass: "bg_title",
             disabledClass: "dis_opa_05",
-            /* 选中状态类名*/
-            onChange: function(element) {} /* onchange回调，返回当前选中项DOM元素组*/
+            // 选中状态类名
+            onChange: function(element) {} // onchange回调，返回当前选中项DOM元素组
         };
 
         var options = $.extend(_defaults, settings || {});
@@ -32,7 +32,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 $switch.next("label").css("margin-top", ($switch.next("label").parent().height() - Switchs.next("label").height()) / 2);
             });
             /*---- 初始化 ----*/
-            /* 是否选中以input:checkbox的选中状态为准*/
+            // 是否选中以input:checkbox的选中状态为准
             if ($switch.is(':checked') && !$switch.is(':disabled')) {
                 $switch.next("label").addClass(options.checkedClass).removeClass(options.disabledClass);
             } else if (!$switch.is(':checked') && $switch.is(':disabled'))  {
@@ -47,7 +47,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $switch.unbind();
             $switch.on("change", function() {
                 $(this).next("label").toggleClass(options.checkedClass);
-                options.onChange($(this)[0].checked); /* 回调*/
+                options.onChange($(this)[0].checked); // 回调
             });
         });
     };

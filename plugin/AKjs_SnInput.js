@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-09
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_SnInput-------------------------------------------*/
@@ -39,12 +39,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $(this).keyup(function(e) {
                 e = window.event || e;
                 var k = e.keyCode || e.which;
-                if (k == 8) { /*8是空格键*/
+                if (k == 8) { //8是空格键
                     if ($(this).val().length < 1) {
                         $(this).prev().focus();
                         $(this).prev().focus(function() {
                             var obj = e.srcElement ? e.srcElement: e.target;
-                            if (obj.createTextRange) { /*IE浏览器*/
+                            if (obj.createTextRange) { //IE浏览器
                                 var range = obj.createTextRange();
                                 range.moveStart("character", option.input_length);
                                 range.collapse(true);
@@ -60,8 +60,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         }
                     }
                 }
-                this.value=this.value.replace(/[^a-z0-9]/i,''); /*只允许输入字母和数字*/
-                this.value=this.value.toUpperCase(); /*英文字母转换为大写*/
+                this.value=this.value.replace(/[^a-z0-9]/i,''); //只允许输入字母和数字
+                this.value=this.value.toUpperCase(); //英文字母转换为大写
             })
         });
         ele.bind('keyup',function() {

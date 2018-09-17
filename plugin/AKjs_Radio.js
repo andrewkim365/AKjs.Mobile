@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-09-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Radio--------------------------------------*/
@@ -13,8 +13,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var _defaults = {
             boxSize: "2.6em",
             checkedClass: "bor_title border8",
-            /*选中状态类名*/
-            onChange: function(element) {} /*onchange回调，返回当前选中项DOM元素*/
+            // 选中状态类名
+            onChange: function(element) {} // onchange回调，返回当前选中项DOM元素
         };
 
         var options = $.extend(_defaults, settings || {});
@@ -53,9 +53,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         radios.attr("data-name",this.attr("name"));
         radios.each(function() {
             var $radio = $(this);
-            var _name = $(this).data("name"); /*组name值*/
+            var _name = $(this).data("name"); // 组name值
             /*---- 初始化 ----*/
-            /*是否选中以input:radio的选中状态为准,多个选中的话以最后一个为准*/
+            // 是否选中以input:radio的选中状态为准,多个选中的话以最后一个为准
             if ($radio.find('input[type="radio"]').is(':checked')) {
                 var $otherRadios = radios.filter("[data-name='" + _name + "']").not($radio);
                 $radio.addClass(options.checkedClass);
@@ -69,10 +69,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (!$(this).hasClass(options.checkedClass)) {
                     $(this).addClass(options.checkedClass);
                     $(this).children('input[type="radio"]').attr("checked","checked");
-                    radios.filter("[data-name='" + _name + "']").not($(this)).removeClass(options.checkedClass); /*切换class状态*/
-                    radios.filter("[data-name='" + _name + "']").not($(this)).children('input[type="radio"]').removeAttr("checked"); /*切换input状态*/
+                    radios.filter("[data-name='" + _name + "']").not($(this)).removeClass(options.checkedClass); // 切换class状态
+                    radios.filter("[data-name='" + _name + "']").not($(this)).children('input[type="radio"]').removeAttr("checked"); // 切换input状态
                 }
-                options.onChange($(this).children());
+                options.onChange($(this).children()); // 回调
             });
         });
     };

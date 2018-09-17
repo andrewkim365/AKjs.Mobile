@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-09
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_TimeAxis------------------------------------*/
@@ -25,7 +25,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $(this).addClass("ak-TimeAxis");
                     $(this).html("<cite><strong></strong></cite><ul></ul>");
                     var datalist = $(this).children("ul");
-                    /*Json获取数据信息*/
+                    //Json获取数据信息
                     var tmp = "";
                     for(var i = 0; i < option.data.length; i++){
                         tmp += '<li>';

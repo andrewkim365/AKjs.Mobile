@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-14
+Modification Date: 2018-09-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Checkbox--------------------------------------*/
@@ -14,8 +14,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             boxSize: "",
             checkedClass: "bg_title bor_title c_white",
             disabledClass: "bg_gray_ccc bor_gray_ccc c_white",
-            /* 选中状态类名*/
-            onChange: function(element) {} /*onchange回调，返回当前选中项DOM元素组*/
+            // 选中状态类名
+            onChange: function(element) {} //onchange回调，返回当前选中项DOM元素组
         };
 
         var options = $.extend(_defaults, settings || {});
@@ -54,8 +54,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
         });
         checkboxes.attr("data-name",self.attr("name"));
-        /*checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);*/
-        /*checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");*/
+        //checkboxes.css("margin-top", (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2);
+        //checkboxes.find('input[type="checkbox"]').css("margin-top", "-" + (checkboxes.parent().outerHeight() - checkboxes.outerHeight()) / 2 -1 + "px");
         checkboxes.each(function(ev) {
             if ($(this).find('input[type="checkbox"]').attr("multiple")) {
                 var $checkbox = $(ev.target);
@@ -63,7 +63,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var $checkbox = $(this);
             }
             /*---- 初始化 ----*/
-            /* 是否选中以input:checkbox的选中状态为准*/
+            // 是否选中以input:checkbox的选中状态为准
             if ($(this).find('input[type="checkbox"]').attr("checked")) {
                 $(this).addClass(options.checkedClass);
                 $(this).find('input[type="checkbox"]').attr("checked","checked");
@@ -76,7 +76,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
 
             /*---- 添加事件 ----*/
-            /*$checkbox.unbind();*/
+            //$checkbox.unbind();
             $checkbox.on("change", function() {
                 if ($checkbox.find('input[type="checkbox"]').attr("checked")) {
                     $checkbox.find('input[type="checkbox"]').removeAttr("checked");
@@ -85,7 +85,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $checkbox.find('input[type="checkbox"]').attr("checked","checked");
                     $checkbox.addClass(options.checkedClass);
                 }
-                options.onChange($($(this).children()[0])); /* 回调*/
+                options.onChange($($(this).children()[0])); // 回调
             });
         });
     };

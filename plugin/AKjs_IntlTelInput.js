@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_IntlTelInput------------------------------------*/
@@ -34,7 +34,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         var datalist = objsub.children("datalist");
                         datalist.before("<h6></h6>");
 
-                        /*生成右侧字母菜单*/
+                        //生成右侧字母菜单
                         var str = "<ol>\n";
                         for(var k = 0; k < option.data.length;k++){
                             str +=   "<li>"+option.data[k].value+"</li>\n";
@@ -42,7 +42,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         str += "</ol>";
                         datalist.before(str);
 
-                        /*Json获取数据信息*/
+                        //Json获取数据信息
                         var tmp = "";
                         for(var i = 0; i < option.data.length; i++){
                             tmp += "<dl>";

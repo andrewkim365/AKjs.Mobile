@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-08-09
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_PreviewImage---------------------------------------*/
@@ -7,7 +7,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     var option = {};
     $.fn.AKjs_PreviewImage = function(setting) {
         var op = $.extend({
-                uploadNum:0,/*用于计算图片上传数量*/
+                uploadNum:0,//用于计算图片上传数量
                 webToast: "",
                 messege: "",
                 btn_ok: "",
@@ -76,15 +76,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
     };
     function file_prvid(file,files,op) {
-        var tip = op.errorTip; /* 设定提示信息*/
+        var tip = op.errorTip; // 设定提示信息
         var filters = {
             "jpeg": "/9j/4",
             "gif": "R0lGOD",
             "png": "iVBORw"
         };
-        if (window.FileReader) { /* html5方案*/
+        if (window.FileReader) { // html5方案
             for (var i = 0,f; f = files[i];i++) {
-                /*console.log(i);*/
+                //console.log(i);
                 var fr = new FileReader();
                 fr.onload = function(e) {
                     var src = e.target.result;
@@ -103,7 +103,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 };
                 fr.readAsDataURL(f);
             }
-        } else { /* 降级处理*/
+        } else { // 降级处理
             if (!/\.jpg$|\.png$|\.gif$/i.test(file.value)) {
                 $ak.alert(tip, {
                     icon: "error",
@@ -127,7 +127,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             return null;
         }
         function showPrvImg(src, id) {
-            /*上传图片后继续生成图片*/
+            //上传图片后继续生成图片
             var imgList = "<li class='rel fl mb_5'>" +
                 "<figure class='img_auto "+option.Class+"' style='background-color: #eeeeee !important;'>" +
                 "<img src=" + src + " />" +
@@ -136,7 +136,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 "</span>" +
                 "</li>";
             $(id).parents("li").before(imgList);
-            $(option.delbtnClass).show(); /*显示删除按钮*/
+            $(option.delbtnClass).show(); //显示删除按钮
             var showPrvImg_li = $(id).parents("li");
 
             option.addCallbak(showPrvImg_li.parent());
@@ -154,14 +154,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     icon: "question",
                     button_ok: option.btn_ok,
                     button_cancel: option.btn_cancel,
-                    title: option.box_title[0], /*弹窗标题*/
+                    title: option.box_title[0], //弹窗标题
                     onSubmit:function(res){
                         option.delCallbak(image.parent("li"));
                         option.uploadNum--;
                         if (option.uploadNum < 1) {
-                            $(option.delbtnClass).hide(); /*隐藏删除按钮*/
+                            $(option.delbtnClass).hide(); //隐藏删除按钮
                         }
-                        ak_webToast(option.webToast,"bottom",1000); /*(提示文字，显示位置，耗时)*/
+                        ak_webToast(option.webToast,"bottom",1000); //(提示文字，显示位置，耗时)
                     }
                 });
             });

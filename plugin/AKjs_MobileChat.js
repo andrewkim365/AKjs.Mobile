@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-14
+Modification Date: 2018-09-11
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MobileChat--------------------------------------------*/
@@ -25,7 +25,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         option.callback($chat_plugin,container,scrollHeight);
         $chat_plugin.find("input").keyup(function() {
             if ($(this).prop("value").length > 0) {
-                /*console.log($(this).prop("value")) /*实时监听输入框值的变化*/
+                //console.log($(this).prop("value")) //实时监听输入框值的变化
                 option.chatcallback($chat_plugin,$(this).prop("value"))
             }
             $(document).keyup(function (event) {
@@ -36,26 +36,26 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         });
         $("#ak-scrollview").click(function () {
-            ChatOption_hide(); /*隐藏更多功能*/
+            ChatOption_hide();//隐藏更多功能
         });
         $chat_plugin.find("button[type='button']").click(function () {
             if ($(option.chat_optDom).hasClass("dis_none")) {
-                ChatOption_show(); /*展开更多功能*/
+                ChatOption_show();//展开更多功能
             } else {
-                ChatOption_hide(); /*隐藏更多功能*/
+                ChatOption_hide();//隐藏更多功能
             }
         });
         $chat_plugin.find("button[type='submit']").click(function (e) {
             e.preventDefault();
             if ($(this).prev("input").prop("value").length > 0) {
-                var chat_str = $(this).prev("input").prop("value");  /*获取实时的输入的消息*/
-                var scrollHeight = $("#ak-scrollview").prop("scrollHeight");  /*获取实时变化的main元素的高度*/
+                var chat_str = $(this).prev("input").prop("value"); //获取实时的输入的消息
+                var scrollHeight = $("#ak-scrollview").prop("scrollHeight"); //获取实时变化的main元素的高度
                 option.btncallback(chat_str,container,scrollHeight);
-                $(this).prev("input").val("");  /*发送消息后输入框的文字自动清空*/
+                $(this).prev("input").val(""); //发送消息后输入框的文字自动清空
             }
         });
 
-        function ChatOption_show() {  /*展开更多功能的方法*/
+        function ChatOption_show() { //展开更多功能的方法
             $("footer").children().addClass("h_au");
             $(option.chat_optDom).removeClass("dis_none").animate({
                 "height": option.chat_optHeight
@@ -71,7 +71,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         }
 
-        function ChatOption_hide() { /*隐藏更多功能的方法*/
+        function ChatOption_hide() { //隐藏更多功能的方法
             $(option.chat_optDom).animate({
                 "height": 0
             },200);
