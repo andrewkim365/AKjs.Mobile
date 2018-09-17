@@ -1,37 +1,44 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Substring-----------------------------------------*/
-(function($){
+(function($) {
     $.fn.AKjs_Substring = function() {
         $(this).blur(function() {
-            this.value = outputmoney(this.value);
-        });
+            this.value = outputmoney(this.value)
+        })
     };
-    //金额字符串设置
     function outputdollars(number) {
-        if (number.length <= 3) return (number == '' ? '0': number);
-        else {
+        if (number.length <= 3) {
+            return (number == "" ? "0": number)
+        } else {
             var mod = number.length % 3;
-            var output = (mod == 0 ? '': (number.substring(0, mod)));
+            var output = (mod == 0 ? "": (number.substring(0, mod)));
             for (var i = 0; i < Math.floor(number.length / 3); i++) {
-                if ((mod == 0) && (i == 0)) output += number.substring(mod + 3 * i, mod + 3 * i + 3);
-                else output += '' + number.substring(mod + 3 * i, mod + 3 * i + 3);
+                if ((mod == 0) && (i == 0)) {
+                    output += number.substring(mod + 3 * i, mod + 3 * i + 3)
+                } else {
+                    output += "" + number.substring(mod + 3 * i, mod + 3 * i + 3)
+                }
             }
-            return (output);
+            return (output)
         }
     }
     function outputcents(amount) {
         amount = Math.round(((amount) - Math.floor(amount)) * 100);
-        return (amount < 10 ? '.0' + amount: '.' + amount);
+        return (amount < 10 ? ".0" + amount: "." + amount)
     }
-    //金额字符格式化（RMB）
     function outputmoney(number) {
         number = number.replace(/\,/g, "");
-        if (isNaN(number) || number == "") return "";
+        if (isNaN(number) || number == "") {
+            return ""
+        }
         number = Math.round(number * 100) / 100;
-        if (number < 0) return '-' + outputdollars(Math.floor(Math.abs(number) - 0) + '') + outputcents(Math.abs(number) - 0);
-        else return outputdollars(Math.floor(number - 0) + '') + outputcents(number - 0);
+        if (number < 0) {
+            return "-" + outputdollars(Math.floor(Math.abs(number) - 0) + "") + outputcents(Math.abs(number) - 0)
+        } else {
+            return outputdollars(Math.floor(number - 0) + "") + outputcents(number - 0)
+        }
     }
-}(jQuery));
+} (jQuery));

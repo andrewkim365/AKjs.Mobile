@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Waterfall-------------------------------------------*/
@@ -67,7 +67,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $item.each(function(index) {
                     if(index < $this.cols) {
                         $(this).css("top", 0);
-                        //console.log($this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
                         $(this).css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
                         $this.colHeightArray.push($(this).outerHeight());
                     } else {

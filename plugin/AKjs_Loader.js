@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-03
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Loader------------------------------------------*/
@@ -149,7 +149,7 @@ function AKjs_Loader(setting){
         }
         function ak_closeLayer() {
             $(load_ele).fadeOut();
-            $("#ak-scrollview").addClass("scrolling_touch");;
+            $("#ak-scrollview").addClass("scrolling_touch");
         }
     });
 }

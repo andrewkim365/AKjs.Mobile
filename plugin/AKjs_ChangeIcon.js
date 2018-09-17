@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_ChangeIcon--------------------------------------*/
@@ -23,11 +23,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if (icon_ele.children().eq(1).hasClass(option.text_color[1])) {
                     icon_ele.children().find("i").eq(0).addClass(option.text_color[1]).removeClass(option.text_color[0]);
                     icon_ele.children().find("i").eq(1).removeClass(option.text_color[1]).addClass(option.text_color[0]);
-                    option.clickBack("up",option, icon_ele)
+                    option.clickBack("up",option, icon_ele);
                 } else {
                     icon_ele.children().find("i").eq(0).removeClass(option.text_color[1]).addClass(option.text_color[0]);
                     icon_ele.children().find("i").eq(1).addClass(option.text_color[1]).removeClass(option.text_color[0]);
-                    option.clickBack("down",option, icon_ele)
+                    option.clickBack("down",option, icon_ele);
                 }
             } else {
                 icon_ele.children().toggleClass(option.text_color[1] + " " + option.text_color[0]);

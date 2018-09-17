@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-14
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Slider------------------------------------------*/
@@ -273,13 +273,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 }
                             }
                         }
-                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                            /*if (yDiff > 5) {
-                                es.preventDefault();
-                            } else {
-                                es.preventDefault();
-                            }*/
-                        }
                     }
                     touchStartY = null;
                     touchStartX = null
@@ -292,15 +285,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (self.options.UpDown) {
                         es.preventDefault();
                     }
-                    /*if (self.options.loopPlay) {
-                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                            es.preventDefault()
-                        }
-                    } else {
-                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                            es.preventDefault()
-                        }
-                    }*/
                 },
                 mousedown: function(es) {
                     touchStartY = es.clientY;
@@ -362,9 +346,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                     touchStartY = null;
                     touchStartX = null
-                },
-                mousemove: function(es) {
-                    //es.preventDefault();
                 }
             })
         },
@@ -376,7 +357,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var sliderInder = ele.children("ul");
             var SliderLi = sliderInder.children("li");
             if (clickable) {
-                //self.clickable = false;
                 if (self.options.UpDown) {
                     var offset = ele.height();
                 } else {

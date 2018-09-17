@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Textarea----------------------------------------*/
@@ -13,7 +13,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             setting);
         var txt =$(this);
         if (txt.length > 0) {
-            txt.each(function(){ //input元素加maxlength属性后控制自定义字数
+            txt.each(function(){
                 $(this).after('<span class="dis_block_im ovh abs center text_al_r text_08em">' +
                     '<var class="text_08em" style="color: #f16a6a;">0</var>' +
                     '/' +
@@ -33,11 +33,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 if( len >= opm.maxlength && e.keyCode == 8 ){
                     return;
                 }else{
-                    // 取出回车字符
                     var textareaVal = ($(this).val().replace(/<(.+?)>/gi,"&lt;$1&gt;")).replace(/\n/gi,"|");
-                    // 回车数量
                     var entLen = textareaVal.split('|').length-1;
-                    // 不包含回车的数量
                     var strLen = textareaVal.split('|').join('').length;
                     $(this).attr('maxlength',opm.maxlength+(entLen*2));
                     len = strLen;

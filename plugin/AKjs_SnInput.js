@@ -1,15 +1,14 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_SnInput-------------------------------------------*/
-(function($){
+(function($) {
     $.fn.AKjs_SnInput = function(setting) {
         var option = $.extend({
                 default_active: false,
                 input_length: 1,
-                callback:function(){
-                }
+                callback: function() {}
             },
             setting);
         var ele = $(this).find("input");
@@ -27,66 +26,67 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 "text-align": "center"
             });
             if (option.default_active == true) {
-                ele.first().focus();
+                ele.first().focus()
             }
-            ele.attr("maxlength",option.input_length);
+            ele.attr("maxlength", option.input_length);
             ele.focus(function() {
-                $(this).addClass("bor_title bg_white");
+                $(this).addClass("bor_title bg_white")
             });
             ele.blur(function() {
-                $(this).removeClass("bor_title bg_white");
+                $(this).removeClass("bor_title bg_white")
             });
             $(this).keyup(function(e) {
                 e = window.event || e;
                 var k = e.keyCode || e.which;
-                if (k == 8) { //8是空格键
+                if (k == 8) {
                     if ($(this).val().length < 1) {
                         $(this).prev().focus();
                         $(this).prev().focus(function() {
                             var obj = e.srcElement ? e.srcElement: e.target;
-                            if (obj.createTextRange) { //IE浏览器
+                            if (obj.createTextRange) {
                                 var range = obj.createTextRange();
                                 range.moveStart("character", option.input_length);
                                 range.collapse(true);
-                                range.select();
+                                range.select()
                             }
-                        });
+                        })
                     }
                 } else {
-                    if ($(this).val().length > parseInt(option.input_length)-1) {
+                    if ($(this).val().length > parseInt(option.input_length) - 1) {
                         AKjs_UserAgent();
                         if (!IsQQ) {
-                            $(this).next().focus();
+                            $(this).next().focus()
                         }
                     }
                 }
-                this.value=this.value.replace(/[^a-z0-9]/i,''); //只允许输入字母和数字
-                this.value=this.value.toUpperCase(); //英文字母转换为大写
+                this.value = this.value.replace(/[^a-z0-9]/i, "");
+                this.value = this.value.toUpperCase()
             })
         });
-        ele.bind('keyup',function() {
-            var f = true;
-            var str = "";
-            if (ele.val() >= 1) {
-                $(this).addClass("c_black");
-            } else {
-                $(this).addClass("c_black");
-            }
-            for(var i = 0;i < ele.length; i++){
-                if(""==ele.eq(i).val()){
-                    f = false;
+        ele.bind("keyup",
+            function() {
+                var f = true;
+                var str = "";
+                if (ele.val() >= 1) {
+                    $(this).addClass("c_black")
+                } else {
+                    $(this).addClass("c_black")
                 }
-            }
-            if(f){
-                for(var i = 0;i < ele.length; i++){
-                    str += ele.eq(i).val();
+                for (var i = 0; i < ele.length; i++) {
+                    if ("" == ele.eq(i).val()) {
+                        f = false
+                    }
                 }
-                if(str.length==(parseInt(option.input_length)*ele.length)){
-                    option.callback(str)
+                if (f) {
+                    for (var i = 0; i < ele.length; i++) {
+                        str += ele.eq(i).val()
+                    }
+                    if (str.length == (parseInt(option.input_length) * ele.length)) {
+                        option.callback(str)
+                    }
+                } else {
+                    option.callback("")
                 }
-            }else{
-                option.callback("");
-            }
-        });
-    };
-}(jQuery));
+            })
+    }
+} (jQuery));

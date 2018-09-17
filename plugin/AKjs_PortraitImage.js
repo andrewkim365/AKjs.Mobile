@@ -1,9 +1,9 @@
 ﻿/*
-Modification Date: 2018-08-30
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_PortraitImage--------------------------------------*/
-(function($){
+(function($) {
     var option = {};
     $.fn.AKjs_PortraitImage = function(setting) {
         var op = $.extend({
@@ -16,33 +16,33 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         option = op;
         var pimg = $(this);
         setTimeout(function() {
-            pimg.each(function(){
-                $(this).addClass("ak-PortraitImage");
-                $(this).find("input[type=file]").attr("accept","image/*");
-                $(this).bind('change',
-                    function() {
-                        ak_PortraitFilePrvid($(this).children('input')[0],op);
-                    });
-                $(this).children("figure").css({
-                    "margin-top": (pimg.outerWidth() / 3 / 2)
-                });
-            });
-        },200);
-
-        $(window).resize(function(){
+                pimg.each(function() {
+                    $(this).addClass("ak-PortraitImage");
+                    $(this).find("input[type=file]").attr("accept", "image/*");
+                    $(this).bind("change",
+                        function() {
+                            ak_PortraitFilePrvid($(this).children("input")[0], op)
+                        });
+                    $(this).children("figure").css({
+                        "margin-top": (pimg.outerWidth() / 3 / 2)
+                    })
+                })
+            },
+            200);
+        $(window).resize(function() {
             pimg.children("figure").css({
                 "margin-top": (pimg.outerWidth() / 3 / 2)
-            });
-        });
+            })
+        })
     };
-    function ak_PortraitFilePrvid(file,op) {
-        var tip = op.errorTip; // 设定提示信息
+    function ak_PortraitFilePrvid(file, op) {
+        var tip = op.errorTip;
         var filters = {
             "jpeg": "/9j/4",
             "gif": "R0lGOD",
             "png": "iVBORw"
         };
-        if (window.FileReader) { // html5方案
+        if (window.FileReader) {
             for (var i = 0,
                      f; f = file.files[i]; i++) {
                 var fr = new FileReader();
@@ -53,43 +53,42 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             icon: "error",
                             button_ok: op.btn_ok,
                             title: op.box_title
-                        });
+                        })
                     } else {
-                        ak_PortraitShowImg(src, file);
+                        ak_PortraitShowImg(src, file)
                     }
                 };
-                fr.readAsDataURL(f);
+                fr.readAsDataURL(f)
             }
-        } else { // 降级处理
+        } else {
             if (!/\.jpg$|\.png$|\.gif$/i.test(file.value)) {
                 $ak.alert(tip, {
                     icon: "error",
                     button_ok: op.btn_ok,
                     title: op.box_title
-                });
+                })
             } else {
-                ak_PortraitShowImg(file.value, file);
+                ak_PortraitShowImg(file.value, file)
             }
         }
         function ak_PortraitValidateImg(data) {
             var pos = data.indexOf(",") + 1;
             for (var e in filters) {
                 if (data.indexOf(filters[e]) === pos) {
-                    return e;
+                    return e
                 }
             }
-            return null;
+            return null
         }
         function ak_PortraitShowImg(src, id) {
-            //上传图片后替换原先的图
             var figure = "<img src=" + src + ">";
             $(id).next().remove("i");
             $(id).next().html(figure);
             $(id).unbind("click");
             $(id).click(function() {
-                $(id).parent().children("img").attr("src", src);
+                $(id).parent().children("img").attr("src", src)
             });
             option.addCallbak($(id).next().find("img"));
         }
     }
-}(jQuery));
+} (jQuery));

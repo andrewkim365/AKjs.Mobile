@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_CountDown---------------------------------------*/
@@ -24,15 +24,14 @@ function AKjs_CountDown(ele,setting){
         ele.html(waits + option.Start_text);
         waits--;
         setTimeout(function() {
-                AKjs_CountDown(ele,{
-                    wait: waits,
-                    Start_text: option.Start_text,
-                    End_Text: option.End_Text,
-                    callback:function(waits){
-                        option.callback(waits);
-                    }
-                })
-            },
-            1000)
+            AKjs_CountDown(ele,{
+                wait: waits,
+                Start_text: option.Start_text,
+                End_Text: option.End_Text,
+                callback:function(waits){
+                    option.callback(waits);
+                }
+            })
+        }, 1000);
     }
 }

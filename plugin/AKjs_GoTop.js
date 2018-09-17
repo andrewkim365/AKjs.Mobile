@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-30
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_GoTop--------------------------------------*/
@@ -29,15 +29,15 @@ function AKjs_GoTop (setting){
             sate='top:50%';
         }
         else if(option.state=='bottom'){
-            sate= 'bottom:10%'
+            sate= 'bottom:10%';
         }
         if(!option.icon || option.url) {
             var dom = '<div class="ak-GoTopBox" style="width:' + option.width + ';height:' + option.height + ';display:none;position:fixed;cursor:pointer;right:2em;z-index:999;' + sate + '">' +
                 '<img src=' + option.url + ' style="width:100%" />' +
-                '</div>'
+                '</div>';
         } else {
             var dom = '<div class="ak-GoTopBox ' + option.icon + '" style="width:' + option.width + ';height:' + option.height + ';display:none;position:fixed;cursor:pointer;right:2em;z-index:999;' + sate + '">' +
-                '</div>'
+                '</div>';
         }
         $('.ak-GoTopBox').remove();
         $("body").append(dom);
@@ -52,7 +52,7 @@ function AKjs_GoTop (setting){
                         timer = setTimeout(function () {
                             GoTopBox.fadeOut();
                             option.toHide && option.toHide();
-                        }, option.hidetime)
+                        }, option.hidetime);
                     }
                 }
                 option.toShow&&option.toShow();
@@ -113,7 +113,7 @@ function AKjs_GoTop (setting){
                 timer = setTimeout(function () {
                     GoTopBox.fadeOut();
                     option.toHide && option.toHide();
-                }, option.hidetime)
+                }, option.hidetime);
             }
         });
         function throttle(fn,time){
@@ -121,7 +121,9 @@ function AKjs_GoTop (setting){
             return function(){
                 var ctx=this,arg=arguments;
                 clearTimeout(timer);
-                timer = setTimeout(function(){fn.apply(ctx,arg)},time)
+                timer = setTimeout(function(){
+                    fn.apply(ctx,arg);
+                },time);
             }
         }
     });

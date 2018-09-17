@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-13
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 (function($, undefined) {
@@ -279,13 +279,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 return "');__.push('";
             }
             var tag = $.AKjs_Template.tag[ type ], def, expr, exprAutoFnDetect;
-            if(!tag && window.console && console.group) {
-                //console.group("Exception");
-                //console.error(markup);
-                //console.error('Unknown tag: ', type);
-                //console.error(all);
-                //console.groupEnd("Exception");
-            }
             if(!tag) {
                 return "');__.push('";
             }
@@ -313,11 +306,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         };
         var depreciated_parse = function() {
             if($.AKjs_Template.tag[arguments[2]]) {
-                //console.group("Depreciated");
-                //console.info(markup);
-                //console.info('Markup has old style indicators, use {% %} instead of {{ }}');
-                //console.info(arguments[0]);
-                //console.groupEnd("Depreciated");
                 return parse_tag.apply(this, arguments);
             } else {
                 return "');__.push('{{" + arguments[2] + "}}');__.push('";

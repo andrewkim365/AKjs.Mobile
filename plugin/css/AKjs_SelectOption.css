@@ -1,97 +1,12 @@
-﻿.ak-SelectOpts {
-    width: 100%;
-    position:relative;
-    cursor:pointer;
-    text-indent: 1em;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-select.ak-SelectOpts {
-    display: none !important;
-}
-.ak-SelectOpts var {
-    font-style: normal;
-    text-overflow:ellipsis;
-    display: -webkit-box;
-    display: -moz-box;
-    word-wrap:break-word;
-    word-break:normal;
-    overflow:hidden;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:1;
-}
-.ak-SelectOpts:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 0;
-    right: 1em;
-    margin-top: -0.2em;
-    border-top: 0.6em solid #777777;
-    border-right: 0.6em solid transparent;
-    border-left: 0.6em solid transparent;
-}
-.ak-SelectOpts.ak-open:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 0;
-    right: 1em;
-    margin-top: -0.2em;
-    border-top: none !important;
-    border-bottom: 0.6em solid #777777;
-    border-right: 0.6em solid transparent;
-    border-left: 0.6em solid transparent;
-}
-.ak-SelectList {
-    display:none;
-    position:absolute;
-    z-index: 999;
-    overflow-y: auto !important;
-    border:1px solid #dddddd;
-    background:#fff;
-    -webkit-tap-highlight-color:rgba(255,255,255,0);
-    text-decoration:none;
-    outline:0;
-    noFocusLine: expression(this.onFocus = this.blur());
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.ak-SelectList ul {
-    width: 100%;
-    background-color: rgba(255,255,255,0.8);
-}
-.ak-SelectList li {
-    cursor: pointer;
-    padding-left: 1em;
-    border-top: none;
-    text-overflow:ellipsis;
-    display: -webkit-box;
-    display: -moz-box;
-    word-wrap:break-word;
-    word-break:normal;
-    overflow:hidden;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:1;
-}
-.ak-SelectList li+li {
-    cursor: pointer;
-    padding-left: 1em;
-    border-top: 1px #dddddd solid;
-}
-@media screen and (max-width:1024px) {
-    .ak-SelectList li:active {
-        background:#f5f5f5;
-    }
-}
-@media screen and (min-width:1025px) {
-    .ak-SelectList li:hover {
-        background:#f5f5f5;
-    }
-}
+﻿/*-----------------------------------------------AKjs_SelectOption-------------------------------------------*/
+.ak-SelectOpts{width: 100%; position:relative; cursor:pointer; text-indent: 1em; display: inline-block; overflow: hidden; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+select.ak-SelectOpts{display: none !important;}
+.ak-SelectOpts var{font-style: normal; text-overflow:ellipsis; display: -webkit-box; display: -moz-box; word-wrap:break-word; word-break:normal; overflow:hidden; -webkit-box-orient:vertical; -webkit-line-clamp:1;}
+.ak-SelectOpts:after{content: ""; position: absolute; top: 50%; width: 0; right: 1em; margin-top: -0.2em; border-top: 0.6em solid #777777; border-right: 0.6em solid transparent; border-left: 0.6em solid transparent;}
+.ak-SelectOpts.ak-open:after{content: ""; position: absolute; top: 50%; width: 0; right: 1em; margin-top: -0.2em; border-top: none !important; border-bottom: 0.6em solid #777777; border-right: 0.6em solid transparent; border-left: 0.6em solid transparent;}
+.ak-SelectList{display:none; position:absolute; z-index: 999; overflow-y: auto !important; border:1px solid #dddddd; background:#fff; -webkit-tap-highlight-color:rgba(255,255,255,0); text-decoration:none; outline:0; noFocusLine: expression(this.onFocus = this.blur()); -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+.ak-SelectList ul{width: 100%; background-color: rgba(255,255,255,0.8);}
+.ak-SelectList li{cursor: pointer; padding-left: 1em; border-top: none; text-overflow:ellipsis; display: -webkit-box; display: -moz-box; word-wrap:break-word; word-break:normal; overflow:hidden; -webkit-box-orient:vertical; -webkit-line-clamp:1;}
+.ak-SelectList li+li{cursor: pointer; padding-left: 1em; border-top: 1px #dddddd solid;}
+@media screen and (max-width:1024px){.ak-SelectList li:active{background:#f5f5f5;}}
+@media screen and (min-width:1025px){.ak-SelectList li:hover{background:#f5f5f5;}}

@@ -1,138 +1,19 @@
 /*-----------------------------------------------AKjs_Select-------------------------------------------*/
-.ak-Select .content {
-    width:100%;
-    display:block;
-    position:fixed;
-    z-index:8;
-    color:black;
-    left:0;
-    bottom:-100%;
-    -webkit-transition:all 1s;
-    transition:all 1s;
-}
-.ak-Select-show {
-    opacity:1;
-    z-index:100;
-    visibility:visible;
-    -webkit-user-select: none; /* Chrome all, Safari all, opera15+ */
-    -moz-user-select: none; /* Firefox all */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none;
-    -webkit-appearance:none;
-    outline:none;
-    -webkit-tap-highlight-color:rgba(255,255,255,0);
-}
-.ak-Select-show .content {
-    left:0;
-    bottom: -0.1em;
-    -webkit-transition:all 0.5s;
-    transition:all 0.5s;
-}
-.ak-Select .content .fixWidth {
-    width:100%;
-    position:relative;
-}
-.ak-Select .content .fixWidth:after {
-    content:".";
-    display:block;
-    height:0;
-    clear:both;
-    visibility:hidden;
-}
-.ak-Select .content .btnBar {
-    border-top:0.5em solid #eeeeee;
-    height: 3.6em;
-    line-height: 3.4em;
-    position:relative;
-    z-index:22;
-    text-align:center;
-    background-color:#ffffff;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.ak-Select .content .btnBar .cancel,.ak-Select .content .btnBar .ensure {
-    width:50%;
-    height: 3.6em;
-    line-height: 3.4em;
-    text-align:center;
-    cursor:pointer;
-    position:absolute;
-    top:0;
-}
-.ak-Select .content .btnBar .cancel {
-    left:0;
-    border-right:solid 1px #dddddd;
-}
-.ak-Select .content .btnBar .ensure {
-    right:0;
-}
-.ak-Select .content .panel {
-    background-color:#ffffff;
-    position:relative;
-    z-index:22;
-}
-.ak-Select .content .panel:after {
-    content:".";
-    display:block;
-    height:0;
-    clear:both;
-    visibility:hidden;
-}
-.ak-Select .content .panel .title {
-    text-align:center;
-    line-height:3em;
-    border-bottom:dashed 1px #dddddd;
-}
-.ak-Select .content .panel .wheels {
-    position: relative;
-    width:100%;
-    height:15em;
-    -webkit-overflow-scrolling: touch;
-    overflow:hidden;
-}
-.ak-Select .content .panel .wheel {
-    z-index:0;
-    float:left;
-    -webkit-transition:width 0.3s ease;
-    transition:width 0.3s ease;
-}
-.ak-Select .content .panel .wheel .selectContainer {
-    display:block;
-    text-align:center;
-    -webkit-transition:-webkit-transform 0.4s ease-out;
-    transition:-webkit-transform 0.4s ease-out;
-    transition:transform 0.4s ease-out;
-}
-.ak-Select .content .panel .wheel .selectContainer li {
-    display:block;
-    height:3em;
-    line-height:3em;
-    cursor:pointer;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-}
-.ak-Select .content .panel .selectLine {
-    height:3em;
-    width:100%;
-    position:absolute;
-    top:6em;
-    pointer-events:none;
-    -webkit-box-sizing:border-box;
-    box-sizing:border-box;
-    border-top:1px solid #dddddd;
-    border-bottom:1px solid #dddddd;
-}
-.ak-Select .content .panel .shadowMask {
-    position:absolute;
-    top:0;
-    width:100%;
-    height:15em;
-    background:-webkit-gradient(linear,left top,left bottom,from(#ffffff),color-stop(rgba(255,255,255,0)),to(#ffffff));
-    background:-webkit-linear-gradient(top,#ffffff,rgba(255,255,255,0),#ffffff);
-    background:linear-gradient(to bottom,#ffffff,rgba(255,255,255,0),#ffffff);
-    opacity:0.9;
-    pointer-events:none;
-}
+.ak-Select .content{width:100%; display:block; position:fixed; z-index:8; color:black; left:0; bottom:-100%; -webkit-transition:all 1s; transition:all 1s;}
+.ak-Select-show{opacity:1; z-index:100; visibility:visible; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-appearance:none; outline:none; -webkit-tap-highlight-color:rgba(255,255,255,0);}
+.ak-Select-show .content{left:0; bottom: -0.1em; -webkit-transition:all 0.5s; transition:all 0.5s;}
+.ak-Select .content .fixWidth{width:100%; position:relative;}
+.ak-Select .content .fixWidth:after{content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.ak-Select .content .btnBar{border-top:0.5em solid #eeeeee; height: 3.6em; line-height: 3.4em; position:relative; z-index:22; text-align:center; background-color:#ffffff; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+.ak-Select .content .btnBar .cancel,.ak-Select .content .btnBar .ensure{width:50%; height: 3.6em; line-height: 3.4em; text-align:center; cursor:pointer; position:absolute; top:0;}
+.ak-Select .content .btnBar .cancel{left:0; border-right:solid 1px #dddddd;}
+.ak-Select .content .btnBar .ensure{right:0;}
+.ak-Select .content .panel{background-color:#ffffff; position:relative; z-index:22;}
+.ak-Select .content .panel:after{content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.ak-Select .content .panel .title{text-align:center; line-height:3em; border-bottom:dashed 1px #dddddd;}
+.ak-Select .content .panel .wheels{position: relative; width:100%; height:15em; -webkit-overflow-scrolling: touch; overflow:hidden;}
+.ak-Select .content .panel .wheel{z-index:0; float:left; -webkit-transition:width 0.3s ease; transition:width 0.3s ease;}
+.ak-Select .content .panel .wheel .selectContainer{display:block; text-align:center; -webkit-transition:-webkit-transform 0.4s ease-out; transition:-webkit-transform 0.4s ease-out; transition:transform 0.4s ease-out;}
+.ak-Select .content .panel .wheel .selectContainer li{display:block; height:3em; line-height:3em; cursor:pointer; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.ak-Select .content .panel .selectLine{height:3em; width:100%; position:absolute; top:6em; pointer-events:none; -webkit-box-sizing:border-box; box-sizing:border-box; border-top:1px solid #dddddd; border-bottom:1px solid #dddddd;}
+.ak-Select .content .panel .shadowMask{position:absolute; top:0; width:100%; height:15em; background:-webkit-gradient(linear,left top,left bottom,from(#ffffff),color-stop(rgba(255,255,255,0)),to(#ffffff)); background:-webkit-linear-gradient(top,#ffffff,rgba(255,255,255,0),#ffffff); background:linear-gradient(to bottom,#ffffff,rgba(255,255,255,0),#ffffff); opacity:0.9; pointer-events:none;}

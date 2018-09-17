@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_TypeIt-----------------------------------------*/
@@ -40,7 +40,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 self.typewrite(self.strings[self.sequence[self.arrayPos]], self.strPos);
             }, self.startDelay);
         },
-
         build: function() {
             var self = this;
             if (this.showCursor === true) {
@@ -76,7 +75,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                     curString = curString.substring(0, curStrPos) + curString.substring(curStrPos + skip);
                 }
-
                 if (self.contentType === 'html') {
                     var curChar = curString.substr(curStrPos).charAt(0);
                     if (curChar === '<' || curChar === '&') {
@@ -132,16 +130,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                 }, charPause);
             }, humanize);
-
         },
-
         backspace: function(curString, curStrPos) {
             if (this.stop === true) {
                 return;
             }
             var humanize = Math.round(Math.random() * (100 - 30)) + this.backSpeed;
             var self = this;
-
             self.timeout = setTimeout(function() {
                 if (self.contentType === 'html') {
                     if (curString.substr(curStrPos).charAt(0) === '>') {
@@ -182,7 +177,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         self.typewrite(self.strings[self.sequence[self.arrayPos]], curStrPos);
                 }
             }, humanize);
-
         },
         shuffleArray: function(array) {
             var tmp, current, top = array.length;
@@ -195,7 +189,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             return array;
         }
     };
-
     $.fn.AKjs_TypeIt = function(option) {
         return this.each(function() {
             var $this = $(this),
@@ -205,7 +198,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             if (typeof option == 'string') data[option]();
         });
     };
-
     $.fn.AKjs_TypeIt.defaults = {
         strings: [],
         stringsElement: null,
@@ -224,6 +216,4 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         preString: function() {},
         onString: function() {}
     };
-
-
 }(jQuery));

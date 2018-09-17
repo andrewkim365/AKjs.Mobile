@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-01
+Modification Date: 2018-09-17
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
@@ -78,9 +78,6 @@ function AKjs_Popupwin (setting){
                     $(option.dom).css({
                         "top": oth
                     })
-                } else {
-                    /*$("#ak-scrollview").attr("style",$("main").attr("style"));
-                    $("main").removeAttr("style").addClass("mt_0");*/
                 }
                 if (option.effectIn || option.effectOut) {
                     $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
@@ -193,8 +190,6 @@ function AKjs_Popupwin (setting){
         }
         setTimeout(function() {
             $("#ak-scrollview").addClass("scrolling_touch");
-            /*$("main").attr("style",$("#ak-scrollview").attr("style")).removeClass("mt_0");
-            $("#ak-scrollview").removeAttr("style");*/
             $(option.OneButton).removeClass("ak-is_active");
             $('#popup_mask').fadeOut().remove();
             $(option.dom).addClass("dis_none").removeAttr("style");

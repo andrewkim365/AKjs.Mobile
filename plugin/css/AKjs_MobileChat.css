@@ -1,83 +1,14 @@
-﻿.ak-chat time {
-    display: block;
-    background-color: #cccccc;
-    color: #ffffff;
-    text-align: center;
-    line-height: 1.8em;
-    padding: 0 0.5em;
-    overflow: hidden;
-    margin: 0 auto;
-    height: 2em;
-    width: -moz-max-content;
-    width: -webkit-max-content;
-    width: max-content;
-    border-radius: 0.3em;
-}
-.ak-chat_left,.ak-chat_right {
-    position: relative;
-    overflow: hidden;
-}
-.ak-chat_left img,.ak-chat_right img {
-    display:block;
-    width: 100%;
-}
-.ak-chat_left dt, .ak-chat_right dt {
-    position: relative;
-    overflow: hidden;
-}
-.ak-chat_left dd, .ak-chat_right dd {
-    position: relative;
-    margin: 0.5em 1em;
-    padding:0.5em;
-    line-height:1.5em;
-    max-width:70%;
-    border-radius:0.5em;
-    word-wrap:break-word;
-    border: solid 1px #dddddd;
-    background-color: #ffffff;
-}
-.ak-chat_left dt, .ak-chat_left dd {
-    float: left;
-}
-.ak-chat_right dt, .ak-chat_right dd {
-    float: right;
-}
-.ak-chat_left dd:before, .ak-chat_right dd:before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0.6em;
-    pointer-events: none;
-    border-top: 0.4em solid transparent;
-    border-bottom: 0.4em solid transparent;
-    z-index: 1;
-}
-.ak-chat_left dd:before {
-    left: -0.6em;
-    border-right: 0.6em solid;
-    border-right-color: #ffffff;
-}
-.ak-chat_right dd:before {
-    right: -0.7em;
-    border-left: 0.7em solid;
-    border-left-color: inherit;
-}
-.ak-chat_left dd:after, .ak-chat_right dd:after {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0.5em;
-    pointer-events: none;
-    border-top: 0.5em solid transparent;
-    border-bottom: 0.5em solid transparent;
-}
-.ak-chat_left dd:after {
-    left: -0.7em;
-    border-right: 0.7em solid;
-    border-right-color: inherit;
-}
-.ak-chat_right dd:after {
-    right: -0.7em;
-    border-left: 0.7em solid;
-    border-left-color: inherit;
-}
+﻿/*-----------------------------------------------AKjs_MobileChat-------------------------------------------*/
+.ak-chat time{display: block; background-color: #cccccc; color: #ffffff; text-align: center; line-height: 1.8em; padding: 0 0.5em; overflow: hidden; margin: 0 auto; height: 2em; width: -moz-max-content; width: -webkit-max-content; width: max-content; border-radius: 0.3em;}
+.ak-chat_left,.ak-chat_right{position: relative; overflow: hidden;}
+.ak-chat_left img,.ak-chat_right img{display:block; width: 100%;}
+.ak-chat_left dt, .ak-chat_right dt{position: relative; overflow: hidden;}
+.ak-chat_left dd, .ak-chat_right dd{position: relative; margin: 0.5em 1em; padding:0.5em; line-height:1.5em; max-width:70%; border-radius:0.5em; word-wrap:break-word; border: solid 1px #dddddd; background-color: #ffffff;}
+.ak-chat_left dt, .ak-chat_left dd{float: left;}
+.ak-chat_right dt, .ak-chat_right dd{float: right;}
+.ak-chat_left dd:before, .ak-chat_right dd:before{display: block; content: ""; position: absolute; top: 0.6em; pointer-events: none; border-top: 0.4em solid transparent; border-bottom: 0.4em solid transparent; z-index: 1;}
+.ak-chat_left dd:before{left: -0.6em; border-right: 0.6em solid; border-right-color: #ffffff;}
+.ak-chat_right dd:before{right: -0.7em; border-left: 0.7em solid; border-left-color: inherit;}
+.ak-chat_left dd:after, .ak-chat_right dd:after{display: block; content: ""; position: absolute; top: 0.5em; pointer-events: none; border-top: 0.5em solid transparent; border-bottom: 0.5em solid transparent;}
+.ak-chat_left dd:after{left: -0.7em; border-right: 0.7em solid; border-right-color: inherit;}
+.ak-chat_right dd:after{right: -0.7em; border-left: 0.7em solid; border-left-color: inherit;}

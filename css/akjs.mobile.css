@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180911 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180917 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -13110,7 +13110,7 @@ filter_gray_0 {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
-.ak-for >*:first-child, ak-header, ak-footer, ak-title, ak-menu-code, ak-page-code  {
+.ak-for, .ak-for >*:first-child, ak-header, ak-footer, ak-title, ak-menu-code, ak-page-code  {
     display: none !important;
 }
 animation, #ak-animation {
