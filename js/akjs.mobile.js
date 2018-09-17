@@ -1615,6 +1615,42 @@ function AKjs_Plugin(setting,css) {
         if (plugType > plugTime) {
             sessionStorage.clear();
             js_css_Setting();
+            } else if (localStorage.getItem("pluginClear_days") != localStorage.getItem("pluginUpdate_days")) {
+                sessionStorage.clear();
+                localStorage.removeItem("pluginClear_hours");
+                localStorage.removeItem("pluginUpdate_hours");
+                localStorage.removeItem("pluginClear_minutes");
+                localStorage.removeItem("pluginUpdate_minutes");
+                localStorage.removeItem("pluginClear_seconds");
+                localStorage.removeItem("pluginUpdate_seconds");
+                js_css_Setting();
+            } else if (localStorage.getItem("pluginClear_hours") != localStorage.getItem("pluginUpdate_hours")) {
+                sessionStorage.clear();
+                localStorage.removeItem("pluginClear_days");
+                localStorage.removeItem("pluginUpdate_days");
+                localStorage.removeItem("pluginClear_minutes");
+                localStorage.removeItem("pluginUpdate_minutes");
+                localStorage.removeItem("pluginClear_seconds");
+                localStorage.removeItem("pluginUpdate_seconds");
+                js_css_Setting();
+            } else if (localStorage.getItem("pluginClear_minutes") != localStorage.getItem("pluginUpdate_minutes")) {
+                sessionStorage.clear();
+                localStorage.removeItem("pluginClear_days");
+                localStorage.removeItem("pluginUpdate_days");
+                localStorage.removeItem("pluginClear_hours");
+                localStorage.removeItem("pluginUpdate_hours");
+                localStorage.removeItem("pluginClear_seconds");
+                localStorage.removeItem("pluginUpdate_seconds");
+                js_css_Setting();
+            } else if (localStorage.getItem("pluginClear_seconds") != localStorage.getItem("pluginUpdate_seconds")) {
+                sessionStorage.clear();
+                localStorage.removeItem("pluginClear_days");
+                localStorage.removeItem("pluginUpdate_days");
+                localStorage.removeItem("pluginClear_hours");
+                localStorage.removeItem("pluginUpdate_hours");
+                localStorage.removeItem("pluginClear_minutes");
+                localStorage.removeItem("pluginUpdate_minutes");
+                js_css_Setting();
         } else {
             js_css_Setting();
         }
