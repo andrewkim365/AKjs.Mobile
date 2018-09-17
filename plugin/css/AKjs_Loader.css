@@ -1,4 +1,8 @@
 /*-----------------------------------------------AKjs_Loader-------------------------------------------*/
+.ak-Loader {width: 100%;height:100%;left: 0;top: 0;position: fixed;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none; z-index: 2}
+.ak-Loader figure.ak-loading {border-radius: 50%;padding: 0.5em;}
+.ak-Loader figure.ak-loading img {position: relative;z-index: 2;}
+.ak-Loader > span {position: absolute;z-index: 12; padding-right: 0.5em; margin-top: 0.5em; color: inherit;}
 .ak-Loader1{width:4em; height:4em; position:relative;}
 .ak-Loader1 .ak-Loader-double-bounce1,.ak-Loader-double-bounce2{width:100%; height:100%; border-radius:50%; opacity:0.6; position:absolute; top:0; left:0; -webkit-animation:bounce 2.0s infinite ease-in-out; animation:bounce 2.0s infinite ease-in-out;}
 .ak-Loader1 .ak-Loader-double-bounce2{-webkit-animation-delay:-1.0s; animation-delay:-1.0s;}
@@ -48,6 +52,6 @@
 .ak-Loader7 .ak-Loader-circ4{-webkit-animation-delay:-0.4s; animation-delay:-0.4s;}
 .ak-Loader7 .ak-Loader-circ5{-webkit-animation-delay:-0.3s; animation-delay:-0.3s;}
 @-webkit-keyframes stretchdelay{0%,40%,100%{-webkit-transform:translateY(-1em)} 20%{-webkit-transform:translateY(-2em)}}@keyframes stretchdelay{0%,40%,100%{transform:translateY(-1em); -webkit-transform:translateY(-1em);} 20%{transform:translateY(-2em); -webkit-transform:translateY(-2em);} }
-.ak-Loader:not(.ak-mask) .ak-loading{width: 3em; height: 3em; position: absolute; left: 50% !important; -o-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
+.ak-Loader:not(.ak-mask) .ak-loading{width: 3em; height: 3em; z-index: 99;line-height: 3em; position: absolute; text-align: center; left: 50% !important; -o-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
 .ak-Loader:not(.ak-mask) .ak-loading > div{z-index: 2;}
 .ak-Loader:not(.ak-mask) .ak-loading:after{content: ''; position: absolute; left: -40%; top: -40%; width: 180%; height: 180%; background-color: rgba(0,0,0,0.3); border-radius: 0.5em;}
