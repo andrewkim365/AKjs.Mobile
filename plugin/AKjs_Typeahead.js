@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-18
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Typeahead-----------------------------------------*/
@@ -92,7 +92,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 function() {
                     that.$menu.remove();
                     $("header").removeClass("dis_opa_0");
-                    $("main").removeClass("mt_0");
+                    if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
+                        $("main").addClass("mt_0");
+                    } else {
+                        $("main").removeClass("mt_0");
+                    }
                     $("#ak-scrollview").addClass("scrolling_touch");
                 });
             that.$menu.fadeIn();
@@ -230,7 +234,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         hide: function() {
             this.$element.parent().parent().removeClass("ak-is_search w_100 zindex_show fix top_0 left_0");
             $("header").removeClass("dis_opa_0");
-            $("main").removeClass("mt_0");
+            if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
+                $("main").addClass("mt_0");
+            } else {
+                $("main").removeClass("mt_0");
+            }
             $("#ak-scrollview").addClass("scrolling_touch");
             this.$menu.hide();
             this.shown = false;
