@@ -31,19 +31,26 @@ AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
 $(function() {
     AKjs_Loader({
-        //ele: $("#ak-scrollview"), //是否使用局部遮挡层，使用请设置指定的局部元素 （不设置任何参数代表使用全部遮挡层）
-        autoMode: true, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
+        //ele: $("#ak-scrollview"), //设置指定的局部元素 （不设置任何参数代表全部区域）
+        autoMode: false, //是否开启指定的时间后自动消失功能 (开启 true, 关闭 false）
         timeToHide: 1000, //毫秒时间设置 (automode必须开启才能有效)
         iconColor: "#ffffff", //图标颜色设置
         maskBG: false, //是否开启遮挡背景 (开启 true, 关闭 false）
-        Loader: "load_2" //loading效果选择（load_1~7）
+        Loader: "load_2", //loading效果选择（load_1~7），在PC端使用时请填写load_0,让IE8也兼容。
+        //text: "内容加载中", //Loading时显示的文字
+        boxsize: "3em", //Loading框大小设置
+        eleclass: "animated fadeIn zindex_6 c_gray_333", //Loading的ele区域的样式设置
+        callback:function (ele) { //回调入口
+            console.log(ele);
+            setTimeout(function() { //页面加载完2秒后执行
+                AKjs_Loader("destroy"); //关闭loading窗（使用该功能autoMode参数设为false，并且timeToHide参数不需要设置值）
+            },2000);
+            /*if($("#ak-scrollview").css('display') == 'block'){
+                $("#ak-scrollview").animate({scrollTop:0},0); //指定元素区域的滚动条返回到最顶部
+            }*/
+        }
     });
 });
-setTimeout(function() { //页面加载完5秒后执行
-    if($(".ak-Loader").css('display') == 'none'){
-        //AKjs_Loader("destroy"); //关闭loading窗
-    }
-},2000);
 
 $(function () {
     if (AKjs_Pathname() === "demo.html") { //AKjs_Pathname获取路径的文件名

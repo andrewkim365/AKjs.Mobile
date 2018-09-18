@@ -1,11 +1,11 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-18
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Loader------------------------------------------*/
 function AKjs_Loader(setting){
     var option = $.extend({
-            ele:"",
+            ele: $("body"),
             autoMode: true,
             maskBG: false,
             iconColor:"#ffffff",
@@ -13,7 +13,7 @@ function AKjs_Loader(setting){
             Loader: "",
             text: "",
             boxsize: "",
-            class: "animated fadeIn fix",
+            eleclass: "animated fadeIn fix",
             callback: function() {}
         },
         setting);
@@ -66,13 +66,15 @@ function AKjs_Loader(setting){
     AKjs_UserAgent();
     $(function() {
         if ($(".ak-Loader").length < 1) {
-            if (option.ele) {
-                $(option.ele).append("<div class='ak-Loader'></div>");
-            } else {
-                $("body").append("<div class='ak-Loader'></div>");
-            }
+            $("body").append("<div class='ak-Loader'></div>");
         }
-        var load_ele = $(".ak-Loader").addClass(option.class);
+        var load_ele = $(".ak-Loader");
+        load_ele.addClass(option.eleclass).css({
+            "left": $(option.ele).offset().left,
+            "top": $(option.ele).offset().top,
+            "width": $(option.ele).outerWidth(),
+            "height": $(option.ele).outerHeight()
+        });
         if (IsMobile) {
             load_ele.attr("style",$("main").attr("style"));
             load_ele.bind({
@@ -160,10 +162,18 @@ function AKjs_Loader(setting){
         }
         loading.css(yy);
         if (option.text) {
-            load_ele.append("<span>"+option.text+"</span>");
+            load_ele.append("<span><em class='dis_inbl pl_1em pr_1em'>"+option.text+"</em></span>");
+            if (option.maskBG == true) {
+                load_ele.children("span").children("em").removeClass("bg_white08");
+            } else {
+                load_ele.children("span").children("em").addClass("bg_white08");
+            }
             load_ele.children("span").css({
-                top: (wh / 2) + load_ele.children("span").outerHeight()/2
+                top: loading.offset().top - load_ele.offset().top + load_ele.children("span").outerHeight()*2
             });
+            if (IsIE) {
+                load_ele.children("span").addClass("mt_07em");
+            }
         }
         $(window).resize(function () {
             if (option.ele) {
@@ -191,7 +201,7 @@ function AKjs_Loader(setting){
             loading.css(yy);
             if (option.text) {
                 load_ele.children("span").css({
-                    top: (wh / 2) + load_ele.children("span").outerHeight()/2
+                    top: loading.offset().top - load_ele.offset().top + load_ele.children("span").outerHeight()*2
                 });
             }
         });
