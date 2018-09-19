@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-18
+Modification Date: 2018-09-19
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Loader------------------------------------------*/
@@ -69,12 +69,14 @@ function AKjs_Loader(setting){
             $("body").append("<div class='ak-Loader'></div>");
         }
         var load_ele = $(".ak-Loader");
-        load_ele.addClass(option.eleclass).css({
-            "left": $(option.ele).offset().left,
-            "top": $(option.ele).offset().top,
-            "width": $(option.ele).outerWidth(),
-            "height": $(option.ele).outerHeight()
-        });
+        if ($(option.ele).length > 0) {
+            load_ele.addClass(option.eleclass).css({
+                "left": $(option.ele).offset().left,
+                "top": $(option.ele).offset().top,
+                "width": $(option.ele).outerWidth(),
+                "height": $(option.ele).outerHeight()
+            });
+        }
         if (IsMobile) {
             load_ele.attr("style",$("main").attr("style"));
             load_ele.bind({
