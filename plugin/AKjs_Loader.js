@@ -5,7 +5,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 /*-----------------------------------------------AKjs_Loader------------------------------------------*/
 function AKjs_Loader(setting){
     var option = $.extend({
-            ele: $("body"),
+            ele: "",
             autoMode: true,
             maskBG: false,
             iconColor:"#ffffff",
@@ -208,15 +208,20 @@ function AKjs_Loader(setting){
             }
         });
 
-        option.callback(load_ele);
+        option.callback(load_ele,ak_closeLayer);
         if (option.autoMode) {
             setTimeout(function () {
-                ak_closeLayer();
+                ak_closeLayer(true);
             }, option.timeToHide);
         }
-        function ak_closeLayer() {
-            $(load_ele).fadeOut();
-            $("#ak-scrollview").addClass("scrolling_touch");
+        function ak_closeLayer(state) {
+            if (state === true) {
+                $(load_ele).fadeOut();
+                $("#ak-scrollview").addClass("scrolling_touch");
+            } else {
+                $(load_ele).fadeIn();
+                $("#ak-scrollview").removeClass("scrolling_touch");
+            }
         }
     });
 }
