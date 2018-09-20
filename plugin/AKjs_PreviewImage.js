@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_PreviewImage---------------------------------------*/
@@ -28,6 +28,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             setting);
         option = op;
         var pimg = $(this);
+        if (sessionStorage.getItem("AKjs_WebToast_js") === null || sessionStorage.getItem("AKjs_WebToast_js").trim() == "") {
+            AKjs_Plugin("AKjs_WebToast", "css");
+        }
+        if (sessionStorage.getItem("AKjs_Dialog_js") === null || sessionStorage.getItem("AKjs_Dialog_js").trim() == "") {
+            AKjs_Plugin("AKjs_Dialog", "css");
+        }
         pimg.addClass("ak-previewImage");
         $(option.delbtnClass).hide();
         pimg.find("input[type=file]").attr("accept", "image/*");
@@ -47,18 +53,18 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         pimg.bind("change",
             function() {
                 if (option.uploadNum == op.length) {
-                    ak_webToast(op.length_title + "" + op.length + "", "middle", "mask", 3000);
+                    AKjs_WebToast(op.length_title + "" + op.length + "", "middle", "mask", 3000);
                     return false
                 }
                 var tempData = $(this).children("input")[0];
                 if ((option.uploadNum + tempData.files.length) > op.length) {
-                    ak_webToast(op.length_title + "" + op.length + "", "middle", "mask", 3000)
+                    AKjs_WebToast(op.length_title + "" + op.length + "", "middle", "mask", 3000)
                 }
                 var tempFiles = [];
                 for (var i = 0; i < (op.length - option.uploadNum); i++) {
                     if (tempData.files[i] != null && tempData.files[i] != undefined) {
                         if (tempData.files[i].size > op.size * 1024 * 1024) {
-                            ak_webToast(op.size_title + op.size + "MB", "middle", "mask", 3000);
+                            AKjs_WebToast(op.size_title + op.size + "MB", "middle", "mask", 3000);
                             return false
                         }
                     }
@@ -149,9 +155,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         option.delCallbak(image.parent("li"));
                         option.uploadNum--;
                         if (option.uploadNum < 1) {
-                            $(option.delbtnClass).hide()
+                            $(option.delbtnClass).hide();
                         }
-                        ak_webToast(option.webToast, "bottom", 1000)
+                        AKjs_WebToast(option.webToast, "bottom", 1000)
                     }
                 })
             })

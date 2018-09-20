@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_PortraitImage--------------------------------------*/
@@ -15,6 +15,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             setting);
         option = op;
         var pimg = $(this);
+        if (sessionStorage.getItem("AKjs_Dialog_js") === null || sessionStorage.getItem("AKjs_Dialog_js").trim() == "") {
+            AKjs_Plugin("AKjs_Dialog", "css");
+        }
         setTimeout(function() {
                 pimg.each(function() {
                     $(this).addClass("ak-PortraitImage");

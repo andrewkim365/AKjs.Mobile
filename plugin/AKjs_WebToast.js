@@ -1,9 +1,9 @@
 /*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_WebToast-------------------------------------------*/
-function ak_webToast(){
+function AKjs_WebToast(){
     var dcfg = {
         message: "",
         position: "bottom",

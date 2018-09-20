@@ -1061,11 +1061,11 @@
                     async: true, //异步方式：true，同步方式：false
                     success:function (result) { //ajax请求加载成功后的回调
                         //console.log(result);
-                        //ak_webToast("请求加载数据成功！","middle",2000);
+                        //AKjs_WebToast("请求加载数据成功！","middle",2000);
                     },
                     error:function (error) { //ajax请求加载失败后的回调
                         //console.log(error);
-                        //ak_webToast("请求加载数据失败！","middle",2000);
+                        //AKjs_WebToast("请求加载数据失败！","middle",2000);
                     }
                 });
             },
@@ -1090,11 +1090,11 @@
                     async: true, //异步方式：true，同步方式：false
                     success:function (result) { //ajax请求加载成功后的回调
                         //console.log(result);
-                        //ak_webToast("请求加载数据成功！","middle",2000);
+                        //AKjs_WebToast("请求加载数据成功！","middle",2000);
                     },
                     error:function (error) { //ajax请求加载失败后的回调
                         //console.log(error);
-                        //ak_webToast("请求加载数据失败！","middle",2000);
+                        //AKjs_WebToast("请求加载数据失败！","middle",2000);
                     }
                 });
             }
@@ -1126,9 +1126,9 @@
     /*-----------------------------------------------AKjs_Dialog 使用方法-------------------------------------------*/
     $(function() {
         $("#plug_webToast").click(function(){
-            ak_webToast("恭喜您，修改成功!","middle","mask",1000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时[不设置代表不关闭])
+            AKjs_WebToast("恭喜您，修改成功!","middle","mask",1000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时[不设置代表不关闭])
         });
-        //ak_webToast("destroy"); //关闭方法 （未设置毫秒时间可用该方法）
+        //AKjs_WebToast("destroy"); //关闭方法 （未设置毫秒时间可用该方法）
     });
 
     $(function() {
@@ -1156,11 +1156,11 @@
                 animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
                 animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
-                    ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    AKjs_WebToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     console.log(res);
                 },
                 onCancel:function (res) { //点击取消按钮后的回调
-                    ak_webToast("取消删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    AKjs_WebToast("取消删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     console.log(res);
                 }
             });
@@ -1186,12 +1186,12 @@
                 animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
                 animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
-                    ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    AKjs_WebToast("成功提交!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     input.val(res); //插入内容
                     console.log(res);
                 },
                 onCancel:function (res) { //点击取消按钮后的回调
-                    ak_webToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    AKjs_WebToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     console.log(res);
                 }
             });
@@ -1212,12 +1212,12 @@
                 animateIn : "bounceInDown", //弹窗显示动画效果 (css动画库：akjs.animate.css)
                 animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                 onSubmit:function(res){ //点击确定按钮后的回调
-                    ak_webToast("成功提交!","bottom",1000); //(提示文字，显示位置，耗时)
+                    AKjs_WebToast("成功提交!","bottom",1000); //(提示文字，显示位置，耗时)
                     $("#plug_prompt_textarea_view ul").append("<li  class=\"c_gray_777 bor_bottom bor_gray_ddd\">"+res+"</li>"); //插入内容
                     console.log(res);
                 },
                 onCancel:function (res) { //点击取消按钮后的回调
-                    ak_webToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                    AKjs_WebToast("您已取消!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                     console.log(res);
                 }
             });
@@ -1641,7 +1641,7 @@
                     animateIn : "slideInDown ani_05s", //弹窗显示动画效果 (css动画库：akjs.animate.css)
                     animateOut: "bounceOutUp", //弹窗消失动画效果 (css动画库：akjs.animate.css)
                     onSubmit:function(){
-                        ak_webToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
+                        AKjs_WebToast("成功删除!","bottom",1000); //(提示文字，显示位置 top ，middle ，bottom ，耗时)
                         ele.remove();//删除当前元素
                     }
                 });

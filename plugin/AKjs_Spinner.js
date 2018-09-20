@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-11
+Modification Date: 2018-09-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Spinner-------------------------------------------*/
@@ -54,14 +54,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $(this).parent().children(".minus").attr("disabled",'disabled');
                 }
                 $(this).keyup(function() {
-                    var lengthNum=0;
+                    var lengthNum = 1;
+                    var it_val=it.val();
+                    it.val("").focus().val(it_val);
                     if(it.val()!=''&& it.val()!=null && it.val()!=undefined){
-                        lengthNum=parseInt(it.val());
+                        lengthNum = parseInt(it.val());
                     }
                     if (lengthNum > 1) {
                         $(this).parent().children(".minus").removeAttr("disabled",'disabled');
                     } else {
                         $(this).parent().children(".minus").attr("disabled",'disabled');
+                    }
+                    if (lengthNum === 0) {
+                        it.val(1);
                     }
                     option.changeBack(lengthNum,$(this));
                 });

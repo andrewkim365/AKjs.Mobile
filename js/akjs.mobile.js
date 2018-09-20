@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180917 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180920 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -520,6 +520,7 @@ function AKjs_UserAgent() {
     IsIE = IsIE6 || IsIE7 || IsIE8;
     Oslanguage = (navigator.browserLanguage || navigator.language).toLowerCase();
 }
+
 /*-----------------------------------------------AKjs_RegsInput------------------------------------------*/
 function AKjs_RegsInput() {
     Regs_email = /^[0-9a-zA-Z_]+@[0-9a-zA-Z_]+[\.]{1}[0-9a-zA-Z]+[\.]?[0-9a-zA-Z]+$/;
@@ -1615,7 +1616,7 @@ function AKjs_Plugin(setting,css) {
         }
         if (plugType > plugTime) {
             sessionStorage.clear();
-            js_css_Setting();
+            Plugin_Setting();
             } else if (localStorage.getItem("pluginClear_days") != localStorage.getItem("pluginUpdate_days")) {
                 sessionStorage.clear();
                 localStorage.removeItem("pluginClear_hours");
@@ -1624,7 +1625,7 @@ function AKjs_Plugin(setting,css) {
                 localStorage.removeItem("pluginUpdate_minutes");
                 localStorage.removeItem("pluginClear_seconds");
                 localStorage.removeItem("pluginUpdate_seconds");
-                js_css_Setting();
+                Plugin_Setting();
             } else if (localStorage.getItem("pluginClear_hours") != localStorage.getItem("pluginUpdate_hours")) {
                 sessionStorage.clear();
                 localStorage.removeItem("pluginClear_days");
@@ -1633,7 +1634,7 @@ function AKjs_Plugin(setting,css) {
                 localStorage.removeItem("pluginUpdate_minutes");
                 localStorage.removeItem("pluginClear_seconds");
                 localStorage.removeItem("pluginUpdate_seconds");
-                js_css_Setting();
+                Plugin_Setting();
             } else if (localStorage.getItem("pluginClear_minutes") != localStorage.getItem("pluginUpdate_minutes")) {
                 sessionStorage.clear();
                 localStorage.removeItem("pluginClear_days");
@@ -1642,7 +1643,7 @@ function AKjs_Plugin(setting,css) {
                 localStorage.removeItem("pluginUpdate_hours");
                 localStorage.removeItem("pluginClear_seconds");
                 localStorage.removeItem("pluginUpdate_seconds");
-                js_css_Setting();
+                Plugin_Setting();
             } else if (localStorage.getItem("pluginClear_seconds") != localStorage.getItem("pluginUpdate_seconds")) {
                 sessionStorage.clear();
                 localStorage.removeItem("pluginClear_days");
@@ -1651,14 +1652,14 @@ function AKjs_Plugin(setting,css) {
                 localStorage.removeItem("pluginUpdate_hours");
                 localStorage.removeItem("pluginClear_minutes");
                 localStorage.removeItem("pluginUpdate_minutes");
-                js_css_Setting();
+                Plugin_Setting();
         } else {
-            js_css_Setting();
+            Plugin_Setting();
         }
     } else {
-        js_css_Setting();
+        Plugin_Setting();
     }
-    function js_css_Setting() {
+    function Plugin_Setting() {
         if (css) {
             if ($("head").children("style").filter("#" + setting + "_css").length == 0) {
                 if (IsIE8 || IsIE7 || IsIE6) {
@@ -1685,7 +1686,12 @@ function AKjs_Plugin(setting,css) {
                     url: AKjsPath + "/" + setting + ".js?akjs=" + new Date().getTime(),
                     async: false,
                     cache: false,
-                    dataType: 'script'
+                    dataType: 'script',
+                    complete: function(response) {
+                        if (response.status == 404) {
+                            throw new Error('Unable to find relevant files "'+AKjsPath + '/' + setting + '.js"');
+                        }
+                    }
                 });
             } else {
                 if (sessionStorage.getItem(setting + "_js") === null || sessionStorage.getItem(setting + "_js").trim() == "") {
@@ -1694,7 +1700,12 @@ function AKjs_Plugin(setting,css) {
                         url: AKjsPath + "/" + setting + ".js?akjs=" + new Date().getTime(),
                         async: false,
                         cache: false,
-                        dataType: 'text'
+                        dataType: 'text',
+                        complete: function(response) {
+                            if (response.status == 404) {
+                                throw new Error('Unable to find relevant files "'+AKjsPath + '/' + setting + '.js"');
+                            }
+                        }
                     });
                     localStorage.setItem("pluginDate",new Date().getTime());
                     if (localStorage.getItem("pluginClear_days") != null && localStorage.getItem("pluginClear_days") != 0) {
