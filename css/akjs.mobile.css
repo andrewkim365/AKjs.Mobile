@@ -3,7 +3,7 @@
 
 /*-----------Base Style-----------*/
 html, html * {
-    font-family: "PingFangSC-Regular", "Source Han Sans SC", "Microsoft YaHei", "Segoe UI", Helvetica, Arial, "Lucida Grande", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+    font-family: "PingFangSC-Regular", "Source Han Sans SC", "Microsoft YaHei", "AppleSDGothicNeo-Medium", "MalgunGothic", "NanumGothic", "San Francisco", Helvetica, "Segoe UI", Arial, "Lucida Grande", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
     -ms-text-size-adjust:100%;
     -moz-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
@@ -13,6 +13,7 @@ html, html * {
     padding: 0;
     border:0;
     font-size:12px;
+    touch-action: pan-y;
 }
 .wrap {
     width: 94%;
