@@ -147,10 +147,9 @@
             autoLoad : true,// 自动加载
             distance : 20,// 拉动距离
             loadUpFn : function(me){ //上方function
-                $.ajax({
+                AKjs_Ajax({
                     type: 'GET',
                     url: 'http://ons.me/tools/dropload/json.php',
-                    dataType: 'json',
                     success: function(data){
                         // 为了测试，延迟3秒加载
                         setTimeout(function(){
@@ -171,10 +170,9 @@
                 page++;
                 // 拼接HTML
                 var result = '';
-                $.ajax({
+                AKjs_Ajax({
                     type: 'GET',
                     url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
-                    dataType: 'json',
                     success: function(data){
                         var arrLen = data.length;
                         if(arrLen > 0){

@@ -932,27 +932,34 @@ function AKjs_mainHeight() {
 /*-----------------------------------------------AKjs_Ajax--------------------------------------------*/
 function AKjs_Ajax(setting) {
     var option = $.extend({
-            to: "",
-            type: "POST",
-            url: "",
-            data:{},
-            async:false,
-            cache: false,
-            success:function () {
-            },
-            error:function () {
-            }
+        to: "",
+        type: "POST",
+        url: "",
+        data:{},
+        async:false,
+        cache: false,
+        dataType: "",
+        complete:function () {
         },
-        setting);
-    htmlobj = $.ajax({
+        success:function () {
+        },
+        error:function () {
+        }
+    },
+    setting);
+    AjaxObj = $.ajax({
         type: option.type,
         url: option.url,
         data: option.data,
         async: option.async,
         cache: option.cache,
+        dataType: option.dataType,
+        complete: function(response) {
+            option.complete(response);
+        },
         success: function (result) {
-            if ($(option.to)) {
-                $(option.to).html(htmlobj.responseText);
+            if ($(option.to).length>0) {
+                $(option.to).html(AjaxObj.responseText);
             }
             option.success(result);
             AKjs_HashSharp();

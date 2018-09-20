@@ -1,5 +1,5 @@
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-09-11
+//文档更新日期：2018-09-20
 
 //按需引入方法：
 /******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
@@ -1333,7 +1333,7 @@
                                 $(ele1[0].dom).find("#plug_map").unbind("click");
                                 $(ele1[0].dom).find("#plug_livemap").unbind("click");
                                 var jsurl = 'https://webapi.amap.com/maps?v=1.4.8&key=608d75903d29ad471362f8c58c550daf'; //通过ajax引入高德地图API
-                                $.ajax({
+                                AKjs_Ajax({
                                     type:'GET',
                                     url: jsurl,
                                     async: true,
@@ -2189,7 +2189,7 @@
             autoLoad : true,// 自动加载
             distance : 20,// 拉动距离
             loadUpFn : function(me){ //上方function
-                $.ajax({
+                AKjs_Ajax({
                     type: 'GET',
                     url: 'http://ons.me/tools/dropload/json.php',
                     dataType: 'json',
@@ -2213,7 +2213,7 @@
                 page++;
                 // 拼接HTML
                 var result = '';
-                $.ajax({
+                AKjs_Ajax({
                     type: 'GET',
                     url: 'http://ons.me/tools/dropload/json.php?page='+page+'&size='+size,
                     dataType: 'json',

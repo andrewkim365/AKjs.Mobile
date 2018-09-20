@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-20
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_DropLoad------------------------------------------*/
@@ -128,7 +128,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         _absMoveY = Math.abs(ak._moveY);
         if (ak.$element.offset().top >= 0) {
             if (ak.opts.loadUpFn != "" && ak.touchScrollTop <= 0 && ak.direction == "down" && !ak.isLockUp) {
-                e.preventDefault();
+                //e.preventDefault();
                 ak.$domUp = $("." + ak.opts.domUp.domClass);
                 if (!ak.upInsertDOM) {
                     $("." + ak.opts.domUp.domClass).remove();
@@ -268,9 +268,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
     };
     function fnTransition(dom, num) {
-        dom.css({
-            "-webkit-transition": "all " + num + "ms",
-            "transition": "all " + num + "ms"
-        })
+        if (dom != undefined) {
+            dom.css({
+                "-webkit-transition": "all " + num + "ms",
+                "transition": "all " + num + "ms"
+            });
+        }
     }
 } (jQuery));
