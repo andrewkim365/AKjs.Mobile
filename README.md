@@ -71,6 +71,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.2版本；
 
 修改 plugin/AKjs_Typeahead.js 文件；（解决bug）
 
+修改 plugin/AKjs_Popupwin.js 文件；（解决bug）
+
 修改 plugin/AKjs_Keyboard.js 文件；（解决该插件的css样式问题）
 
 修改 plugin/AKjs_WebToast.js 文件；

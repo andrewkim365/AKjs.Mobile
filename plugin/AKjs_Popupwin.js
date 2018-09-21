@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
@@ -64,7 +64,7 @@ function AKjs_Popupwin (setting){
             option.callback($(option),false);
             ClickHideModal();
         });
-
+        AKjs_UserAgent();
         $(option.OneButton).toggleClass("ak-is_active");
         if ($(option.OneButton).hasClass("ak-is_active")) {
             setTimeout(function() {
@@ -72,12 +72,25 @@ function AKjs_Popupwin (setting){
                     addModalMask();
                     $("#ak-scrollview").removeClass("scrolling_touch");
                 }
-                option.callback($(option),true);
                 if (option.position === 'offset') {
-                    var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
+                    if (IsMobile) {
+                        var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
+                        olw = 0;
+                    } else {
+                        var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight() - $("#ak-scrollview").offset().top;
+                        olw = $(option.OneButton).offset().left + $(option.OneButton).outerWidth() - $("#ak-scrollview").offset().left;
+                        if ($(window).width() - olw > 0) {
+                            olw = $(option.OneButton).offset().left + $(option.OneButton).outerWidth() - $("#ak-scrollview").offset().left - $(option.dom).outerWidth();
+                        }
+                    }
                     $(option.dom).css({
-                        "top": oth
-                    })
+                        "top": oth,
+                        "left": olw
+                    });
+                    $(window).resize(function(){
+                        $(option.dom).addClass("dis_none");
+                        ClickHideModal();
+                    });
                 }
                 if (option.effectIn || option.effectOut) {
                     $(option.dom).removeClass("animated " + option.effectOut).addClass("animated " + option.effectIn).removeClass("dis_none");
@@ -88,7 +101,8 @@ function AKjs_Popupwin (setting){
                         $(option.OneButton).find("i").removeClass($(option.OneButton).find("i").attr("class")).addClass(option.toggleIcon);
                     }
                 }
-            },200);
+            },100);
+            option.callback($(option),true);
         } else {
             option.callback($(option),false);
             ClickHideModal();
@@ -162,13 +176,6 @@ function AKjs_Popupwin (setting){
             $(option.dom).css({
                 "right": 0,
                 "top": 0
-            });
-        } else if (option.position === 'offset') {
-            var ot = $(option.OneButton).offset().top;
-            var oh = $(option.OneButton).outerHeight();
-            $(option.dom).css({
-                "left": 0,
-                "top": ot + oh
             });
         } else if (option.position === 'middle') {
             $(option.dom).css({
