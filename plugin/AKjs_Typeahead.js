@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-18
+Modification Date: 2018-09-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Typeahead-----------------------------------------*/
@@ -61,7 +61,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                     if (that.$element.val().length == 0) {
                         that.$menu.children("ul").empty();
-                        that.$element.blur()
                     }
                 })
         },
@@ -414,7 +413,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     return
                 }
                 e.preventDefault();
-                $this.ak_typeahead($this.data())
+                $this.AKjs_Typeahead($this.data())
             })
     })
 } (jQuery));
