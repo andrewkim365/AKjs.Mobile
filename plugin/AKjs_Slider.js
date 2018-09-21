@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Slider------------------------------------------*/
@@ -32,7 +32,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var self = this,
                 ele = self.$element;
             var touchStartY = 0,
-                touchStartX = 0;
+                touchStartX = 0,
+                mouseStartY = 0,
+                mouseStartX = 0;
             var sliderInder = ele.children("ul");
             var SliderLi = sliderInder.children("li");
             var SliderSize = SliderLi.length;
@@ -215,6 +217,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 sliderInder.css({"height": win_h});
                 ele.css({"height": win_h});
             }
+            AKjs_UserAgent();
             SliderLi.on({
                 touchstart: function(es) {
                     touchStartY = es.originalEvent.touches[0].clientY;
@@ -285,69 +288,73 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (self.options.UpDown) {
                         es.preventDefault();
                     }
-                },
-                mousedown: function(es) {
-                    touchStartY = es.clientY;
-                    touchStartX = es.clientX;
-                },
-                mouseup: function(es) {
-                    var touchEndY = es.screenY,
-                        touchEndX = es.screenX,
-                        yDiff = touchStartY - touchEndY,
-                        xDiff = touchStartX - touchEndX;
-                    if (self.options.UpDown) {
-                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                            if (yDiff > 10) {
-                                if (index >= SliderSize) {
-                                    if (self.options.loopPlay) {
-                                        index = 1;
-                                        self.moveTo(index, "ak-arr_next");
-                                    }
-                                } else {
-                                    index += 1;
-                                    self.moveTo(index, "ak-arr_next");
-                                }
-                            } else {
-                                if (index == 1) {
-                                    if (self.options.loopPlay) {
-                                        index = SliderSize;
-                                        self.moveTo(index, "ak-arr_prev");
-                                    }
-                                } else {
-                                    index -= 1;
-                                    self.moveTo(index, "ak-arr_prev");
-                                }
-                            }
-                        }
-                    } else {
-                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                            if (xDiff > 10) {
-                                if (index >= SliderSize) {
-                                    if (self.options.loopPlay) {
-                                        index = 1;
-                                        self.moveTo(index, "ak-arr_next");
-                                    }
-                                } else {
-                                    index += 1;
-                                    self.moveTo(index, "ak-arr_next");
-                                }
-                            } else {
-                                if (index == 1) {
-                                    if (self.options.loopPlay) {
-                                        index = SliderSize;
-                                        self.moveTo(index, "ak-arr_prev");
-                                    }
-                                } else {
-                                    index -= 1;
-                                    self.moveTo(index, "ak-arr_prev");
-                                }
-                            }
-                        }
-                    }
-                    touchStartY = null;
-                    touchStartX = null
                 }
-            })
+            });
+            if (!IsMobile) {
+                SliderLi.on({
+                    mousedown: function(es) {
+                        mouseStartY = es.clientY;
+                        mouseStartX = es.clientX;
+                    },
+                    mouseup: function(es) {
+                        var mouseEndY = es.screenY,
+                            mouseEndX = es.screenX,
+                            yDiff = mouseStartY - mouseEndY,
+                            xDiff = mouseStartX - mouseEndX;
+                        if (self.options.UpDown) {
+                            if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                                if (yDiff > 10) {
+                                    if (index >= SliderSize) {
+                                        if (self.options.loopPlay) {
+                                            index = 1;
+                                            self.moveTo(index, "ak-arr_next");
+                                        }
+                                    } else {
+                                        index += 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    if (index == 1) {
+                                        if (self.options.loopPlay) {
+                                            index = SliderSize;
+                                            self.moveTo(index, "ak-arr_prev");
+                                        }
+                                    } else {
+                                        index -= 1;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                }
+                            }
+                        } else {
+                            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                                if (xDiff > 10) {
+                                    if (index >= SliderSize) {
+                                        if (self.options.loopPlay) {
+                                            index = 1;
+                                            self.moveTo(index, "ak-arr_next");
+                                        }
+                                    } else {
+                                        index += 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    if (index == 1) {
+                                        if (self.options.loopPlay) {
+                                            index = SliderSize;
+                                            self.moveTo(index, "ak-arr_prev");
+                                        }
+                                    } else {
+                                        index -= 1;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                }
+                            }
+                        }
+                        mouseStartY = null;
+                        mouseStartX = null
+                    }
+                });
+            }
         },
         moveTo: function(index, dir) {
             var self = this,

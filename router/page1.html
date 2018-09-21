@@ -1630,7 +1630,6 @@
     /*-----------------------------------------------AKjs_TouchDelete 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_touchdel").AKjs_TouchDelete({
-            UpDownTouch: false, //是否开启上下滑动功能 (开启 true, 关闭 false）
             DelText: "删除", //删除按钮中显示的文字
             DelClass: "abs bg_close c_white w_4em h_in top_0", //删除按钮的Class样式
             ClickDelete: function(btn,ele,index) { //回调获取当点击删除按钮后的删除按钮和当前的区域元素 （btn：删除按钮，ele：当前区域元素，index：当前元素的排号）
@@ -1648,15 +1647,7 @@
                     }
                 });
             },
-            UpTouch: function(ele) { //开启UpDownTouch的参数后执行的回调(上滑)
-                console.log("我往上滑了！");
-                console.log(ele);
-                /*ele.append("<li class=\"rel ovh bor_bottom bor_gray_ddd bg_white touchstart\">\n" +
-                    "        <article class=\"ml_3 ak_delete_art\">X.当前显示的是列表展示内容</article>\n" +
-                    "</li>");*/
-            },
-            DownTouch: function(ele) { //开启UpDownTouch的参数后执行的回调(下滑)
-                console.log("我往下滑了！");
+            TouchCallback: function(ele) { //滑动时回调入口
                 console.log(ele);
             }
         });

@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-09-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_TouchDelete-------------------------------------*/
@@ -8,12 +8,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var self = this;
         self.$element = ele;
         self.defaults = {
-            UpDownTouch: false,
             DelText: "",
             DelClass: "",
             ClickDelete: function() {},
-            UpTouch: function() {},
-            DownTouch: function() {}
+            TouchCallback: function() {}
         };
         self.options = $.extend({},
             self.defaults, opt);
@@ -41,7 +39,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 ele = self.$element;
             var DeleteLi = ele.find("li");
             var touchStartY = 0,
-                touchStartX = 0;
+                touchStartX = 0,
+                mouseStartY = 0,
+                mouseStartX = 0;
+            AKjs_UserAgent();
             DeleteLi.on({
                 touchstart: function(e) {
                     touchStartY = e.originalEvent.touches[0].clientY;
@@ -56,17 +57,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         touchEndX = e.originalEvent.changedTouches[0].clientX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
-                    if (self.options.UpDownTouch == true) {
-                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                            if (yDiff > 5) {
-                                self.options.UpTouch($(this).parent());
-                                self.init();
-                            } else {
-                                self.options.DownTouch($(this).parent());
-                                self.init();
-                            }
-                        }
-                    }
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {
                         if (xDiff > 5) {
                             DeleteLi.children("article").css({
@@ -82,6 +72,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 "display": "block",
                                 "right": "0"
                             });
+                            self.options.TouchCallback($(this));
                         } else {
                             $(this).children("article").css({
                                 "left": "0"
@@ -99,59 +90,60 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         touchEndX = e.originalEvent.changedTouches[0].clientX,
                         yDiff = touchStartY - touchEndY,
                         xDiff = touchStartX - touchEndX;
-                    if (self.options.UpDownTouch == true) {
-                        e.preventDefault();
-                    } else {
-                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                            e.preventDefault()
-                        }
-                    }
-                },
-                mousedown: function(e) {
-                    touchStartY = e.originalEvent.clientY;
-                    touchStartX = e.originalEvent.clientX;
-                    $(this).children("button").unbind("click");
-                    $(this).children("button").on('click', function (event) {
-                        event.preventDefault();
-                        self.options.ClickDelete($(this),$(this).parent(),$(this).parent().index());
-                    });
-                },
-                mouseup: function(e) {
-                    var touchEndY = e.originalEvent.screenY,
-                        touchEndX = e.originalEvent.screenX,
-                        yDiff = touchStartY - touchEndY,
-                        xDiff = touchStartX - touchEndX;
                     if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                        if (xDiff > 5) {
-                            DeleteLi.children("article").css({
-                                "left": "0"
-                            });
-                            DeleteLi.children("button").css({
-                                "right": "-"+DeleteLi.children("button").outerWidth()+"px"
-                            });
-                            $(this).children("article").css({
-                                "left": "-"+$(this).children("button").outerWidth()+"px"
-                            });
-                            $(this).children("button").css({
-                                "display": "block",
-                                "right": "0"
-                            });
-                        } else {
-                            $(this).children("article").css({
-                                "left": "0"
-                            });
-                            $(this).children("button").css({
-                                "right": "-"+$(this).children("button").outerWidth()+"px"
-                            });
-                        }
+                        e.preventDefault()
                     }
-                    touchStartY = null;
-                    touchStartX = null
-                },
-                mousemove: function(e) {
-                    e.preventDefault();
                 }
-            })
+            });
+            if (!IsMobile) {
+                DeleteLi.on({
+                    mousedown: function(e) {
+                        mouseStartY = e.originalEvent.clientY;
+                        mouseStartX = e.originalEvent.clientX;
+                        $(this).children("button").unbind("click");
+                        $(this).children("button").on('click', function (event) {
+                            event.preventDefault();
+                            self.options.ClickDelete($(this),$(this).parent(),$(this).parent().index());
+                        });
+                    },
+                    mouseup: function(e) {
+                        var mouseEndY = e.originalEvent.screenY,
+                            mouseEndX = e.originalEvent.screenX,
+                            yDiff = mouseStartY - mouseEndY,
+                            xDiff = mouseStartX - mouseEndX;
+                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                            if (xDiff > 5) {
+                                DeleteLi.children("article").css({
+                                    "left": "0"
+                                });
+                                DeleteLi.children("button").css({
+                                    "right": "-"+DeleteLi.children("button").outerWidth()+"px"
+                                });
+                                $(this).children("article").css({
+                                    "left": "-"+$(this).children("button").outerWidth()+"px"
+                                });
+                                $(this).children("button").css({
+                                    "display": "block",
+                                    "right": "0"
+                                });
+                                self.options.TouchCallback($(this));
+                            } else {
+                                $(this).children("article").css({
+                                    "left": "0"
+                                });
+                                $(this).children("button").css({
+                                    "right": "-"+$(this).children("button").outerWidth()+"px"
+                                });
+                            }
+                        }
+                        mouseStartY = null;
+                        mouseStartX = null
+                    },
+                    mousemove: function(e) {
+                        e.preventDefault();
+                    }
+                });
+            }
         }
     };
     $.fn.AKjs_TouchDelete = function(options) {

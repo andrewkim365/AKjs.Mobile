@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-21
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Tabs--------------------------------------------*/
@@ -91,6 +91,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             var tmp = this.opts.curDisplay;
             if (this.opts.touchmode) {
+                var touchStartY = 0,
+                    touchStartX = 0,
+                    mouseStartY = 0,
+                    mouseStartX = 0;
                 this.$tab_cont.on({
                     touchstart: function(e) {
                         touchStartY = e.originalEvent.touches[0].clientY;
@@ -126,37 +130,41 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         if (Math.abs(xDiff) > Math.abs(yDiff)) {
                             e.preventDefault()
                         }
-                    },
-                    mousedown: function(e) {
-                        touchStartY = e.originalEvent.clientY;
-                        touchStartX = e.originalEvent.clientX
-                    },
-                    mouseup: function(e) {
-                        var touchEndY = e.originalEvent.screenY,
-                            touchEndX = e.originalEvent.screenX,
-                            yDiff = touchStartY - touchEndY,
-                            xDiff = touchStartX - touchEndX,
-                            tabsize = self.$tab_list.length;
-                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                            if (xDiff > 5) {++tmp;
-                                if (tmp > tabsize) {
-                                    tmp = 1
-                                }
-                                self.$tab_list.eq(tmp - 1).click()
-                            } else {--tmp;
-                                if (tmp == 0) {
-                                    tmp = tabsize
-                                }
-                                self.$tab_list.eq(tmp - 1).click()
-                            }
-                        }
-                        touchStartY = null;
-                        touchStartX = null
-                    },
-                    mousemove: function(e) {
-                        e.preventDefault()
                     }
-                })
+                });
+                if (!IsMobile) {
+                    this.$tab_cont.on({
+                        mousedown: function(e) {
+                            mouseStartY = e.originalEvent.clientY;
+                            mouseStartX = e.originalEvent.clientX
+                        },
+                        mouseup: function(e) {
+                            var mouseEndY = e.originalEvent.screenY,
+                                mouseEndX = e.originalEvent.screenX,
+                                yDiff = mouseStartY - mouseEndY,
+                                xDiff = mouseStartX - mouseEndX,
+                                tabsize = self.$tab_list.length;
+                            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                                if (xDiff > 5) {++tmp;
+                                    if (tmp > tabsize) {
+                                        tmp = 1
+                                    }
+                                    self.$tab_list.eq(tmp - 1).click()
+                                } else {--tmp;
+                                    if (tmp == 0) {
+                                        tmp = tabsize
+                                    }
+                                    self.$tab_list.eq(tmp - 1).click()
+                                }
+                            }
+                            mouseStartY = null;
+                            mouseStartX = null
+                        },
+                        mousemove: function(e) {
+                            e.preventDefault()
+                        }
+                    });
+                }
             }
         },
         setData: function() {
