@@ -26,7 +26,7 @@ AKjs_Config({ //环境配置管理
 */
 
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
-if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
+if (AKjs_Params(1).indexOf("start") == -1) { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
 
     /*-----------------------------------------------AKjs_Plugin 插件按需引入区域-------------------------------------------*/
     AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
@@ -56,11 +56,11 @@ if (AKjs_Params(1) != "start") { //通过AKjs_Params获取hash的第一个值后
 }
 
 $(function () {
-    if (AKjs_Params(1) === "start") { //通过AKjs_Params获取hash的第一个值
+    if (AKjs_Params(1).indexOf("start") != -1) { //通过AKjs_Params获取hash的第一个值
 
         AKjs_Plugin("AKjs_Slider", "css"); //欢迎页和联播图功能
 
-    } else if (AKjs_Params(1) === "page1") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Params(1).indexOf("page1") != -1) { //通过AKjs_Params获取hash的第一个值
 
         AKjs_Plugin("AKjs_AllChecked"); //全选功能
         AKjs_Plugin("AKjs_ButtonSubmit", "css"); //防止重复提交功能
@@ -103,17 +103,17 @@ $(function () {
         AKjs_Plugin("AKjs_Viewer", "css"); //图片放大预览功能
         AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
 
-    } else if (AKjs_Params(1) === "page2") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Params(1).indexOf("page2") != -1) { //通过AKjs_Params获取hash的第一个值
 
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
         AKjs_Plugin("AKjs_MobileChat", "css"); //移动端聊天功能插件
 
-    } else if (AKjs_Params(1) === "page3") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Params(1).indexOf("page3") != -1) { //通过AKjs_Params获取hash的第一个值
 
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
         AKjs_Plugin("AKjs_Waterfall", "css"); //瀑布流展示功能
 
-    } else if (AKjs_Params(1) === "page4") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Params(1).indexOf("page4") != -1) { //通过AKjs_Params获取hash的第一个值
 
         AKjs_Plugin("AKjs_Lazyload"); //图片加载时有动画效果
         AKjs_Plugin("AKjs_Popupwin"); //弹窗功能
@@ -131,7 +131,7 @@ $(function () {
         AKjs_Plugin("AKjs_EchartsRun"); //百度Echarts运行功能
         AKjs_Plugin("AKjs_Print"); //局部打印插件
 
-    } else if (AKjs_Params(1) === "page5") { //通过AKjs_Params获取hash的第一个值
+    } else if (AKjs_Params(1).indexOf("page5") != -1) { //通过AKjs_Params获取hash的第一个值
 
         AKjs_Plugin("AKjs_GoTop"); //返回页面顶部插件
         AKjs_Plugin("AKjs_Keyboard", "css"); //安全键盘
