@@ -41,7 +41,7 @@ $(function() {
         boxsize: "3em", //Loading框大小设置
         eleclass: "animated fadeIn zindex_6 c_gray_333", //Loading的ele区域的样式设置
         callback:function (ele,destroy) { //回调入口 （ele：元素，destroy：摧毁开关控制）
-            console.log(ele);
+            //console.log(ele);
             setTimeout(function() { //页面加载完2秒后执行
                 destroy(true); //关闭loading窗 [true:关闭loading效果，false:重新显示或不关闭loading效果]（使用该功能autoMode参数设为false，并且timeToHide参数不需要设置值）
             },2000);

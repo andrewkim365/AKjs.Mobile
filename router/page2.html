@@ -149,8 +149,8 @@
                 OneButton: aa.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                 toggleIcon: "text_14em icon-mn_wo", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
-                    console.log($(ele[0].dom)); //获取当前的弹窗元素
                     if (toggle) { //判断是否弹出弹窗
+                        console.log($(ele[0].dom)); //获取当前的弹窗元素
                         $("footer").addClass("zindex_0");
                     } else {
                         setTimeout(function() {
@@ -251,7 +251,7 @@
                                             OneButton: cc.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                                             toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                                             callback :function (ele2,toggle2) { //通过回调获取弹窗显示后的以上参数
-                                                console.log($(ele2[0].dom)); //获取当前的弹窗元素
+                                                //console.log($(ele2[0].dom)); //获取当前的弹窗元素
                                                 $(ele1[0].dom).removeClass("slideInUp ani_05s").addClass("slideOutDown ani_05s dis_none");
                                                 ele.find("#plug_location").removeClass("ak-is_active");
                                                 if (toggle2) {
@@ -290,7 +290,7 @@
                                             OneButton: cc.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                                             toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                                             callback :function (ele2,toggle2) { //通过回调获取弹窗显示后的以上参数
-                                                console.log($(ele2[0].dom)); //获取当前的弹窗元素
+                                                //console.log($(ele2[0].dom)); //获取当前的弹窗元素
                                                 $(ele1[0].dom).removeClass("slideInUp ani_05s").addClass("slideOutDown ani_05s dis_none");
                                                 ele.find("#plug_location").removeClass("ak-is_active");
                                                 if (toggle2) {

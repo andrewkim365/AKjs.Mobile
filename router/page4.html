@@ -583,9 +583,9 @@
             next_text: '下一页<i class="arrow-right"><\/i>', //设置“下一页”的文字
             //last_text: '末页', //设置“末页”的文字
             onPageChange: function (n,type,ele) { //回调入口（当前的页码，回调状态）
-                console.log(n);
-                console.log(type);
-                console.log(ele);
+                //console.log(n);
+                //console.log(type);
+                //console.log(ele);
             }
         });
     });
@@ -716,11 +716,13 @@
                 closeBtn: ".ak-mask", //关闭弹窗按钮的Class名
                 OneButton: c.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
                 toggleIcon: "", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
-                callback :function (ele) { //通过回调获取弹窗显示后的以上参数
-                    console.log($(ele[0].dom)); //获取当前的弹窗元素
-                    $(ele[0].dom).find("button").click(function () {
-                        $(".ak-mask").click();
-                    })
+                callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                    if (toggle) { //判断是否弹出弹窗
+                        console.log($(ele[0].dom)); //获取当前的弹窗元素
+                        $(ele[0].dom).find("button").click(function () {
+                            $(".ak-mask").click();
+                        });
+                    }
                 }
             });
         });
