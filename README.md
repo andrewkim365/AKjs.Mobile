@@ -63,6 +63,14 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.2版本；
 
 修改 plugin/AKjs_PreviewImage.js 文件；（解决bug）
 
+修改 plugin/AKjs_Tabs.js 文件；（解决bug）
+
+修改 plugin/AKjs_Slider.js 文件；（解决bug）
+
+修改 plugin/AKjs_TouchDelete.js 文件；（解决bug）
+
+修改 plugin/AKjs_Keyboard.js 文件；（解决该插件的css样式问题）
+
 修改 plugin/AKjs_WebToast.js 文件；
 
 《整个项目目录在webstorm软件中打开后键盘中按Ctrl+Shift+R进行路径中替换关键词。（所有的 ak_webToast 字符全部替换为 AKjs_WebToast 即可。》
