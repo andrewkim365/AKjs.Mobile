@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-25
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Radio--------------------------------------*/
@@ -25,8 +25,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     "line-height": options.boxSize
                 })
             }
-            radios.addClass("rel text_al_c")
+            radios.addClass("rel text_al_c dis_inbl_im fn");
         } else {
+            radios.addClass("bor_none bor_rad_0");
             radios.removeClass("rel text_al_c").removeAttr("style")
         }
         $(window).resize(function() {
@@ -38,8 +39,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         "line-height": options.boxSize
                     })
                 }
-                radios.addClass("rel text_al_c")
+                radios.addClass("rel text_al_c dis_inbl_im fn");
             } else {
+                radios.addClass("bor_none bor_rad_0");
                 radios.removeClass("rel text_al_c").removeAttr("style")
             }
         });

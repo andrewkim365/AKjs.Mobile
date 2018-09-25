@@ -533,6 +533,8 @@ function AKjs_RegsInput() {
     Regs_numAll = /"^\d+$/;
     Regs_userBefit = /^[a-z0-9]+$/i;
     Regs_pwdBefit = /^\w+$/;
+    Regs_image = /\.(gif|jpg|jpeg|png)/i;
+    Regs_empty = /.+/;
 }
 
 /*-----------------------------------------------AKjs_InputLineHeight--------------------------------------*/
