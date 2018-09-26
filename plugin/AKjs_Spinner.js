@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-20
+Modification Date: 2018-09-26
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Spinner-------------------------------------------*/
@@ -11,7 +11,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 btn_left: "",
                 btn_right: "",
                 spacing: 1,
-                maxNumber: 999,
+                maxNumber: "",
                 changeBack: function() {},
                 clickBack:function(){
                 }
@@ -54,45 +54,51 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $(this).parent().children(".minus").attr("disabled",'disabled');
                 }
                 $(this).keyup(function() {
+                    if (option.maxNumber) {
+                        var maxNumber = parseInt(option.maxNumber);
+                    } else {
+                        var maxNumber = parseInt(999999999);
+                    }
                     var lengthNum = 1;
-                    var it_val=it.val();
-                    it.val("").focus().val(it_val);
-                    if(it.val()!=''&& it.val()!=null && it.val()!=undefined){
+                    if (it.val() != '' && it.val() != null && it.val() != undefined) {
                         lengthNum = parseInt(it.val());
                     }
                     if (lengthNum > 1) {
-                        $(this).parent().children(".minus").removeAttr("disabled",'disabled');
-                    } else {
-                        $(this).parent().children(".minus").attr("disabled",'disabled');
+                        $(this).parent().children(".minus").removeAttr("disabled", 'disabled');
+                    } else if (lengthNum <= maxNumber) {
+                        $(this).parent().children(".minus").attr("disabled", 'disabled');
                     }
                     if (lengthNum === 0) {
                         it.val(1);
                     }
-                    option.changeBack(lengthNum,$(this));
+                    if (parseInt(it.val()) >= parseInt(maxNumber)) {
+                        it.val(parseInt(maxNumber));
+                        $(this).parent().children(".plus").attr("disabled", 'disabled');
+                    }
+                    option.changeBack(it.val(),$(this));
                 });
                 $(this).parent().children(".plus").unbind("click");
                 $(this).parent().children(".plus").on('click', function (e) {
                     e.preventDefault();
                     if (option.maxNumber) {
-                        var maxNumber = parseInt(option.maxNumber-1);
+                        var maxNumber = parseInt(option.maxNumber);
                     } else {
-                        var maxNumber = parseInt(999999);
+                        var maxNumber = parseInt(999999999);
                     }
                     var lengthNum= parseInt(it.val());
-                    if (maxNumber > lengthNum) {
+                    if (maxNumber > parseInt(it.val())) {
                         $(this).parent().children(".minus").removeAttr("disabled",'disabled');
                         it.val(lengthNum+parseInt(option.spacing));
-                    } else if (maxNumber == lengthNum) {
-                        $(this).attr("disabled", 'disabled');
-                        it.val(lengthNum + parseInt(option.spacing));
-                    } else if (maxNumber < lengthNum) {
-                        it.parent().children(".minus").attr("disabled",'disabled');
-                        it.parent().children(".plus").removeAttr("disabled",'disabled');
-                        it.val(parseInt(1));
-                    } else {
-                        $(this).attr("disabled", 'disabled');
+                    } else if (maxNumber <= parseInt(it.val())) {
+                        it.val(parseInt(maxNumber));
+                        $(this).attr("disabled",'disabled');
+                        it.parent().children(".minus").removeAttr("disabled",'disabled');
                     }
-                    option.clickBack(lengthNum + parseInt(option.spacing), $(this).parent().children("input"));
+                    if (parseInt(it.val()) >= parseInt(maxNumber)) {
+                        it.val(parseInt(maxNumber));
+                        $(this).attr("disabled",'disabled');
+                    }
+                    option.clickBack(it.val(), $(this).parent().children("input"));
                 });
                 $(this).parent().children(".minus").unbind("click");
                 $(this).parent().children(".minus").on('click', function (e) {
@@ -100,29 +106,22 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (option.maxNumber) {
                         var maxNumber = parseInt(option.maxNumber);
                     } else {
-                        var maxNumber = parseInt(999999);
+                        var maxNumber = parseInt(999999999);
                     }
                     var lengthNum= parseInt(it.val());
-                    if (lengthNum < 10) {
-                        var spacing = 1;
-                    } else {
-                        var spacing = lengthNum - parseInt(option.spacing)
-                    }
                     if (maxNumber >= lengthNum){
                         $(this).parent().children(".plus").removeAttr("disabled",'disabled');
                         it.val(lengthNum-parseInt(option.spacing));
-                    } else if (maxNumber < lengthNum) {
-                        it.parent().children(".minus").attr("disabled",'disabled');
+                    } else if (maxNumber <= lengthNum) {
+                        it.val(parseInt(maxNumber));
+                        $(this).attr("disabled",'disabled');
                         it.parent().children(".plus").removeAttr("disabled",'disabled');
-                        it.val(parseInt(1));
-                    } else {
-                        $(this).attr("disabled", 'disabled');
                     }
                     if (parseInt(it.val())<=1){
                         it.val(parseInt(1));
                         $(this).attr("disabled",'disabled');
                     }
-                    option.clickBack(spacing, $(this).parent().children("input"));
+                    option.clickBack(it.val(), $(this).parent().children("input"));
                 })
             });
         }
