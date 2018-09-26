@@ -63,13 +63,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (it.val() != '' && it.val() != null && it.val() != undefined) {
                         lengthNum = parseInt(it.val());
                     }
-                    if (lengthNum > 1) {
+                    if (parseInt(it.val()) > 1) {
                         $(this).parent().children(".minus").removeAttr("disabled", 'disabled');
-                    } else if (lengthNum <= maxNumber) {
+                        $(this).parent().children(".plus").removeAttr("disabled", 'disabled');
+                    } else if (parseInt(it.val()) <= maxNumber) {
                         $(this).parent().children(".minus").attr("disabled", 'disabled');
                     }
                     if (lengthNum === 0) {
                         it.val(1);
+                        $(this).parent().children(".plus").removeAttr("disabled", 'disabled');
                     }
                     if (parseInt(it.val()) >= parseInt(maxNumber)) {
                         it.val(parseInt(maxNumber));
