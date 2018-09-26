@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-25
+Modification Date: 2018-09-26
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Validate--------------------------------------*/
@@ -68,18 +68,26 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var va = option.valid[key];
             var errDom = isDiy ? null: form.find('[data-error="' + key + '"]');
             if ($(ele).prop('type') == 'radio' || $(ele).prop('type') == 'checkbox') {
-                return $.inRange(form.find('[data-valid="' + key + '"]:checked').length, va.norm) ? fnSuccess($(ele), va, errDom) : fnError($(ele), va, errDom, va.error);
+                return $.inRange(form.find('[data-valid="' + key + '"]:checked').length, va.norm) ? fnSuccess($(ele), va, errDom) : fnError($(ele), va, errDom, va.empty, va.error);
             } else if (va.norm.context) {
-                return $(ele).val() == va.norm.val() && $(ele).val().length > 0 ? fnSuccess($(ele), va, errDom) : fnError($(ele), va, errDom, va.error);
+                return $(ele).val() == va.norm.val() && $(ele).val().length > 0 ? fnSuccess($(ele), va, errDom) : fnError($(ele), va, errDom, va.empty, va.error);
             } else {
-                return va.norm.test($(ele).val()) ? fnSuccess($(ele), va, errDom) : fnError($(ele), va, errDom, va.error);
+                return va.norm.test($(ele).val()) ? fnSuccess($(ele), va, errDom) : fnError($(ele), va, errDom, va.empty, va.error);
             }
         }
-        function fnError(ts, va, errDom, error) {
-            if (isDiy) {
-                va.error(ts);
+        function fnError(ts, va, errDom, empty, error) {
+            if (ts.val().length < 1) {
+                if (empty != undefined) {
+                    errDom.removeClass("dis_none_im").addClass('abs ml_05em '+option.VerifyClass).html("* "+empty);
+                } else {
+                    errDom.removeClass("dis_none_im").addClass('abs ml_05em '+option.VerifyClass).html("* "+error);
+                }
             } else {
-                errDom.removeClass("dis_none_im").addClass('abs ml_05em '+option.VerifyClass).html("* "+error);
+                if (isDiy) {
+                    va.error(ts);
+                } else {
+                    errDom.removeClass("dis_none_im").addClass('abs ml_05em '+option.VerifyClass).html("* "+error);
+                }
             }
             return false;
         }
