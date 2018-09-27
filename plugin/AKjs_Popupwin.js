@@ -17,40 +17,10 @@ function AKjs_Popupwin (setting){
         callback :function () {},
         scrollback :function () {}
     },setting);
-    if (option.dom) {
-        $(option.dom).css({
-            "position": "fixed",
-            "background": "transparent",
-            "z-index": parseInt(option.maskPosition)+1
-        });
+    setPopupStyle();
+    $(window).resize(function(){
         setPopupStyle();
-        $(window).resize(function(){
-            setPopupStyle();
-        });
-    }
-    if (option.position === 'offset') {
-        var main_scroll = $("#ak-scrollview").scrollTop() + $(option.dom).outerHeight();
-        $("#ak-scrollview").scroll(function(sc){
-            sc.preventDefault();
-            var scrolltop = $(this).scrollTop();
-            if(scrolltop < main_scroll) {
-                if ($(option.OneButton).hasClass("ak-is_active")) {
-                    ClickHideModal();
-                    $(option.dom).removeClass("dis_none");
-                } else {
-                    $(option.dom).removeAttr("style");
-                }
-            } else if(scrolltop > main_scroll) {
-                if ($(option.OneButton).hasClass("ak-is_active")) {
-                    ClickHideModal();
-                    $(option.dom).removeClass("dis_none");
-                } else {
-                    $(option.dom).removeAttr("style");
-                }
-            }
-            option.scrollback($(option));
-        });
-    }
+    });
     if (option.OneButton) {
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function() {
@@ -60,16 +30,24 @@ function AKjs_Popupwin (setting){
         AKjs_UserAgent();
         $(option.OneButton).toggleClass("ak-is_active");
         if ($(option.OneButton).hasClass("ak-is_active")) {
+            $(option.dom).removeAttr("style");
+            setPopupStyle();
             setTimeout(function() {
                 if (option.hasMask) {
                     addModalMask();
                     $("#ak-scrollview").removeClass("scrolling_touch");
                 }
                 if (option.position === 'offset') {
-                    var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
                     if (IsMobile) {
+                        var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
                         olw = 0;
                     } else {
+                        var isOth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight() - $("#ak-scrollview").offset().top + $("#ak-scrollview").scrollTop();
+                        if (isOth > $("#ak-scrollview").outerHeight()) {
+                            var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
+                        } else {
+                            var oth = isOth;
+                        }
                         olw = $(option.OneButton).offset().left + $(option.OneButton).outerWidth() - $("#ak-scrollview").offset().left;
                         if ($(window).width() - olw > 0) {
                             olw = $(option.OneButton).offset().left + $(option.OneButton).outerWidth() - $("#ak-scrollview").offset().left - $(option.dom).outerWidth();
@@ -115,6 +93,18 @@ function AKjs_Popupwin (setting){
             ClickHideModal();
         });
     }
+    $("#ak-scrollview").scroll(function(sc){
+        sc.preventDefault();
+        option.scrollback($(option));
+        $('#popup_mask').fadeOut().remove();
+        if (option.OneButton) {
+            var scrollHeight = $("#ak-scrollview").prop("scrollHeight");
+            $(option.dom).css({
+                top: scrollHeight
+            });
+            $(option.OneButton).removeClass("ak-is_active");
+        }
+    });
     function addModalMask() {
         $('#popup_mask').remove();
         if ($("#popup_mask").length < 1) {
@@ -147,34 +137,40 @@ function AKjs_Popupwin (setting){
     function setPopupStyle() {
         var ww = $(window).width();
         var wh = $(window).height();
-        var dw = $(option.dom).outerWidth();
-        var dh = $(option.dom).outerHeight();
-
-        if (option.position === 'top') {
+        if (option.dom) {
+            var dw = $(option.dom).outerWidth();
+            var dh = $(option.dom).outerHeight();
             $(option.dom).css({
-                "left": (ww / 2) - (dw / 2),
-                "top": 0
+                "position": "fixed",
+                "background": "transparent",
+                "z-index": parseInt(option.maskPosition) + 1
             });
-        } else if (option.position === 'bottom') {
-            $(option.dom).css({
-                "left": (ww / 2) - (dw / 2),
-                "bottom": 0
-            });
-        } else if (option.position === 'left') {
-            $(option.dom).css({
-                "left": 0,
-                "top": 0
-            });
-        } else if (option.position === 'right') {
-            $(option.dom).css({
-                "right": 0,
-                "top": 0
-            });
-        } else if (option.position === 'middle') {
-            $(option.dom).css({
-                "left": (ww / 2) - (dw / 2),
-                "top": (wh / 2) - (dh / 2)
-            });
+            if (option.position === 'top') {
+                $(option.dom).css({
+                    "left": (ww / 2) - (dw / 2),
+                    "top": 0
+                });
+            } else if (option.position === 'bottom') {
+                $(option.dom).css({
+                    "left": (ww / 2) - (dw / 2),
+                    "bottom": 0
+                });
+            } else if (option.position === 'left') {
+                $(option.dom).css({
+                    "left": 0,
+                    "top": 0
+                });
+            } else if (option.position === 'right') {
+                $(option.dom).css({
+                    "right": 0,
+                    "top": 0
+                });
+            } else if (option.position === 'middle') {
+                $(option.dom).css({
+                    "left": (ww / 2) - (dw / 2),
+                    "top": (wh / 2) - (dh / 2)
+                });
+            }
         }
     }
     function ClickHideModal(){

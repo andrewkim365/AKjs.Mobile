@@ -1471,6 +1471,7 @@
                         },
                         scrollback :function (ele) { //页面滑动时的回调获取参数
                             initialize_btn(); //调用按钮样式初始化功能
+                            $(ele[0].dom).removeClass(ele[0].effectIn).addClass(ele[0].effectOut);
                         }
                     });
                     function initialize_btn(){ //按钮的样式初始化
