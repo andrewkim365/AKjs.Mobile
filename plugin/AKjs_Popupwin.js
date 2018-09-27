@@ -21,6 +21,7 @@ function AKjs_Popupwin (setting){
     $(window).resize(function(){
         setPopupStyle();
     });
+    var setTimes = 100;
     if (option.OneButton) {
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function() {
@@ -72,7 +73,7 @@ function AKjs_Popupwin (setting){
                     }
                 }
                 option.callback($(option),true);
-            },100);
+            },setTimes);
         } else {
             option.callback($(option),false);
             ClickHideModal();
@@ -184,11 +185,18 @@ function AKjs_Popupwin (setting){
                 $(option.dom).removeClass("animated " + option.effectIn).addClass("animated " + option.effectOut);
             }
         }
+        var effectTime = option.effectOut;
+        effectStr = effectTime.substring(effectTime.indexOf('ani_')+3,effectTime.lastIndexOf('s'));
+        if (effectStr.indexOf("_0") != -1) {
+            effectStr = effectStr.replace("_0","_0.");
+        }
+        effectStr = effectStr.substr(1);
+        var setTimeouts = effectStr*1000+setTimes;
         setTimeout(function() {
             $("#ak-scrollview").addClass("scrolling_touch");
             $(option.OneButton).removeClass("ak-is_active");
             $('#popup_mask').fadeOut().remove();
             $(option.dom).addClass("dis_none").removeAttr("style");
-        },700);
+        },setTimeouts);
     }
 }

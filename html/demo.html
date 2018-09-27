@@ -1535,14 +1535,20 @@
                         maskPosition: 1, //Mask的z-index数值
                         closeBtn: "#plug_filterWin", //关闭弹窗按钮
                         OneButton: _this, //点击按钮和关闭按钮通用时需要加该属性
-                        callback :function (ele) { //通过回调获取弹窗显示后的参数
-                            var modal =$(ele[0].dom); //获取弹窗元素
-                            $(modal).click(function(){ //点击弹窗内容区域后关闭当前被展开的弹窗
-                                initialize_btn(); //调用按钮样式初始化功能
-                            });
+                        callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
+                            if (toggle) { //判断是否弹出弹窗
+                                var modal = $(ele[0].dom); //获取弹窗元素
+                                $(modal).click(function () { //点击弹窗内容区域后关闭当前被展开的弹窗
+                                    initialize_btn(); //调用按钮样式初始化功能
+                                });
+                                $("#popup_mask").click(function () { //点击弹窗内容区域后关闭当前被展开的弹窗
+                                    initialize_btn(); //调用按钮样式初始化功能
+                                });
+                            }
                         },
                         scrollback :function (ele) { //页面滑动时的回调获取参数
                             initialize_btn(); //调用按钮样式初始化功能
+                            $(ele[0].dom).removeClass(ele[0].effectIn).addClass(ele[0].effectOut);
                         }
                     });
                     function initialize_btn(){ //按钮的样式初始化
