@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-21
+Modification Date: 2018-09-27
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
@@ -15,8 +15,7 @@ function AKjs_Popupwin (setting){
         maskPosition: "",
         toggleIcon: "",
         callback :function () {},
-        scrollback :function () {},
-        leaveback :function () {}
+        scrollback :function () {}
     },setting);
     if (option.dom) {
         $(option.dom).css({
@@ -52,12 +51,6 @@ function AKjs_Popupwin (setting){
             option.scrollback($(option));
         });
     }
-    $(window).bind('hashchange', function () {
-        if (option.leaveback !=  undefined) {
-            option.leaveback($(option),false);
-        }
-        return false;
-    });
     if (option.OneButton) {
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function() {
@@ -73,11 +66,10 @@ function AKjs_Popupwin (setting){
                     $("#ak-scrollview").removeClass("scrolling_touch");
                 }
                 if (option.position === 'offset') {
+                    var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
                     if (IsMobile) {
-                        var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight();
                         olw = 0;
                     } else {
-                        var oth = $(option.OneButton).offset().top + $(option.OneButton).outerHeight() - $("#ak-scrollview").offset().top;
                         olw = $(option.OneButton).offset().left + $(option.OneButton).outerWidth() - $("#ak-scrollview").offset().left;
                         if ($(window).width() - olw > 0) {
                             olw = $(option.OneButton).offset().left + $(option.OneButton).outerWidth() - $("#ak-scrollview").offset().left - $(option.dom).outerWidth();
@@ -101,8 +93,8 @@ function AKjs_Popupwin (setting){
                         $(option.OneButton).find("i").removeClass($(option.OneButton).find("i").attr("class")).addClass(option.toggleIcon);
                     }
                 }
+                option.callback($(option),true);
             },100);
-            option.callback($(option),true);
         } else {
             option.callback($(option),false);
             ClickHideModal();
