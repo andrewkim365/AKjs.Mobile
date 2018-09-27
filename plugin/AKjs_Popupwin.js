@@ -111,6 +111,7 @@ function AKjs_Popupwin (setting){
         $(option.closeBtn).unbind("click");
         $(option.closeBtn).on('click', function(ec) {
             ec.preventDefault();
+            option.callback($(option),false);
             ClickHideModal();
         });
     }
