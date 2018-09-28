@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-26
+Modification Date: 2018-09-28
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Validate--------------------------------------*/
@@ -12,6 +12,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 clickBack: function() {}
             },
             setting);
+        AKjs_RegsInput();
         var form = $(this);
         var ctrls = form.find('[data-valid]');
         var isDiy = false;
@@ -56,7 +57,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             if (option.clickBack && option.clickBack.constructor === Function) {
                 ev.preventDefault();
                 if (vResult) {
-                    option.clickBack($(this), form);
+                    option.clickBack($(this), form, true);
+                } else {
+                    option.clickBack($(this), form, false);
                 }
             } else {
                 if (!vResult) {
@@ -101,6 +104,33 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             return true;
         }
+        $.fn.message = function(status,str) {
+            var _ts = $(this);
+            if (status == true) {
+                _ts.parent().children("text").remove();
+                _ts.parent().children("sub").addClass("dis_none_im");
+                if (typeof str != undefined && str !="" && str !=null) {
+                    _ts.parent().append("<text style='white-space: pre;line-height: "+_ts.outerHeight()+"px;' />");
+                    _ts.parent().children("text").addClass('abs ml_05em '+option.VerifyClass).html("* "+str);
+                }
+                _ts.focus();
+                $("button#ak-validateBtn").remove();
+                form.find(":submit").parent().append("<button type='button' id='ak-validateBtn' class='"+form.find(":submit").attr("class")+"'>"+form.find(":submit").text()+"</button>");
+                form.find(":submit").addClass("dis_none_im");
+                $("button#ak-validateBtn").removeClass("dis_none_im");
+                $("button#ak-validateBtn").on("click", function(ev) {
+                    ev.preventDefault();
+                    _ts.focus();
+                });
+            }
+            if (status == false) {
+                _ts.parent().children("text").removeClass('abs ml_05em '+option.VerifyClass).html("").remove();
+                form.find(":submit").removeClass("dis_none_im");
+                $("button#ak-validateBtn").remove();
+                form.find(":submit").click();
+            }
+            return _ts.hasClass('dis_none_im');
+        };
     };
     $.fn.disabled = function(status) {
         var _ts = $(this);

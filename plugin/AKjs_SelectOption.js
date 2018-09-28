@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-08-28
+Modification Date: 2018-09-28
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_SelectOption-------------------------------------------*/
@@ -36,15 +36,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 var select_text = select.find("var");
                 var select_list = select.find("cite");
                 $this.after(select);
-                if ($('#ak-scrollview').length > 0) {
-                    if (select.parents("dialog")[0] != undefined) {
-                        $('main').append(select_list);
-                    } else {
-                        $('#ak-scrollview').append(select_list);
-                    }
-                } else {
-                    $('body').append(select_list);
-                }
+                $this.nextAll("section.ak-SelectOpts").not($this.next("section.ak-SelectOpts")).remove();
                 select_list.find("li").each(function () {
                     var list = $(this);
                     if (list.data("value") == $this.find(":selected").val()) {
@@ -57,44 +49,61 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 AKjs_UserAgent();
                 select.unbind("click");
                 select.click(function (andrew) {
+                    var $this_ = $(this);
                     andrew.preventDefault();
-                    var this_h = $(this).outerHeight();
-                    $(this).toggleClass("ak-open");
-                    select_list.css({
-                        "width": $(this).innerWidth(),
-                        "max-height": option.boxheight
-                    });
-                    if ($(this).offset().top + $(this).innerHeight()+ select_list.innerHeight() > $(window).height()) {
-                        select_list.css({
-                            "top": "auto",
-                            "bottom": $("#ak-scrollview").outerHeight() - ($(this).offset().top + $('#ak-scrollview').scrollTop()) + $(this).innerHeight() + $("#ak-scrollview").offset().top - this_h + 2,
-                            "left": $(this).offset().left - $("#ak-scrollview").offset().left
-                        });
+                    $(".ak-SelectList").remove();
+                    if ($('#ak-scrollview').length > 0) {
+                        if (select.parents("dialog")[0] != undefined) {
+                            $('main').append(select_list);
+                        } else {
+                            $('#ak-scrollview').append(select_list);
+                        }
                     } else {
+                        $('body').append(select_list);
+                    }
+                    $(this).toggleClass("ak-open");
+                    select_list_css();
+                    $(window).resize(function () {
+                        select_list_css();
+                    });
+                    function select_list_css() {
+                        var this_h = $this_.outerHeight();
                         select_list.css({
-                            "bottom": "auto",
-                            "left": $(this).offset().left - $("#ak-scrollview").offset().left
+                            "width": $this_.innerWidth(),
+                            "max-height": option.boxheight
                         });
-                        if ($('#ak-scrollview').length > 0) {
-                            if (select.parents("dialog")[0] != undefined) {
-                                select_list.css({
-                                    "top": $(this).offset().top -$("#ak-scrollview").offset().top + this_h
-                                });
-                            } else {
-                                select_list.css({
-                                    "top": $(this).offset().top + $('#ak-scrollview').scrollTop() - $("#ak-scrollview").offset().top + this_h
-                                });
-                            }
+                        if ($this_.offset().top + $this_.innerHeight()+ select_list.innerHeight() > $(window).height()) {
+                            select_list.css({
+                                "top": "auto",
+                                "bottom": $("#ak-scrollview").outerHeight() - ($this_.offset().top + $('#ak-scrollview').scrollTop()) + $this_.outerHeight() + $("#ak-scrollview").offset().top - this_h -8,
+                                "left": $this_.offset().left - $("#ak-scrollview").offset().left
+                            });
                         } else {
                             select_list.css({
-                                "top": $(this).offset().top + $(this).innerHeight() + 1
+                                "bottom": "auto",
+                                "left": $this_.offset().left - $("#ak-scrollview").offset().left
                             });
+                            if ($('#ak-scrollview').length > 0) {
+                                if (select.parents("dialog")[0] != undefined) {
+                                    select_list.css({
+                                        "top": $this_.offset().top -$("#ak-scrollview").offset().top + this_h
+                                    });
+                                } else {
+                                    select_list.css({
+                                        "top": $this_.offset().top + $('#ak-scrollview').scrollTop() - $("#ak-scrollview").offset().top + this_h
+                                    });
+                                }
+                            } else {
+                                select_list.css({
+                                    "top": $this_.offset().top + $this_.innerHeight() + 1
+                                });
+                            }
                         }
+                        select_list.find("li").css({
+                            "height": select.outerHeight()+"px",
+                            "line-height": select.outerHeight()+"px"
+                        });
                     }
-                    select_list.find("li").css({
-                        "height": select.outerHeight()+"px",
-                        "line-height": select.outerHeight()+"px"
-                    });
                     if ($(this).hasClass("ak-open")) {
                         $(".ak-SelectOpts").not(select).removeClass("ak-open");
                         $(".ak-SelectList").not(select_list).hide();

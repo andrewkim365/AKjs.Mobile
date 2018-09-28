@@ -531,8 +531,8 @@ function AKjs_RegsInput() {
     Regs_date = /^[1-2][0-9][0-9][0-9]-[0-1]{0,1}[0-9]-[0-3]{0,1}[0-9]$/;
     Regs_qq = /^[1-9][0-9]{4,9}$/;
     Regs_numAll = /"^\d+$/;
-    Regs_userBefit = /^[a-z0-9]+$/i;
-    Regs_pwdBefit = /^\w+$/;
+    Regs_userid = /^[a-z0-9]+$/i;
+    Regs_password = /(?!^[0-9]+$)(?!^[A-z]+$)(?!^[^A-z0-9]+$)^.{6,20}$/;
     Regs_image = /\.(gif|jpg|jpeg|png)/i;
     Regs_empty = /.+/;
 }
