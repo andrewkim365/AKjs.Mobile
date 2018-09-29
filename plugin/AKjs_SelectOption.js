@@ -6,7 +6,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 (function($){
     var defaluts = {
         active: "",
-        boxheight:"",
+        boxheight: 5,
         speed: 1000,
         callback: function() {},
         clickback: function() {}
@@ -96,10 +96,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     });
                     function select_list_css() {
                         var this_h = $this_.outerHeight();
-                        select_list.css({
-                            "width": $this_.innerWidth(),
-                            "max-height": option.boxheight
-                        });
+                        if (option.boxheight) {
+                            select_list.css({
+                                "width": $this_.innerWidth(),
+                                "max-height": $this_.outerHeight() * option.boxheight
+                            });
+                        } else {
+                            select_list.css({
+                                "width": $this_.innerWidth(),
+                                "max-height": $this_.outerHeight() * 5
+                            });
+                        }
                         if ($this_.offset().top + $this_.innerHeight()+ select_list.innerHeight() > $(window).height()) {
                             select_list.css({
                                 "top": "auto",

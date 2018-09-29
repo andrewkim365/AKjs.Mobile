@@ -627,7 +627,7 @@
     $(function() {
         $(".plug_select").AKjs_SelectOption({
             active: "bg_title c_white", //下拉列表被选中时样式
-            boxheight: "12.6em", //下拉框展开后的列表区域的最大高度
+            boxheight: 5, //下拉框展开后的列表区域的高度 (设置默认显示的列表数量)
             speed: 300, //下拉框展开和折叠毫秒时间
             callback:function(ele,list,val,text){ //初始化回调
                 //console.log(ele);
