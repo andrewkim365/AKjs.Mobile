@@ -278,6 +278,7 @@ function AKjs_Router(setting) {
                     success: function () {
                         $("html").attr("data-router","akjs");
                         option.changePage(document.location.hash.substring(1),true);
+                        $(document).unbind("contextmenu").unbind("keydown");
                     },
                     error: function () {
                         $("html").attr("data-router","error");
