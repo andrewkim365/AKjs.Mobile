@@ -45,7 +45,7 @@
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况
                 AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
                 AKjs_WebToast("您访问的界面加载失败,请稍后再试!","middle",3000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
-                AKjs_Location("/page1"); //location.replace 跳转模式
+                AKjs_Location("/page1",{time:3000}); //location.replace 跳转模式 (延迟跳转)
             }
         }
     });

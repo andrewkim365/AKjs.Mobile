@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180920 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180929 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -2380,6 +2380,9 @@ text {
     display: -webkit-flex;
     display: flex;
 }
+.dis_in {
+    display: inherit;
+}
 .dis_none_im, .dis_ab_none_im:after, .dis_ab_none_im:before, .dis_cd_none_im > *, .dis_abcd_none_im > *:after, .dis_abcd_none_im > *:before {
     display:none !important;
 }
@@ -2407,6 +2410,9 @@ text {
     display: -moz-flex !important;
     display: -webkit-flex !important;
     display: flex !important;
+}
+.dis_in_im {
+    display: inherit !important;
 }
 
 /*overflow type*/

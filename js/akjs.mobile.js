@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180920 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180929 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -151,11 +151,9 @@ function AKjs_Router(setting) {
             ErrorMsg: "Current Page loading failure!",
             RouterPath:[],
             startPage: "",
-            success:function () {
+            changePage:function () {
             },
             error:function () {
-            },
-            changePage:function () {
             }
         },
         setting);
@@ -183,7 +181,6 @@ function AKjs_Router(setting) {
             var PrevScrollTop = $("#ak-scrollview").scrollTop();
             Router_Ajax(option,page);
             AKjs_mainHeight();
-            option.changePage(document.location.hash.substring(1),true);
             if (option.Animate) {
                 $(function () {
                     var asideEle = $("#ak-aside");
@@ -280,18 +277,23 @@ function AKjs_Router(setting) {
                     cache: false,
                     success: function () {
                         $("html").attr("data-router","akjs");
-                        $(function () {
-                            option.success(document.location.hash.substring(1));
-                        });
+                        option.changePage(document.location.hash.substring(1),true);
                     },
                     error: function () {
                         $("html").attr("data-router","error");
                         $("header, aside, footer").removeClass("dis_block_im").addClass("dis_none_im");
                         $(".ak-ErrorPage").remove();
                         $("body").append('<div class="ak-ErrorPage"><i>&Chi;</i>'+option.ErrorMsg+'</div>');
+                        option.error(document.location.hash.substring(1));
                         AKjs_mainHeight();
-                        $(function () {
-                            option.error(document.location.hash.substring(1));
+                        $(document).bind("contextmenu",function() {
+                            return false;
+                        }).bind("keydown",function(e){
+                            e=window.event||e;
+                            if(e.keyCode==116){
+                                e.keyCode = 0;
+                                return false;
+                            }
                         });
                     }
                 });

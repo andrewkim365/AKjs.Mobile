@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-28
+Modification Date: 2018-09-29
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_SelectOption-------------------------------------------*/
@@ -61,6 +61,34 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     } else {
                         $('body').append(select_list);
                     }
+                    select_list.find("li").unbind("click");
+                    select_list.on("click", "li", function () {
+                        var li = $(this);
+                        if (li.data("value") === 0 || li.data("value") === "") {
+                            var val = li.removeClass(option.active).siblings("li").removeClass(option.active).end().data("value");
+                        } else {
+                            var val = li.addClass(option.active).siblings("li").removeClass(option.active).end().data("value").toString();
+                        }
+                        select.removeClass("ak-open");
+                        select_list.slideUp(option.speed);
+
+                        if (li.data("value") != "0" || li.data("value") != "") {
+                            if ($this.attr("data-type") == "router-link") {
+                                document.location.href = "#/" + li.data("value");
+                            } else if ($this.attr("data-type") == "link") {
+                                document.location.href = li.data("value");
+                            }
+                        }
+                        if (val !== $this.val()) {
+                            select_text.text(li.text());
+                            $this.val(val);
+                            $this.attr("data-value",val);
+                            $this.find("option[value!='"+val+"']").removeAttr("selected");
+                            $this.find("option[value='"+val+"']").attr("selected","selected");
+                            $this.change();
+                            option.clickback(select,select_list,val,select_text.text());
+                        }
+                    });
                     $(this).toggleClass("ak-open");
                     select_list_css();
                     $(window).resize(function () {
@@ -127,34 +155,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         },option.speed);
                     } else {
                         select_list.slideUp(option.speed);
-                    }
-                });
-                select_list.find("li").unbind("click");
-                select_list.on("click", "li", function () {
-                    var li = $(this);
-                    if (li.data("value") === 0 || li.data("value") === "") {
-                        var val = li.removeClass(option.active).siblings("li").removeClass(option.active).end().data("value");
-                    } else {
-                        var val = li.addClass(option.active).siblings("li").removeClass(option.active).end().data("value").toString();
-                    }
-                    select.removeClass("ak-open");
-                    select_list.slideUp(option.speed);
-
-                    if (li.data("value") != "0" || li.data("value") != "") {
-                        if ($this.attr("data-type") == "router-link") {
-                            document.location.href = "#/" + li.data("value");
-                        } else if ($this.attr("data-type") == "link") {
-                            document.location.href = li.data("value");
-                        }
-                    }
-                    if (val !== $this.val()) {
-                        select_text.text(li.text());
-                        $this.val(val);
-                        $this.attr("data-value",val);
-                        $this.find("option[value!='"+val+"']").removeAttr("selected");
-                        $this.find("option[value='"+val+"']").attr("selected","selected");
-                        $this.change();
-                        option.clickback(select,select_list,val,select_text.text());
                     }
                 });
             });
