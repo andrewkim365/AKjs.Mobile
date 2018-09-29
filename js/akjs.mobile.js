@@ -277,7 +277,9 @@ function AKjs_Router(setting) {
                     cache: false,
                     success: function () {
                         $("html").attr("data-router","akjs");
-                        option.changePage(document.location.hash.substring(1),true);
+                        if (page == "hashchange") {
+                            option.changePage(document.location.hash.substring(1), true);
+                        }
                         $(document).unbind("contextmenu").unbind("keydown");
                     },
                     error: function () {
