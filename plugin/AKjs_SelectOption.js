@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-29
+Modification Date: 2018-09-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_SelectOption-------------------------------------------*/
@@ -110,7 +110,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         if ($this_.offset().top + $this_.innerHeight()+ select_list.innerHeight() > $(window).height()) {
                             select_list.css({
                                 "top": "auto",
-                                "bottom": $("#ak-scrollview").outerHeight() - ($this_.offset().top + $('#ak-scrollview').scrollTop()) + $this_.outerHeight() + $("#ak-scrollview").offset().top - this_h -8,
+                                "bottom": $("#ak-scrollview").outerHeight() - ($this_.offset().top + $('#ak-scrollview').scrollTop()) + $this_.outerHeight() + $("#ak-scrollview").offset().top - this_h,
                                 "left": $this_.offset().left - $("#ak-scrollview").offset().left
                             });
                         } else {
