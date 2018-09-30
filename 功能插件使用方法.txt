@@ -1052,22 +1052,24 @@
             boxsize:["24em","36em"], //电脑端展开后的下拉框大小设置 ["宽度","高度"]
             source: json_searchData, //Json获取data数据(data.js)
             showCallBack:function(ele){ //回调获取被展开后显示的元素
-                $(".plug_Typeahead").parent().append('<i class="dis_none_im abs left_0 ml_03em text_14em c_gray_999 line_h_18em iconfont icon-sousuo1"></i>');
-                if ($(".ak-typeahead").children("ol").length < 1) {
-                    $(".ak-typeahead").append(
-                        "<ol class=\"scrolling_touch list ovs_y h_100\">\n" +
-                        "<li class=\"touchstart\" data-value=\"BJ\">北京</li>\n" +
-                        "<li class=\"touchstart\" data-value=\"SH\">上海</li>\n" +
-                        "<li class=\"touchstart\" data-value=\"GZ\">广州</li>\n" +
-                        "<li class=\"touchstart\" data-value=\"SZ\">深圳</li>\n" +
-                        "<li class=\"touchstart\" data-value=\"QD\">青岛</li>\n" +
-                        "</ol>"
-                    );
-                    $(".ak-typeahead").children("ol").find("li").bind("touchstart", function() {
-                        console.log($(this).text());
-                        $(".plug_Typeahead").val($(this).text());
-                        document.activeElement.blur();//隐藏键盘
-                    });
+                if (IsMobile) {
+                    $(".plug_Typeahead").parent().append('<i class="dis_none_im abs left_0 ml_03em text_14em c_gray_999 line_h_18em iconfont icon-sousuo1"></i>');
+                    if ($(".ak-typeahead").children("ol").length < 1) {
+                        $(".ak-typeahead").append(
+                            "<ol class=\"scrolling_touch list ovs_y h_100\">\n" +
+                            "<li class=\"touchstart\" data-value=\"BJ\">北京</li>\n" +
+                            "<li class=\"touchstart\" data-value=\"SH\">上海</li>\n" +
+                            "<li class=\"touchstart\" data-value=\"GZ\">广州</li>\n" +
+                            "<li class=\"touchstart\" data-value=\"SZ\">深圳</li>\n" +
+                            "<li class=\"touchstart\" data-value=\"QD\">青岛</li>\n" +
+                            "</ol>"
+                        );
+                        $(".ak-typeahead").children("ol").find("li").bind("touchstart", function() {
+                            console.log($(this).text());
+                            $(".plug_Typeahead").val($(this).text());
+                            document.activeElement.blur();//隐藏键盘
+                        });
+                    }
                 }
                 console.log("搜索区域的元素被显示了。您可以对该元素进行操作。");
                 console.log(ele);
