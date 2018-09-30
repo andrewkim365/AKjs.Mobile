@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-19
+Modification Date: 2018-09-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Loader------------------------------------------*/
@@ -184,6 +184,14 @@ function AKjs_Loader(setting){
             } else {
                 var ww = $(window).width();
                 var wh = $(window).height();
+            }
+            if ($(option.ele).length > 0) {
+                load_ele.addClass(option.eleclass).css({
+                    "left": $(option.ele).offset().left,
+                    "top": $(option.ele).offset().top,
+                    "width": $(option.ele).outerWidth(),
+                    "height": $(option.ele).outerHeight()
+                });
             }
             var lw = loading.outerWidth();
             var lh = loading.outerHeight();

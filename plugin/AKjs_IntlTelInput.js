@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-17
+Modification Date: 2018-09-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_IntlTelInput------------------------------------*/
@@ -14,6 +14,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 Nav_active: "",
                 show_color: "",
                 data: [],
+                boxsize: ["20em","30em"],
                 showBack: function() {},
                 clickBack: function() {}
             },
@@ -25,8 +26,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         TelInput.prototype = {
             initEvents: function() {
                 var obj = this;
+                AKjs_UserAgent();
                 $(function() {
                     obj.el.each(function() {
+                        $(".ak-IntlTel").remove();
                         $("body").append("<div class='ak-IntlTel'><datalist></datalist></div>");
                         var objsub = $(".ak-IntlTel");
                         var datalist = objsub.children("datalist");
@@ -60,10 +63,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             } else {
                                 objsub.find(".ak-IntlTel_head").addClass(IntlTel_head);
                             }
+                            objsub.find(".ak-IntlTel_head").removeClass("dis_none_im");
+                            objsub.addClass("bor_none");
                         } else {
-                            objsub.find(".ak-IntlTel_head").addClass(IntlTel_head);
+                            objsub.find(".ak-IntlTel_head").addClass("dis_none_im");
                         }
-                        objsub.find(".ak-IntlTel_head").removeClass("dis_none_im");
                         objsub_title.addClass(option.show_color).css({
                             "height": $(window).height()
                         });
@@ -118,7 +122,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         });
                         objsub_ol.find("li").unbind("click");
                         objsub_ol.find("li").on("click", function(event) {
-                            this_h += objsub_dl.eq($(this).index()).offset().top - $(".ak-IntlTel_head").outerHeight() + 2;
+                            if (IsMobile) {
+                                this_h += objsub_dl.eq($(this).index()).offset().top - $(".ak-IntlTel_head").outerHeight() + 2;
+                            } else {
+                                this_h += objsub_dl.eq($(this).index()).offset().top - objsub.offset().top + 2;
+                            }
                             event.stopPropagation();
                             objsub.show();
                             objsub_title.fadeIn();
@@ -143,10 +151,52 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             function(event) {
                                 $(this).toggleClass("ak-is_active");
                                 if ($(this).hasClass("ak-is_active")) {
-                                    objsub.show();
+                                    if (IsMobile) {
+                                        objsub.show();
+                                    } else {
+                                        objsub.find(".ak-IntlTel_head").addClass("dis_none_im");
+                                        objsub.addClass("abs").css({
+                                            "width": option.boxsize[0],
+                                            "left": $(this).offset().left
+                                        });
+                                        objsub.children("ol").addClass("abs top_0 mt_1em mr_16em");
+                                        datalist.addClass("mt_0 scrollbar").css({
+                                            "height": option.boxsize[1]
+                                        });
+                                        if ($(this).offset().top + $(this).innerHeight()+ objsub.innerHeight() > $(window).height()) {
+                                            objsub.css({
+                                                "top": "auto",
+                                                "bottom": $("#ak-scrollview").outerHeight() - ($(this).offset().top + $(this).outerHeight()) + $("#ak-scrollview").offset().top + $(this).innerHeight()*2-4
+                                            });
+                                        } else {
+                                            objsub.addClass("abs").css({
+                                                "top": $(this).offset().top + $(this).outerHeight(),
+                                                "bottom": "auto",
+                                            });
+                                        }
+                                        objsub.slideDown();
+                                    }
                                     option.showBack(objsub);
+                                    $("body").unbind("click");
+                                    $("body").click(function () {
+                                        objsub.slideUp();
+                                        obj.el.removeClass("ak-is_active");
+                                    });
+                                    if ($('#ak-scrollview').length > 0) {
+                                        var $scrollbar = $("#ak-scrollview");
+                                    } else {
+                                        var $scrollbar = $("main");
+                                    }
+                                    $scrollbar.scroll(function(){
+                                        objsub.hide();
+                                        obj.el.removeClass("ak-is_active");
+                                    });
                                 } else {
-                                    objsub.hide();
+                                    if (IsMobile) {
+                                        objsub.hide();
+                                    } else {
+                                        objsub.slideUp();
+                                    }
                                 }
                                 event.stopPropagation();
                             });

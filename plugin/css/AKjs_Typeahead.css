@@ -1,6 +1,6 @@
 /*-----------------------------------------------AKjs_Typeahead-------------------------------------------*/
 .ak-typeahead{position: fixed; overflow: hidden; background-color: #f5f5f5; z-index: 3; display: none; height: 100%; -webkit-appearance:none; outline:none; -webkit-tap-highlight-color:rgba(255,255,255,0);}
-.ak-typeahead ul{position: relative; z-index: 9;}
+.ak-typeahead ul{position: relative; z-index: 9;border: solid 1px #dddddd;}
 .ak-typeahead li{line-height: 3em; background-color: #ffffff; border-bottom:solid 1px #dddddd; text-indent: 1em; cursor: pointer;}
 .ak-typeahead li:last-child{margin-bottom: 50%;}
 .ak-typeahead li strong{font-weight: bold;}

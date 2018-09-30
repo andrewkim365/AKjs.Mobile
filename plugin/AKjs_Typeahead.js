@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-21
+Modification Date: 2018-09-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Typeahead-----------------------------------------*/
@@ -8,8 +8,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var _this = this;
         $(function() {
                 _this.$element = $(element);
-                _this.options = $.extend(true, {},
-                    $.fn.AKjs_Typeahead.defaults, options);
+                _this.options = $.extend(true, {}, $.fn.AKjs_Typeahead.defaults, options);
                 _this.$menu = $(_this.options.menu).appendTo("body");
                 _this.shown = false;
                 _this.eventSupported = _this.options.eventSupported || _this.eventSupported;
@@ -23,6 +22,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 _this.select = _this.options.select || _this.select;
                 _this.sorter = _this.options.sorter || _this.sorter;
                 _this.source = _this.options.source || _this.source;
+                AKjs_UserAgent();
                 if (!_this.source.length) {
                     var ajax = _this.options.ajax;
                     if (typeof ajax === "string") {
@@ -46,23 +46,30 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         constructor: AKjs_Typeahead,
         init: function() {
             var that = this;
-            that.$element.bind("focus",
+            that.$element.bind("focus", function() {
+                that.ele_show(1);
+                that.$menu.children("ul").hide();
+            });
+            that.$element.bind("input propertychange", function() {
+                that.ele_show(1);
+                if (that.$menu.children("ul").find("li").length > 0) {
+                    that.$menu.children("ul").show();
+                } else {
+                    that.$menu.children("ul").hide();
+                }
+                if (that.$element.val().length == 0) {
+                    that.$menu.children("ul").empty();
+                }
+            });
+        },
+        show: function() {
+            var that = this;
+            that.ele_show();
+            this.$menu.bind("touchstart",
                 function() {
-                    that.ele_show(1);
-                    that.$menu.children("ul").hide()
+                    document.activeElement.blur();
                 });
-            that.$element.bind("input propertychange",
-                function() {
-                    that.ele_show(1);
-                    if (that.$menu.children("ul").find("li").length > 0) {
-                        that.$menu.children("ul").show()
-                    } else {
-                        that.$menu.children("ul").hide()
-                    }
-                    if (that.$element.val().length == 0) {
-                        that.$menu.children("ul").empty();
-                    }
-                })
+            return this
         },
         ele_show: function(flag) {
             var that = this;
@@ -74,33 +81,79 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             } else {
                 that.$menu.unbind("touchmove")
             }
-            that.$menu.css({
-                "top": that.$element.parent().parent().outerHeight()-1,
-                "left": "0",
-                "width": "100%"
-            });
-            that.$menu.children("ul").addClass("scrolling_touch").css({
-                "overflow-y": "scroll",
-                "height": $(window).height()
-            });
-            that.$element.parent().parent().addClass("ak-is_search w_100 zindex_show fix top_0 left_0");
-            $("header").addClass("dis_opa_0");
-            $("main").addClass("mt_0");
-            $("#ak-scrollview").removeClass("scrolling_touch");
-            $(window).bind("hashchange",
-                function() {
-                    that.$menu.remove();
-                    $("header").removeClass("dis_opa_0");
-                    if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
-                        $("main").addClass("mt_0");
-                    } else {
-                        $("main").removeClass("mt_0");
-                    }
-                    $("#ak-scrollview").addClass("scrolling_touch");
+            that.$menu.show();
+            if (IsMobile) {
+                that.$element.parent().parent().addClass("ak-is_search w_100 zindex_show fix top_0 left_0");
+                that.$menu.css({
+                    "top": that.$element.parent().parent().outerHeight()-1,
+                    "left": "0",
+                    "width": "100%"
                 });
-            that.$menu.fadeIn();
+                that.$menu.children("ul").addClass("bor_none scrolling_touch").css({
+                    "overflow-y": "scroll",
+                    "height": $(window).height()
+                });
+                $("header").addClass("dis_opa_0");
+                $("main").addClass("mt_0");
+                $("#ak-scrollview").removeClass("scrolling_touch").addClass("ovh_im");
+            } else {
+                that.$menu.children("ul").find("li:last").addClass("mb_0");
+                that.$menu.addClass("h_au abs");
+                that.$menu.css({
+                    "top": that.$element.offset().top + that.$element.outerHeight(),
+                    "left": that.$element.offset().left,
+                    "width": that.options.boxsize[0]
+                });
+                that.$menu.children("ul").addClass("scrolling_touch").css({
+                    "overflow-y": "scroll",
+                    "max-height": that.options.boxsize[1]
+                });
+                $(window).resize(function () {
+                    that.$menu.css({
+                        "top": that.$element.offset().top + that.$element.outerHeight(),
+                        "left": that.$element.offset().left
+                    });
+                });
+                $("body").unbind("click");
+                $("body").click(function () {
+                    that.$menu.hide();
+                });
+                if ($('#ak-scrollview').length > 0) {
+                    var $scrollbar = $("#ak-scrollview");
+                } else {
+                    var $scrollbar = $("main");
+                }
+                $scrollbar.scroll(function(){
+                    that.$menu.hide();
+                });
+            }
+            $(window).bind("hashchange", function() {
+                that.$menu.remove();
+                $("header").removeClass("dis_opa_0");
+                if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
+                    $("main").addClass("mt_0");
+                } else {
+                    $("main").removeClass("mt_0");
+                }
+                $("#ak-scrollview").addClass("scrolling_touch");
+            });
             that.options.showCallBack(that.$menu);
             that.shown = true
+        },
+        hide: function() {
+            if (IsMobile) {
+                this.$element.parent().parent().removeClass("ak-is_search w_100 zindex_show fix top_0 left_0");
+                $("header").removeClass("dis_opa_0");
+                if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
+                    $("main").addClass("mt_0");
+                } else {
+                    $("main").removeClass("mt_0");
+                }
+                $("#ak-scrollview").addClass("scrolling_touch").removeClass("ovh_im");
+            }
+            this.$menu.hide();
+            this.shown = false;
+            return this
         },
         eventSupported: function(eventName) {
             var isSupported = (eventName in this.$element);
@@ -221,28 +274,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
             return beginswith.concat(caseSensitive, caseInsensitive)
         },
-        show: function() {
-            var that = this;
-            that.ele_show();
-            this.$menu.bind("touchstart",
-                function() {
-                    document.activeElement.blur()
-                });
-            return this
-        },
-        hide: function() {
-            this.$element.parent().parent().removeClass("ak-is_search w_100 zindex_show fix top_0 left_0");
-            $("header").removeClass("dis_opa_0");
-            if ($("header").not("aside header").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
-                $("main").addClass("mt_0");
-            } else {
-                $("main").removeClass("mt_0");
-            }
-            $("#ak-scrollview").addClass("scrolling_touch");
-            this.$menu.hide();
-            this.shown = false;
-            return this
-        },
         highlighter: function(item) {
             var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
             return item.replace(new RegExp("(" + query + ")", "ig"),
@@ -266,17 +297,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var that = this;
             var $selectedItem = this.$menu.find(".ak-is_active");
             setTimeout(function() {
-                    document.activeElement.blur();
-                    that.hide();
-                    that.$element.val($selectedItem.text()).change()
-                },
-                150);
+                document.activeElement.blur();
+                that.hide();
+                that.$element.val($selectedItem.text()).change()
+            }, 150);
             if (this.$element.val != "") {
-                this.$menu.find("li").on("click",
-                    function(e) {
-                        e.stopPropagation();
-                        that.hide()
-                    })
+                this.$menu.find("li").on("click", function(e) {
+                    e.stopPropagation();
+                    that.hide();
+                });
             }
             this.$menu.children("ul").empty();
             this.options.itemSelected($selectedItem, $selectedItem.attr("data-value"), $selectedItem.text());
@@ -391,6 +420,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         item: '<li class="touchstart"></li>',
         display: "name",
         val: "id",
+        boxsize: ["20em","30em"],
         showCallBack: function() {},
         itemSelected: function() {},
         ajax: {

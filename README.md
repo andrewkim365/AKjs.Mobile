@@ -67,7 +67,13 @@ css目录中的iconfont文件夹需要全部替换,新增了几个图标；
 
 修改 plugin/AKjs_Popupwin.js 文件；（解决bug）
 
+修改 plugin/AKjs_Loader.js 文件；（解决bug）
+
 修改 plugin/AKjs_Radio.js 文件；（兼容到PC模式）
+
+修改 plugin/AKjs_IntlTelInput.js 文件；（兼容到PC模式）
+
+修改 plugin/AKjs_Typeahead.js 文件；（兼容到PC模式）
 
 
 #### 更新时间：2018/09/20 下午 14:40

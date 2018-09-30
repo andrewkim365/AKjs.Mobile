@@ -1744,6 +1744,7 @@
             Nav_active: "c_title text_bold", //右侧固定字母菜单的选中样式
             show_color: "c_title text_bold text_4em", //右侧固定字母点击后中间淡入字母效果的样式
             data: json_countryData, //Json获取data数据(data.js)
+            boxsize:["24em","36em"], //电脑端展开后的下拉框大小设置 ["宽度","高度"]
             showBack:function(ele){ //回调获取被展开后显示的元素
                 console.log("选择区域的元素被显示了。您可以对该元素进行操作。");
                 console.log(ele);
@@ -1915,6 +1916,7 @@
     $(function() {
         $(".plug_Typeahead").AKjs_Typeahead({
             items: 20, //最多显示的数据
+            boxsize:["24em","36em"], //电脑端展开后的下拉框大小设置 ["宽度","高度"]
             source: json_searchData, //Json获取data数据(data.js)
             showCallBack:function(ele){ //回调获取被展开后显示的元素
                 $(".plug_Typeahead").parent().append('<i class="dis_none_im abs left_0 ml_03em text_14em c_gray_999 line_h_18em iconfont icon-sousuo1"></i>');
