@@ -61,6 +61,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     } else {
                         $('body').append(select_list);
                     }
+                    if(select_list.css('display') == 'none'){
+                        option.clickback(false,select,select_list);
+                    }
                     select_list.find("li").unbind("click");
                     select_list.on("click", "li", function () {
                         var li = $(this);
@@ -86,7 +89,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             $this.find("option[value!='"+val+"']").removeAttr("selected");
                             $this.find("option[value='"+val+"']").attr("selected","selected");
                             $this.change();
-                            option.clickback(select,select_list,val,select_text.text());
+                            option.clickback(true,select,select_list,val,select_text.text());
                         }
                     });
                     $(this).toggleClass("ak-open");

@@ -1599,11 +1599,16 @@
                 //console.log(val);
                 //console.log(text);
             },
-            clickback:function(ele,list,val,text){ //选中回调函数获取值
-                console.log(ele);
-                console.log(list);
-                console.log(val);
-                console.log(text);
+            clickback:function(flag,ele,list,val,text){ //点击回调（flag获取选中状态）
+                if (flag) {
+                    console.log(ele);
+                    console.log(list);
+                    console.log(val);
+                    console.log(text);
+                } else {
+                    console.log(ele);
+                    console.log(list);
+                }
             }
         });
     });
