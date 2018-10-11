@@ -1,12 +1,12 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-10-10
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Marquee--------------------------------------*/
 (function($) {
     var methods = {
-        init: function(options) {
-            var p = {
+        init: function(setting) {
+            var option = {
                 direction: "left",
                 loop: -1,
                 scrolldelay: 0,
@@ -18,19 +18,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 inverthover: false,
                 xml: false
             };
-            if (options) {
-                $.extend(p, options)
+            if (setting) {
+                $.extend(option, setting)
             }
             return this.each(function() {
                 var enterEvent = "mouseenter";
                 var leaveEvent = "mouseleave";
-                if (p.inverthover) {
+                if (option.inverthover) {
                     enterEvent = "mouseleave";
                     leaveEvent = "mouseenter"
                 }
-                var loop = p.loop,
+                var loop = option.loop,
                     strWrap = $(this).addClass("ak-marquee_wrap").data({
-                        scrollamount: p.scrollamount
+                        scrollamount: option.scrollamount
                     }),
                     fMove = false;
                 var strWrapStyle = strWrap.attr("style");
@@ -57,7 +57,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     var strMove = $(".ak-marquee_move", strWrap).addClass("ak-marquee_origin"),
                         strMoveClone = strMove.clone().removeClass("ak-marquee_origin").addClass("ak-marquee_move_clone"),
                         time = 0;
-                    if (!p.hoverstop) {
+                    if (!option.hoverstop) {
                         strWrap.addClass("noStop")
                     }
                     var circCloneHor = function() {
@@ -84,17 +84,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             height: strMove.height()
                         }).appendTo(strMove)
                     };
-                    if (p.direction == "left") {
+                    if (option.direction == "left") {
                         strWrap.height(strMove.outerHeight());
                         if (strMove.width() > strWrap.width()) {
                             var leftPos = -strMove.width();
-                            if (p.circular) {
-                                if (!p.xml) {
+                            if (option.circular) {
+                                if (!option.xml) {
                                     circCloneHor();
                                     leftPos = -(strMove.width() + (strMove.width() - strWrap.width()))
                                 }
                             }
-                            if (p.xml) {
+                            if (option.xml) {
                                 strMove.css({
                                     left: strWrap.width()
                                 })
@@ -122,10 +122,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     left: strWrap.width()
                                                 });
                                                 if (loop == -1) {
-                                                    moveFuncId1 = setTimeout(moveFunc1, p.scrolldelay)
+                                                    moveFuncId1 = setTimeout(moveFunc1, option.scrolldelay)
                                                 } else {
                                                     loop--;
-                                                    moveFuncId1 = setTimeout(moveFunc1, p.scrolldelay)
+                                                    moveFuncId1 = setTimeout(moveFunc1, option.scrolldelay)
                                                 }
                                             })
                                     }
@@ -134,10 +134,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 moveId: moveFuncId1,
                                 moveF: moveFunc1
                             });
-                            if (!p.inverthover) {
+                            if (!option.inverthover) {
                                 moveFunc1()
                             }
-                            if (p.hoverstop) {
+                            if (option.hoverstop) {
                                 strWrap.on(enterEvent,
                                     function() {
                                         $(this).addClass("ak-marquee_active");
@@ -149,10 +149,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         $(this).off("mousemove");
                                         moveFunc1()
                                     });
-                                if (p.drag) {
+                                if (option.drag) {
                                     strWrap.on("mousedown",
                                         function(e) {
-                                            if (p.inverthover) {
+                                            if (option.inverthover) {
                                                 strMove.stop(true)
                                             }
                                             var dragLeft;
@@ -172,7 +172,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     }
                                                     oldX = newX;
                                                     dragLeft = k1 + (e.clientX - strWrap.offset().left);
-                                                    if (!p.circular) {
+                                                    if (!option.circular) {
                                                         if (dragLeft < -strMove.width() && dir < 0) {
                                                             dragLeft = strWrap.width();
                                                             strMoveLeft = strMove.position().left;
@@ -201,7 +201,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                 }).on("mouseup",
                                                 function() {
                                                     $(this).off("mousemove");
-                                                    if (p.inverthover) {
+                                                    if (option.inverthover) {
                                                         strMove.trigger("mouseenter")
                                                     }
                                                     setTimeout(function() {
@@ -221,7 +221,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 }
                             }
                         } else {
-                            if (p.runshort) {
+                            if (option.runshort) {
                                 strMove.css({
                                     left: strWrap.width()
                                 });
@@ -242,20 +242,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                 left: strWrap.width()
                                             });
                                             if (loop == -1) {
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             } else {
                                                 loop--;
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             }
                                         })
                                 };
                                 strWrap.data({
                                     moveF: moveFunc
                                 });
-                                if (!p.inverthover) {
+                                if (!option.inverthover) {
                                     moveFunc()
                                 }
-                                if (p.hoverstop) {
+                                if (option.hoverstop) {
                                     strWrap.on(enterEvent,
                                         function() {
                                             $(this).addClass("ak-marquee_active");
@@ -266,10 +266,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             $(this).off("mousemove");
                                             moveFunc()
                                         });
-                                    if (p.drag) {
+                                    if (option.drag) {
                                         strWrap.on("mousedown",
                                             function(e) {
-                                                if (p.inverthover) {
+                                                if (option.inverthover) {
                                                     strMove.stop(true)
                                                 }
                                                 var dragLeft;
@@ -304,7 +304,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                         })
                                                     }).on("mouseup",
                                                     function() {
-                                                        if (p.inverthover) {
+                                                        if (option.inverthover) {
                                                             strMove.trigger("mouseenter")
                                                         }
                                                         $(this).off("mousemove");
@@ -329,7 +329,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             }
                         }
                     }
-                    if (p.direction == "right") {
+                    if (option.direction == "right") {
                         strWrap.height(strMove.outerHeight());
                         strWrap.addClass("ak-marquee_right");
                         strMove.css({
@@ -341,8 +341,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             strMove.css({
                                 left: 0
                             });
-                            if (p.circular) {
-                                if (!p.xml) {
+                            if (option.circular) {
+                                if (!option.xml) {
                                     circCloneHor();
                                     leftPos = strMove.width()
                                 }
@@ -368,10 +368,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                 left: -strMove.width()
                                             });
                                             if (loop == -1) {
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             } else {
                                                 loop--;
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             }
                                         })
                                 }
@@ -379,10 +379,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             strWrap.data({
                                 moveF: moveFunc
                             });
-                            if (!p.inverthover) {
+                            if (!option.inverthover) {
                                 moveFunc()
                             }
-                            if (p.hoverstop) {
+                            if (option.hoverstop) {
                                 strWrap.on(enterEvent,
                                     function() {
                                         $(this).addClass("ak-marquee_active");
@@ -393,10 +393,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         $(this).off("mousemove");
                                         moveFunc()
                                     });
-                                if (p.drag) {
+                                if (option.drag) {
                                     strWrap.on("mousedown",
                                         function(e) {
-                                            if (p.inverthover) {
+                                            if (option.inverthover) {
                                                 strMove.stop(true)
                                             }
                                             var dragLeft;
@@ -416,7 +416,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     }
                                                     oldX = newX;
                                                     dragLeft = k2 + (e.clientX - strWrap.offset().left);
-                                                    if (!p.circular) {
+                                                    if (!option.circular) {
                                                         if (dragLeft < -strMove.width() && dir < 0) {
                                                             dragLeft = strWrap.width();
                                                             strMoveLeft = strMove.position().left;
@@ -444,7 +444,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     })
                                                 }).on("mouseup",
                                                 function() {
-                                                    if (p.inverthover) {
+                                                    if (option.inverthover) {
                                                         strMove.trigger("mouseenter")
                                                     }
                                                     $(this).off("mousemove");
@@ -465,7 +465,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 }
                             }
                         } else {
-                            if (p.runshort) {
+                            if (option.runshort) {
                                 var k2 = 0;
                                 var timeFunc = function() {
                                     time = (strWrap.width() - strMove.position().left) / strWrap.data("scrollamount") * 1000;
@@ -482,20 +482,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                 left: -strMove.width()
                                             });
                                             if (loop == -1) {
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             } else {
                                                 loop--;
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             }
                                         })
                                 };
                                 strWrap.data({
                                     moveF: moveFunc
                                 });
-                                if (!p.inverthover) {
+                                if (!option.inverthover) {
                                     moveFunc()
                                 }
-                                if (p.hoverstop) {
+                                if (option.hoverstop) {
                                     strWrap.on(enterEvent,
                                         function() {
                                             $(this).addClass("ak-marquee_active");
@@ -506,10 +506,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             $(this).off("mousemove");
                                             moveFunc()
                                         });
-                                    if (p.drag) {
+                                    if (option.drag) {
                                         strWrap.on("mousedown",
                                             function(e) {
-                                                if (p.inverthover) {
+                                                if (option.inverthover) {
                                                     strMove.stop(true)
                                                 }
                                                 var dragLeft;
@@ -544,7 +544,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                         })
                                                     }).on("mouseup",
                                                     function() {
-                                                        if (p.inverthover) {
+                                                        if (option.inverthover) {
                                                             strMove.trigger("mouseenter")
                                                         }
                                                         $(this).off("mousemove");
@@ -569,17 +569,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             }
                         }
                     }
-                    if (p.direction == "up") {
+                    if (option.direction == "up") {
                         strWrap.addClass("ak-marquee_vertical");
                         if (strMove.height() > strWrap.height()) {
                             var topPos = -strMove.height();
-                            if (p.circular) {
-                                if (!p.xml) {
+                            if (option.circular) {
+                                if (!option.xml) {
                                     circCloneVert();
                                     topPos = -(strMove.height() + (strMove.height() - strWrap.height()))
                                 }
                             }
-                            if (p.xml) {
+                            if (option.xml) {
                                 strMove.css({
                                     top: strWrap.height()
                                 })
@@ -605,10 +605,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                 top: strWrap.height()
                                             });
                                             if (loop == -1) {
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             } else {
                                                 loop--;
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             }
                                         })
                                 }
@@ -616,10 +616,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             strWrap.data({
                                 moveF: moveFunc
                             });
-                            if (!p.inverthover) {
+                            if (!option.inverthover) {
                                 moveFunc()
                             }
-                            if (p.hoverstop) {
+                            if (option.hoverstop) {
                                 strWrap.on(enterEvent,
                                     function() {
                                         $(this).addClass("ak-marquee_active");
@@ -630,10 +630,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         $(this).off("mousemove");
                                         moveFunc()
                                     });
-                                if (p.drag) {
+                                if (option.drag) {
                                     strWrap.on("mousedown",
                                         function(e) {
-                                            if (p.inverthover) {
+                                            if (option.inverthover) {
                                                 strMove.stop(true)
                                             }
                                             var dragTop;
@@ -655,7 +655,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     }
                                                     oldY = newY;
                                                     dragTop = k2 + e.clientY - strWrap.offset().top;
-                                                    if (!p.circular) {
+                                                    if (!option.circular) {
                                                         if (dragTop < -strMove.height() && dir < 0) {
                                                             dragTop = strWrap.height();
                                                             strMoveTop = strMove.position().top;
@@ -683,7 +683,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     })
                                                 }).on("mouseup",
                                                 function() {
-                                                    if (p.inverthover) {
+                                                    if (option.inverthover) {
                                                         strMove.trigger("mouseenter")
                                                     }
                                                     $(this).off("mousemove");
@@ -704,7 +704,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 }
                             }
                         } else {
-                            if (p.runshort) {
+                            if (option.runshort) {
                                 strMove.css({
                                     top: strWrap.height()
                                 });
@@ -724,20 +724,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                 top: strWrap.height()
                                             });
                                             if (loop == -1) {
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             } else {
                                                 loop--;
-                                                setTimeout(moveFunc, p.scrolldelay)
+                                                setTimeout(moveFunc, option.scrolldelay)
                                             }
                                         })
                                 };
                                 strWrap.data({
                                     moveF: moveFunc
                                 });
-                                if (!p.inverthover) {
+                                if (!option.inverthover) {
                                     moveFunc()
                                 }
-                                if (p.hoverstop) {
+                                if (option.hoverstop) {
                                     strWrap.on(enterEvent,
                                         function() {
                                             $(this).addClass("ak-marquee_active");
@@ -748,10 +748,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             $(this).off("mousemove");
                                             moveFunc()
                                         });
-                                    if (p.drag) {
+                                    if (option.drag) {
                                         strWrap.on("mousedown",
                                             function(e) {
-                                                if (p.inverthover) {
+                                                if (option.inverthover) {
                                                     strMove.stop(true)
                                                 }
                                                 var dragTop;
@@ -788,7 +788,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                         })
                                                     }).on("mouseup",
                                                     function() {
-                                                        if (p.inverthover) {
+                                                        if (option.inverthover) {
                                                             strMove.trigger("mouseenter")
                                                         }
                                                         $(this).off("mousemove");
@@ -813,7 +813,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             }
                         }
                     }
-                    if (p.direction == "down") {
+                    if (option.direction == "down") {
                         strWrap.addClass("ak-marquee_vertical").addClass("ak-marquee_down");
                         strMove.css({
                             top: -strMove.height(),
@@ -821,13 +821,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         });
                         if (strMove.height() > strWrap.height()) {
                             var topPos = strWrap.height();
-                            if (p.circular) {
-                                if (!p.xml) {
+                            if (option.circular) {
+                                if (!option.xml) {
                                     circCloneVert();
                                     topPos = strMove.height()
                                 }
                             }
-                            if (p.xml) {
+                            if (option.xml) {
                                 strMove.css({
                                     top: -strMove.height()
                                 })
@@ -851,10 +851,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             top: -strMove.height()
                                         });
                                         if (loop == -1) {
-                                            setTimeout(moveFunc, p.scrolldelay);
+                                            setTimeout(moveFunc, option.scrolldelay);
                                         } else {
                                             loop--;
-                                            setTimeout(moveFunc, p.scrolldelay);
+                                            setTimeout(moveFunc, option.scrolldelay);
                                         }
                                     });
                                 }
@@ -862,10 +862,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             strWrap.data({
                                 moveF: moveFunc
                             });
-                            if (!p.inverthover) {
+                            if (!option.inverthover) {
                                 moveFunc();
                             }
-                            if (p.hoverstop) {
+                            if (option.hoverstop) {
                                 strWrap.on(enterEvent, function() {
                                     $(this).addClass("ak-marquee_active");
                                     strMove.stop(true);
@@ -874,9 +874,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                     $(this).off("mousemove");
                                     moveFunc();
                                 });
-                                if (p.drag) {
+                                if (option.drag) {
                                     strWrap.on("mousedown", function(e) {
-                                        if (p.inverthover) {
+                                        if (option.inverthover) {
                                             strMove.stop(true)
                                         }
                                         var dragTop;
@@ -897,7 +897,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                 }
                                                 oldY = newY;
                                                 dragTop = k2 + e.clientY - strWrap.offset().top;
-                                                if (!p.circular) {
+                                                if (!option.circular) {
                                                     if (dragTop < -strMove.height() && dir < 0) {
                                                         dragTop = strWrap.height();
                                                         strMoveTop = strMove.position().top;
@@ -924,7 +924,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     top: dragTop
                                                 })
                                             }).on("mouseup", function() {
-                                                if (p.inverthover) {
+                                                if (option.inverthover) {
                                                     strMove.trigger("mouseenter")
                                                 }
                                                 $(this).off("mousemove");
@@ -943,7 +943,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 }
                             }
                         } else {
-                            if (p.runshort) {
+                            if (option.runshort) {
                                 var k2 = 0;
                                 var timeFunc = function() {
                                     time = (strWrap.height() - strMove.position().top) / strWrap.data("scrollamount") * 1000;
@@ -958,20 +958,20 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             top: -strMove.height()
                                         });
                                         if (loop == -1) {
-                                            setTimeout(moveFunc, p.scrolldelay)
+                                            setTimeout(moveFunc, option.scrolldelay)
                                         } else {
                                             loop--;
-                                            setTimeout(moveFunc, p.scrolldelay)
+                                            setTimeout(moveFunc, option.scrolldelay)
                                         }
                                     });
                                 };
                                 strWrap.data({
                                     moveF: moveFunc
                                 });
-                                if (!p.inverthover) {
+                                if (!option.inverthover) {
                                     moveFunc();
                                 }
-                                if (p.hoverstop) {
+                                if (option.hoverstop) {
                                     strWrap.on(enterEvent,
                                         function() {
                                             $(this).addClass("ak-marquee_active");
@@ -982,9 +982,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                             $(this).off("mousemove");
                                             moveFunc();
                                         });
-                                    if (p.drag) {
+                                    if (option.drag) {
                                         strWrap.on("mousedown", function(e) {
-                                            if (p.inverthover) {
+                                            if (option.inverthover) {
                                                 strMove.stop(true);
                                             }
                                             var dragTop;
@@ -1019,7 +1019,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                                     top: dragTop
                                                 });
                                                 }).on("mouseup", function() {
-                                                    if (p.inverthover) {
+                                                    if (option.inverthover) {
                                                         strMove.trigger("mouseenter")
                                                     }
                                                     $(this).off("mousemove");
@@ -1043,9 +1043,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         }
                     }
                 };
-                if (p.xml) {
+                if (option.xml) {
                     $.ajax({
-                        url: p.xml,
+                        url: option.xml,
                         dataType: "xml",
                         success: function(xml) {
                             var xmlTextEl = $(xml).find("text");
@@ -1054,7 +1054,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                 var xmlElActive = xmlTextEl.eq(i);
                                 var xmlElContent = xmlElActive.text();
                                 var xmlItemEl = $("<span>").text(xmlElContent).appendTo(strWrap);
-                                if (p.direction == "left" || p.direction == "right") {
+                                if (option.direction == "left" || option.direction == "right") {
                                     xmlItemEl.css({
                                         display: "inline-block",
                                         textAlign: "right"
@@ -1065,7 +1065,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                         });
                                     }
                                 }
-                                if (p.direction == "down" || p.direction == "up") {
+                                if (option.direction == "down" || option.direction == "up") {
                                     xmlItemEl.css({
                                         display: "block",
                                         textAlign: "left"

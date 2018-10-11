@@ -1,316 +1,365 @@
 ﻿/*
-Modification Date: 2018-08-09
+Modification Date: 2018-10-10
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Viewer-------------------------------------------*/
 (function($){
-    function aL(a) {
-        return "string" == typeof a
+    function isString(s) {
+        return typeof s === 'string';
     }
-    function a1(a) {
-        return "number" == typeof a && !isNaN(a)
+    function isNumber(n) {
+        return typeof n === 'number' && !isNaN(n);
     }
-    function aM(a) {
-        return "undefined" == typeof a
+    function isUndefined(u) {
+        return typeof u === 'undefined';
     }
-    function aR(b, a) {
-        var c = [];
-        return a1(a) && c.push(a),
-            c.slice.apply(b, c)
-    }
-    function aQ(b, a) {
-        var c = aR(arguments, 2);
-        return function() {
-            return b.apply(a, c.concat(aR(arguments)))
+    function toArray(obj, offset) {
+        var args = [];
+        if (isNumber(offset)) {
+            args.push(offset);
         }
+        return args.slice.apply(obj, args);
     }
-    function a5(b) {
-        var a = [],
-            c = b.rotate,
-            e = b.scaleX,
-            d = b.scaleY;
-        return a1(c) && a.push("rotate(" + c + "deg)"),
-        a1(e) && a1(d) && a.push("scale(" + e + "," + d + ")"),
-            a.length ? a.join(" ") : "none"
+    function proxy(fn, context) {
+        var args = toArray(arguments, 2);
+        return function () {
+            return fn.apply(context, args.concat(toArray(arguments)));
+        };
     }
-    function aX(a) {
-        return a.offsetWidth
+    function getTransform(options) {
+        var transforms = [];
+        var rotate = options.rotate;
+        var scaleX = options.scaleX;
+        var scaleY = options.scaleY;
+        if (isNumber(rotate)) {
+            transforms.push('rotate(' + rotate + 'deg)');
+        }
+        if (isNumber(scaleX) && isNumber(scaleY)) {
+            transforms.push('scale(' + scaleX + ',' + scaleY + ')');
+        }
+        return transforms.length ? transforms.join(' ') : 'none';
     }
-    function aN(a) {
-        return aL(a) ? a.replace(/^.*\//, "").replace(/[\?&#].*$/, "") : ""
+    function forceReflow(element) {
+        return element.offsetWidth;
     }
-    function aT(b, a) {
-        var c;
-        return b.naturalWidth ? a(b.naturalWidth, b.naturalHeight) : (c = document.createElement("img"), c.onload = function() {
-            a(this.width, this.height)
-        },
-            void(c.src = b.src))
+    function getImageName(url) {
+        return isString(url) ? url.replace(/^.*\//, '').replace(/[\?&#].*$/, '') : '';
     }
-    function a2(a) {
-        var c = a.length,
-            b = 0,
-            d = 0;
-        return c && ($.each(a,
-            function(f, e) {
-                b += e.pageX,
-                    d += e.pageY
-            }), b /= c, d /= c),
-            {
-                pageX: b,
-                pageY: d
-            }
+    function getImageSize(image, callback) {
+        var newImage;
+        if (image.naturalWidth) {
+            return callback(image.naturalWidth, image.naturalHeight);
+        }
+        newImage = document.createElement('img');
+
+        newImage.onload = function () {
+            callback(this.width, this.height);
+        };
+        newImage.src = image.src;
     }
-    function a3(a) {
-        switch (a) {
+    function getTouchesCenter(touches) {
+        var length = touches.length;
+        var pageX = 0;
+        var pageY = 0;
+
+        if (length) {
+            $.each(touches, function (i, touch) {
+                pageX += touch.pageX;
+                pageY += touch.pageY;
+            });
+
+            pageX /= length;
+            pageY /= length;
+        }
+
+        return {
+            pageX: pageX,
+            pageY: pageY
+        };
+    }
+    function getResponsiveClass(option) {
+        switch (option) {
             case 2:
-                return aH;
+                return $class_hide_xs_down;
             case 3:
-                return aD;
+                return $class_hide_sm_down;
             case 4:
-                return az
+                return $class_hide_md_down;
         }
     }
-    function aK(a, b) {
-        this.$element = $(a),
-            this.options = $.extend({},
-                aK.defaults, $.isPlainObject(b) && b),
-            this.isImg = !1,
-            this.isBuilt = !1,
-            this.isShown = !1,
-            this.isViewed = !1,
-            this.isFulled = !1,
-            this.isPlayed = !1,
-            this.wheeling = !1,
-            this.playing = !1,
-            this.fading = !1,
-            this.tooltiping = !1,
-            this.transitioning = !1,
-            this.action = !1,
-            this.target = !1,
-            this.timeout = !1,
-            this.index = 0,
-            this.length = 0,
-            this.init()
+    function ak_Viewer(element, options) {
+        this.$element = $(element);
+        this.options = $.extend({}, ak_Viewer.defaults, $.isPlainObject(options) && options);
+        this.isImg = false;
+        this.isBuilt = false;
+        this.isShown = false;
+        this.isViewed = false;
+        this.isFulled = false;
+        this.isPlayed = false;
+        this.wheeling = false;
+        this.playing = false;
+        this.fading = false;
+        this.tooltiping = false;
+        this.transitioning = false;
+        this.action = false;
+        this.target = false;
+        this.timeout = false;
+        this.index = 0;
+        this.length = 0;
+        this.init();
     }
-    var aS = $(window),
-        aJ = $(document),
-        aZ = "viewer",
-        aY = document.createElement(aZ),
-        aI = "fix",
-        aP = "scrolling_touch",
-        a4 = "dis_block_im",
-        aG = "dis_none_im",
-        aH = "ak-viewer-hide-xs-down",
-        aD = "ak-viewer-hide-sm-down",
-        az = "ak-viewer-hide-md-down",
-        aF = "ak-viewer-fade",
-        aw = "ak-viewer-in",
-        ac = "ak-viewer-move",
-        aU = "ak-viewer-active",
-        at = "ak-viewer-invisible",
-        ad = "ak-viewer-transition",
-        al = "ak-viewer-fullscreen",
-        ah = "ak-viewer-fullscreen-exit",
-        af = "ak-viewer-close",
-        ax = "img",
-        ai = "mousedown touchstart pointerdown MSPointerDown",
-        ay = "mousemove touchmove pointermove MSPointerMove",
-        ap = "mouseup touchend touchcancel pointerup pointercancel MSPointerUp MSPointerCancel",
-        aO = "wheel mousewheel DOMMouseScroll",
-        aj = "transitionend",
-        ao = "load." + aZ,
-        ae = "keydown." + aZ,
-        a6 = "click." + aZ,
-        aV = "resize." + aZ,
-        aB = "build." + aZ,
-        aA = "built." + aZ,
-        au = "show." + aZ,
-        ag = "shown." + aZ,
-        an = "hide." + aZ,
-        am = "hidden." + aZ,
-        ab = "view." + aZ,
-        aq = "viewed." + aZ,
-        ak = "undefined" != typeof aY.style.transition,
-        av = Math.round,
-        ar = Math.sqrt,
-        aE = Math.abs,
-        aa = Math.min,
-        a0 = Math.max,
-        aC = Number;
-    aK.prototype = {
-        constructor: aK,
+    var $window = $(window),
+        $document = $(document),
+        $namespace = "viewer",
+        $element_viewer = document.createElement($namespace),
+        $class_fixed = "fix",
+        $class_open = "scrolling_touch",
+        $class_show = "dis_block_im",
+        $class_hide = "dis_none_im",
+        $class_hide_xs_down = "ak-viewer-hide-xs-down",
+        $class_hide_sm_down = "ak-viewer-hide-sm-down",
+        $class_hide_md_down = "ak-viewer-hide-md-down",
+        $class_fade = "ak-viewer-fade",
+        $class_in = "ak-viewer-in",
+        $class_move = "ak-viewer-move",
+        $class_active = "ak-viewer-active",
+        $class_invisible = "ak-viewer-invisible",
+        $class_transition = "ak-viewer-transition",
+        $class_fullscreen = "ak-viewer-fullscreen",
+        $class_fullscreen_exit = "ak-viewer-fullscreen-exit",
+        $class_close = "ak-viewer-close",
+        $selector_img = "img",
+        $event_mousedown = "mousedown touchstart pointerdown MSPointerDown",
+        $event_mousemove = "mousemove touchmove pointermove MSPointerMove",
+        $event_mouseup = "mouseup touchend touchcancel pointerup pointercancel MSPointerUp MSPointerCancel",
+        $event_wheel = "wheel mousewheel DOMMouseScroll",
+        $event_transitionend = "transitionend",
+        $event_load = "load." + $namespace,
+        $event_keydown = "keydown." + $namespace,
+        $event_click = "click." + $namespace,
+        $event_resize = "resize." + $namespace,
+        $event_build = "build." + $namespace,
+        $event_built = "built." + $namespace,
+        $event_show = "show." + $namespace,
+        $event_shown = "shown." + $namespace,
+        $event_hide = "hide." + $namespace,
+        $event_hidden = "hidden." + $namespace,
+        $event_view = "view." + $namespace,
+        $event_viewed = "viewed." + $namespace,
+        $support_transition = "undefined" != typeof $element_viewer.style.transition,
+        round = Math.round,
+        sqrt = Math.sqrt,
+        abs = Math.abs,
+        min = Math.min,
+        max = Math.max,
+        num = Number;
+    ak_Viewer.prototype = {
+        constructor: ak_Viewer,
         init: function() {
-            var c = this.options,
-                f = this.$element,
-                d = f.is(ax),
-                h = d ? f: f.find(ax),
-                g = h.length,
-                b = $.proxy(this.ready, this);
-            g && ($.isFunction(c.build) && f.one(aB, c.build), this.trigger(aB).isDefaultPrevented() || (ak || (c.transition = !1), this.isImg = d, this.length = g, this.count = 0, this.$images = h, this.$body = $("main"), c.inline ? (f.one(aA, $.proxy(function() {
-                    this.view()
+            var options = this.options,
+                $this = this.$element,
+                isImg = $this.is($selector_img),
+                $images = isImg ? $this: $this.find($selector_img),
+                length = $images.length,
+                ready = $.proxy(this.ready, this);
+            length && ($.isFunction(options.build) && $this.one($event_build, options.build),
+            this.trigger($event_build).isDefaultPrevented() || ($support_transition || (options.transition = !1),
+                this.isImg = isImg,
+                this.length = length,
+                this.count = 0,
+                this.$images = $images,
+                this.$body = $("main"),
+                options.inline ? ($this.one($event_built, $.proxy(function() {
+                    this.view();
                 },
-                this)), h.each(function() {
-                this.complete ? b() : $(this).one(ao, b)
-            })) : f.on(a6, $.proxy(this.start, this))))
+                this)),
+                $images.each(function() {
+                this.complete ? ready() : $(this).one($event_load, ready)
+            })) : $this.on($event_click, $.proxy(this.start, this))))
         },
         ready: function() {
             this.count++,
             this.count === this.length && this.build()
         },
         build: function() {
-            var c, j, f, l, k, b, d = this.options,
-                g = this.$element;
-            this.isBuilt || (this.$parent = c = g.parent(), this.$viewer = j = $(aK.template), this.$canvas = j.find(".ak-viewer-canvas"), this.$footer = j.find(".ak-viewer-footer"), this.$title = f = j.find(".ak-viewer-title"), this.$toolbar = l = j.find(".ak-viewer-toolbar"), this.$navbar = k = j.find(".ak-viewer-navbar"), this.$button = b = j.find(".ak-viewer-button"), this.$tooltip = j.find(".ak-viewer-tooltip"), this.$player = j.find(".ak-viewer-player"), this.$list = j.find(".ak-viewer-list"), f.addClass(d.title ? a3(d.title) : aG), l.addClass(d.toolbar ? a3(d.toolbar) : aG), l.find("li[class*=zoom]").toggleClass(at, !d.zoomable), l.find("li[class*=flip]").toggleClass(at, !d.scalable), d.rotatable || l.find("li[class*=rotate]").addClass(at).appendTo(l), k.addClass(d.navbar ? a3(d.navbar) : aG), d.inline ? (b.addClass(al), j.css("z-index", d.zIndexInline), "static" === c.css("position") && c.css("position", "relative")) : (b.addClass(af), j.css("z-index", d.zIndex).addClass([aI, aF, aG].join(" "))), $("body").append(j), d.inline && (this.render(), this.bind(), this.isShown = !0), this.isBuilt = !0, $.isFunction(d.built) && g.one(aA, d.built), this.trigger(aA))
+            var $parent, $viewer, $title, $toolbar, $navbar, $button, options = this.options,
+                $this = this.$element;
+            this.isBuilt || (
+                this.$parent = $parent = $this.parent(),
+                    this.$viewer = $viewer = $(ak_Viewer.template),
+                    this.$canvas = $viewer.find(".ak-viewer-canvas"),
+                    this.$footer = $viewer.find(".ak-viewer-footer"),
+                    this.$title = $title = $viewer.find(".ak-viewer-title"),
+                    this.$toolbar = $toolbar = $viewer.find(".ak-viewer-toolbar"),
+                    this.$navbar = $navbar = $viewer.find(".ak-viewer-navbar"),
+                    this.$button = $button = $viewer.find(".ak-viewer-button"),
+                    this.$tooltip = $viewer.find(".ak-viewer-tooltip"),
+                    this.$player = $viewer.find(".ak-viewer-player"),
+                    this.$list = $viewer.find(".ak-viewer-list"),
+                    $title.addClass(options.title ? getResponsiveClass(options.title) : $class_hide),
+                    $toolbar.addClass(options.toolbar ? getResponsiveClass(options.toolbar) : $class_hide),
+                    $toolbar.find("li[class*=zoom]").toggleClass($class_invisible, !options.zoomable),
+                    $toolbar.find("li[class*=flip]").toggleClass($class_invisible, !options.scalable),
+                options.rotatable || $toolbar.find("li[class*=rotate]").addClass($class_invisible).appendTo($toolbar),
+                    $navbar.addClass(options.navbar ? getResponsiveClass(options.navbar) : $class_hide),
+                    options.inline ? ($button.addClass($class_fullscreen),
+                        $viewer.css("z-index", options.zIndexInline),
+                    "static" === $parent.css("position") && $parent.css("position", "relative")) : ($button.addClass($class_close),
+                        $viewer.css("z-index", options.zIndex).addClass([$class_fixed, $class_fade, $class_hide].join(" "))),
+                    $("body").append($viewer),
+                options.inline && (this.render(), this.bind(), this.isShown = !0),
+                    this.isBuilt = !0, $.isFunction(options.built) && $this.one($event_built, options.built),
+                    this.trigger($event_built));
         },
         unbuild: function() {
-            var b = this.options,
-                a = this.$element;
-            this.isBuilt && (b.inline && a.removeClass(aG), this.$viewer.remove())
+            var options = this.options,
+                $this = this.$element;
+            this.isBuilt && (options.inline && $this.removeClass($class_hide), this.$viewer.remove())
         },
         bind: function() {
-            var a = this.options,
-                b = this.$element;
-            $.isFunction(a.view) && b.on(ab, a.view),
-            $.isFunction(a.viewed) && b.on(aq, a.viewed),
-                this.$viewer.on(a6, $.proxy(this.click, this)).on(aO, $.proxy(this.wheel, this)),
-                this.$canvas.on(ai, $.proxy(this.mousedown, this)),
-                aJ.on(ay, this._mousemove = aQ(this.mousemove, this)).on(ap, this._mouseup = aQ(this.mouseup, this)).on(ae, this._keydown = aQ(this.keydown, this)),
-                aS.on(aV, this._resize = aQ(this.resize, this))
+            var options = this.options,
+                $this = this.$element;
+            $.isFunction(options.view) && $this.on($event_view, options.view),
+            $.isFunction(options.viewed) && $this.on($event_viewed, options.viewed),
+                this.$viewer.on($event_click, $.proxy(this.click, this)).on($event_wheel, $.proxy(this.wheel, this)),
+                this.$canvas.on($event_mousedown, $.proxy(this.mousedown, this)),
+                $document.on($event_mousemove, this._mousemove = proxy(this.mousemove, this)).on($event_mouseup, this._mouseup = proxy(this.mouseup, this)).on($event_keydown, this._keydown = proxy(this.keydown, this)),
+                $window.on($event_resize, this._resize = proxy(this.resize, this))
         },
         unbind: function() {
-            var a = this.options,
-                b = this.$element;
-            $.isFunction(a.view) && b.off(ab, a.view),
-            $.isFunction(a.viewed) && b.off(aq, a.viewed),
-                this.$viewer.off(a6, this.click).off(aO, this.wheel),
-                this.$canvas.off(ai, this.mousedown),
-                aJ.off(ay, this._mousemove).off(ap, this._mouseup).off(ae, this._keydown),
-                aS.off(aV, this._resize)
+            var options = this.options,
+                $this = this.$element;
+            $.isFunction(options.view) && $this.off($event_view, options.view),
+            $.isFunction(options.viewed) && $this.off($event_viewed, options.viewed),
+                this.$viewer.off($event_click, this.click).off($event_wheel, this.wheel),
+                this.$canvas.off($event_mousedown, this.mousedown),
+                $document.off($event_mousemove, this._mousemove).off($event_mouseup, this._mouseup).off($event_keydown, this._keydown),
+                $window.off($event_resize, this._resize)
         },
         render: function() {
-            this.initContainer(),
-                this.initViewer(),
-                this.initList(),
-                this.renderViewer()
+            this.initContainer();
+            this.initViewer();
+            this.initList();
+            this.renderViewer();
         },
         initContainer: function() {
             this.container = {
-                width: aS.innerWidth(),
-                height: aS.innerHeight()
+                width: $window.innerWidth(),
+                height: $window.innerHeight()
             }
         },
         initViewer: function() {
-            var a, c = this.options,
-                b = this.$parent;
-            c.inline && (this.parent = a = {
-                width: a0(b.width(), c.minWidth),
-                height: a0(b.height(), c.minHeight)
+            var viewer,
+                options = this.options,
+                $parent = this.$parent;
+            options.inline && (this.parent = viewer = {
+                width: max($parent.width(), options.minWidth),
+                height: max($parent.height(), options.minHeight)
             }),
-            (this.isFulled || !a) && (a = this.container),
-                this.viewer = $.extend({},
-                    a)
+            (this.isFulled || !viewer) && (viewer = this.container),
+                this.viewer = $.extend({}, viewer);
         },
         renderViewer: function() {
             this.options.inline && !this.isFulled && this.$viewer.css(this.viewer)
         },
         initList: function() {
-            var b = this.options,
-                a = this.$element,
-                d = this.$list,
-                c = [];
+            var options = this.options,
+                $this = this.$element,
+                $list = this.$list,
+                list = [];
             this.$images.each(function(g) {
                 var j = this.src,
-                    e = this.alt || aN(j),
-                    f = b.url;
-                j && (aL(f) ? f = this.getAttribute(f) : $.isFunction(f) && (f = f.call(this, this)), c.push('<li><img src="' + j + '" data-action="view" data-index="' + g + '" data-url="' + (f || j) + '" alt="' + e + '"></li>'))
+                    e = this.alt || getImageName(j),
+                    f = options.url;
+                j && (isString(f) ? f = this.getAttribute(f) : $.isFunction(f) && (f = f.call(this, this)), list.push('<li><img src="' + j + '" data-action="view" data-index="' + g + '" data-url="' + (f || j) + '" alt="' + e + '"></li>'))
             }),
-                d.html(c.join("")).find(ax).one(ao, {
+                $list.html(list.join("")).find($selector_img).one($event_load, {
                         filled: !0
                     },
                     $.proxy(this.loadImage, this)),
-                this.$items = d.children(),
-            b.transition && a.one(aq,
+                this.$items = $list.children(),
+            options.transition && $this.one($event_viewed,
                 function() {
-                    d.addClass(ad)
-                })
+                    $list.addClass($class_transition);
+                });
         },
-        renderList: function(b) {
-            var a = b || this.index,
-                d = this.$items.eq(a).width(),
-                c = d + 1;
+        renderList: function(index) {
+            var i = index || this.index,
+                width = this.$items.eq(i).width(),
+                outerWidth = width + 1;
             this.$list.css({
-                width: c * (this.length + 1),
-                marginLeft: (this.viewer.width - d) / 2 - c * a
-            })
+                width: outerWidth * (this.length + 1),
+                marginLeft: (this.viewer.width - width) / 2 - outerWidth * i
+            });
         },
         resetList: function() {
-            this.$list.empty().removeClass(ad).css("margin-left", 0)
+            this.$list.empty().removeClass($class_transition).css("margin-left", 0);
         },
-        initImage: function(c) {
-            var j = this.options,
-                f = this.$image,
-                l = this.viewer,
-                k = this.$footer.height(),
-                b = l.width,
-                d = a0(l.height - k, k),
-                g = this.image || {};
-            aT(f[0], $.proxy(function(h, r) {
-                    var p, a, m = h / r,
-                        q = b,
-                        e = d;
-                    d * m > b ? e = b / m: q = d * m,
-                        q = aa(0.9 * q, h),
-                        e = aa(0.9 * e, r),
-                        a = {
-                            naturalWidth: h,
-                            naturalHeight: r,
-                            aspectRatio: m,
-                            ratio: q / h,
-                            width: q,
-                            height: e,
-                            left: (b - q) / 2,
-                            top: (d - e) / 2
+        initImage: function(callback) {
+            var options = this.options,
+                $image = this.$image,
+                viewer = this.viewer,
+                footerHeight = this.$footer.height(),
+                viewerWidth = viewer.width,
+                viewerHeight = max(viewer.height - footerHeight, footerHeight),
+                oldImage = this.image || {};
+            getImageSize($image[0], $.proxy(function(naturalWidth, naturalHeight) {
+                    var initialImage, image, aspectRatio = naturalWidth / naturalHeight,
+                        width = viewerWidth,
+                        height = viewerHeight;
+                    viewerHeight * aspectRatio > viewerWidth ? height = viewerWidth / aspectRatio: width = viewerHeight * aspectRatio,
+                        width = min(0.9 * width, naturalWidth),
+                        height = min(0.9 * height, naturalHeight),
+                        image = {
+                            naturalWidth: naturalWidth,
+                            naturalHeight: naturalHeight,
+                            aspectRatio: aspectRatio,
+                            ratio: width / naturalWidth,
+                            width: width,
+                            height: height,
+                            left: (viewerWidth - width) / 2,
+                            top: (viewerHeight - height) / 2
                         },
-                        p = $.extend({},
-                            a),
-                    j.rotatable && (a.rotate = g.rotate || 0, p.rotate = 0),
-                    j.scalable && (a.scaleX = g.scaleX || 1, a.scaleY = g.scaleY || 1, p.scaleX = 1, p.scaleY = 1),
-                        this.image = a,
-                        this.initialImage = p,
-                    $.isFunction(c) && c()
+                        initialImage = $.extend({},
+                            image),
+                    options.rotatable && (image.rotate = oldImage.rotate || 0, initialImage.rotate = 0),
+                    options.scalable && (image.scaleX = oldImage.scaleX || 1, image.scaleY = oldImage.scaleY || 1, initialImage.scaleX = 1, initialImage.scaleY = 1),
+                        this.image = image,
+                        this.initialImage = initialImage,
+                    $.isFunction(callback) && callback()
                 },
                 this))
         },
         renderImage: function(a) {
-            var c = this.image,
-                b = this.$image;
-            b.css({
-                width: c.width,
-                height: c.height,
-                marginLeft: c.left,
-                marginTop: c.top,
-                transform: a5(c)
+            var image = this.image,
+                $image = this.$image;
+            $image.css({
+                width: image.width,
+                height: image.height,
+                marginLeft: image.left,
+                marginTop: image.top,
+                transform: getTransform(image)
             });
-            $.isFunction(a) && (this.transitioning ? b.one(aj, a) : a())
+            $.isFunction(a) && (this.transitioning ? $image.one($event_transitionend, a) : a())
         },
         resetImage: function() {
             this.$image.remove();
             this.$image = null
         },
         start: function(a) {
-            var b = a.target;
-            $(b).is("img") && (this.target = b, this.show())
+            var target = a.target;
+            $(target).is("img") && (this.target = target, this.show())
         },
         click: function(a) {
-            var c = $(a.target),
-                b = c.data("action"),
-                d = this.image;
-            switch (b) {
+            var $target = $(a.target),
+                action = $target.data("action"),
+                image = this.image;
+            switch (action) {
                 case "mix":
                     this.isPlayed ? this.stop() : this.options.inline ? this.isFulled ? this.exit() : this.full() : this.hide();
                     break;
                 case "view":
-                    this.view(c.data("index"));
+                    this.view($target.data("index"));
                     break;
                 case "zoom-in":
                     this.zoom(0.1, !0);
@@ -327,9 +376,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 case "prev":
                     this.prev();
                     break;
-                case "play":
-                    this.play();
-                    break;
                 case "next":
                     this.next();
                     break;
@@ -340,49 +386,45 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     this.rotate(90);
                     break;
                 case "flip-horizontal":
-                    this.scaleX( - d.scaleX || -1);
+                    this.scaleX( - image.scaleX || -1);
                     break;
                 case "flip-vertical":
-                    this.scaleY( - d.scaleY || -1);
+                    this.scaleY( - image.scaleY || -1);
                     break;
                 default:
                     this.isPlayed && this.stop()
             }
         },
         load: function() {
-            var a = this.options,
-                c = this.viewer,
-                b = this.$image;
+            var options = this.options,
+                viewer = this.viewer,
+                $image = this.$image;
             this.timeout && (clearTimeout(this.timeout), this.timeout = !1),
-                b.removeClass(at).css("cssText", "width:0;height:0;margin-left:" + c.width / 2 + "px;margin-top:" + c.height / 2 + "px;max-width:none!important;visibility:visible;"),
+                $image.removeClass($class_invisible).css("cssText", "width:0;height:0;margin-left:" + viewer.width / 2 + "px;margin-top:" + viewer.height / 2 + "px;max-width:none!important;visibility:visible;"),
                 this.initImage($.proxy(function() {
-                        b.toggleClass(ad, a.transition).toggleClass(ac, a.movable),
-                            this.renderImage($.proxy(function() {
-                                    this.isViewed = !0,
-                                        this.trigger(aq)
-                                },
-                                this))
-                    },
-                    this))
+                    $image.toggleClass($class_transition, options.transition).toggleClass($class_move, options.movable),
+                        this.renderImage($.proxy(function() {
+                            this.isViewed = !0, this.trigger($event_viewed)
+                        }, this))
+                    }, this));
         },
-        loadImage: function(c) {
-            var g = c.target,
-                f = $(g),
-                k = f.parent(),
-                j = k.width(),
-                b = k.height(),
-                d = c.data && c.data.filled;
-            aT(g,
-                function(h, a) {
-                    var m = h / a,
-                        o = j,
-                        l = b;
-                    b * m > j ? d ? o = b * m: l = j / m: d ? l = j / m: o = b * m,
-                        f.css({
-                            width: o,
-                            height: l,
-                            marginLeft: (j - o) / 2,
-                            marginTop: (b - l) / 2
+        loadImage: function(e) {
+            var image = e.target,
+                $image = $(image),
+                $parent = $image.parent(),
+                parentWidth = $parent.width(),
+                parentHeight = $parent.height(),
+                filled = e.data && e.data.filled;
+            getImageSize(image, function(naturalWidth, naturalHeight) {
+                    var aspectRatio = naturalWidth / naturalHeight,
+                        width = parentWidth,
+                        height = parentHeight;
+                    parentHeight * aspectRatio > parentWidth ? filled ? width = parentHeight * aspectRatio: height = parentWidth / aspectRatio: filled ? height = parentWidth / aspectRatio: width = parentHeight * aspectRatio,
+                        $image.css({
+                            width: width,
+                            height: height,
+                            marginLeft: (parentWidth - width) / 2,
+                            marginTop: (parentHeight - height) / 2
                         })
                 })
         },
@@ -395,24 +437,24 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         this.renderImage()
                     },
                     this)),
-            this.isPlayed && this.$player.find(ax).one(ao, $.proxy(this.loadImage, this)).trigger(ao)
+            this.isPlayed && this.$player.find($selector_img).one($event_load, $.proxy(this.loadImage, this)).trigger($event_load)
         },
-        wheel: function(a) {
-            var c = a.originalEvent || a,
-                b = aC(this.options.zoomRatio) || 0.1,
-                d = 1;
-            this.isViewed && (a.preventDefault(), this.wheeling || (this.wheeling = !0, setTimeout($.proxy(function() {
+        wheel: function(event) {
+            var e = event.originalEvent || event,
+                ratio = num(this.options.zoomRatio) || 0.1,
+                delta = 1;
+            this.isViewed && (event.preventDefault(), this.wheeling || (this.wheeling = !0, setTimeout($.proxy(function() {
                     this.wheeling = !1
                 },
-                this), 50), c.deltaY ? d = c.deltaY > 0 ? 1 : -1 : c.wheelDelta ? d = -c.wheelDelta / 120 : c.detail && (d = c.detail > 0 ? 1 : -1), this.zoom( - d * b, !0, a)))
+                this), 50), e.deltaY ? delta = e.deltaY > 0 ? 1 : -1 : e.wheelDelta ? delta = -e.wheelDelta / 120 : e.detail && (delta = e.detail > 0 ? 1 : -1), this.zoom( - delta * ratio, !0, event)))
         },
-        keydown: function(b) {
-            var a = this.options,
-                c = b.which;
-            if (this.isFulled && a.keyboard) {
-                switch (c) {
+        keydown: function(e) {
+            var options = this.options,
+                which = e.which;
+            if (this.isFulled && options.keyboard) {
+                switch (which) {
                     case 27:
-                        this.isPlayed ? this.stop() : a.inline ? this.isFulled && this.exit() : this.hide();
+                        this.isPlayed ? this.stop() : options.inline ? this.isFulled && this.exit() : this.hide();
                         break;
                     case 32:
                         this.isPlayed && this.stop();
@@ -421,208 +463,184 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         this.prev();
                         break;
                     case 38:
-                        b.preventDefault(),
-                            this.zoom(a.zoomRatio, !0);
+                        e.preventDefault(),
+                            this.zoom(options.zoomRatio, !0);
                         break;
                     case 39:
                         this.next();
                         break;
                     case 40:
-                        b.preventDefault(),
-                            this.zoom( - a.zoomRatio, !0);
+                        e.preventDefault(),
+                            this.zoom( - options.zoomRatio, !0);
                         break;
                     case 48:
                     case 49:
-                        (b.ctrlKey || b.shiftKey) && (b.preventDefault(), this.toggle())
+                        (e.ctrlKey || e.shiftKey) && (e.preventDefault(), this.toggle())
                 }
             }
         },
-        mousedown: function(d) {
-            var c, g = this.options,
-                f = d.originalEvent,
-                j = f && f.touches,
-                h = d,
-                b = g.movable ? "move": !1;
+        mousedown: function(event) {
+            var touchesLength,
+                options = this.options,
+                originalEvent = event.originalEvent,
+                touches = originalEvent && originalEvent.touches,
+                e = event,
+                action = options.movable ? "move": !1;
             if (this.isViewed) {
-                if (j) {
-                    if (c = j.length, c > 1) {
-                        if (!g.zoomable || 2 !== c) {
+                if (touches) {
+                    if (touchesLength = touches.length, touchesLength > 1) {
+                        if (!options.zoomable || 2 !== touchesLength) {
                             return
                         }
-                        h = j[1],
-                            this.startX2 = h.pageX,
-                            this.startY2 = h.pageY,
-                            b = "zoom"
+                        e = touches[1],
+                            this.startX2 = e.pageX,
+                            this.startY2 = e.pageY,
+                            action = "zoom"
                     } else {
-                        this.isSwitchable() && (b = "switch")
+                        this.isSwitchable() && (action = "switch")
                     }
-                    h = j[0]
+                    e = touches[0]
                 }
-                b && (d.preventDefault(), this.action = b, this.startX = h.pageX || f && f.pageX, this.startY = h.pageY || f && f.pageY)
+                action && (event.preventDefault(), this.action = action, this.startX = e.pageX || originalEvent && originalEvent.pageX, this.startY = e.pageY || originalEvent && originalEvent.pageY)
             }
         },
-        mousemove: function(d) {
-            var c, j = this.options,
-                g = this.action,
-                l = this.$image,
-                k = d.originalEvent,
-                b = k && k.touches,
-                f = d;
+        mousemove: function(event) {
+            var touchesLength,
+                options = this.options,
+                action = this.action,
+                $image = this.$image,
+                originalEvent = event.originalEvent,
+                touches = originalEvent && originalEvent.touches,
+                e = event;
             if (this.isViewed) {
-                if (b) {
-                    if (c = b.length, c > 1) {
-                        if (!j.zoomable || 2 !== c) {
+                if (touches) {
+                    if (touchesLength = touches.length, touchesLength > 1) {
+                        if (!options.zoomable || 2 !== touchesLength) {
                             return
                         }
-                        f = b[1],
-                            this.endX2 = f.pageX,
-                            this.endY2 = f.pageY
+                        e = touches[1],
+                            this.endX2 = e.pageX,
+                            this.endY2 = e.pageY
                     }
-                    f = b[0]
+                    e = touches[0]
                 }
-                g && (d.preventDefault(), "move" === g && j.transition && l.hasClass(ad) && l.removeClass(ad), this.endX = f.pageX || k && k.pageX, this.endY = f.pageY || k && k.pageY, this.change(d))
+                action && (event.preventDefault(), "move" === action && options.transition && $image.hasClass($class_transition) && $image.removeClass($class_transition), this.endX = e.pageX || originalEvent && originalEvent.pageX, this.endY = e.pageY || originalEvent && originalEvent.pageY, this.change(event))
             }
         },
-        mouseup: function(b) {
-            var a = this.action;
-            a && (b.preventDefault(), "move" === a && this.options.transition && this.$image.addClass(ad), this.action = !1)
+        mouseup: function(event) {
+            var action = this.action;
+            action && (event.preventDefault(), "move" === action && this.options.transition && this.$image.addClass($class_transition), this.action = !1)
         },
         show: function() {
-            var a, b = this.options;
-            b.inline || this.transitioning || (this.isBuilt || this.build(), $.isFunction(b.show) && this.$element.one(au, b.show), this.trigger(au).isDefaultPrevented() || (this.$body.removeClass(aP), a = this.$viewer.removeClass(aG), this.$element.one(ag, $.proxy(function() {
+            var $viewer,
+                options = this.options;
+            options.inline || this.transitioning || (this.isBuilt || this.build(), $.isFunction(options.show) && this.$element.one($event_show, options.show), this.trigger($event_show).isDefaultPrevented() || (this.$body.removeClass($class_open), $viewer = this.$viewer.removeClass($class_hide), this.$element.one($event_shown, $.proxy(function() {
                     this.view(this.target ? this.$images.index(this.target) : this.index),
                         this.target = !1
                 },
-                this)), b.transition ? (this.transitioning = !0, a.addClass(ad), aX(a[0]), a.one(aj, $.proxy(this.shown, this)).addClass(aw)) : (a.addClass(aw), this.shown())))
+                this)), options.transition ? (this.transitioning = !0, $viewer.addClass($class_transition), forceReflow($viewer[0]), $viewer.one($event_transitionend, $.proxy(this.shown, this)).addClass($class_in)) : ($viewer.addClass($class_in), this.shown())))
         },
         hide: function() {
-            var a = this.options,
-                b = this.$viewer;
-            a.inline || this.transitioning || !this.isShown || ($.isFunction(a.hide) && this.$element.one(an, a.hide), this.trigger(an).isDefaultPrevented() || (this.isViewed && a.transition ? (this.transitioning = !0, this.$image.one(aj, $.proxy(function() {
-                    b.one(aj, $.proxy(this.hidden, this)).removeClass(aw)
+            var options = this.options,
+                $viewer = this.$viewer;
+            options.inline || this.transitioning || !this.isShown || ($.isFunction(options.hide) && this.$element.one($event_hide, options.hide), this.trigger($event_hide).isDefaultPrevented() || (this.isViewed && options.transition ? (this.transitioning = !0, this.$image.one($event_transitionend, $.proxy(function() {
+                    $viewer.one($event_transitionend, $.proxy(this.hidden, this)).removeClass($class_in)
                 },
-                this)), this.zoomTo(0, !1, !1, !0)) : (b.removeClass(aw), this.hidden())))
+                this)), this.zoomTo(0, !1, !1, !0)) : ($viewer.removeClass($class_in), this.hidden())))
         },
-        view: function(c) {
-            var g, f, k, j, b, d = this.$title;
-            c = Number(c) || 0,
-            !this.isShown || this.isPlayed || 0 > c || c >= this.length || this.isViewed && c === this.index || this.trigger(ab).isDefaultPrevented() || (f = this.$items.eq(c), k = f.find(ax), j = k.data("url"), b = k.attr("alt"), this.$image = g = $('<img src="' + j + '" alt="' + b + '">'), this.isViewed && this.$items.eq(this.index).removeClass(aU), f.addClass(aU), this.isViewed = !1, this.index = c, this.image = null, this.$canvas.html(g.addClass(at)), this.renderList(), d.empty(), this.$element.one(aq, $.proxy(function() {
-                    var h = this.image,
-                        a = h.naturalWidth,
-                        l = h.naturalHeight;
-                    d.html(b + " (" + a + " &times; " + l + ")")
+        view: function(index) {
+            var $image,
+                $item,
+                $img,
+                url,
+                alt,
+                $title = this.$title;
+            index = Number(index) || 0,
+            !this.isShown || this.isPlayed || 0 > index || index >= this.length || this.isViewed && index === this.index || this.trigger($event_view).isDefaultPrevented() || ($item = this.$items.eq(index), $img = $item.find($selector_img), url = $img.data("url"), alt = $img.attr("alt"), this.$image = $image = $('<img src="' + url + '" alt="' + alt + '">'), this.isViewed && this.$items.eq(this.index).removeClass($class_active), $item.addClass($class_active), this.isViewed = !1, this.index = index, this.image = null, this.$canvas.html($image.addClass($class_invisible)), this.renderList(), $title.empty(), this.$element.one($event_viewed, $.proxy(function() {
+                    var image = this.image,
+                        width = image.naturalWidth,
+                        height = image.naturalHeight;
+                    $title.html(alt + " (" + width + " &times; " + height + ")")
                 },
-                this)), g[0].complete ? this.load() : (g.one(ao, $.proxy(this.load, this)), this.timeout && clearTimeout(this.timeout), this.timeout = setTimeout($.proxy(function() {
-                    g.removeClass(at),
+                this)), $image[0].complete ? this.load() : ($image.one($event_load, $.proxy(this.load, this)), this.timeout && clearTimeout(this.timeout), this.timeout = setTimeout($.proxy(function() {
+                    $image.removeClass($class_invisible),
                         this.timeout = !1
                 },
                 this), 1000)))
         },
         prev: function() {
-            this.view(a0(this.index - 1, 0))
+            this.view(max(this.index - 1, 0))
         },
         next: function() {
-            this.view(aa(this.index + 1, this.length - 1))
+            this.view(min(this.index + 1, this.length - 1))
         },
-        move: function(b, a) {
-            var c = this.image;
-            this.moveTo(aM(b) ? b: c.left + aC(b), aM(a) ? a: c.top + aC(a))
+        move: function(offsetX, offsetY) {
+            var image = this.image;
+            this.moveTo(isUndefined(offsetX) ? offsetX: image.left + num(offsetX), isUndefined(offsetY) ? offsetY: image.top + num(offsetY))
         },
-        moveTo: function(b, a) {
-            var d = this.image,
-                c = !1;
-            aM(a) && (a = b),
-                b = aC(b),
-                a = aC(a),
-            this.isViewed && !this.isPlayed && this.options.movable && (a1(b) && (d.left = b, c = !0), a1(a) && (d.top = a, c = !0), c && this.renderImage())
+        moveTo: function(x, y) {
+            var image = this.image,
+                changed = !1;
+            isUndefined(y) && (y = x),
+                x = num(x),
+                y = num(y),
+            this.isViewed && !this.isPlayed && this.options.movable && (isNumber(x) && (image.left = x, changed = !0), isNumber(y) && (image.top = y, changed = !0), changed && this.renderImage())
         },
-        zoom: function(b, a, d) {
-            var c = this.image;
-            b = aC(b),
-                b = 0 > b ? 1 / (1 - b) : 1 + b,
-                this.zoomTo(c.width * b / c.naturalWidth, a, d)
+        zoom: function(ratio, hasTooltip, _event) {
+            var image = this.image;
+            ratio = num(ratio),
+                ratio = 0 > ratio ? 1 / (1 - ratio) : 1 + ratio,
+                this.zoomTo(image.width * ratio / image.naturalWidth, hasTooltip, _event)
         },
-        zoomTo: function(p, C, D, e) {
-            var d, z, q, b, k, y = this.options,
-                B = 0.01,
-                j = 100,
-                A = this.image,
-                x = A.width,
-                w = A.height;
-            p = a0(0, p),
-            a1(p) && this.isViewed && !this.isPlayed && (e || y.zoomable) && (e || (B = a0(B, y.minZoomRatio), j = aa(j, y.maxZoomRatio), p = aa(a0(p, B), j)), p > 0.95 && 1.05 > p && (p = 1), z = A.naturalWidth * p, q = A.naturalHeight * p, D && (d = D.originalEvent) ? (b = this.$viewer.offset(), k = d.touches ? a2(d.touches) : {
-                pageX: D.pageX || d.pageX || 0,
-                pageY: D.pageY || d.pageY || 0
+        zoomTo: function(ratio, hasTooltip, _event, _zoomable) {
+            var originalEvent, newWidth, newHeight, offset, center, options = this.options,
+                minZoomRatio = 0.01,
+                maxZoomRatio = 100,
+                image = this.image,
+                width = image.width,
+                height = image.height;
+            ratio = max(0, ratio),
+            isNumber(ratio) && this.isViewed && !this.isPlayed && (_zoomable || options.zoomable) && (_zoomable || (minZoomRatio = max(minZoomRatio, options.minZoomRatio), maxZoomRatio = min(maxZoomRatio, options.maxZoomRatio), ratio = min(max(ratio, minZoomRatio), maxZoomRatio)), ratio > 0.95 && 1.05 > ratio && (ratio = 1), newWidth = image.naturalWidth * ratio, newHeight = image.naturalHeight * ratio, _event && (originalEvent = _event.originalEvent) ? (offset = this.$viewer.offset(), center = originalEvent.touches ? getTouchesCenter(originalEvent.touches) : {
+                pageX: _event.pageX || originalEvent.pageX || 0,
+                pageY: _event.pageY || originalEvent.pageY || 0
             },
-                A.left -= (z - x) * ((k.pageX - b.left - A.left) / x), A.top -= (q - w) * ((k.pageY - b.top - A.top) / w)) : (A.left -= (z - x) / 2, A.top -= (q - w) / 2), A.width = z, A.height = q, A.ratio = p, this.renderImage(), C && this.tooltip())
+                image.left -= (newWidth - width) * ((center.pageX - offset.left - image.left) / width), image.top -= (newHeight - height) * ((center.pageY - offset.top - image.top) / height)) : (image.left -= (newWidth - width) / 2, image.top -= (newHeight - height) / 2), image.width = newWidth, image.height = newHeight, image.ratio = ratio, this.renderImage(), hasTooltip && this.tooltip())
         },
         rotate: function(a) {
-            this.rotateTo((this.image.rotate || 0) + aC(a))
+            this.rotateTo((this.image.rotate || 0) + num(a))
         },
-        rotateTo: function(b) {
-            var a = this.image;
-            b = aC(b),
-            a1(b) && this.isViewed && !this.isPlayed && this.options.rotatable && (a.rotate = b, this.renderImage())
+        rotateTo: function(degree) {
+            var image = this.image;
+            degree = num(degree),
+            isNumber(degree) && this.isViewed && !this.isPlayed && this.options.rotatable && (image.rotate = degree, this.renderImage())
         },
-        scale: function(b, a) {
-            var d = this.image,
-                c = !1;
-            aM(a) && (a = b),
-                b = aC(b),
-                a = aC(a),
-            this.isViewed && !this.isPlayed && this.options.scalable && (a1(b) && (d.scaleX = b, c = !0), a1(a) && (d.scaleY = a, c = !0), c && this.renderImage())
+        scale: function(scaleX, scaleY) {
+            var image = this.image,
+                changed = !1;
+            isUndefined(scaleY) && (scaleY = scaleX),
+                scaleX = num(scaleX),
+                scaleY = num(scaleY),
+            this.isViewed && !this.isPlayed && this.options.scalable && (isNumber(scaleX) && (image.scaleX = scaleX, changed = !0), isNumber(scaleY) && (image.scaleY = scaleY, changed = !0), changed && this.renderImage())
         },
-        scaleX: function(a) {
-            this.scale(a, this.image.scaleY)
+        scaleX: function(scaleX) {
+            this.scale(scaleX, this.image.scaleY)
         },
-        scaleY: function(a) {
-            this.scale(this.image.scaleX, a)
-        },
-        play: function() {
-            var c, e = this.options,
-                j = this.$player,
-                g = $.proxy(this.loadImage, this),
-                b = [],
-                d = 0,
-                f = 0;
-            this.isShown && !this.isPlayed && (e.fullscreen && this.requestFullscreen(), this.isPlayed = !0, j.addClass(a4), this.$items.each(function(h) {
-                var k = $(this),
-                    a = k.find(ax),
-                    m = $('<img src="' + a.data("url") + '" alt="' + a.attr("alt") + '">');
-                d++,
-                    m.addClass(aF).toggleClass(ad, e.transition),
-                k.hasClass(aU) && (m.addClass(aw), f = h),
-                    b.push(m),
-                    m.one(ao, {
-                            filled: !1
-                        },
-                        g),
-                    j.append(m)
-            }), a1(e.interval) && e.interval > 0 && (c = $.proxy(function() {
-                    this.playing = setTimeout(function() {
-                            b[f].removeClass(aw),
-                                f++,
-                                f = d > f ? f: 0,
-                                b[f].addClass(aw),
-                                c()
-                        },
-                        e.interval)
-                },
-                this), d > 1 && c()))
+        scaleY: function(scaleY) {
+            this.scale(this.image.scaleX, scaleY)
         },
         stop: function() {
-            this.isPlayed && (this.options.fullscreen && this.exitFullscreen(), this.isPlayed = !1, clearTimeout(this.playing), this.$player.removeClass(a4).empty())
+            this.isPlayed && (this.options.fullscreen && this.exitFullscreen(), this.isPlayed = !1, clearTimeout(this.playing), this.$player.removeClass($class_show).empty())
         },
         full: function() {
-            var a = this.options,
-                c = this.$image,
-                b = this.$list;
-            this.isShown && !this.isPlayed && !this.isFulled && a.inline && (this.isFulled = !0, this.$body.removeClass(aP), this.$button.addClass(ah), a.transition && (c.removeClass(ad), b.removeClass(ad)), this.$viewer.addClass(aI).removeAttr("style").css("z-index", a.zIndex), this.initContainer(), this.viewer = $.extend({},
+            var options = this.options,
+                $image = this.$image,
+                $list = this.$list;
+            this.isShown && !this.isPlayed && !this.isFulled && options.inline && (this.isFulled = !0, this.$body.removeClass($class_open), this.$button.addClass($class_fullscreen_exit), options.transition && ($image.removeClass($class_transition), $list.removeClass($class_transition)), this.$viewer.addClass($class_fixed).removeAttr("style").css("z-index", options.zIndex), this.initContainer(), this.viewer = $.extend({},
                 this.container), this.renderList(), this.initImage($.proxy(function() {
                     this.renderImage(function() {
-                        a.transition && setTimeout(function() {
-                                c.addClass(ad),
-                                    b.addClass(ad)
+                        options.transition && setTimeout(function() {
+                                $image.addClass($class_transition),
+                                    $list.addClass($class_transition)
                             },
                             0)
                     })
@@ -630,15 +648,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this)))
         },
         exit: function() {
-            var a = this.options,
-                c = this.$image,
-                b = this.$list;
-            this.isFulled && (this.isFulled = !1, this.$body.removeClass(aP), this.$button.removeClass(ah), a.transition && (c.removeClass(ad), b.removeClass(ad)), this.$viewer.removeClass(aI).css("z-index", a.zIndexInline), this.viewer = $.extend({},
+            var options = this.options,
+                $image = this.$image,
+                $list = this.$list;
+            this.isFulled && (this.isFulled = !1, this.$body.removeClass($class_open), this.$button.removeClass($class_fullscreen_exit), options.transition && ($image.removeClass($class_transition), $list.removeClass($class_transition)), this.$viewer.removeClass($class_fixed).css("z-index", options.zIndexInline), this.viewer = $.extend({},
                 this.parent), this.renderViewer(), this.renderList(), this.initImage($.proxy(function() {
                     this.renderImage(function() {
-                        a.transition && setTimeout(function() {
-                                c.addClass(ad),
-                                    b.addClass(ad)
+                        options.transition && setTimeout(function() {
+                                $image.addClass($class_transition),
+                                    $list.addClass($class_transition)
                             },
                             0)
                     })
@@ -646,16 +664,16 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this)))
         },
         tooltip: function() {
-            var a = this.options,
-                c = this.$tooltip,
-                b = this.image,
-                d = [a4, aF, ad].join(" ");
-            this.isViewed && !this.isPlayed && a.tooltip && (c.text(av(100 * b.ratio) + "%"), this.tooltiping ? clearTimeout(this.tooltiping) : a.transition ? (this.fading && c.trigger(aj), c.addClass(d), aX(c[0]), c.addClass(aw)) : c.addClass(a4), this.tooltiping = setTimeout($.proxy(function() {
-                    a.transition ? (c.one(aj, $.proxy(function() {
-                            c.removeClass(d),
+            var options = this.options,
+                $tooltip = this.$tooltip,
+                image = this.image,
+                classes = [$class_show, $class_fade, $class_transition].join(" ");
+            this.isViewed && !this.isPlayed && options.tooltip && ($tooltip.text(round(100 * image.ratio) + "%"), this.tooltiping ? clearTimeout(this.tooltiping) : options.transition ? (this.fading && $tooltip.trigger($event_transitionend), $tooltip.addClass(classes), forceReflow($tooltip[0]), $tooltip.addClass($class_in)) : $tooltip.addClass($class_show), this.tooltiping = setTimeout($.proxy(function() {
+                    options.transition ? ($tooltip.one($event_transitionend, $.proxy(function() {
+                            $tooltip.removeClass(classes),
                                 this.fading = !1
                         },
-                        this)).removeClass(aw), this.fading = !0) : c.removeClass(a4),
+                        this)).removeClass($class_in), this.fading = !0) : $tooltip.removeClass($class_show),
                         this.tooltiping = !1
                 },
                 this), 1000))
@@ -668,97 +686,97 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this.initialImage), this.renderImage())
         },
         update: function() {
-            var a, c = this.$element,
-                b = this.$images,
-                d = [];
+            var index,
+                $this = this.$element,
+                $images = this.$images,
+                indexes = [];
             if (this.isImg) {
-                if (!c.parent().length) {
+                if (!$this.parent().length) {
                     return this.destroy()
                 }
             } else {
-                this.$images = b = c.find(ax),
-                    this.length = b.length
+                this.$images = $images = $this.find($selector_img),
+                    this.length = $images.length
             }
             this.isBuilt && ($.each(this.$items,
                 function(f) {
                     var g = $(this).find("img")[0],
-                        h = b[f];
-                    h ? h.src !== g.src && d.push(f) : d.push(f)
-                }), this.$list.width("auto"), this.initList(), this.isShown && (this.length ? this.isViewed && (a = $.inArray(this.index, d), a >= 0 ? (this.isViewed = !1, this.view(a0(this.index - (a + 1), 0))) : this.$items.eq(this.index).addClass(aU)) : (this.$image = null, this.isViewed = !1, this.index = 0, this.image = null, this.$canvas.empty(), this.$title.empty())))
+                        h = $images[f];
+                    h ? h.src !== g.src && indexes.push(f) : indexes.push(f)
+                }), this.$list.width("auto"), this.initList(), this.isShown && (this.length ? this.isViewed && (index = $.inArray(this.index, indexes), index >= 0 ? (this.isViewed = !1, this.view(max(this.index - (index + 1), 0))) : this.$items.eq(this.index).addClass($class_active)) : (this.$image = null, this.isViewed = !1, this.index = 0, this.image = null, this.$canvas.empty(), this.$title.empty())))
         },
         destroy: function() {
-            var a = this.$element;
-            this.options.inline ? this.unbind() : (this.isShown && this.unbind(), a.off(a6, this.start)),
+            var $this = this.$element;
+            this.options.inline ? this.unbind() : (this.isShown && this.unbind(), $this.off($event_click, this.start)),
                 this.unbuild(),
-                a.removeData(aZ)
+                $this.removeData($namespace)
         },
-        trigger: function(a, c) {
-            var b = $.Event(a, c);
-            return this.$element.trigger(b),
-                b
+        trigger: function(type, data) {
+            var e = $.Event(type, data);
+            return this.$element.trigger(e), e
         },
         shown: function() {
-            var a = this.options;
+            var options = this.options;
             this.transitioning = !1,
                 this.isFulled = !0,
                 this.isShown = !0,
                 this.isVisible = !0,
                 this.render(),
                 this.bind(),
-            $.isFunction(a.shown) && this.$element.one(ag, a.shown),
-                this.trigger(ag)
+            $.isFunction(options.shown) && this.$element.one($event_shown, options.shown),
+                this.trigger($event_shown)
         },
         hidden: function() {
-            var a = this.options;
+            var options = this.options;
             this.transitioning = !1,
                 this.isViewed = !1,
                 this.isFulled = !1,
                 this.isShown = !1,
                 this.isVisible = !1,
                 this.unbind(),
-                this.$body.addClass(aP),
-                this.$viewer.addClass(aG),
+                this.$body.addClass($class_open),
+                this.$viewer.addClass($class_hide),
                 this.resetList(),
                 this.resetImage(),
-            $.isFunction(a.hidden) && this.$element.one(am, a.hidden),
-                this.trigger(am)
+            $.isFunction(options.hidden) && this.$element.one($event_hidden, options.hidden),
+                this.trigger($event_hidden)
         },
         requestFullscreen: function() {
-            var a = document.documentElement; ! this.isFulled || document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement || (a.requestFullscreen ? a.requestFullscreen() : a.msRequestFullscreen ? a.msRequestFullscreen() : a.mozRequestFullScreen ? a.mozRequestFullScreen() : a.webkitRequestFullscreen && a.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT))
+            var documentElement = document.documentElement; ! this.isFulled || document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement || (documentElement.requestFullscreen ? documentElement.requestFullscreen() : documentElement.msRequestFullscreen ? documentElement.msRequestFullscreen() : documentElement.mozRequestFullScreen ? documentElement.mozRequestFullScreen() : documentElement.webkitRequestFullscreen && documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT))
         },
         exitFullscreen: function() {
             this.isFulled && (document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen())
         },
-        change: function(b) {
-            var a = this.endX - this.startX,
-                c = this.endY - this.startY;
+        change: function(event) {
+            var offsetX = this.endX - this.startX,
+                offsetY = this.endY - this.startY;
             switch (this.action) {
                 case "move":
-                    this.move(a, c);
+                    this.move(offsetX, offsetY);
                     break;
                 case "zoom":
                     this.zoom(function(f, d, h, g) {
-                        var k = ar(f * f + d * d),
-                            j = ar(h * h + g * g);
+                        var k = sqrt(f * f + d * d),
+                            j = sqrt(h * h + g * g);
                         return (j - k) / k
-                    } (aE(this.startX - this.startX2), aE(this.startY - this.startY2), aE(this.endX - this.endX2), aE(this.endY - this.endY2)), !1, b),
+                    } (abs(this.startX - this.startX2), abs(this.startY - this.startY2), abs(this.endX - this.endX2), abs(this.endY - this.endY2)), !1, event),
                         this.startX2 = this.endX2,
                         this.startY2 = this.endY2;
                     break;
                 case "switch":
                     this.action = "switched",
-                    aE(a) > aE(c) && (a > 1 ? this.prev() : -1 > a && this.next())
+                    abs(offsetX) > abs(offsetY) && (offsetX > 1 ? this.prev() : -1 > offsetX && this.next())
             }
             this.startX = this.endX,
                 this.startY = this.endY
         },
         isSwitchable: function() {
-            var b = this.image,
-                a = this.viewer;
-            return b.left >= 0 && b.top >= 0 && b.width <= a.width && b.height <= a.height
+            var image = this.image,
+                viewer = this.viewer;
+            return image.left >= 0 && image.top >= 0 && image.width <= viewer.width && image.height <= viewer.height
         }
     };
-    aK.defaults = {
+    ak_Viewer.defaults = {
         inline: !1,
         button: !0,
         navbar: !0,
@@ -790,27 +808,49 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         view: null,
         viewed: null
     };
-    aK.template = '<div class="ak-viewer-container">' + '<div class="ak-viewer-canvas"></div>' + '<div class="ak-viewer-footer animated slideInUp h_10em bg_black07">' + '<div class="ak-viewer-title"></div>' + '<ul class="ak-viewer-toolbar">' + '<li class="ak-viewer-one-to-one bg_black07" data-action="one-to-one"></li>' + '<li class="ak-viewer-zoom-in bg_black07" data-action="zoom-in"></li>' + '<li class="ak-viewer-zoom-out bg_black07" data-action="zoom-out"></li>' + '<li class="ak-viewer-prev bg_black07" data-action="prev"></li>' + '<li class="ak-viewer-next bg_black07" data-action="next"></li>' + '<li class="ak-viewer-rotate-left bg_black07" data-action="rotate-left"></li>' + '<li class="ak-viewer-rotate-right bg_black07" data-action="rotate-right"></li>' + '<li class="ak-viewer-flip-horizontal bg_black07" data-action="flip-horizontal"></li>' + '<li class="ak-viewer-flip-vertical bg_black07" data-action="flip-vertical"></li>' + '<li class="ak-viewer-reset bg_black07" data-action="reset"></li>' + "</ul>" + '<div class="ak-viewer-navbar bg_black04">' + '<ul class="ak-viewer-list"></ul>' + "</div>" + "</div>" + '<div class="ak-viewer-tooltip"></div>' + '<button type="button" class="ak-viewer-button bg_black07" data-action="mix"></button>' + '<div class="ak-mask"></div>' + "</div>";
-    aK.other = $.fn.AKjs_Viewer;
-    $.fn.AKjs_Viewer = function(c) {
-        var d, b = aR(arguments, 1);
+    ak_Viewer.template =
+        '<div class="ak-viewer-container">' +
+            '<div class="ak-viewer-canvas"></div>' +
+            '<div class="ak-viewer-footer animated slideInUp h_10em bg_black07">' +
+                '<div class="ak-viewer-title"></div>' +
+                '<ul class="ak-viewer-toolbar">' +
+                    '<li class="ak-viewer-one-to-one bg_black07" data-action="one-to-one"></li>' +
+                    '<li class="ak-viewer-zoom-in bg_black07" data-action="zoom-in"></li>' +
+                    '<li class="ak-viewer-zoom-out bg_black07" data-action="zoom-out"></li>' +
+                    '<li class="ak-viewer-prev bg_black07" data-action="prev"></li>' +
+                    '<li class="ak-viewer-next bg_black07" data-action="next"></li>' +
+                    '<li class="ak-viewer-rotate-left bg_black07" data-action="rotate-left"></li>' +
+                    '<li class="ak-viewer-rotate-right bg_black07" data-action="rotate-right"></li>' +
+                    '<li class="ak-viewer-flip-horizontal bg_black07" data-action="flip-horizontal"></li>' +
+                    '<li class="ak-viewer-flip-vertical bg_black07" data-action="flip-vertical"></li>' +
+                    '<li class="ak-viewer-reset bg_black07" data-action="reset"></li>' +
+                "</ul>" +
+                '<div class="ak-viewer-navbar bg_black04">' +
+                    '<ul class="ak-viewer-list"></ul>' +
+                "</div>" +
+            "</div>" +
+            '<div class="ak-viewer-tooltip"></div>' +
+            '<button type="button" class="ak-viewer-button bg_black07" data-action="mix"></button>' +
+            '<div class="ak-mask"></div>' +
+        "</div>";
+    ak_Viewer.other = $.fn.AKjs_Viewer;
+    $.fn.AKjs_Viewer = function(options) {
+        var result, args = toArray(arguments, 1);
         return this.each(function() {
-            var e, f = $(this),
-                a = f.data(aZ);
-            if (!a) {
-                if (/destroy|hide|exit|stop|reset/.test(c)) {
+            var fn, $this = $(this),
+                data = $this.data($namespace);
+            if (!data) {
+                if (/destroy|hide|exit|stop|reset/.test(options)) {
                     return
                 }
-                f.data(aZ, a = new aK(this, c))
+                $this.data($namespace, data = new ak_Viewer(this, options));
             }
-            aL(c) && $.isFunction(e = a[c]) && (d = e.apply(a, b))
-        }),
-            aM(d) ? this: d
+            isString(options) && $.isFunction(fn = data[options]) && (result = fn.apply(data, args));
+        }),isUndefined(result) ? this: result;
     };
-    $.fn.AKjs_Viewer.Constructor = aK;
-    $.fn.AKjs_Viewer.setDefaults = aK.setDefaults,
+    $.fn.AKjs_Viewer.Constructor = ak_Viewer;
+    $.fn.AKjs_Viewer.setDefaults = ak_Viewer.setDefaults,
         $.fn.AKjs_Viewer.noConflict = function() {
-            return $.fn.AKjs_Viewer = aK.other,
-                this
+            return $.fn.AKjs_Viewer = ak_Viewer.other, this;
         }
 }(jQuery));

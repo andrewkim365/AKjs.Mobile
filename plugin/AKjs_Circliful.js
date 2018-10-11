@@ -1,11 +1,11 @@
 /*
-Modification Date: 2018-08-09
+Modification Date: 2018-10-10
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Circliful-------------------------------------------*/
 (function($) {
-    $.fn.AKjs_Circliful = function(b) {
-        var c = $.extend({
+    $.fn.AKjs_Circliful = function(setting) {
+        var option = $.extend({
                 prog_color: "",
                 bg_color: "",
                 fill_color: false,
@@ -15,89 +15,89 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 font_color: "#333333",
                 percent: 50,
                 animationStep: 1
-            }, b);
+            }, setting);
         return this.each(function() {
-            var F = "";
-            var s = "";
-            var E = "";
-            var v = "";
-            var t = 0;
-            var tc = "";
-            var e = 0;
-            var l = 100;
-            var B = "";
-            var d = "";
-            var D = "";
-            var q = 0;
+            var $dimension = "";
+            var $ele_text = "";
+            var $ele_info = "";
+            var $width = "";
+            var $font_size = 0;
+            var $font_color = "";
+            var $percents = 0;
+            var $percent = 100;
+            var $prog_color = "";
+            var $bg_color = "";
+            var $icon = "";
+            var $animationStep = 0;
             var ele = $(this);
             ele.html("<section />");
             var section = ele.children("section");
             if (ele.data("dimension") != undefined) {
-                F = ele.data("dimension")
+                $dimension = ele.data("dimension")
             } else {
-                F = c.dimension
+                $dimension = option.dimension
             }
             if (ele.data("width") != undefined) {
-                v = ele.data("width")
+                $width = ele.data("width")
             } else {
-                v = c.width
+                $width = option.width
             }
             if (ele.data("font_size") != undefined) {
-                t = ele.data("font_size")
+                $font_size = ele.data("font_size")
             } else {
-                t = c.font_size
+                $font_size = option.font_size
             }
             if (ele.data("font_color") != undefined) {
-                tc = ele.data("font_color")
+                $font_color = ele.data("font_color")
             } else {
-                tc = c.font_color
+                $font_color = option.font_color
             }
             if (ele.data("percent") != undefined) {
-                e = ele.data("percent") / 100;
-                l = ele.data("percent")
+                $percents = ele.data("percent") / 100;
+                $percent = ele.data("percent")
             } else {
-                e = c.percent / 100
+                $percents = option.percent / 100
             }
             if (ele.data("prog_color") != undefined) {
-                B = ele.data("prog_color")
+                $prog_color = ele.data("prog_color")
             } else {
-                B = c.prog_color
+                $prog_color = option.prog_color
             }
             if (ele.data("bg_color") != undefined) {
-                d = ele.data("bg_color")
+                $bg_color = ele.data("bg_color")
             } else {
-                d = c.bg_color
+                $bg_color = option.bg_color
             }
             if (ele.data("animationStep") != undefined) {
-                q = parseFloat(ele.data("animationStep"))
+                $animationStep = parseFloat(ele.data("animationStep"))
             } else {
-                q = c.animationStep
+                $animationStep = option.animationStep
             }
             if (ele.data("text") != undefined) {
-                s = ele.data("text");
+                $ele_text = ele.data("text");
                 if (ele.data("type") != undefined) {
-                    i = ele.data("type");
-                    if (i == "half") {
-                        section.append('<span class="ak-text-half w_100 abs text_al_c dis_inbl">' + D + s + "</span>");
+                    $ele_type = ele.data("type");
+                    if ($ele_type == "half") {
+                        section.append('<span class="ak-text-half w_100 abs text_al_c dis_inbl">' + $icon + $ele_text + "</span>");
                         css_text_half();
                     } else {
-                        section.append('<span class="ak-text w_100 abs text_al_c dis_inbl">' + D + s + "</span>");
+                        section.append('<span class="ak-text w_100 abs text_al_c dis_inbl">' + $icon + $ele_text + "</span>");
                         css_text();
                     }
                 } else {
-                    section.append('<span class="ak-text w_100 abs text_al_c dis_inbl">' + D + s + "</span>");
+                    section.append('<span class="ak-text w_100 abs text_al_c dis_inbl">' + $icon + $ele_text + "</span>");
                     css_text();
                 }
             }
             if (ele.data("info") != undefined) {
-                E = ele.data("info");
+                $ele_info = ele.data("info");
                 if (ele.data("type") != undefined) {
-                    i = ele.data("type");
-                    if (i == "half") {
-                        section.append('<span class="ak-info-half w_100 abs text_al_c dis_inbl">' + E + "</span>");
+                    $ele_type = ele.data("type");
+                    if ($ele_type == "half") {
+                        section.append('<span class="ak-info-half w_100 abs text_al_c dis_inbl">' + $ele_info + "</span>");
                         css_info_half();
-                    } else if (i == "spacing") {
-                        section.append('<span class="ak-info w_100 abs text_al_c dis_inbl">' + E + "</span>");
+                    } else if ($ele_type == "spacing") {
+                        section.append('<span class="ak-info w_100 abs text_al_c dis_inbl">' + $ele_info + "</span>");
                         css_info();
                         section.append("<div class='top_0 left_0 abs bor_rad_50' />");
                         var val = ele.data("width");
@@ -105,40 +105,40 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         if (IsMobile) {
                             switch (true) {
                                 case val <= '5':
-                                    var wh =(F - (v*2))-(v/0.2);
+                                    var wh =($dimension - ($width*2))-($width/0.2);
                                     break;
                                 case val <= '10':
-                                    var wh =(F - (v*2))-(v/0.4);
+                                    var wh =($dimension - ($width*2))-($width/0.4);
                                     break;
                                 case val <= '15':
-                                    var wh =(F - (v*2))-(v/0.6);
+                                    var wh =($dimension - ($width*2))-($width/0.6);
                                     break;
                                 case val > '15':
-                                    var wh =(F - (v*2))-(v/1.2);
+                                    var wh =($dimension - ($width*2))-($width/1.2);
                                     break;
                             }
                         } else {
                             switch (true) {
                                 case val <= '5':
-                                    var wh =(F - (v*2))-(v/0.1);
+                                    var wh =($dimension - ($width*2))-($width/0.1);
                                     break;
                                 case val <= '10':
-                                    var wh =(F - (v*2))-(v/0.3);
+                                    var wh =($dimension - ($width*2))-($width/0.3);
                                     break;
                                 case val <= '15':
-                                    var wh =(F - (v*2))-(v/0.4);
+                                    var wh =($dimension - ($width*2))-($width/0.4);
                                     break;
                                 case val <= '20':
-                                    var wh =(F - (v*2))-(v/0.6);
+                                    var wh =($dimension - ($width*2))-($width/0.6);
                                     break;
                                 case val <= '25':
-                                    var wh =(F - (v*2))-(v/0.8);
+                                    var wh =($dimension - ($width*2))-($width/0.8);
                                     break;
                                 case val <= '30':
-                                    var wh =(F - (v*2))-(v/1.2);
+                                    var wh =($dimension - ($width*2))-($width/1.2);
                                     break;
                                 case val > '30':
-                                    var wh =(F - (v*2))-(v/2);
+                                    var wh =($dimension - ($width*2))-($width/2);
                                     break;
                             }
                         }
@@ -148,7 +148,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             "height": wh + "px"
                         });
                         div.css({
-                            "margin": F/2 - (div.outerWidth()/2) + "px"
+                            "margin": $dimension/2 - (div.outerWidth()/2) + "px"
                         });
                         if (ele.data("spacing_color") != undefined) {
                             div.css({
@@ -156,105 +156,102 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             });
                         }
                     }else {
-                        section.append('<span class="ak-info w_100 abs text_al_c dis_inbl">' + E + "</span>");
+                        section.append('<span class="ak-info w_100 abs text_al_c dis_inbl">' + $ele_info + "</span>");
                         css_info();
                     }
                 } else {
-                    section.append('<span class="ak-info w_100 abs text_al_c dis_inbl">' + E + "</span>");
+                    section.append('<span class="ak-info w_100 abs text_al_c dis_inbl">' + $ele_info + "</span>");
                     css_info();
                 }
             }
             function css_text() {
                 ele.find(".ak-text").css({
-                    "line-height": F - 20 + "px",
-                    "font-size": t,
-                    "color": tc,
+                    "line-height": $dimension - 20 + "px",
+                    "font-size": $font_size,
+                    "color": $font_color,
                     "z-index": 2
                 })
             }
             function css_info() {
                 ele.find(".ak-info").css({
-                    "line-height": (F * 1.25) + "px",
+                    "line-height": ($dimension * 1.25) + "px",
                     "font-size": "0.6em",
-                    "color": tc,
+                    "color": $font_color,
                     "z-index": 2
                 })
             }
             function css_text_half() {
                 ele.find(".ak-text-half").css({
-                    "line-height": F/2*1.25 + "px",
+                    "line-height": $dimension/2*1.25 + "px",
                     "font-weight": "bold",
                     "font-size": "1.2em",
-                    "color": tc,
+                    "color": $font_color,
                     "z-index": 2
                 })
             }
             function css_info_half() {
                 ele.find(".ak-info-half").css({
-                    "line-height": (F * 0.86) + "px",
-                    "color": tc,
+                    "line-height": ($dimension * 0.86) + "px",
+                    "color": $font_color,
                     "z-index": 2
                 })
             }
-            ele.width(F + "px");
-            var h = $("<canvas></canvas>").attr({
-                width: F,
-                height: F
+            ele.width($dimension + "px");
+            var $canvas = $("<canvas></canvas>").attr({
+                width: $dimension,
+                height: $dimension
             }).appendTo(section).get(0);
             section.addClass("rel ovh");
-            var f = h.getContext("2d");
-            var p = h.width / 2;
-            var o = h.height / 2;
-            var A = e * 360;
-            var G = A * (Math.PI / 180);
-            var j = h.width / 2.5;
-            var z = 2.3 * Math.PI;
-            var u = 0;
-            var C = false;
-            var m = q === 0 ? l: 0;
-            var n = Math.max(q, 0);
-            var r = Math.PI * 2;
-            var g = Math.PI / 2;
-            var i = "";
-            var w = false;
+            var context = $canvas.getContext("2d");
+            var $canvas_width = $canvas.width / 2;
+            var $canvas_height = $canvas.height / 2;
+            var radius = $canvas.width / 2.5;
+            var startAngle = 2.3 * Math.PI;
+            var endAngle = 0;
+            var curPerc = $animationStep === 0 ? $percent: 0;
+            var curStep = Math.max($animationStep, 0);
+            var circ = Math.PI * 2;
+            var quart = Math.PI / 2;
+            var $ele_type = "";
+            var $fill_color = false;
             if (ele.data("type") != undefined) {
-                i = ele.data("type");
-                if (i == "half") {
-                    var z = 2 * Math.PI;
-                    var u = 3.13;
-                    var r = Math.PI * 1;
-                    var g = Math.PI / 0.996
+                $ele_type = ele.data("type");
+                if ($ele_type == "half") {
+                    var startAngle = 2 * Math.PI;
+                    var endAngle = 3.13;
+                    var circ = Math.PI * 1;
+                    var quart = Math.PI / 0.996
                 }
             }
             if (ele.data("fill_color") != undefined) {
-                w = ele.data("fill_color");
+                $fill_color = ele.data("fill_color");
             } else {
-                w = c.fill_color;
+                $fill_color = option.fill_color;
             }
             function k(x) {
-                f.clearRect(0, 0, h.width, h.height);
-                f.beginPath();
-                f.arc(p, o, j, u, z, false);
-                f.lineWidth = v - 1;
-                f.strokeStyle = d;
-                f.stroke();
-                if (w) {
-                    f.fillStyle = w;
-                    f.fill();
+                context.clearRect(0, 0, $canvas.width, $canvas.height);
+                context.beginPath();
+                context.arc($canvas_width, $canvas_height, radius, endAngle, startAngle, false);
+                context.lineWidth = $width - 1;
+                context.strokeStyle = $bg_color;
+                context.stroke();
+                if ($fill_color) {
+                    context.fillStyle = $fill_color;
+                    context.fill();
                 }
-                f.beginPath();
-                f.arc(p, o, j, -(g), ((r) * x) - g, false);
-                f.lineWidth = v;
-                f.strokeStyle = B;
-                f.stroke();
-                if (m < l) {
-                    m += n;
+                context.beginPath();
+                context.arc($canvas_width, $canvas_height, radius, -(quart), ((circ) * x) - quart, false);
+                context.lineWidth = $width;
+                context.strokeStyle = $prog_color;
+                context.stroke();
+                if (curPerc < $percent) {
+                    curPerc += curStep;
                     requestAnimationFrame(function() {
-                        k(Math.min(m, l) / 100)
+                        k(Math.min(curPerc, $percent) / 100)
                     })
                 }
             }
-            k(m / 100)
+            k(curPerc / 100)
         })
     }
 } (jQuery));

@@ -1,13 +1,13 @@
 /*
-Modification Date: 2018-09-17
+Modification Date: 2018-10-10
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Dialog------------------------------------------*/
 (function($) {
-    var m = {};
-    var g = {};
-    m.opening = false;
-    m._options = {
+    var ak = {};
+    var AKjs_Dialog = {};
+    ak.opening = false;
+    ak.defaults = {
         title: false,
         animateIn: "bounceInDown",
         animateOut: "bounceOutUp",
@@ -22,72 +22,72 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         button_ok: "OK",
         button_cancel: "CANCEL"
     };
-    m.tplBase = '<div class="ak-dialog">';
-    m.tplBase += '<div class="ak-dialog_container">';
-    m.tplBase += "{{header}}";
-    m.tplBase += '<div class="ak-dialog_content"><p>{{message}}</p>{{input}}</div>';
-    m.tplBase += '<div class="ak-dialog_footer">{{button_cancel}} <button type="button" class="ak_btn bg_white button_ok c_title">{{btn_ok}}</button></div>';
-    m.tplBase += "</div>";
-    m.tplBase += "</div>";
-    m.tplHeader = '<div class="ak-dialog_header bor_bottom_dashed bor_gray_ddd {{icon}}"><h3 class="ml_05em">{{title}}</h3></div>';
-    m.tplInput = '<div class="ak-dialog_field">{{inputbox}}</div>';
-    m.getTeplate = function(type, message, options) {
-        var t = m.tplBase;
+    ak.tplBase = '<div class="ak-dialog">';
+    ak.tplBase += '<div class="ak-dialog_container">';
+    ak.tplBase += "{{header}}";
+    ak.tplBase += '<div class="ak-dialog_content"><p>{{message}}</p>{{input}}</div>';
+    ak.tplBase += '<div class="ak-dialog_footer">{{button_cancel}} <button type="button" class="ak_btn bg_white button_ok c_title">{{btn_ok}}</button></div>';
+    ak.tplBase += "</div>";
+    ak.tplBase += "</div>";
+    ak.tplHeader = '<div class="ak-dialog_header bor_bottom_dashed bor_gray_ddd {{icon}}"><h3 class="ml_05em">{{title}}</h3></div>';
+    ak.tplInput = '<div class="ak-dialog_field">{{inputbox}}</div>';
+    ak.getTeplate = function(type, message, option) {
+        var template = ak.tplBase;
         if (type !== "alert") {
-            t = t.replace("{{button_cancel}}", '<button type="button" class="ak_btn bg_white button_cancel bor_right bor_gray_ddd">{{btn_cancel}}</button>')
+            template = template.replace("{{button_cancel}}", '<button type="button" class="ak_btn bg_white button_cancel bor_right bor_gray_ddd">{{btn_cancel}}</button>')
         } else {
-            t = t.replace("{{button_cancel}}", "")
+            template = template.replace("{{button_cancel}}", "")
         }
         if (type == "prompt") {
-            t = t.replace("{{input}}", m.tplInput)
+            template = template.replace("{{input}}", ak.tplInput)
         } else {
-            t = t.replace("{{input}}", "")
+            template = template.replace("{{input}}", "")
         }
-        if (options.title) {
-            t = t.replace("{{header}}", m.tplHeader.replace("{{title}}", options.title))
+        if (option.title) {
+            template = template.replace("{{header}}", ak.tplHeader.replace("{{title}}", option.title))
         } else {
-            t = t.replace("{{header}}", "")
+            template = template.replace("{{header}}", "")
         }
-        if (options.inputbox == "textarea") {
-            t = t.replace("{{inputbox}}", "<textarea />")
+        if (option.inputbox == "textarea") {
+            template = template.replace("{{inputbox}}", "<textarea />")
         } else {
-            if (options.inputbox == "input") {
-                if (options.inputType) {
-                    t = t.replace("{{inputbox}}", "<input type='" + options.inputType + "' />")
+            if (option.inputbox == "input") {
+                if (option.inputType) {
+                    template = template.replace("{{inputbox}}", "<input type='" + option.inputType + "' />")
                 } else {
-                    t = t.replace("{{inputbox}}", "<input type='text' />")
+                    template = template.replace("{{inputbox}}", "<input type='text' />")
                 }
             }
         }
-        t = t.replace("{{icon}}", options.icon);
-        t = t.replace("{{btn_ok}}", options.button_ok);
-        t = t.replace("{{btn_cancel}}", options.button_cancel);
-        t = t.replace("{{message}}", message);
-        return t
+        template = template.replace("{{icon}}", option.icon);
+        template = template.replace("{{btn_ok}}", option.button_ok);
+        template = template.replace("{{btn_cancel}}", option.button_cancel);
+        template = template.replace("{{message}}", message);
+        return template
     };
-    m.clear = function() {
+    ak.clear = function() {
         $("#alert_mask").length ? $("#alert_mask").remove() : "";
         $(".ak-dialog").length ? $(".ak-dialog").remove() : ""
     };
-    m.Dialog = function() {
+    ak.Dialog = function() {
         var that = this;
         that.close = function() {
             $("#ak-scrollview").addClass("scrolling_touch");
-            if (that.options.animateOut) {
-                if (that.options.animateIn) {
-                    that.container.find(".ak-dialog_container").removeClass(that.options.animateIn)
+            if (that.option.animateOut) {
+                if (that.option.animateIn) {
+                    that.container.find(".ak-dialog_container").removeClass(that.option.animateIn)
                 }
-                that.container.find(".ak-dialog_container").addClass("animated " + that.options.animateOut);
+                that.container.find(".ak-dialog_container").addClass("animated " + that.option.animateOut);
                 setTimeout(function() {
                         that.container.removeClass("is-active");
                         that.container.remove();
-                        m.opening = false;
+                        ak.opening = false;
                         $("#alert_mask").remove()
                     },
                     800)
             } else {
                 that.container.remove();
-                m.opening = false;
+                ak.opening = false;
                 $("#alert_mask").remove()
             }
         };
@@ -98,7 +98,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     e.preventDefault();
                     var res = false;
                     if (that.field.length) {
-                        if (that.options.required == true && !that.field.val().length) {
+                        if (that.option.required == true && !that.field.val().length) {
                             that.field.addClass("is-invalid");
                             return false
                         } else {
@@ -108,8 +108,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     } else {
                         res = true
                     }
-                    if (typeof that.options.onSubmit == "function") {
-                        that.options.onSubmit(res)
+                    if (typeof that.option.onSubmit == "function") {
+                        that.option.onSubmit(res)
                     }
                     that.close()
                 });
@@ -121,19 +121,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     if (that.field.length && that.field.val().length !== 0) {
                         res = that.field.val()
                     }
-                    if (typeof that.options.onCancel == "function") {
-                        that.options.onCancel(res)
+                    if (typeof that.option.onCancel == "function") {
+                        that.option.onCancel(res)
                     }
                     that.close()
                 })
         };
-        this.init = function(type, message, options, defaultValue) {
-            if (m.opening) {
+        this.init = function(type, message, option, defaultValue) {
+            if (ak.opening) {
                 $("#alert_mask, .ak-dialog").remove()
             }
-            m.clear();
-            that.options = m.getOptions(options);
-            $("body").append(m.getTeplate(type, message, that.options) + "<div id='alert_mask' class=\"ak-mask\"></div> ");
+            ak.clear();
+            that.option = ak.getOptions(option);
+            $("body").append(ak.getTeplate(type, message, that.option) + "<div id='alert_mask' class=\"ak-mask\"></div> ");
             that.container = $("body").find(".ak-dialog");
             $("#alert_mask").bind({
                 touchmove: function(e) {
@@ -148,13 +148,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $("#ak-scrollview").removeClass("scrolling_touch");
             that.btnOk = that.container.find(".button_ok");
             that.btnCancel = that.container.find(".button_cancel");
-            if (options.inputbox == "textarea") {
+            if (option.inputbox == "textarea") {
                 that.field = that.container.find("textarea")
             } else {
                 that.field = that.container.find("input")
             }
-            if (options.placeholder) {
-                that.field.attr("placeholder", options.placeholder);
+            if (option.placeholder) {
+                that.field.attr("placeholder", option.placeholder);
                 var placeholder_tmps = "";
                 that.field.focus(function() {
                     placeholder_tmps = $(this).attr("placeholder");
@@ -167,28 +167,26 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 })
             }
             that.field.parents(".ak-dialog_content").children("p").addClass("ak-input_title");
-            that.field.addClass(options.inputClass);
+            that.field.addClass(option.inputClass);
             if (defaultValue && that.field.length) {
                 that.field.val(defaultValue)
             }
             that.container.addClass("ak-is_active").css({
                 "top": ($(window).height() / 2) - (that.container.height() / 2)
             });
-            if (that.options.animateIn) {
-                that.container.find(".ak-dialog_container").addClass("animated " + that.options.animateIn)
+            if (that.option.animateIn) {
+                that.container.find(".ak-dialog_container").addClass("animated " + that.option.animateIn)
             }
-            m.opening = true;
+            ak.opening = true;
             that.addEvents()
         }
     };
-    m.getOptions = function(options) {
-        var o = $.extend({},
-            m._options);
-        if (typeof options == "object") {
-            $.each(options,
-                function(key, val) {
-                    o[key] !== undefined ? o[key] = val: console.error('The option "' + key + '" not exist.')
-                })
+    ak.getOptions = function(option) {
+        var o = $.extend({}, ak.defaults);
+        if (typeof option == "object") {
+            $.each(option, function(key, val) {
+                o[key] !== undefined ? o[key] = val: console.error('The option "' + key + '" not exist.')
+            });
         }
         return o
     };
@@ -202,48 +200,47 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         alert = function(message, userOptions) {
             var message = message || "";
             var userOptions = userOptions || {};
-            var dialog = new m.Dialog;
+            var dialog = new ak.Dialog;
             dialog.init("alert", message, userOptions)
         };
         confirm = function(message, userOptions) {
             var message = message || "";
             var userOptions = userOptions || {};
-            var dialog = new m.Dialog;
+            var dialog = new ak.Dialog;
             dialog.init("confirm", message, userOptions)
         };
         prompt = function(message, defaultValue, userOptions) {
             var message = message || "";
             var userOptions = userOptions || {};
-            var dialog = new m.Dialog;
+            var dialog = new ak.Dialog;
             dialog.init("prompt", message, userOptions, defaultValue)
         }
     }
-    g.alert = function(message, userOptions) {
+    AKjs_Dialog.alert = function(message, userOptions) {
         var message = message || "";
         var userOptions = userOptions || {};
-        var dialog = new m.Dialog;
+        var dialog = new ak.Dialog;
         dialog.init("alert", message, userOptions)
     };
-    g.confirm = function(message, userOptions) {
+    AKjs_Dialog.confirm = function(message, userOptions) {
         var message = message || "";
         var userOptions = userOptions || {};
-        var dialog = new m.Dialog;
+        var dialog = new ak.Dialog;
         dialog.init("confirm", message, userOptions)
     };
-    g.prompt = function(message, defaultValue, userOptions) {
+    AKjs_Dialog.prompt = function(message, defaultValue, userOptions) {
         var message = message || "";
         var userOptions = userOptions || {};
-        var dialog = new m.Dialog;
+        var dialog = new ak.Dialog;
         dialog.init("prompt", message, userOptions, defaultValue)
     };
-    g.config = function(options) {
-        if (typeof options !== "object") {
+    AKjs_Dialog.config = function(option) {
+        if (typeof option !== "object") {
             return false
         }
-        $.each(options,
-            function(key, val) {
-                m._options[key] !== undefined ? m._options[key] = val: console.error('The option "' + key + '" not exist.')
-            })
+        $.each(option, function(key, val) {
+            ak.defaults[key] !== undefined ? ak.defaults[key] = val: console.error('The option "' + key + '" not exist.')
+        });
     };
-    $ak = g
+    $ak = AKjs_Dialog;
 } (jQuery));
