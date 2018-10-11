@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-28
+Modification Date: 2018-10-11
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Validate--------------------------------------*/
@@ -127,7 +127,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 _ts.parent().children("text").removeClass('abs ml_05em '+option.VerifyClass).html("").remove();
                 form.find(":submit").removeClass("dis_none_im");
                 $("button#ak-validateBtn").remove();
-                form.find(":submit").click();
             }
             return _ts.hasClass('dis_none_im');
         };
