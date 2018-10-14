@@ -1631,10 +1631,14 @@
             prev_text: '<i class="arrow-left"><\/i>上一页', //设置“上一页”的文字
             next_text: '下一页<i class="arrow-right"><\/i>', //设置“下一页”的文字
             //last_text: '末页', //设置“末页”的文字
-            onPageChange: function (n,type,ele) { //回调入口（当前的页码，回调状态）
-                //console.log(n);
-                //console.log(type);
-                //console.log(ele);
+            onPageChange: function (n,type,ele) { //回调入口（当前的页码，回调状态，元素）
+                if (type == "init") { //初始化回调状态
+                    console.log(ele);
+                } else if (type == "change") { //点击后回调状态
+                    console.log(n);
+                    console.log(type);
+                    console.log(ele);
+                }
             }
         });
     });
