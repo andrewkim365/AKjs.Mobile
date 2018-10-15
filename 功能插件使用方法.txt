@@ -1241,6 +1241,7 @@
             wheels: [
                 {data : json_cityData} //Json获取data数据(data.js)
             ],
+            position:[0,0], //初始化定位，打开时默认选中的哪个。如果不填默认为0
             callback: function (val,length) { //回调获取当前的值（val是值,length是数量以及数组）
                 console.log($(val));
                 console.log($(length));
