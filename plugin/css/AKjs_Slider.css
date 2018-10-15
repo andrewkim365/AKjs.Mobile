@@ -2,6 +2,7 @@
 .ak-Slider ul{position: absolute; z-index: 1; width: 100%; height: 100%;}
 .ak-Slider ul li{display: none; position: absolute; top: 0; width: 100%; height: 100%; overflow: hidden;}
 .ak-Slider ul li img{width: 100%;}
+.ak-Slider ul li img:active{opacity: 1 !important;}
 .ak-Slider ol{position: absolute; bottom: 1em; z-index: 1;}
 .ak-Slider button{display: none; position: absolute; z-index: 1;}
 .ak-Slider:hover button{display: block;}

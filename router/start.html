@@ -45,12 +45,15 @@
     /*-----------------------------------------------AKjs_Slider 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_welcome").AKjs_Slider({
-            fullpage: true, //是否满屏模式滑动（true，false）
-            UpDown: false, //是否开启上下滑动切换功能，启用该功能不能左右滑动（true，false）
             start: 1, //默认显示的图片排号
+            fullpage: true, //是否满屏模式滑动（true，false）
+            SlideAni: true, //是否开启滑落动画切换效果 （false代表只能显示和隐藏效果）
+            UpDown: false, //是否开启上下滑动切换功能，启用该功能不能左右滑动。SlideAni参数开启后才能使用（true，false）
             speed: 500, //图片切换的速度
             interval: 5000, //图片切换间隔毫秒
+            touchPlay: true, //是否开启鼠标或触屏滑动时切换联播图（true，false）
             autoPlay: false, //幻灯片是否自动播放（true，false）
+            HoverPause: true, //幻灯片自动播放时是否鼠标滑动后暂停联播图（true，false）
             loopPlay:false, //幻灯片是否循环播放（true，false）
             dotShow: true, //是否显示幻灯片位置按钮（true，false）
             arrShow: false, //是否显示左右切换按钮（true，false）

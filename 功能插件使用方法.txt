@@ -1,5 +1,5 @@
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-09-30
+//文档更新日期：2018-10-15
 
 //按需引入方法：
 /******JS插件按需引入（注意：插件名称和插件文件名需要保持一致，而且插件文件必须要放到plugin目录里面，否则会出错！）******/
@@ -100,22 +100,27 @@
 
     /*-----------------------------------------------AKjs_Slider 使用方法-------------------------------------------*/
     $(function() {
-        $(".plug_slider").AKjs_Slider({
-            start: 1, //默认显示的图片排号
-            speed: 500, //图片切换的速度
-            interval: 5000, //图片切换间隔毫秒
-            autoPlay: true, //幻灯片是否自动播放（true，false）
-            dotShow: true, //是否显示幻灯片位置按钮（true，false）
-            arrShow: false, //是否显示左右切换按钮（true，false）
-            CustomHeight: false, //是否启用自定义高度，随着带[data-height=true]属性的元素高度进行设置（true，false）
-            dotClass: "fl wh_08em bg_gray_333 border bor_white mr_05em bor_rad_50 pointer", //底部图片位置的样式设置
-            arrClass:"wh_24em c_white bg_black05 bor_rad_50 pointer", //左右切换按钮的样式设置
-            ActiveClass: "bg_title", //底部图片位置的当前样式
-            afterSlider: function(num) { //回调获取当前的数
-                //console.log(num);
-            }
+            $(".plug_slider").AKjs_Slider({
+                start: 1, //默认显示的图片排号
+                fullpage: false, //是否满屏模式滑动（true，false）
+                SlideAni: true, //是否开启滑落动画切换效果 （false代表只能显示和隐藏效果）
+                UpDown: false, //是否开启上下滑动切换功能，启用该功能不能左右滑动。SlideAni参数开启后才能使用（true，false）
+                speed: 500, //图片切换的速度 (SlideAni未开启时建议该参数设为0，回调入口里加css动画时不要设置0)
+                interval: 5000, //图片切换间隔毫秒
+                touchPlay: true, //是否开启鼠标或触屏滑动时切换联播图（true，false）
+                autoPlay: true, //幻灯片是否自动播放（true，false）
+                HoverPause: true, //幻灯片自动播放时是否鼠标滑动后暂停联播图（true，false）
+                dotShow: true, //是否显示幻灯片位置按钮（true，false）
+                arrShow: false, //是否显示左右切换按钮（true，false）
+                CustomHeight: false, //是否启用自定义高度，随着带[data-height=true]属性的元素高度进行设置（true，false）
+                dotClass: "fl wh_08em bg_gray_333 border bor_white mr_05em bor_rad_50 pointer", //底部图片位置的样式设置
+                arrClass:"wh_24em c_white bg_black05 bor_rad_50 pointer", //左右切换按钮的样式设置
+                ActiveClass: "bg_title", //底部图片位置的当前样式
+                afterSlider: function(index,ele) { //回调获取当前的数
+                    //console.log(index);
+                }
+            });
         });
-    });
 
     /*-----------------------------------------------AKjs_Form 使用方法-------------------------------------------*/
     $(function() {
