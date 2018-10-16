@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-27
+Modification Date: 2018-10-16
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
@@ -191,7 +191,12 @@ function AKjs_Popupwin (setting){
             effectStr = effectStr.replace("_0","_0.");
         }
         effectStr = effectStr.substr(1);
-        var setTimeouts = effectStr*1000+setTimes;
+        var ani_css = new RegExp("ani_");
+        if(ani_css.test(effectTime)) {
+            var setTimeouts = effectStr*1000+setTimes;
+        } else {
+            var setTimeouts = 1000;
+        }
         setTimeout(function() {
             $("#ak-scrollview").addClass("scrolling_touch");
             $(option.OneButton).removeClass("ak-is_active");
