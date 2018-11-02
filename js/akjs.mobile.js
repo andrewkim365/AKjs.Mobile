@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20180929 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181102 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -11,7 +11,6 @@ function AKjs_Config(setting) {
             touchstart: true,
             ButtonLink: true,
             fixedBar: true,
-            WechatHeader: false,
             Orientation: true,
             Prompt: "",
             Topdblclick: true,
@@ -75,24 +74,6 @@ function AKjs_Config(setting) {
         $("#ak-scrollview").addClass("scrolling_touch");
     } else {
         $("*").removeClass("touchstart");
-    }
-    if(option.WechatHeader== true) {
-        if(IsWechat) {
-            $(function () {
-                $("header").not("aside header").addClass("dis_none_im").removeClass("dis_block_im");
-                $("main").not("aside main").addClass("mt_0");
-                if ($("footer").not("aside footer").hasClass("dis_none_im") || $("header").not("aside header").length === 0) {
-                    var footer_h = 0;
-                } else {
-                    var footer_h = $("footer").not("aside footer").outerHeight();
-                }
-                $("main").not("aside main").css({
-                    "height": $(window).height() - footer_h
-                });
-            });
-        } else {
-            $("main").not("aside main").removeClass("mt_0");
-        }
     }
     if(option.ButtonLink== true) {
         if (!$("html").attr("data-router")) {
@@ -812,7 +793,12 @@ function AKjs_mainHeight() {
             }
             $(function () {
                 $("#ak-scrollview").css({
-                    "height": $(window).height() - $("#ak-scrollview").offset().top - footer_h
+                    "height": $(window).height() - header_h - footer_h
+                });
+                $(".h_main").each(function(){
+                    $(this).css({
+                        "min-height": $("#ak-scrollview").height() - $(this).offset().top + $("#ak-scrollview").offset().top
+                    });
                 });
             });
         }
@@ -910,7 +896,7 @@ function AKjs_mainHeight() {
             });
         }
         $(".h_fill").css({
-            "height": $(window).height()
+            "min-height": $(window).height()
         });
         $(".ud_text_c").wrap("<text />");
     });
@@ -1148,11 +1134,11 @@ function AKjs_RegularExp() {
         if ($(this).attr("data-type") == "number") {
             $(this).attr("pattern","[0-9]*");
             $(this).keyup(function() {
-                this.value = this.value.replace(/\D/g, '');
+                this.value = this.value.replace(/[^\d]/g,'');
             }).bind("paste", function () {
-                this.value = this.value.replace(/\D/g, '');
+                this.value = this.value.replace(/[^\d]/g,'');
             }).bind("blur", function () {
-                this.value = this.value.replace(/\D/g, '');
+                this.value = this.value.replace(/[^\d]/g,'');
             });
         } else if ($(this).attr("data-type") == "number_symbol") {
             $(this).attr("pattern","(\\d{5}([-]\\d{4})?)");
@@ -1340,12 +1326,10 @@ function AKjs_Location(url,setting) {
 function AKjs_getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var u = document.location.search.substr(1);
-    //if(u == ''){
     var temp = document.location.hash.split('?');
     if(temp.length == 2){
         u = temp[1];
     }
-    //}
     var r = u.match(reg);
     if (r != null) return unescape(r[2]); return null;
 }
