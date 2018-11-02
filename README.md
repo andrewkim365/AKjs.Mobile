@@ -59,6 +59,8 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.5版本；
 
 解决微信端兼容问题以及正则表达式部分的小bug。
 
+AKjs_Config中的WechatHeader参数已停用。
+
 
 #### 更新时间：2018/09/29 下午 13:20
 
