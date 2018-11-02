@@ -90,7 +90,7 @@
     border-color: #e4ebdf;
 }
 
-a:active {
+a:active, *[data-href]:active {
     color: #5aa42c !important;
 }
 button.bg_white:active {

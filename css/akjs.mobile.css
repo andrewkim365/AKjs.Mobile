@@ -338,7 +338,7 @@ legend {
 .cur_nodrop {
     cursor: no-drop;
 }
-.pointer, .touchstart {
+.pointer, .touchstart, *[data-href] {
     cursor: pointer;
 }
 .touchstart:active {

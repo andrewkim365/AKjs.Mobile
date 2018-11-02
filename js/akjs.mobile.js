@@ -1011,7 +1011,6 @@ function AKjs_HashSharp() {
     var href_main = $("main *[data-href]");
     var href_not_main = $('*[data-href]').not("main *[data-href]");
     AKjs_UserAgent();
-    $('*[data-href]').addClass("pointer");
     if (IsIphone || IsIpad) {
         href_not_main.unbind('touchstart');
         delegate = "touchstart";
