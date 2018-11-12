@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181102 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181112 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -286,15 +286,15 @@ legend {
     display: block;
     width: 8px;
     height: 8px;
-    background-color: #f5f5f5;
+    background-color: #dddddd;
 }
 .scrollbar::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #f5f5f5;
+    background-color: #dddddd;
 }
 .scrollbar::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.2);
 }
 .scrollbar_hide::-webkit-scrollbar {
     display: none;
@@ -11959,8 +11959,11 @@ text {
 .active_white:active {
     background-color:#ffffff !important;
 }
-.hover_none:active {
+.active_none:active {
     background-color: transparent !important;
+}
+.active_line:active {
+    text-decoration: underline !important;
 }
 
 /*white color list Style*/

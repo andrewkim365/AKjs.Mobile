@@ -1,7 +1,7 @@
 /*-----------------------------------------------AKjs_Waterfall-------------------------------------------*/
 .ak-waterfall{background-color: inherit; position: relative; z-index: 2;}
-.ak-waterfall figure{float: left; border: solid 1px #dddddd; padding: 0.5em; height: auto; position: absolute; height: -moz-max-content !important; height: -webkit-max-content !important; height: max-content !important;}
-.ak-waterfall figure img{width: 10em;}
+.ak-waterfall > *{float: left; border: solid 1px #dddddd; padding: 0.5em; height: auto; position: absolute; height: -moz-max-content !important; height: -webkit-max-content !important; height: max-content !important;}
+.ak-waterfall > * img{width: 10em;}
 @media screen and (min-width:321px) and (max-width:410px){.ak-waterfall figure img{width: 11em;}}
 @media screen and (min-width:411px) and (max-width:482px){.ak-waterfall figure img{width: 12em;}}
 @media screen and (min-width:483px) and (max-width:680px){.ak-waterfall figure img{width: 14em;}}

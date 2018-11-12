@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-07
+Modification Date: 2018-11-07
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Lazyload-------------------------------------------*/
@@ -7,7 +7,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     $.fn.AKjs_Lazyload = function(setting) {
         var option = $.extend({
                 scroll: $(window),
-                scrollTop: 0,
+                scrollTop: "",
                 Img_Effect: "",
                 Img_LoadStyle: "",
                 Img_Error: "",
@@ -15,12 +15,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 Scrollback: function() {}
             },
             setting);
-            var ele = $(this).not("#ak-aside img");
+            var ele = $(this).not("#ak-aside img").not(".lazy_none");
             var view_h = parseInt(window.screen.height);
             var png_regexp = new RegExp("\\.png");
             var gif_regexp = new RegExp("\\.gif");
             $(function () {
-                option.Callback(option.scroll.find(ele));
+                option.Callback(ele);
                 if (ele.prop('tagName') == "img" || ele.prop('tagName') == "IMG") {
                     if (option.Img_LoadStyle) {
                         ele.each(function () {
@@ -44,15 +44,31 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                                     view_img.remove();
                                 } else {
                                     if (view_img.offset().top < view_h) {
-                                        view_img.attr("data-src", view_img.attr("src"));
-                                        view_img.attr("src",TransparentImage);
-                                        view_img.attr("src", view_img.data("src"));
-                                        if (option.Img_Effect) {
-                                            view_img.addClass("animated "+option.Img_Effect);
+                                        if (option.scrollTop) {
+                                            var offset_top = option.scrollTop;
+                                        } else {
+                                            var offset_top = view_img.offset().top - view_h;
+                                        }
+                                        if (view_img.offset().top < view_h) {
+                                            if (offset_top >= option.scroll.scrollTop()) {
+                                                $(function () {
+                                                    view_img.addClass("animated "+option.Img_Effect);
+                                                    view_img.attr("src", view_img.data("src"));
+                                                });
+                                            }
+                                        } else {
+                                            if (offset_top <= option.scroll.scrollTop()) {
+                                                $(function () {
+                                                    view_img.addClass("animated "+option.Img_Effect);
+                                                    view_img.attr("src", view_img.data("src"));
+                                                });
+                                            }
                                         }
                                     } else {
-                                        view_img.attr("data-src", view_img.attr("src"));
-                                        view_img.attr("src",TransparentImage);
+                                        if (view_img.offset().top > option.scroll.scrollTop()+view_h) {
+                                            view_img.attr("data-src", view_img.attr("src"));
+                                            view_img.attr("src",TransparentImage);
+                                        }
                                         if (option.Img_Effect) {
                                             view_img.removeClass("animated "+option.Img_Effect);
                                         }
@@ -129,25 +145,32 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             }
                         }
                     }
-                    option.Scrollback(option.scroll.find(ele),scrollTop);
+                    option.Scrollback(ele,scrollTop);
                     ele.each(function () {
                         var view_ele = $(this);
                         if (view_ele.prop('tagName') == "img" || view_ele.prop('tagName') == "IMG") {
+                            if (option.scrollTop) {
+                                var offset_top = option.scrollTop;
+                            } else {
+                                var offset_top = view_ele.offset().top - view_h;
+                            }
                             if (view_ele.offset().top < view_h) {
-                                if (option.scrollTop >= scrollTop) {
+                                if (offset_top >= scrollTop) {
                                     $(function () {
                                         view_ele.addClass("animated "+option.Img_Effect);
                                         view_ele.attr("src", view_ele.data("src"));
                                     });
                                 }
                             } else {
-                                if (option.scrollTop >= scrollTop) {
-                                    view_ele.attr("src",TransparentImage);
-                                    view_ele.removeClass("animated "+option.Img_Effect);
+                                if (offset_top <= scrollTop) {
+                                    $(function () {
+                                        view_ele.addClass("animated "+option.Img_Effect);
+                                        view_ele.attr("src", view_ele.data("src"));
+                                    });
                                 }
                             }
                         } else {
-                            if (option.scrollTop >= scrollTop) {
+                            if (offset_top >= scrollTop) {
                                 view_ele.removeClass("animated "+aniJson.name);
                             }
                         }

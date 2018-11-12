@@ -1,11 +1,12 @@
 /*
-Modification Date: 2018-09-17
+Modification Date: 2018-11-10
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Waterfall-------------------------------------------*/
 (function($) {
     var pluginName = 'AKjs_Waterfall',
         defaults = {
+            scrollDom:$(window),
             spacingWidth: 5,
             spacingHeight: 5,
             minColCount: 2,
@@ -87,16 +88,17 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         _doScroll: function () {
             var $this = this,
                 scrollTimer;
-            var $container = $("#ak-scrollview");
+            var $container = $this.options.scrollDom;
             $container.on('scroll', function (andrew) {
                 andrew.preventDefault();
                 if(scrollTimer) {
                     clearTimeout(scrollTimer);
                 }
                 scrollTimer = setTimeout(function() {
-                    var $last = $this.$element.children().last(),
+                    var $first_top = $this.$element.children().first().offset().top,
                         scrollTop = $container.scrollTop() + $container.height();
-                    if(!$this.ajaxLoading && scrollTop > $last.offset().top + $last.outerHeight() / 2) {
+
+                    if(!$this.ajaxLoading && scrollTop > Math.max.apply(null, $this.colHeightArray) + $first_top) {
                         $this.ajaxLoading = true;
                         $this.options.ajaxCallback && $this.options.ajaxCallback(
                             $this.$element,
