@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-10-10
+Modification Date: 2018-11-16
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Viewer-------------------------------------------*/
@@ -288,7 +288,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 width = this.$items.eq(i).width(),
                 outerWidth = width + 1;
             this.$list.css({
-                width: outerWidth * (this.length + 1),
+                width: outerWidth * (this.length + 10),
                 marginLeft: (this.viewer.width - width) / 2 - outerWidth * i
             });
         },
