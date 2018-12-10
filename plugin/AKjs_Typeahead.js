@@ -1,5 +1,5 @@
 /*
-Modification Date: 2018-09-30
+Modification Date: 2018-11-30
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Typeahead-----------------------------------------*/
@@ -9,7 +9,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         $(function() {
                 _this.$element = $(element);
                 _this.options = $.extend(true, {}, $.fn.AKjs_Typeahead.defaults, options);
-                _this.$menu = $(_this.options.menu).appendTo("body");
+                _this.$menu = $("<div class=\"ak-typeahead\"></div>").appendTo("body");
                 _this.shown = false;
                 _this.eventSupported = _this.options.eventSupported || _this.eventSupported;
                 _this.grepper = _this.options.grepper || _this.grepper;
@@ -48,14 +48,27 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var that = this;
             that.$element.bind("focus", function() {
                 that.ele_show(1);
-                that.$menu.children("ul").hide();
+                if (that.$element.val().length === 0 && that.$menu.children("ul").find("li").length === 0 && that.$menu.outerHeight() < 10) {
+                    that.$menu.children("ul").hide();
+                    that.options.CallBack(true,$(this),that.$menu);
+                } else {
+                    that.$menu.children("ul").show();
+                    that.options.CallBack(false,$(this),that.$menu);
+                }
+            });
+            $(document).on("mousedown", function(e) {
+                if ($(e.target).closest(that.$menu).length === 0 && $(e.target).closest(that.$element).length === 0) {
+                    that.$menu.hide();
+                    that.options.CallBack(false,$(this),that.$menu);
+                }
             });
             that.$element.bind("input propertychange", function() {
                 that.ele_show(1);
-                if (that.$menu.children("ul").find("li").length > 0) {
-                    that.$menu.children("ul").show();
-                } else {
+                that.options.CallBack(false,$(this),that.$menu);
+                if (that.$element.val().length === 0 && that.$menu.children("ul").find("li").length === 0) {
                     that.$menu.children("ul").hide();
+                } else {
+                    that.$menu.children("ul").show();
                 }
                 if (that.$element.val().length == 0) {
                     that.$menu.children("ul").empty();
@@ -89,7 +102,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     "left": "0",
                     "width": "100%"
                 });
-                that.$menu.children("ul").addClass("bor_none scrolling_touch").css({
+                that.$menu.children("ul").addClass("bor_none scrolling_touch scrollbar").css({
                     "overflow-y": "scroll",
                     "height": $(window).height()
                 });
@@ -98,13 +111,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 $("#ak-scrollview").removeClass("scrolling_touch").addClass("ovh_im");
             } else {
                 that.$menu.children("ul").find("li:last").addClass("mb_0");
-                that.$menu.addClass("h_au abs");
+                that.$menu.addClass(that.options.boxClass);
                 that.$menu.css({
                     "top": that.$element.offset().top + that.$element.outerHeight(),
                     "left": that.$element.offset().left,
                     "width": that.options.boxsize[0]
                 });
-                that.$menu.children("ul").addClass("scrolling_touch").css({
+                that.$menu.children("ul").addClass("scrolling_touch scrollbar").css({
                     "overflow-y": "scroll",
                     "max-height": that.options.boxsize[1]
                 });
@@ -114,16 +127,15 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                         "left": that.$element.offset().left
                     });
                 });
-                $("body").unbind("click");
-                $("body").click(function () {
-                    that.$menu.hide();
-                });
                 if ($('#ak-scrollview').length > 0) {
                     var $scrollbar = $("#ak-scrollview");
                 } else {
                     var $scrollbar = $("main");
                 }
                 $scrollbar.scroll(function(){
+                    that.$menu.hide();
+                });
+                $(window).scroll(function(){
                     that.$menu.hide();
                 });
             }
@@ -285,8 +297,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var that = this;
             this.$menu.html("<ul />");
             items = $(items).map(function(i, item) {
-                i = $(that.options.item).attr("data-value", item[that.options.val]);
-                i.html(that.highlighter(item[that.options.display], item));
+                i = $("<li class=\"touchstart\"></li>").attr("data-value", item[that.options.val]);
+                i.html("<span class='fl'>"+that.highlighter(item[that.options.display], item)+"</span><span class='fr'>"+item[that.options.custom]+"</span>");
                 return i[0]
             });
             items.first().addClass("ak-is_active");
@@ -295,20 +307,14 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         },
         select: function() {
             var that = this;
-            var $selectedItem = this.$menu.find(".ak-is_active");
+            var $selectedItem = this.$menu.find(".ak-is_active").find("span.fl");
             setTimeout(function() {
                 document.activeElement.blur();
                 that.hide();
                 that.$element.val($selectedItem.text()).change()
             }, 150);
-            if (this.$element.val != "") {
-                this.$menu.find("li").on("click", function(e) {
-                    e.stopPropagation();
-                    that.hide();
-                });
-            }
             this.$menu.children("ul").empty();
-            this.options.itemSelected($selectedItem, $selectedItem.attr("data-value"), $selectedItem.text());
+            this.options.itemSelected($selectedItem, $selectedItem.parent().attr("data-value"), $selectedItem.text());
             return
         },
         next: function(event) {
@@ -383,17 +389,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             e.stopPropagation();
             e.preventDefault();
             if (that.$element.val().length == 0) {
-                that.hide()
+                that.$menu.children("ul").hide();
             }
             setTimeout(function() {
-                    document.activeElement.blur()
-                },
-                150)
+                document.activeElement.blur();
+            }, 150);
         },
         click: function(e) {
+            var that = this;
             e.stopPropagation();
             e.preventDefault();
-            this.select()
+            if ($(e.target).closest(that.$menu.find("li")).length > 0) {
+                that.select();
+            }
         },
         mouseenter: function(e) {
             this.$menu.find(".ak-is_active").removeClass("ak-is_active");
@@ -416,11 +424,12 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     $.fn.AKjs_Typeahead.defaults = {
         source: [],
         items: 20,
-        menu: '<div class="ak-typeahead"></div>',
-        item: '<li class="touchstart"></li>',
         display: "name",
         val: "id",
+        custom: "text",
         boxsize: ["20em","30em"],
+        boxClass: "",
+        CallBack: function() {},
         showCallBack: function() {},
         itemSelected: function() {},
         ajax: {

@@ -14,7 +14,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var txt =$(this);
         if (txt.length > 0) {
             txt.each(function(){
-                $(this).after('<span class="dis_block_im ovh abs center text_al_r text_08em">' +
+                $(this).after('<span class="dis_block_im ovh abs center text_al_r text_12px">' +
                     '<var class="text_08em" style="color: #f16a6a;">0</var>' +
                     '/' +
                     '<var class="text_08em mr_03em">'+opm.maxlength+'</var>' +

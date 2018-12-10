@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-11-16
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
@@ -364,18 +364,19 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     })
                 }
             } else {
-                if ($("#ak-scrollview").scrollTop() > 0) {
-                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top + $("#ak-scrollview").scrollTop()
-                } else {
-                    var fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top
-                }
                 if (offset.left + this.picker.width() > $(window).width()) {
                     offsetLeft = offset.left - $("#ak-scrollview").offset().left - this.picker.width() + width
                 } else {
                     offsetLeft = offset.left - $("#ak-scrollview").offset().left
                 }
+                if ($("#ak-scrollview").scrollTop() > 0) {
+                    fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top + $("#ak-scrollview").scrollTop()
+                } else {
+                    fullOffsetTop = offset.top + height - $("#ak-scrollview").offset().top
+                }
+                var fullOffsetBottom = "auto";
                 this.picker.removeClass("ak-isMobile").css({
-                    bottom: "auto",
+                    bottom: fullOffsetBottom,
                     top: fullOffsetTop,
                     left: offsetLeft,
                     zIndex: zIndex

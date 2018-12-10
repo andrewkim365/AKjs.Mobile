@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-17
+Modification Date: 2018-12-08
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Favorite-------------------------------------------*/
@@ -70,11 +70,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     $("body").append("<span class='ak-NumLength press'>" + options.str + "</span>");
                     var box = $(".ak-NumLength");
                     $(window).resize(function() {
-                        left = that.offset().left + that.width() / 2;
-                        top = that.offset().top - 10
+                        left = ele.offset().left + ele.width() / 2;
+                        top = ele.offset().top - 10
                     });
-                    var left = that.offset().left + that.width() / 2;
-                    var top = that.offset().top - 10;
+                    var left = ele.offset().left + ele.width() / 2;
+                    var top = ele.offset().top - 10;
                     box.css({
                         "position": "absolute",
                         "left": left,
@@ -102,12 +102,13 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                     }
                     if ($(this).children("span").text() == options.text_default) {
                         $(this).children("span").text(options.text_change);
+                        options.callback(true, ele);
                     } else {
                         $(this).children("span").text(options.text_default);
+                        options.callback(false, ele);
                     }
                     $(this).attr("data-value", count);
                     $(this).children("i").toggleClass(options.icon_defaultClass + " " + options.icon_changeClass);
-                    options.callback(count, ele);
                 }
             })
     }

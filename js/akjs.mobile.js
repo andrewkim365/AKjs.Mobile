@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.5 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181112 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181210 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -1022,7 +1022,7 @@ function AKjs_HashSharp() {
         ak.preventDefault();
         var _this = $(this);
         var _HashSharp = localStorage.HashSharp;
-        if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
+        if (AKjs_getUrlParam('akjs') != null && hash_sharp.test(document.location.hash) && $("html").attr("data-router") == "akjs") {
             data_href(_this,_HashSharp);
         } else {
             document.location.href= _this.attr("data-href");
@@ -1032,7 +1032,7 @@ function AKjs_HashSharp() {
         ak.preventDefault();
         var _this = $(this);
         var _HashSharp = localStorage.HashSharp;
-        if (AKjs_getUrlParam('akjs') != null || hash_sharp.test(document.location.hash)) {
+        if (AKjs_getUrlParam('akjs') != null && hash_sharp.test(document.location.hash) && $("html").attr("data-router") == "akjs") {
             data_href(_this,_HashSharp);
         } else {
             document.location.href= _this.attr("data-href");

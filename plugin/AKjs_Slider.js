@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-11-04
+Modification Date: 2018-12-03
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Slider------------------------------------------*/
@@ -22,6 +22,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 arrIcon: [],
                 CustomHeight: false,
                 ActiveClass: "bg_title",
+                callback: function() {},
                 afterSlider: function() {}
             },
             self.clickable = true,
@@ -74,6 +75,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                             "right": ele.find("button.ak-arr_next").outerWidth()/2
                         });
                     }
+                    self.options.callback(ele);
                 }
                 for (i = 1; i <= SliderSize; i++) {
                     if (index == i) {
