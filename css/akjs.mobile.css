@@ -12187,6 +12187,7 @@ text {
     background-color:#ffffff !important;
 }
 .active_none:active {
+    color:inherit !important;
     background-color: transparent !important;
 }
 .active_line:active {

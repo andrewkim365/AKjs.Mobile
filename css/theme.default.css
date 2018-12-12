@@ -91,7 +91,7 @@
 }
 
 a:active, *[data-href]:active {
-    color: #5aa42c !important;
+    color: #5aa42c;
 }
 button.bg_white:active {
     background-color: #f5f5f5 !important;
