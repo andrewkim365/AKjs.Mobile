@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-11-16
+Modification Date: 2018-12-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Viewer-------------------------------------------*/
@@ -175,7 +175,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 this)),
                 $images.each(function() {
                 this.complete ? ready() : $(this).one($event_load, ready)
-            })) : $this.on($event_click, $.proxy(this.start, this))))
+            })) : $this.on($event_click, $.proxy(this.start, this))));
         },
         ready: function() {
             this.count++,
@@ -355,6 +355,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 action = $target.data("action"),
                 image = this.image;
             switch (action) {
+                case "canvas":
+                    this.isPlayed ? this.stop() : this.options.inline ? this.isFulled ? this.exit() : this.full() : this.hide();
+                    break;
                 case "mix":
                     this.isPlayed ? this.stop() : this.options.inline ? this.isFulled ? this.exit() : this.full() : this.hide();
                     break;
@@ -810,7 +813,7 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     };
     ak_Viewer.template =
         '<div class="ak-viewer-container">' +
-            '<div class="ak-viewer-canvas"></div>' +
+            '<div class="ak-viewer-canvas" data-action="canvas"></div>' +
             '<div class="ak-viewer-footer animated slideInUp h_10em bg_black07">' +
                 '<div class="ak-viewer-title"></div>' +
                 '<ul class="ak-viewer-toolbar">' +
