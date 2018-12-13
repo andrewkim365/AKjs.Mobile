@@ -59,6 +59,18 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.6版本；
 
 需要全部替换plugin目录中的所有文件（css代码压缩以及js代码性能优化）；
 
+重点升级：根目录中增加了compress目录。该目录是原先的plugin目录中的所有功能插件压缩为一个文件，目的是为了减少文件请求次数让网页的打开速度提升。
+
+1. 打开plugin.js 文件后里面所有的AKjs_Plugin方法的代码全部注释。
+
+2. AKjs_Config 方法中把pluginPath中的plugin目录修改为compress目录。
+
+3. 在plugin.js文件里加一行代码 （建议使用带min的第二个方法）
+
+AKjs_Plugin("AKjs_Plugin.Mobile","css"); //引入全部功能插件
+
+AKjs_Plugin("AKjs_Plugin.Mobile.min","css"); //引入压缩版的全部功能插件
+
 
 #### 更新时间：2018/11/02 下午 16:19
 

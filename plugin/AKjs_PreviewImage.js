@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-09-20
+Modification Date: 2018-12-13
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_PreviewImage---------------------------------------*/
@@ -28,12 +28,6 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             setting);
         option = op;
         var pimg = $(this);
-        if (sessionStorage.getItem("AKjs_WebToast_js") === null || sessionStorage.getItem("AKjs_WebToast_js").trim() == "") {
-            AKjs_Plugin("AKjs_WebToast", "css");
-        }
-        if (sessionStorage.getItem("AKjs_Dialog_js") === null || sessionStorage.getItem("AKjs_Dialog_js").trim() == "") {
-            AKjs_Plugin("AKjs_Dialog", "css");
-        }
         pimg.addClass("ak-previewImage");
         $(option.delbtnClass).hide();
         pimg.find("input[type=file]").attr("accept", "image/*");

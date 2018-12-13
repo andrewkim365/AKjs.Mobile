@@ -9,7 +9,7 @@ AKjs_Config({ //环境配置管理
     animation: true, //是否开启元素里加动画参数的功能？（例：data-animation="{name: 'zoomIn', duration:1, delay: 0}"） 动画库：akjs.animate.css
     Orientation: true, //是否开启应用只允许竖屏浏览 (使用 true, 不使用 false）
     Prompt: "为了更好的视觉体验，请在竖屏下进行操作。", //应用横屏是提示文字 (必须开启Orientation的选项才能生效)
-    pluginPath: "./plugin/", //功能插件文件所在的目录设置
+    pluginPath: "./compress/", //功能插件文件所在的目录设置
     pluginClear: { //定期清理功能插件的缓存 【days=天数, hours=小时, minutes=分钟，seconds=秒数 （当前提供的四个参数中任意抽选一个设置时间清理功能插件的缓存。四个参数不能同时设置）】
         /*使用帮助：项目开发阶段建议使用秒数间隔清理缓存，项目正式上线后不经常改动插件所以建议使用天数间隔清理缓存。*/
         /*注意：清理缓存时按需引入的功能插件将重新网络请求所以会影响到页面加载速度。*/
@@ -23,12 +23,13 @@ AKjs_Config({ //环境配置管理
 * 做项目时不必要的插件可以注释处理。
 * 注：调用插件的地方在router目录里的相关html文件中的最底部。
 */
+AKjs_Plugin("AKjs_Plugin.Mobile","css"); //引入压缩版的全部功能插件
 
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
 if (AKjs_Params(1).indexOf("start") == -1) { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
 
     /*-----------------------------------------------AKjs_Plugin 插件按需引入区域-------------------------------------------*/
-    AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
+    //AKjs_Plugin("AKjs_Loader","css"); //Loading效果功能
 
     $(function() {
         AKjs_Loader({
@@ -54,7 +55,7 @@ if (AKjs_Params(1).indexOf("start") == -1) { //通过AKjs_Params获取hash的第
     });
 }
 
-$(function () {
+/*$(function () {
     if (AKjs_Params(1).indexOf("start") != -1) { //通过AKjs_Params获取hash的第一个值
 
         AKjs_Plugin("AKjs_Slider", "css"); //欢迎页和联播图功能
@@ -138,7 +139,7 @@ $(function () {
         AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
 
     }
-});
+});*/
 
 /*-----------------------------------------------AKjs_Responsive 使用方法-------------------------------------------*/
 $(function() {

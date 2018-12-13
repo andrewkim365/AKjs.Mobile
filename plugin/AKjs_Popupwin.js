@@ -1,5 +1,5 @@
 ﻿/*
-Modification Date: 2018-10-16
+Modification Date: 2018-12-12
 Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
 */
 /*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
@@ -31,7 +31,6 @@ function AKjs_Popupwin (setting){
         AKjs_UserAgent();
         $(option.OneButton).toggleClass("ak-is_active");
         if ($(option.OneButton).hasClass("ak-is_active")) {
-            $(option.dom).removeAttr("style");
             setPopupStyle();
             setTimeout(function() {
                 if (option.hasMask) {
@@ -201,7 +200,7 @@ function AKjs_Popupwin (setting){
             $("#ak-scrollview").addClass("scrolling_touch");
             $(option.OneButton).removeClass("ak-is_active");
             $('#popup_mask').fadeOut().remove();
-            $(option.dom).addClass("dis_none").removeAttr("style");
+            $(option.dom).addClass("dis_none");
         },setTimeouts);
     }
 }
