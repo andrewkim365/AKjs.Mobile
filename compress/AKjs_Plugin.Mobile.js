@@ -1,9 +1,7 @@
-﻿///<jscompress sourcefile="AKjs_AllChecked.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_AllChecked--------------------------------------*/
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181213 AKjs.Mobile license */
+/*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
+
+/*-----------------------------------------------AKjs_AllChecked (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_AllChecked = function(settings) {
         var ele = $(this);
@@ -57,13 +55,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             option.callback(checks);
         })
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_ButtonSubmit.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_ButtonSubmit--------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_ButtonSubmit (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_ButtonSubmit = function(msg, setting) {
         var option = $.extend({
@@ -123,14 +117,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_ChangeIcon.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_ChangeIcon--------------------------------------*/
-(function($){
+
+/*-----------------------------------------------AKjs_ChangeIcon (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_ChangeIcon = function(setting) {
         var option = $.extend({
                 multi_icon: false,
@@ -180,14 +169,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
         });
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_ChangeInput.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_ChangeInput-------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_ChangeInput (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_ChangeInput = function(setting) {
         var option = $.extend({
                 text_input: new Array(),
@@ -208,13 +193,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             option.onChange(right_input_value,tmp);
         });
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Checkbox.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Checkbox--------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Checkbox (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Checkbox = function(settings) {
         var _defaults = {
@@ -290,13 +271,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         })
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_ChooseList.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_ChooseList--------------------------------------*/
+
+/*-----------------------------------------------AKjs_ChooseList (2018-12-13)--------------------------------------------*/
 (function($) {
     var defaults = {
         itemWidth: null,
@@ -491,13 +467,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             return this
         }
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Circliful.js" />
-/*
-Modification Date: 2018-10-10
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Circliful-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Circliful (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Circliful = function(setting) {
         var option = $.extend({
@@ -750,13 +722,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         })
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_Codeval.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Codeval-----------------------------------------*/
+
+/*-----------------------------------------------AKjs_Codeval (2018-12-13)--------------------------------------------*/
 (function($) {
     var settings = {
         codeView: "",
@@ -845,14 +812,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
         return code
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_CountDown.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_CountDown---------------------------------------*/
-function AKjs_CountDown(ele,setting){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_CountDown (2018-12-13)--------------------------------------------*/
+function AKjs_CountDown(ele,setting) {
     var option = $.extend({
             wait: 10,
             Start_text: "",
@@ -883,13 +846,9 @@ function AKjs_CountDown(ele,setting){
             })
         }, 1000);
     }
-};
-///<jscompress sourcefile="AKjs_CountTo.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_CountTo-------------------------------------------*/
+}
+
+/*-----------------------------------------------AKjs_CountTo (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_CountTo = function(options) {
         options = options || {};
@@ -951,13 +910,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     function formatter(value, settings) {
         return value.toFixed(settings.decimals)
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_DateTime.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_DateTime-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_DateTime (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_DateTime = function(opt) {
         function cPlugin(o, emlnum) {
@@ -1975,13 +1930,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             return "" + x
         }
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Dialog.js" />
-/*
-Modification Date: 2018-10-10
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Dialog------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Dialog (2018-12-13)--------------------------------------------*/
 (function($) {
     var ak = {};
     var AKjs_Dialog = {};
@@ -2222,13 +2173,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
     };
     $ak = AKjs_Dialog;
-} (jQuery));;
-///<jscompress sourcefile="AKjs_DropLoad.js" />
-/*
-Modification Date: 2018-09-20
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_DropLoad------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_DropLoad (2018-12-13)--------------------------------------------*/
 (function($) {
     var _absMoveY = 0;
     var win = window;
@@ -2502,14 +2449,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_DropUpDown.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_DropUpDown--------------------------------------*/
-(function($){
+
+/*-----------------------------------------------AKjs_DropUpDown (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_DropUpDown = function(setting) {
         var option = $.extend({
                 curDisplay: "",
@@ -2561,14 +2503,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         };
         var drop = new DropDown($(this).children("li"));
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_EchartsRun.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_EchartsRun--------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_EchartsRun (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_EchartsRun = function(setting) {
         var opt = $.extend({
                 width: 0,
@@ -2596,13 +2534,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         };
         new Echarts($(this));
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Favorite.js" />
-/*
-Modification Date: 2018-12-08
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Favorite-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Favorite (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Favorite = function(setting) {
         var options = $.extend({
@@ -2712,13 +2646,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
             })
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Form.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Form--------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Form (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Form = function(setting) {
         var option = $.extend({
@@ -2915,13 +2845,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_GetVerifyCode.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_GetVerifyCode-----------------------------------*/
+
+/*-----------------------------------------------AKjs_GetVerifyCode (2018-12-13)--------------------------------------------*/
 (function($) {
     function AKjs_GetVerifyCode() {}
     AKjs_GetVerifyCode.prototype.SecondCountDown = function(options) {
@@ -3055,14 +2980,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
     };
     window.AKjs_GetVerifyCode = new AKjs_GetVerifyCode()
-} (jQuery));;
-///<jscompress sourcefile="AKjs_GoTop.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_GoTop--------------------------------------*/
-function AKjs_GoTop (setting){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_GoTop (2018-12-13)--------------------------------------------*/
+function AKjs_GoTop (setting) {
     option = $.extend({
         dom: $(window),
         hide: false,
@@ -3186,13 +3107,9 @@ function AKjs_GoTop (setting){
             }
         }
     });
-};
-///<jscompress sourcefile="AKjs_IntlTelInput.js" />
-/*
-Modification Date: 2018-09-30
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_IntlTelInput------------------------------------*/
+}
+
+/*-----------------------------------------------AKjs_IntlTelInput (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_IntlTelInput = function(setting) {
         var option = $.extend({
@@ -3402,13 +3319,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         var el = new TelInput($(this));
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_Keyboard.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Keyboard--------------------------------------*/
+
+/*-----------------------------------------------AKjs_Keyboard (2018-12-13)--------------------------------------------*/
 (function($) {
     $.AKjs_Keyboard = function(options) {
         var defaults = {
@@ -3546,14 +3458,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         };
         return obj;
     };
-})(jQuery);;
-///<jscompress sourcefile="AKjs_Lazyload.js" />
-/*
-Modification Date: 2018-11-12
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Lazyload-------------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Lazyload (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_Lazyload = function(setting) {
         var option = $.extend({
                 scroll: $(window),
@@ -3780,13 +3688,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             var TransparentImage ="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYwMkY5NUExNkVBRjExRThCOEE5RjZEMjg3OUQzMUIxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYwMkY5NUEyNkVBRjExRThCOEE5RjZEMjg3OUQzMUIxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjAyRjk1OUY2RUFGMTFFOEI4QTlGNkQyODc5RDMxQjEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjAyRjk1QTA2RUFGMTFFOEI4QTlGNkQyODc5RDMxQjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAAAACwAAAAAAQABAAACAkQBADs=";
         });
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_lightSlider.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_lightSlider---------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_lightSlider (2018-12-13)--------------------------------------------*/
 (function($) {
     var defaults = {
         item: 3,
@@ -4563,14 +4467,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         return this
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Loader.js" />
-/*
-Modification Date: 2018-09-30
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Loader------------------------------------------*/
-function AKjs_Loader(setting){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Loader (2018-12-13)--------------------------------------------*/
+function AKjs_Loader(setting) {
     var option = $.extend({
             ele: "",
             autoMode: true,
@@ -4800,13 +4700,8 @@ function AKjs_Loader(setting){
         }
     });
 }
-;
-///<jscompress sourcefile="AKjs_Marquee.js" />
-/*
-Modification Date: 2018-10-10
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Marquee--------------------------------------*/
+
+/*-----------------------------------------------AKjs_Marquee (2018-12-13)--------------------------------------------*/
 (function($) {
     var methods = {
         init: function(setting) {
@@ -5962,13 +5857,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             }
         }
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_MobileChat.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_MobileChat--------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_MobileChat (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_MobileChat = function(setting) {
         var option = $.extend({
@@ -6069,13 +5960,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             $("#ak-scrollview").scrollTop(scrollHeight);
         }
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_MultiDate.js" />
-/*
-Modification Date: 2018-11-16
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_MultiDate (2018-12-13)--------------------------------------------*/
 (function($) {
     var ak_MultiDate = function(element, options) {
         var that = this;
@@ -7357,14 +7244,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     };
     DateTimeGlobal.template = '<div class="ak-MultiDate dis_none">' + '<div class="minutes">' + "<table>" + DateTimeGlobal.headTemplate + DateTimeGlobal.contTemplate + DateTimeGlobal.footTemplate + "</table>" + "</div>" + '<div class="hours">' + "<table>" + DateTimeGlobal.headTemplate + DateTimeGlobal.contTemplate + DateTimeGlobal.footTemplate + "</table>" + "</div>" + '<div class="days">' + "<table>" + DateTimeGlobal.headTemplate + "<tbody></tbody>" + DateTimeGlobal.footTemplate + "</table>" + "</div>" + '<div class="month">' + "<table>" + DateTimeGlobal.headTemplate + DateTimeGlobal.contTemplate + DateTimeGlobal.footTemplate + "</table>" + "</div>" + '<div class="years">' + "<table>" + DateTimeGlobal.headTemplate + DateTimeGlobal.contTemplate + DateTimeGlobal.footTemplate + "</table>" + "</div>" + "</div>";
     $.fn.AKjs_MultiDate.DateTimeGlobal = DateTimeGlobal
-} (jQuery));;
-///<jscompress sourcefile="AKjs_NavScroll.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_NavScroll--------------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_NavScroll (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_NavScroll = function(setting) {
         var option = $.extend({
                 content_dom: "",
@@ -7482,15 +7365,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         });
     };
-}(jQuery));
-;
-///<jscompress sourcefile="AKjs_NowTime.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_NowTime-----------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_NowTime (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_NowTime = function(setting) {
         var option = $.extend({
                 dateStyle: 'yyyy-MM-dd hh:mm:ss'
@@ -7514,14 +7392,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             time.html(new Date().Format(option.dateStyle));
         },1000);
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Paginator.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Paginator-------------------------------------------*/
-(function ($) {
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Paginator (2018-12-13)--------------------------------------------*/
+(function($) {
     $.AKjs_Paginator = function (el, options) {
         if(!(this instanceof $.AKjs_Paginator)){
             return new $.AKjs_Paginator(el, options);
@@ -7740,14 +7614,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
     };
 
-})(jQuery);;
-///<jscompress sourcefile="AKjs_Popupwin.js" />
-/*
-Modification Date: 2018-12-12
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Popupwin----------------------------------------*/
-function AKjs_Popupwin (setting){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Popupwin (2018-12-13)--------------------------------------------*/
+function AKjs_Popupwin (setting) {
     option = $.extend({
         dom: "",
         position: "",
@@ -7947,13 +7817,9 @@ function AKjs_Popupwin (setting){
             $(option.dom).addClass("dis_none");
         },setTimeouts);
     }
-};
-///<jscompress sourcefile="AKjs_PortraitImage.js" />
-/*
-Modification Date: 2018-12-13
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_PortraitImage--------------------------------------*/
+}
+
+/*-----------------------------------------------AKjs_PortraitImage (2018-12-13)--------------------------------------------*/
 (function($) {
     var option = {};
     $.fn.AKjs_PortraitImage = function(setting) {
@@ -8042,13 +7908,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             option.addCallbak($(id).next().find("img"));
         }
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_PreviewImage.js" />
-/*
-Modification Date: 2018-12-13
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_PreviewImage---------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_PreviewImage (2018-12-13)--------------------------------------------*/
 (function($) {
     var option = {};
     $.fn.AKjs_PreviewImage = function(setting) {
@@ -8204,13 +8066,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         }
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_Print.js" />
-/*
-Modification Date: 2018-09-07
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Print-------------------------------------------*/
+
+/*-----------------------------------------------AKjs_Print (2018-12-13)--------------------------------------------*/
 (function($) {
     $.AKjs_Print = $.fn.AKjs_Print = function() {
         var options, $this, self = this;
@@ -8337,13 +8194,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
     function PrintIsNode(o) {
         return !! (typeof Node === "object" ? o instanceof Node: o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName === "string");
     }
-})(jQuery);;
-///<jscompress sourcefile="AKjs_Progress.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Progress-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Progress (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.extend({
         AKjs_Progress: function(options) {
@@ -8416,13 +8269,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             })
         }
     })
-} (jQuery));;
-///<jscompress sourcefile="AKjs_QRcode.js" />
-/*
-Modification Date: 2018-10-10
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_QRcode-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_QRcode (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_QRcode = function(options) {
         var QRMode;
@@ -8844,15 +8693,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         })
     }
-}(jQuery));
+} (jQuery));
 
-;
-///<jscompress sourcefile="AKjs_Radio.js" />
-/*
-Modification Date: 2018-09-25
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Radio--------------------------------------*/
+/*-----------------------------------------------AKjs_Radio (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Radio = function(settings) {
         var _defaults = {
@@ -8918,13 +8761,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 })
         })
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Range.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Range-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Range (2018-12-13)--------------------------------------------*/
 (function($) {
     var AKjs_Range = function() {
         return this.init.apply(this, arguments)
@@ -9224,13 +9063,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             500);
         return result || this
     };
-})(jQuery);;
-///<jscompress sourcefile="AKjs_Ratyli.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Ratyli-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Ratyli (2018-12-13)--------------------------------------------*/
 (function($) {
     $.AKjs_Ratyli = function(el, options) {
         var base = this;
@@ -9331,13 +9166,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         return this.each(function() { (new $.AKjs_Ratyli(this, options))
         })
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_ReadMore.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_ReadMore-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_ReadMore (2018-12-13)--------------------------------------------*/
 (function($) {
     var readmore = 'AKjs_ReadMore',
         defaults = {
@@ -9444,14 +9275,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         }
     }
-})(jQuery);
-;
-///<jscompress sourcefile="AKjs_Select.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Select-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Select (2018-12-13)--------------------------------------------*/
 (function($) {
     window.AKjs_Select = (function() {
         function getClass(dom, string) {
@@ -9986,14 +9812,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         };
         return AKjs_Select
     })()
-} (jQuery));;
-///<jscompress sourcefile="AKjs_SelectOption.js" />
-/*
-Modification Date: 2018-09-30
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_SelectOption-------------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_SelectOption (2018-12-13)--------------------------------------------*/
+(function($) {
     var defaluts = {
         active: "",
         boxheight: 5,
@@ -10160,14 +9982,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         }
     });
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Slider.js" />
-/*
-Modification Date: 2018-12-03
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Slider------------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Slider (2018-12-13)--------------------------------------------*/
+(function($) {
     var AKjs_Slider = function(ele, opt) {
         var self = this;
         self.$element = ele,
@@ -10613,13 +10431,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             ak_Slider.init()
         })
     }
-}(jQuery));;
-///<jscompress sourcefile="AKjs_SnInput.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_SnInput-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_SnInput (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_SnInput = function(setting) {
         var option = $.extend({
@@ -10706,14 +10520,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 }
             })
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Spinner.js" />
-/*
-Modification Date: 2018-09-26
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Spinner-------------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Spinner (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_Spinner=function(setting) {
         var option = $.extend({
                 input_width:"100%",
@@ -10838,14 +10648,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         }
     }
-}(jQuery));;
-///<jscompress sourcefile="AKjs_StepOrder.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_StepOrder---------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_StepOrder (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_StepOrder = function(setting) {
         var option = $.extend({
                 stepNum: "",
@@ -10902,14 +10708,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
         option.callback(step);
     };
-}(jQuery));
-;
-///<jscompress sourcefile="AKjs_Substring.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Substring-----------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Substring (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Substring = function() {
         $(this).blur(function() {
@@ -10948,13 +10749,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             return outputdollars(Math.floor(number - 0) + "") + outputcents(number - 0)
         }
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Switch.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Switch--------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Switch (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Switch = function(settings) {
         var _defaults = {
@@ -10998,13 +10795,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 })
         })
     }
-} (jQuery));;
-///<jscompress sourcefile="AKjs_Tabs.js" />
-/*
-Modification Date: 2018-12-02
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Tabs--------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Tabs (2018-12-13)--------------------------------------------*/
 (function($) {
     var Plugin = function(elem, options) {
         this.$wrapper = elem;
@@ -11414,12 +11207,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         return plugin.inital()
     }
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_Template.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
+
+/*-----------------------------------------------AKjs_Template (2018-12-13)--------------------------------------------*/
 (function($, undefined) {
     var oldManip = $.fn.domManip,
         tmplItmAtt = "_tmplitem",
@@ -11835,15 +11624,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         $.AKjs_Template(null, null, null, this).insertBefore(coll[0]);
         $(coll).remove();
     }
-})(jQuery);
-;
-///<jscompress sourcefile="AKjs_Textarea.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Textarea----------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Textarea (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_Textarea = function(setting) {
         var opm = $.extend({
                 maxlength: 300,
@@ -11891,14 +11675,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             });
         }
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_TimeAxis.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_TimeAxis------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_TimeAxis (2018-12-13)--------------------------------------------*/
+(function($) {
     $.fn.AKjs_TimeAxis = function(setting) {
         var option = $.extend({
                 firstbox: "",
@@ -11958,15 +11738,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         };
         var el = new TimeAxis($(this));
     };
-}(jQuery));
-;
-///<jscompress sourcefile="AKjs_TouchDelete.js" />
-/*
-Modification Date: 2018-09-21
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_TouchDelete-------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_TouchDelete (2018-12-13)--------------------------------------------*/
+(function($) {
     var AKjs_TouchDelete = function(ele, opt) {
         var self = this;
         self.$element = ele;
@@ -12115,13 +11890,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             ak_TouchDelete.init();
         })
     }
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Typeahead.js" />
-/*
-Modification Date: 2018-11-30
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Typeahead-----------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Typeahead (2018-12-13)--------------------------------------------*/
 (function($) {
     var AKjs_Typeahead = function(element, options) {
         var _this = this;
@@ -12417,7 +12188,11 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             this.$menu.html("<ul />");
             items = $(items).map(function(i, item) {
                 i = $("<li class=\"touchstart\"></li>").attr("data-value", item[that.options.val]);
-                i.html("<span class='fl'>"+that.highlighter(item[that.options.display], item)+"</span><span class='fr'>"+item[that.options.custom]+"</span>");
+                if (item[that.options.custom] != undefined) {
+                    i.html("<span class='fl'>"+that.highlighter(item[that.options.display], item)+"</span><span class='fr'>"+item[that.options.custom]+"</span>");
+                } else {
+                    i.html("<span class='fl'>"+that.highlighter(item[that.options.display], item)+"</span>");
+                }
                 return i[0]
             });
             items.first().addClass("ak-is_active");
@@ -12575,13 +12350,8 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             })
     })
 } (jQuery));
-;
-///<jscompress sourcefile="AKjs_TypeIt.js" />
-/*
-Modification Date: 2018-09-17
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_TypeIt-----------------------------------------*/
+
+/*-----------------------------------------------AKjs_TypeIt (2018-12-13)--------------------------------------------*/
 (function($) {
     var AKjs_TypeIt = function(el, options) {
         this.el = $(el);
@@ -12795,13 +12565,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         preString: function() {},
         onString: function() {}
     };
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Validate.js" />
-/*
-Modification Date: 2018-10-11
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Validate--------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Validate (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Validate = function(setting) {
         var option = $.extend({
@@ -12972,14 +12738,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
             return false;
         }
     }
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Viewer.js" />
-/*
-Modification Date: 2018-12-12
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Viewer-------------------------------------------*/
-(function($){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Viewer (2018-12-13)--------------------------------------------*/
+(function($) {
     function isString(s) {
         return typeof s === 'string';
     }
@@ -13513,11 +13275,18 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         show: function() {
             var $viewer,
                 options = this.options;
-            options.inline || this.transitioning || (this.isBuilt || this.build(), $.isFunction(options.show) && this.$element.one($event_show, options.show), this.trigger($event_show).isDefaultPrevented() || (this.$body.removeClass($class_open), $viewer = this.$viewer.removeClass($class_hide), this.$element.one($event_shown, $.proxy(function() {
+            options.inline || this.transitioning || (this.isBuilt || this.build(),
+            $.isFunction(options.show) && this.$element.one($event_show, options.show),
+            this.trigger($event_show).isDefaultPrevented() || (this.$body.removeClass($class_open),
+                $viewer = this.$viewer.removeClass($class_hide),
+                this.$element.one($event_shown, $.proxy(function() {
                     this.view(this.target ? this.$images.index(this.target) : this.index),
                         this.target = !1
                 },
-                this)), options.transition ? (this.transitioning = !0, $viewer.addClass($class_transition), forceReflow($viewer[0]), $viewer.one($event_transitionend, $.proxy(this.shown, this)).addClass($class_in)) : ($viewer.addClass($class_in), this.shown())))
+                this)),
+                options.transition ? (this.transitioning = !0, $viewer.addClass($class_transition),
+                    forceReflow($viewer[0]),
+                    $viewer.one($event_transitionend, $.proxy(this.shown, this)).addClass($class_in)) : ($viewer.addClass($class_in), this.shown())))
         },
         hide: function() {
             var options = this.options,
@@ -13832,13 +13601,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         $.fn.AKjs_Viewer.noConflict = function() {
             return $.fn.AKjs_Viewer = ak_Viewer.other, this;
         }
-}(jQuery));;
-///<jscompress sourcefile="AKjs_Vticker.js" />
-/*
-Modification Date: 2018-08-09
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Vticker--------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Vticker (2018-12-13)--------------------------------------------*/
 (function($) {
     $.fn.AKjs_Vticker = function(setting) {
         var option = $.extend({
@@ -13922,13 +13687,9 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
                 })
         })
     }
-})(jQuery);;
-///<jscompress sourcefile="AKjs_Waterfall.js" />
-/*
-Modification Date: 2018-11-10
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_Waterfall-------------------------------------------*/
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Waterfall (2018-12-13)--------------------------------------------*/
 (function($) {
     var pluginName = 'AKjs_Waterfall',
         defaults = {
@@ -14048,15 +13809,10 @@ Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
         });
         return this;
     }
-})(jQuery);
-;
-///<jscompress sourcefile="AKjs_WebToast.js" />
-/*
-Modification Date: 2018-09-20
-Coding by Andrew.Kim (E-mail: andrewkim365@qq.com)
-*/
-/*-----------------------------------------------AKjs_WebToast-------------------------------------------*/
-function AKjs_WebToast(){
+} (jQuery));
+
+/*-----------------------------------------------AKjs_WebToast (2018-12-13)--------------------------------------------*/
+function AKjs_WebToast() {
     var dcfg = {
         message: "",
         position: "bottom",
@@ -14142,4 +13898,3 @@ function AKjs_WebToast(){
         }, dcfg.time);
     }
 }
-;

@@ -1,5 +1,6 @@
-﻿
-/***<jscompress sourcefile="AKjs_ButtonSubmit.css" />*/
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181213 AKjs.Mobile license */
+/*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
+
 /*-----------------------------------------------AKjs_ButtonSubmit-------------------------------------------*/
 .ak-submit-loading, .ak-submit-loading > *{vertical-align: middle;display: inline-block;}
 .ak-submit-loading i{display: inline-block;border-radius: 100%;margin: 0.5em;border-width: 2px;border-style: solid;border-color: inherit;border-bottom-color: transparent;-webkit-animation: rotate 0.75s linear infinite;animation: rotate 0.75s linear infinite;}
@@ -10,18 +11,15 @@
 50%{transform: rotate(180deg);}
 100%{transform: rotate(360deg);}}
 
-/***<jscompress sourcefile="AKjs_Checkbox.css" />*/
 /*-----------------------------------------------AKjs_Checkbox-------------------------------------------*/
 .ak-Checkbox{display: inline-block; overflow: hidden; border: solid 1px; border-color: #dddddd; background-color: #ffffff; width: 1.88em; height: 1.88em; line-height: 1.88em; border-radius: 50%; text-align: center; position: relative; vertical-align: middle;}
 .ak-Checkbox input{opacity:0 !important; filter:alpha(opacity=0); width:100%; position:absolute; top: auto; right:0; cursor: pointer;}
 .ak-Checkbox:before{border-color:inherit; font-size:90%;}
 
-/***<jscompress sourcefile="AKjs_Codeval.css" />*/
 /*-----------------------------------------------AKjs_Codeval-------------------------------------------*/
 .ak-codeval{overflow: hidden; display: block; position: relative; padding: 0 0.2em; text-align: center; height: inherit !important; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; cursor: pointer;}
 .ak-codeval > *{display: inline-block; line-height: inherit !important; font-style: oblique;}
 
-/***<jscompress sourcefile="AKjs_DateTime.css" />*/
 /*-----------------------------------------------AKjs_Datetime-------------------------------------------*/
 .ak-datetime{position:fixed; width:100%; height:100%; top:0; left:0; z-index:6000; pointer-events:auto;}
 .ak-datetime .alwaysShow td{position:relative;}
@@ -47,7 +45,6 @@
 .ak-datetime .jdt_box .jdt_btn button:first-child{border-right:solid 1px #dddddd;}
 .ak-datetime .jdt_hide{visibility:hidden;}
 
-/***<jscompress sourcefile="AKjs_Dialog.css" />*/
 /*-----------------------------------------------AKjs_Dialog-------------------------------------------*/
 .ak-dialog{width:100%; height:auto; position:fixed; z-index:20; box-sizing:border-box; display:none;}
 .ak-dialog.ak-is_active{display:block; -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
@@ -74,8 +71,6 @@
 .ak-dialog .ak-dialog_footer .ak_btn.button_cancel{color:#333333;}
 .ak-dialog .ak-dialog_footer .ak_btn.button_cancel + .button_ok{float:left; width:50%;}
 
-
-/***<jscompress sourcefile="AKjs_DropLoad.css" />*/
 /*-----------------------------------------------AKjs_DropLoad-------------------------------------------*/
 .ak-dropload-up,.ak-dropload-down{position: relative; height: 0; overflow: hidden; -webkit-transform:translateZ(0); transform:translateZ(0);}
 .ak-dropload-down{height: 4em;}
@@ -84,7 +79,6 @@
 @-webkit-keyframes rotate{0%{-webkit-transform: rotate(0deg);} 50%{-webkit-transform: rotate(180deg);} 100%{-webkit-transform: rotate(360deg);}}
 @keyframes rotate{0%{transform: rotate(0deg);} 50%{transform: rotate(180deg);} 100%{transform: rotate(360deg);}}
 
-/***<jscompress sourcefile="AKjs_IntlTelInput.css" />*/
 /*-----------------------------------------------AKjs_IntlTelInput-------------------------------------------*/
 .ak-IntlTel{position: fixed; background-color: #eeeeee; display: none; z-index: 6; width: 100%; top: 0; left: 0; overflow: hidden;border:solid 1px #dddddd;}
 .ak-IntlTel .ak-IntlTel_head{width: 100% !important; height: 3.2em; line-height: 3.2em; position: fixed; z-index: 5; top: 0; left: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
@@ -101,8 +95,6 @@
 .ak-IntlTel datalist dl dd{overflow: hidden; line-height: 3.2em; padding-left: 1em; cursor: pointer;}
 .ak-IntlTel datalist dl dd:last-child{border-bottom: none !important;}
 
-
-/***<jscompress sourcefile="AKjs_Keyboard.css" />*/
 /*-----------------------------------------------AKjs_Keyboard-------------------------------------------*/
 .ak-keyboard *{margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
 .ak-keyboard{position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 99999;}
@@ -128,7 +120,6 @@
 .ak-keyboard figure span{padding: 1em 2em; background: rgba(0,0,0,.8); border-radius: 0.5em; color: #ffffff;}
 .ak-keyboard figure img{height: 2em; vertical-align: middle; margin-right: 0.5em;}
 
-/***<jscompress sourcefile="AKjs_lightSlider.css" />*/
 /*-----------------------------------------------AKjs_lightSlider-------------------------------------------*/
 .ak-lSSlideOuter{overflow: hidden; -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
 .ak-lightSlider{overflow: hidden; margin: 0;}
@@ -141,7 +132,6 @@
 .ak-lightSlider.ak-lsGrab > *{cursor: -webkit-grab; cursor: -moz-grab; cursor: grab;}
 .ak-lightSlider.ak-lsGrabbing > *{cursor: move; cursor: -webkit-grabbing; cursor: -moz-grabbing; cursor: grabbing;}
 
-/***<jscompress sourcefile="AKjs_Loader.css" />*/
 /*-----------------------------------------------AKjs_Loader-------------------------------------------*/
 .ak-Loader {width: 100%;height:100%;left: 0;top: 0;position: fixed;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none; z-index: 2}
 .ak-Loader figure.ak-loading {border-radius: 50%;padding: 0.5em;width: 3em; height: 3em;z-index: 9}
@@ -201,7 +191,6 @@
 .ak-Loader:not(.ak-mask) .ak-loading > div{z-index: 2;}
 .ak-Loader:not(.ak-mask) .ak-loading:after{content: ''; position: absolute; left: -40%; top: -40%; width: 180%; height: 180%; background-color: rgba(0,0,0,0.3); border-radius: 0.5em;}
 
-/***<jscompress sourcefile="AKjs_Marquee.css" />*/
 /*-----------------------------------------------AKjs_Marquee-------------------------------------------*/
 .ak-marquee_wrap{overflow:hidden; position:relative; -moz-user-select: none; user-select: none; white-space:nowrap;}
 .ak-marquee_move{white-space:nowrap; position:absolute; top:0; left:0; cursor:move;}
@@ -215,7 +204,6 @@
 .noStop .ak-marquee_move{cursor:inherit;}
 .ak-marquee_wrap img{max-width:none !important;}
 
-/***<jscompress sourcefile="AKjs_MobileChat.css" />*/
 /*-----------------------------------------------AKjs_MobileChat-------------------------------------------*/
 .ak-chat time{display: block; background-color: #cccccc; color: #ffffff; text-align: center; line-height: 1.8em; padding: 0 0.5em; overflow: hidden; margin: 0 auto; height: 2em; width: -moz-max-content; width: -webkit-max-content; width: max-content; border-radius: 0.3em;}
 .ak-chat_left,.ak-chat_right{position: relative; overflow: hidden;}
@@ -231,7 +219,6 @@
 .ak-chat_left dd:after{left: -0.7em; border-right: 0.7em solid; border-right-color: inherit;}
 .ak-chat_right dd:after{right: -0.7em; border-left: 0.7em solid; border-left-color: inherit;}
 
-/***<jscompress sourcefile="AKjs_MultiDate.css" />*/
 /*-----------------------------------------------AKjs_MultiDate-------------------------------------------*/
 .ak-MultiDate{display: none; position: absolute; top: 100%; left: 0; z-index: 10; float: left; width: 18em; background-color: #ffffff; border: 1px solid #dddddd; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
 .ak-multiDate-parent{position: relative; overflow: hidden;}
@@ -258,7 +245,6 @@
 .ak-MultiDate thead tr:first-child th:active, .ak-MultiDate tfoot button:active{background-color: #f9f9f9;}
 .ak-MultiDate thead tr:first-child th.press:active{background-color: transparent;}
 
-/***<jscompress sourcefile="AKjs_Paginator.css" />*/
 /*-----------------------------------------------AKjs_Paginator-------------------------------------------*/
 .ak-pagination{display: block; margin: 0 auto; overflow: hidden; position: relative; width: -moz-fit-content; width: -webkit-fit-content; width: -o-fit-content; width: fit-content; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
 .ak-pagination li:first-child{margin-left: 0; border-bottom-left-radius: 0.3em; border-top-left-radius: 0.3em;}
@@ -269,29 +255,24 @@
 .ak-pagination .arrow-left{display: inline-block; overflow: hidden; vertical-align: middle; margin: 3px 8px 5px 0; border-left: 5px dashed transparent; border-bottom: 5px dashed transparent; border-top: 5px dashed transparent; border-right: 5px solid #ccc;}
 .ak-pagination .arrow-right{display: inline-block; overflow: hidden; vertical-align: middle; margin: 3px 0 5px 8px; border-top: 5px dashed transparent; border-bottom: 5px dashed transparent; border-right: 5px dashed transparent; border-left: 5px solid #ccc;}
 
-/***<jscompress sourcefile="AKjs_PortraitImage.css" />*/
 /*-----------------------------------------------AKjs_PortraitImage-------------------------------------------*/
 .ak-previewImage.bg_white:active, .ak-PortraitImage.bg_white:active{background-color: #f1f1f1 !important;;}
 .ak-previewImage input[type="file"], .ak-PortraitImage input[type="file"]{position:absolute; opacity:0; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; cursor:pointer; left:0; width:inherit; height:inherit;}
 
-/***<jscompress sourcefile="AKjs_PreviewImage.css" />*/
 /*-----------------------------------------------AKjs_PreviewImage-------------------------------------------*/
 .ak-previewImage.bg_white:active, .ak-PortraitImage.bg_white:active{background-color: #f1f1f1 !important;;}
 .ak-previewImage input[type="file"], .ak-PortraitImage input[type="file"]{position:absolute; opacity:0; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; cursor:pointer; left:0; width:inherit; height:inherit;}
 
-/***<jscompress sourcefile="AKjs_Progress.css" />*/
 /*-----------------------------------------------AKjs_Progress-------------------------------------------*/
 .ak-progressBar{display: block; text-indent: 1em; width: 0; height: inherit; line-height: inherit; position: relative; white-space: nowrap;}
 .ak-progressBar:after{content: ''; width: 100%; height: 100%; background-image: url(data:image/gif;base64,R0lGODlhKAAoAIAAAP///////yH/C05FVFNDQVBFMi4wAwEAAAAh/wtYTVAgRGF0YVhNUDw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFOEI3QTQ4RkRCRTExMUU3OEY2REVFMUI5OTI5QUJERCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFOEI3QTQ5MERCRTExMUU3OEY2REVFMUI5OTI5QUJERCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkU4QjdBNDhEREJFMTExRTc4RjZERUUxQjk5MjlBQkREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU4QjdBNDhFREJFMTExRTc4RjZERUUxQjk5MjlBQkREIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28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) !important; z-index: 2; position: absolute; left: 0; opacity: 0.1; filter:alpha(opacity=10);}
 .ak-progressBar span{z-index: 1; left: 0; position: absolute; width: 100%; display: none; color: inherit !important;}
 
-/***<jscompress sourcefile="AKjs_Radio.css" />*/
 /*-----------------------------------------------AKjs_Radio-------------------------------------------*/
 .ak-Radio{display:block; height:inherit; line-height:inherit; overflow:hidden; float:right; font-size: inherit !important;vertical-align: middle;border: solid 1px #dddddd; border-radius: 50%;}
 .ak-Radio input{opacity:0 !important; filter:alpha(opacity=0); width:100%; position:absolute; top:0; right:0; height:inherit; cursor: pointer;}
 .ak-Radio:before{font-size:1.2em;}
 
-/***<jscompress sourcefile="AKjs_Range.css" />*/
 /*-----------------------------------------------AKjs_Range-------------------------------------------*/
 .ak-range{margin: 0 auto;}
 .ak-readonly{opacity: 0.5;}
@@ -306,7 +287,6 @@
 .ak-range .ak-scale span{position: absolute;height: 0.5em;border-left: 1px solid #999;}
 .ak-range .ak-scale ins{font-size: 0.8em;color: #777;text-decoration: none;position: absolute;left: 0;top: 0.5em;width: -webkit-max-content;width: -moz-max-content;width: -o-max-content;width: max-content;}
 
-/***<jscompress sourcefile="AKjs_Select.css" />*/
 /*-----------------------------------------------AKjs_Select-------------------------------------------*/
 .ak-Select .content{width:100%; display:block; position:fixed; z-index:8; color:black; left:0; bottom:-100%; -webkit-transition:all 1s; transition:all 1s;}
 .ak-Select-show{opacity:1; z-index:100; visibility:visible; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-appearance:none; outline:none; -webkit-tap-highlight-color:rgba(255,255,255,0);}
@@ -327,7 +307,6 @@
 .ak-Select .content .panel .selectLine{height:3em; width:100%; position:absolute; top:6em; pointer-events:none; -webkit-box-sizing:border-box; box-sizing:border-box; border-top:1px solid #dddddd; border-bottom:1px solid #dddddd;}
 .ak-Select .content .panel .shadowMask{position:absolute; top:0; width:100%; height:15em; background:-webkit-gradient(linear,left top,left bottom,from(#ffffff),color-stop(rgba(255,255,255,0)),to(#ffffff)); background:-webkit-linear-gradient(top,#ffffff,rgba(255,255,255,0),#ffffff); background:linear-gradient(to bottom,#ffffff,rgba(255,255,255,0),#ffffff); opacity:0.9; pointer-events:none;}
 
-/***<jscompress sourcefile="AKjs_SelectOption.css" />*/
 /*-----------------------------------------------AKjs_SelectOption-------------------------------------------*/
 .ak-SelectOpts{width: 100%; position:relative; cursor:pointer; text-indent: 1em; display: inline-block; overflow: hidden; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
 select.ak-SelectOpts{display: none !important;}
@@ -341,7 +320,6 @@ select.ak-SelectOpts{display: none !important;}
 @media screen and (max-width:1024px){.ak-SelectList li:active{background:#f5f5f5;}}
 @media screen and (min-width:1025px){.ak-SelectList li:hover{background:#f5f5f5;}}
 
-/***<jscompress sourcefile="AKjs_Slider.css" />*/
 /*-----------------------------------------------AKjs_Slider-------------------------------------------*/
 .ak-Slider ul{position: absolute; z-index: 1; width: 100%; height: 100%;}
 .ak-Slider ul li{display: none; position: absolute; top: 0; width: 100%; height: 100%; overflow: hidden;}
@@ -351,15 +329,12 @@ select.ak-SelectOpts{display: none !important;}
 .ak-Slider:hover button{display: block;}
 .ak-Slider button:hover, .ak-Slider button:active{background-color: rgba(0, 0, 0, 0.7);}
 
-
-/***<jscompress sourcefile="AKjs_Switch.css" />*/
 /*-----------------------------------------------AKjs_Switch-------------------------------------------*/
 .ak-Switch{position: absolute; top:0; left: 0; width: 100%; z-index: 1; opacity: 0 !important; filter:alpha(opacity=0); cursor: pointer;}
 .ak-Switch + label{width: 3.6em; height: 2em; background: #cccccc; position: relative; display: inline-block; border-radius: 1.4em; box-shadow: inset 1px 1px 10px rgba(0,0,0,0.1);}
 .ak-Switch + label:after{content: ''; position: absolute; top: 0; width: 2em; height: 2em; border-radius: 100%; left: -2px; background: #ffffff; -webkit-transition: 0.4s; transition: 0.4s; box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2); background: -webkit-linear-gradient(#ffffff,#f5f5f5); background: linear-gradient(#ffffff,#f5f5f5); cursor: pointer;}
 .ak-Switch:checked + label:after{left: 1.8em;}
 
-/***<jscompress sourcefile="AKjs_TimeAxis.css" />*/
 /*-----------------------------------------------AKjs_TimeAxis-------------------------------------------*/
 .ak-TimeAxis{display: flex;}
 .ak-TimeAxis > cite{flex-shrink: 0; display: block; overflow: hidden; position: relative; margin-left: 3%;}
@@ -373,12 +348,10 @@ select.ak-SelectOpts{display: none !important;}
 .ak-TimeAxis article{border: solid 1px #dddddd; border-radius: 0.3em; background-color: #ffffff; line-height: 1.4em; padding: 3%; margin-right: 3%;}
 .ak-TimeAxis article p{color: #777777;}
 
-/***<jscompress sourcefile="AKjs_TouchDelete.css" />*/
 /*-----------------------------------------------AKjs_TouchDelete-------------------------------------------*/
 .ak_delete_art, .ak_delete_btn{-webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; -ms-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; transition: all .2s ease-in-out;}
 .ak_delete_btn{display: none;}
 
-/***<jscompress sourcefile="AKjs_Typeahead.css" />*/
 /*-----------------------------------------------AKjs_Typeahead-------------------------------------------*/
 .ak-typeahead{position: fixed; overflow: hidden; background-color: #f5f5f5; z-index: 3; display: none; height: 100%; -webkit-appearance:none; outline:none; -webkit-tap-highlight-color:rgba(255,255,255,0);}
 .ak-typeahead ul{position: relative; z-index: 9;border: solid 1px #dddddd;}
@@ -388,7 +361,6 @@ select.ak-SelectOpts{display: none !important;}
 @media screen and (min-width:1025px){.ak-typeahead li:hover{background-color: #f5f5f5;}}
 .ak-typeahead li strong{font-weight: bold;}
 
-/***<jscompress sourcefile="AKjs_TypeIt.css" />*/
 /*-----------------------------------------------AKjs_TypeIt-------------------------------------------*/
 .ak-TypeIt-cursor{opacity: 1; font-weight: 100; -webkit-animation: blink 0.7s infinite; -moz-animation: blink 0.7s infinite; -ms-animation: blink 0.7s infinite; -o-animation: blink 0.7s infinite; animation: blink 0.7s infinite; color: inherit; font-size: inherit;}
 @-webkit-keyframes blink{0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;}}
@@ -396,7 +368,6 @@ select.ak-SelectOpts{display: none !important;}
 @-ms-keyframes blink{0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;}}
 @-o-keyframes blink{0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;}}
 
-/***<jscompress sourcefile="AKjs_Viewer.css" />*/
 /*-----------------------------------------------AKjs_Viewer-------------------------------------------*/
 .ak-viewer-canvas,.ak-viewer-container,.ak-viewer-footer,.ak-viewer-player{right:0; bottom: -0.1em; left:0;}
 .ak-viewer-button,.ak-viewer-canvas,.ak-viewer-container,.ak-viewer-footer,.ak-viewer-list,.ak-viewer-navbar,.ak-viewer-open,.ak-viewer-title,.ak-viewer-toolbar,.ak-viewer-toolbar>li{overflow:hidden;}
@@ -438,7 +409,6 @@ select.ak-SelectOpts{display: none !important;}
 .ak-viewer-in{opacity:1; filter:alpha(opacity=100);}
 .ak-viewer-transition{-webkit-transition:all .3s ease-out; -o-transition:all .3s ease-out; transition:all .3s ease-out;}
 
-/***<jscompress sourcefile="AKjs_Waterfall.css" />*/
 /*-----------------------------------------------AKjs_Waterfall-------------------------------------------*/
 .ak-waterfall{background-color: inherit; position: relative; z-index: 2;}
 .ak-waterfall > *{float: left; border: solid 1px #dddddd; padding: 0.5em; height: auto; position: absolute; height: -moz-max-content !important; height: -webkit-max-content !important; height: max-content !important;}
@@ -455,7 +425,6 @@ select.ak-SelectOpts{display: none !important;}
 @-webkit-keyframes rotate{0%{-webkit-transform: rotate(0deg);} 50%{-webkit-transform: rotate(180deg);} 100%{-webkit-transform: rotate(360deg);}}
 @keyframes rotate{0%{transform: rotate(0deg);} 50%{transform: rotate(180deg);} 100%{transform: rotate(360deg);}}
 
-/***<jscompress sourcefile="AKjs_WebToast.css" />*/
 /*-----------------------------------------------AKjs_WebToast-------------------------------------------*/
 .ak-webtoast{position:fixed; left: 0; top:0; width: 100%; height: 100%; z-index:999; display:none;}
 .ak-webtoast h3{display: block; position:absolute; z-index:8; color:#ffffff; background-color: rgba(0,0,0,0.7); background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUVDQkM1NTlBRkM2MTFFN0I3NzFGRDlFOTZEMjVBQjYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUVDQkM1NThBRkM2MTFFN0I3NzFGRDlFOTZEMjVBQjYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjEyMUU4QkFFQUU1QjExRTdCRTA0QzMyRDkzNDQ0MzM0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjEyMUU4QkFGQUU1QjExRTdCRTA0QzMyRDkzNDQ0MzM0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+UAuucgAAAA9JREFUeNpiYGBg2AwQYAAAuAC01qHx9QAAAABJRU5ErkJggg==) repeat \9; text-align:center; border-radius:0.3em; padding:0.5em;}

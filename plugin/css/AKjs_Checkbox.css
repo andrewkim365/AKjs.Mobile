@@ -1,4 +1,0 @@
-/*-----------------------------------------------AKjs_Checkbox-------------------------------------------*/
-.ak-Checkbox{display: inline-block; overflow: hidden; border: solid 1px; border-color: #dddddd; background-color: #ffffff; width: 1.88em; height: 1.88em; line-height: 1.88em; border-radius: 50%; text-align: center; position: relative; vertical-align: middle;}
-.ak-Checkbox input{opacity:0 !important; filter:alpha(opacity=0); width:100%; position:absolute; top: auto; right:0; cursor: pointer;}
-.ak-Checkbox:before{border-color:inherit; font-size:90%;}

@@ -18,7 +18,7 @@ js/plugin.js --- 走路由模式的全局方法设置以及功能插件按需引
 
 js/data.js --- Json数据文件
 
-plugin/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件（该路径可在AKjs_Config方法中参数设置）
+compress/ --- 功能插件目录，里面的css目录是相关功能插件的样式文件（该路径可在AKjs_Config方法中参数设置）
 
 js/akjs.mobile.js --- AKjs手机端主插件（在项目中建议使用压缩版akjs.mobile.min.js）
 

@@ -1,9 +1,0 @@
-/*-----------------------------------------------AKjs_ButtonSubmit-------------------------------------------*/
-.ak-submit-loading, .ak-submit-loading > *{vertical-align: middle;display: inline-block;}
-.ak-submit-loading i{display: inline-block;border-radius: 100%;margin: 0.5em;border-width: 2px;border-style: solid;border-color: inherit;border-bottom-color: transparent;-webkit-animation: rotate 0.75s linear infinite;animation: rotate 0.75s linear infinite;}
-@-webkit-keyframes rotate{0%{-webkit-transform: rotate(0deg);}
-50%{-webkit-transform: rotate(180deg);}
-100%{-webkit-transform: rotate(360deg);}}
-@keyframes rotate{0%{transform: rotate(0deg);}
-50%{transform: rotate(180deg);}
-100%{transform: rotate(360deg);}}

@@ -1857,16 +1857,16 @@
                     if ($(".ak-typeahead").children("ol").length < 1) {
                         $(".ak-typeahead").append(
                             "<ol class=\"scrolling_touch list ovs_y h_100\">\n" +
-                            "<li class=\"touchstart\" data-value=\"BJ\">北京</li>\n" +
-                            "<li class=\"touchstart\" data-value=\"SH\">上海</li>\n" +
-                            "<li class=\"touchstart\" data-value=\"GZ\">广州</li>\n" +
-                            "<li class=\"touchstart\" data-value=\"SZ\">深圳</li>\n" +
-                            "<li class=\"touchstart\" data-value=\"QD\">青岛</li>\n" +
+                            "<li class=\"touchstart\" data-value=\"BJ\"><span class='fl'>北京</span></li>\n" +
+                            "<li class=\"touchstart\" data-value=\"SH\"><span class='fl'>上海</span></li>\n" +
+                            "<li class=\"touchstart\" data-value=\"GZ\"><span class='fl'>广州</span></li>\n" +
+                            "<li class=\"touchstart\" data-value=\"SZ\"><span class='fl'>深圳</span></li>\n" +
+                            "<li class=\"touchstart\" data-value=\"QD\"><span class='fl'>青岛</span></li>\n" +
                             "</ol>"
                         );
                         $(".ak-typeahead").children("ol").find("li").bind("touchstart", function() {
-                            console.log($(this).text());
-                            $(".plug_Typeahead").val($(this).text());
+                            console.log($(this).children("span.fl").text());
+                            $(".plug_Typeahead").val($(this).children("span.fl").text());
                             document.activeElement.blur();//隐藏键盘
                         });
                     }

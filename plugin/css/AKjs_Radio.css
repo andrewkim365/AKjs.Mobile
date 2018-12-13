@@ -1,4 +1,0 @@
-/*-----------------------------------------------AKjs_Radio-------------------------------------------*/
-.ak-Radio{display:block; height:inherit; line-height:inherit; overflow:hidden; float:right; font-size: inherit !important;vertical-align: middle;border: solid 1px #dddddd; border-radius: 50%;}
-.ak-Radio input{opacity:0 !important; filter:alpha(opacity=0); width:100%; position:absolute; top:0; right:0; height:inherit; cursor: pointer;}
-.ak-Radio:before{font-size:1.2em;}
