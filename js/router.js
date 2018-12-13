@@ -42,6 +42,7 @@
             });
         },
         error:function (hash) { //请求加载页面失败后的回调
+            AKjs_Include("js/plugin.js"); //功能插件按需引入（为了正常运行功能插件通过AKjs_Include方式引入）
             if (hash) { //获取hash的参数值，当前的判断是hash有值的情况
                 //AKjs_Plugin("AKjs_WebToast", "css"); //提示框效果
                 AKjs_WebToast("您访问的界面加载失败,请稍后再试!","middle",3000); //(提示文字，显示位置 [top ，middle ，bottom ]，遮挡背景[加mask即可用]，耗时)
