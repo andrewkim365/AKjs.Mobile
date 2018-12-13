@@ -1,5 +1,5 @@
 ﻿<jscompress public="http://www.jscompress.cn/" command="import-combineset">
-<combinefile path="AKjs_Plugin.Mobile.js">
+<combinefile path="AKjs_plugin.mobile.js">
     <auto value="0" />
     <sourcefile path="..\..\AKjs.Mobile\plugin\AKjs_AllChecked.js" />
     <sourcefile path="..\..\AKjs.Mobile\plugin\AKjs_ButtonSubmit.js" />

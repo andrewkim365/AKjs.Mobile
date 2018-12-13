@@ -67,9 +67,9 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.5.6版本；
 
 3. 在plugin.js文件里加一行代码 （建议使用带min的第二个方法）
 
-AKjs_Plugin("AKjs_Plugin.Mobile","css"); //引入全部功能插件
+AKjs_Plugin("AKjs_plugin.mobile","css"); //引入全部功能插件
 
-AKjs_Plugin("AKjs_Plugin.Mobile.min","css"); //引入压缩版的全部功能插件
+AKjs_Plugin("AKjs_plugin.mobile.min","css"); //引入压缩版的全部功能插件
 
 
 #### 更新时间：2018/11/02 下午 16:19
