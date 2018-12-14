@@ -12590,7 +12590,12 @@ text {
     background-color:transparent !important;
     background-image: none !important;
 }
-
+.bg_c_none, .bg_ab_c_none:after, .bg_ab_c_none:before, .bg_cd_c_none > *, .bg_abcd_c_none > *:after, .bg_abcd_c_none > *:before {
+    background-color: transparent !important;
+}
+.bg_img_none, .bg_ab_img_none:after, .bg_ab_img_none:before, .bg_cd_img_none > *, .bg_abcd_img_none > *:after, .bg_abcd_img_none > *:before {
+    background-image: none !important;
+}
 .bor_black, .bor_ab_black:after, .bor_ab_black:before, .bor_cd_black > *, .bor_abcd_black > *:after, .bor_abcd_black > *:before {
     border-color:#000000 !important;
 }
