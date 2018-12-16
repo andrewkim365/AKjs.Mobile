@@ -38,7 +38,7 @@
                 num_boxs.next().removeClass(option.stepClass[1]);
             }
             num_boxs.addClass("dis_block center text_al_c");
-            if (step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length == step.children("cite").eq(0).outerWidth()) {
+            if (step_li.last().hasClass("ak-is_active")) {
                 var active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length;
             } else {
                 var active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length - (step.find(".ak-is_active").last().outerWidth()/2);
@@ -53,7 +53,7 @@
                 "width": active_w
             });
             $(window).resize(function(){
-                if (step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length == step.children("cite").eq(0).outerWidth()) {
+                if (step_li.last().hasClass("ak-is_active")) {
                     var re_active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length;
                 } else {
                     var re_active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length - (step.find(".ak-is_active").last().outerWidth()/2);
@@ -76,16 +76,18 @@
                 var _self = $(this);
                 var _length = _self.index()+1;
                 _self.addClass("ak-is_active");
-                _self.children().eq(0).addClass(option.stepClass[0]);
-                _self.children().eq(1).addClass(option.stepClass[1]);
                 _self.prevAll("li").addClass("ak-is_active");
-                _self.prevAll("li").children().eq(0).addClass(option.stepClass[0]);
-                _self.prevAll("li").children().eq(1).addClass(option.stepClass[1]);
                 _self.nextAll("li").removeClass("ak-is_active");
-                _self.nextAll("li").children().eq(0).removeClass(option.stepClass[0]);
-                _self.nextAll("li").children().eq(1).removeClass(option.stepClass[1]);
-
-                if (step_li.last().outerWidth() * _length == step.children("cite").eq(0).outerWidth()) {
+                step_li.each(function(){
+                    if ($(this).hasClass("ak-is_active")) {
+                        $(this).children().eq(0).addClass(option.stepClass[0]);
+                        $(this).children().eq(1).addClass(option.stepClass[1]);
+                    } else {
+                        $(this).children().eq(0).removeClass(option.stepClass[0]);
+                        $(this).children().eq(1).removeClass(option.stepClass[1]);
+                    }
+                });
+                if (step_li.last().hasClass("ak-is_active")) {
                     var click_active_w = step_li.last().outerWidth() * _length;
                 } else {
                     var click_active_w = step_li.last().outerWidth() * _length - (step_li.last().outerWidth()/2);
