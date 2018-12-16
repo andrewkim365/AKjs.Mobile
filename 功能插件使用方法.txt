@@ -1,5 +1,5 @@
 //调用插件：调用插件的地方在router目录里的相关html文件中的最底部。
-//文档更新日期：2018-12-13
+//文档更新日期：2018-12-16
 
 //功能插件引入方法：
 /*
@@ -965,14 +965,21 @@ AKjs_Plugin("AKjs_plugin.mobile.min","css"); //引入压缩版的全部功能插
     $(function() {
         $(".plug_step").AKjs_StepOrder({
             stepNum: 2, //步骤里要选前几个
+            clickType: true, //是否开启点击操作功能
             stepClass:  new Array( //被选中的样式
                 "bg_title c_yellow", //被选中的数字框样式
                 "c_title" //被选中的标题文字颜色
             ),
             dashed_line: "bor_gray_ccc bor_bottom_dashed2", //线条的颜色样式
             progress: "bor_title bor_bottom2", //到达的线条颜色样式
-            callback: function(ele) { //加载完后的回调
+            callback: function(ele,index) { //加载完后的回调 （整个元素，选中数量）
                 //console.log(ele);
+                //console.log(index);
+            },
+            clickback: function(ele,index,self) { //点击后的回调 （整个元素，选中数量，当前选中元素）
+                console.log(ele);
+                console.log(index);
+                console.log(self);
             }
         });
     });

@@ -1,5 +1,105 @@
-﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181215 AKjs.Mobile license */
+﻿/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181216 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
+
+/*-----------------------------------------------AKjs_StepOrder (2018-12-16)--------------------------------------------*/
+(function($) {
+    $.fn.AKjs_StepOrder = function(setting) {
+        var option = $.extend({
+                stepNum: "",
+                clickType: false,
+                stepClass:  new Array(),
+                dashed_line: "bor_white bor_bottom_dashed2",
+                progress: "bor_white bor_bottom2",
+                callback: function() {},
+                clickback: function() {}
+            },
+            setting);
+        var step = $(this);
+        step.addClass("rel ovh");
+        step.children().removeClass().addClass("rel ovh length"+step.children().children("li").length);
+        step.children().before("<cite /><cite />");
+        step.children("cite").eq(0).addClass("dis_block rel w_100 "+option.dashed_line);
+        step.children("cite").eq(1).addClass("dis_block rel "+option.progress);
+        var step_li = step.children().children("li");
+        var num_box = step.children().children("li").eq(0).children().eq(0);
+        var step_line_h = step.children("cite").eq(0).outerHeight();
+        step_li.each(function(){
+            step.fadeIn();
+            var num_boxs = $(this).children().eq(0);
+            $(this).addClass("fl text_al_c");
+            if($(this).index() <= option.stepNum-1){
+                $(this).addClass("ak-is_active");
+            }
+            if ($(this).hasClass("ak-is_active")) {
+                $(this).children().eq(0).addClass(option.stepClass[0]);
+                $(this).children().eq(1).addClass(option.stepClass[1]);
+            } else {
+                num_boxs.removeClass(option.stepClass[0]);
+                num_boxs.next().removeClass(option.stepClass[1]);
+            }
+            num_boxs.addClass("dis_block center text_al_c");
+            if (step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length == step.children("cite").eq(0).outerWidth()) {
+                var active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length;
+            } else {
+                var active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length - (step.find(".ak-is_active").last().outerWidth()/2);
+            }
+            step.children("cite").eq(0).css({
+                "top": num_box.outerHeight()/2+step_line_h
+            });
+            step.children("cite").eq(1).css({
+                "top": num_box.outerHeight()/2-step_line_h+step_line_h,
+                "width": 0
+            }).animate({
+                "width": active_w
+            });
+            $(window).resize(function(){
+                if (step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length == step.children("cite").eq(0).outerWidth()) {
+                    var re_active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length;
+                } else {
+                    var re_active_w = step.find(".ak-is_active").outerWidth() * step.find(".ak-is_active").length - (step.find(".ak-is_active").last().outerWidth()/2);
+                }
+                step.children("cite").eq(0).css({
+                    "top": num_box.outerHeight()/2+step_line_h
+                });
+                step.children("cite").eq(1).css({
+                    "top": num_box.outerHeight()/2-step_line_h+step_line_h,
+                    "width": step.children("cite").eq(1).outerWidth()
+                }).animate({
+                    "width": re_active_w
+                });
+            });
+        });
+        option.callback(step,step.find(".ak-is_active").length);
+        if (option.clickType) {
+            step_li.addClass("pointer");
+            step_li.click(function () {
+                var _self = $(this);
+                var _length = _self.index()+1;
+                _self.addClass("ak-is_active");
+                _self.children().eq(0).addClass(option.stepClass[0]);
+                _self.children().eq(1).addClass(option.stepClass[1]);
+                _self.prevAll("li").addClass("ak-is_active");
+                _self.prevAll("li").children().eq(0).addClass(option.stepClass[0]);
+                _self.prevAll("li").children().eq(1).addClass(option.stepClass[1]);
+                _self.nextAll("li").removeClass("ak-is_active");
+                _self.nextAll("li").children().eq(0).removeClass(option.stepClass[0]);
+                _self.nextAll("li").children().eq(1).removeClass(option.stepClass[1]);
+
+                if (step_li.last().outerWidth() * _length == step.children("cite").eq(0).outerWidth()) {
+                    var click_active_w = step_li.last().outerWidth() * _length;
+                } else {
+                    var click_active_w = step_li.last().outerWidth() * _length - (step_li.last().outerWidth()/2);
+                }
+                step.children("cite").eq(1).css({
+                    "width": step.children("cite").eq(1).outerWidth()
+                }).animate({
+                    "width": click_active_w
+                },100);
+                option.clickback(step,step.find(".ak-is_active").length,_self);
+            });
+        }
+    };
+} (jQuery));
 
 /*-----------------------------------------------AKjs_Lazyload (2018-12-15)--------------------------------------------*/
 (function($) {
@@ -10595,66 +10695,6 @@ function AKjs_Popupwin (setting) {
             });
         }
     }
-} (jQuery));
-
-/*-----------------------------------------------AKjs_StepOrder (2018-12-13)--------------------------------------------*/
-(function($) {
-    $.fn.AKjs_StepOrder = function(setting) {
-        var option = $.extend({
-                stepNum: "",
-                stepClass:  new Array(),
-                dashed_line: "bor_white bor_bottom_dashed2",
-                progress: "bor_white bor_bottom2",
-                callback: function() {}
-            },
-            setting);
-        var step = $(this);
-        step.addClass("rel ovh");
-        step.children().addClass("rel ovh");
-        step.children().before("<cite /><cite />");
-        step.children("cite").eq(0).addClass("dis_block rel w_100 "+option.dashed_line);
-        step.children("cite").eq(1).addClass("dis_block rel "+option.progress);
-        var step_li = step.children().children("li");
-        var num_box = step.children().children("li").eq(0).children().eq(0);
-        var step_line_h = step.children("cite").eq(0).outerHeight();
-        step_li.each(function(){
-            step.fadeIn();
-            var num_boxs = $(this).children().eq(0);
-            $(this).addClass("fl text_al_c");
-            if($(this).index() <= option.stepNum-1){
-                $(this).addClass("ak-is_active");
-            }
-            if ($(this).hasClass("ak-is_active")) {
-                $(this).children().eq(0).addClass(option.stepClass[0]);
-                $(this).children().eq(1).addClass(option.stepClass[1]);
-            } else {
-                num_boxs.removeClass(option.stepClass[0]);
-                num_boxs.next().removeClass(option.stepClass[1]);
-            }
-            num_boxs.addClass("dis_block center text_al_c");
-            step.children("cite").eq(0).css({
-                "top": num_box.outerHeight()/2+step_line_h
-            });
-            step.children("cite").eq(1).css({
-                "top": num_box.outerHeight()/2-step_line_h+step_line_h,
-                "width": 0
-            }).animate({
-                "width": step.find(".ak-is_active").last().children().eq(0).offset().left
-            });
-            $(window).resize(function(){
-                step.children("cite").eq(0).css({
-                    "top": num_box.outerHeight()/2+step_line_h
-                });
-                step.children("cite").eq(1).css({
-                    "top": num_box.outerHeight()/2-step_line_h+step_line_h,
-                    "width": 0
-                }).animate({
-                    "width": step.find(".ak-is_active").last().children().eq(0).offset().left
-                });
-            });
-        });
-        option.callback(step);
-    };
 } (jQuery));
 
 /*-----------------------------------------------AKjs_Substring (2018-12-13)--------------------------------------------*/
