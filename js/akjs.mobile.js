@@ -978,7 +978,7 @@ function AKjs_Animation() {
             aniAdd(ani_ele,aniJson_each,ani_s);
         } else {
             setTimeout(function () {
-                if (ani_ele.offset().top+ani_ele.outerHeight() < view_h) {
+                if (ani_ele.offset().top < view_h) {
                     aniAdd(ani_ele,aniJson_each,ani_s);
                 } else {
                     aniRemove(ani_ele,aniJson_each,ani_s);
@@ -999,9 +999,9 @@ function AKjs_Animation() {
             var scrollTop = scroll_ele.scrollTop();
             var arr = new Array();
             for(var i = 0; i < _self.length; i++) {
-                arr[i] = _self.eq(i).offset().top+offsetTop;
+                arr[i] = _self.eq(i).offset().top + offsetTop;
                 if(scrollTop >= arr[i]){
-                    if (_self.eq(i).offset().top+offsetTop+_self.eq(i).outerHeight() > view_h) {
+                    if (_self.eq(i).offset().top + offsetTop + _self.eq(i).outerHeight() > view_h) {
                         _self.eq(i).addClass("animated " + aniJson_each.name);
                     }
                 } else if (scrollTop < arr[0]) {
