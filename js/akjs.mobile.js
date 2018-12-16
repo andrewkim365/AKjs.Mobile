@@ -970,20 +970,21 @@ function AKjs_Animation() {
     var _self = $('*[data-animation]');
     var view_h = parseInt(window.screen.height);
     _self.each(function(){
-        var ani_ele = $(this);
         var ani_s = new RegExp("s");
-        var animated_each = ani_ele.attr("data-animation");
-        aniJson_each = eval("(" + animated_each + ")");
-        if (IsMobile) {
-            aniAdd(ani_ele,aniJson_each,ani_s);
-        } else {
-            setTimeout(function () {
-                if (ani_ele.offset().top < view_h) {
-                    aniAdd(ani_ele,aniJson_each,ani_s);
-                } else {
-                    aniRemove(ani_ele,aniJson_each,ani_s);
+        for(var i = 0; i < _self.length; i++) {
+            if (IsMobile) {
+                var animated_each = _self.eq(i).attr("data-animation");
+                aniJson_each = eval("(" + animated_each + ")");
+                _self.eq(i).removeClass("dis_opa_0");
+                aniAdd(_self.eq(i),aniJson_each);
+            } else {
+                if (_self.eq(i).offset().top < view_h) {
+                    var animated_each = _self.eq(i).attr("data-animation");
+                    aniJson_each = eval("(" + animated_each + ")");
+                    _self.eq(i).removeClass("dis_opa_0");
+                    aniAdd(_self.eq(i),aniJson_each);
                 }
-            },500);
+            }
         }
         $(window).on('scroll', function () {
             var scroll_ele = $(this);
@@ -999,53 +1000,60 @@ function AKjs_Animation() {
             var scrollTop = scroll_ele.scrollTop();
             var arr = new Array();
             for(var i = 0; i < _self.length; i++) {
+                var animated_all = _self.eq(i).attr("data-animation");
+                aniJson_all = eval("(" + animated_all + ")");
                 arr[i] = _self.eq(i).offset().top + offsetTop;
-                if(scrollTop >= arr[i]){
+                if(scrollTop >= arr[i]-view_h/4){
                     if (_self.eq(i).offset().top + offsetTop + _self.eq(i).outerHeight() > view_h) {
-                        _self.eq(i).addClass("animated " + aniJson_each.name);
+                        var animated_each = _self.eq(i).attr("data-animation");
+                        aniJson_each = eval("(" + animated_each + ")");
+                        _self.eq(i).removeClass("dis_opa_0");
+                        aniAdd(_self.eq(i),aniJson_each);
                     }
                 } else if (scrollTop < arr[0]) {
-                    _self.removeClass("animated "+aniJson_each.name);
-                    _self.eq(0).addClass("animated " + aniJson_each.name);
+                    var animated_each = _self.eq(i).attr("data-animation");
+                    aniJson_each = eval("(" + animated_each + ")");
+                    var animated_first = _self.eq(0).attr("data-animation");
+                    aniJson_first = eval("(" + animated_first + ")");
+                    _self.eq(0).removeClass("dis_opa_0");
+                    _self.eq(i).addClass("dis_opa_0").removeClass("animated "+aniJson_each.name);
+                    aniAdd(_self.eq(0),aniJson_first);
                 } else {
-                    _self.eq(0).removeClass("animated " + aniJson_each.name);
+                    var animated_each = _self.eq(0).attr("data-animation");
+                    aniJson_each = eval("(" + animated_each + ")");
+                    _self.eq(0).removeClass("animated "+aniJson_each.name);
                 }
             }
         }
-        function aniAdd(ani_ele,aniJson_each,ani_s) {
-            if (aniJson_each.name) {
-                ani_ele.removeClass("animated "+aniJson_each.name);
-                ani_ele.addClass("animated "+aniJson_each.name);
-            }
-            if (aniJson_each.duration) {
-                if (ani_s.test(aniJson_each.duration)) {
-                    ani_ele.css({
-                        "animation-duration" : parseInt(aniJson_each.duration)
-                    });
-                } else {
-                    ani_ele.css({
-                        "animation-duration" : parseInt(aniJson_each.duration)+"s"
-                    });
+        function aniAdd(ani_ele,aniJson_each) {
+            $(function () {
+                if (aniJson_each.name) {
+                    ani_ele.addClass("animated "+aniJson_each.name);
                 }
-            }
-            if (aniJson_each.delay) {
-                if (ani_s.test(aniJson_each.delay)) {
-                    ani_ele.css({
-                        "animation-delay" : parseInt(aniJson_each.delay)
-                    });
-                } else {
-                    ani_ele.css({
-                        "animation-delay" : parseInt(aniJson_each.delay)+"s"
-                    });
+                if (aniJson_each.duration) {
+                    if (ani_s.test(aniJson_each.duration)) {
+                        ani_ele.css({
+                            "animation-duration" : aniJson_each.duration
+                        });
+                    } else {
+                        ani_ele.css({
+                            "animation-duration" : aniJson_each.duration+"s"
+                        });
+                    }
                 }
-            }
+                if (aniJson_each.delay) {
+                    if (ani_s.test(aniJson_each.delay)) {
+                        ani_ele.css({
+                            "animation-delay" : aniJson_each.delay
+                        });
+                    } else {
+                        ani_ele.css({
+                            "animation-delay" : aniJson_each.delay+"s"
+                        });
+                    }
+                }
+            });
         }
-        function aniRemove(ani_ele,aniJson_each,ani_s) {
-            if (aniJson_each.name) {
-                ani_ele.removeClass("animated "+aniJson_each.name);
-            }
-        }
-
     });
 }
 
