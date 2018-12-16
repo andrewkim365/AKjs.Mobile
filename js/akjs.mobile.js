@@ -974,13 +974,17 @@ function AKjs_Animation() {
         var ani_s = new RegExp("s");
         var animated_each = ani_ele.attr("data-animation");
         aniJson_each = eval("(" + animated_each + ")");
-        setTimeout(function () {
-            if (ani_ele.offset().top+ani_ele.outerHeight() < view_h) {
-                aniAdd(ani_ele,aniJson_each,ani_s);
-            } else {
-                aniRemove(ani_ele,aniJson_each,ani_s);
-            }
-        },500);
+        if (IsMobile) {
+            aniAdd(ani_ele,aniJson_each,ani_s);
+        } else {
+            setTimeout(function () {
+                if (ani_ele.offset().top+ani_ele.outerHeight() < view_h) {
+                    aniAdd(ani_ele,aniJson_each,ani_s);
+                } else {
+                    aniRemove(ani_ele,aniJson_each,ani_s);
+                }
+            },500);
+        }
         $(window).on('scroll', function () {
             var scroll_ele = $(this);
             var offsetTop = 0;
