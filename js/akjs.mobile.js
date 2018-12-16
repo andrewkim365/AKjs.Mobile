@@ -1003,7 +1003,7 @@ function AKjs_Animation() {
                 var animated_all = _self.eq(i).attr("data-animation");
                 aniJson_all = eval("(" + animated_all + ")");
                 arr[i] = _self.eq(i).offset().top + offsetTop;
-                if(scrollTop >= arr[i]-view_h/4){
+                if(scrollTop >= arr[i]-view_h/2){
                     if (_self.eq(i).offset().top + offsetTop + _self.eq(i).outerHeight() > view_h) {
                         var animated_each = _self.eq(i).attr("data-animation");
                         aniJson_each = eval("(" + animated_each + ")");
