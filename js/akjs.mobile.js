@@ -966,37 +966,82 @@ function AKjs_Ajax(setting) {
 
 /*-----------------------------------------------AKjs_Animation------------------------------------------*/
 function AKjs_Animation() {
-    $('*[data-animation]').each(function(){
+    AKjs_UserAgent();
+    var _self = $('*[data-animation]');
+    var view_h = parseInt(window.screen.height);
+    _self.each(function(){
         var ani_ele = $(this);
         var ani_s = new RegExp("s");
         var animated_each = ani_ele.attr("data-animation");
         aniJson_each = eval("(" + animated_each + ")");
-        if (aniJson_each.name) {
-            ani_ele.removeClass("animated "+aniJson_each.name);
-            ani_ele.addClass("animated "+aniJson_each.name);
-        }
-        if (aniJson_each.duration) {
-            if (ani_s.test(aniJson_each.duration)) {
-                ani_ele.css({
-                    "animation-duration" : parseInt(aniJson_each.duration)
-                });
+        setTimeout(function () {
+            if (ani_ele.offset().top+ani_ele.outerHeight() < view_h) {
+                aniAdd(ani_ele,aniJson_each,ani_s);
             } else {
-                ani_ele.css({
-                    "animation-duration" : parseInt(aniJson_each.duration)+"s"
-                });
+                aniRemove(ani_ele,aniJson_each,ani_s);
+            }
+        },500);
+        $(window).on('scroll', function () {
+            var scroll_ele = $(this);
+            var offsetTop = 0;
+            aniScroll(scroll_ele,offsetTop);
+        });
+        $("#ak-scrollview").on('scroll', function () {
+            var scroll_ele = $(this);
+            var offsetTop = $("#ak-scrollview").offset().top;
+            aniScroll(scroll_ele,offsetTop);
+        });
+        function aniScroll(scroll_ele,offsetTop) {
+            var scrollTop = scroll_ele.scrollTop();
+            var arr = new Array();
+            for(var i = 0; i < _self.length; i++) {
+                arr[i] = _self.eq(i).offset().top+offsetTop;
+                if(scrollTop >= arr[i]){
+                    if (_self.eq(i).offset().top+offsetTop+_self.eq(i).outerHeight() > view_h) {
+                        _self.eq(i).addClass("animated " + aniJson_each.name);
+                    }
+                } else if (scrollTop < arr[0]) {
+                    _self.removeClass("animated "+aniJson_each.name);
+                    _self.eq(0).addClass("animated " + aniJson_each.name);
+                } else {
+                    _self.eq(0).removeClass("animated " + aniJson_each.name);
+                }
             }
         }
-        if (aniJson_each.delay) {
-            if (ani_s.test(aniJson_each.delay)) {
-                ani_ele.css({
-                    "animation-delay" : parseInt(aniJson_each.delay)
-                });
-            } else {
-                ani_ele.css({
-                    "animation-delay" : parseInt(aniJson_each.delay)+"s"
-                });
+        function aniAdd(ani_ele,aniJson_each,ani_s) {
+            if (aniJson_each.name) {
+                ani_ele.removeClass("animated "+aniJson_each.name);
+                ani_ele.addClass("animated "+aniJson_each.name);
+            }
+            if (aniJson_each.duration) {
+                if (ani_s.test(aniJson_each.duration)) {
+                    ani_ele.css({
+                        "animation-duration" : parseInt(aniJson_each.duration)
+                    });
+                } else {
+                    ani_ele.css({
+                        "animation-duration" : parseInt(aniJson_each.duration)+"s"
+                    });
+                }
+            }
+            if (aniJson_each.delay) {
+                if (ani_s.test(aniJson_each.delay)) {
+                    ani_ele.css({
+                        "animation-delay" : parseInt(aniJson_each.delay)
+                    });
+                } else {
+                    ani_ele.css({
+                        "animation-delay" : parseInt(aniJson_each.delay)+"s"
+                    });
+                }
             }
         }
+        function aniRemove(ani_ele,aniJson_each,ani_s) {
+            if (aniJson_each.name) {
+                ani_ele.removeClass("animated "+aniJson_each.name);
+            }
+        }
+
     });
 }
 
