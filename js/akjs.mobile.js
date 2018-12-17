@@ -978,7 +978,7 @@ function AKjs_Animation() {
                 _self.eq(i).removeClass("dis_opa_0");
                 aniAdd(_self.eq(i),aniJson_each);
             } else {
-                if (_self.eq(i).offset().top < view_h) {
+                if (_self.eq(i).offset().top + _self.eq(i).outerHeight() < view_h) {
                     var animated_each = _self.eq(i).attr("data-animation");
                     aniJson_each = eval("(" + animated_each + ")");
                     _self.eq(i).removeClass("dis_opa_0");
@@ -1002,9 +1002,9 @@ function AKjs_Animation() {
             for(var i = 0; i < _self.length; i++) {
                 var animated_all = _self.eq(i).attr("data-animation");
                 aniJson_all = eval("(" + animated_all + ")");
-                arr[i] = _self.eq(i).offset().top + offsetTop;
-                if(scrollTop >= arr[i]-view_h/2){
-                    if (_self.eq(i).offset().top + offsetTop + _self.eq(i).outerHeight() > view_h) {
+                arr[i] = _self.eq(i).offset().top + offsetTop + _self.eq(i).outerHeight();
+                if(scrollTop >= arr[i]-view_h){
+                    if (arr[i] > view_h) {
                         var animated_each = _self.eq(i).attr("data-animation");
                         aniJson_each = eval("(" + animated_each + ")");
                         _self.eq(i).removeClass("dis_opa_0");
@@ -1016,8 +1016,10 @@ function AKjs_Animation() {
                     var animated_first = _self.eq(0).attr("data-animation");
                     aniJson_first = eval("(" + animated_first + ")");
                     _self.eq(0).removeClass("dis_opa_0");
-                    _self.eq(i).addClass("dis_opa_0").removeClass("animated "+aniJson_each.name);
-                    aniAdd(_self.eq(0),aniJson_first);
+                    if (arr[i] > view_h) {
+                        _self.eq(i).removeClass("animated " + aniJson_each.name);
+                        aniAdd(_self.eq(0), aniJson_first);
+                    }
                 } else {
                     var animated_each = _self.eq(0).attr("data-animation");
                     aniJson_each = eval("(" + animated_each + ")");
