@@ -971,6 +971,7 @@ function AKjs_Animation() {
     var view_h = parseInt(window.screen.height);
     _self.each(function(){
         var ani_s = new RegExp("s");
+        var arr = new Array();
         for(var i = 0; i < _self.length; i++) {
             if (IsMobile) {
                 var animated_each = _self.eq(i).attr("data-animation");
@@ -978,12 +979,13 @@ function AKjs_Animation() {
                 _self.eq(i).removeClass("dis_opa_0");
                 aniAdd(_self.eq(i),aniJson_each);
             } else {
-                if (_self.eq(i).offset().top < view_h) {
+                arr[i] = _self.eq(i).offset().top + _self.eq(i).outerHeight();
+                if (arr[i] < view_h) {
                     var animated_each = _self.eq(i).attr("data-animation");
                     aniJson_each = eval("(" + animated_each + ")");
                     _self.eq(i).removeClass("dis_opa_0");
                     aniAdd(_self.eq(i),aniJson_each);
-                } else {
+                } else if (_self.eq(i).offset().top > view_h) {
                     _self.eq(i).addClass("dis_opa_0");
                 }
             }
@@ -1005,7 +1007,7 @@ function AKjs_Animation() {
                 var animated_all = _self.eq(i).attr("data-animation");
                 aniJson_all = eval("(" + animated_all + ")");
                 arr[i] = _self.eq(i).offset().top + offsetTop + _self.eq(i).outerHeight();
-                if(scrollTop >= arr[i]-view_h){
+                if(scrollTop >= _self.eq(i).offset().top - view_h/2){
                     if (arr[i] > view_h) {
                         var animated_each = _self.eq(i).attr("data-animation");
                         aniJson_each = eval("(" + animated_each + ")");
@@ -1021,8 +1023,9 @@ function AKjs_Animation() {
                     if (arr[i] > view_h) {
                         _self.eq(i).removeClass("animated " + aniJson_each.name);
                         aniAdd(_self.eq(0), aniJson_first);
-                    } else {
-                        _self.eq(i).addClass("dis_opa_0");
+                        if (_self.eq(i).offset().top > view_h) {
+                            _self.eq(i).addClass("dis_opa_0");
+                        }
                     }
                 } else {
                     var animated_each = _self.eq(0).attr("data-animation");
