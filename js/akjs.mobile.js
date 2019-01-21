@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181213 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190121 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -160,6 +160,7 @@ function AKjs_Router(setting) {
         $(window).bind('hashchange', function () {
             var page = "hashchange";
             var PrevScrollTop = $("#ak-scrollview").scrollTop();
+            $(document).unbind();
             Router_Ajax(option,page);
             AKjs_mainHeight();
             if (option.Animate) {
@@ -547,6 +548,12 @@ function AKjs_InputFocus() {
     });
     $('main input[type="text"],main input[type="password"],main input[type="number"], main input[type="tel"], main input[type="email"],main textarea').on('blur', function() {
         Input_BlurScrollTop();
+    });
+    $("input,select").blur(function(){
+        setTimeout(function() {
+            var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
+            window.scrollTo(0, Math.max(scrollHeight - 1, 0));
+        }, 100);
     });
     $("footer input").focus(function (ak) {
         ak.preventDefault();

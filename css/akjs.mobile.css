@@ -1,4 +1,4 @@
-/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20181213 AKjs.Mobile license */
+/*! jquery.AKjs.Mobile by Mobile Web App Plugin v1.5.6 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190121 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -1062,6 +1062,18 @@ legend {
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
+.bor_rad_tl_0 {
+    border-top-left-radius: 0 !important;
+}
+.bor_rad_bl_0 {
+    border-bottom-left-radius: 0 !important;
+}
+.bor_rad_tr_0 {
+    border-top-right-radius: 0 !important;
+}
+.bor_rad_br_0 {
+    border-bottom-right-radius: 0 !important;
+}
 .border {
     border: solid 1px;
 }
@@ -1587,6 +1599,9 @@ text {
 }
 .fi {
     float: inherit !important;
+}
+.fin {
+    float: initial !important;
 }
 
 /*text align and font size*/
