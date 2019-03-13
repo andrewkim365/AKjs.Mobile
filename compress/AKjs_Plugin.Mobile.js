@@ -1404,16 +1404,16 @@ function AKjs_Popupwin (setting) {
 (function($) {
     $.fn.AKjs_Circliful = function(setting) {
         var option = $.extend({
-                prog_color: "",
-                bg_color: "",
-                fill_color: false,
-                width: 15,
-                dimension: 200,
-                font_size: 15,
-                font_color: "#333333",
-                percent: 50,
-                animationStep: 1
-            }, setting);
+            prog_color: "",
+            bg_color: "",
+            fill_color: false,
+            width: 15,
+            dimension: 200,
+            font_size: 15,
+            font_color: "#333333",
+            percent: 50,
+            animationStep: 1
+        }, setting);
         return this.each(function() {
             var $dimension = "";
             var $ele_text = "";
@@ -4283,22 +4283,22 @@ function AKjs_GoTop (setting) {
             return false;
         }
         var html  = "<div class='ak-keyboard'>";
-            html += "	<div class='ak-mask'></div>";
-            html += "	<section>";
-            html += "	    <h3><i class='c_title icon-mn_dunpai_fill'></i>" + val.title + "</h3>";
-            html += "       <ul>";
-            for (i = 0; i < val.num; i++) {
+        html += "	<div class='ak-mask'></div>";
+        html += "	<section>";
+        html += "	    <h3><i class='c_title icon-mn_dunpai_fill'></i>" + val.title + "</h3>";
+        html += "       <ul>";
+        for (i = 0; i < val.num; i++) {
             html += "	        <li><span></span></li>";
-            }
-            html += "	    </ul>";
-            html += "	    <blockquote></blockquote>";
-            html += "		<ol>";
-            html += "           <li class='cancel'>" + val.cancel + "</li>" +
-                    "           <li class='delete'><i class='icon-im_huige text_14em line_h_22em'></i></li>";
-            html += "		</ol>";
-            html += "	</section>";
-            html += "	<figure></figure>";
-            html += "</div>";
+        }
+        html += "	    </ul>";
+        html += "	    <blockquote></blockquote>";
+        html += "		<ol>";
+        html += "           <li class='cancel'>" + val.cancel + "</li>" +
+            "           <li class='delete'><i class='icon-im_huige text_14em line_h_22em'></i></li>";
+        html += "		</ol>";
+        html += "	</section>";
+        html += "	<figure></figure>";
+        html += "</div>";
         var obj = {};
         var dom = $(html);
         var nowNo = 0;
@@ -6286,52 +6286,52 @@ function AKjs_Loader(setting) {
                                         strMoveTop = strMove.position().top;
                                         k2 = strMoveTop - (e.clientY - strWrap.offset().top);
                                         $(this).on("mousemove", function(e) {
-                                                fMove = true;
-                                                newY = e.clientY;
-                                                if (newY > oldY) {
-                                                    dir = 1
-                                                } else {
-                                                    if (newY < oldY) {
-                                                        dir = -1
-                                                    }
+                                            fMove = true;
+                                            newY = e.clientY;
+                                            if (newY > oldY) {
+                                                dir = 1
+                                            } else {
+                                                if (newY < oldY) {
+                                                    dir = -1
                                                 }
-                                                oldY = newY;
-                                                dragTop = k2 + e.clientY - strWrap.offset().top;
-                                                if (!option.circular) {
-                                                    if (dragTop < -strMove.height() && dir < 0) {
-                                                        dragTop = strWrap.height();
-                                                        strMoveTop = strMove.position().top;
-                                                        k2 = strMoveTop - (e.clientY - strWrap.offset().top)
-                                                    }
-                                                    if (dragTop > strWrap.height() && dir > 0) {
-                                                        dragTop = -strMove.height();
-                                                        strMoveTop = strMove.position().top;
-                                                        k2 = strMoveTop - (e.clientY - strWrap.offset().top)
-                                                    }
-                                                } else {
-                                                    if (dragTop < -strMove.height() && dir < 0) {
-                                                        dragTop = 0;
-                                                        strMoveTop = strMove.position().top;
-                                                        k2 = strMoveTop - (e.clientY - strWrap.offset().top)
-                                                    }
-                                                    if (dragTop > 0 && dir > 0) {
-                                                        dragTop = -strMove.height();
-                                                        strMoveTop = strMove.position().top;
-                                                        k2 = strMoveTop - (e.clientY - strWrap.offset().top)
-                                                    }
+                                            }
+                                            oldY = newY;
+                                            dragTop = k2 + e.clientY - strWrap.offset().top;
+                                            if (!option.circular) {
+                                                if (dragTop < -strMove.height() && dir < 0) {
+                                                    dragTop = strWrap.height();
+                                                    strMoveTop = strMove.position().top;
+                                                    k2 = strMoveTop - (e.clientY - strWrap.offset().top)
                                                 }
-                                                strMove.stop(true).css({
-                                                    top: dragTop
-                                                })
-                                            }).on("mouseup", function() {
-                                                if (option.inverthover) {
-                                                    strMove.trigger("mouseenter")
+                                                if (dragTop > strWrap.height() && dir > 0) {
+                                                    dragTop = -strMove.height();
+                                                    strMoveTop = strMove.position().top;
+                                                    k2 = strMoveTop - (e.clientY - strWrap.offset().top)
                                                 }
-                                                $(this).off("mousemove");
-                                                setTimeout(function() {
-                                                        fMove = false
-                                                    }, 50);
-                                            });
+                                            } else {
+                                                if (dragTop < -strMove.height() && dir < 0) {
+                                                    dragTop = 0;
+                                                    strMoveTop = strMove.position().top;
+                                                    k2 = strMoveTop - (e.clientY - strWrap.offset().top)
+                                                }
+                                                if (dragTop > 0 && dir > 0) {
+                                                    dragTop = -strMove.height();
+                                                    strMoveTop = strMove.position().top;
+                                                    k2 = strMoveTop - (e.clientY - strWrap.offset().top)
+                                                }
+                                            }
+                                            strMove.stop(true).css({
+                                                top: dragTop
+                                            })
+                                        }).on("mouseup", function() {
+                                            if (option.inverthover) {
+                                                strMove.trigger("mouseenter")
+                                            }
+                                            $(this).off("mousemove");
+                                            setTimeout(function() {
+                                                fMove = false
+                                            }, 50);
+                                        });
                                         return false
                                     }).on("click", function() {
                                         if (fMove) {
@@ -6418,15 +6418,15 @@ function AKjs_Loader(setting) {
                                                 strMove.stop(true).css({
                                                     top: dragTop
                                                 });
-                                                }).on("mouseup", function() {
-                                                    if (option.inverthover) {
-                                                        strMove.trigger("mouseenter")
-                                                    }
-                                                    $(this).off("mousemove");
-                                                    setTimeout(function() {
-                                                        fMove = false
-                                                    }, 50);
-                                                });
+                                            }).on("mouseup", function() {
+                                                if (option.inverthover) {
+                                                    strMove.trigger("mouseenter")
+                                                }
+                                                $(this).off("mousemove");
+                                                setTimeout(function() {
+                                                    fMove = false
+                                                }, 50);
+                                            });
                                             return false;
                                         }).on("click", function() {
                                             if (fMove) {
@@ -8872,10 +8872,10 @@ function AKjs_Loader(setting) {
                 for (var row = 0; row < this.modules.length; row++)
                     for (
                         var y = cs * row,
-                             col = 0; col < this.modules[row].length; col++) {
-                    var x = cs * col;
-                    this.modules[row][col] && (qr_mc.beginFill(0, 100), qr_mc.moveTo(x, y), qr_mc.lineTo(x + cs, y), qr_mc.lineTo(x + cs, y + cs), qr_mc.lineTo(x, y + cs), qr_mc.endFill())
-                }
+                            col = 0; col < this.modules[row].length; col++) {
+                        var x = cs * col;
+                        this.modules[row][col] && (qr_mc.beginFill(0, 100), qr_mc.moveTo(x, y), qr_mc.lineTo(x + cs, y), qr_mc.lineTo(x + cs, y + cs), qr_mc.lineTo(x, y + cs), qr_mc.endFill())
+                    }
                 return qr_mc
             },
             setupTimingPattern: function() {
@@ -9279,16 +9279,16 @@ function AKjs_Loader(setting) {
             disable: false
         },
         template: '<div class="ak-range">' +
-        '   <ul>' +
-        '       <li class="ak-SelectedBar"></li>' +
-        '       <li class="ak-Pointer low"></li>' +
-        '       <li class="ak-label"></li>' +
-        '       <li class="ak-Pointer high"></li>' +
-        '       <li class="ak-label"></li>' +
-        '       <li class="ak-Clickable"></li>' +
-        '   </ul>' +
-        '   <div class="ak-scale"></div>' +
-        '</div>',
+            '   <ul>' +
+            '       <li class="ak-SelectedBar"></li>' +
+            '       <li class="ak-Pointer low"></li>' +
+            '       <li class="ak-label"></li>' +
+            '       <li class="ak-Pointer high"></li>' +
+            '       <li class="ak-label"></li>' +
+            '       <li class="ak-Clickable"></li>' +
+            '   </ul>' +
+            '   <div class="ak-scale"></div>' +
+            '</div>',
         init: function(node, options) {
             this.options = $.extend({},
                 this.defaults, options);
@@ -9751,7 +9751,7 @@ function AKjs_Loader(setting) {
                     'height': 'auto',
                     'width': element.width(),
                     'overflow': 'hidden'
-            }).insertAfter(element),
+                }).insertAfter(element),
                 height = el.outerHeight();
             el.remove();
             element.data('expandedHeight', height);
@@ -11286,14 +11286,14 @@ function AKjs_Loader(setting) {
             var ele = $(this[0]);
             ele.addClass("ak-for");
             var ret = $.AKjs_Template(ele, data, options, parentItem);
-            if (options.callback != undefined) {
-                newTmplItem(options.callback(ele,ret));
-            }
             $(function() {
                 ele.removeClass("ak-for");
                 ele.find(".ak-for").removeClass("ak-for");
                 ele.children().eq(0).remove();
                 ret.appendTo(ele);
+                if (options.callback != undefined) {
+                    newTmplItem(options.callback(ele,ret));
+                }
             });
             return ret;
         },
@@ -11886,40 +11886,40 @@ function AKjs_Loader(setting) {
     var AKjs_Typeahead = function(element, options) {
         var _this = this;
         $(function() {
-                _this.$element = $(element);
-                _this.options = $.extend(true, {}, $.fn.AKjs_Typeahead.defaults, options);
-                _this.$menu = $("<div class=\"ak-typeahead\"></div>").appendTo("body");
-                _this.shown = false;
-                _this.eventSupported = _this.options.eventSupported || _this.eventSupported;
-                _this.grepper = _this.options.grepper || _this.grepper;
-                _this.highlighter = _this.options.highlighter || _this.highlighter;
-                _this.lookup = _this.options.lookup || _this.lookup;
-                _this.matcher = _this.options.matcher || _this.matcher;
-                _this.render = _this.options.render || _this.render;
-                _this.init = _this.options.init || _this.init;
-                _this.ele_show = _this.options.ele_show || _this.ele_show;
-                _this.select = _this.options.select || _this.select;
-                _this.sorter = _this.options.sorter || _this.sorter;
-                _this.source = _this.options.source || _this.source;
-                AKjs_UserAgent();
-                if (!_this.source.length) {
-                    var ajax = _this.options.ajax;
-                    if (typeof ajax === "string") {
-                        _this.ajax = $.extend({},
-                            $.fn.AKjs_Typeahead.defaults.ajax, {
-                                url: ajax
-                            })
-                    } else {
-                        _this.ajax = $.extend({},
-                            $.fn.AKjs_Typeahead.defaults.ajax, ajax)
-                    }
-                    if (!_this.ajax.url) {
-                        _this.ajax = null
-                    }
+            _this.$element = $(element);
+            _this.options = $.extend(true, {}, $.fn.AKjs_Typeahead.defaults, options);
+            _this.$menu = $("<div class=\"ak-typeahead\"></div>").appendTo("body");
+            _this.shown = false;
+            _this.eventSupported = _this.options.eventSupported || _this.eventSupported;
+            _this.grepper = _this.options.grepper || _this.grepper;
+            _this.highlighter = _this.options.highlighter || _this.highlighter;
+            _this.lookup = _this.options.lookup || _this.lookup;
+            _this.matcher = _this.options.matcher || _this.matcher;
+            _this.render = _this.options.render || _this.render;
+            _this.init = _this.options.init || _this.init;
+            _this.ele_show = _this.options.ele_show || _this.ele_show;
+            _this.select = _this.options.select || _this.select;
+            _this.sorter = _this.options.sorter || _this.sorter;
+            _this.source = _this.options.source || _this.source;
+            AKjs_UserAgent();
+            if (!_this.source.length) {
+                var ajax = _this.options.ajax;
+                if (typeof ajax === "string") {
+                    _this.ajax = $.extend({},
+                        $.fn.AKjs_Typeahead.defaults.ajax, {
+                            url: ajax
+                        })
+                } else {
+                    _this.ajax = $.extend({},
+                        $.fn.AKjs_Typeahead.defaults.ajax, ajax)
                 }
-                _this.init();
-                _this.listen()
-            });
+                if (!_this.ajax.url) {
+                    _this.ajax = null
+                }
+            }
+            _this.init();
+            _this.listen()
+        });
     };
     AKjs_Typeahead.prototype = {
         constructor: AKjs_Typeahead,
@@ -12897,12 +12897,12 @@ function AKjs_Loader(setting) {
                 this.$images = $images,
                 this.$body = $("main"),
                 options.inline ? ($this.one($event_built, $.proxy(function() {
-                    this.view();
-                },
-                this)),
-                $images.each(function() {
-                this.complete ? ready() : $(this).one($event_load, ready)
-            })) : $this.on($event_click, $.proxy(this.start, this))));
+                        this.view();
+                    },
+                    this)),
+                    $images.each(function() {
+                        this.complete ? ready() : $(this).one($event_load, ready)
+                    })) : $this.on($event_click, $.proxy(this.start, this))));
         },
         ready: function() {
             this.count++,
@@ -13136,7 +13136,7 @@ function AKjs_Loader(setting) {
                         this.renderImage($.proxy(function() {
                             this.isViewed = !0, this.trigger($event_viewed)
                         }, this))
-                    }, this));
+                }, this));
         },
         loadImage: function(e) {
             var image = e.target,
@@ -13146,17 +13146,17 @@ function AKjs_Loader(setting) {
                 parentHeight = $parent.height(),
                 filled = e.data && e.data.filled;
             getImageSize(image, function(naturalWidth, naturalHeight) {
-                    var aspectRatio = naturalWidth / naturalHeight,
-                        width = parentWidth,
-                        height = parentHeight;
-                    parentHeight * aspectRatio > parentWidth ? filled ? width = parentHeight * aspectRatio: height = parentWidth / aspectRatio: filled ? height = parentWidth / aspectRatio: width = parentHeight * aspectRatio,
-                        $image.css({
-                            width: width,
-                            height: height,
-                            marginLeft: (parentWidth - width) / 2,
-                            marginTop: (parentHeight - height) / 2
-                        })
-                })
+                var aspectRatio = naturalWidth / naturalHeight,
+                    width = parentWidth,
+                    height = parentHeight;
+                parentHeight * aspectRatio > parentWidth ? filled ? width = parentHeight * aspectRatio: height = parentWidth / aspectRatio: filled ? height = parentWidth / aspectRatio: width = parentHeight * aspectRatio,
+                    $image.css({
+                        width: width,
+                        height: height,
+                        marginLeft: (parentWidth - width) / 2,
+                        marginTop: (parentHeight - height) / 2
+                    })
+            })
         },
         resize: function() {
             this.initContainer(),
@@ -13269,10 +13269,10 @@ function AKjs_Loader(setting) {
             this.trigger($event_show).isDefaultPrevented() || (this.$body.removeClass($class_open),
                 $viewer = this.$viewer.removeClass($class_hide),
                 this.$element.one($event_shown, $.proxy(function() {
-                    this.view(this.target ? this.$images.index(this.target) : this.index),
-                        this.target = !1
-                },
-                this)),
+                        this.view(this.target ? this.$images.index(this.target) : this.index),
+                            this.target = !1
+                    },
+                    this)),
                 options.transition ? (this.transitioning = !0, $viewer.addClass($class_transition),
                     forceReflow($viewer[0]),
                     $viewer.one($event_transitionend, $.proxy(this.shown, this)).addClass($class_in)) : ($viewer.addClass($class_in), this.shown())))
@@ -13547,28 +13547,28 @@ function AKjs_Loader(setting) {
     };
     ak_Viewer.template =
         '<div class="ak-viewer-container">' +
-            '<div class="ak-viewer-canvas" data-action="canvas"></div>' +
-            '<div class="ak-viewer-footer animated slideInUp h_10em bg_black07">' +
-                '<div class="ak-viewer-title"></div>' +
-                '<ul class="ak-viewer-toolbar">' +
-                    '<li class="ak-viewer-one-to-one bg_black07" data-action="one-to-one"></li>' +
-                    '<li class="ak-viewer-zoom-in bg_black07" data-action="zoom-in"></li>' +
-                    '<li class="ak-viewer-zoom-out bg_black07" data-action="zoom-out"></li>' +
-                    '<li class="ak-viewer-prev bg_black07" data-action="prev"></li>' +
-                    '<li class="ak-viewer-next bg_black07" data-action="next"></li>' +
-                    '<li class="ak-viewer-rotate-left bg_black07" data-action="rotate-left"></li>' +
-                    '<li class="ak-viewer-rotate-right bg_black07" data-action="rotate-right"></li>' +
-                    '<li class="ak-viewer-flip-horizontal bg_black07" data-action="flip-horizontal"></li>' +
-                    '<li class="ak-viewer-flip-vertical bg_black07" data-action="flip-vertical"></li>' +
-                    '<li class="ak-viewer-reset bg_black07" data-action="reset"></li>' +
-                "</ul>" +
-                '<div class="ak-viewer-navbar bg_black04">' +
-                    '<ul class="ak-viewer-list"></ul>' +
-                "</div>" +
-            "</div>" +
-            '<div class="ak-viewer-tooltip"></div>' +
-            '<button type="button" class="ak-viewer-button bg_black07" data-action="mix"></button>' +
-            '<div class="ak-mask"></div>' +
+        '<div class="ak-viewer-canvas" data-action="canvas"></div>' +
+        '<div class="ak-viewer-footer animated slideInUp h_10em bg_black07">' +
+        '<div class="ak-viewer-title"></div>' +
+        '<ul class="ak-viewer-toolbar">' +
+        '<li class="ak-viewer-one-to-one bg_black07" data-action="one-to-one"></li>' +
+        '<li class="ak-viewer-zoom-in bg_black07" data-action="zoom-in"></li>' +
+        '<li class="ak-viewer-zoom-out bg_black07" data-action="zoom-out"></li>' +
+        '<li class="ak-viewer-prev bg_black07" data-action="prev"></li>' +
+        '<li class="ak-viewer-next bg_black07" data-action="next"></li>' +
+        '<li class="ak-viewer-rotate-left bg_black07" data-action="rotate-left"></li>' +
+        '<li class="ak-viewer-rotate-right bg_black07" data-action="rotate-right"></li>' +
+        '<li class="ak-viewer-flip-horizontal bg_black07" data-action="flip-horizontal"></li>' +
+        '<li class="ak-viewer-flip-vertical bg_black07" data-action="flip-vertical"></li>' +
+        '<li class="ak-viewer-reset bg_black07" data-action="reset"></li>' +
+        "</ul>" +
+        '<div class="ak-viewer-navbar bg_black04">' +
+        '<ul class="ak-viewer-list"></ul>' +
+        "</div>" +
+        "</div>" +
+        '<div class="ak-viewer-tooltip"></div>' +
+        '<button type="button" class="ak-viewer-button bg_black07" data-action="mix"></button>' +
+        '<div class="ak-mask"></div>' +
         "</div>";
     ak_Viewer.other = $.fn.AKjs_Viewer;
     $.fn.AKjs_Viewer = function(options) {
@@ -13596,14 +13596,14 @@ function AKjs_Loader(setting) {
 (function($) {
     $.fn.AKjs_Vticker = function(setting) {
         var option = $.extend({
-                speed: 500,
-                pause: 3000,
-                showItems: 3,
-                mousePause: true,
-                isPaused: false,
-                direction: "up",
-                height: 0
-            }, setting);
+            speed: 500,
+            pause: 3000,
+            showItems: 3,
+            mousePause: true,
+            isPaused: false,
+            direction: "up",
+            height: 0
+        }, setting);
         moveUp = function(ele, LiHeight, option) {
             if (!option.isPaused) {
                 ele_children = ele.children();
@@ -13742,23 +13742,23 @@ function AKjs_Loader(setting) {
             this.$element.addClass("ak-waterfall").removeClass("dis_opa_0");
             this._getColumnCount();
             $item.each(function(index) {
-                    if(index < $this.cols) {
-                        $(this).css("top", 0);
-                        $(this).css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
-                        $this.colHeightArray.push($(this).outerHeight());
-                    } else {
-                        minHeight = Math.min.apply(null, $this.colHeightArray);
-                        minIndex = $.inArray(minHeight, $this.colHeightArray);
-                        $(this).css("top", minHeight + $this.options.spacingHeight);
-                        $(this).css("left", $item.eq(minIndex).offset().left - $this.$element.offset().left);
-                        $this.colHeightArray[minIndex] += $(this).outerHeight() + $this.options.spacingHeight;
-                    }
-                    if($this.options.isFadeIn) {
-                        $(this).animate({
-                            "opacity": 1
-                        }, 1000);
-                    }
-                });
+                if(index < $this.cols) {
+                    $(this).css("top", 0);
+                    $(this).css("left", $this.leftOffset + index * $this.itemWidth + index * $this.options.spacingWidth);
+                    $this.colHeightArray.push($(this).outerHeight());
+                } else {
+                    minHeight = Math.min.apply(null, $this.colHeightArray);
+                    minIndex = $.inArray(minHeight, $this.colHeightArray);
+                    $(this).css("top", minHeight + $this.options.spacingHeight);
+                    $(this).css("left", $item.eq(minIndex).offset().left - $this.$element.offset().left);
+                    $this.colHeightArray[minIndex] += $(this).outerHeight() + $this.options.spacingHeight;
+                }
+                if($this.options.isFadeIn) {
+                    $(this).animate({
+                        "opacity": 1
+                    }, 1000);
+                }
+            });
             this.$element.css("height", Math.max.apply(null, $this.colHeightArray));
         },
         _doScroll: function () {

@@ -932,21 +932,21 @@ function AKjs_mainHeight() {
 /*-----------------------------------------------AKjs_Ajax--------------------------------------------*/
 function AKjs_Ajax(setting) {
     var option = $.extend({
-        to: "",
-        type: "POST",
-        url: "",
-        data:{},
-        async:false,
-        cache: false,
-        dataType: "",
-        complete:function () {
+            to: "",
+            type: "POST",
+            url: "",
+            data:{},
+            async:false,
+            cache: false,
+            dataType: "",
+            complete:function () {
+            },
+            success:function () {
+            },
+            error:function () {
+            }
         },
-        success:function () {
-        },
-        error:function () {
-        }
-    },
-    setting);
+        setting);
     AjaxObj = $.ajax({
         type: option.type,
         url: option.url,
@@ -1687,42 +1687,42 @@ function AKjs_Plugin(setting,css) {
         if (plugType > plugTime) {
             sessionStorage.clear();
             Plugin_Setting();
-            } else if (localStorage.getItem("pluginClear_days") != localStorage.getItem("pluginUpdate_days")) {
-                sessionStorage.clear();
-                localStorage.removeItem("pluginClear_hours");
-                localStorage.removeItem("pluginUpdate_hours");
-                localStorage.removeItem("pluginClear_minutes");
-                localStorage.removeItem("pluginUpdate_minutes");
-                localStorage.removeItem("pluginClear_seconds");
-                localStorage.removeItem("pluginUpdate_seconds");
-                Plugin_Setting();
-            } else if (localStorage.getItem("pluginClear_hours") != localStorage.getItem("pluginUpdate_hours")) {
-                sessionStorage.clear();
-                localStorage.removeItem("pluginClear_days");
-                localStorage.removeItem("pluginUpdate_days");
-                localStorage.removeItem("pluginClear_minutes");
-                localStorage.removeItem("pluginUpdate_minutes");
-                localStorage.removeItem("pluginClear_seconds");
-                localStorage.removeItem("pluginUpdate_seconds");
-                Plugin_Setting();
-            } else if (localStorage.getItem("pluginClear_minutes") != localStorage.getItem("pluginUpdate_minutes")) {
-                sessionStorage.clear();
-                localStorage.removeItem("pluginClear_days");
-                localStorage.removeItem("pluginUpdate_days");
-                localStorage.removeItem("pluginClear_hours");
-                localStorage.removeItem("pluginUpdate_hours");
-                localStorage.removeItem("pluginClear_seconds");
-                localStorage.removeItem("pluginUpdate_seconds");
-                Plugin_Setting();
-            } else if (localStorage.getItem("pluginClear_seconds") != localStorage.getItem("pluginUpdate_seconds")) {
-                sessionStorage.clear();
-                localStorage.removeItem("pluginClear_days");
-                localStorage.removeItem("pluginUpdate_days");
-                localStorage.removeItem("pluginClear_hours");
-                localStorage.removeItem("pluginUpdate_hours");
-                localStorage.removeItem("pluginClear_minutes");
-                localStorage.removeItem("pluginUpdate_minutes");
-                Plugin_Setting();
+        } else if (localStorage.getItem("pluginClear_days") != localStorage.getItem("pluginUpdate_days")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_hours");
+            localStorage.removeItem("pluginUpdate_hours");
+            localStorage.removeItem("pluginClear_minutes");
+            localStorage.removeItem("pluginUpdate_minutes");
+            localStorage.removeItem("pluginClear_seconds");
+            localStorage.removeItem("pluginUpdate_seconds");
+            Plugin_Setting();
+        } else if (localStorage.getItem("pluginClear_hours") != localStorage.getItem("pluginUpdate_hours")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_days");
+            localStorage.removeItem("pluginUpdate_days");
+            localStorage.removeItem("pluginClear_minutes");
+            localStorage.removeItem("pluginUpdate_minutes");
+            localStorage.removeItem("pluginClear_seconds");
+            localStorage.removeItem("pluginUpdate_seconds");
+            Plugin_Setting();
+        } else if (localStorage.getItem("pluginClear_minutes") != localStorage.getItem("pluginUpdate_minutes")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_days");
+            localStorage.removeItem("pluginUpdate_days");
+            localStorage.removeItem("pluginClear_hours");
+            localStorage.removeItem("pluginUpdate_hours");
+            localStorage.removeItem("pluginClear_seconds");
+            localStorage.removeItem("pluginUpdate_seconds");
+            Plugin_Setting();
+        } else if (localStorage.getItem("pluginClear_seconds") != localStorage.getItem("pluginUpdate_seconds")) {
+            sessionStorage.clear();
+            localStorage.removeItem("pluginClear_days");
+            localStorage.removeItem("pluginUpdate_days");
+            localStorage.removeItem("pluginClear_hours");
+            localStorage.removeItem("pluginUpdate_hours");
+            localStorage.removeItem("pluginClear_minutes");
+            localStorage.removeItem("pluginUpdate_minutes");
+            Plugin_Setting();
         } else {
             Plugin_Setting();
         }

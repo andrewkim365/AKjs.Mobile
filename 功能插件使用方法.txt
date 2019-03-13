@@ -1735,9 +1735,8 @@ AKjs_Plugin("AKjs_plugin.mobile.min","css"); //引入压缩版的全部功能插
         ];
         $(".plug_for").AKjs_Template(list_data, {
             callback: function (ele,ret) {
-                //console.log(ele); //获取元素
-                //console.log(ret); //获取数组元素
-                ele.empty(); //页面初始化清空数据
+                console.log(ele); //获取元素
+                console.log(ret); //获取数组元素
             },
             getContent: function (str) {
                 return this.data.Content.join(str); //子数据设置

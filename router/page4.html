@@ -685,9 +685,8 @@
         ];
         $(".plug_for").AKjs_Template(list_data, {
             callback: function (ele,ret) {
-                //console.log(ele); //获取元素
-                //console.log(ret); //获取数组元素
-                ele.empty(); //页面初始化清空数据
+                console.log(ele); //获取元素
+                console.log(ret); //获取数组元素
             },
             getContent: function (str) {
                 return this.data.Content.join(str); //子数据设置
