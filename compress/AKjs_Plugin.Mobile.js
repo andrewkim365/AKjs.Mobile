@@ -11290,6 +11290,7 @@ function AKjs_Loader(setting) {
                 ele.removeClass("ak-for");
                 ele.find(".ak-for").removeClass("ak-for");
                 ele.children().eq(0).remove();
+                ele.empty();
                 ret.appendTo(ele);
                 if (options.callback != undefined) {
                     newTmplItem(options.callback(ele,ret));
