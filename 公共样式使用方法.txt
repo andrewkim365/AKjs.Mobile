@@ -1,4 +1,4 @@
-﻿# 快速了解AKjs框架的CSS样式库：（整理文档时间：2018-04-22）
+﻿# 快速了解AKjs框架的CSS样式库：（整理文档时间：2018-06-11）
 ----------------------------------------------------------
 
 
@@ -9,24 +9,24 @@
 
 	全局文字大小是12px;根据屏幕尺寸全局文字大小也是自适应的。以下是按屏幕尺寸设置的文字大小说明。
 
-	下面几个CSS设置中我们按照第一个来说明吧。第一个是自适应的是屏幕最小尺寸是320px，最大尺寸是369px的情况下文字大小设置为12px；在这个尺寸中访问界面时相当于1em就是12px。
+	下面几个CSS设置中我们按照第一个来说明吧。第一个是自适应的是屏幕最小尺寸是320px，最大尺寸是369px的情况下文字大小设置为12px；在这个尺寸中访问界面时相当于1rem就是12px。
 
-	min-width:320px and max-width:369px = 12px; //当前的屏幕尺寸访问时所有的1em相当于12px
+	min-width:320px and max-width:369px = 12px; //当前的屏幕尺寸访问时所有的1rem相当于12px
 
-	min-width:370px and max-width:639px = 14px; //当前的屏幕尺寸访问时所有的1em相当于14px
+	min-width:370px and max-width:639px = 14px; //当前的屏幕尺寸访问时所有的1rem相当于14px
 
-	min-width:640px and max-width:1024px = 20px; //当前的屏幕尺寸访问时所有的1em相当于20px
+	min-width:640px and max-width:1024px = 20px; //当前的屏幕尺寸访问时所有的1rem相当于20px
 
-	min-width:1025px = 24px; //当前的屏幕尺寸访问时所有的1em相当于24px
+	min-width:1025px = 24px; //当前的屏幕尺寸访问时所有的1rem相当于24px
 
 
 	1-2.文字大小设置；
 
-	.text_05em ~ .text_09em //该class名称是font-size:0.5em 到 0.9em的意思；
+	.text_05rem ~ .text_09rem //该class名称是font-size:0.5rem 到 0.9rem的意思；
 
-	.text_1em ，.text_11em ，.text_12em ... //这个是font-size:1em , 1.1em , 1.2em 的意思；
+	.text_1rem ，.text_11rem ，.text_12rem ... //这个是font-size:1rem , 1.1rem , 1.2rem 的意思；
 
-	大于10em的表现方式为 .text_10em, .text_12_em, .text_20em ... //这三个属性是 font-size:10em, 12em, 20em 的意思；
+	大于10rem的表现方式为 .text_10rem, .text_12_rem, .text_20rem ... //这三个属性是 font-size:10rem, 12rem, 20rem 的意思；
 
 	还有一种属性是.text_in 该class名称是font-size:inherit; //继承于上一个元素的文字大小；
 
@@ -188,7 +188,7 @@
 	
 	百分比的宽度使用 .w_0 ~ .w_900 (该属性是相当于样式中的width属性，中间不常用的百分比宽度已过滤)
 	
-	em单位的宽度使用 .w_1em ~ w_100em (w_1em = width:1em , w_12em = width：1.2em , 10em 以上的表现方式是  w_12_em ... w_24_em 等等)
+	em单位的宽度使用 .w_1rem ~ w_100rem (w_1rem = width:1rem , w_12rem = width：1.2rem , 10rem 以上的表现方式是  w_12_rem ... w_24_rem 等等)
 	
 	
 	高度（height）的使用方法是跟宽度使用方法一样，把w替换为h即可。
