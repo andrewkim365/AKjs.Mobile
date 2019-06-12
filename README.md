@@ -45,7 +45,7 @@ css/style.css --- 自定义样式文件（引入第三方插件时通过该css�
 
 * AKjs仅支持http或https协议访问！不支持直接打开本地文件的方式访问！通过本地配置服务器访问或者使用WebStorm软件打开访问即可！
 
-* 演示版地址：http://118.244.206.115:8080/ak/
+* 演示版地址：https://andrewkim365.gitee.io/akjs.mobile/
 
 * AKjs前端技术支持QQ群：724501394
 
