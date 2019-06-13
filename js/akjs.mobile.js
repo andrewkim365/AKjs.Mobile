@@ -1,4 +1,4 @@
-/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.7 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190611 AKjs.Mobile license */
+/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190611 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -259,9 +259,6 @@ function AKjs_Router(setting) {
                     cache: false,
                     success: function () {
                         $("html").attr("data-router","akjs");
-                        if (page == "hashchange") {
-                            option.changePage(document.location.hash.substring(1), true);
-                        }
                         $(document).unbind("contextmenu").unbind("keydown");
                     },
                     error: function () {
@@ -345,6 +342,10 @@ function AKjs_Router(setting) {
 
                 $(function () {
                     Router_Settings();
+                    AKjs_mainHeight();
+                    if (page == "hashchange") {
+                        option.changePage(document.location.hash.substring(1), true);
+                    }
                     setTimeout(function() {
                         if (jsText != undefined) {
                             $("<script id='akjs_script' data-temp='"+new Date().getTime()+"' type=\"text/javascript\">"+jsText+"</script>").appendTo($("html"));
