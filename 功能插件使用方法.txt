@@ -888,7 +888,10 @@ AKjs_Plugin("AKjs_plugin.mobile.min","css"); //引入压缩版的全部功能插
     /*-----------------------------------------------AKjs_NowTime 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_nowtime").AKjs_NowTime({
-            dateStyle: "yyyy年MM月dd日 hh:mm:ss" //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
+            dateStyle: "yyyy年MM月dd日 hh:mm:ss", //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
+            CallBack: function(date) {
+                //console.log(date);
+            }
         });
     });
 
@@ -1681,7 +1684,10 @@ AKjs_Plugin("AKjs_plugin.mobile.min","css"); //引入压缩版的全部功能插
             mousePause : false, //鼠标悬停是否停止滚动
             direction : "up", //滚动方向，可选 ‘up’ / ‘down’
             isPaused: false, //默认是否暂停
-            height: 0 //容器高度，默认为 0，即根据 showItems 个数自动计算
+            height: 0, //容器高度，默认为 0，即根据 showItems 个数自动计算
+            CallBack: function(ele) {
+                //console.log(ele);
+            }
         });
     });
 

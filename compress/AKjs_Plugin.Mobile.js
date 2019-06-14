@@ -1,6 +1,124 @@
 ﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190611 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
+/*-----------------------------------------------AKjs_Vticker (2019-06-11)--------------------------------------------*/
+(function($) {
+    $.fn.AKjs_Vticker = function(setting) {
+        var option = $.extend({
+            speed: 500,
+            pause: 3000,
+            showItems: 3,
+            mousePause: true,
+            isPaused: false,
+            direction: "up",
+            height: 0,
+            CallBack: function() {}
+        }, setting);
+        moveUp = function(ele, LiHeight, option) {
+            if (!option.isPaused) {
+                ele_children = ele.children();
+                var datas = ele_children.children("li:first").clone(true);
+                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
+                ele_children.animate({
+                        top: "-=" + LiHeight
+                    },
+                    option.speed,
+                    function() {
+                        $(this).children("li:first").remove();
+                        $(this).css("top", "0")
+                    });
+                datas.appendTo(ele_children)
+            }
+        };
+        moveDown = function(ele, LiHeight, option) {
+            if (!option.isPaused) {
+                ele_children = ele.children();
+                var datas = ele_children.children("li:last").clone(true);
+                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
+                ele_children.css("top", "-" + LiHeight).prepend(datas);
+                ele_children.animate({
+                        top: 0
+                    },
+                    option.speed,
+                    function() {
+                        $(this).children("li:last").remove()
+                    });
+            }
+        };
+        var _this = $(this);
+        $(window).resize(function() {
+            _this.each(function () {
+                var ele = $(this),
+                    LiHeight = $(this).children().children("li").outerHeight();
+                if (option.height) {
+                    ele.height(option.height);
+                    ele.children().children("li").height(option.height / option.showItems);
+                } else {
+                    ele.height(LiHeight * option.showItems)
+                }
+            });
+        });
+        _this.each(function() {
+            var ele = $(this),
+                LiHeight = $(this).children().children("li").outerHeight();
+            ele.css({
+                overflow: "hidden",
+                position: "relative"
+            }).children().css({
+                position: "absolute"
+            });
+            if (option.height) {
+                ele.height(option.height);
+                ele.children().children("li").height(option.height / option.showItems);
+            } else {
+                ele.height(LiHeight * option.showItems)
+            }
+            setInterval(function() {
+                    option.direction == "up" ? moveUp(ele, LiHeight, option) : moveDown(ele, LiHeight, option);
+                    option.CallBack(ele);
+                },
+                option.pause);
+            option.mousePause && ele.bind("mouseenter",
+                function() {
+                    option.isPaused = true
+                }).bind("mouseleave",
+                function() {
+                    option.isPaused = false
+                })
+        })
+    }
+} (jQuery));
+
+/*-----------------------------------------------AKjs_NowTime (2019-06-11)--------------------------------------------*/
+(function($) {
+    $.fn.AKjs_NowTime = function(setting) {
+        var option = $.extend({
+                dateStyle: 'yyyy-MM-dd hh:mm:ss',
+                CallBack: function() {}
+            },
+            setting);
+        var time = this;
+        Date.prototype.Format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds()
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        };
+        setInterval(function(){
+            var date_text = new Date().Format(option.dateStyle);
+            time.html(date_text);
+            option.CallBack(date_text);
+        },1000);
+    };
+} (jQuery));
+
 /*-----------------------------------------------AKjs_Popupwin (2018-12-20)--------------------------------------------*/
 function AKjs_Popupwin (setting) {
     option = $.extend({
@@ -8068,33 +8186,6 @@ function AKjs_Loader(setting) {
     };
 } (jQuery));
 
-/*-----------------------------------------------AKjs_NowTime (2018-12-13)--------------------------------------------*/
-(function($) {
-    $.fn.AKjs_NowTime = function(setting) {
-        var option = $.extend({
-                dateStyle: 'yyyy-MM-dd hh:mm:ss'
-            },
-            setting);
-        var time = this;
-        Date.prototype.Format = function (fmt) {
-            var o = {
-                "M+": this.getMonth() + 1,
-                "d+": this.getDate(),
-                "h+": this.getHours(),
-                "m+": this.getMinutes(),
-                "s+": this.getSeconds()
-            };
-            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-            for (var k in o)
-                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-            return fmt;
-        };
-        setInterval(function(){
-            time.html(new Date().Format(option.dateStyle));
-        },1000);
-    };
-} (jQuery));
-
 /*-----------------------------------------------AKjs_Paginator (2018-12-13)--------------------------------------------*/
 (function($) {
     $.AKjs_Paginator = function (el, options) {
@@ -13591,92 +13682,6 @@ function AKjs_Loader(setting) {
         $.fn.AKjs_Viewer.noConflict = function() {
             return $.fn.AKjs_Viewer = ak_Viewer.other, this;
         }
-} (jQuery));
-
-/*-----------------------------------------------AKjs_Vticker (2018-12-13)--------------------------------------------*/
-(function($) {
-    $.fn.AKjs_Vticker = function(setting) {
-        var option = $.extend({
-            speed: 500,
-            pause: 3000,
-            showItems: 3,
-            mousePause: true,
-            isPaused: false,
-            direction: "up",
-            height: 0
-        }, setting);
-        moveUp = function(ele, LiHeight, option) {
-            if (!option.isPaused) {
-                ele_children = ele.children();
-                var datas = ele_children.children("li:first").clone(true);
-                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
-                ele_children.animate({
-                        top: "-=" + LiHeight
-                    },
-                    option.speed,
-                    function() {
-                        $(this).children("li:first").remove();
-                        $(this).css("top", "0")
-                    });
-                datas.appendTo(ele_children)
-            }
-        };
-        moveDown = function(ele, LiHeight, option) {
-            if (!option.isPaused) {
-                ele_children = ele.children();
-                var datas = ele_children.children("li:last").clone(true);
-                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
-                ele_children.css("top", "-" + LiHeight).prepend(datas);
-                ele_children.animate({
-                        top: 0
-                    },
-                    option.speed,
-                    function() {
-                        $(this).children("li:last").remove()
-                    });
-            }
-        };
-        var _this = $(this);
-        $(window).resize(function() {
-            _this.each(function () {
-                var ele = $(this),
-                    LiHeight = $(this).children().children("li").outerHeight();
-                if (option.height) {
-                    ele.height(option.height);
-                    ele.children().children("li").height(option.height / option.showItems);
-                } else {
-                    ele.height(LiHeight * option.showItems)
-                }
-            });
-        });
-        _this.each(function() {
-            var ele = $(this),
-                LiHeight = $(this).children().children("li").outerHeight();
-            ele.css({
-                overflow: "hidden",
-                position: "relative"
-            }).children().css({
-                position: "absolute"
-            });
-            if (option.height) {
-                ele.height(option.height);
-                ele.children().children("li").height(option.height / option.showItems);
-            } else {
-                ele.height(LiHeight * option.showItems)
-            }
-            setInterval(function() {
-                    option.direction == "up" ? moveUp(ele, LiHeight, option) : moveDown(ele, LiHeight, option)
-                },
-                option.pause);
-            option.mousePause && ele.bind("mouseenter",
-                function() {
-                    option.isPaused = true
-                }).bind("mouseleave",
-                function() {
-                    option.isPaused = false
-                })
-        })
-    }
 } (jQuery));
 
 /*-----------------------------------------------AKjs_Waterfall (2018-12-13)--------------------------------------------*/

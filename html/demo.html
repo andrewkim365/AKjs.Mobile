@@ -1751,7 +1751,10 @@
     /*-----------------------------------------------AKjs_NowTime 使用方法-------------------------------------------*/
     $(function() {
         $(".plug_nowtime").AKjs_NowTime({
-            dateStyle: "yyyy年MM月dd日 hh:mm:ss" //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
+            dateStyle: "yyyy年MM月dd日 hh:mm:ss", //年月日时间分钟秒数格式 （默认方式：yyyy-MM-dd hh:mm:ss）
+            CallBack: function(date) {
+                //console.log(date);
+            }
         });
     });
 

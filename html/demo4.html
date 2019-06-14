@@ -708,7 +708,10 @@
             mousePause : false, //鼠标悬停是否停止滚动
             direction : "up", //滚动方向，可选 ‘up’ / ‘down’
             isPaused: false, //默认是否暂停
-            height: 0 //容器高度，默认为 0，即根据 showItems 个数自动计算
+            height: 0, //容器高度，默认为 0，即根据 showItems 个数自动计算
+            CallBack: function(ele) {
+                //console.log(ele);
+            }
         });
     });
 
