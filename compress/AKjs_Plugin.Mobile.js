@@ -3811,7 +3811,7 @@ function AKjs_CountDown(ele,setting) {
         var btn_delete = mbf.find(option.btn_delete);
         btn_delete.keyup(function() {
             var del_btn = $(this);
-            if ($(this).val() > 0) {
+            if ($(this).val().length > 0) {
                 if ($(this).next("button[type=reset]").length < 1) {
                     $(this).after("<button type=\"reset\" class='press top_0 right_0 abs text_al_r text_18rem c_gray_ccc'></button>");
                     $(this).next("button[type=reset]").css({
