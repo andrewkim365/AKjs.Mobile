@@ -3735,7 +3735,11 @@ function AKjs_CountDown(ele,setting) {
             }
             option.butCallback(mbf, false);
             document.activeElement.blur();
-            return false
+            if (mbf.find(":submit").parents("form").attr("onsubmit") == "return false") {
+                return false;
+            } else {
+                return true;
+            }
         });
         mbf.keyup(function(event) {
             event.preventDefault();
