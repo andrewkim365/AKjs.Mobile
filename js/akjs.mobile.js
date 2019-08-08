@@ -1119,7 +1119,7 @@ function AKjs_HashSharp() {
         var akKey = _HashSharp;
         if ($("#ak-animation").length > 0) {
             $("#ak-animation").attr("data-router","");
-            if (_this.parents("footer")[0] != undefined) {
+            if (_this.parents("footer")[0] != undefined || _this.attr("data-page") == "none") {
                 $("#ak-animation").attr("data-router","");
             } else if (_this.attr("data-back") === "true" || hash_script.test(_this.attr("data-href"))){
                 $("#ak-animation").attr("data-router","slideLeft");
