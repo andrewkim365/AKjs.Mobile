@@ -1,4 +1,4 @@
-﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190611 AKjs.Mobile license */
+﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20191112 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------------------------------------------AKjs_Vticker (2019-06-11)--------------------------------------------*/
@@ -4309,6 +4309,7 @@ function AKjs_GoTop (setting) {
                         $(this).unbind("click");
                         $(this).on("click",
                             function(event) {
+                                var _this = $(this);
                                 $(this).toggleClass("ak-is_active");
                                 if ($(this).hasClass("ak-is_active")) {
                                     if (IsMobile) {
@@ -4338,9 +4339,11 @@ function AKjs_GoTop (setting) {
                                     }
                                     option.showBack(objsub);
                                     $("body").unbind("click");
-                                    $("body").click(function () {
-                                        objsub.slideUp();
-                                        obj.el.removeClass("ak-is_active");
+                                    $(document).on("mousedown", function(e) {
+                                        if ($(e.target).closest(_this).length === 0) {
+                                            objsub.slideUp();
+                                            obj.el.removeClass("ak-is_active");
+                                        }
                                     });
                                     if ($('#ak-scrollview').length > 0) {
                                         var $scrollbar = $("#ak-scrollview");
@@ -10548,25 +10551,24 @@ function AKjs_Loader(setting) {
                         });
                     }
                     if ($(this).hasClass("ak-open")) {
+                        var _this = $(this);
                         $(".ak-SelectOpts").not(select).removeClass("ak-open");
                         $(".ak-SelectList").not(select_list).hide();
                         select_list.slideDown(option.speed);
                         select_list.animate({scrollTop:0},0);
                         $("body").unbind("click");
                         setTimeout(function() {
-                            $("body").click(function () {
-                                $(".ak-SelectList").slideUp(option.speed);
-                                $(".ak-SelectOpts").removeClass("ak-open");
+                            $(document).on("mousedown", function(e) {
+                                if ($(e.target).closest(_this).length === 0) {
+                                    $(".ak-SelectList").slideUp(option.speed);
+                                    $(".ak-SelectOpts").removeClass("ak-open");
+                                }
                             });
                             if ($('#ak-scrollview').length > 0) {
                                 var $scrollbar = $("#ak-scrollview");
                             } else {
                                 var $scrollbar = $("main");
                             }
-                            $scrollbar.scroll(function(){
-                                $(".ak-SelectList").slideUp(option.speed);
-                                $(".ak-SelectOpts").removeClass("ak-open");
-                            });
                         },option.speed);
                     } else {
                         select_list.slideUp(option.speed);

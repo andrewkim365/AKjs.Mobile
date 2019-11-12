@@ -1,4 +1,4 @@
-/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190611 AKjs.Mobile license */
+/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20191112 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
