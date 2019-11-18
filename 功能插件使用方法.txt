@@ -8,8 +8,8 @@
 * 注：调用插件的地方在router目录里的相关html文件中的最底部。
 
 以下方式引入功能插件（建议使用压缩版的第二个方法）。
-AKjs_Plugin("AKjs_plugin.mobile","css"); //引入全部功能插件
-AKjs_Plugin("AKjs_plugin.mobile.min","css"); //引入压缩版的全部功能插件
+AKjs_Plugin("akjs.plugin.mobile","css"); //引入全部功能插件
+AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插件
 
 
 */

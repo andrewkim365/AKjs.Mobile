@@ -23,7 +23,7 @@ AKjs_Config({ //环境配置管理
 * 做项目时不必要的插件可以注释处理。
 * 注：调用插件的地方在router目录里的相关html文件中的最底部。
 */
-AKjs_Plugin("AKjs_Plugin.Mobile.min","css"); //引入压缩版的全部功能插件
+AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插件
 
 /*-----------------------------------------------AKjs_Loader 使用方法-------------------------------------------*/
 if (AKjs_Params(1).indexOf("start") == -1) { //通过AKjs_Params获取hash的第一个值后不执行下面loading效果
