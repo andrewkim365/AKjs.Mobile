@@ -1,4 +1,4 @@
-﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20191112 AKjs.Mobile license */
+﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20191118 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------------------------------------------AKjs_ButtonSubmit-------------------------------------------*/
@@ -20,7 +20,8 @@
 .ak-codeval{overflow: hidden; display: block; position: relative; padding: 0 0.2rem; text-align: center; height: inherit !important; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; cursor: pointer;}
 .ak-codeval > *{display: inline-block; line-height: inherit !important; font-style: oblique;}
 
-/*-----------------------------------------------AKjs_Datetime-------------------------------------------*/
+/*-----------------------------------------------AKjs_Datakjs.pc.min.js
+akjs.pc.jsetime-------------------------------------------*/
 .ak-datetime{position:fixed; width:100%; height:100%; top:0; left:0; z-index:6000; pointer-events:auto;}
 .ak-datetime .alwaysShow td{position:relative;}
 .ak-datetime .alwaysShow td{position:absolute; z-index:1; top:50%; left:100%; transform:translate(-50%,-50%);}
