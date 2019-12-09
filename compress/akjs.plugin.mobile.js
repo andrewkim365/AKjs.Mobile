@@ -1,4 +1,4 @@
-﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20191118 AKjs.Mobile license */
+﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.5.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20191209 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------------------------------------------AKjs_Vticker (2019-06-11)--------------------------------------------*/
@@ -3721,26 +3721,24 @@ function AKjs_CountDown(ele,setting) {
         }
         var password = mbf.find(option.PassCheck);
         mbf.find(":submit").addClass("mb_5");
-        mbf.find(":submit").unbind("click");
-        mbf.find(":submit").click(function() {
-            if (option.PassCheck) {
-                if (password.length > 1) {
-                    if (password[0].value != password[1].value) {
-                        if (mbf.find(option.PassCheck).length > 0) {
-                            option.passCallback();
-                            return false;
+        if (mbf.find(":submit").attr("onsubmit") == "return false") {
+            mbf.find(":submit").unbind("click");
+            mbf.find(":submit").click(function () {
+                if (option.PassCheck) {
+                    if (password.length > 1) {
+                        if (password[0].value != password[1].value) {
+                            if (mbf.find(option.PassCheck).length > 0) {
+                                option.passCallback();
+                                return false;
+                            }
                         }
                     }
                 }
-            }
-            option.butCallback(mbf, false);
-            document.activeElement.blur();
-            if (mbf.find(":submit").parents("form").attr("onsubmit") == "return false") {
+                option.butCallback(mbf, false);
+                document.activeElement.blur();
                 return false;
-            } else {
-                return true;
-            }
-        });
+            });
+        }
         mbf.keyup(function(event) {
             event.preventDefault();
             if (option.validate == true) {
