@@ -49,7 +49,7 @@ akjs.pc.jsetime-------------------------------------------*/
 /*-----------------------------------------------AKjs_Dialog-------------------------------------------*/
 .ak-dialog{width:100%; height:auto; position:fixed; z-index:20; box-sizing:border-box; display:none;}
 .ak-dialog.ak-is_active{display:block; -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
-.ak-dialog .ak-dialog_container{box-sizing:border-box; margin:0 auto; width:30%; height:auto; background-color:#ffffff; border-radius:0.3rem; box-shadow:0 0 1rem rgba(0,0,0,0.2); overflow:hidden;}
+.ak-dialog .ak-dialog_container{box-sizing:border-box; position:relative; margin:0 auto; width:30%; height:auto; background-color:#ffffff; border-radius:0.3rem; box-shadow:0 0 1rem rgba(0,0,0,0.2); overflow:hidden;}
 @media screen and (max-width:1024px){.ak-dialog .ak-dialog_container{width:90%;}}
 @media screen and (min-width:1025px){.ak-dialog .ak-dialog_container{width:30%;}}
 .ak-dialog .ak-dialog_header{width:100%; line-height:3rem; box-sizing:border-box; text-align:center; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}
@@ -67,7 +67,7 @@ akjs.pc.jsetime-------------------------------------------*/
 .ak-dialog .ak-dialog_content .ak-dialog_field .is-invalid{border-color:red !important;}
 .ak-dialog .ak-dialog_content .ak-dialog_field textarea{display: block; width: 100%; outline: none; padding: 0.5rem; line-height: 1.2rem; box-sizing: border-box;}
 .ak-dialog .ak-dialog_footer{width:100%; box-sizing:border-box; overflow:hidden; text-align:center; border-top:1px solid #dddddd; height: 3.6rem; line-height: 3.4rem;}
-.ak-dialog .ak-dialog_footer .ak_btn{display:block; width:50%; height: 100%; float:left; box-sizing:border-box; text-transform:uppercase; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}
+.ak-dialog .ak-dialog_footer .ak_btn{display:block; width:50%; height: inherit; float:left; box-sizing:border-box; text-transform:uppercase; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}
 .ak-dialog .ak-dialog_footer .ak_btn.button_ok{float:none; width:100%;}
 .ak-dialog .ak-dialog_footer .ak_btn.button_cancel{color:#333333;}
 .ak-dialog .ak-dialog_footer .ak_btn.button_cancel + .button_ok{float:left; width:50%;}
