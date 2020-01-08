@@ -59,7 +59,7 @@ js目录和css目中 akjs.mobile.js 和 akjs.mobile.css 发布 1.6.0版本；
 
 1.compress文件夹里的文件需要全部覆盖。
 
-2.akjs.mobile相关的js文件和css需要全部替换。
+2.akjs.mobile相关的js文件和css需要全部替换，akjs.animate.css文件需要覆蓋。
 
 3.主要修改AKjs_Form功能中存在的bug。
 

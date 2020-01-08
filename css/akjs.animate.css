@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2018 Daniel Eden
 /*----------------------------------------------------------------------------------------------------------------
-jQuery.AKjs by AKjs.Animate Css v1.0.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20190611 AKjs license
+jQuery.AKjs by AKjs.Animate Css v1.0.8 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20200108 AKjs license
 Add Animate by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365
 /*----------------------------------------------------------------------------------------------------------------
 
@@ -289,6 +289,10 @@ animation-direction 	规定是否应该轮流反向播放动画。
 }
 
 /*---------------------animation-duration----------------------*/
+.animated.ani_0s {
+    -webkit-animation-duration:0s;
+    animation-duration:0s;
+}
 .animated.ani_01s {
     -webkit-animation-duration:0.1s;
     animation-duration:0.1s;
