@@ -1,5 +1,639 @@
-﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20200108 AKjs.Mobile license */
+﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20200421 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
+
+/*-----------------------------------------------AKjs_Vticker (2020-04-21)--------------------------------------------*/
+(function($) {
+    $.fn.AKjs_Vticker = function(setting) {
+        var option = $.extend({
+            speed: 500,
+            pause: 3000,
+            showItems: 3,
+            itemLength: 1,
+            mousePause: true,
+            isPaused: false,
+            direction: "up",
+            height: 0,
+            CallBack: function() {},
+            IntervalBack: function() {}
+        }, setting);
+        moveUp = function(ele, LiHeight, LiLength, option) {
+            if (!option.isPaused) {
+                ele_ul = ele.children();
+                if (option.itemLength == 1) {
+                    var li_clone = ele_ul.children("li:first").clone(true);
+                    if (option.height == 0) {
+                        LiHeight = ele_ul.children("li:first").outerHeight();
+                    }
+                } else {
+                    var li_clone = ele_ul.children("li").slice(0,option.itemLength).clone(true);
+                    if (option.height == 0) {
+                        LiHeight = ele_ul.children("li:first").outerHeight()*option.itemLength;
+                    }
+                }
+                li_clone.appendTo(ele_ul);
+                ele_ul.animate({
+                        "top": "-" + LiHeight + "px"
+                    },
+                    option.speed,
+                    function() {
+                        if (option.itemLength == 1) {
+                            var li_first = $(this).children("li:first");
+                        } else {
+                            var li_first = $(this).children("li").slice(0,option.itemLength);
+                        }
+                        li_first.remove();
+                        $(this).css("top", 0);
+                    });
+            }
+        };
+        moveDown = function(ele, LiHeight, LiLength, option) {
+            if (!option.isPaused) {
+                ele_ul = ele.children();
+                if (option.itemLength == 1) {
+                    var li_last = ele_ul.children("li:last");
+                    if (option.height == 0) {
+                        LiHeight = ele_ul.children("li:last").outerHeight();
+                    }
+                } else {
+                    var li_last = ele_ul.children("li").slice(LiLength - option.itemLength,LiLength);
+                    if (option.height == 0) {
+                        LiHeight = ele_ul.children("li:last").outerHeight()*option.itemLength;
+                    }
+                }
+                ele_ul.css({
+                    "top": "-" + LiHeight + "px"
+                });
+                ele_ul.animate({
+                        top: 0
+                    },
+                    option.speed,
+                    function() {
+                        $(this).css("top", "-" + LiHeight + "px");
+                        ele_ul.prepend(li_last.clone(true));
+                        li_last.remove();
+                    });
+            }
+        };
+        var _this = $(this);
+        $(window).resize(function() {
+            _this.each(function () {
+                var ele = $(this),
+                    LiHeight = $(this).children().children("li").outerHeight();
+                if (option.height) {
+                    ele.height(option.height);
+                    ele.children().children("li").height(option.height / option.showItems);
+                } else {
+                    ele.height(LiHeight * option.showItems)
+                }
+            });
+        });
+        _this.each(function() {
+            var ele = $(this),
+                LiHeight = $(this).children().children("li").outerHeight(),
+                LiLength = $(this).children().children("li").length;
+            ele.css({
+                overflow: "hidden",
+                position: "relative"
+            }).children().css({
+                position: "absolute"
+            });
+            option.CallBack(ele.children());
+            if (option.height) {
+                ele.height(option.height);
+                ele.children().children("li").height(option.height / option.showItems);
+            } else {
+                ele.height(LiHeight * option.showItems)
+            }
+            if (option.direction == "down") {
+                ele.children().css("top", "-" + LiHeight*option.itemLength + "px");
+                var li_last = ele.children().children("li").slice(LiLength - option.itemLength,LiLength);
+                ele.children().prepend(li_last.clone(true));
+                li_last.remove();
+            }
+            setInterval(function() {
+                    LiHeight = LiHeight*option.itemLength;
+                    option.direction == "up" ? moveUp(ele, LiHeight, LiLength, option) : moveDown(ele, LiHeight, LiLength, option);
+                    option.IntervalBack(ele.children());
+                },
+                option.pause);
+            option.mousePause && ele.bind("mouseenter",
+                function() {
+                    option.isPaused = true
+                }).bind("mouseleave",
+                function() {
+                    option.isPaused = false
+                })
+        })
+    }
+} (jQuery));
+
+/*-----------------------------------------------AKjs_EchartsRun (2020-04-13)--------------------------------------------*/
+(function($) {
+    $.fn.AKjs_EchartsRun = function(setting) {
+        var opt = $.extend({
+                width: 0,
+                height: 0,
+                theme:"",
+                option:{},
+                callback:function(){}
+            },
+            setting);
+        function Echarts(el) {
+            var _this = this;
+            _this.elem = el;
+            _this.initEvents();
+        }
+        Echarts.prototype = {
+            initEvents: function() {
+                var obj = this;
+                $(this.elem).css({
+                    "width": opt.width,
+                    "height": opt.height
+                });
+                var myChart = echarts.init(obj.elem.get(0), opt.theme);
+                var option = opt.option;
+                myChart.setOption(option);
+                obj.elem.each(function () {
+                    var _this = echarts.init($(this).get(0));
+                    $(window).resize(function() {
+                        _this.resize();
+                    });
+                });
+                opt.callback(myChart,option);
+            }
+        };
+        new Echarts($(this));
+    };
+} (jQuery));
+
+/*-----------------------------------------------AKjs_Slider (2020-03-31)--------------------------------------------*/
+(function($) {
+    var AKjs_Slider = function(ele, opt) {
+        var self = this;
+        self.$element = ele,
+            self.defaults = {
+                fullpage: false,
+                UpDown: false,
+                start: 1,
+                speed: 500,
+                SlideAni: true,
+                interval: 5000,
+                autoPlay: false,
+                loopPlay: true,
+                touchPlay: false,
+                HoverPause: false,
+                dotShow: true,
+                arrShow: true,
+                dotClass:"",
+                arrClass:"",
+                arrIcon: "",
+                CustomHeight: false,
+                ActiveClass: "bg_theme",
+                callback: function() {},
+                prevback: function() {},
+                nextback: function() {},
+                afterSlider: function() {}
+            },
+            self.clickable = true,
+            self.options = $.extend({},
+                self.defaults, opt)
+    };
+    AKjs_Slider.prototype = {
+        init: function() {
+            var self = this,
+                ele = self.$element;
+            var touchStartY = 0,
+                touchStartX = 0,
+                mouseStartY = 0,
+                mouseStartX = 0;
+            var sliderInder = ele.children("ul");
+            var SliderLi = sliderInder.children("li");
+            var SliderSize = SliderLi.length;
+            var index = self.options.start;
+            var styleSetting = function() {
+                if (self.options.arrShow) {
+                    if (self.options.UpDown) {
+                        if (self.options.arrIcon) {
+                            var arrElement = '<button type="button" class="ak-arr_prev">'+self.options.arrIcon[0]+'</button><button type="button" class="ak-arr_next">'+self.options.arrIcon[1]+'</button>';
+                        } else {
+                            var arrElement = '<button type="button" class="ak-arr_prev">&and;</button><button type="button" class="ak-arr_next">&or;</button>';
+                        }
+                    } else {
+                        if (self.options.arrIcon) {
+                            var arrElement = '<button type="button" class="ak-arr_prev">'+self.options.arrIcon[0]+'</button><button type="button" class="ak-arr_next">'+self.options.arrIcon[1]+'</button>';
+                        } else {
+                            var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
+                        }
+                    }
+                    if ($(ele).children("button").length < 1) {
+                        ele.append(arrElement);
+                    }
+                    ele.find("button").addClass(self.options.arrClass);
+                    if (self.options.UpDown) {
+                        ele.find("button.ak-arr_prev").css({
+                            "top": ele.find("button.ak-arr_prev").outerWidth()/2
+                        });
+                        ele.find("button.ak-arr_next").css({
+                            "bottom": ele.find("button.ak-arr_next").outerWidth()/2
+                        });
+                    } else {
+                        ele.find("button.ak-arr_prev").css({
+                            "left": ele.find("button.ak-arr_prev").outerWidth()/2
+                        });
+                        ele.find("button.ak-arr_next").css({
+                            "right": ele.find("button.ak-arr_next").outerWidth()/2
+                        });
+                    }
+                    self.options.callback(ele);
+                }
+                for (i = 1; i <= SliderSize; i++) {
+                    if (index == i) {
+                        SliderLi.eq(index - 1).addClass("dis_block_im");
+                        if (self.options.CustomHeight) {
+                            setTimeout(function () {
+                                if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
+                                } else {
+                                    var custom_h = SliderLi.eq(index - 1).find("*[data-height=true]").prop("height");
+                                    SliderLi.eq(index - 1).css({"height": custom_h});
+                                    SliderLi.eq(index - 1).find("*").css({"height": custom_h});
+                                    sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                                    ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                                }
+                            }, 200);
+                        }
+                    }
+                }
+                if (self.options.dotShow) {
+                    var dot = "";
+                    for (i = 1; i <= SliderSize; i++) {
+                        if (index == i) {
+                            dot += '<li data-index="' + i + '" class="'+self.options.ActiveClass+'"></li>'
+                        } else {
+                            dot += '<li data-index="' + i + '"></li>'
+                        }
+                    }
+                    var dotElement = '<ol>' + dot + "</ol>";
+                    if ($(ele).children("ol").length < 1) {
+                        ele.append(dotElement);
+                        if (self.options.UpDown) {
+                            $(ele).children("ol").addClass("bottom_au right_0 mr_1rem");
+                        } else {
+                            $(ele).children("ol").find("li").addClass("fl");
+                        }
+                    }
+                }
+                ele.addClass("ak-Slider");
+                setTimeout(function () {
+                    if (self.options.arrShow) {
+                        if (self.options.UpDown) {
+                            var arrOffset = (ele.outerWidth() - ele.find("button").outerWidth()) / 2;
+                            ele.find("button").css("left", arrOffset + "px");
+                        } else {
+                            var arrOffset = (ele.outerHeight() - ele.find("button").outerHeight()) / 2;
+                            if (ele.hasClass("h_fill")) {
+                                ele.find("button").css("top", $(window).height()/2 - ele.find("button").outerHeight() / 2+ "px");
+                            } else {
+                                ele.find("button").css("top", arrOffset + "px");
+                            }
+                        }
+                    }
+                    if (self.options.dotShow) {
+                        var dots = ele.children("ol");
+                        if (self.options.UpDown) {
+                            dots.find("li").addClass(self.options.dotClass).removeClass("fl");
+                            var dotHeight = (SliderSize + 1) * dots.find("li").eq(0).outerHeight();
+                            var dotOffset = (ele.outerHeight() - dotHeight) / 2;
+                            dots.css({
+                                "top": dotOffset + "px"
+                            });
+                        } else {
+                            dots.find("li").addClass(self.options.dotClass);
+                            var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
+                            var dotOffset = (ele.outerWidth() - dotWidth) / 2;
+                            dots.css({
+                                "left": dotOffset + "px"
+                            });
+                        }
+                    }
+                }, 200);
+            };
+            styleSetting();
+            $(window).resize(function() {
+                styleSetting();
+            });
+            if (self.options.arrShow) {
+                ele.find(".ak-arr_next").unbind("click");
+                ele.find(".ak-arr_next").on("click",
+                    function(event) {
+                        event.preventDefault();
+                        var $_this = $(this);
+                        $_this.attr("disabled","disabled");
+                        if (self.clickable) {
+                            if (index >= SliderSize) {
+                                index = 1;
+                            } else {
+                                index += 1;
+                            }
+                            self.moveTo(index, "ak-arr_next");
+                            self.options.nextback(index,$(ele[0]),$_this);
+                            setTimeout(function () {
+                                $_this.removeAttr("disabled");
+                            },self.options.speed);
+                        }
+                    });
+                ele.find(".ak-arr_prev").unbind("click");
+                ele.find(".ak-arr_prev").on("click",
+                    function(event) {
+                        event.preventDefault();
+                        var $_this = $(this);
+                        $_this.attr("disabled","disabled");
+                        if (self.clickable) {
+                            if (index == 1) {
+                                index = SliderSize;
+                            } else {
+                                index -= 1;
+                            }
+                            self.moveTo(index, "ak-arr_prev");
+                            self.options.prevback(index,$(ele[0]),$_this);
+                            setTimeout(function () {
+                                $_this.removeAttr("disabled");
+                            },self.options.speed);
+                        }
+                    })
+            }
+            if (self.options.dotShow) {
+                ele.find("ol li").unbind("click");
+                ele.find("ol li").on("click",
+                    function(event) {
+                        event.preventDefault();
+                        if (self.clickable) {
+                            var dotIndex = $(this).data("index");
+                            if (dotIndex > index) {
+                                dir = "ak-arr_next"
+                            } else {
+                                dir = "ak-arr_prev"
+                            }
+                            if (dotIndex != index) {
+                                index = dotIndex;
+                                self.moveTo(index, dir)
+                            }
+                        }
+                    })
+            }
+            if (self.options.autoPlay) {
+                var timer;
+                var play = function() {
+                    index++;
+                    if (index > SliderSize) {
+                        index = 1
+                    }
+                    self.moveTo(index, "ak-arr_next");
+                };
+                timer = setInterval(play, self.options.interval);
+                if (self.options.HoverPause) {
+                    ele.hover(function () {
+                            timer = clearInterval(timer)
+                        },
+                        function () {
+                            timer = setInterval(play, self.options.interval)
+                        });
+                }
+            }
+            if (self.options.fullpage) {
+                ele.on({
+                    touchmove: function (es) {
+                        es.preventDefault();
+                        return false;
+                    }
+                });
+                var win_h = $(window).height();
+                SliderLi.css({"height": win_h});
+                sliderInder.css({"height": win_h});
+                ele.css({"height": win_h});
+            }
+            AKjs_UserAgent();
+            if (self.options.touchPlay) {
+                SliderLi.on({
+                    touchstart: function (es) {
+                        touchStartY = es.originalEvent.touches[0].clientY;
+                        touchStartX = es.originalEvent.touches[0].clientX;
+                    },
+                    touchend: function (es) {
+                        var touchEndY = es.originalEvent.changedTouches[0].clientY,
+                            touchEndX = es.originalEvent.changedTouches[0].clientX,
+                            yDiff = touchStartY - touchEndY,
+                            xDiff = touchStartX - touchEndX;
+                        if (self.options.UpDown) {
+                            if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                                if (yDiff > 10) {
+                                    if (index >= SliderSize) {
+                                        if (self.options.loopPlay) {
+                                            index = 1;
+                                            self.moveTo(index, "ak-arr_next");
+                                        }
+                                    } else {
+                                        index += 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    if (index == 1) {
+                                        if (self.options.loopPlay) {
+                                            index = SliderSize;
+                                            self.moveTo(index, "ak-arr_prev");
+                                        }
+                                    } else {
+                                        index -= 1;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                }
+                            }
+                        } else {
+                            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                                if (xDiff > 10) {
+                                    if (index >= SliderSize) {
+                                        if (self.options.loopPlay) {
+                                            index = 1;
+                                            self.moveTo(index, "ak-arr_next");
+                                        }
+                                    } else {
+                                        index += 1;
+                                        self.moveTo(index, "ak-arr_next");
+                                    }
+                                } else {
+                                    if (index == 1) {
+                                        if (self.options.loopPlay) {
+                                            index = SliderSize;
+                                            self.moveTo(index, "ak-arr_prev");
+                                        }
+                                    } else {
+                                        index -= 1;
+                                        self.moveTo(index, "ak-arr_prev");
+                                    }
+                                }
+                            }
+                        }
+                        touchStartY = null;
+                        touchStartX = null
+                    },
+                    touchmove: function (es) {
+                        var touchEndY = es.originalEvent.changedTouches[0].clientY,
+                            touchEndX = es.originalEvent.changedTouches[0].clientX,
+                            yDiff = touchStartY - touchEndY,
+                            xDiff = touchStartX - touchEndX;
+                        if (self.options.UpDown) {
+                            es.preventDefault();
+                        }
+                    }
+                });
+                if (!IsMobile) {
+                    SliderLi.on({
+                        mousedown: function (es) {
+                            mouseStartY = es.clientY;
+                            mouseStartX = es.clientX;
+                        },
+                        mouseup: function (es) {
+                            var mouseEndY = es.screenY,
+                                mouseEndX = es.screenX,
+                                yDiff = mouseStartY - mouseEndY,
+                                xDiff = mouseStartX - mouseEndX;
+                            if (self.options.UpDown) {
+                                if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                                    if (yDiff > 10) {
+                                        if (index >= SliderSize) {
+                                            if (self.options.loopPlay) {
+                                                index = 1;
+                                                self.moveTo(index, "ak-arr_next");
+                                            }
+                                        } else {
+                                            index += 1;
+                                            self.moveTo(index, "ak-arr_next");
+                                        }
+                                    } else {
+                                        if (index == 1) {
+                                            if (self.options.loopPlay) {
+                                                index = SliderSize;
+                                                self.moveTo(index, "ak-arr_prev");
+                                            }
+                                        } else {
+                                            index -= 1;
+                                            self.moveTo(index, "ak-arr_prev");
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                                    if (xDiff > 10) {
+                                        if (index >= SliderSize) {
+                                            if (self.options.loopPlay) {
+                                                index = 1;
+                                                self.moveTo(index, "ak-arr_next");
+                                            }
+                                        } else {
+                                            index += 1;
+                                            self.moveTo(index, "ak-arr_next");
+                                        }
+                                    } else {
+                                        if (index == 1) {
+                                            if (self.options.loopPlay) {
+                                                index = SliderSize;
+                                                self.moveTo(index, "ak-arr_prev");
+                                            }
+                                        } else {
+                                            index -= 1;
+                                            self.moveTo(index, "ak-arr_prev");
+                                        }
+                                    }
+                                }
+                            }
+                            mouseStartY = null;
+                            mouseStartX = null
+                        }
+                    });
+                }
+            }
+        },
+        moveTo: function(index, dir) {
+            var self = this,
+                ele = self.$element;
+            var clickable = self.clickable;
+            var dots_li = ele.children("ol").find("li");
+            var sliderInder = ele.children("ul");
+            var SliderLi = sliderInder.children("li");
+            if (clickable) {
+                if (self.options.UpDown) {
+                    var offset = ele.height();
+                } else {
+                    var offset = ele.width();
+                }
+                if (dir == "ak-arr_prev") {
+                    offset = -1 * offset
+                }
+                if (self.options.SlideAni) {
+                    if (self.options.UpDown) {
+                        sliderInder.children(".dis_block_im").stop().animate({
+                                top: -offset
+                            },
+                            self.options.speed,
+                            function() {
+                                $(this).removeClass("dis_block_im")
+                            });
+                        SliderLi.eq(index - 1).css("top", offset + "px").addClass("dis_block_im").stop().animate({
+                                top: 0
+                            },
+                            self.options.speed,
+                            function() {
+                                self.clickable = true
+                            });
+                    } else {
+                        sliderInder.children(".dis_block_im").stop().animate({
+                                left: -offset
+                            },
+                            self.options.speed,
+                            function() {
+                                $(this).removeClass("dis_block_im")
+                            });
+                        SliderLi.eq(index - 1).css("left", offset + "px").addClass("dis_block_im").stop().animate({
+                                left: 0
+                            },
+                            self.options.speed,
+                            function() {
+                                self.clickable = true
+                            });
+                    }
+                } else {
+                    sliderInder.children(".dis_block_im").fadeOut(self.options.speed);
+                    SliderLi.eq(index - 1).fadeIn(self.options.speed);
+                    $(setTimeout(function () {
+                        sliderInder.children(".dis_block_im").removeClass("dis_block_im");
+                        SliderLi.eq(index - 1).addClass("dis_block_im");
+                    }),self.options.speed);
+                }
+                if (self.options.CustomHeight) {
+                    if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
+                    } else {
+                        var custom_h = SliderLi.eq(index - 1).find("*[data-height=true]").prop("height");
+                        SliderLi.eq(index - 1).css({"height": custom_h});
+                        SliderLi.eq(index - 1).find("*").css({"height": custom_h});
+                        sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                        ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
+                    }
+                }
+                self.options.afterSlider(index,$(SliderLi.eq(index - 1)[0]));
+                dots_li.removeClass(self.options.ActiveClass);
+                dots_li.eq(index - 1).addClass(self.options.ActiveClass);
+            } else {
+                self.clickable = false;
+                return false
+            }
+        }
+    };
+    $.fn.AKjs_Slider = function(options) {
+        var ak_Slider = new AKjs_Slider(this, options);
+        return this.each(function() {
+            ak_Slider.init()
+        })
+    }
+} (jQuery));
 
 /*-----------------------------------------------AKjs_Form (2020-01-08)--------------------------------------------*/
 (function($) {
@@ -198,94 +832,6 @@
                 })
             })
         }
-    }
-} (jQuery));
-
-/*-----------------------------------------------AKjs_Vticker (2019-06-11)--------------------------------------------*/
-(function($) {
-    $.fn.AKjs_Vticker = function(setting) {
-        var option = $.extend({
-            speed: 500,
-            pause: 3000,
-            showItems: 3,
-            mousePause: true,
-            isPaused: false,
-            direction: "up",
-            height: 0,
-            CallBack: function() {}
-        }, setting);
-        moveUp = function(ele, LiHeight, option) {
-            if (!option.isPaused) {
-                ele_children = ele.children();
-                var datas = ele_children.children("li:first").clone(true);
-                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
-                ele_children.animate({
-                        top: "-=" + LiHeight
-                    },
-                    option.speed,
-                    function() {
-                        $(this).children("li:first").remove();
-                        $(this).css("top", "0")
-                    });
-                datas.appendTo(ele_children)
-            }
-        };
-        moveDown = function(ele, LiHeight, option) {
-            if (!option.isPaused) {
-                ele_children = ele.children();
-                var datas = ele_children.children("li:last").clone(true);
-                if (option.height > 0) LiHeight = ele_children.children("li:first").outerHeight();
-                ele_children.css("top", "-" + LiHeight).prepend(datas);
-                ele_children.animate({
-                        top: 0
-                    },
-                    option.speed,
-                    function() {
-                        $(this).children("li:last").remove()
-                    });
-            }
-        };
-        var _this = $(this);
-        $(window).resize(function() {
-            _this.each(function () {
-                var ele = $(this),
-                    LiHeight = $(this).children().children("li").outerHeight();
-                if (option.height) {
-                    ele.height(option.height);
-                    ele.children().children("li").height(option.height / option.showItems);
-                } else {
-                    ele.height(LiHeight * option.showItems)
-                }
-            });
-        });
-        _this.each(function() {
-            var ele = $(this),
-                LiHeight = $(this).children().children("li").outerHeight();
-            ele.css({
-                overflow: "hidden",
-                position: "relative"
-            }).children().css({
-                position: "absolute"
-            });
-            if (option.height) {
-                ele.height(option.height);
-                ele.children().children("li").height(option.height / option.showItems);
-            } else {
-                ele.height(LiHeight * option.showItems)
-            }
-            setInterval(function() {
-                    option.direction == "up" ? moveUp(ele, LiHeight, option) : moveDown(ele, LiHeight, option);
-                    option.CallBack(ele);
-                },
-                option.pause);
-            option.mousePause && ele.bind("mouseenter",
-                function() {
-                    option.isPaused = true
-                }).bind("mouseleave",
-                function() {
-                    option.isPaused = false
-                })
-        })
     }
 } (jQuery));
 
@@ -521,455 +1067,6 @@ function AKjs_Popupwin (setting) {
         },setTimeouts);
     }
 }
-
-/*-----------------------------------------------AKjs_Slider (2018-12-17)--------------------------------------------*/
-(function($) {
-    var AKjs_Slider = function(ele, opt) {
-        var self = this;
-        self.$element = ele,
-            self.defaults = {
-                fullpage: false,
-                UpDown: false,
-                start: 1,
-                speed: 500,
-                interval: 5000,
-                autoPlay: false,
-                loopPlay: true,
-                dotShow: true,
-                arrShow: true,
-                dotClass:"",
-                arrClass:"",
-                arrIcon: [],
-                CustomHeight: false,
-                ActiveClass: "bg_theme",
-                callback: function() {},
-                afterSlider: function() {}
-            },
-            self.clickable = true,
-            self.options = $.extend({},
-                self.defaults, opt)
-    };
-    AKjs_Slider.prototype = {
-        init: function() {
-            var self = this,
-                ele = self.$element;
-            var touchStartY = 0,
-                touchStartX = 0,
-                mouseStartY = 0,
-                mouseStartX = 0;
-            var sliderInder = ele.children("ul");
-            var SliderLi = sliderInder.children("li");
-            var SliderSize = SliderLi.length;
-            var index = self.options.start;
-            var styleSetting = function() {
-                if (self.options.arrShow) {
-                    if (self.options.UpDown) {
-                        if (self.options.arrIcon) {
-                            var arrElement = '<button type="button" class="ak-arr_prev">'+self.options.arrIcon[0]+'</button><button type="button" class="ak-arr_next">'+self.options.arrIcon[1]+'</button>';
-                        } else {
-                            var arrElement = '<button type="button" class="ak-arr_prev">&and;</button><button type="button" class="ak-arr_next">&or;</button>';
-                        }
-                    } else {
-                        if (self.options.arrIcon) {
-                            var arrElement = '<button type="button" class="ak-arr_prev">'+self.options.arrIcon[0]+'</button><button type="button" class="ak-arr_next">'+self.options.arrIcon[1]+'</button>';
-                        } else {
-                            var arrElement = '<button type="button" class="ak-arr_prev">&lt;</button><button type="button" class="ak-arr_next">&gt;</button>';
-                        }
-                    }
-                    if ($(ele).children("button").length < 1) {
-                        ele.append(arrElement);
-                    }
-                    ele.find("button").addClass(self.options.arrClass);
-                    if (self.options.UpDown) {
-                        ele.find("button.ak-arr_prev").css({
-                            "top": ele.find("button.ak-arr_prev").outerWidth()/2
-                        });
-                        ele.find("button.ak-arr_next").css({
-                            "bottom": ele.find("button.ak-arr_next").outerWidth()/2
-                        });
-                    } else {
-                        ele.find("button.ak-arr_prev").css({
-                            "left": ele.find("button.ak-arr_prev").outerWidth()/2
-                        });
-                        ele.find("button.ak-arr_next").css({
-                            "right": ele.find("button.ak-arr_next").outerWidth()/2
-                        });
-                    }
-                    self.options.callback(ele);
-                }
-                for (i = 1; i <= SliderSize; i++) {
-                    if (index == i) {
-                        SliderLi.eq(index - 1).addClass("dis_block_im");
-                        if (self.options.CustomHeight) {
-                            setTimeout(function () {
-                                if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
-                                } else {
-                                    var custom_h = SliderLi.eq(index - 1).find("*[data-height=true]").prop("height");
-                                    SliderLi.eq(index - 1).css({"height": custom_h});
-                                    SliderLi.eq(index - 1).find("*").css({"height": custom_h});
-                                    sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
-                                    ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
-                                }
-                            }, 200);
-                        }
-                    }
-                }
-                if (self.options.dotShow) {
-                    var dot = "";
-                    for (i = 1; i <= SliderSize; i++) {
-                        if (index == i) {
-                            dot += '<li data-index="' + i + '" class="'+self.options.ActiveClass+'"></li>'
-                        } else {
-                            dot += '<li data-index="' + i + '"></li>'
-                        }
-                    }
-                    var dotElement = '<ol>' + dot + "</ol>";
-                    if ($(ele).children("ol").length < 1) {
-                        ele.append(dotElement);
-                        if (self.options.UpDown) {
-                            $(ele).children("ol").addClass("bottom_au right_0 mr_1rem");
-                        } else {
-                            $(ele).children("ol").find("li").addClass("fl");
-                        }
-                    }
-                }
-                ele.addClass("ak-Slider");
-                setTimeout(function () {
-                    if (self.options.arrShow) {
-                        if (self.options.UpDown) {
-                            var arrOffset = (ele.outerWidth() - ele.find("button").outerWidth()) / 2;
-                            ele.find("button").css("left", arrOffset + "px");
-                        } else {
-                            var arrOffset = (ele.outerHeight() - ele.find("button").outerHeight()) / 2;
-                            if (ele.hasClass("h_fill")) {
-                                ele.find("button").css("top", $(window).height()/2 - ele.find("button").outerHeight() / 2+ "px");
-                            } else {
-                                ele.find("button").css("top", arrOffset + "px");
-                            }
-                        }
-                    }
-                    if (self.options.dotShow) {
-                        var dots = ele.children("ol");
-                        if (self.options.UpDown) {
-                            dots.find("li").addClass(self.options.dotClass).removeClass("fl");
-                            var dotHeight = (SliderSize + 1) * dots.find("li").eq(0).outerHeight();
-                            var dotOffset = (ele.outerHeight() - dotHeight) / 2;
-                            dots.css({
-                                "top": dotOffset + "px"
-                            });
-                        } else {
-                            dots.find("li").addClass(self.options.dotClass);
-                            var dotWidth = (SliderSize + 1) * dots.find("li").eq(0).outerWidth();
-                            var dotOffset = (ele.outerWidth() - dotWidth) / 2;
-                            dots.css({
-                                "left": dotOffset + "px"
-                            });
-                        }
-                    }
-                }, 200);
-            };
-            styleSetting();
-            $(window).resize(function() {
-                styleSetting();
-            });
-            if (self.options.arrShow) {
-                ele.find(".ak-arr_next").unbind("click");
-                ele.find(".ak-arr_next").on("click",
-                    function(event) {
-                        event.preventDefault();
-                        var $_this = $(this);
-                        $_this.attr("disabled","disabled");
-                        if (self.clickable) {
-                            if (index >= SliderSize) {
-                                index = 1;
-                            } else {
-                                index += 1;
-                            }
-                            self.moveTo(index, "ak-arr_next");
-                            setTimeout(function () {
-                                $_this.removeAttr("disabled");
-                            },self.options.speed);
-                        }
-                    });
-                ele.find(".ak-arr_prev").unbind("click");
-                ele.find(".ak-arr_prev").on("click",
-                    function(event) {
-                        event.preventDefault();
-                        var $_this = $(this);
-                        $_this.attr("disabled","disabled");
-                        if (self.clickable) {
-                            if (index == 1) {
-                                index = SliderSize;
-                            } else {
-                                index -= 1;
-                            }
-                            self.moveTo(index, "ak-arr_prev");
-                            setTimeout(function () {
-                                $_this.removeAttr("disabled");
-                            },self.options.speed);
-                        }
-                    })
-            }
-            if (self.options.dotShow) {
-                ele.find("ol li").unbind("click");
-                ele.find("ol li").on("click",
-                    function(event) {
-                        event.preventDefault();
-                        if (self.clickable) {
-                            var dotIndex = $(this).data("index");
-                            if (dotIndex > index) {
-                                dir = "ak-arr_next"
-                            } else {
-                                dir = "ak-arr_prev"
-                            }
-                            if (dotIndex != index) {
-                                index = dotIndex;
-                                self.moveTo(index, dir)
-                            }
-                        }
-                    })
-            }
-            if (self.options.autoPlay) {
-                var timer;
-                var play = function() {
-                    index++;
-                    if (index > SliderSize) {
-                        index = 1
-                    }
-                    self.moveTo(index, "ak-arr_next");
-                };
-                timer = setInterval(play, self.options.interval);
-                ele.hover(function() {
-                        timer = clearInterval(timer)
-                    },
-                    function() {
-                        timer = setInterval(play, self.options.interval)
-                    })
-            }
-            if (self.options.fullpage) {
-                ele.on({
-                    touchmove: function (es) {
-                        es.preventDefault();
-                        return false;
-                    }
-                });
-                var win_h = $(window).height();
-                SliderLi.css({"height": win_h});
-                sliderInder.css({"height": win_h});
-                ele.css({"height": win_h});
-            }
-            AKjs_UserAgent();
-            SliderLi.on({
-                touchstart: function(es) {
-                    touchStartY = es.originalEvent.touches[0].clientY;
-                    touchStartX = es.originalEvent.touches[0].clientX;
-                },
-                touchend: function(es) {
-                    var touchEndY = es.originalEvent.changedTouches[0].clientY,
-                        touchEndX = es.originalEvent.changedTouches[0].clientX,
-                        yDiff = touchStartY - touchEndY,
-                        xDiff = touchStartX - touchEndX;
-                    if (self.options.UpDown) {
-                        if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                            if (yDiff > 10) {
-                                if (index >= SliderSize) {
-                                    if (self.options.loopPlay) {
-                                        index = 1;
-                                        self.moveTo(index, "ak-arr_next");
-                                    }
-                                } else {
-                                    index += 1;
-                                    self.moveTo(index, "ak-arr_next");
-                                }
-                            } else {
-                                if (index == 1) {
-                                    if (self.options.loopPlay) {
-                                        index = SliderSize;
-                                        self.moveTo(index, "ak-arr_prev");
-                                    }
-                                } else {
-                                    index -= 1;
-                                    self.moveTo(index, "ak-arr_prev");
-                                }
-                            }
-                        }
-                    } else {
-                        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                            if (xDiff > 10) {
-                                if (index >= SliderSize) {
-                                    if (self.options.loopPlay) {
-                                        index = 1;
-                                        self.moveTo(index, "ak-arr_next");
-                                    }
-                                } else {
-                                    index += 1;
-                                    self.moveTo(index, "ak-arr_next");
-                                }
-                            } else {
-                                if (index == 1) {
-                                    if (self.options.loopPlay) {
-                                        index = SliderSize;
-                                        self.moveTo(index, "ak-arr_prev");
-                                    }
-                                } else {
-                                    index -= 1;
-                                    self.moveTo(index, "ak-arr_prev");
-                                }
-                            }
-                        }
-                    }
-                    touchStartY = null;
-                    touchStartX = null
-                },
-                touchmove: function(es) {
-                    var touchEndY = es.originalEvent.changedTouches[0].clientY,
-                        touchEndX = es.originalEvent.changedTouches[0].clientX,
-                        yDiff = touchStartY - touchEndY,
-                        xDiff = touchStartX - touchEndX;
-                    if (self.options.UpDown) {
-                        es.preventDefault();
-                    }
-                }
-            });
-            if (!IsMobile) {
-                SliderLi.on({
-                    mousedown: function(es) {
-                        mouseStartY = es.clientY;
-                        mouseStartX = es.clientX;
-                    },
-                    mouseup: function(es) {
-                        var mouseEndY = es.screenY,
-                            mouseEndX = es.screenX,
-                            yDiff = mouseStartY - mouseEndY,
-                            xDiff = mouseStartX - mouseEndX;
-                        if (self.options.UpDown) {
-                            if (Math.abs(xDiff) < Math.abs(yDiff)) {
-                                if (yDiff > 10) {
-                                    if (index >= SliderSize) {
-                                        if (self.options.loopPlay) {
-                                            index = 1;
-                                            self.moveTo(index, "ak-arr_next");
-                                        }
-                                    } else {
-                                        index += 1;
-                                        self.moveTo(index, "ak-arr_next");
-                                    }
-                                } else {
-                                    if (index == 1) {
-                                        if (self.options.loopPlay) {
-                                            index = SliderSize;
-                                            self.moveTo(index, "ak-arr_prev");
-                                        }
-                                    } else {
-                                        index -= 1;
-                                        self.moveTo(index, "ak-arr_prev");
-                                    }
-                                }
-                            }
-                        } else {
-                            if (Math.abs(xDiff) > Math.abs(yDiff)) {
-                                if (xDiff > 10) {
-                                    if (index >= SliderSize) {
-                                        if (self.options.loopPlay) {
-                                            index = 1;
-                                            self.moveTo(index, "ak-arr_next");
-                                        }
-                                    } else {
-                                        index += 1;
-                                        self.moveTo(index, "ak-arr_next");
-                                    }
-                                } else {
-                                    if (index == 1) {
-                                        if (self.options.loopPlay) {
-                                            index = SliderSize;
-                                            self.moveTo(index, "ak-arr_prev");
-                                        }
-                                    } else {
-                                        index -= 1;
-                                        self.moveTo(index, "ak-arr_prev");
-                                    }
-                                }
-                            }
-                        }
-                        mouseStartY = null;
-                        mouseStartX = null
-                    }
-                });
-            }
-        },
-        moveTo: function(index, dir) {
-            var self = this,
-                ele = self.$element;
-            var clickable = self.clickable;
-            var dots_li = ele.children("ol").find("li");
-            var sliderInder = ele.children("ul");
-            var SliderLi = sliderInder.children("li");
-            if (clickable) {
-                if (self.options.UpDown) {
-                    var offset = ele.height();
-                } else {
-                    var offset = ele.width();
-                }
-                if (dir == "ak-arr_prev") {
-                    offset = -1 * offset
-                }
-                if (self.options.UpDown) {
-                    sliderInder.children(".dis_block_im").stop().animate({
-                            top: -offset
-                        },
-                        self.options.speed,
-                        function() {
-                            $(this).removeClass("dis_block_im")
-                        });
-                    SliderLi.eq(index - 1).css("top", offset + "px").addClass("dis_block_im").stop().animate({
-                            top: 0
-                        },
-                        self.options.speed,
-                        function() {
-                            self.clickable = true
-                        });
-                } else {
-                    sliderInder.children(".dis_block_im").stop().animate({
-                            left: -offset
-                        },
-                        self.options.speed,
-                        function() {
-                            $(this).removeClass("dis_block_im")
-                        });
-                    SliderLi.eq(index - 1).css("left", offset + "px").addClass("dis_block_im").stop().animate({
-                            left: 0
-                        },
-                        self.options.speed,
-                        function() {
-                            self.clickable = true
-                        });
-                }
-                if (self.options.CustomHeight) {
-                    if (SliderLi.eq(index - 1).find("img").hasClass("dis_none") || SliderLi.eq(index - 1).find("img").hasClass("dis_none_im")) {
-                    } else {
-                        var custom_h = SliderLi.eq(index - 1).find("*[data-height=true]").prop("height");
-                        SliderLi.eq(index - 1).css({"height": custom_h});
-                        SliderLi.eq(index - 1).find("*").css({"height": custom_h});
-                        sliderInder.css({"height": SliderLi.eq(index - 1).outerHeight()});
-                        ele.css({"height": SliderLi.eq(index - 1).outerHeight()});
-                    }
-                }
-                self.options.afterSlider(index,dots_li.eq(index - 1));
-                dots_li.removeClass(self.options.ActiveClass);
-                dots_li.eq(index - 1).addClass(self.options.ActiveClass);
-            } else {
-                self.clickable = false;
-                return false
-            }
-        }
-    };
-    $.fn.AKjs_Slider = function(options) {
-        var ak_Slider = new AKjs_Slider(this, options);
-        return this.each(function() {
-            ak_Slider.init()
-        })
-    }
-} (jQuery));
 
 /*-----------------------------------------------AKjs_StepOrder (2018-12-16)--------------------------------------------*/
 (function($) {
@@ -3751,37 +3848,6 @@ function AKjs_CountDown(ele,setting) {
             }
         };
         var drop = new DropDown($(this).children("li"));
-    };
-} (jQuery));
-
-/*-----------------------------------------------AKjs_EchartsRun (2018-12-13)--------------------------------------------*/
-(function($) {
-    $.fn.AKjs_EchartsRun = function(setting) {
-        var opt = $.extend({
-                width: 0,
-                height: 0,
-                option:{},
-                callback:function(){}
-            },
-            setting);
-        function Echarts(el) {
-            var _this = this;
-            _this.elem = el;
-            _this.initEvents();
-        }
-        Echarts.prototype = {
-            initEvents: function() {
-                var obj = this;
-                $(this.elem).css({
-                    "width": opt.width,
-                    "height": opt.height
-                });
-                var myChart = echarts.init(obj.elem.get(0));
-                var option = opt.option;
-                opt.callback(myChart,option);
-            }
-        };
-        new Echarts($(this));
     };
 } (jQuery));
 

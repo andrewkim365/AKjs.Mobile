@@ -1,4 +1,4 @@
-/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.0 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20200108 AKjs.Mobile license */
+/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20200421 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------Base Style-----------*/
@@ -12388,6 +12388,68 @@ text {
 }
 .bg_repeat_no {
     background-repeat: no-repeat !important;
+}
+
+/*text_shadow setting*/
+.text_shadow_black_10px {
+    text-shadow: 0 0 10px #000000;
+}
+.text_shadow_black_9px {
+    text-shadow: 0 0 9px #000000;
+}
+.text_shadow_black_8px {
+    text-shadow: 0 0 8px #000000;
+}
+.text_shadow_black_7px {
+    text-shadow: 0 0 7px #000000;
+}
+.text_shadow_black_6px {
+    text-shadow: 0 0 6px #000000;
+}
+.text_shadow_black_5px {
+    text-shadow: 0 0 5px #000000;
+}
+.text_shadow_black_4px {
+    text-shadow: 0 0 4px #000000;
+}
+.text_shadow_black_3px {
+    text-shadow: 0 0 3px #000000;
+}
+.text_shadow_black_2px {
+    text-shadow: 0 0 2px #000000;
+}
+.text_shadow_black_1px {
+    text-shadow: 0 0 1px #000000;
+}
+.text_shadow_white_10px {
+    text-shadow: 0 0 10px #ffffff;
+}
+.text_shadow_white_9px {
+    text-shadow: 0 0 9px #ffffff;
+}
+.text_shadow_white_8px {
+    text-shadow: 0 0 8px #ffffff;
+}
+.text_shadow_white_7px {
+    text-shadow: 0 0 7px #ffffff;
+}
+.text_shadow_white_6px {
+    text-shadow: 0 0 6px #ffffff;
+}
+.text_shadow_white_5px {
+    text-shadow: 0 0 5px #ffffff;
+}
+.text_shadow_white_4px {
+    text-shadow: 0 0 4px #ffffff;
+}
+.text_shadow_white_3px {
+    text-shadow: 0 0 3px #ffffff;
+}
+.text_shadow_white_2px {
+    text-shadow: 0 0 2px #ffffff;
+}
+.text_shadow_white_1px {
+    text-shadow: 0 0 1px #ffffff;
 }
 
 /*color setting*/
