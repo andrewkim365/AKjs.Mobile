@@ -1,4 +1,4 @@
-/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20200421 AKjs.Mobile license */
+/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20201205 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -77,7 +77,9 @@ function AKjs_Config(setting) {
     }
     if(option.ButtonLink== true) {
         if (!$("html").attr("data-router")) {
-            AKjs_HashSharp();
+            $(function () {
+                AKjs_HashSharp();
+            });
         }
     } else {
         $("*").removeAttr("data-href");
