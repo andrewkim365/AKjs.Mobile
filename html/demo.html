@@ -1911,6 +1911,7 @@
             callback:function(length,ele){ //通过回调获取数量和元素
                 console.log(length);
                 console.log(ele);
+                ele.attr
             }
         });
     });
@@ -2055,13 +2056,18 @@
     /*-----------------------------------------------AKjs_MultiDate 使用方法-------------------------------------------*/
     $(function() {
         $('#plug_multidate').AKjs_MultiDate({
-            format: 'yyyy-mm-dd hh:ii', //日期格式
-            closeBtn: "取消", //关闭按钮 （不输入代表不显示该按钮）
-            todayBtn: "今天", //今天按钮 （不输入代表不显示该按钮）
+            closeBtn: false, //关闭按钮 （不输入代表不显示该按钮）
+            todayBtn: false, //今天按钮 （不输入代表不显示该按钮）
             startDate: "2016-07-01", //开始日期
             endDate: "2030-12-31", //结束日期
-            isMask: true, //是否开启遮罩层
-            pickTime: true, //是否开启时间功能
+            isMask: false, //是否开启遮罩层
+            pickTime: false, //是否开启时间功能
+            format: 'yyyy-mm',
+            weekStart: 1,
+            autoclose: true,
+            startView: 3,
+            minView: 3,
+            forceParse: false,
             language: {
                 month: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"],
                 weeks: ["日", "一", "二", "三", "四", "五", "六"],

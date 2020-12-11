@@ -1,4 +1,4 @@
-﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20200421 AKjs.Mobile license */
+﻿/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.1 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20201205 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 /*-----------------------------------------------AKjs_Vticker (2020-04-21)--------------------------------------------*/
@@ -6919,7 +6919,7 @@ function AKjs_Loader(setting) {
         } else {
             if ("startView" in this.element.data()) {
                 this.startViewMode = this.element.data("start-view")
-            }
+            }format
         }
         this.startViewMode = DateTimeGlobal.convertViewMode(this.startViewMode);
         this.viewMode = this.startViewMode;
