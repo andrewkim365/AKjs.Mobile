@@ -1,4 +1,4 @@
-﻿# 快速了解AKjs框架的CSS样式库：（整理文档时间：2018-06-11）
+﻿# 快速了解AKjs框架的CSS样式库：（整理文档时间：2021-02-02）
 ----------------------------------------------------------
 
 
@@ -22,11 +22,11 @@
 
 	1-2.文字大小设置；
 
-	.text_05rem ~ .text_09rem //该class名称是font-size:0.5rem 到 0.9rem的意思；
+	.fs_05rem ~ .fs_09rem //该class名称是font-size:0.5rem 到 0.9rem的意思；
 
-	.text_1rem ，.text_11rem ，.text_12rem ... //这个是font-size:1rem , 1.1rem , 1.2rem 的意思；
+	.fs_1rem ，.fs_11rem ，.fs_12rem ... //这个是font-size:1rem , 1.1rem , 1.2rem 的意思；
 
-	大于10rem的表现方式为 .text_10rem, .text_12_rem, .text_20rem ... //这三个属性是 font-size:10rem, 12rem, 20rem 的意思；
+	大于10rem的表现方式为 .fs_10rem, .fs_12_rem, .fs_20rem ... //这三个属性是 font-size:10rem, 12rem, 20rem 的意思；
 
 	还有一种属性是.text_in 该class名称是font-size:inherit; //继承于上一个元素的文字大小；
 
@@ -45,30 +45,30 @@
 
 	//文字垂直对齐设置
 
-	.text_al_t = vertical-align: top
+	.vert_al_t = vertical-align: top
 
-	.text_al_tt = vertical-align: text-top
+	.vert_al_tt = vertical-align: text-top
 
-	.text_al_m = vertical-align: middle
+	.vert_al_m = vertical-align: middle
 
-	.text_al_b = vertical-align: bottom
+	.vert_al_b = vertical-align: bottom
 
-	.text_al_tb = vertical-align: text-bottom
+	.vert_al_tb = vertical-align: text-bottom
 
-	.text_al_s = vertical-align: sub
+	.vert_al_s = vertical-align: sub
 
-	.text_al_sp = vertical-align: super
+	.vert_al_sp = vertical-align: super
 
-	.text_al_i = vertical-align: inherit
+	.vert_al_i = vertical-align: inherit
 
 
 	1-3. 文字加粗斜样式设置
 
-	.text_bold = font-weight:bold //文字加粗
+	.font_bold = font-weight:bold //文字加粗
 
-	.text_normal = font-weight:normal //文字变细
+	.font_normal = font-weight:normal //文字变细
 
-	.text_italic = font-style: italic //斜体文字
+	.font_italic = font-style: italic //斜体文字
 
 	.text_line = text-decoration: underline //带下划线
 	
@@ -98,24 +98,24 @@
 	
 	2-2. 定位方法
 	
-	.rel = position: relative //相对定位
+	.pos_rel = position: relative //相对定位
 
-	.abs = position: absolute //绝对定位
+	.pos_abs = position: absolute //绝对定位
 
-	.fix = position: fixed //固定定位
+	.pos_fix = position: fixed //固定定位
 
-	.sta = position: static //静态定位
+	.pos_sta = position: static //静态定位
 
-	.pos = position: inherit //继承与上一个元素定位
+	.pos_in= position: inherit //继承与上一个元素定位
 	
 	
 	2-3. z-index属性 (某元素的显示在前面的优先级参数)
 	
-	.zindex_0 ~ .zindex_30 之间任意使用
+	.z_index_0 ~ .z_index_30 之间任意使用
 	
-	.zindex_show = z-index: 999 //优先级参数最高
+	.z_index_show = z-index: 999 //优先级参数最高
 
-	.zindex_hide = z-index: -1 //通过优先级参数也可以隐藏到后面
+	.z_index_hide = z-index: -1 //通过优先级参数也可以隐藏到后面
 
 	
 
@@ -125,7 +125,7 @@
 
 	3-1. 光标的类型设置
 	
-	.pointer = cursor: pointer //光标呈现为指示链接的指针（一只手）
+	.cur_pointer = cursor: pointer //光标呈现为指示链接的指针（一只手）
 
 	.help  = cursor: help //此光标指示可用的帮助
 
@@ -179,7 +179,7 @@
 	
 	4-2. 元素透明度设置opacity属性
 	
-	.dis_opa_0 ，.dis_opa_01. .dis_opa_02 ... ... .dis_opa_1 //该class名称是opacity:0 到 opacity:1的意思；.dis_opa_01. .dis_opa_02 0.1或0.2的意思。
+	.opa_0 ，.opa_01. .opa_02 ... ... .opa_1 //该class名称是opacity:0 到 opacity:1的意思；.opa_01. .opa_02 0.1或0.2的意思。
 	
 
 5.宽高以及间距的设置方法

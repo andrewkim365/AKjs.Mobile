@@ -117,8 +117,8 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                 dotShow: true, //是否显示幻灯片位置按钮（true，false）
                 arrShow: false, //是否显示左右切换按钮（true，false）
                 CustomHeight: false, //是否启用自定义高度，随着带[data-height=true]属性的元素高度进行设置（true，false）
-                dotClass: "fl wh_08rem bg_gray_333 border bor_white mr_05rem bor_rad_50 pointer", //底部图片位置的样式设置
-                arrClass:"wh_24rem c_white bg_black05 bor_rad_50 pointer", //左右切换按钮的样式设置
+                dotClass: "fl wh_08rem bg_gray_333 border bor_white mr_05rem bor_rad_50 cur_pointer", //底部图片位置的样式设置
+                arrClass:"wh_24rem c_white bg_black05 bor_rad_50 cur_pointer", //左右切换按钮的样式设置
                 ActiveClass: "bg_theme", //底部图片位置的当前样式
                 afterSlider: function(index,ele) { //回调获取当前的数
                     //console.log(index);
@@ -438,15 +438,15 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                 maskPosition: 4, //Mask的z-index数值
                 closeBtn: ".plug_closeIn", //关闭弹窗按钮的Class名
                 OneButton: e.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                toggleIcon: "text_14rem icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                toggleIcon: "fs_14rem icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     //console.log(toggle);
                     if (toggle) { //判断是否弹出弹窗
                         console.log($(ele[0].dom)); //获取当前的弹窗元素
-                        $("footer").addClass("zindex_0");
+                        $("footer").addClass("z_index_0");
                     } else {
                         setTimeout(function() {
-                            $("footer").removeClass("zindex_0");
+                            $("footer").removeClass("z_index_0");
                         },1000);
                     }
                 }
@@ -514,7 +514,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
     $(function() {
         $(".plug_choose").AKjs_ChooseList({
             itemWidth: "", //自定义设置按钮宽度
-            btnClass: "fl pl_5 pr_5 mr_05rem border bg_white bor_rad_03rem bor_gray_ddd line_h_24rem c_gray_777 rel ovh", //按钮的class名称设置
+            btnClass: "fl pl_5 pr_5 mr_05rem border bg_white bor_rad_03rem bor_gray_ddd line_h_24rem c_gray_777 pos_rel ovh", //按钮的class名称设置
             btnIcon: true, //是否开启被选中时显示打钩符号 (true/false)
             active: "c_theme bor_theme", //选中后的样式
             multi: false, //单选和多选设置（单选：false，多选：true --- 或者元素里直接加 multiple="multiple" ）
@@ -721,7 +721,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
         //开关按钮样式
         $(".plug_Switch").AKjs_Switch({
             checkedClass: "bg_theme", //选中后的样式
-            disabledClass: "dis_opa_05", //不能选择的样式
+            disabledClass: "opa_05", //不能选择的样式
             onChange:function(chk){ //回调获取当前的选中状态
                 console.log(chk);
             }
@@ -841,7 +841,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
     $(function() {
         $(".plug_touchdel").AKjs_TouchDelete({
             DelText: "删除", //删除按钮中显示的文字
-            DelClass: "abs bg_close c_white w_4rem h_in top_0", //删除按钮的Class样式
+            DelClass: "pos_abs bg_close c_white w_4rem h_in top_0", //删除按钮的Class样式
             ClickDelete: function(btn,ele,index) { //回调获取当点击删除按钮后的删除按钮和当前的区域元素 （btn：删除按钮，ele：当前区域元素，index：当前元素的排号）
                 console.log("index: "+index);
                 $ak.confirm("确认要删除当前的信息吗？", { //(标准的H5使用方法 $ak.confirm)
@@ -867,12 +867,12 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
     $(function() {
         $(".plug_mobileNum").AKjs_IntlTelInput({
             Title_Text: "选择国家和地区", //头部的标题文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
-            Close_btn: "left_0 w_25 pl_3 text_al_l text_12rem", //关闭按钮的样式设置
+            Close_btn: "left_0 w_25 pl_3 text_al_l fs_12rem", //关闭按钮的样式设置
             Close_Text: "关闭", //头部的关闭按钮文字 （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
-            Close_Icon:"text_12rem icon-bt_quxiao_a", //头部的关闭按钮图标  （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
+            Close_Icon:"fs_12rem icon-bt_quxiao_a", //头部的关闭按钮图标  （注：微信平台不显示头部所以在微信平台中使用，请把该参数设置为空。）
             list_Class: "bg_white bor_bottom bor_gray_ddd c_gray_777 touchstart", //数据列表的Class样式
-            Nav_active: "c_theme text_bold", //右侧固定字母菜单的选中样式
-            show_color: "c_theme text_bold text_4rem", //右侧固定字母点击后中间淡入字母效果的样式
+            Nav_active: "c_theme font_bold", //右侧固定字母菜单的选中样式
+            show_color: "c_theme font_bold fs_4rem", //右侧固定字母点击后中间淡入字母效果的样式
             data: json_countryData, //Json获取data数据(data.js)
             boxsize:["24rem","36rem"], //电脑端展开后的下拉框大小设置 ["宽度","高度"]
             showBack:function(ele){ //回调获取被展开后显示的元素
@@ -904,9 +904,9 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
     $(function() {
         $(".plug_spinner").AKjs_Spinner({//数量加减功能
             input_width: "20%", //输入框宽度 （px,%,em）
-            btn_wrap: "fr rel ovh border bor_gray_ddd w_100 bg_gray_f9f", //数量加减输入框的外框样式
-            btn_left: "abs top_0 left_0 bor_right bor_gray_ddd bg_white wh_24rem icon-ln_jian_a", //数量减少按钮Class
-            btn_right: "abs top_0 right_0 bor_left bor_gray_ddd bg_white wh_24rem icon-ln_jia_a", //数量增加按钮Class
+            btn_wrap: "fr pos_rel ovh border bor_gray_ddd w_100 bg_gray_f9f", //数量加减输入框的外框样式
+            btn_left: "pos_abs top_0 left_0 bor_right bor_gray_ddd bg_white wh_24rem icon-ln_jian_a", //数量减少按钮Class
+            btn_right: "pos_abs top_0 right_0 bor_left bor_gray_ddd bg_white wh_24rem icon-ln_jia_a", //数量增加按钮Class
             spacing: 1, //每次累加数量（步长）
             maxNumber: 5, //设置最大数量限制(不使用限制请设为空值)
             changeBack:function(val,ele){ //回调获取实时输入的值
@@ -993,8 +993,8 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
             rate:1, //当前被选中的数量
             ratemax:5, //总数量
             disable:false, //是否能点击(不可点击：true，可点击：false)
-            full:"<i class='c_theme text_18rem line_h_2rem icon-mn_xingxing_fill mr_05rem'></i>", //被选中状态
-            empty:"<i class='c_theme text_18rem line_h_2rem icon-mn_xingxing mr_05rem'></i>", //未选中状态
+            full:"<i class='c_theme fs_18rem line_h_2rem icon-mn_xingxing_fill mr_05rem'></i>", //被选中状态
+            empty:"<i class='c_theme fs_18rem line_h_2rem icon-mn_xingxing mr_05rem'></i>", //未选中状态
             onRated:function(value,init){ //init是默认触发事件
                 if(!init) console.log(value); // 获取点击后的值
                 if(!init) console.log(this); //这里的this指向对象
@@ -1007,8 +1007,8 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
             rate:4, //当前被选中的数量
             ratemax:5, //总数量
             disable:true, //是否能点击(不可点击：true，可点击：false)
-            full:"<i class='c_gray_ccc text_18rem line_h_2rem icon-mn_xingxing_fill mr_05rem'></i>", //被选中状态
-            empty:"<i class='c_gray_ccc text_18rem line_h_2rem icon-mn_xingxing mr_05rem'></i>", //未选中状态
+            full:"<i class='c_gray_ccc fs_18rem line_h_2rem icon-mn_xingxing_fill mr_05rem'></i>", //被选中状态
+            empty:"<i class='c_gray_ccc fs_18rem line_h_2rem icon-mn_xingxing mr_05rem'></i>", //未选中状态
             onRated:function(value,init){ //init是默认触发事件
                 if(!init) console.log(value); //获取点击后的值
                 if(!init) console.log(this); //这里的this指向对象
@@ -1022,9 +1022,9 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
         $(".plug_like").AKjs_Favorite({
             likeMode: true, //是否开启点赞模式 （设置false为收藏模式）
             str: "+1",  //字符串，要显示的内容;也可以传一段html
-            icon_defaultClass: "text_al_m text_14rem icon-mn_shoucang", //默认图标样式
-            icon_changeClass: "text_al_m text_14rem icon-mn_shoucang_fill c_theme", //点击后的图标样式
-            textClass: "c_gray_777 ml_03rem text_al_m", //文字样式
+            icon_defaultClass: "vert_al_m fs_14rem icon-mn_shoucang", //默认图标样式
+            icon_changeClass: "vert_al_m fs_14rem icon-mn_shoucang_fill c_theme", //点击后的图标样式
+            textClass: "c_gray_777 ml_03rem vert_al_m", //文字样式
             text_default: "点赞", //默认显示的文字
             startSize: "12px",  //动画开始的文字大小
             endSize: "30px",    //动画结束的文字大小
@@ -1040,9 +1040,9 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
     $(function() {
         $(".plug_collect").AKjs_Favorite({
             likeMode: false, //是否开启点赞模式 （设置false为收藏模式）
-            icon_defaultClass: "text_al_m text_14rem icon-mn_xingxing", //默认图标样式
-            icon_changeClass: "text_al_m text_14rem icon-mn_xingxing_fill c_theme", //点击后的图标样式
-            textClass: "c_gray_777 ml_03rem text_al_m", //文字样式
+            icon_defaultClass: "vert_al_m fs_14rem icon-mn_xingxing", //默认图标样式
+            icon_changeClass: "vert_al_m fs_14rem icon-mn_xingxing_fill c_theme", //点击后的图标样式
+            textClass: "c_gray_777 ml_03rem vert_al_m", //文字样式
             text_default: "关注", //默认显示的文字
             text_change: "取消关注", //点击后显示的文字
             callback:function(length,ele){ //通过回调获取数量和元素
@@ -1060,7 +1060,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
             source: json_searchData, //Json获取data数据(data.js)
             showCallBack:function(ele){ //回调获取被展开后显示的元素
                 if (IsMobile) {
-                    $(".plug_Typeahead").parent().append('<i class="dis_none_im abs left_0 ml_03rem text_14rem c_gray_999 line_h_18rem iconfont icon-sousuo1"></i>');
+                    $(".plug_Typeahead").parent().append('<i class="dis_none_im pos_abs left_0 ml_03rem fs_14rem c_gray_999 line_h_18rem iconfont icon-sousuo1"></i>');
                     if ($(".ak-typeahead").children("ol").length < 1) {
                         $(".ak-typeahead").append(
                             "<ol class=\"scrolling_touch list ovs_y h_100\">\n" +
@@ -1124,7 +1124,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
             ),
             delbtnClass: ".plug_DelImage", //设置控制显示和隐藏删除按钮的控制按钮
             webToast: "成功删除!", //删除图片后提示的文字
-            Class:"bg_white dis_block text_al_c ovh rel w_80 h_5rem line_h_5rem border bor_gray_ddd", //图片列表边框样式
+            Class:"bg_white dis_block text_al_c ovh pos_rel w_80 h_5rem line_h_5rem border bor_gray_ddd", //图片列表边框样式
             Del_icon:"icon-bt_quxiao_a", //图片删除图标样式
             length:4, //默认允许上传多少照片
             length_title:"最大支持上传图片数量为：", //超出上传限制数量后提示的文字
@@ -1263,14 +1263,14 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                 maskPosition: 5, //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                 OneButton: aa.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                toggleIcon: "text_14rem icon-mn_wo", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                toggleIcon: "fs_14rem icon-mn_wo", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     if (toggle) { //判断是否弹出弹窗
                         console.log($(ele[0].dom)); //获取当前的弹窗元素
-                        $("footer").addClass("zindex_0");
+                        $("footer").addClass("z_index_0");
                     } else {
                         setTimeout(function() {
-                            $("footer").removeClass("zindex_0");
+                            $("footer").removeClass("z_index_0");
                         },1000);
                     }
                 }
@@ -1303,7 +1303,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                     "            <dl class=\"ak-chat_right\">\n" +
                     "                <dt>\n" +
                     "                    <figure class=\"wh_3rem bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_me+" class=\"defer_none\"></figure>\n" +
-                    "                    <span class=\"center text_08rem c_gray_777 text_al_c\">"+chat_name_me+"</span>\n" +
+                    "                    <span class=\"center fs_08rem c_gray_777 text_al_c\">"+chat_name_me+"</span>\n" +
                     "                </dt>\n" +
                     "                <dd class=\"border bg_theme bor_theme c_white\">"+str+"</dd>\n" +
                     "            </dl>\n" +
@@ -1314,7 +1314,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                     "            <dl class=\"ak-chat_left\">\n" +
                     "                <dt>\n" +
                     "                    <figure class=\"wh_3rem bg_gray_f5f bor_rad_50 border bor_gray_ddd img_auto\"><img src="+chat_portrait_you+" class=\"defer_none\"></figure>\n" +
-                    "                    <span class=\"center text_08rem c_gray_777 text_al_c\">"+chat_name_you+"</span>\n" +
+                    "                    <span class=\"center fs_08rem c_gray_777 text_al_c\">"+chat_name_you+"</span>\n" +
                     "                </dt>\n" +
                     "                <dd>"+chat_auto+"</dd>\n" +
                     "            </dl>\n" +
@@ -1469,10 +1469,10 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                 maskPosition: 3, //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                 OneButton: el.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                toggleIcon: "text_14rem icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                toggleIcon: "fs_14rem icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     if (toggle) { //判断是否弹出弹窗
-                        $("footer").addClass("zindex_2");
+                        $("footer").addClass("z_index_2");
                         $("header, #ak-main, footer").removeClass("left_au").addClass("right_au");
                         $(ele[0].dom).removeClass("dis_none").removeClass("left_au").addClass("right_au").css({"left": parseInt(-$(ele[0].dom).outerWidth())+"px"});
                         $("header, #ak-main, footer").animate({
@@ -1494,7 +1494,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                         setTimeout(function() {
                             $("header, #ak-main, footer").removeClass("right_au");
                             $(ele[0].dom).removeClass("right_au");
-                            $("footer").removeClass("zindex_2");
+                            $("footer").removeClass("z_index_2");
                         },1000);
                     }
                 }
@@ -1512,10 +1512,10 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                 maskPosition: 3, //Mask的z-index数值
                 closeBtn: "#popup_mask", //关闭弹窗按钮的Class名
                 OneButton: er.currentTarget, //点击按钮和关闭按钮通用时需要加该属性
-                toggleIcon: "text_14rem icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
+                toggleIcon: "fs_14rem icon-bt_quxiao_a", //是否点击后替换图标功能，加图标的Class名 （建议启用OneButton的参数后使用）
                 callback:function (ele,toggle) { //通过回调获取弹窗显示后的以上参数
                     if (toggle) { //判断是否弹出弹窗
-                        $("footer").addClass("zindex_2");
+                        $("footer").addClass("z_index_2");
                         $("header, #ak-main, footer").removeClass("right_au").addClass("left_au");
                         $(ele[0].dom).removeClass("dis_none").removeClass("right_au").addClass("left_au").css({"right": parseInt(-$(ele[0].dom).outerWidth())+"px"});
                         $("header, #ak-main, footer").animate({
@@ -1537,7 +1537,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                         setTimeout(function() {
                             $("header, #ak-main, footer").removeClass("left_au");
                             $(ele[0].dom).removeClass("left_au");
-                            $("footer").removeClass("zindex_2");
+                            $("footer").removeClass("z_index_2");
                         },1000);
                     }
                 }
@@ -1565,7 +1565,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                     str += templ.replace("{{src}}", data.data[i].src);
                 }
                 /*元素设置*/
-                var wdropload = "<div class=\"ak-waterfall-down defer_03 abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
+                var wdropload = "<div class=\"ak-waterfall-down defer_03 pos_abs top_0 w_100\"><div class=\"ak-waterfall-load\"><span class=\"ak-waterfall-loading\"></span>加载中...</div></div>";
                 ele.parent().append(wdropload);
                 $(str).appendTo(ele);
             },
@@ -1823,7 +1823,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
     $(function() {
         $(".plug_tabs_find").AKjs_NavScroll({
             content_dom: ".plug_tabs_findview", //内容区域的元素 （该参数是菜单区域使用屏幕固定时需要分开布局结构后指定元素的方法）
-            line_style: "dis_block abs bor_top2 bor_theme", //选中状态的线条样式设置
+            line_style: "dis_block pos_abs bor_top2 bor_theme", //选中状态的线条样式设置
             active_corlor: "c_theme",  //选中状态的文字颜色
             ClickCallback: function(ele,index) { //回调获取点击后的元素和元素的index
                 console.log(ele);
@@ -1857,7 +1857,7 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
         $(".plug_timeaxis").AKjs_TimeAxis({
             firstbox: "bg_theme", //第一个圆框的样式
             boxsize: "3rem", //圆框大小设置
-            textstyle: "text_06rem c_white", //圆框内的文字样式
+            textstyle: "fs_06rem c_white", //圆框内的文字样式
             data: json_TimeAxis, //Json获取data数据(data.js)
             callback:function(ele){ //初始化回调入口
             }
@@ -2250,13 +2250,13 @@ AKjs_Plugin("akjs.plugin.mobile.min","css"); //引入压缩版的全部功能插
                             for(var i=0; i<arrLen; i++){
                                 result
                                     +='     <li class="bg_white ovh mb_5">'
-                                    + '        <article class="rel w_100 ovh line_h_18rem">'
+                                    + '        <article class="pos_rel w_100 ovh line_h_18rem">'
                                     + '            <div class="ovh wp_94 mt_1rem mb_05rem pb_05rem">'
                                     + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32rem bg_gray_eee bor_rad_50" />'
                                     + '                <h3 class="fl ovh w_80 ml_05rem">'+data[i].title+'</h3>'
                                     + '            </div>'
                                     + '            <ol class="w_100 ovh bor_top_dashed bor_gray_ddd length2 list_h_3rem">'
-                                    + '                <li class="fl text_al_c">订单价格：<em class="c_orange text_12rem">待定</em></li>'
+                                    + '                <li class="fl text_al_c">订单价格：<em class="c_orange fs_12rem">待定</em></li>'
                                     + '                <li class="fr text_al_c">上市日期：<em class="c_jd">'+data[i].date+'</em></li>'
                                     + '            </ol>'
                                     + '        </article>'

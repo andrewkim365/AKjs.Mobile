@@ -3,8 +3,8 @@
     </ak-header>
 
     <ak-main data-bounce="false">
-        <button type="button" class="plug_back fix left_0 top_0 ml_1rem mt_1rem wh_28rem text_al_c zindex_8 bg_theme05 bor_rad_50" data-href="/page1" data-back="true"><!--data-href指定路径时通过data-back属性判断该按钮是不是返回按钮（判断页面切换效果）-->
-            <i class="text_14rem icon-ln_zhixiangzuo c_white"></i>
+        <button type="button" class="plug_back pos_fix left_0 top_0 ml_1rem mt_1rem wh_28rem text_al_c z_index_8 bg_theme05 bor_rad_50" data-href="/page1" data-back="true"><!--data-href指定路径时通过data-back属性判断该按钮是不是返回按钮（判断页面切换效果）-->
+            <i class="fs_14rem icon-ln_zhixiangzuo c_white"></i>
         </button>
         <ak-scrollview data-bounce="true">
             <div class="module press plug_DropLoad">
@@ -16,7 +16,7 @@
 
     <ak-footer data-display="true">
         <fieldset class="h_in bor_top bor_gray_ddd bg_gray_f9f length2">
-            <legend class="fl h_100 line_h_32rem c_gray_777 text_al_c" data-href="/page4">应付金额：<span class="c_orange text_bold">¥100.00</span></legend>
+            <legend class="fl h_100 line_h_32rem c_gray_777 text_al_c" data-href="/page4">应付金额：<span class="c_orange font_bold">¥100.00</span></legend>
             <button type="button" class="fl bg_theme h_100 c_white">立即支付</button>
         </fieldset>
     </ak-footer>
@@ -142,13 +142,13 @@
                             for(var i=0; i<arrLen; i++){
                                 result
                                     +='     <li class="bg_white ovh mb_5">'
-                                    + '        <article class="rel w_100 ovh line_h_18rem active_gray_f5f" data-href="/page2">'
+                                    + '        <article class="pos_rel w_100 ovh line_h_18rem active_gray_f5f" data-href="/page2">'
                                     + '            <div class="ovh wp_94 mt_1rem mb_05rem pb_05rem">'
                                     + '                <img src="'+data[i].pic+'" class="dis_block fl wh_32rem bg_gray_eee bor_rad_50 defer_none" />'
                                     + '                <h3 class="fl ovh w_80 ml_05rem">'+data[i].title+'</h3>'
                                     + '            </div>'
                                     + '            <ol class="w_100 ovh bor_top_dashed bor_gray_ddd length2 list_h_3rem">'
-                                    + '                <li class="fl text_al_c">订单价格：<em class="c_orange text_12rem">待定</em></li>'
+                                    + '                <li class="fl text_al_c">订单价格：<em class="c_orange fs_12rem">待定</em></li>'
                                     + '                <li class="fr text_al_c">上市日期：<em class="c_jd">'+data[i].date+'</em></li>'
                                     + '            </ol>'
                                     + '        </article>'

@@ -1,4 +1,4 @@
-/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.2 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20201205 AKjs.Mobile license */
+/*! jQuery.AKjs.Mobile by Mobile Web App Plugin v1.6.3 Stable --- Copyright Andrew.Kim | (c) 20170808 ~ 20210202 AKjs.Mobile license */
 /*! Coding by Andrew.Kim (E-mail: andrewkim365@qq.com) https://github.com/andrewkim365/AKjs.Mobile */
 
 if ("undefined" == typeof jQuery) throw new Error("AKjs.Mobile Plugin's JavaScript requires jQuery");
@@ -177,11 +177,11 @@ function AKjs_Router(setting) {
                         }
                     }
                     if ($("#ak-animation").prop("dataset").router == "slideLeft") {
-                        asideEle.html($(animationEle).html()).addClass("animated slideOutRight ani_delay_01s ani_05s zindex_10");
+                        asideEle.html($(animationEle).html()).addClass("animated slideOutRight ani_delay_01s ani_05s z_index_10");
                         $("#ak-animation").addClass("filter_brig_096");
                     } else if ($("#ak-animation").prop("dataset").router == "slideRight") {
                         asideEle.html($(animationEle).html()).addClass("filter_brig_096");
-                        $("#ak-animation").addClass("animated slideInRight ani_delay_01s ani_05s zindex_10");
+                        $("#ak-animation").addClass("animated slideInRight ani_delay_01s ani_05s z_index_10");
                     } else {
                         asideEle.html("");
                         $("#ak-animation").removeClass();
@@ -189,10 +189,10 @@ function AKjs_Router(setting) {
                     asideEle.find("scrollview").scrollTop(PrevScrollTop);
                     asideEle.find('[class^="defer_"]').addClass("defer_none");
                     asideEle.find('[class*=" defer_"]').addClass("defer_none");
-                    asideEle.find("footer").addClass("dis_opa_0");
+                    asideEle.find("footer").addClass("opa_0");
                     asideEle.find(".animated").removeClass("animated");
-                    asideEle.find(".dis_opa_0").removeClass("dis_opa_0");
-                    asideEle.find("#ak-main-record").addClass("rel ova");
+                    asideEle.find(".opa_0").removeClass("opa_0");
+                    asideEle.find("#ak-main-record").addClass("pos_rel ova");
                     $("header, footer").not("aside header, aside footer").css({
                         "left": 0,
                         "right": 0
@@ -208,7 +208,7 @@ function AKjs_Router(setting) {
                     $("footer").not("aside footer").find(".h_au").removeClass("h_au");
                     setTimeout(function () {
                         $("header, footer").not("aside header, aside footer").removeAttr("style");
-                        asideEle.find("footer").removeClass("dis_opa_0");
+                        asideEle.find("footer").removeClass("opa_0");
                         asideEle.removeClass().addClass("fix_full");
                         asideEle.html("");
                         $("#ak-animation").removeClass();
@@ -616,9 +616,9 @@ function AKjs_InputFocus() {
             });
         }
         if (IsIphone || IsIpad) {
-            $("footer").not("aside footer").removeClass("dis_opa_0");
+            $("footer").not("aside footer").removeClass("opa_0");
             $("main").not("aside main").removeClass("h_100 mb_0");
-            $("#ak-animation").removeClass("abs w_100 ovh").removeAttr("style");
+            $("#ak-animation").removeClass("pos_abs w_100 ovh").removeAttr("style");
             focus_Setting_mainHeight();
         }
     }
@@ -641,9 +641,9 @@ function AKjs_InputFocus() {
                     }
                 });
             }
-            $("footer").not("aside footer").addClass("dis_opa_0");
+            $("footer").not("aside footer").addClass("opa_0");
             $("main").not("aside main").addClass("h_100 mb_0");
-            $("#ak-animation").addClass("abs w_100 ovh").css({
+            $("#ak-animation").addClass("pos_abs w_100 ovh").css({
                 height: $("#ak-scrollview").height() *2
             });
             focus_Setting_mainHeight();
@@ -660,7 +660,7 @@ function AKjs_InputFocus() {
         }
     }
     function focus_Setting_mainHeight() {
-        if ($("footer").not("aside footer").hasClass("dis_opa_0") || $("footer").not("aside footer").hasClass("dis_none_im") || $("footer").not("aside footer").length === 0) {
+        if ($("footer").not("aside footer").hasClass("opa_0") || $("footer").not("aside footer").hasClass("dis_none_im") || $("footer").not("aside footer").length === 0) {
             var footer_h = 0;
         } else {
             var footer_h = $("footer").not("aside footer").outerHeight();
@@ -724,7 +724,7 @@ function AKjs_placeholder() {
         }
         if (place.attr("placeholder") && place.val()=='') {
             if (place.parent().prop('tagName') != "LABEL") {
-                place.wrap("<label class='dis_block ovh rel h_in c_gray_ccc'></label>");
+                place.wrap("<label class='dis_block ovh pos_rel h_in c_gray_ccc'></label>");
                 place.parent("label").append("<span>" + place.attr('placeholder') + "</span>");
             }
             place.parent("label").children("span").css({
@@ -1020,17 +1020,17 @@ function AKjs_Animation() {
             if (IsMobile) {
                 var animated_each = _self.eq(i).attr("data-animation");
                 aniJson_each = eval("(" + animated_each + ")");
-                _self.eq(i).removeClass("dis_opa_0");
+                _self.eq(i).removeClass("opa_0");
                 aniAdd(_self.eq(i),aniJson_each);
             } else {
                 arr[i] = _self.eq(i).offset().top + _self.eq(i).outerHeight();
                 if (arr[i] < view_h) {
                     var animated_each = _self.eq(i).attr("data-animation");
                     aniJson_each = eval("(" + animated_each + ")");
-                    _self.eq(i).removeClass("dis_opa_0");
+                    _self.eq(i).removeClass("opa_0");
                     aniAdd(_self.eq(i),aniJson_each);
                 } else if (_self.eq(i).offset().top > view_h) {
-                    _self.eq(i).addClass("dis_opa_0");
+                    _self.eq(i).addClass("opa_0");
                 }
             }
         }
@@ -1055,7 +1055,7 @@ function AKjs_Animation() {
                     if (arr[i] > view_h) {
                         var animated_each = _self.eq(i).attr("data-animation");
                         aniJson_each = eval("(" + animated_each + ")");
-                        _self.eq(i).removeClass("dis_opa_0");
+                        _self.eq(i).removeClass("opa_0");
                         aniAdd(_self.eq(i),aniJson_each);
                     }
                 } else if (scrollTop < arr[0]) {
@@ -1063,12 +1063,12 @@ function AKjs_Animation() {
                     aniJson_each = eval("(" + animated_each + ")");
                     var animated_first = _self.eq(0).attr("data-animation");
                     aniJson_first = eval("(" + animated_first + ")");
-                    _self.eq(0).removeClass("dis_opa_0");
+                    _self.eq(0).removeClass("opa_0");
                     if (arr[i] > view_h) {
                         _self.eq(i).removeClass("animated " + aniJson_each.name);
                         aniAdd(_self.eq(0), aniJson_first);
                         if (_self.eq(i).offset().top > view_h) {
-                            _self.eq(i).addClass("dis_opa_0");
+                            _self.eq(i).addClass("opa_0");
                         }
                     }
                 } else {

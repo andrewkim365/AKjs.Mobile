@@ -37,7 +37,7 @@ if (AKjs_Params(1).indexOf("start") == -1) { //通过AKjs_Params获取hash的第
             Loader: "load_2", //loading效果选择（load_1~7），在PC端使用时请填写load_0,让IE8也兼容。
             //text: "内容加载中", //Loading时显示的文字
             boxsize: "3rem", //Loading框大小设置
-            eleclass: "animated fadeIn zindex_6 c_gray_333", //Loading的ele区域的样式设置
+            eleclass: "animated fadeIn z_index_6 c_gray_333", //Loading的ele区域的样式设置
             callback:function (ele,destroy) { //回调入口 （ele：元素，destroy：摧毁开关控制）
                 //console.log(ele);
                 setTimeout(function() { //页面加载完2秒后执行
